@@ -1,0 +1,482 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>2016-05-23-set-up-github-pages-with-hexo.md | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="Set up Github Pages with Hexo, migrating from Jekyll.本文介绍用Hexo建立github pages, 其中包含了从Jekyll迁移过来的过程.Migrate github pages from Jekyll to Hexo.Set up github pages using Hexo.不光是迁移哇, 直接用Hexo setup github p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2016-05-23-set-up-github-pages-with-hexo.md">
+<meta property="og:url" content="http://mengdd.github.io/uncategorized/2016/05/23/set-up-github-pages-with-hexo/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="Set up Github Pages with Hexo, migrating from Jekyll.本文介绍用Hexo建立github pages, 其中包含了从Jekyll迁移过来的过程.Migrate github pages from Jekyll to Hexo.Set up github pages using Hexo.不光是迁移哇, 直接用Hexo setup github p">
+<meta property="og:updated_time" content="2016-05-24T01:53:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2016-05-23-set-up-github-pages-with-hexo.md">
+<meta name="twitter:description" content="Set up Github Pages with Hexo, migrating from Jekyll.本文介绍用Hexo建立github pages, 其中包含了从Jekyll迁移过来的过程.Migrate github pages from Jekyll to Hexo.Set up github pages using Hexo.不光是迁移哇, 直接用Hexo setup github p">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/uncategorized/2016/05/23/set-up-github-pages-with-hexo/" title="2016-05-23-set-up-github-pages-with-hexo.md" itemprop="url">2016-05-23-set-up-github-pages-with-hexo.md</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-23T10:12:02.000Z" itemprop="datePublished"> Published 2016-05-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Set-up-Github-Pages-with-Hexo-migrating-from-Jekyll"><span class="toc-number">1.</span> <span class="toc-text">Set up Github Pages with Hexo, migrating from Jekyll.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Hexo"><span class="toc-number">1.1.</span> <span class="toc-text">安装Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置和迁移"><span class="toc-number">1.2.</span> <span class="toc-text">设置和迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#备份"><span class="toc-number">1.2.1.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立新的目录"><span class="toc-number">1.2.2.</span> <span class="toc-text">建立新的目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">1.2.3.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容迁移"><span class="toc-number">1.2.4.</span> <span class="toc-text">内容迁移</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployment"><span class="toc-number">1.3.</span> <span class="toc-text">Deployment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网站代码和静态网页管理"><span class="toc-number">1.4.</span> <span class="toc-text">网站代码和静态网页管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Theme"><span class="toc-number">1.5.</span> <span class="toc-text">Theme</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Future"><span class="toc-number">1.6.</span> <span class="toc-text">Future</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Set-up-Github-Pages-with-Hexo-migrating-from-Jekyll"><a href="#Set-up-Github-Pages-with-Hexo-migrating-from-Jekyll" class="headerlink" title="Set up Github Pages with Hexo, migrating from Jekyll."></a>Set up Github Pages with Hexo, migrating from Jekyll.</h1><p>本文介绍用Hexo建立github pages, 其中包含了从Jekyll迁移过来的过程.<br>Migrate github pages from Jekyll to <a href="https://hexo.io/docs/index.html" target="_blank" rel="external">Hexo</a>.<br>Set up github pages using Hexo.<br>不光是迁移哇, 直接用Hexo setup github pages 看这个也有用哇.</p>
+<p>为什么要把github pages 从Jekyll实现迁移到Hexo?<br>前阵子用Jekyll建了github pages(官方推荐), 但是发现添加代码段比较痛苦, markdown的前后三个点并不能标记一个代码块, 需要在代码块前后加上两句特定的语句.<br>如果一篇文章有很多代码块, 这样一个一个加下来比较费劲, 而且加完了之后代码段的样式也不是很好看.</p>
+<p>为此很苦恼的我问了phodal大神, 大神回复: Hexo.</p>
+<p>下文记录了我的操作过程.</p>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>必要条件:<br><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a><br>可以选个pkg,下载后点击安装, 装完之后告诉你路径.</p>
+<p>也可以用nvm装的<br><a href="https://github.com/creationix/nvm" target="_blank" rel="external">nvm</a><br>Git<br>这个一般大家都有哒~</p>
+<p>上面两个都有之后, 安装Hexo:</p>
+<p><code>$ npm install -g hero-cli</code><br>装得也很快.<br>之后试一下hexo命令,如果有命令介绍(而不是command not found)就代表装好了.</p>
+<h2 id="设置和迁移"><a href="#设置和迁移" class="headerlink" title="设置和迁移"></a>设置和迁移</h2><p><a href="https://hexo.io/docs/setup.html" target="_blank" rel="external">Setup</a></p>
+<h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>首先, 从原先的_posts/目录下将原来的文章都拷贝出来.<br>另外将.git目录也拷贝出来(这是为了保持github上的历史).<br>这些文件另外保存.</p>
+<h3 id="建立新的目录"><a href="#建立新的目录" class="headerlink" title="建立新的目录"></a>建立新的目录</h3><p>在准备好的空目录运行命令:<br><code>hexo init .</code><br>就建立好了hexo的目录,相关介绍可以去网站看.<br><code>npm install</code> 下载依赖包.</p>
+<p>Hexo会自动忽略下划线开头的目录和文件名,但是_posts目录除外.<br>这时候可以运行<br><code>$ hexo server</code><br>然后访问<a href="http://localhost:4000/预览一下" target="_blank" rel="external">http://localhost:4000/预览一下</a>.</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>网站的设置文件是<code>_config.yml</code><br>打开可以配置一些新东东, 比如title url之类的.<br>具体设置参照这个: <a href="https://hexo.io/docs/configuration.html" target="_blank" rel="external">configuration</a></p>
+<h3 id="内容迁移"><a href="#内容迁移" class="headerlink" title="内容迁移"></a>内容迁移</h3><p>这是内容迁移的介绍:<br><a href="https://hexo.io/docs/migration.html" target="_blank" rel="external">migration</a></p>
+<p>所以首先在<code>_config.yml</code>文件里把 new_post_name字段改为:<br><code>new_post_name: :year-:month-:day-:title.md</code><br>否则就要修改之前每一个文章的文件名,太麻烦,而且我觉得加个日期也比较好.</p>
+<p>然后把原来备份的博客文章移到source/_posts/目录下.</p>
+<p>比较bug的是以前jekyll文章里的代码段前后加的那两句还得手动移除.<br>用Hexo后 前后各加三个点即可标记代码段.<br>如果想要代码高亮, 比如是java, 代码段首的三个点后加个java.<br>这里可以查看代码高亮的各种语言: <a href="http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html" target="_blank" rel="external">highlightjs</a></p>
+<p>完成之后可以运行hexo server 命令在本地看一下样子.</p>
+<p>然后把.git目录拷贝回来放在根目录. 可以看到repo地址啊, 历史记录啊还在.<br>最后提交, 本次提交即为迁移提交, push.</p>
+<h2 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h2><p><a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">部署Deployment</a></p>
+<p>我本来以为跟Jekyll一样本地运行好了, push上去就生效了, 结果并没有.<br>访问原地址, github pages并不生效,居然还是原来的那个样子.</p>
+<p>查了一下是因为deploy没有设置.</p>
+<p>打开<code>_config.yml</code>文件,找到deploy字段, 设置一下.<br>我的是这样写的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/mengdd/mengdd.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>然后执行一下这条命令:<br><code>npm install hexo-deployer-git --save</code><br>这条命令执行后package.json会有一条改动, 新添加了一个插件.<br>把这个提交了.</p>
+<p>然后generate和deploy:<br><code>$ hexo generate --deploy</code><br><code>$ hexo deploy --generate</code><br>这两条命令是一样的.<br>运行这条命令的时候可能会要求你输入github的账户名和密码(如果你没有配置SSH key的话).<br>这个需要等待比较长的时间, 实际上最后它是给master分支做了一个<code>git push -f</code><br>所以它实际上是不用你自己push的.</p>
+<p>之后就可以访问啦: <a href="http://mengdd.github.io/">http://mengdd.github.io/</a><br>哒哒!</p>
+<h2 id="网站代码和静态网页管理"><a href="#网站代码和静态网页管理" class="headerlink" title="网站代码和静态网页管理"></a>网站代码和静态网页管理</h2><p>在知乎上看到这个问题: <a href="https://www.zhihu.com/question/21193762" target="_blank" rel="external">使用hexo, 如果换了电脑怎么更新博客?</a><br>乍一看感觉很奇怪, 换一台电脑难道不是clone下来就行了吗? 仔细看了一下恍然大悟.<br>前面提到刚刚的部署命令执行了一次强制push, 可是当我们查看github上的repo(<a href="https://github.com/mengdd/mengdd.github.io" target="_blank" rel="external">https://github.com/mengdd/mengdd.github.io</a>),<br>发现push上去的文件和我们本地的这些完全不同.<br>现在在origin master上的全是一些静态html文件.<br>而我们本地master分支上是一些配置, 还有source文件等.<br>也就是等于我们把母鸡留在了本地电脑, 执行deploy之后只把鸡蛋push到了origin. (我这个形象的比喻).</p>
+<p>那么怎么解决呢? 该问题下排名第一的 [CrazyMilk] 大哥已经给出了答案.<br><a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">他的博文</a><br>所以解决办法就是新建一个分支把网站代码(母鸡)放上去咯~哈~</p>
+<p>首先在本地, 基于当前本地的master新建一个hexo分支:<br><code>git checkout -b hexo</code><br>然后push到origin上去:<br><code>git push origin hexo</code><br>耗时比较久, 请耐心等待.</p>
+<p>最后在github的settings页面把hexo分支设置为default.<br>DONE!</p>
+<h2 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h2><p>之后想设置一个好看的主题, 知乎上居然还有这么个问题:<br><a href="https://www.zhihu.com/question/24422335" target="_blank" rel="external">有哪些好看的Hexo主题?</a><br>我打算选这个试试: <a href="https://github.com/wuchong/jacman" target="_blank" rel="external">https://github.com/wuchong/jacman</a><br>在本地hexo分支根目录下运行:<br><code>git clone https://github.com/wuchong/jacman.git themes/jacman</code><br>就会clone到themes目录下面叫jacman的目录下.<br>然后在根目录下的<code>_config.yml</code>中把theme名改为jacman.</p>
+<p>然后用命令hexo server就可以在本地查看效果.<br>改主题大概就酱, 两步就可以完成, 可以多试几个选一选.<br>选完了在hexo分支提交保存,然后运行<code>hexo d -g</code>生成部署即可.</p>
+<h2 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h2><p>需要用到的命令: <a href="https://hexo.io/docs/commands.html" target="_blank" rel="external">commands</a> 随时查看哇.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/uncategorized/2016/05/23/set-up-github-pages-with-hexo/" data-title="2016-05-23-set-up-github-pages-with-hexo.md | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/uncategorized/2016/05/20/hello-world-from-hexo/"  title="Hello World">
+ <strong>下一篇：</strong><br/> 
+ <span>Hello World
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Set-up-Github-Pages-with-Hexo-migrating-from-Jekyll"><span class="toc-number">1.</span> <span class="toc-text">Set up Github Pages with Hexo, migrating from Jekyll.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Hexo"><span class="toc-number">1.1.</span> <span class="toc-text">安装Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置和迁移"><span class="toc-number">1.2.</span> <span class="toc-text">设置和迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#备份"><span class="toc-number">1.2.1.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立新的目录"><span class="toc-number">1.2.2.</span> <span class="toc-text">建立新的目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">1.2.3.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容迁移"><span class="toc-number">1.2.4.</span> <span class="toc-text">内容迁移</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployment"><span class="toc-number">1.3.</span> <span class="toc-text">Deployment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网站代码和静态网页管理"><span class="toc-number">1.4.</span> <span class="toc-text">网站代码和静态网页管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Theme"><span class="toc-number">1.5.</span> <span class="toc-text">Theme</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Future"><span class="toc-number">1.6.</span> <span class="toc-text">Future</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
