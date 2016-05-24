@@ -11,22 +11,16 @@
     
 
     
-    <meta name="description" content="EventBus源码阅读记录repo地址:greenrobot/EventBus
-EventBus的构造双重加锁的单例.
-1234567891011static volatile EventBus defaultInstance;public static EventBus getDefault() &amp;#123;    if (defaultInstance == null) &amp;#123;">
+    <meta name="description" content="EventBus源码阅读记录EventBus是一个Android上用的消息分发的类库,非常灵活好用,主要的原理是利用了反射注册以及调用.本文是在阅读EventBus的源码过程中所记录的东西, 遇到不懂的去查了,然后留下了链接.有点流水账,讲得也不是很深入,如果有错请帮忙指正.repo地址:greenrobot/EventBus">
 <meta property="og:type" content="article">
 <meta property="og:title" content="EventBus源码阅读记录">
 <meta property="og:url" content="http://mengdd.github.io/Android/2016/03/10/eventbus-codes-analysis/index.html">
 <meta property="og:site_name" content="Meng's pages">
-<meta property="og:description" content="EventBus源码阅读记录repo地址:greenrobot/EventBus
-EventBus的构造双重加锁的单例.
-1234567891011static volatile EventBus defaultInstance;public static EventBus getDefault() &amp;#123;    if (defaultInstance == null) &amp;#123;">
-<meta property="og:updated_time" content="2016-05-24T01:28:40.000Z">
+<meta property="og:description" content="EventBus源码阅读记录EventBus是一个Android上用的消息分发的类库,非常灵活好用,主要的原理是利用了反射注册以及调用.本文是在阅读EventBus的源码过程中所记录的东西, 遇到不懂的去查了,然后留下了链接.有点流水账,讲得也不是很深入,如果有错请帮忙指正.repo地址:greenrobot/EventBus">
+<meta property="og:updated_time" content="2016-05-24T03:56:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EventBus源码阅读记录">
-<meta name="twitter:description" content="EventBus源码阅读记录repo地址:greenrobot/EventBus
-EventBus的构造双重加锁的单例.
-1234567891011static volatile EventBus defaultInstance;public static EventBus getDefault() &amp;#123;    if (defaultInstance == null) &amp;#123;">
+<meta name="twitter:description" content="EventBus源码阅读记录EventBus是一个Android上用的消息分发的类库,非常灵活好用,主要的原理是利用了反射注册以及调用.本文是在阅读EventBus的源码过程中所记录的东西, 遇到不懂的去查了,然后留下了链接.有点流水账,讲得也不是很深入,如果有错请帮忙指正.repo地址:greenrobot/EventBus">
 
     
     <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
@@ -106,7 +100,8 @@ EventBus的构造双重加锁的单例.
 		
 		</div>
 		
-		<h1 id="EventBus源码阅读记录"><a href="#EventBus源码阅读记录" class="headerlink" title="EventBus源码阅读记录"></a>EventBus源码阅读记录</h1><p>repo地址:<br><a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">greenrobot/EventBus</a></p>
+		<h1 id="EventBus源码阅读记录"><a href="#EventBus源码阅读记录" class="headerlink" title="EventBus源码阅读记录"></a>EventBus源码阅读记录</h1><p>EventBus是一个Android上用的消息分发的类库,非常灵活好用,主要的原理是利用了反射注册以及调用.<br>本文是在阅读EventBus的源码过程中所记录的东西, 遇到不懂的去查了,然后留下了链接.<br>有点流水账,讲得也不是很深入,如果有错请帮忙指正.<br>repo地址:<br><a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">greenrobot/EventBus</a></p>
+<a id="more"></a>
 <h2 id="EventBus的构造"><a href="#EventBus的构造" class="headerlink" title="EventBus的构造"></a>EventBus的构造</h2><p>双重加锁的单例.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">volatile</span> EventBus defaultInstance;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> EventBus <span class="title">getDefault</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (defaultInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (EventBus.class) &#123;</span><br><span class="line">            <span class="keyword">if</span> (defaultInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                defaultInstance = <span class="keyword">new</span> EventBus();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> defaultInstance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但是仍然开放了构造函数,用于构造其他别的对象.</p>
