@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-06-01T00:47:44.000Z</updated>
+  <updated>2016-06-01T02:12:16.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://mengdd.github.io/uncategorized/2016/05/31/android-fragment-usage-1-basic-part/"/>
     <id>http://mengdd.github.io/uncategorized/2016/05/31/android-fragment-usage-1-basic-part/</id>
     <published>2016-05-31T04:51:19.000Z</published>
-    <updated>2016-06-01T00:47:44.000Z</updated>
+    <updated>2016-06-01T02:12:16.000Z</updated>
     
     <content type="html">&lt;p&gt;Fragment使用的基本知识点总结, 包括Fragment的添加, 参数传递和通信, 生命周期和各种操作.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -70,6 +70,33 @@
     
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Test Links</title>
+    <link href="http://mengdd.github.io/uncategorized/2016/05/31/test-links/"/>
+    <id>http://mengdd.github.io/uncategorized/2016/05/31/test-links/</id>
+    <published>2016-05-31T04:51:19.000Z</published>
+    <updated>2016-06-01T02:12:00.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://m.realestate.com.au/sold/property-house-act-waramanga-122532898&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://m.realestate.com.au/sold/property-house-act-waramanga-122532898&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;realestate.com.au/suggested-properties&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/suggested-properties&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/suggested-properties&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;amp;includeSurrounding=false&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;amp;includeSurrounding=false&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;amp;numParkingSpaces=3&amp;amp;numBaths=2&amp;amp;maxBeds=2&amp;amp;includeSurrounding=false&amp;amp;persistIncludeSurrounding=true&amp;amp;source=location-search&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;amp;numParkingSpaces=3&amp;amp;numBaths=2&amp;amp;maxBeds=2&amp;amp;includeSurrounding=false&amp;amp;persistIncludeSurrounding=true&amp;amp;source=location-search&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;amp;includeSurrounding=false&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;amp;includeSurrounding=false&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestat
+    
+    </summary>
+    
     
   </entry>
   
