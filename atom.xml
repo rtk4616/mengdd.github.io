@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-05-31T05:31:04.000Z</updated>
+  <updated>2016-06-01T00:47:44.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -16,38 +16,15 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>test links</title>
-    <link href="http://mengdd.github.io/uncategorized/2016/05/31/test-links/"/>
-    <id>http://mengdd.github.io/uncategorized/2016/05/31/test-links/</id>
-    <published>2016-05-31T05:29:20.000Z</published>
-    <updated>2016-05-31T05:31:04.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://m.realestate.com.au/sold/property-house-act-waramanga-122532898&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://m.realestate.com.au/sold/property-house-act-waramanga-122532898&lt;/a&gt;&lt;br&gt;realestate.com.au/suggested-properties&lt;br&gt;&lt;a href=&quot;http://www.realestate.com.au/suggested-properties&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/suggested-properties&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;amp;includeSurrounding=false&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;amp;includeSurrounding=false&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;amp;numParkingSpaces=3&amp;amp;numBaths=2&amp;amp;maxBeds=2&amp;amp;includeSurrounding=false&amp;amp;persistIncludeSurrounding=true&amp;amp;source=location-search&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;amp;numParkingSpaces=3&amp;amp;numBaths=2&amp;amp;maxBeds=2&amp;amp;includeSurrounding=false&amp;amp;persistIncludeSurrounding=true&amp;amp;source=location-search&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;amp;includeSurrounding=false&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;amp;includeSurrounding=false&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestat
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Android Fragment使用(一) 基础篇 温故知新</title>
     <link href="http://mengdd.github.io/uncategorized/2016/05/31/android-fragment-usage-1-basic-part/"/>
     <id>http://mengdd.github.io/uncategorized/2016/05/31/android-fragment-usage-1-basic-part/</id>
     <published>2016-05-31T04:51:19.000Z</published>
-    <updated>2016-05-31T05:16:05.000Z</updated>
+    <updated>2016-06-01T00:47:44.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;Android-Fragment使用-一-基础篇-温故知新&quot;&gt;&lt;a href=&quot;#Android-Fragment使用-一-基础篇-温故知新&quot; class=&quot;headerlink&quot; title=&quot;Android Fragment使用(一) 基础篇 温故知新&quot;&gt;&lt;/a&gt;Android Fragment使用(一) 基础篇 温故知新&lt;/h1&gt;&lt;p&gt;Fragment使用的基本知识点总结, 包括Fragment的添加, 参数传递和通信, 生命周期和各种操作.&lt;/p&gt;
+    <content type="html">&lt;p&gt;Fragment使用的基本知识点总结, 包括Fragment的添加, 参数传递和通信, 生命周期和各种操作.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;Fragment添加&quot;&gt;&lt;a href=&quot;#Fragment添加&quot; class=&quot;headerlink&quot; title=&quot;Fragment添加&quot;&gt;&lt;/a&gt;Fragment添加&lt;/h2&gt;&lt;p&gt;方法一: 布局里的标签&lt;fragment&gt;&lt;br&gt;标识符: tag, id, 如果都没有, container的id将会被使用.&lt;/fragment&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Fragment使用基础&quot;&gt;&lt;a href=&quot;#Fragment使用基础&quot; class=&quot;headerlink&quot; title=&quot;Fragment使用基础&quot;&gt;&lt;/a&gt;Fragment使用基础&lt;/h1&gt;&lt;h2 id=&quot;Fragment添加&quot;&gt;&lt;a href=&quot;#Fragment添加&quot; class=&quot;headerlink&quot; title=&quot;Fragment添加&quot;&gt;&lt;/a&gt;Fragment添加&lt;/h2&gt;&lt;p&gt;方法一: 布局里的标签&lt;fragment&gt;&lt;br&gt;标识符: tag, id, 如果都没有, container的id将会被使用.&lt;/fragment&gt;&lt;/p&gt;
 &lt;p&gt;方法二: 动态添加&lt;br&gt;动态添加利用了一个transaction:&lt;/p&gt;
 &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;FragmentManager fragmentManager = getFragmentManager();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Fragment fragment = fragmentManager.findFragmentByTag(FragmentB.TAG);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt; == fragment) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    FragmentB fragmentB = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; FragmentB();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    fragmentTransaction.add(R.id.fragment_container, fragmentB, FragmentB.TAG)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                       .commit();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;&lt;code&gt;commit()&lt;/code&gt;方法并不立即执行transaction中包含的动作,而是把它加入到UI线程队列中.&lt;br&gt;如果想要立即执行,可以在commit之后立即调用FragmentManager的&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentManager.html#executePendingTransactions(&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;executePendingTransactions()&lt;/code&gt;&lt;/a&gt;)方法.&lt;/p&gt;
@@ -69,6 +46,7 @@
 &lt;p&gt;对于DialogFragment来说, 可以通过一个public的set方法将外面的target设置进去.&lt;br&gt;比如用Fragment的这个方法: &lt;a href=&quot;https://developer.android.com/reference/android/app/Fragment.html#setTargetFragment(android.app.Fragment,%20int&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;setTargetFragment()&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://guides.codepath.com/android/Using-DialogFragment#passing-data-to-parent-fragment&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;&lt;br&gt;对于嵌套(nested)Fragment, 通信方式与上面普通的fragment类似, 只不过parent此时不是activity而是一个fragment.&lt;br&gt;后面会单独有一个文章说嵌套Fragment的使用, 敬请期待.&lt;/p&gt;
 &lt;h1 id=&quot;Fragment的生命周期&quot;&gt;&lt;a href=&quot;#Fragment的生命周期&quot; class=&quot;headerlink&quot; title=&quot;Fragment的生命周期&quot;&gt;&lt;/a&gt;Fragment的生命周期&lt;/h1&gt;&lt;p&gt;Fragment的生命周期首先和Activity的生命周期密切相关,&lt;br&gt;如果activity stopped,其中所有的fragment都不能start;&lt;br&gt;如果activity destroyed, 其中所有的fragment都会被destroyed.&lt;br&gt;只有activity在resumed状态下,fragment的生命周期可以独立改变,否则它被activity控制.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/fragment-lifecycle.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/fragment-lifecycle-2.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/activity-fragment-lifecycle.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/fragment-lifecycle-with-callbacks.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;上面这个图来自于: &lt;a href=&quot;https://corner.squareup.com/2014/10/advocating-against-android-fragments.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://corner.squareup.com/2014/10/advocating-against-android-fragments.html&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&quot;FragmentTransaction基础操作&quot;&gt;&lt;a href=&quot;#FragmentTransaction基础操作&quot; class=&quot;headerlink&quot; title=&quot;FragmentTransaction基础操作&quot;&gt;&lt;/a&gt;FragmentTransaction基础操作&lt;/h1&gt;&lt;h2 id=&quot;操作类型&quot;&gt;&lt;a href=&quot;#操作类型&quot; class=&quot;headerlink&quot; title=&quot;操作类型&quot;&gt;&lt;/a&gt;操作类型&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FragmentTransaction&lt;/a&gt; 中对Fragment有如下几种操作:&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;attach(), detach()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;add(), remove(),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;show(), hide(),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;replace()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -81,12 +59,12 @@
 &lt;h2 id=&quot;remove-replace-是否加到back-stack对生命周期的影响&quot;&gt;&lt;a href=&quot;#remove-replace-是否加到back-stack对生命周期的影响&quot; class=&quot;headerlink&quot; title=&quot;remove(), replace()是否加到back stack对生命周期的影响&quot;&gt;&lt;/a&gt;remove(), replace()是否加到back stack对生命周期的影响&lt;/h2&gt;&lt;p&gt;前面说过, &lt;code&gt;replace() == remove() + add()&lt;/code&gt;&lt;br&gt;新的fragment将取代在容器布局中的fragment, 如果没有,将直接添加新的fragment.&lt;/p&gt;
 &lt;p&gt;是否添加到back stack对fragment的生命周期是有影响的.&lt;br&gt;&lt;code&gt;remove()&lt;/code&gt;或者&lt;code&gt;replace()&lt;/code&gt;的时候,如果&lt;code&gt;commit()&lt;/code&gt;之前没有调用&lt;code&gt;addToBackStack()&lt;/code&gt;,那个旧fragment将会被destroyed和detach; 即完全销毁和移除.&lt;/p&gt;
 &lt;p&gt;如果调用了&lt;code&gt;addToBackStack()&lt;/code&gt;,旧的fragment会处在stopped状态,调用到&lt;code&gt;onDestroyView()&lt;/code&gt;, 可以通过返回键来resume.&lt;br&gt;这个时候对于旧的Fragment来说, 成员变量依然在,但是View被销毁了. 所以返回时它的生命周期从&lt;code&gt;onCreateView()&lt;/code&gt;开始重建View.&lt;/p&gt;
-&lt;h2 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/Fragment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Reference Fragment&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Reference FragmentTransaction&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://guides.codepath.com/android/Creating-and-Using-Fragments&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CodePath Guides: Creating and Using Fragments&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/Fragment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Reference Fragment&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Reference FragmentTransaction&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://guides.codepath.com/android/Creating-and-Using-Fragments&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CodePath Guides: Creating and Using Fragments&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Android-Fragment使用-一-基础篇-温故知新&quot;&gt;&lt;a href=&quot;#Android-Fragment使用-一-基础篇-温故知新&quot; class=&quot;headerlink&quot; title=&quot;Android Fragment使用(一) 基础篇 温故知新&quot;&gt;&lt;/a&gt;Android Fragment使用(一) 基础篇 温故知新&lt;/h1&gt;&lt;p&gt;Fragment使用的基本知识点总结, 包括Fragment的添加, 参数传递和通信, 生命周期和各种操作.&lt;/p&gt;
+      &lt;p&gt;Fragment使用的基本知识点总结, 包括Fragment的添加, 参数传递和通信, 生命周期和各种操作.&lt;/p&gt;
     
     </summary>
     
