@@ -1,0 +1,590 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android Fragment使用(四) Toolbar使用及Fragment中的Toolbar处理 | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="Toolbar作为ActionBar使用介绍本文介绍了在Android中将Toolbar作为ActionBar使用的方法.并且介绍了在Fragment和嵌套Fragment中使用Toolbar作为ActionBar使用时需要注意的事项.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Fragment使用(四) Toolbar使用及Fragment中的Toolbar处理">
+<meta property="og:url" content="http://mengdd.github.io/Android/2016/06/16/android-fragment-usage-4-toolbar/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="Toolbar作为ActionBar使用介绍本文介绍了在Android中将Toolbar作为ActionBar使用的方法.并且介绍了在Fragment和嵌套Fragment中使用Toolbar作为ActionBar使用时需要注意的事项.">
+<meta property="og:updated_time" content="2016-06-16T04:52:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Fragment使用(四) Toolbar使用及Fragment中的Toolbar处理">
+<meta name="twitter:description" content="Toolbar作为ActionBar使用介绍本文介绍了在Android中将Toolbar作为ActionBar使用的方法.并且介绍了在Fragment和嵌套Fragment中使用Toolbar作为ActionBar使用时需要注意的事项.">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/Android/2016/06/16/android-fragment-usage-4-toolbar/" title="Android Fragment使用(四) Toolbar使用及Fragment中的Toolbar处理" itemprop="url">Android Fragment使用(四) Toolbar使用及Fragment中的Toolbar处理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-16T04:15:26.000Z" itemprop="datePublished"> Published 2016-06-16</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Toolbar作为ActionBar使用介绍"><span class="toc-number">1.</span> <span class="toc-text">Toolbar作为ActionBar使用介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用support-library的Toolbar"><span class="toc-number">1.1.</span> <span class="toc-text">使用support library的Toolbar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在Activity中使用Toolbar"><span class="toc-number">1.2.</span> <span class="toc-text">在Activity中使用Toolbar</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加Action-Buttons"><span class="toc-number">1.2.1.</span> <span class="toc-text">添加Action Buttons</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加向上返回的action"><span class="toc-number">1.2.2.</span> <span class="toc-text">添加向上返回的action</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在Fragment中使用Toolbar"><span class="toc-number">1.3.</span> <span class="toc-text">在Fragment中使用Toolbar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在嵌套的子Fragment中使用Toolbar"><span class="toc-number">1.4.</span> <span class="toc-text">在嵌套的子Fragment中使用Toolbar</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#onCreateOptionsMenu-方法的调用"><span class="toc-number">1.4.1.</span> <span class="toc-text">onCreateOptionsMenu()方法的调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onOptionsItemSelected-方法的调用"><span class="toc-number">1.4.2.</span> <span class="toc-text">onOptionsItemSelected()方法的调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有嵌套Fragment时-Back键处理"><span class="toc-number">1.4.3.</span> <span class="toc-text">有嵌套Fragment时 Back键处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">2.</span> <span class="toc-text">参考资料</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="Toolbar作为ActionBar使用介绍"><a href="#Toolbar作为ActionBar使用介绍" class="headerlink" title="Toolbar作为ActionBar使用介绍"></a>Toolbar作为ActionBar使用介绍</h1><p>本文介绍了在Android中将Toolbar作为ActionBar使用的方法.<br>并且介绍了在Fragment和嵌套Fragment中使用Toolbar作为ActionBar使用时需要注意的事项.<br><a id="more"></a></p>
+<h2 id="使用support-library的Toolbar"><a href="#使用support-library的Toolbar" class="headerlink" title="使用support library的Toolbar"></a>使用support library的Toolbar</h2><p>Android的ActionBar每个版本都会做一些改变, 所以原生的ActionBar在不同的系统上看起来可能会不一样.<br>使用support library版本的<a href="https://developer.android.com/reference/android/support/v7/widget/Toolbar.html" target="_blank" rel="external">Toolbar</a>可以让你的应用在多种设备类型上保持一致. support library中总是包含了最新的features.<br>Android从5.0 (API Level 21)开始提供<a href="https://developer.android.com/design/material/index.html" target="_blank" rel="external">Material Design</a>, 使用v7版本的Toolbar后, 在任何Android 2.1(API Level 7)以上的机器上都可以看到Material Design风格的Toolbar.</p>
+<h2 id="在Activity中使用Toolbar"><a href="#在Activity中使用Toolbar" class="headerlink" title="在Activity中使用Toolbar"></a>在Activity中使用Toolbar</h2><p>1.首先项目gradle中添加:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.android.support:appcompat-v7:23.4.0&apos;</span><br></pre></td></tr></table></figure></p>
+<p>2.确保Activity继承<code>AppCompatActivity</code><br>3.在application设置中使用NoActionBar的主题:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">application</span></span><br><span class="line">    <span class="attr">android:theme</span>=<span class="string">"@style/Theme.AppCompat.Light.NoActionBar"</span></span><br><span class="line">    /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>4.把Toolbar写在布局中</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span><br><span class="line">   <span class="attr">android:id</span>=<span class="string">"@+id/my_toolbar"</span></span><br><span class="line">   <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">   <span class="attr">android:layout_height</span>=<span class="string">"?attr/actionBarSize"</span></span><br><span class="line">   <span class="attr">android:background</span>=<span class="string">"?attr/colorPrimary"</span></span><br><span class="line">   <span class="attr">android:elevation</span>=<span class="string">"4dp"</span></span><br><span class="line">   <span class="attr">android:theme</span>=<span class="string">"@style/ThemeOverlay.AppCompat.ActionBar"</span></span><br><span class="line">   <span class="attr">app:popupTheme</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Light"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>5.在Activity里面把Toolbar设置成为ActionBar<br>首先把Toolbar find出来, 然后调用<a href="https://developer.android.com/reference/android/support/v7/app/AppCompatActivity.html#setSupportActionBar(android.support.v7.widget.Toolbar" target="_blank" rel="external">setSupportActionBar方法</a>)<br>把Toolbar设置为自己的ActionBar即可.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ToolbarDemoActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@BindView</span>(R.id.toolbar)</span><br><span class="line">    Toolbar toolbar;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_toolbar_demo);</span><br><span class="line">        ButterKnife.bind(<span class="keyword">this</span>);</span><br><span class="line">        setSupportActionBar(toolbar);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后就可以随意使用啦, 用<a href="https://developer.android.com/reference/android/support/v7/app/AppCompatActivity.html#getSupportActionBar(" target="_blank" rel="external">getSupportActionBar</a>)可以获取ActionBar类型的对象, 从而使用<a href="https://developer.android.com/reference/android/support/v7/app/ActionBar.html" target="_blank" rel="external">ActionBar</a>的方法.</p>
+<h3 id="添加Action-Buttons"><a href="#添加Action-Buttons" class="headerlink" title="添加Action Buttons"></a>添加Action Buttons</h3><p>定义menu:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">menu</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/action_android"</span></span><br><span class="line">        <span class="attr">android:icon</span>=<span class="string">"@drawable/ic_android_black_24dp"</span></span><br><span class="line">        <span class="attr">android:title</span>=<span class="string">"@string/action_android"</span></span><br><span class="line">        <span class="attr">app:showAsAction</span>=<span class="string">"always"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/action_favourite"</span></span><br><span class="line">        <span class="attr">android:icon</span>=<span class="string">"@drawable/ic_favorite_black_24dp"</span></span><br><span class="line">        <span class="attr">android:title</span>=<span class="string">"@string/action_favourite"</span></span><br><span class="line">        <span class="attr">app:showAsAction</span>=<span class="string">"ifRoom"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/action_settings"</span></span><br><span class="line">        <span class="attr">android:title</span>=<span class="string">"@string/action_settings"</span></span><br><span class="line">        <span class="attr">app:showAsAction</span>=<span class="string">"never"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">menu</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后在代码中inflate和处理它的点击事件:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">    Log.i(TAG, <span class="string">"onCreateOptionsMenu()"</span>);</span><br><span class="line">    getMenuInflater().inflate(R.menu.menu_activity_main, menu);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onCreateOptionsMenu(menu);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (item.getItemId()) &#123;</span><br><span class="line">        <span class="keyword">case</span> R.id.action_android:</span><br><span class="line">            Log.i(TAG, <span class="string">"action android selected"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">case</span> R.id.action_favourite:</span><br><span class="line">            Log.i(TAG, <span class="string">"action favourite selected"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">case</span> R.id.action_settings:</span><br><span class="line">            Log.i(TAG, <span class="string">"action settings selected"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.onOptionsItemSelected(item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="添加向上返回的action"><a href="#添加向上返回的action" class="headerlink" title="添加向上返回的action"></a>添加向上返回的action</h3><p>添加向上返回parent的action:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_toolbar_demo);</span><br><span class="line">    ButterKnife.bind(<span class="keyword">this</span>);</span><br><span class="line">    setSupportActionBar(toolbar);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// add a left arrow to back to parent activity,</span></span><br><span class="line">    <span class="comment">// no need to handle action selected event, this is handled by super</span></span><br><span class="line">    getSupportActionBar().setDisplayHomeAsUpEnabled(<span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后只需要在manifest中指定parent:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span><br><span class="line">    <span class="attr">android:name</span>=<span class="string">".toolbar.ToolbarDemoActivity"</span></span><br><span class="line">    <span class="attr">android:parentActivityName</span>=<span class="string">".MainActivity"</span>&gt;</span><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="在Fragment中使用Toolbar"><a href="#在Fragment中使用Toolbar" class="headerlink" title="在Fragment中使用Toolbar"></a>在Fragment中使用Toolbar</h2><p>在Fragment中使用Toolbar的步骤和Activity差不多.<br>在Fragment布局中添加一个Toolbar, 然后find它, 然后调用Activity的方法来把它设置成ActionBar:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);</span><br></pre></td></tr></table></figure></p>
+<p>注意此处有一个强转, 必须是AppCompatActivity才有这个方法.<br>但是此时运行到Fragment之后, 发现Toolbar上的文字和按钮全是Activity传过来的, 这是因为只有Activity的<code>onCreateOptionsMenu()</code>被调用了, 但是Fragment的并没有被调用.<br>在Fragment中加上这句:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setHasOptionsMenu(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure></p>
+<p>此时Fragment的<code>onCreateOptionsMenu()</code>回调会被调到了, 但是inflate出的按钮和Activity中的actions加在一起显示出来了.<br>因为Activity的<code>onCreateOptionsMenu()</code>会在之前调用到.<br>于是Fragment中的写成这样:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu, MenuInflater inflater)</span> </span>&#123;</span><br><span class="line">    Log.e(TAG, <span class="string">"onCreateOptionsMenu()"</span>);</span><br><span class="line">    menu.clear();</span><br><span class="line">    inflater.inflate(R.menu.menu_parent_fragment, menu);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即先clear()一下, 这样按钮就只有Fragment中设置的自己的了, 不会有Activity中的按钮.</p>
+<h2 id="在嵌套的子Fragment中使用Toolbar"><a href="#在嵌套的子Fragment中使用Toolbar" class="headerlink" title="在嵌套的子Fragment中使用Toolbar"></a>在嵌套的子Fragment中使用Toolbar</h2><p>前面已经介绍过, Fragment可以嵌套使用: <a href="http://www.cnblogs.com/mengdd/p/5552721.html" target="_blank" rel="external">Android Fragment使用(二) 嵌套Fragments (Nested Fragments) 的使用及常见错误</a>.<br>那么在前面的Fragment中再显示一个子Fragment, 并且又带有一个不一样的Toolbar, 还需要哪些处理呢?<br>首先, java代码中还是需要有:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setHasOptionsMenu(<span class="keyword">true</span>)</span><br><span class="line">((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);</span><br></pre></td></tr></table></figure></p>
+<p>然后根据是否需要菜单按钮, 覆写onCreateOptionsMenu()方法来inflate自己的menu文件即可.<br>感觉和在普通的Fragment中使用Toolbar作为ActionBar并没有什么区别.<br>但是如果你的多个Fragment有不同的Toolbar菜单选项, 如果你没有懂得其中的原理, 可能就会出现一些混乱.<br>下面来解说一下相关的方法.</p>
+<h3 id="onCreateOptionsMenu-方法的调用"><a href="#onCreateOptionsMenu-方法的调用" class="headerlink" title="onCreateOptionsMenu()方法的调用"></a>onCreateOptionsMenu()方法的调用</h3><p>一旦调用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);</span><br></pre></td></tr></table></figure></p>
+<p>就会导致Activity<code>onCreateOptionsMenu()</code>方法的调用, 而Activity会根据其中Fragment是否设置了setHasOptionsMenu(true)来调用Fragment的<br><code>onCreateOptionsMenu()</code>方法, 调用顺序是树形的, 按层级调用, 中间如果有false则跳过.</p>
+<p>假设当前Activity, Parent Fragment和Child Fragment中都设置了自己的Toolbar为ActionBar.<br>在打开Child fragment的时候, <code>onCreateOptionsMenu()</code>的调用顺序是.<br><code>Activity -&gt; Parent -&gt; Child.</code> 此时parent和child fragment都设置了setHasOptionsMenu(true).</p>
+<p>关于这个, 还有以下几种情况:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 如果Parent的`setHasOptionsMenu(false)`, Child为true, 则Parent的`onCreateOptionsMenu()`不会调用, 打开Child的时候Activity -&gt; Child.</span><br><span class="line">- 如果Child的`setHasOptionsMenu(false)`, Parent为true, 则打开Child的时候仍然会调用Activity和Parent的onCreateOptionsMenu()方法.</span><br><span class="line">- 如果Parent和Child都置为false, 打开Parent和Child Fragment的时候都会调用Activity的onCreateOptionsMenu()方法.</span><br></pre></td></tr></table></figure></p>
+<p><strong>仅仅是child Fragment的show() hide()的切换, activity和parent Fragment的onCreateOptionsMenu()也会重新进入.</strong><br>这一点我还没有想明白, 是项目中遇到的, 初步推测可能是menu的显隐变化invalidate了menu, 改天有空再试试.</p>
+<p>上面的机制常常是导致Toolbar上面的按钮混淆错乱的原因.<br>举个例子:<br>如果我们现在Activity和Parent Fragment有不同的Toolbar按钮, 但是Child只有文字, 没有按钮.<br>很显然我们不需要给child写menu文件, 也不需要覆写child里的<code>onCreateOptionsMenu()</code>方法.<br>但是此时不管怎样, parent的<code>onCreateOptionsMenu()</code>方法都会被调用, 这样我们打开child的时候, toolbar上就神奇地出现了parent里的按钮.<br>这种情况如何解决呢?<br>可以在parent中加一个条件, 当没有child fragment的时候才做inflate的工作:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu, MenuInflater inflater)</span> </span>&#123;</span><br><span class="line">    Log.e(TAG, <span class="string">"onCreateOptionsMenu()"</span>);</span><br><span class="line">    menu.clear();</span><br><span class="line">    <span class="keyword">if</span> (getChildFragmentManager().getBackStackEntryCount() == <span class="number">0</span>) &#123;</span><br><span class="line">        inflater.inflate(R.menu.menu_parent_fragment, menu);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外, 除了<code>setSupportActionBar()</code>之外, 如果我们想<strong>主动触发</strong> <code>onCreateOptionsMenu()</code>方法的调用, 可以用<br><code>invalidateOptionsMenu()</code>方法.</p>
+<h3 id="onOptionsItemSelected-方法的调用"><a href="#onOptionsItemSelected-方法的调用" class="headerlink" title="onOptionsItemSelected()方法的调用"></a>onOptionsItemSelected()方法的调用</h3><p>在Activity和其中的Fragment都有options menu的时候, 需要注意menu item的id不要重复.<br>以为点击事件的分发也是从Activity开始分发下去的, 如果child fragment中有个选项的id和Activity中一个选项的id重复了, 则在Activity中就会将其处理, 不会继续分发.</p>
+<h3 id="有嵌套Fragment时-Back键处理"><a href="#有嵌套Fragment时-Back键处理" class="headerlink" title="有嵌套Fragment时 Back键处理"></a>有嵌套Fragment时 Back键处理</h3><p>之前没有嵌套Fragment的情况下, 只要将Fragment加入到Back Stack中, 那么按下Back键的时候pop动作是系统自动做好的.<br>虽然在添加child fragment的时候将其加入到back stack中, 但是按back键的时候仍然是将parent fragment弹出, 只剩下Activity.<br>这是因为back键只检查第一层Fragment的back stack, 对于child fragment, 需要在其parent中自己处理.<br>比如这样处理:</p>
+<p>在Activity中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBackPressed</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Fragment fragment = getSupportFragmentManager().findFragmentById(android.R.id.content);</span><br><span class="line">    <span class="keyword">if</span> (fragment <span class="keyword">instanceof</span> ToolbarFragment) &#123;</span><br><span class="line">        <span class="keyword">if</span> (((ToolbarFragment) fragment).onBackPressed()) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">super</span>.onBackPressed();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中ToolbarFragment是直接加在Activity中作为parent fragment的.<br>在parent fragment中(即ToolbarFragment中):<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onBackPressed</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getChildFragmentManager().popBackStackImmediate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>本文Demo地址: <a href="https://github.com/mengdd/HelloActivityAndFragment" target="_blank" rel="external">Demo on github</a><br>其中的: ToolbarDemoActivity即为Toolbar Demo.</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>Developer Android:<br><a href="https://developer.android.com/training/appbar/index.html" target="_blank" rel="external">Training AppBar</a><br><a href="https://developer.android.com/reference/android/support/v7/widget/Toolbar.html" target="_blank" rel="external">v7.widget.Toolbar Reference</a><br><a href="https://developer.android.com/reference/android/support/v7/app/ActionBar.html" target="_blank" rel="external">v7.app.ActionBar</a></p>
+<p><a href="https://guides.codepath.com/android/Creating-and-Using-Fragments#actionbar-menu-items-and-fragments" target="_blank" rel="external">Guides: action bar menu items and fragments</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Fragment/">Fragment</a><a href="/tags/Nested-Fragments/">Nested Fragments</a><a href="/tags/Toolbar/">Toolbar</a><a href="/tags/ActionBar/">ActionBar</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/Android/2016/06/16/android-fragment-usage-4-toolbar/" data-title="Android Fragment使用(四) Toolbar使用及Fragment中的Toolbar处理 | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Android/2016/06/13/android-fragment-usage-3-state-restore/"  title="Android Fragment使用(三) Activity, Fragment, WebView的状态保存和恢复">
+ <strong>下一篇：</strong><br/> 
+ <span>Android Fragment使用(三) Activity, Fragment, WebView的状态保存和恢复
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="Android/2016/06/16/android-fragment-usage-4-toolbar/" data-title="Android Fragment使用(四) Toolbar使用及Fragment中的Toolbar处理" data-url="http://mengdd.github.io/Android/2016/06/16/android-fragment-usage-4-toolbar/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Toolbar作为ActionBar使用介绍"><span class="toc-number">1.</span> <span class="toc-text">Toolbar作为ActionBar使用介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用support-library的Toolbar"><span class="toc-number">1.1.</span> <span class="toc-text">使用support library的Toolbar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在Activity中使用Toolbar"><span class="toc-number">1.2.</span> <span class="toc-text">在Activity中使用Toolbar</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加Action-Buttons"><span class="toc-number">1.2.1.</span> <span class="toc-text">添加Action Buttons</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加向上返回的action"><span class="toc-number">1.2.2.</span> <span class="toc-text">添加向上返回的action</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在Fragment中使用Toolbar"><span class="toc-number">1.3.</span> <span class="toc-text">在Fragment中使用Toolbar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在嵌套的子Fragment中使用Toolbar"><span class="toc-number">1.4.</span> <span class="toc-text">在嵌套的子Fragment中使用Toolbar</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#onCreateOptionsMenu-方法的调用"><span class="toc-number">1.4.1.</span> <span class="toc-text">onCreateOptionsMenu()方法的调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onOptionsItemSelected-方法的调用"><span class="toc-number">1.4.2.</span> <span class="toc-text">onOptionsItemSelected()方法的调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有嵌套Fragment时-Back键处理"><span class="toc-number">1.4.3.</span> <span class="toc-text">有嵌套Fragment时 Back键处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">2.</span> <span class="toc-text">参考资料</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebView/" title="WebView">WebView<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nested-Fragments/" title="Nested Fragments">Nested Fragments<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Toolbar/" title="Toolbar">Toolbar<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ActionBar/" title="ActionBar">ActionBar<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/mengdd/" target="_blank" title="圣骑士wind">圣骑士wind</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://talentprince.github.io/" target="_blank" title="长乐未央">长乐未央</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dandan Meng. <br/>
+			This is my blog. Welcome.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/mengdd" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wind"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dandanmeng';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75132850-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?83e8338b542a9fd155f68673d113e0ae";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
