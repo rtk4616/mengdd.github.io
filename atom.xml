@@ -211,7 +211,7 @@
     <link href="http://mengdd.github.io/Android/2016/06/02/android-fragment-usage-2-nested-fragments/"/>
     <id>http://mengdd.github.io/Android/2016/06/02/android-fragment-usage-2-nested-fragments/</id>
     <published>2016-06-02T05:03:04.000Z</published>
-    <updated>2016-06-02T05:22:31.000Z</updated>
+    <updated>2016-06-16T05:20:33.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;嵌套Fragment的使用及常见错误&quot;&gt;&lt;a href=&quot;#嵌套Fragment的使用及常见错误&quot; class=&quot;headerlink&quot; title=&quot;嵌套Fragment的使用及常见错误&quot;&gt;&lt;/a&gt;嵌套Fragment的使用及常见错误&lt;/h1&gt;&lt;p&gt;嵌套Fragments (Nested Fragments), 是在Fragment内部又添加Fragment.&lt;br&gt;使用时, 主要要依靠宿主Fragment的 &lt;code&gt;getChildFragmentManager()&lt;/code&gt; 来获取FragmentManger.&lt;br&gt;虽然看起来和在activity中添加fragment差不多, 但因为fragment生命周期及管理恢复模式不同, 其中有一些需要特别注意的地方.&lt;br&gt;本文内容还包括了从Fragment迁移到v4.Fragment代码中需要改动的一些地方.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -268,6 +268,8 @@
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
       <category term="Fragment" scheme="http://mengdd.github.io/tags/Fragment/"/>
+    
+      <category term="Nested Fragments" scheme="http://mengdd.github.io/tags/Nested-Fragments/"/>
     
   </entry>
   
