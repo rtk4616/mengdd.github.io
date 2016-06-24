@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://mengdd.github.io/images/fragment-lifecycle-2.png">
 <meta property="og:image" content="http://mengdd.github.io/images/activity-fragment-lifecycle.png">
 <meta property="og:image" content="http://mengdd.github.io/images/fragment-lifecycle-with-callbacks.png">
-<meta property="og:updated_time" content="2016-06-02T05:24:13.000Z">
+<meta property="og:updated_time" content="2016-06-16T05:36:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Fragment使用(一) 基础篇 温故知新">
 <meta name="twitter:description" content="Fragment使用的基本知识点总结, 包括Fragment的添加, 参数传递和通信, 生命周期和各种操作.">
@@ -134,7 +134,7 @@
 <p><a href="https://guides.codepath.com/android/Using-DialogFragment#passing-data-to-parent-fragment" target="_blank" rel="external">例子</a><br>对于嵌套(nested)Fragment, 通信方式与上面普通的fragment类似, 只不过parent此时不是activity而是一个fragment.<br>后面会单独有一个文章说嵌套Fragment的使用, 敬请期待.</p>
 <h1 id="Fragment的生命周期"><a href="#Fragment的生命周期" class="headerlink" title="Fragment的生命周期"></a>Fragment的生命周期</h1><p>Fragment的生命周期首先和Activity的生命周期密切相关,<br>如果activity stopped,其中所有的fragment都不能start;<br>如果activity destroyed, 其中所有的fragment都会被destroyed.<br>只有activity在resumed状态下,fragment的生命周期可以独立改变,否则它被activity控制.</p>
 <p><img src="/images/fragment-lifecycle.png" alt=""><br><img src="/images/fragment-lifecycle-2.png" alt=""><br><img src="/images/activity-fragment-lifecycle.png" alt=""><br><img src="/images/fragment-lifecycle-with-callbacks.png" alt=""></p>
-<p>上面这个图来自于: <a href="https://corner.squareup.com/2014/10/advocating-against-android-fragments.html" target="_blank" rel="external">https://corner.squareup.com/2014/10/advocating-against-android-fragments.html</a></p>
+<p>上面这个图来自于: <a href="https://corner.squareup.com/2014/10/advocating-against-android-fragments.html" target="_blank" rel="external">https://corner.squareup.com/2014/10/advocating-against-android-fragments.html</a><br>这里还有一个更吊的图: <a href="https://github.com/xxv/android-lifecycle" target="_blank" rel="external">https://github.com/xxv/android-lifecycle</a></p>
 <h1 id="FragmentTransaction基础操作"><a href="#FragmentTransaction基础操作" class="headerlink" title="FragmentTransaction基础操作"></a>FragmentTransaction基础操作</h1><h2 id="操作类型"><a href="#操作类型" class="headerlink" title="操作类型"></a>操作类型</h2><p><a href="https://developer.android.com/reference/android/app/FragmentTransaction.html" target="_blank" rel="external">FragmentTransaction</a> 中对Fragment有如下几种操作:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">attach(), detach()</span><br><span class="line">add(), remove(),</span><br><span class="line">show(), hide(),</span><br><span class="line">replace()</span><br></pre></td></tr></table></figure>
 <p>除了<code>replace()</code>以外其他都是成对的.</p>
@@ -183,18 +183,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/Android/2016/06/02/android-fragment-usage-2-nested-fragments/" title="Android Fragment使用(二) 嵌套Fragments (Nested Fragments) 的使用及常见错误">
+ <a href="/uncategorized/2016/05/31/test-links/" title="Test Links">
   <strong>上一篇：</strong><br/>
   <span>
-  Android Fragment使用(二) 嵌套Fragments (Nested Fragments) 的使用及常见错误</span>
+  Test Links</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/uncategorized/2016/05/31/test-links/"  title="Test Links">
+<a href="/uncategorized/2016/05/23/set-up-github-pages-with-hexo/"  title="Set up github pages with Hexo">
  <strong>下一篇：</strong><br/> 
- <span>Test Links
+ <span>Set up github pages with Hexo
 </span>
 </a>
 </div>
@@ -243,7 +243,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>5</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>6</sup></a></li>
 		  
 		
 		  
@@ -260,7 +260,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>4</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>5</sup></a></li>
 			
 		
 			
@@ -272,15 +272,19 @@
 			
 		
 			
-				<li><a href="/tags/WebView/" title="WebView">WebView<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Toolbar/" title="Toolbar">Toolbar<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/ActionBar/" title="ActionBar">ActionBar<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebView/" title="WebView">WebView<sup>1</sup></a></li>
 			
 		
 		</ul>
