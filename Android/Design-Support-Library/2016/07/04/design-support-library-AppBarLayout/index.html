@@ -1,0 +1,610 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout使用 | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="本文介绍Design Support Library中CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout的使用.先列出了Design Support Library中的Features, 然后如何set up, 最后附有Demo程序, 介绍CoordinatorLayout, AppBarLayout, CollapsingToolba">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout使用">
+<meta property="og:url" content="http://mengdd.github.io/Android/Design-Support-Library/2016/07/04/design-support-library-AppBarLayout/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="本文介绍Design Support Library中CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout的使用.先列出了Design Support Library中的Features, 然后如何set up, 最后附有Demo程序, 介绍CoordinatorLayout, AppBarLayout, CollapsingToolba">
+<meta property="og:image" content="http://mengdd.github.io/images/AndroidDesignWidgetsSample-screen-video.gif">
+<meta property="og:updated_time" content="2016-07-04T09:42:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout使用">
+<meta name="twitter:description" content="本文介绍Design Support Library中CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout的使用.先列出了Design Support Library中的Features, 然后如何set up, 最后附有Demo程序, 介绍CoordinatorLayout, AppBarLayout, CollapsingToolba">
+<meta name="twitter:image" content="http://mengdd.github.io/images/AndroidDesignWidgetsSample-screen-video.gif">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/Android/Design-Support-Library/2016/07/04/design-support-library-AppBarLayout/" title="CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout使用" itemprop="url">CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout使用</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-04T08:41:11.000Z" itemprop="datePublished"> Published 2016-07-04</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Design-Support-Library-Features"><span class="toc-number">1.</span> <span class="toc-text">Design Support Library Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Design-Support-Library-Setup"><span class="toc-number">2.</span> <span class="toc-text">Design Support Library Setup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CoordinatorLayout-AppBarLayout使用"><span class="toc-number">3.</span> <span class="toc-text">CoordinatorLayout, AppBarLayout使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#折叠效果"><span class="toc-number">3.1.</span> <span class="toc-text">折叠效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#背景图平行淡出"><span class="toc-number">3.2.</span> <span class="toc-text">背景图平行淡出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目"><span class="toc-number">4.</span> <span class="toc-text">项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+		
+		</div>
+		
+		<p>本文介绍Design Support Library中CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout的使用.<br>先列出了Design Support Library中的Features, 然后如何set up, 最后附有Demo程序, 介绍CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout的使用.</p>
+<a id="more"></a>
+<h2 id="Design-Support-Library-Features"><a href="#Design-Support-Library-Features" class="headerlink" title="Design Support Library Features"></a>Design Support Library Features</h2><p>Design Support Library中有</p>
+<ul>
+<li><a href="https://guides.codepath.com/android/Floating-Action-Buttons" target="_blank" rel="external">FloatingActionButton</a></li>
+<li><a href="https://guides.codepath.com/android/Google-Play-Style-Tabs-using-TabLayout" target="_blank" rel="external">TabLayout</a></li>
+<li><a href="https://guides.codepath.com/android/Fragment-Navigation-Drawer" target="_blank" rel="external">NavigationView</a></li>
+<li><a href="https://guides.codepath.com/android/Displaying-the-Snackbar" target="_blank" rel="external">SnackBar</a></li>
+<li><a href="https://guides.codepath.com/android/Working-with-the-EditText#displaying-floating-label-feedback" target="_blank" rel="external">TextInputLayout</a></li>
+<li><a href="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout" target="_blank" rel="external">CoordinatorLayout</a></li>
+<li><a href="https://developer.android.com/reference/android/support/design/widget/AppBarLayout.html" target="_blank" rel="external">AppBarLayout</a></li>
+<li><a href="https://developer.android.com/reference/android/support/design/widget/CollapsingToolbarLayout.html" target="_blank" rel="external">CollapsingToolbarLayout</a></li>
+<li><a href="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout#bottom-sheets" target="_blank" rel="external">Bottom Sheets</a></li>
+<li><a href="https://guides.codepath.com/android/Constructing-View-Layouts#percentrelativelayout" target="_blank" rel="external">PercentRelativeLayout</a> and <a href="https://developer.android.com/reference/android/support/percent/PercentFrameLayout.html" target="_blank" rel="external">PercentFrameLayout</a></li>
+<li><a href="https://guides.codepath.com/android/Drawables#vector-drawables" target="_blank" rel="external">Vector Drawables</a></li>
+</ul>
+<h2 id="Design-Support-Library-Setup"><a href="#Design-Support-Library-Setup" class="headerlink" title="Design Support Library Setup"></a>Design Support Library Setup</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">   compileSdkVersion 23  // needs to be consistent with major support libs used</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ext &#123;</span><br><span class="line">  supportLibVersion = &apos;23.4.0&apos;  // variable that can be referenced to keep support libs consistent</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile &quot;com.android.support:appcompat-v7:$&#123;supportLibVersion&#125;&quot;</span><br><span class="line">    compile &quot;com.android.support:design:$&#123;supportLibVersion&#125;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="CoordinatorLayout-AppBarLayout使用"><a href="#CoordinatorLayout-AppBarLayout使用" class="headerlink" title="CoordinatorLayout, AppBarLayout使用"></a>CoordinatorLayout, AppBarLayout使用</h2><p><a href="https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.html" target="_blank" rel="external">CoordinatorLayout</a><br>实际上是一个更强大的FrameLayout, 可以通过<a href="https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.Behavior.html" target="_blank" rel="external">Behavior</a> 来控制其中各个child view的交互行为. 也可以指定anchor来指定floating view相对于其他某个View的位置. 比如Floating Action Button在显示Snackbar的时候自动向上移动.</p>
+<p>为了使Toolbar响应滚动事件, 我们需要给它外边包一个<a href="https://developer.android.com/reference/android/support/design/widget/AppBarLayout.html" target="_blank" rel="external">AppBarLayout</a>.<br>它是一个纵向的LinearLayout, 必须要作为CoordinateLayout的直接child使用.<br>然后, 我们需要定义AppBarLayout和我们scroll的内容View的关系.<br>这里可以是一个RecyclerView, 或者其他支持嵌套scrolling的view, 比如<a href="https://developer.android.com/reference/android/support/v4/widget/NestedScrollView.html" target="_blank" rel="external">NestedScrollView</a></p>
+<p>(实际上View类就有方法setNestedScrollingEnabled(), 但是还是需要View自己实现nested scrolling的功能, 否则这个开关也没有效果.)</p>
+<p>support library提供了<code>@string/appbar_scrolling_view_behavior</code>, 它映射到<code>AppBarLayout.ScrollingViewBehavior</code>.<br>它是用来告诉AppBarLayout下面那个scroll view上的scroll事件什么时候发生.<br>所以这个属性必须在触发事件的view上指定, 比如:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.v7.widget.RecyclerView</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/rvToDoList"</span></span><br><span class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span><br><span class="line">        <span class="attr">app:layout_behavior</span>=<span class="string">"@string/appbar_scrolling_view_behavior"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当CoordinatorLayout看到自己的child(比如RecyclerView)声明了这个属性, 就会在自己的其他child中寻找相关的view(AppBarLayout).<br>这样, 当RecyclerView发生scroll事件的时候, AppBarLayout和其中的views都会被通知到.</p>
+<p>滚动事件怎么通知到AppBarLayout的呢? 还需要一个属性: <code>app:layout_scrollFlags</code>.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.AppBarLayout</span></span><br><span class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span><br><span class="line">    <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></span><br><span class="line">    <span class="attr">android:theme</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Dark.ActionBar"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span><br><span class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/toolbar"</span></span><br><span class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">            <span class="attr">android:layout_height</span>=<span class="string">"?attr/actionBarSize"</span></span><br><span class="line">            <span class="attr">app:layout_scrollFlags</span>=<span class="string">"scroll|enterAlways"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">android.support.design.widget.AppBarLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>app:layout_scrollFlags</code>属性中:</p>
+<ul>
+<li><code>scroll</code>必须有, 这样scroll的任何效果才能生效.</li>
+<li><code>enterAlways</code>: 表示只要列表上方内容滚动出现, View就应该出现. 适用的情形: 当把列表滚到底部时, Toolbar被隐藏了, 一旦回滚一点儿, Toolbar就应该立即出现. 如果不设置这个flag, 默认的行为是一直要把列表滚到顶部, Toolbar才会出现.</li>
+<li><code>enterAlwaysCollapsed</code>: 正常情况下, 如果只有<code>enterAlways</code>被指定, 在列表向下滚动的过程中Toolbar将会一直展开.<br>如果同时指定了<code>enterAlwaysCollapsed</code>和<code>minHeight</code>, 那么开始滚动以后, 只滚动到minHeight为止, 直到滚动到达列表顶部的时候, view才会展开到全部高度.</li>
+<li><code>exitUntilCollapsed</code>: 正常只指定scroll的情况下, scrolling down(即显示列表底部)将会使得整个Toolbar移动到不见.<br>如果同时指定了<code>exitUntilCollapsed</code>和<code>minHeight</code>, 那么将会收缩到minHeight为止, Toolbar不会一直滚动和退出屏幕.</li>
+<li><code>snap</code>: 使用了这个属性, 等scroll事件结束的时候, View可见的尺寸小于它的50%, 则它会直接消失, 如果大于50%, 则它会完整地出现.</li>
+</ul>
+<p>还可以用<code>app:layout_scrollInterpolator</code>属性指定滚动动画效果的插值器.</p>
+<h3 id="折叠效果"><a href="#折叠效果" class="headerlink" title="折叠效果"></a>折叠效果</h3><p>如果想要折叠Toolbar的效果, 可以在Toolbar外面包一层<a href="https://developer.android.com/reference/android/support/design/widget/CollapsingToolbarLayout.html" target="_blank" rel="external">CollapsingToolbarLayout</a><br>这个类必须作为AppBarLayout的直接child使用.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.CollapsingToolbarLayout</span></span><br><span class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/collapsing_toolbar"</span></span><br><span class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span><br><span class="line">            <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></span><br><span class="line">            <span class="attr">app:contentScrim</span>=<span class="string">"?attr/colorPrimary"</span></span><br><span class="line">            <span class="attr">app:expandedTitleMarginEnd</span>=<span class="string">"64dp"</span></span><br><span class="line">            <span class="attr">app:expandedTitleMarginStart</span>=<span class="string">"48dp"</span></span><br><span class="line">            <span class="attr">app:layout_scrollFlags</span>=<span class="string">"scroll|exitUntilCollapsed"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span><br><span class="line">                <span class="attr">android:id</span>=<span class="string">"@+id/toolbar"</span></span><br><span class="line">                <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">                <span class="attr">android:layout_height</span>=<span class="string">"?attr/actionBarSize"</span></span><br><span class="line">                <span class="attr">app:layout_scrollFlags</span>=<span class="string">"scroll|enterAlways"</span>&gt;</span><span class="tag">&lt;/<span class="name">android.support.v7.widget.Toolbar</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">android.support.design.widget.CollapsingToolbarLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>包了这个类之后, setTitle要调用这个类的方法:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);</span><br><span class="line">collapsingToolbar.setTitle(<span class="string">"Title"</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="背景图平行淡出"><a href="#背景图平行淡出" class="headerlink" title="背景图平行淡出"></a>背景图平行淡出</h3><p>这个类使得我们可以做更高级的动画效果, 比如放一个ImageView, 它在折叠的时候淡出.<br>这时候需要把ImageView的<code>app:layout_collapseMode</code>属性置为<code>parallax</code>.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.AppBarLayout</span></span><br><span class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/appbar"</span></span><br><span class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">    <span class="attr">android:layout_height</span>=<span class="string">"200dp"</span></span><br><span class="line">    <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></span><br><span class="line">    <span class="attr">android:theme</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Dark.ActionBar"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">android.support.design.widget.CollapsingToolbarLayout</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/collapsing_toolbar"</span></span><br><span class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span><br><span class="line">        <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></span><br><span class="line">        <span class="attr">app:contentScrim</span>=<span class="string">"?attr/colorPrimary"</span></span><br><span class="line">        <span class="attr">app:expandedTitleMarginEnd</span>=<span class="string">"64dp"</span></span><br><span class="line">        <span class="attr">app:expandedTitleMarginStart</span>=<span class="string">"48dp"</span></span><br><span class="line">        <span class="attr">app:layout_scrollFlags</span>=<span class="string">"scroll|exitUntilCollapsed"</span></span><br><span class="line">        <span class="attr">app:layout_scrollInterpolator</span>=<span class="string">"@anim/hero_image_interpolator"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">ImageView</span></span><br><span class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/logo"</span></span><br><span class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span><br><span class="line">            <span class="attr">android:contentDescription</span>=<span class="string">"@null"</span></span><br><span class="line">            <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></span><br><span class="line">            <span class="attr">android:scaleType</span>=<span class="string">"fitCenter"</span></span><br><span class="line">            <span class="attr">android:src</span>=<span class="string">"@drawable/android_logo"</span></span><br><span class="line">            <span class="attr">app:layout_collapseMode</span>=<span class="string">"parallax"</span></span><br><span class="line">            <span class="attr">app:layout_collapseParallaxMultiplier</span>=<span class="string">"0.1"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span><br><span class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/toolbar"</span></span><br><span class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">            <span class="attr">android:layout_height</span>=<span class="string">"?attr/actionBarSize"</span></span><br><span class="line">            <span class="attr">app:layout_collapseMode</span>=<span class="string">"pin"</span></span><br><span class="line">            <span class="attr">app:popupTheme</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Light"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">android.support.design.widget.CollapsingToolbarLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">android.support.design.widget.AppBarLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h2><p>这里推荐Demo: <a href="https://github.com/mengdd/AndroidDesignWidgetsSample" target="_blank" rel="external">AndroidDesignWidgetsSample</a><br><img src="/images/AndroidDesignWidgetsSample-screen-video.gif" alt="Android Design Widgets Sample screen video"></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout" target="_blank" rel="external">Handling Scrolls with CoordinatorLayout</a><br><a href="https://material.google.com/patterns/scrolling-techniques.html#scrolling-techniques-behavior" target="_blank" rel="external">Material Design: scrolling techniques</a><br><a href="https://guides.codepath.com/android/Design-Support-Library#official-source-code" target="_blank" rel="external">Design Support Library</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Design-Support-Library/">Design Support Library</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Toolbar/">Toolbar</a><a href="/tags/Design-Support-Library/">Design Support Library</a><a href="/tags/AppBarLayout/">AppBarLayout</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/Android/Design-Support-Library/2016/07/04/design-support-library-AppBarLayout/" data-title="CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout使用 | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Android/2016/06/24/using-dagger2-in-android/"  title="Using Dagger2 in Android">
+ <strong>下一篇：</strong><br/> 
+ <span>Using Dagger2 in Android
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="Android/Design-Support-Library/2016/07/04/design-support-library-AppBarLayout/" data-title="CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout使用" data-url="http://mengdd.github.io/Android/Design-Support-Library/2016/07/04/design-support-library-AppBarLayout/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Design-Support-Library-Features"><span class="toc-number">1.</span> <span class="toc-text">Design Support Library Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Design-Support-Library-Setup"><span class="toc-number">2.</span> <span class="toc-text">Design Support Library Setup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CoordinatorLayout-AppBarLayout使用"><span class="toc-number">3.</span> <span class="toc-text">CoordinatorLayout, AppBarLayout使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#折叠效果"><span class="toc-number">3.1.</span> <span class="toc-text">折叠效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#背景图平行淡出"><span class="toc-number">3.2.</span> <span class="toc-text">背景图平行淡出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目"><span class="toc-number">4.</span> <span class="toc-text">项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nested-Fragments/" title="Nested Fragments">Nested Fragments<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Toolbar/" title="Toolbar">Toolbar<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ActionBar/" title="ActionBar">ActionBar<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebView/" title="WebView">WebView<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AppBarLayout/" title="AppBarLayout">AppBarLayout<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/mengdd/" target="_blank" title="圣骑士wind">圣骑士wind</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://talentprince.github.io/" target="_blank" title="长乐未央">长乐未央</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dandan Meng. <br/>
+			This is my blog. Welcome.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/mengdd" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wind"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dandanmeng';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75132850-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?83e8338b542a9fd155f68673d113e0ae";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
