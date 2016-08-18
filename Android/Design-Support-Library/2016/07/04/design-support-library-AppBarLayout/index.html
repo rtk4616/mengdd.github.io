@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Meng's pages">
 <meta property="og:description" content="本文介绍Design Support Library中CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout的使用.先列出了Design Support Library中的Features, 然后如何set up, 最后附有Demo程序, 介绍CoordinatorLayout, AppBarLayout, CollapsingToolba">
 <meta property="og:image" content="http://mengdd.github.io/images/AndroidDesignWidgetsSample-screen-video.gif">
-<meta property="og:updated_time" content="2016-07-04T09:42:10.000Z">
+<meta property="og:updated_time" content="2016-08-11T02:33:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout使用">
 <meta name="twitter:description" content="本文介绍Design Support Library中CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout的使用.先列出了Design Support Library中的Features, 然后如何set up, 最后附有Demo程序, 介绍CoordinatorLayout, AppBarLayout, CollapsingToolba">
@@ -146,7 +146,7 @@
 <h3 id="背景图平行淡出"><a href="#背景图平行淡出" class="headerlink" title="背景图平行淡出"></a>背景图平行淡出</h3><p>这个类使得我们可以做更高级的动画效果, 比如放一个ImageView, 它在折叠的时候淡出.<br>这时候需要把ImageView的<code>app:layout_collapseMode</code>属性置为<code>parallax</code>.</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.AppBarLayout</span></span><br><span class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/appbar"</span></span><br><span class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">    <span class="attr">android:layout_height</span>=<span class="string">"200dp"</span></span><br><span class="line">    <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></span><br><span class="line">    <span class="attr">android:theme</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Dark.ActionBar"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">android.support.design.widget.CollapsingToolbarLayout</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/collapsing_toolbar"</span></span><br><span class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span><br><span class="line">        <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></span><br><span class="line">        <span class="attr">app:contentScrim</span>=<span class="string">"?attr/colorPrimary"</span></span><br><span class="line">        <span class="attr">app:expandedTitleMarginEnd</span>=<span class="string">"64dp"</span></span><br><span class="line">        <span class="attr">app:expandedTitleMarginStart</span>=<span class="string">"48dp"</span></span><br><span class="line">        <span class="attr">app:layout_scrollFlags</span>=<span class="string">"scroll|exitUntilCollapsed"</span></span><br><span class="line">        <span class="attr">app:layout_scrollInterpolator</span>=<span class="string">"@anim/hero_image_interpolator"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">ImageView</span></span><br><span class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/logo"</span></span><br><span class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span><br><span class="line">            <span class="attr">android:contentDescription</span>=<span class="string">"@null"</span></span><br><span class="line">            <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></span><br><span class="line">            <span class="attr">android:scaleType</span>=<span class="string">"fitCenter"</span></span><br><span class="line">            <span class="attr">android:src</span>=<span class="string">"@drawable/android_logo"</span></span><br><span class="line">            <span class="attr">app:layout_collapseMode</span>=<span class="string">"parallax"</span></span><br><span class="line">            <span class="attr">app:layout_collapseParallaxMultiplier</span>=<span class="string">"0.1"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span><br><span class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/toolbar"</span></span><br><span class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">            <span class="attr">android:layout_height</span>=<span class="string">"?attr/actionBarSize"</span></span><br><span class="line">            <span class="attr">app:layout_collapseMode</span>=<span class="string">"pin"</span></span><br><span class="line">            <span class="attr">app:popupTheme</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Light"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">android.support.design.widget.CollapsingToolbarLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">android.support.design.widget.AppBarLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h2><p>这里推荐Demo: <a href="https://github.com/mengdd/AndroidDesignWidgetsSample" target="_blank" rel="external">AndroidDesignWidgetsSample</a><br><img src="/images/AndroidDesignWidgetsSample-screen-video.gif" alt="Android Design Widgets Sample screen video"></p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout" target="_blank" rel="external">Handling Scrolls with CoordinatorLayout</a><br><a href="https://material.google.com/patterns/scrolling-techniques.html#scrolling-techniques-behavior" target="_blank" rel="external">Material Design: scrolling techniques</a><br><a href="https://guides.codepath.com/android/Design-Support-Library#official-source-code" target="_blank" rel="external">Design Support Library</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout" target="_blank" rel="external">Handling Scrolls with CoordinatorLayout</a><br><a href="https://material.google.com/patterns/scrolling-techniques.html#scrolling-techniques-behavior" target="_blank" rel="external">Material Design: scrolling techniques</a><br><a href="https://guides.codepath.com/android/Design-Support-Library#official-source-code" target="_blank" rel="external">Design Support Library</a><br><a href="http://saulmm.github.io/mastering-coordinator" target="_blank" rel="external">Mastering the Coordinator Layout</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -182,6 +182,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/Android/Android-Weekly/2016/08/18/android-weekly-notes-issue-218/" title="Android Weekly Notes Issue">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Android Weekly Notes Issue</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/Android/2016/06/24/using-dagger2-in-android/"  title="Using Dagger2 in Android">
@@ -235,7 +243,11 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>7</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>1</sup></a></li>
 		  
 		
 		  
@@ -256,7 +268,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>7</sup></a></li>
 			
 		
 			
@@ -276,19 +288,23 @@
 			
 		
 			
-				<li><a href="/tags/WebView/" title="WebView">WebView<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/AppBarLayout/" title="AppBarLayout">AppBarLayout<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebView/" title="WebView">WebView<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>1</sup></a></li>
 			
 		
 		</ul>

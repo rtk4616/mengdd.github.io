@@ -1,0 +1,598 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android Weekly Notes Issue | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="Android Weekly Issue #218August 14th, 2016http://androidweekly.net/issues/issue-218">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Weekly Notes Issue">
+<meta property="og:url" content="http://mengdd.github.io/Android/Android-Weekly/2016/08/18/android-weekly-notes-issue-218/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="Android Weekly Issue #218August 14th, 2016http://androidweekly.net/issues/issue-218">
+<meta property="og:updated_time" content="2016-08-18T07:19:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Weekly Notes Issue">
+<meta name="twitter:description" content="Android Weekly Issue #218August 14th, 2016http://androidweekly.net/issues/issue-218">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/Android/Android-Weekly/2016/08/18/android-weekly-notes-issue-218/" title="Android Weekly Notes Issue" itemprop="url">Android Weekly Notes Issue</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-18T05:20:56.000Z" itemprop="datePublished"> Published 2016-08-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-218"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #218</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">1.1.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PathMorphing-with-AnimatedVectorDrawables"><span class="toc-number">1.1.1.</span> <span class="toc-text">PathMorphing with AnimatedVectorDrawables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-UI-Instrumentation-test-with-Espresso"><span class="toc-number">1.1.2.</span> <span class="toc-text">Android UI Instrumentation test with Espresso</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-Build-an-Android-App-for-Fire-TV-Part-1"><span class="toc-number">1.1.3.</span> <span class="toc-text">How to Build an Android App for Fire TV - Part 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-Wear-Development-for-beginners"><span class="toc-number">1.1.4.</span> <span class="toc-text">Android Wear Development for beginners</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Router-—-Everything-in-its-Right-Place"><span class="toc-number">1.1.5.</span> <span class="toc-text">Router — Everything in its Right Place</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Boosting-app-performance-with-reflectionless-de-serialization"><span class="toc-number">1.1.6.</span> <span class="toc-text">Boosting app performance with reflectionless (de)serialization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduction-to-Automated-Android-Testing-Part-4"><span class="toc-number">1.1.7.</span> <span class="toc-text">Introduction to Automated Android Testing - Part 4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduction-to-Android-Testing-Part-3"><span class="toc-number">1.1.8.</span> <span class="toc-text">Introduction to Android Testing - Part 3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-as-a-secure-private-Maven-repository"><span class="toc-number">1.1.9.</span> <span class="toc-text">Git as a secure private Maven repository</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Crash-reporting-in-Firebase"><span class="toc-number">1.1.10.</span> <span class="toc-text">Crash reporting in Firebase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Isometric-AnimatedVectorDrawable-–-Part-1"><span class="toc-number">1.1.11.</span> <span class="toc-text">Isometric AnimatedVectorDrawable – Part 1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Design"><span class="toc-number">1.2.</span> <span class="toc-text">Design</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Don’t-just-port-an-iOS-navigation-model-to-Android"><span class="toc-number">1.2.1.</span> <span class="toc-text">Don’t just port an iOS navigation model to Android</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">1.3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Stag-java"><span class="toc-number">1.3.1.</span> <span class="toc-text">Stag-java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Router"><span class="toc-number">1.3.2.</span> <span class="toc-text">Router</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Android-Weekly-Issue-218"><a href="#Android-Weekly-Issue-218" class="headerlink" title="Android Weekly Issue #218"></a>Android Weekly Issue #218</h1><p>August 14th, 2016<br><a href="http://androidweekly.net/issues/issue-218" target="_blank" rel="external">http://androidweekly.net/issues/issue-218</a></p>
+<a id="more"></a>
+<h2 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h2><h3 id="PathMorphing-with-AnimatedVectorDrawables"><a href="#PathMorphing-with-AnimatedVectorDrawables" class="headerlink" title="PathMorphing with AnimatedVectorDrawables"></a>PathMorphing with AnimatedVectorDrawables</h3><p><a href="https://lewismcgeary.github.io/posts/animated-vector-drawable-pathMorphing/" target="_blank" rel="external">PathMorphing with AnimatedVectorDrawables</a><br>Android 5.0 推出了<a href="https://developer.android.com/reference/android/graphics/drawable/VectorDrawable.html" target="_blank" rel="external">VectorDrawable</a>, 矢量图为处理多种屏幕尺寸的带来了很多好处. 这篇文章先介绍了VectorDrawable的使用, 然后主要讲如何实时操纵图像的改变, 用<a href="https://developer.android.com/reference/android/graphics/drawable/AnimatedVectorDrawable.html" target="_blank" rel="external">AnimatedVectorDrawable</a>实现一个图像变形的效果.<br>文中的例子是Android和Apple的log在互相变化.<br><a href="https://github.com/lewismcgeary/AndroidtoAppleVectorLogo" target="_blank" rel="external">source code available</a></p>
+<h3 id="Android-UI-Instrumentation-test-with-Espresso"><a href="#Android-UI-Instrumentation-test-with-Espresso" class="headerlink" title="Android UI Instrumentation test with Espresso"></a>Android UI Instrumentation test with Espresso</h3><p><a href="http://mayojava.github.io/android/android-ui-instrumentation-test-with-espresso/" target="_blank" rel="external">Android UI Instrumentation test with Espresso</a><br>用Espresso写UI功能测试, 通常是: 定位UI元素, 然后与其交互, 检查UI元素的状态.<br>三种主要的组件是: ViewMatchers, ViewActions 和ViewAssertions.<br>一个简短的例子:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onView(withId(R.id.my_view))            <span class="comment">// withId(R.id.my_view) - ViewMatcher</span></span><br><span class="line">    .perform(click())                  <span class="comment">// click() - ViewAction</span></span><br><span class="line">    .check(matches(isDisplayed()));   <span class="comment">//matches(isDisplayed()) - ViewAssertion</span></span><br></pre></td></tr></table></figure></p>
+<p>为了测试不受animation的影响, 有时候可能需要把设备上的Developer Options里的下面几个animation全关掉:<br>Window animation scale<br>Transition animation scale<br>Animator duration scale<br>然后这个文章里有具体的例子介绍如何写并且运行测试, 还附有相关源码.</p>
+<h3 id="How-to-Build-an-Android-App-for-Fire-TV-Part-1"><a href="#How-to-Build-an-Android-App-for-Fire-TV-Part-1" class="headerlink" title="How to Build an Android App for Fire TV - Part 1"></a>How to Build an Android App for Fire TV - Part 1</h3><p><a href="https://medium.com/amazon-appstore/developing-for-the-living-room-how-to-build-an-android-app-for-fire-tv-part-1-6ae108106fd2#.n39tl15pa" target="_blank" rel="external">How to Build an Android App for Fire TV - Part 1</a><br>创建在亚马逊的Fire TV上跑的Android应用.<br>文后可以点进part 2.</p>
+<h3 id="Android-Wear-Development-for-beginners"><a href="#Android-Wear-Development-for-beginners" class="headerlink" title="Android Wear Development for beginners"></a>Android Wear Development for beginners</h3><p><a href="https://medium.com/android-news/android-wear-development-for-beginners-82c2b06ff13a#.15v0ar2g3" target="_blank" rel="external">Android Wear Development for beginners</a><br>Complication是指手表上显示的除了小时和分钟之外的东西, 比如, 一个电池指示标志.<br>使用了Complication API之后, 用户就可以自己选一个地方, 然后从应用的列表中选一个东东来显示.<br>Wear应用是嵌入到一个主应用里面的, 当google play上主应用的apk被安装到手机上的时候, Wearable应用会自动安装在配对的设备上.<br>这篇文章详细介绍了如何创建一个Wear应用, 代码在<a href="https://github.com/moyheen/radar-watch-face" target="_blank" rel="external">github</a></p>
+<p>官方文档: <a href="https://developer.android.com/wear/preview/features/complications.html" target="_blank" rel="external">Watch Face Complications</a><br>官方sample: <a href="https://github.com/googlesamples/android-WatchFace" target="_blank" rel="external">android-WatchFace</a></p>
+<h3 id="Router-—-Everything-in-its-Right-Place"><a href="#Router-—-Everything-in-its-Right-Place" class="headerlink" title="Router — Everything in its Right Place"></a>Router — Everything in its Right Place</h3><p><a href="https://medium.com/stories-from-eyeem/router-everything-in-its-right-place-4ca437871052#.cvou4493z" target="_blank" rel="external">Router — Everything in its Right Place</a><br>之前有一篇文章介绍了用装饰者模式来构建高度模块化的Android应用: <a href="https://medium.com/stories-from-eyeem/creating-highly-modular-android-apps-933271fbdb7d#.4gtrccg9n" target="_blank" rel="external">Creating Highly Modular Android Apps</a><br>那篇文章里也有一个例子<a href="https://github.com/eyeem/decorator" target="_blank" rel="external">Decorator</a>.<br>这篇文章讲同样采用装饰者思想的一个库: <a href="https://github.com/eyeem/router" target="_blank" rel="external">Router</a>.</p>
+<p>Router首先基于一个将URL映射到程序界面的库: <a href="https://github.com/clayallsopp/routable-android" target="_blank" rel="external">routable-android</a><br>Router在此基础上做出了一些扩展和改进, 可以用一个map文件(YAML/JSON/XML)来定义基本的构架.<br>输入是URL(可以带参数), 根据map进行解析, 然后传到plugins, 然后每个plugin创造一部分的输出, 当左右plugins的工作结束后, 输出就可用了(输出是由多个plugins组装而成的).<br>文末附有<a href="https://github.com/eyeem/router/tree/master/app" target="_blank" rel="external">sample</a>.</p>
+<h3 id="Boosting-app-performance-with-reflectionless-de-serialization"><a href="#Boosting-app-performance-with-reflectionless-de-serialization" class="headerlink" title="Boosting app performance with reflectionless (de)serialization"></a>Boosting app performance with reflectionless (de)serialization</h3><p><a href="http://makingvimeo.com/post/148808044404/boosting-app-performance-with-reflectionless" target="_blank" rel="external">Boosting app performance with reflectionless (de)serialization</a><br>这篇文章研究了在解析JSON响应的时候如何提高效率.<br>作者他们的应用Vimeo Android用了Retrofit来做网络请求, 用Gson来反序列化, 不好的一点就是有点慢, 因为Gson用反射来解析JSON. 为了改进,他们想要去除反射.<br>他们创建了自己的Gson TypeAdapters, 并且利用程序中各个不同大小的model来测量对比了了反序列化的时间.<br>他们的实验测试了不同的机器对于不同大小model的处理, 在多数情况下, 不用反射会提高性能, 但是也有例外, 在解析很大的model时, 在高性能的机器上, 反而是使用反射的情况比较快.<br>他们的库: <a href="https://github.com/vimeo/stag-java" target="_blank" rel="external">stag-java</a><br>STAG: Speedy Type Adapter Generation.</p>
+<h3 id="Introduction-to-Automated-Android-Testing-Part-4"><a href="#Introduction-to-Automated-Android-Testing-Part-4" class="headerlink" title="Introduction to Automated Android Testing - Part 4"></a>Introduction to Automated Android Testing - Part 4</h3><p><a href="https://riggaroo.co.za/introduction-android-testing-part-4/" target="_blank" rel="external">Introduction to Automated Android Testing - Part 4</a><br>讲如何写测试的系列文章, 有一个案例sample: <a href="https://github.com/riggaroo/GithubUsersSearchApp" target="_blank" rel="external">GithubUsersSearchApp</a>.<br>举例了一个MVP的真实例子, 然后给P写单元测试.<br>Presenter里有一个CompositeSubscription, 用来管理RxJava的subscriptions, detach的时候会注销所有的订阅, 防止了内存泄露和可能存在危险的view操作.<br>还创建了一个Contract接口, 把View和Presenter的接口定义写在里面.<br>这里面还有很机智的一点是把RxJava要用到的Scheduler也从presenter的构造函数传入, 这样在测试的时候就可以使用<code>Schedulers.immediate()</code>, 而在View里面我们就按实际情况使用其他.</p>
+<h3 id="Introduction-to-Android-Testing-Part-3"><a href="#Introduction-to-Android-Testing-Part-3" class="headerlink" title="Introduction to Android Testing - Part 3"></a>Introduction to Android Testing - Part 3</h3><p><a href="https://riggaroo.co.za/introduction-android-testing-part3/" target="_blank" rel="external">Introduction to Android Testing - Part 3</a><br>这应该是跟上面那条一个系列文章的第三篇.<br>介绍了如何用Retrofit和RxJava请求Github API然后解析到models.<br>后面是写单元测试, 步骤很清楚, given, when, then.<br>可以从中学习一下怎么给这种Retrofit + RxJava的程序写单元测试.</p>
+<h3 id="Git-as-a-secure-private-Maven-repository"><a href="#Git-as-a-secure-private-Maven-repository" class="headerlink" title="Git as a secure private Maven repository"></a>Git as a secure private Maven repository</h3><p><a href="http://jeroenmols.com/blog/2016/02/05/wagongit/" target="_blank" rel="external">Git as a secure private Maven repository</a><br><a href="https://bitbucket.org/" target="_blank" rel="external">Bitbucket</a> is a web-based hosting service for projects using Git.<br>讲了如何使用BitBucket或者Github作为一个private的Maven repository.<br>例子: <a href="https://github.com/JeroenMols/WagonGitExample" target="_blank" rel="external">WagonGitExample</a><br>Gradle 脚本: <a href="https://github.com/JeroenMols/GitAsMaven" target="_blank" rel="external">GitAsMaven</a></p>
+<h3 id="Crash-reporting-in-Firebase"><a href="#Crash-reporting-in-Firebase" class="headerlink" title="Crash reporting in Firebase"></a>Crash reporting in Firebase</h3><p><a href="http://segunfamisa.com/posts/firebase-crash-reporting" target="_blank" rel="external">Crash reporting in Firebase</a><br>比较简单的一个文章, 如何set up Firebase的crash reporting.<br>其实Firebase Crash Reporting一旦构建好之后, 不需要加java代码, 所有uncaught的异常都是自动报告的.<br><a href="https://firebase.google.com/docs/crash/android" target="_blank" rel="external">Firebase Report Crashes</a>.</p>
+<h3 id="Isometric-AnimatedVectorDrawable-–-Part-1"><a href="#Isometric-AnimatedVectorDrawable-–-Part-1" class="headerlink" title="Isometric AnimatedVectorDrawable – Part 1"></a>Isometric AnimatedVectorDrawable – Part 1</h3><p><a href="https://blog.stylingandroid.com/isometric-animatedvectordrawable-part-1/" target="_blank" rel="external">Isometric AnimatedVectorDrawable – Part 1</a><br>神奇的<a href="https://developer.android.com/reference/android/graphics/drawable/AnimatedVectorDrawable.html" target="_blank" rel="external">AnimatedVectorDrawable</a>, 这篇文章讲了用它来实现栅格地形图, 游戏里可以升降的草地的类似的东东. (看文章里的图吧, 我也形容不好.)<br>遗憾的是pathData animation当前在VectorDrawableCompat library暂不支持, 所以文中所讲的技术只能在api 21及其之上使用.<br>文中的例子有9个方块, 4个三角形, 把SVG作为矢量图VectorDrawable导入Android Studio, 然后给每一个path起名字.<br>本文只是part 1, 预告了下一篇文章将讲如何动画.<br>Source code available here: <a href="https://github.com/StylingAndroid/IsometricAnimatedVector/tree/Part1" target="_blank" rel="external">IsometricAnimatedVector</a></p>
+<h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><h3 id="Don’t-just-port-an-iOS-navigation-model-to-Android"><a href="#Don’t-just-port-an-iOS-navigation-model-to-Android" class="headerlink" title="Don’t just port an iOS navigation model to Android"></a>Don’t just port an iOS navigation model to Android</h3><p><a href="http://www.androidpolice.com/2016/08/13/opinion-bottom-navigation-material-guidelines-platform-awareness/" target="_blank" rel="external">Don’t just port an iOS navigation model to Android</a><br>关于bottom nav bars的讨论.<br>Hamburger menu有时候感觉不是很理想, 是因为抽屉里的items总是隐藏状态, 用户不易发现和使用.<br>Bottom bar则把每一个item都时刻展现给用户, 在iOS上使用得很成功.<br>Google在2016年3月提供了Guides: <a href="https://material.google.com/components/bottom-navigation.html" target="_blank" rel="external">Bottom navigation</a>.</p>
+<ul>
+<li>什么时候该用bottom navigation呢?<br>应用有3到5个top级别的目的地, 且它们需要直接被访问, 从各个目的地之间转换, 并且它们应该是具有同等重要性的.</li>
+<li>什么时候bottom navigation不适用呢?<br>不能因为怕用户看不见一个东东, 就把它放在bottom nav bar, 作为推广手段.<br>bottom nav bar也不是用来放menu的, 比如放不下了加个more tab, 展开以后是更多的二级页面入口; 也不要用来放一些弹出窗口, 它们同样也不是top level的目的地.<br>bottom nav bar不能放低级别的目的地.<br>最后文章强调了每个平台应该遵从自己的特性, 对Android来说, 如果完全拷贝iOS的设计可能不是一个好主意.</li>
+</ul>
+<h2 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h2><h3 id="Stag-java"><a href="#Stag-java" class="headerlink" title="Stag-java"></a>Stag-java</h3><p><a href="https://github.com/vimeo/stag-java" target="_blank" rel="external">stag-java</a><br>Stag通过减少反射改善了Gson的性能, 为你的model对象自动生成TypeAdapters.</p>
+<h3 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h3><p><a href="https://github.com/eyeem/router" target="_blank" rel="external">Router</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Android-Weekly/">Android Weekly</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Android-Weekly/">Android Weekly</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/Android/Android-Weekly/2016/08/18/android-weekly-notes-issue-218/" data-title="Android Weekly Notes Issue | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Android/Design-Support-Library/2016/07/04/design-support-library-AppBarLayout/"  title="CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout使用">
+ <strong>下一篇：</strong><br/> 
+ <span>CoordinatorLayout, AppBarLayout, CollapsingToolbarLayout使用
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="Android/Android-Weekly/2016/08/18/android-weekly-notes-issue-218/" data-title="Android Weekly Notes Issue" data-url="http://mengdd.github.io/Android/Android-Weekly/2016/08/18/android-weekly-notes-issue-218/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-218"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #218</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">1.1.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PathMorphing-with-AnimatedVectorDrawables"><span class="toc-number">1.1.1.</span> <span class="toc-text">PathMorphing with AnimatedVectorDrawables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-UI-Instrumentation-test-with-Espresso"><span class="toc-number">1.1.2.</span> <span class="toc-text">Android UI Instrumentation test with Espresso</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-Build-an-Android-App-for-Fire-TV-Part-1"><span class="toc-number">1.1.3.</span> <span class="toc-text">How to Build an Android App for Fire TV - Part 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-Wear-Development-for-beginners"><span class="toc-number">1.1.4.</span> <span class="toc-text">Android Wear Development for beginners</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Router-—-Everything-in-its-Right-Place"><span class="toc-number">1.1.5.</span> <span class="toc-text">Router — Everything in its Right Place</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Boosting-app-performance-with-reflectionless-de-serialization"><span class="toc-number">1.1.6.</span> <span class="toc-text">Boosting app performance with reflectionless (de)serialization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduction-to-Automated-Android-Testing-Part-4"><span class="toc-number">1.1.7.</span> <span class="toc-text">Introduction to Automated Android Testing - Part 4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduction-to-Android-Testing-Part-3"><span class="toc-number">1.1.8.</span> <span class="toc-text">Introduction to Android Testing - Part 3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-as-a-secure-private-Maven-repository"><span class="toc-number">1.1.9.</span> <span class="toc-text">Git as a secure private Maven repository</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Crash-reporting-in-Firebase"><span class="toc-number">1.1.10.</span> <span class="toc-text">Crash reporting in Firebase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Isometric-AnimatedVectorDrawable-–-Part-1"><span class="toc-number">1.1.11.</span> <span class="toc-text">Isometric AnimatedVectorDrawable – Part 1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Design"><span class="toc-number">1.2.</span> <span class="toc-text">Design</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Don’t-just-port-an-iOS-navigation-model-to-Android"><span class="toc-number">1.2.1.</span> <span class="toc-text">Don’t just port an iOS navigation model to Android</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">1.3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Stag-java"><span class="toc-number">1.3.1.</span> <span class="toc-text">Stag-java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Router"><span class="toc-number">1.3.2.</span> <span class="toc-text">Router</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nested-Fragments/" title="Nested Fragments">Nested Fragments<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Toolbar/" title="Toolbar">Toolbar<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ActionBar/" title="ActionBar">ActionBar<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AppBarLayout/" title="AppBarLayout">AppBarLayout<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebView/" title="WebView">WebView<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/mengdd/" target="_blank" title="圣骑士wind">圣骑士wind</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://talentprince.github.io/" target="_blank" title="长乐未央">长乐未央</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dandan Meng. <br/>
+			This is my blog. Welcome.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/mengdd" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wind"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dandanmeng';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75132850-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?83e8338b542a9fd155f68673d113e0ae";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
