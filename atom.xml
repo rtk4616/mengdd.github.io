@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-09-01T06:18:59.000Z</updated>
+  <updated>2016-09-07T05:44:49.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>取代SharedPreferences的多进程解决方案</title>
+    <link href="http://mengdd.github.io/Android/2016/09/07/hello-preferences-provider/"/>
+    <id>http://mengdd.github.io/Android/2016/09/07/hello-preferences-provider/</id>
+    <published>2016-09-07T03:19:32.000Z</published>
+    <updated>2016-09-07T05:44:49.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Android的SharedPreferences用来存储一些键值对, 但是却不支持跨进程使用.&lt;br&gt;跨进程来用的话, 当然是放在数据库更可靠啦, 本文主要是给作者的新库&lt;a href=&quot;https://github.com/mengdd/PreferencesProvider&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PreferencesProvider&lt;/a&gt;打个广告.&lt;br&gt;这是一个用ContentProvider实现的, 可以像SharedPreferences一样用于存储键值对, 支持跨进程使用.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;SharedPreferences不支持多进程&quot;&gt;&lt;a href=&quot;#SharedPreferences不支持多进程&quot; class=&quot;headerlink&quot; title=&quot;SharedPreferences不支持多进程&quot;&gt;&lt;/a&gt;SharedPreferences不支持多进程&lt;/h2&gt;&lt;p&gt;SharedPreferences对多进程的支持不好, 你用什么mode也没用, 所以官方已经废弃了原先的MODE_MULTI_PROCESS, 并且建议跨进程存取值还是用ContentProvider之类的更靠谱一些.&lt;br&gt;说明见:&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/content/Context.html#MODE_MULTI_PROCESS&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Context#MODE_MULTI_PROCESS&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;用ContentProvider来取代SharedPreferences-心路历程&quot;&gt;&lt;a href=&quot;#用ContentProvider来取代SharedPreferences-心路历程&quot; class=&quot;headerlink&quot; title=&quot;用ContentProvider来取代SharedPreferences 心路历程&quot;&gt;&lt;/a&gt;用ContentProvider来取代SharedPreferences 心路历程&lt;/h2&gt;&lt;p&gt;之前项目中为了解决跨进程存取值的问题, 找了一个解决方案: &lt;a href=&quot;https://github.com/grandcentrix/tray&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;grandcentrix/tray&lt;/a&gt;, 感觉还挺好用.&lt;/p&gt;
+&lt;p&gt;我们最后一次用的版本是tray的v0.10.0, 因为项目发布以后后台的崩溃里总是有相关的crash, 也是它的一个issue: &lt;a href=&quot;https://github.com/grandcentrix/tray/issues/50&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/grandcentrix/tray/issues/50&lt;/a&gt;&lt;br&gt;这个crash不是必现的, 概率比较低, 但是还是影响了一部分用户, 当我们解决了项目中的其他更重要的crash之后, 这个crash的排名就越来越靠前了.&lt;/p&gt;
+&lt;p&gt;后来作者做了一些改动, 说是在v0.11.0这个issue将会被修复, 但是这个版本却迟迟没有发布, 似乎作者做了一些很大的改动.&lt;/p&gt;
+&lt;p&gt;为了及时补救, 不再让用户体验到这个随机的崩溃, 我们决定放弃等待Tray的下个版本, 自己实现用ContentProvider来存取preferences.&lt;/p&gt;
+&lt;p&gt;实现过程用了&lt;a href=&quot;https://github.com/BoD/android-contentprovider-generator&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BoD/android-contentprovider-generator&lt;/a&gt;来生成ContentProvider相关的代码.&lt;br&gt;我们把存preferences的表放在了自己的数据库里, 然后借鉴了Tray的接口, 封装了读取方法, 使之用起来和SharedPreferences类似.&lt;br&gt;之后我们就用自己写的新代码全面取代了Tray, 当然数据库升级时还需要对原来存在Tray里的重要数据进行迁移.&lt;/p&gt;
+&lt;p&gt;做完了这些以后, 发现可以做一个像Tray一样的库, 更简单, 造福其他人, 那么何乐而不为呢.&lt;/p&gt;
+&lt;h2 id=&quot;PreferencesProvider优势&quot;&gt;&lt;a href=&quot;#PreferencesProvider优势&quot; class=&quot;headerlink&quot; title=&quot;PreferencesProvider优势&quot;&gt;&lt;/a&gt;PreferencesProvider优势&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;基于ContentProvider实现, 支持跨进程使用;&lt;/li&gt;
+&lt;li&gt;采用模块化的管理方式, 可以将preferences分组管理;&lt;/li&gt;
+&lt;li&gt;没有Tray在v0.10.0版本的crash, 因为实现比Tray简单, 没有升级等功能.&lt;br&gt;(其实在我们实际项目的使用中, 基本上用不到对存preferences的表进行数据库升级的情况).&lt;/li&gt;
+&lt;li&gt;使用方式简单, 见项目README说明:&lt;a href=&quot;https://github.com/mengdd/PreferencesProvider&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PreferencesProvider&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;有用的工具&quot;&gt;&lt;a href=&quot;#有用的工具&quot; class=&quot;headerlink&quot; title=&quot;有用的工具&quot;&gt;&lt;/a&gt;有用的工具&lt;/h2&gt;&lt;p&gt;生成ContentProvider相关代码:&lt;br&gt;&lt;a href=&quot;https://github.com/BoD/android-contentprovider-generator&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BoD/android-contentprovider-generator&lt;/a&gt;&lt;br&gt;只要定义数据库基本信息, 在json中定义表结构, 就可以生成所有相关代码.&lt;/p&gt;
+&lt;p&gt;查看数据库:&lt;br&gt;&lt;a href=&quot;http://facebook.github.io/stetho/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stetho&lt;/a&gt;&lt;br&gt;在Chrome中像调试网页一样看Android应用的资源, 这个真是太好用了.&lt;/p&gt;
+&lt;p&gt;最后再次附上本文推荐的解决方案库: &lt;a href=&quot;https://github.com/mengdd/PreferencesProvider&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PreferencesProvider&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Android的SharedPreferences用来存储一些键值对, 但是却不支持跨进程使用.&lt;br&gt;跨进程来用的话, 当然是放在数据库更可靠啦, 本文主要是给作者的新库&lt;a href=&quot;https://github.com/mengdd/PreferencesProvider&quot;&gt;PreferencesProvider&lt;/a&gt;打个广告.&lt;br&gt;这是一个用ContentProvider实现的, 可以像SharedPreferences一样用于存储键值对, 支持跨进程使用.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Content Provider" scheme="http://mengdd.github.io/tags/Content-Provider/"/>
+    
+      <category term="SharedPreferences" scheme="http://mengdd.github.io/tags/SharedPreferences/"/>
+    
+      <category term="Mutilprocess" scheme="http://mengdd.github.io/tags/Mutilprocess/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 220</title>
