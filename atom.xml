@@ -284,7 +284,7 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2016/09/09/android-weekly-notes-issue-221/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2016/09/09/android-weekly-notes-issue-221/</id>
     <published>2016-09-09T03:42:07.000Z</published>
-    <updated>2016-09-09T04:26:51.000Z</updated>
+    <updated>2016-09-16T02:55:12.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-221&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-221&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #221&quot;&gt;&lt;/a&gt;Android Weekly Issue #221&lt;/h1&gt;&lt;p&gt;September 4th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-221&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #221&lt;/a&gt;&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -439,7 +439,33 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
+    
+      <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
+    
+      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="ScaleType" scheme="http://mengdd.github.io/tags/ScaleType/"/>
+    
+      <category term="Devices" scheme="http://mengdd.github.io/tags/Devices/"/>
+    
+      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
+    
+      <category term="Scrolling" scheme="http://mengdd.github.io/tags/Scrolling/"/>
+    
+      <category term="ExpandableRecyclerView" scheme="http://mengdd.github.io/tags/ExpandableRecyclerView/"/>
+    
+      <category term="Annotation" scheme="http://mengdd.github.io/tags/Annotation/"/>
+    
+      <category term="ItemTouchHelper" scheme="http://mengdd.github.io/tags/ItemTouchHelper/"/>
+    
+      <category term="Fresco" scheme="http://mengdd.github.io/tags/Fresco/"/>
     
   </entry>
   
@@ -494,7 +520,7 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2016/09/01/android-weekly-notes-issue-220/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2016/09/01/android-weekly-notes-issue-220/</id>
     <published>2016-09-01T06:05:48.000Z</published>
-    <updated>2016-09-01T06:18:59.000Z</updated>
+    <updated>2016-09-16T02:50:28.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-220&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-220&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #220&quot;&gt;&lt;/a&gt;Android Weekly Issue #220&lt;/h1&gt;&lt;p&gt;August 28th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-220&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #220&lt;/a&gt;&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -571,7 +597,33 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
+      <category term="Fragment" scheme="http://mengdd.github.io/tags/Fragment/"/>
+    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
+      <category term="AnimatedVectorDrawable" scheme="http://mengdd.github.io/tags/AnimatedVectorDrawable/"/>
+    
+      <category term="Bottom Sheet" scheme="http://mengdd.github.io/tags/Bottom-Sheet/"/>
+    
+      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
+    
+      <category term="Docker" scheme="http://mengdd.github.io/tags/Docker/"/>
+    
+      <category term="Certificate" scheme="http://mengdd.github.io/tags/Certificate/"/>
+    
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="AsyncLayoutInflater" scheme="http://mengdd.github.io/tags/AsyncLayoutInflater/"/>
+    
+      <category term="DiffUtil" scheme="http://mengdd.github.io/tags/DiffUtil/"/>
+    
+      <category term="Recorder" scheme="http://mengdd.github.io/tags/Recorder/"/>
+    
+      <category term="tiger" scheme="http://mengdd.github.io/tags/tiger/"/>
     
   </entry>
   
@@ -655,7 +707,7 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2016/08/24/android-weekly-notes-issue-219/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2016/08/24/android-weekly-notes-issue-219/</id>
     <published>2016-08-24T09:32:23.000Z</published>
-    <updated>2016-08-24T09:47:36.000Z</updated>
+    <updated>2016-09-16T02:47:22.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-219&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-219&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #219&quot;&gt;&lt;/a&gt;Android Weekly Issue #219&lt;/h1&gt;&lt;p&gt;August 21st, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-219&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #219&lt;/a&gt;&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -721,16 +773,42 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
+    
+      <category term="Bottom Sheet" scheme="http://mengdd.github.io/tags/Bottom-Sheet/"/>
+    
+      <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="JobScheduler" scheme="http://mengdd.github.io/tags/JobScheduler/"/>
+    
+      <category term="Trello" scheme="http://mengdd.github.io/tags/Trello/"/>
+    
+      <category term="TextInputLayout" scheme="http://mengdd.github.io/tags/TextInputLayout/"/>
+    
+      <category term="Code Style" scheme="http://mengdd.github.io/tags/Code-Style/"/>
+    
+      <category term="Java 8" scheme="http://mengdd.github.io/tags/Java-8/"/>
+    
+      <category term="Lambda" scheme="http://mengdd.github.io/tags/Lambda/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="AutoValue" scheme="http://mengdd.github.io/tags/AutoValue/"/>
     
   </entry>
   
   <entry>
-    <title>Android Weekly Notes Issue</title>
+    <title>Android Weekly Notes Issue 218</title>
     <link href="http://mengdd.github.io/Android/Android-Weekly/2016/08/18/android-weekly-notes-issue-218/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2016/08/18/android-weekly-notes-issue-218/</id>
     <published>2016-08-18T05:20:56.000Z</published>
-    <updated>2016-08-18T10:14:28.000Z</updated>
+    <updated>2016-09-16T02:42:35.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-218&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-218&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #218&quot;&gt;&lt;/a&gt;Android Weekly Issue #218&lt;/h1&gt;&lt;p&gt;August 14th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-218&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://androidweekly.net/issues/issue-218&lt;/a&gt;&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -771,6 +849,22 @@
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
+    
+      <category term="AnimatedVectorDrawable" scheme="http://mengdd.github.io/tags/AnimatedVectorDrawable/"/>
+    
+      <category term="TV" scheme="http://mengdd.github.io/tags/TV/"/>
+    
+      <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
+    
+      <category term="Router" scheme="http://mengdd.github.io/tags/Router/"/>
+    
+      <category term="Performance" scheme="http://mengdd.github.io/tags/Performance/"/>
+    
+      <category term="Maven" scheme="http://mengdd.github.io/tags/Maven/"/>
+    
+      <category term="Bottom Navigation" scheme="http://mengdd.github.io/tags/Bottom-Navigation/"/>
     
   </entry>
   
