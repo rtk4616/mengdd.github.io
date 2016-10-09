@@ -1,0 +1,715 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android Weekly Notes Issue 225 | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="Android Weekly Issue #225October 2nd, 2016Android Weekly Issue #225
+本期内容包括: Android 7.0的Quick Settings; Firebase; 兼容旧版本的shared element transtion; Wear; ORM: 用ActiveAndroid做数据库存储; 崩溃报告工具对比; Google Cast">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Weekly Notes Issue 225">
+<meta property="og:url" content="http://mengdd.github.io/Android/Android-Weekly/2016/10/09/android-weekly-notes-issue-225/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="Android Weekly Issue #225October 2nd, 2016Android Weekly Issue #225
+本期内容包括: Android 7.0的Quick Settings; Firebase; 兼容旧版本的shared element transtion; Wear; ORM: 用ActiveAndroid做数据库存储; 崩溃报告工具对比; Google Cast">
+<meta property="og:updated_time" content="2016-10-09T03:05:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Weekly Notes Issue 225">
+<meta name="twitter:description" content="Android Weekly Issue #225October 2nd, 2016Android Weekly Issue #225
+本期内容包括: Android 7.0的Quick Settings; Firebase; 兼容旧版本的shared element transtion; Wear; ORM: 用ActiveAndroid做数据库存储; 崩溃报告工具对比; Google Cast">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/Android/Android-Weekly/2016/10/09/android-weekly-notes-issue-225/" title="Android Weekly Notes Issue 225" itemprop="url">Android Weekly Notes Issue 225</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-09T02:32:42.000Z" itemprop="datePublished"> Published 2016-10-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-225"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #225</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-7-0的快速设置-Quick-Settings-Tiles"><span class="toc-number">2.1.</span> <span class="toc-text">Android 7.0的快速设置 Quick Settings Tiles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android开发最佳实践-Android-Development-Best-Practices"><span class="toc-number">2.2.</span> <span class="toc-text">Android开发最佳实践 Android Development Best Practices</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recap-Of-Google-Launchpad-Build-Lagos-All-About-Firebase"><span class="toc-number">2.3.</span> <span class="toc-text">Recap Of Google Launchpad Build Lagos : All About Firebase</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Shared-Element-Transitions-for-all"><span class="toc-number">2.4.</span> <span class="toc-text">Android Shared-Element Transitions for all</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Writing-Better-Adapters"><span class="toc-number">2.5.</span> <span class="toc-text">Writing Better Adapters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Wear-Accessing-the-Data-Layer-API"><span class="toc-number">2.6.</span> <span class="toc-text">Android Wear: Accessing the Data Layer API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Espresso-Tests-For-TextSwitcher"><span class="toc-number">2.7.</span> <span class="toc-text">Espresso Tests For TextSwitcher</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Animating-Android-Activities-and-Views-with-Slide-Animations"><span class="toc-number">2.8.</span> <span class="toc-text">Animating Android Activities and Views with Slide Animations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Guide-to-ORM-using-ActiveAndroid-Part-1"><span class="toc-number">2.9.</span> <span class="toc-text">Guide to ORM using ActiveAndroid: Part 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Comparison-of-Android-Crash-Reporting-Tools"><span class="toc-number">2.10.</span> <span class="toc-text">A Comparison of Android Crash Reporting Tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Google-Play-Services-Google-Cast-v3-and-Media"><span class="toc-number">2.11.</span> <span class="toc-text">Google Play Services: Google Cast v3 and Media</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ExoPlayer-2-x-It’s-here-plus-FAQs"><span class="toc-number">2.12.</span> <span class="toc-text">ExoPlayer 2.x - It’s here (plus FAQs)!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-We-Rethought-our-Complete-Package-Structure-for-Buffer-on-Android"><span class="toc-number">2.13.</span> <span class="toc-text">How We Rethought our Complete Package Structure for Buffer on Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Become-a-Firebase-Taskmaster-Part-3"><span class="toc-number">2.14.</span> <span class="toc-text">Become a Firebase Taskmaster! (Part 3)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRIARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRIARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#groupie"><span class="toc-number">3.1.</span> <span class="toc-text">groupie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-junit5"><span class="toc-number">3.2.</span> <span class="toc-text">android-junit5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#epoxy"><span class="toc-number">3.3.</span> <span class="toc-text">epoxy</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Android-Weekly-Issue-225"><a href="#Android-Weekly-Issue-225" class="headerlink" title="Android Weekly Issue #225"></a>Android Weekly Issue #225</h1><p>October 2nd, 2016<br><a href="http://androidweekly.net/issues/issue-225" target="_blank" rel="external">Android Weekly Issue #225</a></p>
+<p>本期内容包括: Android 7.0的Quick Settings; Firebase; 兼容旧版本的shared element transtion; Wear; ORM: 用ActiveAndroid做数据库存储; 崩溃报告工具对比; Google Cast API介绍; Google的播放器库ExoPlayer 2.x发布; 项目的包结构整理; Task API的使用等等.</p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Android-7-0的快速设置-Quick-Settings-Tiles"><a href="#Android-7-0的快速设置-Quick-Settings-Tiles" class="headerlink" title="Android 7.0的快速设置 Quick Settings Tiles"></a>Android 7.0的快速设置 <a href="https://medium.com/google-developers/quick-settings-tiles-e3c22daf93a8#.4q0cxslwd" target="_blank" rel="external">Quick Settings Tiles</a></h2><p>从Android 7.0 (API 24)开始, 任何app都可以创建一个quick settings tile, 快速访问关键功能.<br>它除了是一个展示最新信息的UI, 点击一个片还可以trigger后台任务, 打开dialog或activity.</p>
+<p>一个好的quick settings tile:<br>决定是否要建立这样一个tile时, 主要考虑紧急性和频繁性两个方面.</p>
+<p>每一个tile和一个<a href="https://developer.android.com/reference/android/service/quicksettings/TileService.html" target="_blank" rel="external">TileService</a>关联. 和其他service一样, 它需要在manifest中注册, 它的label和icon就是显示在quick settings上的文字和图片.</p>
+<p><strong>TileService的生命周期</strong>:<br>TileService是一个<a href="https://developer.android.com/guide/components/bound-services.html" target="_blank" rel="external">bound service</a>, 它的生命周期主要由系统控制. 主要有三个阶段: being added, listening, being removed.</p>
+<ul>
+<li><code>onTileAdded()</code>: 当用户添加这个tile到quick settings.</li>
+<li><code>onStartListening()</code>: tile变为可见.</li>
+<li><code>onStopListening()</code>: tile变为不可见.</li>
+<li><code>onTileRemoved()</code>: 用户移除这个tile.</li>
+</ul>
+<p>以上这是默认模式, 如果你准确地知道何时更新, 你可以使用<a href="https://developer.android.com/reference/android/service/quicksettings/TileService.html#META_DATA_ACTIVE_TILE" target="_blank" rel="external">active mode</a>.<br>此时更新的回调<code>onStartListening()</code>是通过静态方法主动触发的.</p>
+<p><strong>更新UI</strong>:<br>UI是<a href="https://developer.android.com/reference/android/service/quicksettings/Tile.html" target="_blank" rel="external">Tile</a>, 主要包含icon, label, description和state. 最后必须调用<code>updateTile()</code>方法.</p>
+<p><strong>处理点击</strong>:<br>在<code>onClick()</code>回调触发的时候, 我们可以启动一些后台工作, 或者<code>showDialog()</code>, 或者<code>startActivityAndCollapse()</code>.</p>
+<p>对于锁屏的机器有一些限制, 不能打开dialog, 并且activity需要有一个特定的flag, 有一个<code>unlockAndRun()</code>方法可以让用户先解锁后做一些工作.</p>
+<p>长按tile默认会打开app的app info屏, 当然这个行为也可以override. 只要给你想打开的activity加上<code>ACTION_QS_TILE_PREFERENCES</code>.</p>
+<h2 id="Android开发最佳实践-Android-Development-Best-Practices"><a href="#Android开发最佳实践-Android-Development-Best-Practices" class="headerlink" title="Android开发最佳实践 Android Development Best Practices"></a>Android开发最佳实践 <a href="https://medium.freecodecamp.com/android-development-best-practices-83c94b027fd3" target="_blank" rel="external">Android Development Best Practices</a></h2><p>关于性能:<br><a href="https://developer.android.com/training/best-performance.html" target="_blank" rel="external">Best Practices for Performance</a>;<br><a href="https://github.com/amitshekhariitbhu/awesome-android-complete-reference#performance-and-optimization" target="_blank" rel="external">Performance and Optimization</a></p>
+<p>关于架构:<br><a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="external">android-architecture</a></p>
+<p>写单元测试和UI测试.</p>
+<p>使用Proguard, Stetho.<br>复用布局, 使用<merge>标签.<br><a href="https://developer.android.com/training/improving-layouts/reusing-layouts.html" target="_blank" rel="external">reusing-layouts</a>.</merge></p>
+<p>把launcher icons放在mipmap文件夹下.</p>
+<p>多用shape和selector而不是图片.</p>
+<p>避免深层次的布局.</p>
+<p>向Intent或Bundler传数据时, 使用<code>Parcelable</code>而不是<code>Serializable</code>. 因为后者使用反射而比较慢.</p>
+<p>不要在UI线程进行文件操作.</p>
+<p>明白Bitmaps. 因为它们占用很多memory. <a href="https://developer.android.com/training/displaying-bitmaps/index.html" target="_blank" rel="external">Didplaying Bitmaps</a></p>
+<p>使用style来避免重复的属性设置.</p>
+<p>需要时使用Fragment.</p>
+<p>明白Activity的生命周期.</p>
+<p>使用得到公认的libraries而不是自己的实现.</p>
+<p>在各种机器上测试.</p>
+<h2 id="Recap-Of-Google-Launchpad-Build-Lagos-All-About-Firebase"><a href="#Recap-Of-Google-Launchpad-Build-Lagos-All-About-Firebase" class="headerlink" title="Recap Of Google Launchpad Build Lagos : All About Firebase"></a><a href="http://chikemgbemena.com/2016/09/27/recap-lagos-launchpad-developers-conference-all-about-firebase/" target="_blank" rel="external">Recap Of Google Launchpad Build Lagos : All About Firebase</a></h2><p>作者参加了一个叫Google Launchpad Build的会议, 这篇文章是总结, 全部是关于Firebase的.</p>
+<h2 id="Android-Shared-Element-Transitions-for-all"><a href="#Android-Shared-Element-Transitions-for-all" class="headerlink" title="Android Shared-Element Transitions for all"></a><a href="https://medium.com/@aitorvs/android-shared-element-transitions-for-all-b90e9361507d#.rlu4u7kmy" target="_blank" rel="external">Android Shared-Element Transitions for all</a></h2><p>在Lollipop+的设备上, shared element的transition动画很好实现, 但是在旧的版本上该怎么办呢? 作者展示了他的方法:</p>
+<ul>
+<li>Activity A捕捉origin view的初始值, 通过Intent把它们传给Activity B;</li>
+<li>Activity B完全透明地启动;</li>
+<li>Activity B读取bundle中的值, 准备场景;</li>
+<li>Acitivty B运行shared element动画.</li>
+</ul>
+<p>几个实现细节:</p>
+<p>需要知道View在B中的位置, 时机是layout之后, 但是draw之前, 即<code>onPreDraw()</code>.<br>返回时只需要把这个动画反向播放即可.</p>
+<h2 id="Writing-Better-Adapters"><a href="#Writing-Better-Adapters" class="headerlink" title="Writing Better Adapters"></a><a href="https://medium.com/@dpreussler/writing-better-adapters-1b09758407d2#.c5av797rd" target="_blank" rel="external">Writing Better Adapters</a></h2><p>(这个上一期刚讲过, 不知道为什么重复了. )</p>
+<p>就是关于RecyclerView的Adapter, 作者认为多种View类型时, Adapter中太多的instance of和强制类型转换不是一种好做法, 于是提出了他的做法. </p>
+<h2 id="Android-Wear-Accessing-the-Data-Layer-API"><a href="#Android-Wear-Accessing-the-Data-Layer-API" class="headerlink" title="Android Wear: Accessing the Data Layer API"></a><a href="https://medium.com/@manuelvicnt/android-wear-accessing-the-data-layer-api-d64fd55982e3" target="_blank" rel="external">Android Wear: Accessing the Data Layer API</a></h2><p>Data Layer API是Google Play services的一部分, 用于不同设备(手机和手表)间的数据交换.</p>
+<p>作者先提供了代码, 发送和存储数据, 监听数据变化.</p>
+<p>问题是, 如果Wear第二次向mobile请求数据, mobile发送了和上一次一样的数据, Wear并不会进入<code>onDataChanged()</code>, 因为数据并没有变化.</p>
+<p>所以作者想知道如何从Data Layer API来获取数据, 并展示了他的方法在不同情形下的应用.</p>
+<h2 id="Espresso-Tests-For-TextSwitcher"><a href="#Espresso-Tests-For-TextSwitcher" class="headerlink" title="Espresso Tests For TextSwitcher"></a><a href="http://www.ottodroid.net/?p=493" target="_blank" rel="external">Espresso Tests For TextSwitcher</a></h2><p>作者想给TextSwitcher写Espresso测试.</p>
+<p>从Android Studio 2.2开始, 你可以录制你的操作, IDE将会自动为你生成Espresso测试代码. 但是作者录了一个有关TextSwitcher的测试之后, 跑失败了.</p>
+<p>这是因为<code>TextSwitcher</code>继承了<code>ViewSwitcher</code>, 其实现其实是把两个TextView加到了布局里.<br>所以Espresso抛出了<code>AmbiguousViewMatcherException</code>.</p>
+<p>所以作者根据可见性区分了它俩, 修复了测试.<br>还可以根据child view的index来区分.</p>
+<h2 id="Animating-Android-Activities-and-Views-with-Slide-Animations"><a href="#Animating-Android-Activities-and-Views-with-Slide-Animations" class="headerlink" title="Animating Android Activities and Views with Slide Animations"></a><a href="https://kylewbanks.com/blog/left-and-right-slide-animations-on-android-activity-or-view" target="_blank" rel="external">Animating Android Activities and Views with Slide Animations</a></h2><p>作者展示了如何给Activity和View加上左右滑动的动画.</p>
+<h2 id="Guide-to-ORM-using-ActiveAndroid-Part-1"><a href="#Guide-to-ORM-using-ActiveAndroid-Part-1" class="headerlink" title="Guide to ORM using ActiveAndroid: Part 1"></a><a href="http://www.rscottcarson.com/2016/09/22/the-ultimate-guide-to-orm-in-android-using-activeandroid-part-1/" target="_blank" rel="external">Guide to ORM using ActiveAndroid: Part 1</a></h2><p>这是一个系列教程, 相关的代码在: <a href="https://github.com/rscottcarson/ActiveAndroid-Tutorial" target="_blank" rel="external">ActiveAndroid-Tutorial</a></p>
+<p>什么是ORM(Object-Relational Mapping)呢?<br>a technique to convert between incompatible type-systems in an object-oriented programming language.<br>在面向对象的语言中, 转换不兼容的类型的技术.</p>
+<p><a href="http://www.activeandroid.com/" target="_blank" rel="external">ActiveAndroid</a>是一个ORM(object relational mapper), 让你不用写SQL语句, 就可以读写数据库.</p>
+<p>其他类似的工具还有<a href="https://realm.io/docs/java/latest/" target="_blank" rel="external">Realm</a>和<a href="http://ormlite.com/" target="_blank" rel="external">OrmLite</a>.</p>
+<h2 id="A-Comparison-of-Android-Crash-Reporting-Tools"><a href="#A-Comparison-of-Android-Crash-Reporting-Tools" class="headerlink" title="A Comparison of Android Crash Reporting Tools"></a><a href="https://www.captechconsulting.com/blogs/a-comparison-of-android-crash-reporting-tools" target="_blank" rel="external">A Comparison of Android Crash Reporting Tools</a></h2><p>作者对比了几种崩溃报告工具, 并介绍了如何使用.<br>包括: Firebase, <a href="https://fabric.io/kits/android/crashlytics/" target="_blank" rel="external">Crashlytics</a>, <a href="https://www.apteligent.com/" target="_blank" rel="external">Apteligent</a>, <a href="https://bugsnag.com/" target="_blank" rel="external">Bugsnag</a>.</p>
+<h2 id="Google-Play-Services-Google-Cast-v3-and-Media"><a href="#Google-Play-Services-Google-Cast-v3-and-Media" class="headerlink" title="Google Play Services: Google Cast v3 and Media"></a><a href="https://code.tutsplus.com/tutorials/google-play-services-google-cast-v3-and-media--cms-26893" target="_blank" rel="external">Google Play Services: Google Cast v3 and Media</a></h2><p>Google Cast是一个让用户把网上的内容发送到设备上的技术. 通常用来和TV交换内容.</p>
+<p>作者详细地介绍了如何使用Google Cast SDK来创建应用.</p>
+<p>注: 要建造客户端程序, 首先需要注册: <a href="https://cast.google.com/publish/" target="_blank" rel="external">https://cast.google.com/publish/</a>.<br>这是收费的.</p>
+<h2 id="ExoPlayer-2-x-It’s-here-plus-FAQs"><a href="#ExoPlayer-2-x-It’s-here-plus-FAQs" class="headerlink" title="ExoPlayer 2.x - It’s here (plus FAQs)!"></a><a href="https://medium.com/google-exoplayer/exoplayer-2-x-its-here-plus-faqs-cce34b0d4c7b#.h6m9czs7y" target="_blank" rel="external">ExoPlayer 2.x - It’s here (plus FAQs)!</a></h2><p>Google的库<a href="https://github.com/google/ExoPlayer" target="_blank" rel="external">google/ExoPlayer</a>升级到v2.x了.<br>(它是一个Media Player, YouTube用的就是它.)<br>这次是个重大更新, 添加了很多新功能, 推荐大家以后用新版.</p>
+<h2 id="How-We-Rethought-our-Complete-Package-Structure-for-Buffer-on-Android"><a href="#How-We-Rethought-our-Complete-Package-Structure-for-Buffer-on-Android" class="headerlink" title="How We Rethought our Complete Package Structure for Buffer on Android"></a><a href="https://overflow.buffer.com/2016/09/26/android-rethinking-package-structure/" target="_blank" rel="external">How We Rethought our Complete Package Structure for Buffer on Android</a></h2><p>作者他们重新整理了项目的包结构, 总结了整个过程还有从中学到的东东.</p>
+<p>作者他们之前的包结构是按类型的, 有activities, fragments, adapters等包. 因为类名以类型终结, 所以索性就按整个分组.</p>
+<p>当app变得越来越大, 这种组织方式发现就不太好, 感觉很难找东西, 并且感觉没什么结构.</p>
+<p>经过改变之后, 作者他们采用了一种更加整洁并且易于导航的结构.</p>
+<p>新结构中, 当添加一个新的feature, 就保持在同一个目录中, 这样就不用来回切换目录.</p>
+<p>作者他们的新结构有四个总目录: </p>
+<ul>
+<li>data</li>
+<li>ui</li>
+<li>injection</li>
+<li>util</li>
+</ul>
+<p><strong>data</strong>中包含网络请求及相关的models, preferences, database, data models, 还有其他和数据直接关联的东西.</p>
+<p>其中和不同API关联的models又分别组织在子目录下.</p>
+<p><strong>ui</strong>目录中包含所有和UI相关的组件, 在这个包中按照功能又拆分了子目录. 其中有base包, 用来盛放Fragment, Activity和MVP的基类, 接口等; 还有common包, 用来盛放公共控件.</p>
+<p><strong>injection</strong>中包含所有依赖注入的类, 分component, module和scope的子目录.</p>
+<p><strong>util</strong>中含有Helper和Utility类.</p>
+<h2 id="Become-a-Firebase-Taskmaster-Part-3"><a href="#Become-a-Firebase-Taskmaster-Part-3" class="headerlink" title="Become a Firebase Taskmaster! (Part 3)"></a><a href="https://firebase.googleblog.com/2016/09/become-a-firebase-taskmaster-part-3_29.html" target="_blank" rel="external">Become a Firebase Taskmaster! (Part 3)</a></h2><p>这是系列文章的第三篇, 这个系列是关于Play services的<a href="https://developers.google.com/android/guides/tasks" target="_blank" rel="external">Task API</a>. </p>
+<p>如果项目里已经依赖了Firebase, 变自动包含了Task API, 如果不想用Firebase, 可以单独添加依赖:<br><code>compile &#39;com.google.android.gms:play-services-tasks:9.6.1&#39;</code></p>
+<p>创建新的Task可以用下面这两个方法:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Task&lt;TResult&gt; <span class="title">call</span><span class="params">(Callable&lt;TResult&gt; callable)</span></span><br><span class="line">Task&lt;TResult&gt; <span class="title">call</span><span class="params">(Executor executor, Callable&lt;TResult&gt; callable)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>第一个<code>call()</code>方法在主线程执行任务, 第二个<code>call()</code>方法可以把工作提交给一个<code>Executor</code>.</p>
+<p><a href="https://developer.android.com/reference/java/util/concurrent/Callable.html" target="_blank" rel="external">Callable</a>有点类似于Runnable:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CarlyCallable</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Call me maybe"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>参数制定了方法的返回值的类型, 进而也是创建出Task的类型.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Task&lt;String&gt; task = Tasks.call(<span class="keyword">new</span> CarlyCallable());</span><br></pre></td></tr></table></figure>
+<p>想要链式执行, 进行后续操作, 可以用<a href="https://developers.google.com/android/reference/com/google/android/gms/tasks/Continuation" target="_blank" rel="external">Continuation</a>.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SeparateWays</span> <span class="keyword">implements</span> <span class="title">Continuation</span>&lt;<span class="title">String</span>, <span class="title">List</span>&lt;<span class="title">String</span>&gt;&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">then</span><span class="params">(Task&lt;String&gt; task)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.asList(task.getResult().split(<span class="string">" +"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>它继承接口时指定了输入和输出的类型, 它的输入来自于Task的输出.</p>
+<p>可以多写几个Continuation类然后连起来:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Task&lt;String&gt; playlist = Tasks.call(<span class="keyword">new</span> CarlyCallable())</span><br><span class="line">        .continueWith(<span class="keyword">new</span> SeparateWays())</span><br><span class="line">        .continueWith(<span class="keyword">new</span> AllShookUp())</span><br><span class="line">        .continueWith(<span class="keyword">new</span> ComeTogether());</span><br><span class="line">playlist.addOnSuccessListener(<span class="keyword">new</span> OnSuccessListener&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// The final String with all the words randomized is here</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h1 id="LIBRIARIES-amp-CODE"><a href="#LIBRIARIES-amp-CODE" class="headerlink" title="LIBRIARIES &amp; CODE"></a>LIBRIARIES &amp; CODE</h1><h2 id="groupie"><a href="#groupie" class="headerlink" title="groupie"></a><a href="https://github.com/Genius/groupie" target="_blank" rel="external">groupie</a></h2><p>显示和管理复杂的RecyclerView布局, 把你的items按照逻辑分组管理.</p>
+<h2 id="android-junit5"><a href="#android-junit5" class="headerlink" title="android-junit5"></a><a href="https://github.com/aurae/android-junit5" target="_blank" rel="external">android-junit5</a></h2><p>Gradle插件, 用JUnit5做Android的单元测试.</p>
+<h2 id="epoxy"><a href="#epoxy" class="headerlink" title="epoxy"></a><a href="https://github.com/airbnb/epoxy" target="_blank" rel="external">epoxy</a></h2><p>用来构建复杂的RecyclerView屏.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Android-Weekly/">Android Weekly</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Android-Weekly/">Android Weekly</a><a href="/tags/Espresso/">Espresso</a><a href="/tags/Wear/">Wear</a><a href="/tags/Firebase/">Firebase</a><a href="/tags/Android-7-0/">Android 7.0</a><a href="/tags/Quick-Settings/">Quick Settings</a><a href="/tags/Shared-Element-Transtion/">Shared-Element Transtion</a><a href="/tags/Animation/">Animation</a><a href="/tags/ORM/">ORM</a><a href="/tags/ActiveAndroid/">ActiveAndroid</a><a href="/tags/Crash-Reporting/">Crash Reporting</a><a href="/tags/Google-Cast/">Google Cast</a><a href="/tags/ExoPlayer/">ExoPlayer</a><a href="/tags/Packages/">Packages</a><a href="/tags/Task/">Task</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/Android/Android-Weekly/2016/10/09/android-weekly-notes-issue-225/" data-title="Android Weekly Notes Issue 225 | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Android/Android-Weekly/2016/10/02/android-weekly-notes-issue-224/"  title="Android Weekly Notes Issue 224">
+ <strong>下一篇：</strong><br/> 
+ <span>Android Weekly Notes Issue 224
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="Android/Android-Weekly/2016/10/09/android-weekly-notes-issue-225/" data-title="Android Weekly Notes Issue 225" data-url="http://mengdd.github.io/Android/Android-Weekly/2016/10/09/android-weekly-notes-issue-225/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-225"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #225</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-7-0的快速设置-Quick-Settings-Tiles"><span class="toc-number">2.1.</span> <span class="toc-text">Android 7.0的快速设置 Quick Settings Tiles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android开发最佳实践-Android-Development-Best-Practices"><span class="toc-number">2.2.</span> <span class="toc-text">Android开发最佳实践 Android Development Best Practices</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recap-Of-Google-Launchpad-Build-Lagos-All-About-Firebase"><span class="toc-number">2.3.</span> <span class="toc-text">Recap Of Google Launchpad Build Lagos : All About Firebase</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Shared-Element-Transitions-for-all"><span class="toc-number">2.4.</span> <span class="toc-text">Android Shared-Element Transitions for all</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Writing-Better-Adapters"><span class="toc-number">2.5.</span> <span class="toc-text">Writing Better Adapters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Wear-Accessing-the-Data-Layer-API"><span class="toc-number">2.6.</span> <span class="toc-text">Android Wear: Accessing the Data Layer API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Espresso-Tests-For-TextSwitcher"><span class="toc-number">2.7.</span> <span class="toc-text">Espresso Tests For TextSwitcher</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Animating-Android-Activities-and-Views-with-Slide-Animations"><span class="toc-number">2.8.</span> <span class="toc-text">Animating Android Activities and Views with Slide Animations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Guide-to-ORM-using-ActiveAndroid-Part-1"><span class="toc-number">2.9.</span> <span class="toc-text">Guide to ORM using ActiveAndroid: Part 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Comparison-of-Android-Crash-Reporting-Tools"><span class="toc-number">2.10.</span> <span class="toc-text">A Comparison of Android Crash Reporting Tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Google-Play-Services-Google-Cast-v3-and-Media"><span class="toc-number">2.11.</span> <span class="toc-text">Google Play Services: Google Cast v3 and Media</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ExoPlayer-2-x-It’s-here-plus-FAQs"><span class="toc-number">2.12.</span> <span class="toc-text">ExoPlayer 2.x - It’s here (plus FAQs)!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-We-Rethought-our-Complete-Package-Structure-for-Buffer-on-Android"><span class="toc-number">2.13.</span> <span class="toc-text">How We Rethought our Complete Package Structure for Buffer on Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Become-a-Firebase-Taskmaster-Part-3"><span class="toc-number">2.14.</span> <span class="toc-text">Become a Firebase Taskmaster! (Part 3)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRIARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRIARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#groupie"><span class="toc-number">3.1.</span> <span class="toc-text">groupie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-junit5"><span class="toc-number">3.2.</span> <span class="toc-text">android-junit5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#epoxy"><span class="toc-number">3.3.</span> <span class="toc-text">epoxy</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-News/" title="Android News">Android News<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>17</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVP/" title="MVP">MVP<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Security/" title="Security">Security<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nested-Fragments/" title="Nested Fragments">Nested Fragments<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Accessibility/" title="Accessibility">Accessibility<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AnimatedVectorDrawable/" title="AnimatedVectorDrawable">AnimatedVectorDrawable<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Annotation/" title="Annotation">Annotation<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Toolbar/" title="Toolbar">Toolbar<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Resources/" title="Resources">Resources<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Memory-Leak/" title="Memory Leak">Memory Leak<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bottom-Sheet/" title="Bottom Sheet">Bottom Sheet<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>2</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/mengdd/" target="_blank" title="圣骑士wind">圣骑士wind</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://talentprince.github.io/" target="_blank" title="长乐未央">长乐未央</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dandan Meng. <br/>
+			This is my blog. Welcome.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/mengdd" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wind"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dandanmeng';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75132850-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?83e8338b542a9fd155f68673d113e0ae";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
