@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-10-09T03:05:47.000Z</updated>
+  <updated>2016-10-09T04:45:39.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2016/10/09/android-weekly-notes-issue-225/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2016/10/09/android-weekly-notes-issue-225/</id>
     <published>2016-10-09T02:32:42.000Z</published>
-    <updated>2016-10-09T03:05:47.000Z</updated>
+    <updated>2016-10-09T04:45:39.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-225&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-225&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #225&quot;&gt;&lt;/a&gt;Android Weekly Issue #225&lt;/h1&gt;&lt;p&gt;October 2nd, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-225&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #225&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本期内容包括: Android 7.0的Quick Settings; Firebase; 兼容旧版本的shared element transtion; Wear; ORM: 用ActiveAndroid做数据库存储; 崩溃报告工具对比; Google Cast API介绍; Google的播放器库ExoPlayer 2.x发布; 项目的包结构整理; Task API的使用等等.&lt;/p&gt;
+&lt;p&gt;本期内容包括: Android 7.0的Quick Settings; Firebase; 兼容旧版本的shared element transition; Wear; ORM: 用ActiveAndroid做数据库存储; 崩溃报告工具对比; Google Cast API介绍; Google的播放器库ExoPlayer 2.x发布; 项目的包结构整理; Task API的使用等等.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Android-7-0的快速设置-Quick-Settings-Tiles&quot;&gt;&lt;a href=&quot;#Android-7-0的快速设置-Quick-Settings-Tiles&quot; class=&quot;headerlink&quot; title=&quot;Android 7.0的快速设置 Quick Settings Tiles&quot;&gt;&lt;/a&gt;Android 7.0的快速设置 &lt;a href=&quot;https://medium.com/google-developers/quick-settings-tiles-e3c22daf93a8#.4q0cxslwd&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Quick Settings Tiles&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;从Android 7.0 (API 24)开始, 任何app都可以创建一个quick settings tile, 快速访问关键功能.&lt;br&gt;它除了是一个展示最新信息的UI, 点击一个片还可以trigger后台任务, 打开dialog或activity.&lt;/p&gt;
 &lt;p&gt;一个好的quick settings tile:&lt;br&gt;决定是否要建立这样一个tile时, 主要考虑紧急性和频繁性两个方面.&lt;/p&gt;
@@ -120,7 +120,7 @@
     <summary type="html">
     
       &lt;h1 id=&quot;Android-Weekly-Issue-225&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-225&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #225&quot;&gt;&lt;/a&gt;Android Weekly Issue #225&lt;/h1&gt;&lt;p&gt;October 2nd, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-225&quot;&gt;Android Weekly Issue #225&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本期内容包括: Android 7.0的Quick Settings; Firebase; 兼容旧版本的shared element transtion; Wear; ORM: 用ActiveAndroid做数据库存储; 崩溃报告工具对比; Google Cast API介绍; Google的播放器库ExoPlayer 2.x发布; 项目的包结构整理; Task API的使用等等.&lt;/p&gt;
+&lt;p&gt;本期内容包括: Android 7.0的Quick Settings; Firebase; 兼容旧版本的shared element transition; Wear; ORM: 用ActiveAndroid做数据库存储; 崩溃报告工具对比; Google Cast API介绍; Google的播放器库ExoPlayer 2.x发布; 项目的包结构整理; Task API的使用等等.&lt;/p&gt;
     
     </summary>
     
