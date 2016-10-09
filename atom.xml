@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-10-09T04:45:39.000Z</updated>
+  <updated>2016-10-09T04:48:44.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2016/10/09/android-weekly-notes-issue-225/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2016/10/09/android-weekly-notes-issue-225/</id>
     <published>2016-10-09T02:32:42.000Z</published>
-    <updated>2016-10-09T04:45:39.000Z</updated>
+    <updated>2016-10-09T04:48:44.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-225&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-225&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #225&quot;&gt;&lt;/a&gt;Android Weekly Issue #225&lt;/h1&gt;&lt;p&gt;October 2nd, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-225&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #225&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;本期内容包括: Android 7.0的Quick Settings; Firebase; 兼容旧版本的shared element transition; Wear; ORM: 用ActiveAndroid做数据库存储; 崩溃报告工具对比; Google Cast API介绍; Google的播放器库ExoPlayer 2.x发布; 项目的包结构整理; Task API的使用等等.&lt;/p&gt;
@@ -49,7 +49,7 @@
 &lt;p&gt;避免深层次的布局.&lt;/p&gt;
 &lt;p&gt;向Intent或Bundler传数据时, 使用&lt;code&gt;Parcelable&lt;/code&gt;而不是&lt;code&gt;Serializable&lt;/code&gt;. 因为后者使用反射而比较慢.&lt;/p&gt;
 &lt;p&gt;不要在UI线程进行文件操作.&lt;/p&gt;
-&lt;p&gt;明白Bitmaps. 因为它们占用很多memory. &lt;a href=&quot;https://developer.android.com/training/displaying-bitmaps/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Didplaying Bitmaps&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;明白Bitmaps. 因为它们占用很多memory. &lt;a href=&quot;https://developer.android.com/training/displaying-bitmaps/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Displaying Bitmaps&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;使用style来避免重复的属性设置.&lt;/p&gt;
 &lt;p&gt;需要时使用Fragment.&lt;/p&gt;
 &lt;p&gt;明白Activity的生命周期.&lt;/p&gt;
