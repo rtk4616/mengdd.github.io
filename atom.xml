@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-10-09T04:48:44.000Z</updated>
+  <updated>2016-10-12T09:58:43.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,124 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 226</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/10/12/android-weekly-notes-issue-226/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2016/10/12/android-weekly-notes-issue-226/</id>
+    <published>2016-10-12T09:46:27.000Z</published>
+    <updated>2016-10-12T09:58:43.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-226&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-226&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #226&quot;&gt;&lt;/a&gt;Android Weekly Issue #226&lt;/h1&gt;&lt;p&gt;October 9th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-226&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #226&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;本期内容包括: 用Firebase做A/B Test; 用RxJava做动画; MVP; proguardFiles; RxJava和Android Data Binding的结合; Mockito的更新; Gradle configurations等.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;用Firebase做A-B-Test-A-B-Test-your-App-using-Firebase-Remote-Config&quot;&gt;&lt;a href=&quot;#用Firebase做A-B-Test-A-B-Test-your-App-using-Firebase-Remote-Config&quot; class=&quot;headerlink&quot; title=&quot;用Firebase做A/B Test A/B Test your App using Firebase Remote Config&quot;&gt;&lt;/a&gt;用Firebase做A/B Test &lt;a href=&quot;https://riggaroo.co.za/ab-test-app-firebase-remote-config/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A/B Test your App using Firebase Remote Config&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者讲了如何用Firebase的Remote Config做A/B Test.&lt;/p&gt;
+&lt;h2 id=&quot;用RxJava做动画-Android-animations-powered-by-RxJava&quot;&gt;&lt;a href=&quot;#用RxJava做动画-Android-animations-powered-by-RxJava&quot; class=&quot;headerlink&quot; title=&quot;用RxJava做动画 Android animations powered by RxJava&quot;&gt;&lt;/a&gt;用RxJava做动画 &lt;a href=&quot;https://pspdfkit.com/blog/2016/android-animations-powered-by-rx-java/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android animations powered by RxJava&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;动画基础&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;用&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/view/ViewPropertyAnimator.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ViewPropertyAnimator&lt;/a&gt; 操作View的属性动画很容易也很方便.&lt;/p&gt;
+&lt;p&gt;本文讲的内容主要用&lt;a href=&quot;https://developer.android.com/reference/android/support/v4/view/ViewPropertyAnimatorCompat.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ViewPropertyAnimatorCompat&lt;/a&gt;, 它是通过这个方法获得的: &lt;a href=&quot;https://developer.android.com/reference/android/support/v4/view/ViewCompat.html#animate(android.view.View&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ViewCompat.animate(targetView)&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;它是这样用的:&lt;br&gt;&lt;figure class=&quot;highlight kotlin&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ViewCompat.animate(someButton)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .scaleX(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;f)                         &lt;span class=&quot;comment&quot;&gt;// Scale to 0 horizontally&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .scaleY(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;f)                         &lt;span class=&quot;comment&quot;&gt;// Scale to 0 vertically&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .setDuration(&lt;span class=&quot;number&quot;&gt;300&lt;/span&gt;)                   &lt;span class=&quot;comment&quot;&gt;// Duration of the animation in milliseconds.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .withEndAction &amp;#123; removeView(view) &amp;#125; &lt;span class=&quot;comment&quot;&gt;// Called when the animation ends successfully.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://reactivex.io/RxJava/javadoc/rx/Completable.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Completable&lt;/a&gt; 是RxJava1.1.1加入的.&lt;/p&gt;
+&lt;p&gt;作者通过RxJava来做他们的动画效果.&lt;br&gt;这在链式连接多个动画和其他操作的时候很有用.&lt;/p&gt;
+&lt;h2 id=&quot;Android-Architecture-Patterns-Part-2-MVP&quot;&gt;&lt;a href=&quot;#Android-Architecture-Patterns-Part-2-MVP&quot; class=&quot;headerlink&quot; title=&quot;Android Architecture Patterns Part 2: MVP&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://upday.github.io/blog/model-view-presenter/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Architecture Patterns Part 2: MVP&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;关于Android程序的架构, google提供了&lt;a href=&quot;https://github.com/googlesamples/android-architecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Architecture Blueprints&lt;/a&gt;, 其中作者他们合作于&lt;a href=&quot;https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MVP &amp;amp; RxJava&lt;/a&gt;的sample.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MVP(Model-View-Presenter)模式&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Model: 数据层. 负责与网络层和数据库层的逻辑交互.&lt;/li&gt;
+&lt;li&gt;View: UI层. 显示数据, 并向Presenter报告用户行为.&lt;/li&gt;
+&lt;li&gt;Presenter: 从Model拿数据, 应用到UI层, 管理UI的状态, 决定要显示什么以及响应用户的行为.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;V和P联系紧密, 所以它们通常会持有对方的引用. 为了给P做单元测试, V是一个抽象的接口. P和对应的V的关系定义在一个&lt;code&gt;Contract&lt;/code&gt;接口里, 这样可以让代码可读性更好, 更容易发现二者的联系.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MVP模式 &amp;amp; RxJava在Android Architecture Blueprints里的应用&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Google blueprint的Sample是一个&lt;a href=&quot;https://github.com/googlesamples/android-architecture/wiki/To-do-app-specification&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;To Do应用&lt;/a&gt;. 它让用户可以创建, 阅读, 更新和删除to do task, 也可以过滤显示. RxJava主要是用来进行一些非主线程的异步操作.&lt;/p&gt;
+&lt;p&gt;然后作者详细说明了代码实现.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Model&lt;/strong&gt;中用RxJava在本地和网络取数据.&lt;br&gt;(他们的单元测试里是下划线和驼峰结合的方法命名方式.)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;View&lt;/strong&gt;有一个base接口:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;BaseView&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;T&lt;/span&gt;&amp;gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setPresenter&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(T presenter)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;View在&lt;code&gt;onResume()&lt;/code&gt;的时候调用Presenter的&lt;code&gt;subscribe()&lt;/code&gt;, &lt;code&gt;onPause()&lt;/code&gt;的时候调用Presenter的&lt;code&gt;unsubscribe()&lt;/code&gt;. 如果View接口的实现不是Fragment或Activity, 而是Android的自定义View, 那么在&lt;code&gt;onAttachedToWindow()&lt;/code&gt;和&lt;code&gt;onDetachedFromWindow()&lt;/code&gt;方法里分别调用这两个方法.&lt;/p&gt;
+&lt;p&gt;View的测试是用Espresso写的.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Presenter&lt;/strong&gt;也有一个base接口:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;BasePresenter&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;unsubscribe&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;View和Model都通过构造函数传入Presenter, 在Presenter构造里还要调用View的&lt;code&gt;setPresetner()&lt;/code&gt;方法.&lt;/p&gt;
+&lt;p&gt;每一个Presenter还要暴露一些其他的方法, 对应View中用户的行为.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MVP模式的缺点&lt;/strong&gt;:&lt;br&gt;MVP模式很好地分离了概念, 当然这是好的. 但是当开发很小的app或者只是做一个原型时, 确实感觉过度设计了. 为了减少所用的接口, 有一些开发者省去了&lt;code&gt;Contract&lt;/code&gt;接口类, 也删掉了Presenter的接口.&lt;/p&gt;
+&lt;p&gt;当把UI的逻辑移到Presenter中时, 它就变成了一个全能的类, 代码很长. 为了解决这个问题, 可以进一步拆分代码, 并且记得创建单一职能, 并且可以被单元测试的类.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;:&lt;br&gt;&lt;a href=&quot;https://upday.github.io/blog/model-view-controller/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Model-View-Controller MVC模式&lt;/a&gt; 有两个主要的缺点: 首先, View持有Controller和Model的引用; 第二, 它没有把对UI逻辑的操作限制在单一的类里, 这个职能被Controller和View或者Model共享.&lt;/p&gt;
+&lt;p&gt;MVP模式解决了这两个问题: 砍断了View和Model之间的联系, 用Presenter来管理所有和View显示相关的逻辑(handles everything related to the presentation of the View), 并且这个类是很容易被单元测试的.&lt;/p&gt;
+&lt;h2 id=&quot;proguardFiles-A-Cautionary-Tale&quot;&gt;&lt;a href=&quot;#proguardFiles-A-Cautionary-Tale&quot; class=&quot;headerlink&quot; title=&quot;proguardFiles: A Cautionary Tale&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://stkent.github.io/2016/10/07/proguardfiles-a-cautionary-tale.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;proguardFiles: A Cautionary Tale&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者有三个buildTypes: debug, beta, release.&lt;/p&gt;
+&lt;p&gt;其中beta用了initWith(buildTypes.debug).&lt;br&gt;他想给不同的type加上不同的proguard files. 让debug不混淆(&lt;code&gt;-dontobfuscate&lt;/code&gt;), beta和release混淆.&lt;br&gt;结果却发现beta没有混淆.&lt;/p&gt;
+&lt;p&gt;查看代码发现&lt;code&gt;proguardFiles&lt;/code&gt;其实是将proguard files叠加.&lt;br&gt;作者找到的解决方式是用&lt;code&gt;setProguardFiles()&lt;/code&gt;:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;buildTypes &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  debug &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    proguardFiles getDefaultProguardFile(&amp;apos;proguard-android.txt&amp;apos;), &amp;apos;proguard-rules.pro&amp;apos;, &amp;apos;proguard-debug.pro&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  beta &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    initWith(buildTypes.debug)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // New!&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    setProguardFiles([getDefaultProguardFile(&amp;apos;proguard-android.txt&amp;apos;), &amp;apos;proguard-rules.pro&amp;apos;])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  release &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    proguardFiles getDefaultProguardFile(&amp;apos;proguard-android.txt&amp;apos;), &amp;apos;proguard-rules.pro&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;评论区有人指出还可以这样:&lt;br&gt;在&lt;code&gt;defaultConfig&lt;/code&gt;中:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;proguardFiles getDefaultProguardFile(&amp;apos;proguard-android.txt&amp;apos;), &amp;apos;proguard-rules.pro&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;然后在&lt;code&gt;debug&lt;/code&gt;中: 加&lt;code&gt;proguardFile &amp;#39;proguard-debug.pro&lt;/code&gt;, 这样更简洁一些.&lt;/p&gt;
+&lt;p&gt;相关文档: &lt;a href=&quot;https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.BuildType.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BuildType&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;RxJava-meets-Android-Data-Binding&quot;&gt;&lt;a href=&quot;#RxJava-meets-Android-Data-Binding&quot; class=&quot;headerlink&quot; title=&quot;RxJava meets Android Data Binding&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/tangoagency/rxjava-meets-android-data-binding-4ca5e1144107#.p13x1zwkc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava meets Android Data Binding&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者使用例子介绍了如何将RxJava和Android的Data Binding结合起来使用.&lt;/p&gt;
+&lt;h2 id=&quot;Mocking-Kotlin-with-Mockito&quot;&gt;&lt;a href=&quot;#Mocking-Kotlin-with-Mockito&quot; class=&quot;headerlink&quot; title=&quot;Mocking Kotlin with Mockito&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://hadihariri.com/2016/10/04/Mocking-Kotlin-With-Mockito/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Mocking Kotlin with Mockito&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;因为Kotlin默认类和方法都是final的, 如果你想要继承, 必须显式声明&lt;code&gt;open&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;当你想要在测试中Mock一些行为时, Mockito可能会报错, 因为它无法mock一个final的class/method.&lt;/p&gt;
+&lt;p&gt;于是你可能要修改源代码, 加&lt;code&gt;open&lt;/code&gt;或者是接口, 仅仅是为了测试.&lt;/p&gt;
+&lt;p&gt;Mockito 2解决了这个问题: &lt;a href=&quot;https://github.com/mockito/mockito/wiki/What&amp;#39;s-new-in-Mockito-2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What’s new in Mockito 2&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;你只需要在&lt;code&gt;resources/mockito-extensions&lt;/code&gt;目录下创建一个文件: &lt;code&gt;org.mockito.plugins.MockMaker&lt;/code&gt;.&lt;br&gt;里面只包含一行内容:&lt;br&gt;&lt;code&gt;mock-maker-inline&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Droidcon-NYC-2016-Victor-Nascimento&quot;&gt;&lt;a href=&quot;#Droidcon-NYC-2016-Victor-Nascimento&quot; class=&quot;headerlink&quot; title=&quot;Droidcon NYC 2016 - Victor Nascimento&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@victor.nascimento/droidcon-ny-2016-e037cb81559#.4ncx0xcgg&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Droidcon NYC 2016 - Victor Nascimento&lt;/a&gt;&lt;/h2&gt;&lt;h2 id=&quot;Droidcon-NYC-2016-Florina-Muntenescu&quot;&gt;&lt;a href=&quot;#Droidcon-NYC-2016-Florina-Muntenescu&quot; class=&quot;headerlink&quot; title=&quot;Droidcon NYC 2016 - Florina Muntenescu&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://upday.github.io/blog/droidcon_nyc/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Droidcon NYC 2016 - Florina Muntenescu&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这两篇是关于Droidcon NYC 2016的感想.&lt;/p&gt;
+&lt;h2 id=&quot;Android-Gradle-configurations&quot;&gt;&lt;a href=&quot;#Android-Gradle-configurations&quot; class=&quot;headerlink&quot; title=&quot;Android Gradle configurations&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.thedroidsonroids.com/blog/android/android-gradle-configurations/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Gradle configurations&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Gradle中的configuration是:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	annotationProcessor &amp;apos;com.jakewharton:butterknife-compiler:8.4.0&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	compile &amp;apos;com.jakewharton:butterknife:8.4.0&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	compile project(&amp;apos;:api&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	debugCompile &amp;apos;com.squareup.leakcanary:leakcanary-android:1.4&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	releaseCompile &amp;apos;com.squareup.leakcanary:leakcanary-android-no-op:1.4&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	androidTestCompile &amp;apos;com.android.support.test:runner:0.5&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	testCompile &amp;apos;org.robolectric:robolectric:3.1.2&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	testAnnotationProcessor &amp;apos;org.robolectric:robolectric-processor:3.1.2&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;模式是&lt;code&gt;configuationName dependencyNotation&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Configuration names由两部分组成:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可选的前缀, 指定build variant, product flavor或者build type.&lt;/li&gt;
+&lt;li&gt;必需的后缀, 指定scope.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如在&lt;code&gt;debugCompile&lt;/code&gt;中, debug就是一个build type.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;compile&lt;/code&gt;没有前缀, 就表示它应用到所有的build类型里.&lt;/p&gt;
+&lt;p&gt;每一个正常的configuration都有一个相应的unit test版, 比如&lt;code&gt;testCompile&lt;/code&gt;, &lt;code&gt;testDebugCompile&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;对于功能测试来说是&lt;code&gt;androidTest&lt;/code&gt;, 只有这一种.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Scope&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Scope是和configuration应用的阶段有关:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;annotationProcessor/kapt: 注解处理;&lt;/li&gt;
+&lt;li&gt;provided/compileOnly: 编译期;&lt;/li&gt;
+&lt;li&gt;compile: 编译 + 执行;&lt;/li&gt;
+&lt;li&gt;apk: 执行期.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;继承&lt;/strong&gt;&lt;br&gt;Configuration可以继承, 意味着子类包含父类所有包含的项目.&lt;br&gt;比如&lt;code&gt;testCompile&lt;/code&gt;就继承了&lt;code&gt;compile&lt;/code&gt;.&lt;br&gt;但是注意继承必须显式声明, 并不是由名字看出来的, 比如&lt;code&gt;testAnnotationProcessor&lt;/code&gt;没有继承&lt;code&gt;annotationProcessor&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;利用继承可以定义单元测试和公共测试的基类, 这样它们的共享依赖就可以只声明一次.&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;configurations &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; [androidTestCompile, testCompile].each &amp;#123; it.extendsFrom commonTestCompile &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;android-data-binding-rxjava&quot;&gt;&lt;a href=&quot;#android-data-binding-rxjava&quot; class=&quot;headerlink&quot; title=&quot;android-data-binding-rxjava&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/TangoAgency/android-data-binding-rxjava&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-data-binding-rxjava&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;例子代码, 展示如何结合RxJava和Android data binding.&lt;/p&gt;
+&lt;h2 id=&quot;AnimatorDurationTile&quot;&gt;&lt;a href=&quot;#AnimatorDurationTile&quot; class=&quot;headerlink&quot; title=&quot;AnimatorDurationTile&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/nickbutcher/AnimatorDurationTile&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AnimatorDurationTile&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Quick Settings tile, 用于控制动画的duration scale.&lt;/p&gt;
+&lt;h2 id=&quot;DateTimeSeer&quot;&gt;&lt;a href=&quot;#DateTimeSeer&quot; class=&quot;headerlink&quot; title=&quot;DateTimeSeer&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/p-v/DateTimeSeer/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DateTimeSeer&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个关于日期和时间的自动提示输入框.&lt;/p&gt;
+&lt;h2 id=&quot;A-list-of-all-Android-permissions&quot;&gt;&lt;a href=&quot;#A-list-of-all-Android-permissions&quot; class=&quot;headerlink&quot; title=&quot;A list of all Android permissions&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://gist.github.com/Arinerron/1bcaadc7b1cbeae77de0263f4e15156f&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A list of all Android permissions&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Android所有权限的列表.&lt;/p&gt;
+&lt;h1 id=&quot;NEWS&quot;&gt;&lt;a href=&quot;#NEWS&quot; class=&quot;headerlink&quot; title=&quot;NEWS&quot;&gt;&lt;/a&gt;NEWS&lt;/h1&gt;&lt;h2 id=&quot;What’s-new-in-Mockito-2&quot;&gt;&lt;a href=&quot;#What’s-new-in-Mockito-2&quot; class=&quot;headerlink&quot; title=&quot;What’s new in Mockito 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/mockito/mockito/wiki/What%27s-new-in-Mockito-2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What’s new in Mockito 2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Mockito 2发布了, 有什么新东西呢?&lt;/p&gt;
+&lt;h2 id=&quot;Kotlin-1-0-5-EAP&quot;&gt;&lt;a href=&quot;#Kotlin-1-0-5-EAP&quot; class=&quot;headerlink&quot; title=&quot;Kotlin 1.0.5 EAP&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://discuss.kotlinlang.org/t/kotlin-1-0-5-eap/2023&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Kotlin 1.0.5 EAP&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Kotlin 1.0.5 EAP (Early Access Program).&lt;/p&gt;
+&lt;h2 id=&quot;What’s-next-for-android-apt&quot;&gt;&lt;a href=&quot;#What’s-next-for-android-apt&quot; class=&quot;headerlink&quot; title=&quot;What’s next for android-apt?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.littlerobots.nl/blog/Whats-next-for-android-apt/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What’s next for android-apt?&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;android-apt将不会再开发了, 因为它的功能已经被包含进了Android Gradle plugin.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-226&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-226&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #226&quot;&gt;&lt;/a&gt;Android Weekly Issue #226&lt;/h1&gt;&lt;p&gt;October 9th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-226&quot;&gt;Android Weekly Issue #226&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;本期内容包括: 用Firebase做A/B Test; 用RxJava做动画; MVP; proguardFiles; RxJava和Android Data Binding的结合; Mockito的更新; Gradle configurations等.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
+    
+      <category term="Proguard" scheme="http://mengdd.github.io/tags/Proguard/"/>
+    
+      <category term="Data Binding" scheme="http://mengdd.github.io/tags/Data-Binding/"/>
+    
+      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 225</title>
@@ -398,6 +516,8 @@
     
       <category term="Annotation" scheme="http://mengdd.github.io/tags/Annotation/"/>
     
+      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
+    
       <category term="pre-launch" scheme="http://mengdd.github.io/tags/pre-launch/"/>
     
       <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
@@ -413,8 +533,6 @@
       <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
       <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
-    
-      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
       <category term="Adapter" scheme="http://mengdd.github.io/tags/Adapter/"/>
     
@@ -600,15 +718,13 @@
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
-      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
-    
       <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
+      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
     
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
@@ -619,6 +735,8 @@
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
       <category term="GCM" scheme="http://mengdd.github.io/tags/GCM/"/>
+    
+      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
   </entry>
   
@@ -872,9 +990,9 @@
     
       <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
-      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
-    
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
+      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
     
       <category term="Okio" scheme="http://mengdd.github.io/tags/Okio/"/>
     
@@ -1046,11 +1164,15 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
       <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
+    
+      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="ScaleType" scheme="http://mengdd.github.io/tags/ScaleType/"/>
     
@@ -1060,13 +1182,9 @@
     
       <category term="Scrolling" scheme="http://mengdd.github.io/tags/Scrolling/"/>
     
-      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
-    
       <category term="ExpandableRecyclerView" scheme="http://mengdd.github.io/tags/ExpandableRecyclerView/"/>
     
       <category term="Annotation" scheme="http://mengdd.github.io/tags/Annotation/"/>
-    
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="ItemTouchHelper" scheme="http://mengdd.github.io/tags/ItemTouchHelper/"/>
     
@@ -1214,13 +1332,13 @@
     
       <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
       <category term="Docker" scheme="http://mengdd.github.io/tags/Docker/"/>
     
       <category term="Certificate" scheme="http://mengdd.github.io/tags/Certificate/"/>
     
       <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
@@ -1380,11 +1498,11 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
+    
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
     
       <category term="Bottom Sheet" scheme="http://mengdd.github.io/tags/Bottom-Sheet/"/>
     
@@ -1900,6 +2018,38 @@
   </entry>
   
   <entry>
+    <title>Test Links</title>
+    <link href="http://mengdd.github.io/uncategorized/2016/05/31/test-links/"/>
+    <id>http://mengdd.github.io/uncategorized/2016/05/31/test-links/</id>
+    <published>2016-05-31T04:51:19.000Z</published>
+    <updated>2016-08-03T01:58:59.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://m.realestate.com.au/sold/property-house-act-waramanga-122532898&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://m.realestate.com.au/sold/property-house-act-waramanga-122532898&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;realestate.com.au/suggested-properties&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/suggested-properties&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/suggested-properties&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;amp;includeSurrounding=false&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;amp;includeSurrounding=false&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;amp;numParkingSpaces=3&amp;amp;numBaths=2&amp;amp;maxBeds=2&amp;amp;includeSurrounding=false&amp;amp;persistIncludeSurrounding=true&amp;amp;source=location-search&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;amp;numParkingSpaces=3&amp;amp;numBaths=2&amp;amp;maxBeds=2&amp;amp;includeSurrounding=false&amp;amp;persistIncludeSurrounding=true&amp;amp;source=location-search&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;amp;includeSurrounding=false&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;amp;includeSurrounding=false&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;amp;numBaths=1&amp;amp;keywords=car&amp;amp;activeSort=sold-price-desc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;amp;numBaths=1&amp;amp;keywords=car&amp;amp;activeSort=sold-price-desc&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;2016-06-15&lt;br&gt;&lt;a href=&quot;http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;amp;numParkingSpaces=1&amp;amp;activeSort=price-asc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;amp;numParkingSpaces=1&amp;amp;activeSort=price-asc&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;amp;numBaths=1&amp;amp;numParkingSpaces=1&amp;amp;activeSort=list-date&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;amp;numBaths=1&amp;amp;numParkingSpaces=1&amp;amp;activeSort=list-date&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2016-08-03&lt;br&gt;&lt;a href=&quot;https://m.realestate.com.au/saved-properties&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://m.realestate.com.au/saved-properties&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestat
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Android Fragment使用(一) 基础篇 温故知新</title>
     <link href="http://mengdd.github.io/Android/2016/05/31/android-fragment-usage-1-basic-part/"/>
     <id>http://mengdd.github.io/Android/2016/05/31/android-fragment-usage-1-basic-part/</id>
@@ -1962,38 +2112,6 @@
   </entry>
   
   <entry>
-    <title>Test Links</title>
-    <link href="http://mengdd.github.io/uncategorized/2016/05/31/test-links/"/>
-    <id>http://mengdd.github.io/uncategorized/2016/05/31/test-links/</id>
-    <published>2016-05-31T04:51:19.000Z</published>
-    <updated>2016-08-03T01:58:59.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://m.realestate.com.au/sold/property-house-act-waramanga-122532898&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://m.realestate.com.au/sold/property-house-act-waramanga-122532898&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;realestate.com.au/suggested-properties&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/suggested-properties&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/suggested-properties&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;amp;includeSurrounding=false&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;amp;includeSurrounding=false&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;amp;numParkingSpaces=3&amp;amp;numBaths=2&amp;amp;maxBeds=2&amp;amp;includeSurrounding=false&amp;amp;persistIncludeSurrounding=true&amp;amp;source=location-search&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;amp;numParkingSpaces=3&amp;amp;numBaths=2&amp;amp;maxBeds=2&amp;amp;includeSurrounding=false&amp;amp;persistIncludeSurrounding=true&amp;amp;source=location-search&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;amp;includeSurrounding=false&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;amp;includeSurrounding=false&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3&lt;/a&gt; &lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;amp;numBaths=1&amp;amp;keywords=car&amp;amp;activeSort=sold-price-desc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;amp;numBaths=1&amp;amp;keywords=car&amp;amp;activeSort=sold-price-desc&lt;/a&gt; &lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1&lt;/a&gt; &lt;/p&gt;
-&lt;p&gt;2016-06-15&lt;br&gt;&lt;a href=&quot;http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;amp;numParkingSpaces=1&amp;amp;activeSort=price-asc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;amp;numParkingSpaces=1&amp;amp;activeSort=price-asc&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;amp;numBaths=1&amp;amp;numParkingSpaces=1&amp;amp;activeSort=list-date&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;amp;numBaths=1&amp;amp;numParkingSpaces=1&amp;amp;activeSort=list-date&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;2016-08-03&lt;br&gt;&lt;a href=&quot;https://m.realestate.com.au/saved-properties&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://m.realestate.com.au/saved-properties&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.realestat
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Set up github pages with Hexo</title>
     <link href="http://mengdd.github.io/uncategorized/2016/05/23/set-up-github-pages-with-hexo/"/>
     <id>http://mengdd.github.io/uncategorized/2016/05/23/set-up-github-pages-with-hexo/</id>
@@ -2040,35 +2158,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;Set-up-Github-Pages-with-Hexo-migrating-from-Jekyll&quot;&gt;&lt;a href=&quot;#Set-up-Github-Pages-with-Hexo-migrating-from-Jekyll&quot; class=&quot;headerlink&quot; title=&quot;Set up Github Pages with Hexo, migrating from Jekyll.&quot;&gt;&lt;/a&gt;Set up Github Pages with Hexo, migrating from Jekyll.&lt;/h1&gt;&lt;p&gt;本文介绍用Hexo建立github pages, 其中包含了从Jekyll迁移过来的过程.&lt;br&gt;Migrate github pages from Jekyll to &lt;a href=&quot;https://hexo.io/docs/index.html&quot;&gt;Hexo&lt;/a&gt;.&lt;br&gt;Set up github pages using Hexo.&lt;br&gt;不光是迁移哇, 直接用Hexo setup github pages 看这个也有用哇.&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://mengdd.github.io/uncategorized/2016/05/20/hello-world-from-hexo/"/>
-    <id>http://mengdd.github.io/uncategorized/2016/05/20/hello-world-from-hexo/</id>
-    <published>2016-05-19T16:00:00.000Z</published>
-    <updated>2016-05-24T03:57:26.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! &lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! &lt;/p&gt;
     
     </summary>
     
