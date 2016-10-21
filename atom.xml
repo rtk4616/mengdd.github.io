@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-10-21T07:20:55.000Z</updated>
+  <updated>2016-10-21T07:57:52.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2016/10/21/android-weekly-notes-issue-227/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2016/10/21/android-weekly-notes-issue-227/</id>
     <published>2016-10-21T06:52:53.000Z</published>
-    <updated>2016-10-21T07:20:55.000Z</updated>
+    <updated>2016-10-21T07:57:52.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-227&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-227&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #227&quot;&gt;&lt;/a&gt;Android Weekly Issue #227&lt;/h1&gt;&lt;p&gt;October 16th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-227&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #227&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;本期内容包括: Google的Mobile Vision API 人脸检测; Firebase的Remote Config; 与HashMap有关的优化; 提高RecyclerView帧率的优化; 使用AutoValue生成model代码; 开源库中抽象类和接口的使用讨论; Bottom Sheet的使用; Android Studio中的版本控制系统; ConstraintLayout的使用; 应用换Bottom Navigation; Nougat的Messaging Style Notification; 自定义字体; Reductor的使用等.&lt;/p&gt;
@@ -97,7 +97,7 @@
 &lt;p&gt;在Android Studio 2.2开始, 加入了一个&lt;code&gt;Create command line launcher&lt;/code&gt;, 这样你就可以在命令行或者第三方的版本控制客户端使用Android Studio的diff/merge tool了.&lt;br&gt;作者使用的客户端是&lt;a href=&quot;https://www.sourcetreeapp.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SourceTree&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;用&lt;code&gt;cmd + shift + A&lt;/code&gt;可以用来find action, 然后就可以找到&lt;code&gt;Compare with branch&lt;/code&gt;:  可以比较当前文件和某个分支上的文件的diff;&lt;br&gt;另外还可以&lt;code&gt;Compare with...&lt;/code&gt;, 来比较和之前某一个特定提交的diff;  以及&lt;code&gt;Compare with Clipboard&lt;/code&gt;来和剪贴板做比较.&lt;/p&gt;
 &lt;p&gt;还有一些其他有用的快捷键, 请看原文吧.&lt;/p&gt;
-&lt;h2 id=&quot;Constraint-Layout-Icon-Label-Text&quot;&gt;&lt;a href=&quot;#Constraint-Layout-Icon-Label-Text&quot; class=&quot;headerlink&quot; title=&quot;Constraint Layout: Icon Label Text&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://blog.sqisland.com/2016/10/constraint-layout-icon-label-text.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Constraint Layout: Icon Label Text&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者想做这样一个UI, 左边是一个icon, 右边是两行字, icon的top和bottom分别和第一行字的top和bottom对其.&lt;br&gt;&lt;img src=&quot;/images/icon-label-text.jpg&quot; alt=&quot;ConstraintLayout: Icon Label Text&quot;&gt;&lt;br&gt;怎么做呢? 她想到了用&lt;a href=&quot;https://developer.android.com/training/constraint-layout/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ConstraintLayout&lt;/a&gt;.&lt;br&gt;代码在这里: &lt;a href=&quot;https://github.com/chiuki/iconlabeltext&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iconlabeltext&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Constraint-Layout-Icon-Label-Text&quot;&gt;&lt;a href=&quot;#Constraint-Layout-Icon-Label-Text&quot; class=&quot;headerlink&quot; title=&quot;Constraint Layout: Icon Label Text&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://blog.sqisland.com/2016/10/constraint-layout-icon-label-text.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Constraint Layout: Icon Label Text&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者想做这样一个UI, 左边是一个icon, 右边是两行字, icon的top和bottom分别和第一行字的top和bottom对齐.&lt;br&gt;&lt;img src=&quot;/images/icon-label-text.jpg&quot; alt=&quot;ConstraintLayout: Icon Label Text&quot;&gt;&lt;br&gt;怎么做呢? 她想到了用&lt;a href=&quot;https://developer.android.com/training/constraint-layout/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ConstraintLayout&lt;/a&gt;.&lt;br&gt;代码在这里: &lt;a href=&quot;https://github.com/chiuki/iconlabeltext&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iconlabeltext&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Bye-Bye-Burger&quot;&gt;&lt;a href=&quot;#Bye-Bye-Burger&quot; class=&quot;headerlink&quot; title=&quot;Bye, Bye Burger&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/startup-grind/bye-bye-burger-5bd963806015#.emir2u5kv&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bye, Bye Burger&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们的应用从burger menu改为bottom navigation, 此篇为心得分享和他们改版时设计中的一些细节讨论.&lt;/p&gt;
 &lt;p&gt;其中状态保存是一个最主要的技术问题.&lt;/p&gt;
 &lt;p&gt;改版之后, 作者他们的应用数据表明有以下几个好处:&lt;/p&gt;

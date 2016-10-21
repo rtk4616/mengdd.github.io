@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://mengdd.github.io/images/icon-label-text.jpg">
 <meta property="og:image" content="http://mengdd.github.io/images/custom-fonts-in-one-textview.png">
 <meta property="og:image" content="http://mengdd.github.io/images/redux-idea.png">
-<meta property="og:updated_time" content="2016-10-21T07:20:55.000Z">
+<meta property="og:updated_time" content="2016-10-21T07:57:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Weekly Notes Issue 227">
 <meta name="twitter:description" content="Android Weekly Issue #227October 16th, 2016Android Weekly Issue #227.
@@ -186,7 +186,7 @@
 <p>在Android Studio 2.2开始, 加入了一个<code>Create command line launcher</code>, 这样你就可以在命令行或者第三方的版本控制客户端使用Android Studio的diff/merge tool了.<br>作者使用的客户端是<a href="https://www.sourcetreeapp.com/" target="_blank" rel="external">SourceTree</a>.</p>
 <p>用<code>cmd + shift + A</code>可以用来find action, 然后就可以找到<code>Compare with branch</code>:  可以比较当前文件和某个分支上的文件的diff;<br>另外还可以<code>Compare with...</code>, 来比较和之前某一个特定提交的diff;  以及<code>Compare with Clipboard</code>来和剪贴板做比较.</p>
 <p>还有一些其他有用的快捷键, 请看原文吧.</p>
-<h2 id="Constraint-Layout-Icon-Label-Text"><a href="#Constraint-Layout-Icon-Label-Text" class="headerlink" title="Constraint Layout: Icon Label Text"></a><a href="http://blog.sqisland.com/2016/10/constraint-layout-icon-label-text.html" target="_blank" rel="external">Constraint Layout: Icon Label Text</a></h2><p>作者想做这样一个UI, 左边是一个icon, 右边是两行字, icon的top和bottom分别和第一行字的top和bottom对其.<br><img src="/images/icon-label-text.jpg" alt="ConstraintLayout: Icon Label Text"><br>怎么做呢? 她想到了用<a href="https://developer.android.com/training/constraint-layout/index.html" target="_blank" rel="external">ConstraintLayout</a>.<br>代码在这里: <a href="https://github.com/chiuki/iconlabeltext" target="_blank" rel="external">iconlabeltext</a></p>
+<h2 id="Constraint-Layout-Icon-Label-Text"><a href="#Constraint-Layout-Icon-Label-Text" class="headerlink" title="Constraint Layout: Icon Label Text"></a><a href="http://blog.sqisland.com/2016/10/constraint-layout-icon-label-text.html" target="_blank" rel="external">Constraint Layout: Icon Label Text</a></h2><p>作者想做这样一个UI, 左边是一个icon, 右边是两行字, icon的top和bottom分别和第一行字的top和bottom对齐.<br><img src="/images/icon-label-text.jpg" alt="ConstraintLayout: Icon Label Text"><br>怎么做呢? 她想到了用<a href="https://developer.android.com/training/constraint-layout/index.html" target="_blank" rel="external">ConstraintLayout</a>.<br>代码在这里: <a href="https://github.com/chiuki/iconlabeltext" target="_blank" rel="external">iconlabeltext</a></p>
 <h2 id="Bye-Bye-Burger"><a href="#Bye-Bye-Burger" class="headerlink" title="Bye, Bye Burger"></a><a href="https://medium.com/startup-grind/bye-bye-burger-5bd963806015#.emir2u5kv" target="_blank" rel="external">Bye, Bye Burger</a></h2><p>作者他们的应用从burger menu改为bottom navigation, 此篇为心得分享和他们改版时设计中的一些细节讨论.</p>
 <p>其中状态保存是一个最主要的技术问题.</p>
 <p>改版之后, 作者他们的应用数据表明有以下几个好处:</p>
