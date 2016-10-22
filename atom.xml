@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-10-22T10:16:27.000Z</updated>
+  <updated>2016-10-22T10:26:02.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://mengdd.github.io/uncategorized/2016/10/22/android-architecture-google-samples-analysis/"/>
     <id>http://mengdd.github.io/uncategorized/2016/10/22/android-architecture-google-samples-analysis/</id>
     <published>2016-10-22T11:11:27.000Z</published>
-    <updated>2016-10-22T10:16:27.000Z</updated>
+    <updated>2016-10-22T10:26:02.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Google官方MVP-Sample代码解读&quot;&gt;&lt;a href=&quot;#Google官方MVP-Sample代码解读&quot; class=&quot;headerlink&quot; title=&quot;Google官方MVP Sample代码解读&quot;&gt;&lt;/a&gt;Google官方MVP Sample代码解读&lt;/h1&gt;&lt;p&gt;关于Android程序的构架, 当前(2016.10)最流行的模式即为MVP模式, Google官方提供了Sample代码来展示这种模式的用法.&lt;br&gt;Repo地址: &lt;a href=&quot;https://github.com/googlesamples/android-architecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-architecture&lt;/a&gt;.&lt;br&gt;本文为阅读官方sample代码的阅读笔记和分析.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -167,7 +167,7 @@
 &lt;p&gt;View在&lt;code&gt;onResume()&lt;/code&gt;的时候调用Presenter的&lt;code&gt;subscribe()&lt;/code&gt;; 在onPause()的时候调用presenter的&lt;code&gt;unsubscribe()&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;如果View接口的实现不是Fragment或Activity, 而是Android的自定义View, 那么在Android View的&lt;code&gt;onAttachedToWindow()&lt;/code&gt;和&lt;code&gt;onDetachedFromWindow()&lt;/code&gt;方法里分别调用这两个方法.&lt;/p&gt;
 &lt;p&gt;Presenter中保存了:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; CompositeSubscription mSubscriptions;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;在&lt;code&gt;subscribe()&lt;/code&gt;的时候, &lt;code&gt;mSubscriptions.add(subscription);&lt;/code&gt;;&lt;br&gt;在&lt;code&gt;unsubscribe()的时候,&lt;/code&gt;mSubscriptions.clear();`.&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;subscribe()&lt;/code&gt;的时候, &lt;code&gt;mSubscriptions.add(subscription);&lt;/code&gt;;&lt;br&gt;在&lt;code&gt;unsubscribe()&lt;/code&gt;的时候, &lt;code&gt;mSubscriptions.clear();&lt;/code&gt; .&lt;/p&gt;
 &lt;h3 id=&quot;Diff-with-todo-mvp-4&quot;&gt;&lt;a href=&quot;#Diff-with-todo-mvp-4&quot; class=&quot;headerlink&quot; title=&quot;Diff with todo-mvp&quot;&gt;&lt;/a&gt;Diff with todo-mvp&lt;/h3&gt;&lt;p&gt;数据层暴露了RxJava的&lt;code&gt;Observable&lt;/code&gt;流作为获取数据的方式, &lt;code&gt;TasksDataSource&lt;/code&gt;接口中的方法变成了这样:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Observable&amp;lt;List&amp;lt;Task&amp;gt;&amp;gt; getTasks();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;Observable&amp;lt;Task&amp;gt; &lt;span class=&quot;title&quot;&gt;getTask&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(@NonNull String taskId)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;callback接口被删了, 因为不需要了.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;TasksLocalDataSource&lt;/code&gt;中的实现用了&lt;a href=&quot;https://github.com/square/sqlbrite&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SqlBrite&lt;/a&gt;, 从数据库中查询出来的结果很容易地变成了流:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; Observable&amp;lt;List&amp;lt;Task&amp;gt;&amp;gt; getTasks() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; mDatabaseHelper.createQuery(TaskEntry.TABLE_NAME, sql)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .mapToList(mTaskMapperFunction);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -618,13 +618,13 @@
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
-      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
       <category term="Android 7.0" scheme="http://mengdd.github.io/tags/Android-7-0/"/>
     
       <category term="Quick Settings" scheme="http://mengdd.github.io/tags/Quick-Settings/"/>
     
       <category term="Shared-Element Transtion" scheme="http://mengdd.github.io/tags/Shared-Element-Transtion/"/>
+    
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
       <category term="ORM" scheme="http://mengdd.github.io/tags/ORM/"/>
     
@@ -1525,9 +1525,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
       <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
     
@@ -1859,11 +1859,11 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
-    
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
     
       <category term="Bottom Sheet" scheme="http://mengdd.github.io/tags/Bottom-Sheet/"/>
     
@@ -2017,11 +2017,11 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
+      <category term="Toolbar" scheme="http://mengdd.github.io/tags/Toolbar/"/>
+    
       <category term="Design Support Library" scheme="http://mengdd.github.io/tags/Design-Support-Library/"/>
     
       <category term="AppBarLayout" scheme="http://mengdd.github.io/tags/AppBarLayout/"/>
-    
-      <category term="Toolbar" scheme="http://mengdd.github.io/tags/Toolbar/"/>
     
   </entry>
   

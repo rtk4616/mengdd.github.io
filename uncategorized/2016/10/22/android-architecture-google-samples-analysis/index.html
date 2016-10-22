@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://mengdd.github.io/images/mvp-databinding.png">
 <meta property="og:image" content="http://mengdd.github.io/images/mvp-clean.png">
 <meta property="og:image" content="http://mengdd.github.io/images/mvp-contentproviders.png">
-<meta property="og:updated_time" content="2016-10-22T10:16:27.000Z">
+<meta property="og:updated_time" content="2016-10-22T10:26:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android MVP模式 谷歌官方代码解读">
 <meta name="twitter:description" content="Google官方MVP Sample代码解读关于Android程序的构架, 当前(2016.10)最流行的模式即为MVP模式, Google官方提供了Sample代码来展示这种模式的用法.Repo地址: android-architecture.本文为阅读官方sample代码的阅读笔记和分析.">
@@ -54,7 +54,7 @@
 				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
 				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -74,7 +74,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:mengdd.github.io">
 					</form>
 					
@@ -97,14 +97,14 @@
 		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-22T11:11:27.000Z" itemprop="datePublished"> Published 2016-10-22</time>
+    <time datetime="2016-10-22T11:11:27.000Z" itemprop="datePublished"> 发表于 2016-10-22</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Google官方MVP-Sample代码解读"><span class="toc-number">1.</span> <span class="toc-text">Google官方MVP Sample代码解读</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP模式-概念"><span class="toc-number">1.1.</span> <span class="toc-text">MVP模式 概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-基本的Model-View-Presenter架构"><span class="toc-number">1.2.</span> <span class="toc-text">todo-mvp 基本的Model-View-Presenter架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基类"><span class="toc-number">1.2.1.</span> <span class="toc-text">基类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#View实现"><span class="toc-number">1.2.2.</span> <span class="toc-text">View实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Presenter实现"><span class="toc-number">1.2.3.</span> <span class="toc-text">Presenter实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Model实现细节"><span class="toc-number">1.2.4.</span> <span class="toc-text">Model实现细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单元测试"><span class="toc-number">1.2.5.</span> <span class="toc-text">单元测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-loaders-用Loader取数据的MVP"><span class="toc-number">1.3.</span> <span class="toc-text">todo-mvp-loaders 用Loader取数据的MVP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp"><span class="toc-number">1.3.1.</span> <span class="toc-text">Diff with todo-mvp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据获取"><span class="toc-number">1.3.2.</span> <span class="toc-text">数据获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据改变监听"><span class="toc-number">1.3.3.</span> <span class="toc-text">数据改变监听</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-databinding"><span class="toc-number">1.4.</span> <span class="toc-text">todo-databinding</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">Diff with todo-mvp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据绑定"><span class="toc-number">1.4.2.</span> <span class="toc-text">数据绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件绑定"><span class="toc-number">1.4.3.</span> <span class="toc-text">事件绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据监听"><span class="toc-number">1.4.4.</span> <span class="toc-text">数据监听</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他实现细节"><span class="toc-number">1.4.5.</span> <span class="toc-text">其他实现细节</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-clean"><span class="toc-number">1.5.</span> <span class="toc-text">todo-mvp-clean</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp-2"><span class="toc-number">1.5.1.</span> <span class="toc-text">Diff with todo-mvp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-dagger"><span class="toc-number">1.6.</span> <span class="toc-text">todo-mvp-dagger</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp-3"><span class="toc-number">1.6.1.</span> <span class="toc-text">Diff with todo-mvp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-contentproviders"><span class="toc-number">1.7.</span> <span class="toc-text">todo-mvp-contentproviders</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp-loaders"><span class="toc-number">1.7.1.</span> <span class="toc-text">Diff with todo-mvp-loaders</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单元测试-1"><span class="toc-number">1.7.2.</span> <span class="toc-text">单元测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-rxjava"><span class="toc-number">1.8.</span> <span class="toc-text">todo-mvp-rxjava</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MVP基本接口改变"><span class="toc-number">1.8.1.</span> <span class="toc-text">MVP基本接口改变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp-4"><span class="toc-number">1.8.2.</span> <span class="toc-text">Diff with todo-mvp</span></a></li></ol></li></ol></li></ol>
 		
@@ -255,7 +255,7 @@
 <p>View在<code>onResume()</code>的时候调用Presenter的<code>subscribe()</code>; 在onPause()的时候调用presenter的<code>unsubscribe()</code>.</p>
 <p>如果View接口的实现不是Fragment或Activity, 而是Android的自定义View, 那么在Android View的<code>onAttachedToWindow()</code>和<code>onDetachedFromWindow()</code>方法里分别调用这两个方法.</p>
 <p>Presenter中保存了:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> CompositeSubscription mSubscriptions;</span><br></pre></td></tr></table></figure></p>
-<p>在<code>subscribe()</code>的时候, <code>mSubscriptions.add(subscription);</code>;<br>在<code>unsubscribe()的时候,</code>mSubscriptions.clear();`.</p>
+<p>在<code>subscribe()</code>的时候, <code>mSubscriptions.add(subscription);</code>;<br>在<code>unsubscribe()</code>的时候, <code>mSubscriptions.clear();</code> .</p>
 <h3 id="Diff-with-todo-mvp-4"><a href="#Diff-with-todo-mvp-4" class="headerlink" title="Diff with todo-mvp"></a>Diff with todo-mvp</h3><p>数据层暴露了RxJava的<code>Observable</code>流作为获取数据的方式, <code>TasksDataSource</code>接口中的方法变成了这样:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Observable&lt;List&lt;Task&gt;&gt; getTasks();</span><br><span class="line"></span><br><span class="line"><span class="function">Observable&lt;Task&gt; <span class="title">getTask</span><span class="params">(@NonNull String taskId)</span></span>;</span><br></pre></td></tr></table></figure></p>
 <p>callback接口被删了, 因为不需要了.</p>
 <p><code>TasksLocalDataSource</code>中的实现用了<a href="https://github.com/square/sqlbrite" target="_blank" rel="external">SqlBrite</a>, 从数据库中查询出来的结果很容易地变成了流:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> Observable&lt;List&lt;Task&gt;&gt; getTasks() &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> mDatabaseHelper.createQuery(TaskEntry.TABLE_NAME, sql)</span><br><span class="line">            .mapToList(mTaskMapperFunction);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -317,22 +317,22 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Google官方MVP-Sample代码解读"><span class="toc-number">1.</span> <span class="toc-text">Google官方MVP Sample代码解读</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP模式-概念"><span class="toc-number">1.1.</span> <span class="toc-text">MVP模式 概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-基本的Model-View-Presenter架构"><span class="toc-number">1.2.</span> <span class="toc-text">todo-mvp 基本的Model-View-Presenter架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基类"><span class="toc-number">1.2.1.</span> <span class="toc-text">基类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#View实现"><span class="toc-number">1.2.2.</span> <span class="toc-text">View实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Presenter实现"><span class="toc-number">1.2.3.</span> <span class="toc-text">Presenter实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Model实现细节"><span class="toc-number">1.2.4.</span> <span class="toc-text">Model实现细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单元测试"><span class="toc-number">1.2.5.</span> <span class="toc-text">单元测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-loaders-用Loader取数据的MVP"><span class="toc-number">1.3.</span> <span class="toc-text">todo-mvp-loaders 用Loader取数据的MVP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp"><span class="toc-number">1.3.1.</span> <span class="toc-text">Diff with todo-mvp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据获取"><span class="toc-number">1.3.2.</span> <span class="toc-text">数据获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据改变监听"><span class="toc-number">1.3.3.</span> <span class="toc-text">数据改变监听</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-databinding"><span class="toc-number">1.4.</span> <span class="toc-text">todo-databinding</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">Diff with todo-mvp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据绑定"><span class="toc-number">1.4.2.</span> <span class="toc-text">数据绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件绑定"><span class="toc-number">1.4.3.</span> <span class="toc-text">事件绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据监听"><span class="toc-number">1.4.4.</span> <span class="toc-text">数据监听</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他实现细节"><span class="toc-number">1.4.5.</span> <span class="toc-text">其他实现细节</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-clean"><span class="toc-number">1.5.</span> <span class="toc-text">todo-mvp-clean</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp-2"><span class="toc-number">1.5.1.</span> <span class="toc-text">Diff with todo-mvp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-dagger"><span class="toc-number">1.6.</span> <span class="toc-text">todo-mvp-dagger</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp-3"><span class="toc-number">1.6.1.</span> <span class="toc-text">Diff with todo-mvp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-contentproviders"><span class="toc-number">1.7.</span> <span class="toc-text">todo-mvp-contentproviders</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp-loaders"><span class="toc-number">1.7.1.</span> <span class="toc-text">Diff with todo-mvp-loaders</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单元测试-1"><span class="toc-number">1.7.2.</span> <span class="toc-text">单元测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todo-mvp-rxjava"><span class="toc-number">1.8.</span> <span class="toc-text">todo-mvp-rxjava</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MVP基本接口改变"><span class="toc-number">1.8.1.</span> <span class="toc-text">MVP基本接口改变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Diff-with-todo-mvp-4"><span class="toc-number">1.8.2.</span> <span class="toc-text">Diff with todo-mvp</span></a></li></ol></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -342,7 +342,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
@@ -371,7 +371,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -399,15 +399,11 @@
 			
 		
 			
-				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>3</sup></a></li>
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
 			
 		
 			
@@ -419,11 +415,15 @@
 			
 		
 			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Bottom-Sheet/" title="Bottom Sheet">Bottom Sheet<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Bottom-Navigation/" title="Bottom Navigation">Bottom Navigation<sup>2</sup></a></li>
+				<li><a href="/tags/Accessibility/" title="Accessibility">Accessibility<sup>2</sup></a></li>
 			
 		
 			
@@ -435,11 +435,11 @@
 			
 		
 			
-				<li><a href="/tags/Security/" title="Security">Security<sup>2</sup></a></li>
+				<li><a href="/tags/AnimatedVectorDrawable/" title="AnimatedVectorDrawable">AnimatedVectorDrawable<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AnimatedVectorDrawable/" title="AnimatedVectorDrawable">AnimatedVectorDrawable<sup>2</sup></a></li>
+				<li><a href="/tags/Bottom-Navigation/" title="Bottom Navigation">Bottom Navigation<sup>2</sup></a></li>
 			
 		
 			
@@ -447,7 +447,7 @@
 			
 		
 			
-				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>2</sup></a></li>
+				<li><a href="/tags/Security/" title="Security">Security<sup>2</sup></a></li>
 			
 		
 			
@@ -459,7 +459,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -487,7 +487,7 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
@@ -753,7 +753,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
