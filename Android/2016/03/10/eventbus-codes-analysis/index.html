@@ -48,7 +48,7 @@
 				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
 				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -68,7 +68,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:mengdd.github.io">
 					</form>
 					
@@ -91,14 +91,14 @@
 		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-09T16:00:00.000Z" itemprop="datePublished"> Published 2016-03-10</time>
+    <time datetime="2016-03-09T16:00:00.000Z" itemprop="datePublished"> 发表于 2016-03-10</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EventBus源码阅读记录"><span class="toc-number">1.</span> <span class="toc-text">EventBus源码阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EventBus的构造"><span class="toc-number">1.1.</span> <span class="toc-text">EventBus的构造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注册"><span class="toc-number">1.2.</span> <span class="toc-text">注册</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#寻找方法"><span class="toc-number">1.2.1.</span> <span class="toc-text">寻找方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#反射"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">反射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue-of-NoClassDefFoundError"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Issue of NoClassDefFoundError</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#筛选方法"><span class="toc-number">1.2.2.</span> <span class="toc-text">筛选方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#订阅"><span class="toc-number">1.2.3.</span> <span class="toc-text">订阅</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注销"><span class="toc-number">1.3.</span> <span class="toc-text">注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件触发"><span class="toc-number">1.4.</span> <span class="toc-text">事件触发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线程模式"><span class="toc-number">1.4.1.</span> <span class="toc-text">线程模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关于Queue的相关知识"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">关于Queue的相关知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主线程处理-HandlerPoster"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">主线程处理 HandlerPoster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#异步和后台处理-AsyncPoster和BackgroundPoster"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">异步和后台处理 AsyncPoster和BackgroundPoster</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件取消"><span class="toc-number">1.5.</span> <span class="toc-text">事件取消</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#黏性事件"><span class="toc-number">1.6.</span> <span class="toc-text">黏性事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">1.7.</span> <span class="toc-text">结语</span></a></li></ol></li></ol>
 		
@@ -284,22 +284,22 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EventBus源码阅读记录"><span class="toc-number">1.</span> <span class="toc-text">EventBus源码阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EventBus的构造"><span class="toc-number">1.1.</span> <span class="toc-text">EventBus的构造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注册"><span class="toc-number">1.2.</span> <span class="toc-text">注册</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#寻找方法"><span class="toc-number">1.2.1.</span> <span class="toc-text">寻找方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#反射"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">反射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue-of-NoClassDefFoundError"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Issue of NoClassDefFoundError</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#筛选方法"><span class="toc-number">1.2.2.</span> <span class="toc-text">筛选方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#订阅"><span class="toc-number">1.2.3.</span> <span class="toc-text">订阅</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注销"><span class="toc-number">1.3.</span> <span class="toc-text">注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件触发"><span class="toc-number">1.4.</span> <span class="toc-text">事件触发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线程模式"><span class="toc-number">1.4.1.</span> <span class="toc-text">线程模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关于Queue的相关知识"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">关于Queue的相关知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主线程处理-HandlerPoster"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">主线程处理 HandlerPoster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#异步和后台处理-AsyncPoster和BackgroundPoster"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">异步和后台处理 AsyncPoster和BackgroundPoster</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件取消"><span class="toc-number">1.5.</span> <span class="toc-text">事件取消</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#黏性事件"><span class="toc-number">1.6.</span> <span class="toc-text">黏性事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">1.7.</span> <span class="toc-text">结语</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -309,7 +309,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
@@ -338,7 +338,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -426,7 +426,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -454,7 +454,7 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
@@ -720,7 +720,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
