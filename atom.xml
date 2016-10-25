@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-10-22T10:26:02.000Z</updated>
+  <updated>2016-10-25T06:28:26.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,73 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android 7.1 App Shortcuts使用</title>
+    <link href="http://mengdd.github.io/uncategorized/2016/10/25/nougat-app-shortcuts/"/>
+    <id>http://mengdd.github.io/uncategorized/2016/10/25/nougat-app-shortcuts/</id>
+    <published>2016-10-25T06:00:01.000Z</published>
+    <updated>2016-10-25T06:28:26.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-7-1-App-Shortcuts使用&quot;&gt;&lt;a href=&quot;#Android-7-1-App-Shortcuts使用&quot; class=&quot;headerlink&quot; title=&quot;Android 7.1 App Shortcuts使用&quot;&gt;&lt;/a&gt;Android 7.1 App Shortcuts使用&lt;/h1&gt;&lt;p&gt;Android 7.1已经发了预览版, 这里是API Overview: &lt;a href=&quot;https://developer.android.com/preview/api-overview.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;API overview&lt;/a&gt;.&lt;br&gt;其中App Shortcuts是新提供的一种快捷访问方式, 形式为长按应用图标出现的长条.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/app-shortcuts.png&quot; alt=&quot;app shortcuts&quot;&gt;&lt;br&gt;图来自: &lt;a href=&quot;https://catinean.com/2016/10/20/exploring-android-nougat-7-1-app-shortcuts/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Exploring Android Nougat 7.1 App Shortcuts&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;点击快捷方式可以访问应用功能, 并且这种快捷方式也可以被拖拽到桌面单独放置.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;App-Shortcuts-是什么&quot;&gt;&lt;a href=&quot;#App-Shortcuts-是什么&quot; class=&quot;headerlink&quot; title=&quot;App Shortcuts 是什么&quot;&gt;&lt;/a&gt;App Shortcuts 是什么&lt;/h2&gt;&lt;p&gt;其中App Shortcuts是指在桌面长按app图标而出现的快捷方式, 可以为你的app的关键功能添加更快速的入口而不用先打开app.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/app-shortcuts-doc.png&quot; alt=&quot;app shortcuts&quot;&gt;&lt;/p&gt;
+&lt;p&gt;点击快捷方式可以访问应用功能, 并且这种快捷方式也可以被拖拽到桌面单独放置, 变成单独的桌面快捷方式(pinned shortcuts).&lt;/p&gt;
+&lt;p&gt;有两种shortcuts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;静态的: 在xml中定义, 适用于一些通用的动作.&lt;/li&gt;
+&lt;li&gt;动态的: 由&lt;a href=&quot;https://developer.android.com/reference/android/content/pm/ShortcutManager.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ShortcutManager&lt;/a&gt;发布, 可以根据用户的行为或者偏好添加, 可以动态更新.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每一个应用目前最多可以有5个shortcuts(静态 + 动态).&lt;/p&gt;
+&lt;p&gt;运行条件:&lt;br&gt;应用添加App Shortcuts是Android 7.1(API 25)的API, 所以只能在Android 7.1的设备上显示, 同时需要launcher支持, 比如Pixel launcher(Pixel设备的默认launcher), Now launcher(Nexus设备上的launcher)现在就支持, 其他launcher也可以提供支持.&lt;/p&gt;
+&lt;h2 id=&quot;静态Shortcuts使用&quot;&gt;&lt;a href=&quot;#静态Shortcuts使用&quot; class=&quot;headerlink&quot; title=&quot;静态Shortcuts使用&quot;&gt;&lt;/a&gt;静态Shortcuts使用&lt;/h2&gt;&lt;p&gt;静态的Shortcuts是写在xml中的, 直到下一次应用升级, 不能被改变.&lt;br&gt;要添加静态shortcuts只需两步:&lt;br&gt;首先, 在应用的Manifest中启动Activity上添加&lt;code&gt;&amp;lt;meta-data&amp;gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;activity&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;.MainActivity&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;intent-filter&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.action.MAIN&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;category&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.category.LAUNCHER&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;intent-filter&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta-data&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.app.shortcuts&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:resource&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@xml/shortcuts&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;activity&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后在&lt;code&gt;res/xml/&lt;/code&gt;目录下创建&lt;code&gt;shortcuts.xml&lt;/code&gt;文件, 里面包含静态的shortcuts:&lt;br&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;shortcuts&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;xmlns:android&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;shortcut&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:enabled&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:icon&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@drawable/ic_check_circle_black_24dp&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutDisabledMessage&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_disabled_message&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutId&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;static&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutLongLabel&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_long_label_1&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutShortLabel&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_short_label_1&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;intent&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:action&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.action.VIEW&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetClass&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat.shortcuts.StaticShortcutActivity&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetPackage&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;shortcut&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;shortcut&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:enabled&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:icon&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@drawable/ic_android_black_24dp&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutDisabledMessage&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_disabled_message&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutId&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;static_2&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutLongLabel&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_long_label_2&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutShortLabel&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_short_label_2&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;intent&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:action&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.action.MAIN&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetClass&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat.MainActivity&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetPackage&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;intent&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:action&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat.action.STATIC_SHORTCUT_2&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetClass&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat.shortcuts.StaticShortcutActivity&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetPackage&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;shortcut&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;shortcuts&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;用多个Intent构建back-stack&quot;&gt;&lt;a href=&quot;#用多个Intent构建back-stack&quot; class=&quot;headerlink&quot; title=&quot;用多个Intent构建back stack&quot;&gt;&lt;/a&gt;用多个Intent构建back stack&lt;/h3&gt;&lt;p&gt;上面这个文件里添加了两个静态的shortcuts, 第一个关联了一个Activity, 点击shortcut将直接打开这个Activity, 回退的时候回到桌面.&lt;/p&gt;
+&lt;p&gt;如果你想要的效果是点击back键回到应用里的某个界面, 那么可以利用多个intents来构建back stack, 比如在第二个shortcut里面, 点击shortcut打开目标Activity, 这个Intent放在最后, 但是回退会返回到MainActivity, 即之前的那个Intent.&lt;/p&gt;
+&lt;h2 id=&quot;动态Shortcuts使用&quot;&gt;&lt;a href=&quot;#动态Shortcuts使用&quot; class=&quot;headerlink&quot; title=&quot;动态Shortcuts使用&quot;&gt;&lt;/a&gt;动态Shortcuts使用&lt;/h2&gt;&lt;p&gt;动态的shortcuts可以在用户使用app的过程中构建, 更新, 或者删除.&lt;br&gt;使用&lt;a href=&quot;https://developer.android.com/reference/android/content/pm/ShortcutManager.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ShortcutManager&lt;/a&gt;可以对动态shortcuts完成下面几种操作:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Publish发布: &lt;code&gt;setDynamicShortcuts()&lt;/code&gt;, &lt;code&gt;addDynamicShortcuts(List)&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;Update更新: &lt;code&gt;updateShortcuts(List)&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;Remove删除: &lt;code&gt;removeDynamicShortcuts(List)&lt;/code&gt;, &lt;code&gt;removeAllDynamicShortcuts()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如添加一个动态shortcut:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ShortcutInfo shortcut = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ShortcutInfo.Builder(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;id1&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .setShortLabel(&lt;span class=&quot;string&quot;&gt;&quot;Web site&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .setLongLabel(&lt;span class=&quot;string&quot;&gt;&quot;Open the web site&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .setIcon(Icon.createWithResource(context, R.drawable.icon_website))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .setIntent(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Intent(Intent.ACTION_VIEW,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                   Uri.parse(&lt;span class=&quot;string&quot;&gt;&quot;https://www.mysite.example.com/&quot;&lt;/span&gt;)))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .build();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;多个Intent构建back-stack&quot;&gt;&lt;a href=&quot;#多个Intent构建back-stack&quot; class=&quot;headerlink&quot; title=&quot;多个Intent构建back stack&quot;&gt;&lt;/a&gt;多个Intent构建back stack&lt;/h3&gt;&lt;p&gt;动态的shortcut仍然可以用多个Intent来指定一个back stack, 那么打开目标Activity之后就可以返回到应用中的指定界面而不是回到launcher:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ShortcutInfo dynamicShortcut2 = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ShortcutInfo.Builder(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;shortcut_dynamic&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .setShortLabel(&lt;span class=&quot;string&quot;&gt;&quot;Dynamic Shortcut&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .setLongLabel(&lt;span class=&quot;string&quot;&gt;&quot;Open Dynamic shortcut 2&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .setIcon(Icon.createWithResource(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, R.drawable.ic_favorite_border_black_24dp))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .setIntents(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;comment&quot;&gt;// this dynamic shortcut set up a back stack using Intents, when pressing back, will go to MainActivity&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;comment&quot;&gt;// the last Intent is what the shortcut really opened&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Intent[]&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Intent(Intent.ACTION_MAIN, Uri.EMPTY, &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Intent(DynamicShortcutActivity.ACTION_OPEN_DYNAMIC)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &lt;span class=&quot;comment&quot;&gt;// intent&#39;s action must be set&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .build();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;和静态一样, 最后一个Intent对应的是shortcut打开的界面, 前面的都是用来构建back stack.&lt;/p&gt;
+&lt;h2 id=&quot;Shortcuts的个数限制&quot;&gt;&lt;a href=&quot;#Shortcuts的个数限制&quot; class=&quot;headerlink&quot; title=&quot;Shortcuts的个数限制&quot;&gt;&lt;/a&gt;Shortcuts的个数限制&lt;/h2&gt;&lt;p&gt;Shortcuts的总数不能超过5个, 即静态和动态shortcuts加起来总数最多是五个.&lt;br&gt;当我们尝试添加第六个shortcut时, 应用会抛出异常: &lt;code&gt;java.lang.IllegalArgumentException: Max number of dynamic shortcuts exceeded&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;虽然总数限制是5个, 但是当我正好有5个(2个静态 + 3个动态)的时候, 长按只显示了4个shortcuts.&lt;br&gt;如图:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/app-shortcuts-demo-screenshot.png&quot; alt=&quot;app shortcuts&quot;&gt;&lt;/p&gt;
+&lt;p&gt;本文完整代码见: Demo地址: &lt;a href=&quot;https://github.com/mengdd/HelloNougat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HelloNougat&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Shortcuts的次序&quot;&gt;&lt;a href=&quot;#Shortcuts的次序&quot; class=&quot;headerlink&quot; title=&quot;Shortcuts的次序&quot;&gt;&lt;/a&gt;Shortcuts的次序&lt;/h2&gt;&lt;p&gt;当我们有多个Shortcuts之后, 默认它们是按照添加顺序排列的, 即按照添加顺序rank递增.&lt;/p&gt;
+&lt;p&gt;可以通过&lt;code&gt;setRank()&lt;/code&gt;来改变长按时它们显示的排序:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@TargetApi&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;25&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;updateDynamicShortcuts&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ShortcutInfo webShortcut = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ShortcutInfo.Builder(MainActivity.&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;shortcut_blog&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .setRank(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .build();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ShortcutInfo dynamicShortcut = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ShortcutInfo.Builder(MainActivity.&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;shortcut_dynamic&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .setRank(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .build();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// the rank value can not be set to negative, otherwise will throw&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// java.lang.IllegalArgumentException: Rank cannot be negative or bigger than MAX_RANK&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// the static shortcuts have the rank 0, so they will always be closest to launcher icon&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    shortcutManager.updateShortcuts(Arrays.asList(webShortcut, dynamicShortcut));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这样更改之后, 原先排在最远端的&lt;code&gt;shortcut_dynamic&lt;/code&gt;被移到了第三个, &lt;code&gt;shortcut_blog&lt;/code&gt;被移到了它的后面.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;setRank()&lt;/code&gt;不接受负值, 会抛出异常.&lt;/p&gt;
+&lt;p&gt;我们只能改变动态shortcuts的排序, 静态的shortcuts等级为0, 它们是按照xml中写定的先后顺序排的, 所以:&lt;br&gt;&lt;code&gt;静态的shortcuts永远离应用icon最近, 动态shortcuts在其之上排序, rank越大的离应用icon越远.&lt;/code&gt;&lt;br&gt;如果没有指定rank, 则按生成的顺序递增.&lt;/p&gt;
+&lt;h2 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h2&gt;&lt;p&gt;App Shortcuts的官方文档: &lt;a href=&quot;https://developer.android.com/preview/shortcuts.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;App Shortcuts&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://catinean.com/2016/10/20/exploring-android-nougat-7-1-app-shortcuts/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Exploring Android Nougat 7.1 App Shortcuts&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Demo地址: &lt;a href=&quot;https://github.com/mengdd/HelloNougat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HelloNougat&lt;/a&gt;.&lt;br&gt;近期考虑加入更多Android 7 Nougat特性sample.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-7-1-App-Shortcuts使用&quot;&gt;&lt;a href=&quot;#Android-7-1-App-Shortcuts使用&quot; class=&quot;headerlink&quot; title=&quot;Android 7.1 App Shortcuts使用&quot;&gt;&lt;/a&gt;Android 7.1 App Shortcuts使用&lt;/h1&gt;&lt;p&gt;Android 7.1已经发了预览版, 这里是API Overview: &lt;a href=&quot;https://developer.android.com/preview/api-overview.html&quot;&gt;API overview&lt;/a&gt;.&lt;br&gt;其中App Shortcuts是新提供的一种快捷访问方式, 形式为长按应用图标出现的长条.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/app-shortcuts.png&quot; alt=&quot;app shortcuts&quot;&gt;&lt;br&gt;图来自: &lt;a href=&quot;https://catinean.com/2016/10/20/exploring-android-nougat-7-1-app-shortcuts/&quot;&gt;Exploring Android Nougat 7.1 App Shortcuts&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;点击快捷方式可以访问应用功能, 并且这种快捷方式也可以被拖拽到桌面单独放置.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
+    
+      <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
+    
+  </entry>
   
   <entry>
     <title>Android MVP模式 谷歌官方代码解读</title>
@@ -342,11 +409,11 @@
     
       <category term="AutoValue" scheme="http://mengdd.github.io/tags/AutoValue/"/>
     
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
       <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
       <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
-    
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
       <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
     
@@ -618,13 +685,13 @@
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
+    
       <category term="Android 7.0" scheme="http://mengdd.github.io/tags/Android-7-0/"/>
     
       <category term="Quick Settings" scheme="http://mengdd.github.io/tags/Quick-Settings/"/>
     
       <category term="Shared-Element Transtion" scheme="http://mengdd.github.io/tags/Shared-Element-Transtion/"/>
-    
-      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
       <category term="ORM" scheme="http://mengdd.github.io/tags/ORM/"/>
     
@@ -875,6 +942,8 @@
     
       <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
     
+      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
+    
       <category term="Annotation" scheme="http://mengdd.github.io/tags/Annotation/"/>
     
       <category term="pre-launch" scheme="http://mengdd.github.io/tags/pre-launch/"/>
@@ -892,8 +961,6 @@
       <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
       <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
-    
-      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
       <category term="Adapter" scheme="http://mengdd.github.io/tags/Adapter/"/>
     
@@ -1087,8 +1154,6 @@
     
       <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
     
-      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
-    
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="Fingerprint" scheme="http://mengdd.github.io/tags/Fingerprint/"/>
@@ -1098,6 +1163,8 @@
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
       <category term="GCM" scheme="http://mengdd.github.io/tags/GCM/"/>
+    
+      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
   </entry>
   
@@ -1353,11 +1420,11 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
-    
       <category term="Okio" scheme="http://mengdd.github.io/tags/Okio/"/>
     
       <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
+    
+      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
     
       <category term="Support Annotations" scheme="http://mengdd.github.io/tags/Support-Annotations/"/>
     
@@ -1535,11 +1602,13 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
+      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
+    
+      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
+    
       <category term="ScaleType" scheme="http://mengdd.github.io/tags/ScaleType/"/>
     
       <category term="Devices" scheme="http://mengdd.github.io/tags/Devices/"/>
-    
-      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
     
       <category term="Scrolling" scheme="http://mengdd.github.io/tags/Scrolling/"/>
     
@@ -1550,8 +1619,6 @@
       <category term="ItemTouchHelper" scheme="http://mengdd.github.io/tags/ItemTouchHelper/"/>
     
       <category term="Fresco" scheme="http://mengdd.github.io/tags/Fresco/"/>
-    
-      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
     
   </entry>
   
@@ -2375,68 +2442,6 @@
       <category term="Fragment" scheme="http://mengdd.github.io/tags/Fragment/"/>
     
       <category term="Nested Fragments" scheme="http://mengdd.github.io/tags/Nested-Fragments/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Fragment使用(一) 基础篇 温故知新</title>
-    <link href="http://mengdd.github.io/Android/2016/05/31/android-fragment-usage-1-basic-part/"/>
-    <id>http://mengdd.github.io/Android/2016/05/31/android-fragment-usage-1-basic-part/</id>
-    <published>2016-05-31T04:51:19.000Z</published>
-    <updated>2016-06-16T05:36:30.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Fragment使用的基本知识点总结, 包括Fragment的添加, 参数传递和通信, 生命周期和各种操作.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;Fragment使用基础&quot;&gt;&lt;a href=&quot;#Fragment使用基础&quot; class=&quot;headerlink&quot; title=&quot;Fragment使用基础&quot;&gt;&lt;/a&gt;Fragment使用基础&lt;/h1&gt;&lt;h2 id=&quot;Fragment添加&quot;&gt;&lt;a href=&quot;#Fragment添加&quot; class=&quot;headerlink&quot; title=&quot;Fragment添加&quot;&gt;&lt;/a&gt;Fragment添加&lt;/h2&gt;&lt;p&gt;方法一: 布局里的标签&lt;fragment&gt;&lt;br&gt;标识符: tag, id, 如果都没有, container的id将会被使用.&lt;/fragment&gt;&lt;/p&gt;
-&lt;p&gt;方法二: 动态添加&lt;br&gt;动态添加利用了一个transaction:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;FragmentManager fragmentManager = getFragmentManager();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Fragment fragment = fragmentManager.findFragmentByTag(FragmentB.TAG);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt; == fragment) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    FragmentB fragmentB = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; FragmentB();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    fragmentTransaction.add(R.id.fragment_container, fragmentB, FragmentB.TAG)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                       .commit();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;code&gt;commit()&lt;/code&gt;方法并不立即执行transaction中包含的动作,而是把它加入到UI线程队列中.&lt;br&gt;如果想要立即执行,可以在commit之后立即调用FragmentManager的&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentManager.html#executePendingTransactions(&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;executePendingTransactions()&lt;/code&gt;&lt;/a&gt;)方法.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;commit()&lt;/code&gt;方法必须在状态存储之前调用,否则会抛出异常,如果觉得状态丢失没关系,可以调用&lt;code&gt;commitAllowingStateLoss()&lt;/code&gt;. 但是除非万不得已, 一般不推荐用这个方法, 会掩盖很多错误.&lt;/p&gt;
-&lt;h2 id=&quot;Back-Stack&quot;&gt;&lt;a href=&quot;#Back-Stack&quot; class=&quot;headerlink&quot; title=&quot;Back Stack&quot;&gt;&lt;/a&gt;Back Stack&lt;/h2&gt;&lt;p&gt;Activity的back stack: 系统维护, 每个task一个back stack.&lt;br&gt;Fragment的back stack: 宿主activity掌管, 每个activity一个.&lt;/p&gt;
-&lt;p&gt;通过调用&lt;code&gt;addToBackStack()&lt;/code&gt;,commit()的一系列转换作为一个transaction被存储在back stack中,&lt;br&gt;用户按Back键, 从栈中pop出一个transaction, 逆转操作, 可以返回上一个转换前的状态.&lt;/p&gt;
-&lt;p&gt;一个transaction可以包含多种操作, 并且不局限于对同一个Fragment, 所以每一个transaction实际上可以是一系列对多个fragment的操作的组合.&lt;br&gt;加入到back stack中去的时候, 是把这一系列的组合作为一个原子, 加入到back stack中.&lt;/p&gt;
-&lt;h2 id=&quot;构造和参数传递&quot;&gt;&lt;a href=&quot;#构造和参数传递&quot; class=&quot;headerlink&quot; title=&quot;构造和参数传递&quot;&gt;&lt;/a&gt;构造和参数传递&lt;/h2&gt;&lt;p&gt;所有的Fragment都必须有一个&lt;code&gt;public的无参构造函数&lt;/code&gt;, 因为framework经常会在需要的时候重新创建实例(状态恢复时), 它需要的就是这个构造.&lt;br&gt;如果无参构造没有提供,会有异常.&lt;/p&gt;
-&lt;p&gt;所以&lt;code&gt;不要给Fragment写有参数的构造函数, 也不要企图搞个什么单例的Fragment&lt;/code&gt;. 这些都是反设计的.&lt;/p&gt;
-&lt;p&gt;参数传递的正确姿势:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; FragmentWithParameters &lt;span class=&quot;title&quot;&gt;newInstance&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; num)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    FragmentWithParameters fragmentWithParameter = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; FragmentWithParameters();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Bundle args = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Bundle();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    args.putInt(NUM, num);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    fragmentWithParameter.setArguments(args);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; fragmentWithParameter;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle savedInstanceState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onCreate(savedInstanceState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    num = getArguments() != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt; ? getArguments().getInt(NUM) : &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这里是提供了一个静态方法, 也可以new出对象后自己set Bundle参数.&lt;/p&gt;
-&lt;h2 id=&quot;Fragment的通信&quot;&gt;&lt;a href=&quot;#Fragment的通信&quot; class=&quot;headerlink&quot; title=&quot;Fragment的通信&quot;&gt;&lt;/a&gt;Fragment的通信&lt;/h2&gt;&lt;p&gt;除了DialogFragment和嵌套Fragment需要与自己的parent fragment通信以外, 一般的fragment是不与其他fragment有任何通信的. 因为要求应尽量独立, 模块化, 可复用.&lt;br&gt;fragment与自己的parent activity (除了嵌套和dialog的情况外, 这个parent通常是activity) 有直接通信, 一般以这三种方式:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;在构造fragment的时候, 通过Bundle传递参数.&lt;/li&gt;
-&lt;li&gt;parent可以直接调用fragment的public方法, 这里也可以传递一些参数.&lt;/li&gt;
-&lt;li&gt;Listener, 也即parent实现的callback接口, fragment可以在自己内部调用, 这里fragment也可以传递参数出去.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;对于DialogFragment来说, 可以通过一个public的set方法将外面的target设置进去.&lt;br&gt;比如用Fragment的这个方法: &lt;a href=&quot;https://developer.android.com/reference/android/app/Fragment.html#setTargetFragment(android.app.Fragment,%20int&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;setTargetFragment()&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://guides.codepath.com/android/Using-DialogFragment#passing-data-to-parent-fragment&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;&lt;br&gt;对于嵌套(nested)Fragment, 通信方式与上面普通的fragment类似, 只不过parent此时不是activity而是一个fragment.&lt;br&gt;后面会单独有一个文章说嵌套Fragment的使用, 敬请期待.&lt;/p&gt;
-&lt;h1 id=&quot;Fragment的生命周期&quot;&gt;&lt;a href=&quot;#Fragment的生命周期&quot; class=&quot;headerlink&quot; title=&quot;Fragment的生命周期&quot;&gt;&lt;/a&gt;Fragment的生命周期&lt;/h1&gt;&lt;p&gt;Fragment的生命周期首先和Activity的生命周期密切相关,&lt;br&gt;如果activity stopped,其中所有的fragment都不能start;&lt;br&gt;如果activity destroyed, 其中所有的fragment都会被destroyed.&lt;br&gt;只有activity在resumed状态下,fragment的生命周期可以独立改变,否则它被activity控制.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/fragment-lifecycle.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/fragment-lifecycle-2.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/activity-fragment-lifecycle.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/fragment-lifecycle-with-callbacks.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;上面这个图来自于: &lt;a href=&quot;https://corner.squareup.com/2014/10/advocating-against-android-fragments.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://corner.squareup.com/2014/10/advocating-against-android-fragments.html&lt;/a&gt;&lt;br&gt;这里还有一个更吊的图: &lt;a href=&quot;https://github.com/xxv/android-lifecycle&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/xxv/android-lifecycle&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;FragmentTransaction基础操作&quot;&gt;&lt;a href=&quot;#FragmentTransaction基础操作&quot; class=&quot;headerlink&quot; title=&quot;FragmentTransaction基础操作&quot;&gt;&lt;/a&gt;FragmentTransaction基础操作&lt;/h1&gt;&lt;h2 id=&quot;操作类型&quot;&gt;&lt;a href=&quot;#操作类型&quot; class=&quot;headerlink&quot; title=&quot;操作类型&quot;&gt;&lt;/a&gt;操作类型&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FragmentTransaction&lt;/a&gt; 中对Fragment有如下几种操作:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;attach(), detach()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;add(), remove(),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;show(), hide(),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;replace()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;除了&lt;code&gt;replace()&lt;/code&gt;以外其他都是成对的.&lt;/p&gt;
-&lt;p&gt;其中&lt;code&gt;attach()&lt;/code&gt;和&lt;code&gt;detach()&lt;/code&gt;不是很常用.&lt;br&gt;调用&lt;code&gt;detach()&lt;/code&gt;之后, fragment实际的生命周期会走到onDestroyView(), 但不会走onDestroy()和onDetach(), 也即fragment本身并没有被销毁, 只是view被销毁了. 这和addToBackStack()的情况一样, 尽管调用detach()的时候没有addToBackStack(), 仍然只是走到view被销毁的阶段.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;add()&lt;/code&gt;和&lt;code&gt;remove()&lt;/code&gt;是将fragment添加和移除.&lt;br&gt;remove()比detach()要彻底一些, 如果不加入到back stack, remove()的时候, fragment的生命周期会一直走到onDetach().&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;show()&lt;/code&gt;和&lt;code&gt;hide()&lt;/code&gt;是用来设置fragment的显示和隐藏状态, 这两个方法并不对应fragment的状态变化,只是将view设置为visible和gone,然后调用onHiddenChanged()的回调.&lt;/p&gt;
-&lt;p&gt;实际上&lt;code&gt;replace() == remove() + add()&lt;/code&gt;, 所以它的反操作也是replace(), 只不过把add和remove的东西交换一下.&lt;/p&gt;
-&lt;p&gt;关于replace()和show(), hide()的选择, 要根据实际使用情形来定.&lt;br&gt;&lt;code&gt;replace()&lt;/code&gt;的好处是会减少内存占用, 但是返回时需要重新走完初始化的过程.&lt;br&gt;&lt;code&gt;show()&lt;/code&gt;和&lt;code&gt;hide()&lt;/code&gt;只是控制了fragment的显示和隐藏, 不会改变生命周期状态, 也即fragment始终是处于running状态的, 被保持在内存中, 适用于频繁切换的情形.&lt;/p&gt;
-&lt;h2 id=&quot;remove-replace-是否加到back-stack对生命周期的影响&quot;&gt;&lt;a href=&quot;#remove-replace-是否加到back-stack对生命周期的影响&quot; class=&quot;headerlink&quot; title=&quot;remove(), replace()是否加到back stack对生命周期的影响&quot;&gt;&lt;/a&gt;remove(), replace()是否加到back stack对生命周期的影响&lt;/h2&gt;&lt;p&gt;前面说过, &lt;code&gt;replace() == remove() + add()&lt;/code&gt;&lt;br&gt;新的fragment将取代在容器布局中的fragment, 如果没有,将直接添加新的fragment.&lt;/p&gt;
-&lt;p&gt;是否添加到back stack对fragment的生命周期是有影响的.&lt;br&gt;&lt;code&gt;remove()&lt;/code&gt;或者&lt;code&gt;replace()&lt;/code&gt;的时候,如果&lt;code&gt;commit()&lt;/code&gt;之前没有调用&lt;code&gt;addToBackStack()&lt;/code&gt;,那个旧fragment将会被destroyed和detach; 即完全销毁和移除.&lt;/p&gt;
-&lt;p&gt;如果调用了&lt;code&gt;addToBackStack()&lt;/code&gt;,旧的fragment会处在stopped状态,调用到&lt;code&gt;onDestroyView()&lt;/code&gt;, 可以通过返回键来resume.&lt;br&gt;这个时候对于旧的Fragment来说, 成员变量依然在,但是View被销毁了. 所以返回时它的生命周期从&lt;code&gt;onCreateView()&lt;/code&gt;开始重建View.&lt;/p&gt;
-&lt;h1 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/Fragment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Reference Fragment&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Reference FragmentTransaction&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://guides.codepath.com/android/Creating-and-Using-Fragments&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CodePath Guides: Creating and Using Fragments&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Fragment使用的基本知识点总结, 包括Fragment的添加, 参数传递和通信, 生命周期和各种操作.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Fragment" scheme="http://mengdd.github.io/tags/Fragment/"/>
     
   </entry>
   

@@ -1,0 +1,663 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android 7.1 App Shortcuts使用 | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="Android 7.1 App Shortcuts使用Android 7.1已经发了预览版, 这里是API Overview: API overview.其中App Shortcuts是新提供的一种快捷访问方式, 形式为长按应用图标出现的长条.
+图来自: Exploring Android Nougat 7.1 App Shortcuts
+点击快捷方式可以访问应用功能, 并且这种快捷方式也可以被拖">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 7.1 App Shortcuts使用">
+<meta property="og:url" content="http://mengdd.github.io/uncategorized/2016/10/25/nougat-app-shortcuts/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="Android 7.1 App Shortcuts使用Android 7.1已经发了预览版, 这里是API Overview: API overview.其中App Shortcuts是新提供的一种快捷访问方式, 形式为长按应用图标出现的长条.
+图来自: Exploring Android Nougat 7.1 App Shortcuts
+点击快捷方式可以访问应用功能, 并且这种快捷方式也可以被拖">
+<meta property="og:image" content="http://mengdd.github.io/images/app-shortcuts.png">
+<meta property="og:image" content="http://mengdd.github.io/images/app-shortcuts-doc.png">
+<meta property="og:image" content="http://mengdd.github.io/images/app-shortcuts-demo-screenshot.png">
+<meta property="og:updated_time" content="2016-10-25T06:28:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 7.1 App Shortcuts使用">
+<meta name="twitter:description" content="Android 7.1 App Shortcuts使用Android 7.1已经发了预览版, 这里是API Overview: API overview.其中App Shortcuts是新提供的一种快捷访问方式, 形式为长按应用图标出现的长条.
+图来自: Exploring Android Nougat 7.1 App Shortcuts
+点击快捷方式可以访问应用功能, 并且这种快捷方式也可以被拖">
+<meta name="twitter:image" content="http://mengdd.github.io/images/app-shortcuts.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/uncategorized/2016/10/25/nougat-app-shortcuts/" title="Android 7.1 App Shortcuts使用" itemprop="url">Android 7.1 App Shortcuts使用</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-25T06:00:01.000Z" itemprop="datePublished"> Published 2016-10-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-7-1-App-Shortcuts使用"><span class="toc-number">1.</span> <span class="toc-text">Android 7.1 App Shortcuts使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#App-Shortcuts-是什么"><span class="toc-number">1.1.</span> <span class="toc-text">App Shortcuts 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态Shortcuts使用"><span class="toc-number">1.2.</span> <span class="toc-text">静态Shortcuts使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用多个Intent构建back-stack"><span class="toc-number">1.2.1.</span> <span class="toc-text">用多个Intent构建back stack</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态Shortcuts使用"><span class="toc-number">1.3.</span> <span class="toc-text">动态Shortcuts使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#多个Intent构建back-stack"><span class="toc-number">1.3.1.</span> <span class="toc-text">多个Intent构建back stack</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shortcuts的个数限制"><span class="toc-number">1.4.</span> <span class="toc-text">Shortcuts的个数限制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shortcuts的次序"><span class="toc-number">1.5.</span> <span class="toc-text">Shortcuts的次序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">1.6.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Android-7-1-App-Shortcuts使用"><a href="#Android-7-1-App-Shortcuts使用" class="headerlink" title="Android 7.1 App Shortcuts使用"></a>Android 7.1 App Shortcuts使用</h1><p>Android 7.1已经发了预览版, 这里是API Overview: <a href="https://developer.android.com/preview/api-overview.html" target="_blank" rel="external">API overview</a>.<br>其中App Shortcuts是新提供的一种快捷访问方式, 形式为长按应用图标出现的长条.</p>
+<p><img src="/images/app-shortcuts.png" alt="app shortcuts"><br>图来自: <a href="https://catinean.com/2016/10/20/exploring-android-nougat-7-1-app-shortcuts/" target="_blank" rel="external">Exploring Android Nougat 7.1 App Shortcuts</a></p>
+<p>点击快捷方式可以访问应用功能, 并且这种快捷方式也可以被拖拽到桌面单独放置.</p>
+<a id="more"></a>
+<h2 id="App-Shortcuts-是什么"><a href="#App-Shortcuts-是什么" class="headerlink" title="App Shortcuts 是什么"></a>App Shortcuts 是什么</h2><p>其中App Shortcuts是指在桌面长按app图标而出现的快捷方式, 可以为你的app的关键功能添加更快速的入口而不用先打开app.</p>
+<p><img src="/images/app-shortcuts-doc.png" alt="app shortcuts"></p>
+<p>点击快捷方式可以访问应用功能, 并且这种快捷方式也可以被拖拽到桌面单独放置, 变成单独的桌面快捷方式(pinned shortcuts).</p>
+<p>有两种shortcuts:</p>
+<ul>
+<li>静态的: 在xml中定义, 适用于一些通用的动作.</li>
+<li>动态的: 由<a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html" target="_blank" rel="external">ShortcutManager</a>发布, 可以根据用户的行为或者偏好添加, 可以动态更新.</li>
+</ul>
+<p>每一个应用目前最多可以有5个shortcuts(静态 + 动态).</p>
+<p>运行条件:<br>应用添加App Shortcuts是Android 7.1(API 25)的API, 所以只能在Android 7.1的设备上显示, 同时需要launcher支持, 比如Pixel launcher(Pixel设备的默认launcher), Now launcher(Nexus设备上的launcher)现在就支持, 其他launcher也可以提供支持.</p>
+<h2 id="静态Shortcuts使用"><a href="#静态Shortcuts使用" class="headerlink" title="静态Shortcuts使用"></a>静态Shortcuts使用</h2><p>静态的Shortcuts是写在xml中的, 直到下一次应用升级, 不能被改变.<br>要添加静态shortcuts只需两步:<br>首先, 在应用的Manifest中启动Activity上添加<code>&lt;meta-data&gt;</code>:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta-data</span></span><br><span class="line">        <span class="attr">android:name</span>=<span class="string">"android.app.shortcuts"</span></span><br><span class="line">        <span class="attr">android:resource</span>=<span class="string">"@xml/shortcuts"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后在<code>res/xml/</code>目录下创建<code>shortcuts.xml</code>文件, 里面包含静态的shortcuts:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">shortcuts</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">shortcut</span></span><br><span class="line">        <span class="attr">android:enabled</span>=<span class="string">"true"</span></span><br><span class="line">        <span class="attr">android:icon</span>=<span class="string">"@drawable/ic_check_circle_black_24dp"</span></span><br><span class="line">        <span class="attr">android:shortcutDisabledMessage</span>=<span class="string">"@string/static_shortcut_disabled_message"</span></span><br><span class="line">        <span class="attr">android:shortcutId</span>=<span class="string">"static"</span></span><br><span class="line">        <span class="attr">android:shortcutLongLabel</span>=<span class="string">"@string/static_shortcut_long_label_1"</span></span><br><span class="line">        <span class="attr">android:shortcutShortLabel</span>=<span class="string">"@string/static_shortcut_short_label_1"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">intent</span></span><br><span class="line">            <span class="attr">android:action</span>=<span class="string">"android.intent.action.VIEW"</span></span><br><span class="line">            <span class="attr">android:targetClass</span>=<span class="string">"com.ddmeng.hellonougat.shortcuts.StaticShortcutActivity"</span></span><br><span class="line">            <span class="attr">android:targetPackage</span>=<span class="string">"com.ddmeng.hellonougat"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">shortcut</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">shortcut</span></span><br><span class="line">        <span class="attr">android:enabled</span>=<span class="string">"true"</span></span><br><span class="line">        <span class="attr">android:icon</span>=<span class="string">"@drawable/ic_android_black_24dp"</span></span><br><span class="line">        <span class="attr">android:shortcutDisabledMessage</span>=<span class="string">"@string/static_shortcut_disabled_message"</span></span><br><span class="line">        <span class="attr">android:shortcutId</span>=<span class="string">"static_2"</span></span><br><span class="line">        <span class="attr">android:shortcutLongLabel</span>=<span class="string">"@string/static_shortcut_long_label_2"</span></span><br><span class="line">        <span class="attr">android:shortcutShortLabel</span>=<span class="string">"@string/static_shortcut_short_label_2"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">intent</span></span><br><span class="line">            <span class="attr">android:action</span>=<span class="string">"android.intent.action.MAIN"</span></span><br><span class="line">            <span class="attr">android:targetClass</span>=<span class="string">"com.ddmeng.hellonougat.MainActivity"</span></span><br><span class="line">            <span class="attr">android:targetPackage</span>=<span class="string">"com.ddmeng.hellonougat"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">intent</span></span><br><span class="line">            <span class="attr">android:action</span>=<span class="string">"com.ddmeng.hellonougat.action.STATIC_SHORTCUT_2"</span></span><br><span class="line">            <span class="attr">android:targetClass</span>=<span class="string">"com.ddmeng.hellonougat.shortcuts.StaticShortcutActivity"</span></span><br><span class="line">            <span class="attr">android:targetPackage</span>=<span class="string">"com.ddmeng.hellonougat"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">shortcut</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">shortcuts</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="用多个Intent构建back-stack"><a href="#用多个Intent构建back-stack" class="headerlink" title="用多个Intent构建back stack"></a>用多个Intent构建back stack</h3><p>上面这个文件里添加了两个静态的shortcuts, 第一个关联了一个Activity, 点击shortcut将直接打开这个Activity, 回退的时候回到桌面.</p>
+<p>如果你想要的效果是点击back键回到应用里的某个界面, 那么可以利用多个intents来构建back stack, 比如在第二个shortcut里面, 点击shortcut打开目标Activity, 这个Intent放在最后, 但是回退会返回到MainActivity, 即之前的那个Intent.</p>
+<h2 id="动态Shortcuts使用"><a href="#动态Shortcuts使用" class="headerlink" title="动态Shortcuts使用"></a>动态Shortcuts使用</h2><p>动态的shortcuts可以在用户使用app的过程中构建, 更新, 或者删除.<br>使用<a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html" target="_blank" rel="external">ShortcutManager</a>可以对动态shortcuts完成下面几种操作:</p>
+<ul>
+<li>Publish发布: <code>setDynamicShortcuts()</code>, <code>addDynamicShortcuts(List)</code>;</li>
+<li>Update更新: <code>updateShortcuts(List)</code>;</li>
+<li>Remove删除: <code>removeDynamicShortcuts(List)</code>, <code>removeAllDynamicShortcuts()</code>.</li>
+</ul>
+<p>比如添加一个动态shortcut:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);</span><br><span class="line"></span><br><span class="line">ShortcutInfo shortcut = <span class="keyword">new</span> ShortcutInfo.Builder(<span class="keyword">this</span>, <span class="string">"id1"</span>)</span><br><span class="line">    .setShortLabel(<span class="string">"Web site"</span>)</span><br><span class="line">    .setLongLabel(<span class="string">"Open the web site"</span>)</span><br><span class="line">    .setIcon(Icon.createWithResource(context, R.drawable.icon_website))</span><br><span class="line">    .setIntent(<span class="keyword">new</span> Intent(Intent.ACTION_VIEW,</span><br><span class="line">                   Uri.parse(<span class="string">"https://www.mysite.example.com/"</span>)))</span><br><span class="line">    .build();</span><br><span class="line"></span><br><span class="line">shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));</span><br></pre></td></tr></table></figure></p>
+<h3 id="多个Intent构建back-stack"><a href="#多个Intent构建back-stack" class="headerlink" title="多个Intent构建back stack"></a>多个Intent构建back stack</h3><p>动态的shortcut仍然可以用多个Intent来指定一个back stack, 那么打开目标Activity之后就可以返回到应用中的指定界面而不是回到launcher:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ShortcutInfo dynamicShortcut2 = <span class="keyword">new</span> ShortcutInfo.Builder(<span class="keyword">this</span>, <span class="string">"shortcut_dynamic"</span>)</span><br><span class="line">        .setShortLabel(<span class="string">"Dynamic Shortcut"</span>)</span><br><span class="line">        .setLongLabel(<span class="string">"Open Dynamic shortcut 2"</span>)</span><br><span class="line">        .setIcon(Icon.createWithResource(<span class="keyword">this</span>, R.drawable.ic_favorite_border_black_24dp))</span><br><span class="line">        .setIntents(</span><br><span class="line">                <span class="comment">// this dynamic shortcut set up a back stack using Intents, when pressing back, will go to MainActivity</span></span><br><span class="line">                <span class="comment">// the last Intent is what the shortcut really opened</span></span><br><span class="line">                <span class="keyword">new</span> Intent[]&#123;</span><br><span class="line">                        <span class="keyword">new</span> Intent(Intent.ACTION_MAIN, Uri.EMPTY, <span class="keyword">this</span>, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK),</span><br><span class="line">                        <span class="keyword">new</span> Intent(DynamicShortcutActivity.ACTION_OPEN_DYNAMIC)</span><br><span class="line">                        <span class="comment">// intent's action must be set</span></span><br><span class="line">                &#125;)</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure></p>
+<p>和静态一样, 最后一个Intent对应的是shortcut打开的界面, 前面的都是用来构建back stack.</p>
+<h2 id="Shortcuts的个数限制"><a href="#Shortcuts的个数限制" class="headerlink" title="Shortcuts的个数限制"></a>Shortcuts的个数限制</h2><p>Shortcuts的总数不能超过5个, 即静态和动态shortcuts加起来总数最多是五个.<br>当我们尝试添加第六个shortcut时, 应用会抛出异常: <code>java.lang.IllegalArgumentException: Max number of dynamic shortcuts exceeded</code>.</p>
+<p>虽然总数限制是5个, 但是当我正好有5个(2个静态 + 3个动态)的时候, 长按只显示了4个shortcuts.<br>如图:</p>
+<p><img src="/images/app-shortcuts-demo-screenshot.png" alt="app shortcuts"></p>
+<p>本文完整代码见: Demo地址: <a href="https://github.com/mengdd/HelloNougat" target="_blank" rel="external">HelloNougat</a>.</p>
+<h2 id="Shortcuts的次序"><a href="#Shortcuts的次序" class="headerlink" title="Shortcuts的次序"></a>Shortcuts的次序</h2><p>当我们有多个Shortcuts之后, 默认它们是按照添加顺序排列的, 即按照添加顺序rank递增.</p>
+<p>可以通过<code>setRank()</code>来改变长按时它们显示的排序:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TargetApi</span>(<span class="number">25</span>)</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">updateDynamicShortcuts</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ShortcutInfo webShortcut = <span class="keyword">new</span> ShortcutInfo.Builder(MainActivity.<span class="keyword">this</span>, <span class="string">"shortcut_blog"</span>)</span><br><span class="line">            .setRank(<span class="number">1</span>)</span><br><span class="line">            .build();</span><br><span class="line"></span><br><span class="line">    ShortcutInfo dynamicShortcut = <span class="keyword">new</span> ShortcutInfo.Builder(MainActivity.<span class="keyword">this</span>, <span class="string">"shortcut_dynamic"</span>)</span><br><span class="line">            .setRank(<span class="number">0</span>)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="comment">// the rank value can not be set to negative, otherwise will throw</span></span><br><span class="line">    <span class="comment">// java.lang.IllegalArgumentException: Rank cannot be negative or bigger than MAX_RANK</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// the static shortcuts have the rank 0, so they will always be closest to launcher icon</span></span><br><span class="line"></span><br><span class="line">    shortcutManager.updateShortcuts(Arrays.asList(webShortcut, dynamicShortcut));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样更改之后, 原先排在最远端的<code>shortcut_dynamic</code>被移到了第三个, <code>shortcut_blog</code>被移到了它的后面.</p>
+<p><code>setRank()</code>不接受负值, 会抛出异常.</p>
+<p>我们只能改变动态shortcuts的排序, 静态的shortcuts等级为0, 它们是按照xml中写定的先后顺序排的, 所以:<br><code>静态的shortcuts永远离应用icon最近, 动态shortcuts在其之上排序, rank越大的离应用icon越远.</code><br>如果没有指定rank, 则按生成的顺序递增.</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>App Shortcuts的官方文档: <a href="https://developer.android.com/preview/shortcuts.html" target="_blank" rel="external">App Shortcuts</a><br><a href="https://catinean.com/2016/10/20/exploring-android-nougat-7-1-app-shortcuts/" target="_blank" rel="external">Exploring Android Nougat 7.1 App Shortcuts</a></p>
+<p>Demo地址: <a href="https://github.com/mengdd/HelloNougat" target="_blank" rel="external">HelloNougat</a>.<br>近期考虑加入更多Android 7 Nougat特性sample.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Nougat/">Nougat</a><a href="/tags/Android-7/">Android 7</a><a href="/tags/Shortcuts/">Shortcuts</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/uncategorized/2016/10/25/nougat-app-shortcuts/" data-title="Android 7.1 App Shortcuts使用 | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/uncategorized/2016/10/22/android-architecture-google-samples-analysis/"  title="Android MVP模式 谷歌官方代码解读">
+ <strong>下一篇：</strong><br/> 
+ <span>Android MVP模式 谷歌官方代码解读
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="uncategorized/2016/10/25/nougat-app-shortcuts/" data-title="Android 7.1 App Shortcuts使用" data-url="http://mengdd.github.io/uncategorized/2016/10/25/nougat-app-shortcuts/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-7-1-App-Shortcuts使用"><span class="toc-number">1.</span> <span class="toc-text">Android 7.1 App Shortcuts使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#App-Shortcuts-是什么"><span class="toc-number">1.1.</span> <span class="toc-text">App Shortcuts 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态Shortcuts使用"><span class="toc-number">1.2.</span> <span class="toc-text">静态Shortcuts使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用多个Intent构建back-stack"><span class="toc-number">1.2.1.</span> <span class="toc-text">用多个Intent构建back stack</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态Shortcuts使用"><span class="toc-number">1.3.</span> <span class="toc-text">动态Shortcuts使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#多个Intent构建back-stack"><span class="toc-number">1.3.1.</span> <span class="toc-text">多个Intent构建back stack</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shortcuts的个数限制"><span class="toc-number">1.4.</span> <span class="toc-text">Shortcuts的个数限制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shortcuts的次序"><span class="toc-number">1.5.</span> <span class="toc-text">Shortcuts的次序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">1.6.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-News/" title="Android News">Android News<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>10</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVP/" title="MVP">MVP<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bottom-Sheet/" title="Bottom Sheet">Bottom Sheet<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Resources/" title="Resources">Resources<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nested-Fragments/" title="Nested Fragments">Nested Fragments<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AnimatedVectorDrawable/" title="AnimatedVectorDrawable">AnimatedVectorDrawable<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bottom-Navigation/" title="Bottom Navigation">Bottom Navigation<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Content-Provider/" title="Content Provider">Content Provider<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Security/" title="Security">Security<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Accessibility/" title="Accessibility">Accessibility<sup>2</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/mengdd/" target="_blank" title="圣骑士wind">圣骑士wind</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://talentprince.github.io/" target="_blank" title="长乐未央">长乐未央</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dandan Meng. <br/>
+			This is my blog. Welcome.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/mengdd" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wind"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dandanmeng';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75132850-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?83e8338b542a9fd155f68673d113e0ae";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
