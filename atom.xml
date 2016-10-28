@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-10-27T14:44:33.000Z</updated>
+  <updated>2016-10-28T07:09:06.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>用Android Studio开发最常用到的50+快捷键</title>
+    <title>用Android Studio开发最常用到的快捷键</title>
     <link href="http://mengdd.github.io/Android/Tools/IDE/2016/10/27/android-studio-shortcuts-used-frequently/"/>
     <id>http://mengdd.github.io/Android/Tools/IDE/2016/10/27/android-studio-shortcuts-used-frequently/</id>
     <published>2016-10-27T14:23:45.000Z</published>
-    <updated>2016-10-27T14:44:33.000Z</updated>
+    <updated>2016-10-28T07:09:06.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Studio常用快捷键&quot;&gt;&lt;a href=&quot;#Android-Studio常用快捷键&quot; class=&quot;headerlink&quot; title=&quot;Android Studio常用快捷键&quot;&gt;&lt;/a&gt;Android Studio常用快捷键&lt;/h1&gt;&lt;p&gt;Android Studio日常开发常用快捷键.&lt;br&gt;快捷键版本: Mac OS X 10.5+&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -53,12 +53,24 @@
 &lt;td style=&quot;text-align:left&quot;&gt;Cmd + E&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;打开最近编辑过的文件&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + E&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;在文件内搜索&lt;/td&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;Cmd + F&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;全文搜索&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + F&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;显示结构, 类中方法&lt;/td&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;Cmd + F12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;跳到当前文件&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;F4&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;从以上查找中途退出&lt;/td&gt;
@@ -73,8 +85,20 @@
 &lt;td style=&quot;text-align:left&quot;&gt;Cmd + B/ Cmd + 单击, 找到定义后再次点击会显示所有引用&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;找子类/实现&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + B&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;找基类/接口&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + U&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;高亮Usages&lt;/td&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + F7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;查找Action&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + A&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;显示文件在项目中的位置&lt;/td&gt;
@@ -115,8 +139,8 @@
 &lt;td style=&quot;text-align:left&quot;&gt;Cmd + D&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Alt + delete&lt;/td&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;以光标位置向前, 删除一个词&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opt + delete&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;删除一行&lt;/td&gt;
@@ -142,7 +166,7 @@
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;生成方法&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + N, 然后在弹出窗口中选择&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + N&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;生成未定义的方法&lt;/td&gt;
@@ -194,7 +218,7 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;提取方法M,变量V,字段F,常量C,参数P&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Alt + M,V,F,C,P&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + M,V,F,C,P&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;内联&lt;/td&gt;
@@ -210,6 +234,10 @@
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;移动到某一行&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + L&lt;/td&gt;
+&lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;选中行&lt;/td&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + 方向&lt;/td&gt;
@@ -301,7 +329,7 @@
 &lt;td style=&quot;text-align:left&quot;&gt;F8&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;跑到下一个断点&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;跑到光标处&lt;/td&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;Opt + F9&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -360,6 +388,10 @@
 &lt;td style=&quot;text-align:left&quot;&gt;下一个Diff&lt;/td&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;F7&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;在Diff中打开文件&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;F4&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id=&quot;窗口类&quot;&gt;&lt;a href=&quot;#窗口类&quot; class=&quot;headerlink&quot; title=&quot;窗口类&quot;&gt;&lt;/a&gt;窗口类&lt;/h2&gt;&lt;table&gt;
@@ -378,8 +410,24 @@
 &lt;td style=&quot;text-align:left&quot;&gt;代码全屏或退出&lt;/td&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + F12&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;打开Preferences&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + ,&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;打开项目结构窗口&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + ;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;快速切换scheme&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + `&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h2 id=&quot;Resources&quot;&gt;&lt;a href=&quot;#Resources&quot; class=&quot;headerlink&quot; title=&quot;Resources&quot;&gt;&lt;/a&gt;Resources&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.android.com/studio/intro/keyboard-shortcuts.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://saulmm.github.io/the-powerful-android-studio&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The powerful Android Studio&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </content>
     
     <summary type="html">
