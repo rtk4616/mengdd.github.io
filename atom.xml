@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-10-26T04:11:58.000Z</updated>
+  <updated>2016-10-27T14:44:33.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,392 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用Android Studio开发最常用到的50+快捷键</title>
+    <link href="http://mengdd.github.io/Android/Tools/IDE/2016/10/27/android-studio-shortcuts-used-frequently/"/>
+    <id>http://mengdd.github.io/Android/Tools/IDE/2016/10/27/android-studio-shortcuts-used-frequently/</id>
+    <published>2016-10-27T14:23:45.000Z</published>
+    <updated>2016-10-27T14:44:33.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Studio常用快捷键&quot;&gt;&lt;a href=&quot;#Android-Studio常用快捷键&quot; class=&quot;headerlink&quot; title=&quot;Android Studio常用快捷键&quot;&gt;&lt;/a&gt;Android Studio常用快捷键&lt;/h1&gt;&lt;p&gt;Android Studio日常开发常用快捷键.&lt;br&gt;快捷键版本: Mac OS X 10.5+&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;搜索查看类&quot;&gt;&lt;a href=&quot;#搜索查看类&quot; class=&quot;headerlink&quot; title=&quot;搜索查看类&quot;&gt;&lt;/a&gt;搜索查看类&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;搜索所有文件&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;double Shift&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;搜索文件&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + O&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;搜索类文件&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + O&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;搜索符号&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + O&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;打开最近的文件&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + E&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;在文件内搜索&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + F&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;显示结构, 类中方法&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + F12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;从以上查找中途退出&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;ESC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;发现引用&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opt + F7(显示在下面)/ Opt + Cmd + F7(显示在当前)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;查找定义&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + B/ Cmd + 单击, 找到定义后再次点击会显示所有引用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;高亮Usages&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + F7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;显示文件在项目中的位置&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opt + F1, 再加Enter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;复制当前文件的路径&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + C&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;编辑类&quot;&gt;&lt;a href=&quot;#编辑类&quot; class=&quot;headerlink&quot; title=&quot;编辑类&quot;&gt;&lt;/a&gt;编辑类&lt;/h2&gt;&lt;h3 id=&quot;编辑&quot;&gt;&lt;a href=&quot;#编辑&quot; class=&quot;headerlink&quot; title=&quot;编辑&quot;&gt;&lt;/a&gt;编辑&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;复制&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + C&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;剪切&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + X&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;粘贴&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + V&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;从剪切板粘贴&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + V&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;复制当前行或当前选中块&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Alt + delete&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;以光标位置向前, 删除一个词&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;删除一行&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + delete&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;把代码包起来: try-catch等&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + T&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;查看方法的参数信息&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + P&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;生成&quot;&gt;&lt;a href=&quot;#生成&quot; class=&quot;headerlink&quot; title=&quot;生成&quot;&gt;&lt;/a&gt;生成&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;生成方法&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + N, 然后在弹出窗口中选择&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;生成未定义的方法&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opt + Enter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Override方法&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + O&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;实现(implement)方法&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + I&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;自动补全&quot;&gt;&lt;a href=&quot;#自动补全&quot; class=&quot;headerlink&quot; title=&quot;自动补全&quot;&gt;&lt;/a&gt;自动补全&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;加import语句&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opt + Enter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;显示Warning信息并采用快捷修复&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opt + Enter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;重构&quot;&gt;&lt;a href=&quot;#重构&quot; class=&quot;headerlink&quot; title=&quot;重构&quot;&gt;&lt;/a&gt;重构&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;重命名&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Shift + F6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;更改签名(重构方法)&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + F6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;提取方法M,变量V,字段F,常量C,参数P&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Alt + M,V,F,C,P&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;内联&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + N&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;选择-移动&quot;&gt;&lt;a href=&quot;#选择-移动&quot; class=&quot;headerlink&quot; title=&quot;选择, 移动&quot;&gt;&lt;/a&gt;选择, 移动&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;选中行&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + 方向&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;选中词&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opt + 上下方向&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;按词移动光标&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opt + 左右方向&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;返回上/下一次光标所在的地方&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + 左右方向&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;移动当前行&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + 上下方向&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;格式化&quot;&gt;&lt;a href=&quot;#格式化&quot; class=&quot;headerlink&quot; title=&quot;格式化&quot;&gt;&lt;/a&gt;格式化&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;格式化代码&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + L&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;优化imports&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + Opt + O&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;注释&quot;&gt;&lt;a href=&quot;#注释&quot; class=&quot;headerlink&quot; title=&quot;注释&quot;&gt;&lt;/a&gt;注释&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;行注释&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + /&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;块注释&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + /&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;运行调试类&quot;&gt;&lt;a href=&quot;#运行调试类&quot; class=&quot;headerlink&quot; title=&quot;运行调试类&quot;&gt;&lt;/a&gt;运行调试类&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;运行&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + R&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;运行…&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + Opt + R&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;调试&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;调试…&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + Opt + D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;设置断点&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + F8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;单步执行&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;F8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;跑到下一个断点&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opt + F9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;看表达式&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opt + F8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Resume&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opt + Cmd + R&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;查看所有断点&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Shift + Cmd + F8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;测试类&quot;&gt;&lt;a href=&quot;#测试类&quot; class=&quot;headerlink&quot; title=&quot;测试类&quot;&gt;&lt;/a&gt;测试类&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;生成或打开测试类&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + T&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;运行测试&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + Shift + R&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;调试测试&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + Shift + D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;版本控制类&quot;&gt;&lt;a href=&quot;#版本控制类&quot; class=&quot;headerlink&quot; title=&quot;版本控制类&quot;&gt;&lt;/a&gt;版本控制类&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;显示版本控制窗口&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + 9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;显示Diff&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;下一个Diff&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;F7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;窗口类&quot;&gt;&lt;a href=&quot;#窗口类&quot; class=&quot;headerlink&quot; title=&quot;窗口类&quot;&gt;&lt;/a&gt;窗口类&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;显示Android Monitor&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + 6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;代码全屏或退出&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + F12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Studio常用快捷键&quot;&gt;&lt;a href=&quot;#Android-Studio常用快捷键&quot; class=&quot;headerlink&quot; title=&quot;Android Studio常用快捷键&quot;&gt;&lt;/a&gt;Android Studio常用快捷键&lt;/h1&gt;&lt;p&gt;Android Studio日常开发常用快捷键.&lt;br&gt;快捷键版本: Mac OS X 10.5+&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Tools" scheme="http://mengdd.github.io/categories/Android/Tools/"/>
+    
+      <category term="IDE" scheme="http://mengdd.github.io/categories/Android/Tools/IDE/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 228</title>
@@ -81,6 +467,10 @@
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
       <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
@@ -88,10 +478,6 @@
       <category term="Alarm" scheme="http://mengdd.github.io/tags/Alarm/"/>
     
       <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
-    
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
       <category term="TensorFlow" scheme="http://mengdd.github.io/tags/TensorFlow/"/>
     
@@ -341,17 +727,17 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
-    
       <category term="Data Binding" scheme="http://mengdd.github.io/tags/Data-Binding/"/>
     
       <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
     
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
       <category term="Clean Architecture" scheme="http://mengdd.github.io/tags/Clean-Architecture/"/>
     
       <category term="Loader" scheme="http://mengdd.github.io/tags/Loader/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
   </entry>
   
@@ -495,6 +881,10 @@
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
+      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
+    
+      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
+    
       <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
     
       <category term="Face Detection" scheme="http://mengdd.github.io/tags/Face-Detection/"/>
@@ -520,10 +910,6 @@
       <category term="Notification" scheme="http://mengdd.github.io/tags/Notification/"/>
     
       <category term="font" scheme="http://mengdd.github.io/tags/font/"/>
-    
-      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
-    
-      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
   </entry>
   
@@ -1026,13 +1412,9 @@
     
       <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
     
-      <category term="Annotation" scheme="http://mengdd.github.io/tags/Annotation/"/>
-    
       <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
-      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
-    
-      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
+      <category term="Annotation" scheme="http://mengdd.github.io/tags/Annotation/"/>
     
       <category term="pre-launch" scheme="http://mengdd.github.io/tags/pre-launch/"/>
     
@@ -1045,6 +1427,10 @@
       <category term="Methods Count" scheme="http://mengdd.github.io/tags/Methods-Count/"/>
     
       <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
+    
+      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
+    
+      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
     
       <category term="Adapter" scheme="http://mengdd.github.io/tags/Adapter/"/>
     
@@ -1504,11 +1890,11 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
+      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
+    
       <category term="Okio" scheme="http://mengdd.github.io/tags/Okio/"/>
     
       <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
-    
-      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
     
       <category term="Support Annotations" scheme="http://mengdd.github.io/tags/Support-Annotations/"/>
     
@@ -1686,13 +2072,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
+      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
     
       <category term="ScaleType" scheme="http://mengdd.github.io/tags/ScaleType/"/>
     
       <category term="Devices" scheme="http://mengdd.github.io/tags/Devices/"/>
-    
-      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
     
       <category term="Scrolling" scheme="http://mengdd.github.io/tags/Scrolling/"/>
     
@@ -1703,6 +2087,8 @@
       <category term="ItemTouchHelper" scheme="http://mengdd.github.io/tags/ItemTouchHelper/"/>
     
       <category term="Fresco" scheme="http://mengdd.github.io/tags/Fresco/"/>
+    
+      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
     
   </entry>
   
@@ -2337,128 +2723,6 @@
       <category term="Toolbar" scheme="http://mengdd.github.io/tags/Toolbar/"/>
     
       <category term="ActionBar" scheme="http://mengdd.github.io/tags/ActionBar/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Fragment使用(三) Activity, Fragment, WebView的状态保存和恢复</title>
-    <link href="http://mengdd.github.io/Android/2016/06/13/android-fragment-usage-3-state-restore/"/>
-    <id>http://mengdd.github.io/Android/2016/06/13/android-fragment-usage-3-state-restore/</id>
-    <published>2016-06-13T14:26:41.000Z</published>
-    <updated>2016-06-13T14:22:47.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android中的状态保存和恢复&quot;&gt;&lt;a href=&quot;#Android中的状态保存和恢复&quot; class=&quot;headerlink&quot; title=&quot;Android中的状态保存和恢复&quot;&gt;&lt;/a&gt;Android中的状态保存和恢复&lt;/h1&gt;&lt;p&gt;Android中的状态保存和恢复, 包括Activity和Fragment以及其中View的状态处理.&lt;br&gt;Activity的状态除了其中的View和Fragment的状态之外, 还需要用户手动保存一些成员变量.&lt;br&gt;Fragment的状态有它自己的实例状态和其中的View状态, 因为其生命周期的灵活性和实际需要的不同, 情况会多一些.&lt;br&gt;根据源码, 列出了Fragment中实例状态和View状态保存和恢复的几个入口, 便于分析查看.&lt;br&gt;最后专门讲了WebView状态保存和恢复, 问题及处理.&lt;br&gt;还有一个工具类icepick的介绍.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;Activity的状态保存和恢复&quot;&gt;&lt;a href=&quot;#Activity的状态保存和恢复&quot; class=&quot;headerlink&quot; title=&quot;Activity的状态保存和恢复&quot;&gt;&lt;/a&gt;Activity的状态保存和恢复&lt;/h1&gt;&lt;p&gt;作为热身, 先来讲一下Activity的状态保存和恢复.&lt;/p&gt;
-&lt;h2 id=&quot;什么时候需要恢复Activity&quot;&gt;&lt;a href=&quot;#什么时候需要恢复Activity&quot; class=&quot;headerlink&quot; title=&quot;什么时候需要恢复Activity&quot;&gt;&lt;/a&gt;什么时候需要恢复Activity&lt;/h2&gt;&lt;p&gt;关于Activity的销毁和重建, 之前有这么一篇博文: &lt;a href=&quot;http://www.cnblogs.com/mengdd/archive/2012/12/17/2822291.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Activity的重新创建&lt;/a&gt;&lt;br&gt;总结来说, 就是Activity的销毁, 分为彻底销毁和留下数据的销毁两种.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;彻底销毁&lt;/strong&gt;是指用户主动去关闭或退出这个Activity. 此时是不需要状态恢复的, 因为下次回来又是重新创建全新的实例.&lt;br&gt;&lt;strong&gt;留下数据的销毁&lt;/strong&gt;是指系统销毁了activity, 但是当用户返回来时, 会重新创建它, 让用户觉得它一直都在.&lt;/p&gt;
-&lt;p&gt;屏幕旋转重建可以归结为第二种情况, 打开Do not keep activities开关, 切换activities也是会出现第二种情况.&lt;br&gt;打开&lt;strong&gt;Do not keep activities&lt;/strong&gt;开关就是为了模拟内存不足时的系统行为, 这里有一篇&lt;a href=&quot;http://www.cnblogs.com/mengdd/p/4528417.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;分析&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;如何恢复&quot;&gt;&lt;a href=&quot;#如何恢复&quot; class=&quot;headerlink&quot; title=&quot;如何恢复&quot;&gt;&lt;/a&gt;如何恢复&lt;/h2&gt;&lt;p&gt;实际上系统已经帮我们做好了View层面基本的恢复工作, 主要是依靠下面两个方法:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onSaveInstanceState&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle outState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onSaveInstanceState(outState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 在onStop()之前调用, 文档中说并不保证在onPause()的之前还是之后&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 我的试验中一般是在onPause()之后&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onRestoreInstanceState&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle savedInstanceState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onRestoreInstanceState(savedInstanceState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 在onStart() 之后&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;Bundle其中包含了activity中的view和fragment的各种信息, 所以调用基类的方法就可以完成基本的view层面的恢复工作.&lt;br&gt;&lt;strong&gt;注意这两个方法并不是activity的生命周期回调, 对于activity来说它们不是一定会发生的.&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;另外需要注意的是, View必须要有id才能被恢复.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;举一个实例来说明:&lt;br&gt;Activity A start B, 那么A的&lt;code&gt;onSaveInstanceState()&lt;/code&gt;会在onStop()之前调用, 以防A被系统销毁.&lt;br&gt;但是在B中按下back键finish()了自己后, B被销毁的过程中, 并没有调用&lt;code&gt;onSaveInstanceState()&lt;/code&gt;, 是因为B并没有被压入task的back stack中,&lt;br&gt;也即系统知道B并不需要储存自己的状态.&lt;br&gt;正常情况下, 返回到A, A没有被销毁, 也不会调用&lt;code&gt;onRestoreInstanceState()&lt;/code&gt;, 因为所有的状态都还在, 并不需要重建.&lt;/p&gt;
-&lt;p&gt;如果我们打开了&lt;strong&gt;Do not keep activities&lt;/strong&gt;开关, 模拟系统内存不足时的行为, 从A到B, 可以看到当B resume的时候A会一路走到onDestroy(),&lt;br&gt;而关掉B之后, A会从onCreate()开始走, 此时onCreate()的参数bundle就不为空了, onStart()之后会调用&lt;code&gt;onRestoreInstanceState()&lt;/code&gt;方法, 其参数bundle中内容类似于如下:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Bundle[&amp;#123;android:viewHierarchyState=Bundle[mParcelledData.dataSize=272]&amp;#125;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;其中包含了View的状态, 如果有Fragment, 也会包含Fragment的状态, 其实质是保存了FragmentManagerState, 内容类似于如下:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Bundle[&amp;#123;android:viewHierarchyState=Bundle[&amp;#123;android:views=&amp;#123;16908290=android.view.AbsSavedState$1@bc382e7, 2131492950=CompoundButton.SavedState&amp;#123;4034f96 checked=true&amp;#125;, 2131492951=android.view.AbsSavedState$1@bc382e7&amp;#125;&amp;#125;], android:fragments=android.app.FragmentManagerState@bacc717&amp;#125;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;对于上面的例子来说, B什么时候会调用&lt;code&gt;onSaveInstanceState()&lt;/code&gt;呢?&lt;br&gt;当从A打开B之后, 按下Home键, B就会调用&lt;code&gt;onSaveInstanceState()&lt;/code&gt;.&lt;br&gt;因为这时候系统不知道用户什么时候会返回, 有可能会把B也销毁了, 所以保存一下它的状态.&lt;br&gt;如果下次回来它没有被重建, &lt;code&gt;onRestoreInstanceState()&lt;/code&gt;就不会被调用, 如果它被重建了, &lt;code&gt;onRestoreInstanceState()&lt;/code&gt;才会被调用.&lt;/p&gt;
-&lt;h3 id=&quot;Activity保存方法的调用时机&quot;&gt;&lt;a href=&quot;#Activity保存方法的调用时机&quot; class=&quot;headerlink&quot; title=&quot;Activity保存方法的调用时机&quot;&gt;&lt;/a&gt;Activity保存方法的调用时机&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;activity的&lt;code&gt;onSaveInstanceState()&lt;/code&gt;和&lt;code&gt;onRestoreInstanceState()&lt;/code&gt;方法在如下情形下会调用:&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;屏幕旋转重建: 先save再restore.&lt;/li&gt;
-&lt;li&gt;启动另一个activity: 当前activity在离开前会save, 返回时如果因为被系统杀死需要重建, 则会从onCreate()重新开始生命周期, 调用onRestoreInstanceState(); 如果没有重建, 则不会调用onCreate(), 也不会调用onRestoreInstanceState(), 生命周期从onRestart()开始, 接着onStart()和onResume().&lt;/li&gt;
-&lt;li&gt;按Home键的情形和启动另一个activity一样, 当前activity在离开前会save, 用户再次点击应用图标返回时, 如果重建发生, 则会调用onCreate()和onRestoreInstanceState(); 如果activity不需要重建, 只是onRestart(), 则不会调用onRestoreInstanceState().&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;Activity恢复方法的调用时机&quot;&gt;&lt;a href=&quot;#Activity恢复方法的调用时机&quot; class=&quot;headerlink&quot; title=&quot;Activity恢复方法的调用时机&quot;&gt;&lt;/a&gt;Activity恢复方法的调用时机&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;activity的&lt;code&gt;onSaveInstanceState()&lt;/code&gt;和&lt;code&gt;onRestoreInstanceState()&lt;/code&gt;方法在如下情形下不会调用:&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;用户主动finish()掉的activity不会调用onSaveInstanceState(), 包括主动按back退出的情况.&lt;/li&gt;
-&lt;li&gt;新建的activity, 从onCreate()开始, 不会调用onRestoreInstanceState().&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;Activity中还需要手动恢复什么&quot;&gt;&lt;a href=&quot;#Activity中还需要手动恢复什么&quot; class=&quot;headerlink&quot; title=&quot;Activity中还需要手动恢复什么&quot;&gt;&lt;/a&gt;Activity中还需要手动恢复什么&lt;/h2&gt;&lt;p&gt;如上, 系统已经为我们恢复了activity中的各种view和fragment, 那么我们自己需要保存和恢复一些什么呢?&lt;br&gt;答案是&lt;strong&gt;成员变量值&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;因为系统并不知道你的各种成员变量有什么用, 哪些值需要保存, 所以需要你自己覆写上面两个方法, 然后把自己需要保存的值加进bundle里面去. 具体例子, 这里&lt;a href=&quot;http://www.cnblogs.com/mengdd/archive/2012/12/17/2822291.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Activity的重新创建&lt;/a&gt;有, 我就不重复了.&lt;br&gt;重要的是不要忘记调用super的方法, 那里有系统帮我们恢复的工作.&lt;/p&gt;
-&lt;h1 id=&quot;工具类Icepick介绍&quot;&gt;&lt;a href=&quot;#工具类Icepick介绍&quot; class=&quot;headerlink&quot; title=&quot;工具类Icepick介绍&quot;&gt;&lt;/a&gt;工具类Icepick介绍&lt;/h1&gt;&lt;p&gt;在介绍下面的内容之前, 先介绍一个小工具: &lt;a href=&quot;https://github.com/frankiesardo/icepick&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Icepick&lt;/a&gt;&lt;br&gt;这个工具的作用是, 在你想保存和重建自己的成员变量数据时, 帮你省去那些put和get方法的调用, 你也不用为每一个字段起一个常量key.&lt;br&gt;你需要做的就是简单地在你想要保存状态的字段上面加上一个&lt;code&gt;@State&lt;/code&gt; 注解.&lt;br&gt;然后在保存和恢复的时候分别加上一句话:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle savedInstanceState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onCreate(savedInstanceState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Icepick.restoreInstanceState(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, savedInstanceState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onSaveInstanceState&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle outState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onSaveInstanceState(outState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Icepick.saveInstanceState(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, outState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;然后你的成员变量就有了它应该有的值了, DONE!&lt;/p&gt;
-&lt;h1 id=&quot;Fragment的状态保存和恢复&quot;&gt;&lt;a href=&quot;#Fragment的状态保存和恢复&quot; class=&quot;headerlink&quot; title=&quot;Fragment的状态保存和恢复&quot;&gt;&lt;/a&gt;Fragment的状态保存和恢复&lt;/h1&gt;&lt;p&gt;Fragment的状态比Activity的要复杂一些, 因为它的生命周期状态比较多.&lt;/p&gt;
-&lt;h2 id=&quot;Fragment状态保存和恢复的相关方法&quot;&gt;&lt;a href=&quot;#Fragment状态保存和恢复的相关方法&quot; class=&quot;headerlink&quot; title=&quot;Fragment状态保存和恢复的相关方法&quot;&gt;&lt;/a&gt;Fragment状态保存和恢复的相关方法&lt;/h2&gt;&lt;p&gt;按照上面的思路, 我先去查找Fragment中保存和恢复的回调方法了.&lt;br&gt;Fragment的状态保存回调是这个方法:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onSaveInstanceState&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle outState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// may be called any time before onDestroy()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这个方法和之前activity的情况大体是类似的, 它不是生命周期的回调, 所以只在有需要的时候会调到.&lt;br&gt;onSaveInstanceState()在activity调用onSaveInstanceState()的时候发生, 用于保存实例状态.(看它的方法名: instance state).&lt;br&gt;&lt;code&gt;onSaveInstanceState()&lt;/code&gt;方法保存的bundle会返回给几个生命周期回调: &lt;code&gt;onCreate()&lt;/code&gt;, &lt;code&gt;onCreateView()&lt;/code&gt;, &lt;code&gt;onViewCreated()&lt;/code&gt;和&lt;code&gt;onActivityCreated()&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Fragment并没有对应的onRestoreInstanceState()方法.&lt;br&gt;也即没有实例状态的恢复回调.&lt;/p&gt;
-&lt;p&gt;Fragment只有一个onViewStateRestored()的回调方法:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onViewStateRestored&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(@Nullable Bundle savedInstanceState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 在onActivityCreated()和onStart()之间调用&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    mCalled = &lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;onViewStateRestored()每次新建Fragment都会发生.&lt;br&gt;它并不是实例状态恢复的方法, 只是一个View状态恢复的回调.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;这里需要注意, Fragment的状态分两个类型: 实例状态和View状态&lt;/strong&gt;.&lt;br&gt;这里有个最佳实践: &lt;a href=&quot;https://inthecheesefactory.com/blog/fragment-state-saving-best-practices/en&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Real Best Practices to Save/Restore Activity’s and Fragment’s state&lt;/a&gt;&lt;br&gt;&lt;strong&gt;不要把Fragment的实例状态和View状态混在一起处理.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在这里我先上个结论, 把查看源码中Fragment状态保存和恢复的相关方法列出来:&lt;/p&gt;
-&lt;p&gt;Fragment状态保存入口:&lt;br&gt;&lt;img src=&quot;/images/fragment-state-save-entries.png&quot; alt=&quot;Fragment state saving&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Fragment的状态保存入口有三个:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Activity的状态保存, 在Activity的&lt;code&gt;onSaveInstanceState()&lt;/code&gt;里, 调用了FragmentManger的&lt;code&gt;saveAllState()&lt;/code&gt;方法, 其中会对mActive中各个Fragment的实例状态和View状态分别进行保存.&lt;/li&gt;
-&lt;li&gt;FragmentManager还提供了public方法: &lt;code&gt;saveFragmentInstanceState()&lt;/code&gt;, 可以对单个Fragment进行状态保存, 这是提供给我们用的, 后面会有例子介绍这个. 其中调用的&lt;code&gt;saveFragmentBasicState()&lt;/code&gt;方法即为情况一中所用, 图中已画出标记.&lt;/li&gt;
-&lt;li&gt;FragmentManager的&lt;code&gt;moveToState()&lt;/code&gt;方法中, 当状态回退到&lt;code&gt;ACTIVITY_CREATED&lt;/code&gt;, 会调用&lt;code&gt;saveFragmentViewState()&lt;/code&gt;方法, 保存View的状态.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;code&gt;moveToState()&lt;/code&gt;方法中有很长的switch case, 中间不带break, 基本是根据新状态和当前状态的比较, 分为正向创建和反向销毁两个方向, 一路沿着多个case走下去.&lt;/p&gt;
-&lt;p&gt;Fragment状态恢复入口:&lt;br&gt;&lt;img src=&quot;/images/fragment-state-restore-entries.png&quot; alt=&quot;Fragment state restoring&quot;&gt;&lt;/p&gt;
-&lt;p&gt;三个恢复的入口和三个保存的入口刚好对应.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;在Activity重新创建的时候, 恢复所有的Fragment状态.&lt;/li&gt;
-&lt;li&gt;如果调用了FragmentManager的方法: &lt;code&gt;saveFragmentInstanceState()&lt;/code&gt;, 返回值得到的状态可以用Fragment的&lt;code&gt;setInitialSavedState()&lt;/code&gt;方法设置给新的Fragment实例, 作为初始状态.&lt;/li&gt;
-&lt;li&gt;FragmentManager的&lt;code&gt;moveToState()&lt;/code&gt;方法中, 当状态正向创建到&lt;code&gt;CREATED&lt;/code&gt;时, Fragment自己会恢复View的状态.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;这三个入口分别对应的情况是:&lt;br&gt;入口1对应系统销毁和重建新实例.&lt;br&gt;入口2对应用户自定义销毁和创建新Fragment实例的状态传递.&lt;br&gt;入口3对应同一Fragment实例自身的View状态重建.&lt;/p&gt;
-&lt;h2 id=&quot;Fragment状态保存恢复和Activity的联系&quot;&gt;&lt;a href=&quot;#Fragment状态保存恢复和Activity的联系&quot; class=&quot;headerlink&quot; title=&quot;Fragment状态保存恢复和Activity的联系&quot;&gt;&lt;/a&gt;Fragment状态保存恢复和Activity的联系&lt;/h2&gt;&lt;p&gt;这里对应的是入口1的情况.&lt;br&gt;当Activity在做状态保存和恢复的时候, 在它其中的fragment自然也需要做状态保存和恢复.&lt;br&gt;所以Fragment的onSaveInstanceState()在activity调用onSaveInstanceState()的时候一定会发生.&lt;br&gt;同样的, 如果Fragment中有一些成员变量的值在此时需要保存, 也可以用@State标记, 处理方法和上面一样.&lt;br&gt;也即, 在Activity需要保存状态的时候, 其中的Fragments的&lt;strong&gt;实例状态&lt;/strong&gt;自动被处理保存.&lt;/p&gt;
-&lt;h2 id=&quot;Fragment同一实例的View状态恢复&quot;&gt;&lt;a href=&quot;#Fragment同一实例的View状态恢复&quot; class=&quot;headerlink&quot; title=&quot;Fragment同一实例的View状态恢复&quot;&gt;&lt;/a&gt;Fragment同一实例的View状态恢复&lt;/h2&gt;&lt;p&gt;这里对应的是入口3的情况.&lt;br&gt;前面介绍过, activity在保存状态的时候, 会将所有View和Fragment的状态都保存起来等待重建的时候使用.&lt;br&gt;但是如果是单个Activity对应多个Fragments的架构, Activity永远是resume状态, 多个Fragments在切换的过程中, 没有activity的帮助, 如何保存自己的状态?&lt;/p&gt;
-&lt;p&gt;首先, 取决于你的多个Fragments是如何初始化的.&lt;br&gt;我做了一个实验, 在activity的onCreate()里面初始化两个Fragment:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;initFragments&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    tab1Fragment = getFragmentManager().findFragmentByTag(Tab1Fragment.TAG);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (tab1Fragment == &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        tab1Fragment = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Tab1Fragment();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    tab2Fragment = getFragmentManager().findFragmentByTag(Tab2Fragment.TAG);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (tab2Fragment == &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        tab2Fragment = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Tab2Fragment();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;然后点击两个按钮来切换它们, replace(), 并且不加入到back stack中:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@OnClick&lt;/span&gt;(R.id.tab1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onTab1Clicked&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    getFragmentManager().beginTransaction()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .replace(R.id.content_container, tab1Fragment, Tab1Fragment.TAG)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .commit();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@OnClick&lt;/span&gt;(R.id.tab2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onTab2Clicked&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    getFragmentManager().beginTransaction()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .replace(R.id.content_container, tab2Fragment, Tab2Fragment.TAG)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .commit();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;可以看到, 每一次的切换, 都是一个Fragment的完全destroy, detach和另一个fragment的attach, create,&lt;br&gt;但是当我在这两个fragment中各自加上EditText, 发现只要EditText有id, 切换过程中EditText的内容是被保存的.&lt;br&gt;这是谁在什么时候保存并恢复的呢?&lt;br&gt;我在TextChange的回调里打了断点, 发现调用栈如下:&lt;br&gt;&lt;img src=&quot;/images/fragment-state-debug-onRestore.png&quot; alt=&quot;Fragment view state debug&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在&lt;code&gt;FragmentManagerImpl&lt;/code&gt;中, &lt;code&gt;moveToState()&lt;/code&gt;方法的case Fragment.CREATED中:&lt;br&gt;调用了: &lt;code&gt;f.restoreViewState(f.mSavedFragmentState);&lt;/code&gt;&lt;br&gt;此时我没有做任何保存状态的处理, 但是断点中可以看出:&lt;br&gt;&lt;img src=&quot;/images/fragment-states.png&quot; alt=&quot;Fragment states&quot;&gt;&lt;/p&gt;
-&lt;p&gt;虽然mSavedFragmentState是null, 但是mSavedViewState却有值.&lt;br&gt;所以这个View状态保存和恢复对应的入口即是上面两个图中的入口三.&lt;/p&gt;
-&lt;p&gt;这是因为我的两个fragment只new了一次, 然后保存了成员变量, 即便是Fragment重新onCreate(), 但是对应的实例仍然是同一个.&lt;br&gt;这和Activity是不同的, 因为你是无法new一个Activity的.&lt;/p&gt;
-&lt;p&gt;在上面的例子中, 如果不保存Fragment的引用, 每次都new Fragment, 那么View的状态是不会被保存的, 因为不同实例间的状态传递只有在系统销毁恢复的情况下才会发生(入口一).&lt;br&gt;如果我们需要在不同的实例间传递状态, 就需要用到下面的方法:&lt;/p&gt;
-&lt;h2 id=&quot;不同Fragment实例间的状态保存和恢复&quot;&gt;&lt;a href=&quot;#不同Fragment实例间的状态保存和恢复&quot; class=&quot;headerlink&quot; title=&quot;不同Fragment实例间的状态保存和恢复&quot;&gt;&lt;/a&gt;不同Fragment实例间的状态保存和恢复&lt;/h2&gt;&lt;p&gt;这里对应的是入口2, 不同于入口1和3, 它们是自动的, 入口2是用户主动保存和恢复的情形.&lt;br&gt;自己主动保存Fragment的状态, 可以调用FragmentManager的这个方法:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public abstract Fragment.SavedState saveFragmentInstanceState(Fragment f);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;它的实现是这样的:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; Fragment.&lt;span class=&quot;function&quot;&gt;SavedState &lt;span class=&quot;title&quot;&gt;saveFragmentInstanceState&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Fragment fragment)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (fragment.mIndex &amp;lt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        throwException(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; IllegalStateException(&lt;span class=&quot;string&quot;&gt;&quot;Fragment &quot;&lt;/span&gt; + fragment&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                + &lt;span class=&quot;string&quot;&gt;&quot; is not currently in the FragmentManager&quot;&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (fragment.mState &amp;gt; Fragment.INITIALIZING) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Bundle result = saveFragmentBasicState(fragment);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; result != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt; ? &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Fragment.SavedState(result) : &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;返回的数据类型是: Fragment.SavedState, 这个state可以通过Fragment的这个方法设置给自己:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setInitialSavedState&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(SavedState state)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (mIndex &amp;gt;= &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; IllegalStateException(&lt;span class=&quot;string&quot;&gt;&quot;Fragment already active&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    mSavedFragmentState = state != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt; &amp;amp;&amp;amp; state.mState != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ? state.mState : &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;但是注意只能在Fragment被加入之前设置, 这是一个初始状态.&lt;br&gt;利用这两个方法可以更加自由地保存和恢复状态, 而不依赖于Activity.&lt;br&gt;这样处理以后, 不必保存Fragment的引用, 每次切换的时候虽然都new了新的实例, 但是旧的实例的状态可以设置给新实例.&lt;/p&gt;
-&lt;p&gt;例子代码:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@State&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;SparseArray&amp;lt;Fragment.SavedState&amp;gt; savedStateSparseArray = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; SparseArray&amp;lt;&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onTab1Clicked&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// save current tab&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Fragment tab2Fragment = getSupportFragmentManager().findFragmentByTag(Tab2Fragment.TAG);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (tab2Fragment != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        saveFragmentState(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, tab2Fragment);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// restore last state&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Tab1Fragment tab1Fragment = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Tab1Fragment();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    restoreFragmentState(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, tab1Fragment);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// show new tab&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    getSupportFragmentManager().beginTransaction()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .replace(R.id.content_container, tab1Fragment, Tab1Fragment.TAG)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .commit();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;saveFragmentState&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; index, Fragment fragment)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Fragment.SavedState savedState = getSupportFragmentManager().saveFragmentInstanceState(fragment);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    savedStateSparseArray.put(index, savedState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;restoreFragmentState&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; index, Fragment fragment)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Fragment.SavedState savedState = savedStateSparseArray.get(index);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    fragment.setInitialSavedState(savedState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;注意这里用了SparseArray来存储Fragment的状态, 并且加上了&lt;code&gt;@State&lt;/code&gt;, 这样在Activity重建的时候其中的内容也能够被恢复.&lt;/p&gt;
-&lt;h2 id=&quot;Back-stack中的fragment&quot;&gt;&lt;a href=&quot;#Back-stack中的fragment&quot; class=&quot;headerlink&quot; title=&quot;Back stack中的fragment&quot;&gt;&lt;/a&gt;Back stack中的fragment&lt;/h2&gt;&lt;p&gt;有一点很特殊的是, 当Fragment从back stack中返回, 实际上是经历了一次View的销毁和重建, 但是它本身并没有被重建.&lt;br&gt;即View状态需要重建, 实例状态不需要重建.&lt;/p&gt;
-&lt;p&gt;举个例子说明这种情形: Fragment被另一个Fragment replace(), 并且压入back stack中, 此时它的View是被销毁的, 但是它本身并没有被销毁.&lt;br&gt;也即, 它走到了onDestroyView(), 却没有走&lt;code&gt;onDestroy()&lt;/code&gt;和&lt;code&gt;onDetact()&lt;/code&gt;.&lt;br&gt;等back回来的时候, 它的view会被重建, 重新从onCreateView()开始走生命周期.&lt;br&gt;在这整个过程中, 该Fragment中的成员变量是保持不变的, 只有View会被重新创建.&lt;br&gt;在这个过程中, instance state的saving并没有发生.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;所以, 很多时候Fragment还需要考虑的是在没有Activity帮助的情形下(Activity并没有可能重建的情形), 自身View状态的保存.&lt;/strong&gt;&lt;br&gt;此时要注意一些不容易发现的错误, 比如List的新实例需要重新setAdapter等.&lt;/p&gt;
-&lt;h2 id=&quot;Fragment-setRetainInstance&quot;&gt;&lt;a href=&quot;#Fragment-setRetainInstance&quot; class=&quot;headerlink&quot; title=&quot;Fragment setRetainInstance&quot;&gt;&lt;/a&gt;Fragment setRetainInstance&lt;/h2&gt;&lt;p&gt;Fragment有一个相关方法:&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/Fragment.html#setRetainInstance(boolean&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;setRetainInstance&lt;/a&gt;)&lt;br&gt;这个方法设置为true的时候表示, 即便activity重建了, 但是fragment的实例并不被重建.&lt;br&gt;注意此方法只对没有放在back stack中的fragment生效.&lt;br&gt;什么时候要用这个方法呢? 处理configuration change的时候:&lt;br&gt;&lt;a href=&quot;http://www.androiddesignpatterns.com/2013/04/retaining-objects-across-config-changes.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Handling Configuration Changes with Fragments&lt;/a&gt;&lt;br&gt;这样, 当屏幕旋转, Activity重建, 但是其中的fragment和fragment正在执行的任务不必重建.&lt;br&gt;更多解释可以参见:&lt;br&gt;&lt;a href=&quot;http://stackoverflow.com/questions/11182180/understanding-fragments-setretaininstanceboolean&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/11182180/understanding-fragments-setretaininstanceboolean&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://stackoverflow.com/questions/11160412/why-use-fragmentsetretaininstanceboolean&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/11160412/why-use-fragmentsetretaininstanceboolean&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;注意这个方法只是针对&lt;strong&gt;configuration change&lt;/strong&gt;, 并不影响用户主动关闭和系统销毁的情况:&lt;br&gt;当activity被用户主动finish, 其中的所有fragments仍然会被销毁.&lt;br&gt;当activity不在最顶端, memory不够了, 系统仍然可能会销毁activity和其中的fragments.&lt;/p&gt;
-&lt;h1 id=&quot;View的状态保存和恢复&quot;&gt;&lt;a href=&quot;#View的状态保存和恢复&quot; class=&quot;headerlink&quot; title=&quot;View的状态保存和恢复&quot;&gt;&lt;/a&gt;View的状态保存和恢复&lt;/h1&gt;&lt;p&gt;View的状态保存和恢复主要是依赖于下面几个方法:&lt;br&gt;保存: &lt;code&gt;saveHierarchyState()&lt;/code&gt; -&amp;gt; &lt;code&gt;dispatchSaveInstanceState()&lt;/code&gt; -&amp;gt; &lt;code&gt;onSaveInstanceState()&lt;/code&gt;&lt;br&gt;恢复: &lt;code&gt;restoreHierarchyState()&lt;/code&gt; -&amp;gt; &lt;code&gt;dispatchRestoreInstanceState()&lt;/code&gt; -&amp;gt; &lt;code&gt;onRestoreInstanceState()&lt;/code&gt;&lt;br&gt;还有两个重要的前提条件是View要有id, 并且&lt;code&gt;setSavedEnabled()&lt;/code&gt;为true.(这个值默认为true).&lt;br&gt;在系统的widget里(比如TextView, EditText, Checkbox等), 这些都是已经被处理好的, 我们只需要给View赋予id, Activity和Fragment重建的时候会自动恢复其中的状态. (这里的Fragment恢复对应入口一和入口三, 入口二属于跨实例新建的情况).&lt;/p&gt;
-&lt;p&gt;但是如果你要使用第三方的自定义View, 就需要确认一下它们内部是否有状态保存和恢复的代码.&lt;br&gt;如果不行你就需要继承该自定义View, 然后实现这两个方法:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// Assumes that SomeSmartButton is a 3rd Party view that&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// View State Saving/Restoring are not implemented internally&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;SomeBetterSmartButton&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;SomeSmartButton&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; Parcelable &lt;span class=&quot;title&quot;&gt;onSaveInstanceState&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Bundle bundle = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Bundle();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// Save current View&#39;s state here&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; bundle;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onRestoreInstanceState&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Parcelable state)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onRestoreInstanceState(state);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// Restore View&#39;s state here&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h1 id=&quot;WebView的状态保存和恢复&quot;&gt;&lt;a href=&quot;#WebView的状态保存和恢复&quot; class=&quot;headerlink&quot; title=&quot;WebView的状态保存和恢复&quot;&gt;&lt;/a&gt;WebView的状态保存和恢复&lt;/h1&gt;&lt;p&gt;WebView的状态保存和恢复不像其他原生View一样是自动完成的.&lt;br&gt;WebView不是继承自View的.&lt;br&gt;如果我们把WebView放在布局里, 不加处理, 那么Activity或Fragment重建的过程中, WebView的状态就会丢失, 变成初始状态.&lt;/p&gt;
-&lt;p&gt;在Fragment的onSaveInstanceState()里面可以加入如下代码来保存WebView的状态:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public void onSaveInstanceState(Bundle outState) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    super.onSaveInstanceState(outState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    webView.saveState(outState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;然后在初始化的时候, 增加判断, 不必每次都打开初始链接:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;if (savedInstanceState != null) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    webView.restoreState(savedInstanceState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    webView.loadUrl(TEST_URL);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;这样处理以后, 在重新建立的时候, WebView的状态就能恢复到离开前的页面.&lt;br&gt;不论WebView是放在Activity里还是Fragment里, 这个方法都适用.&lt;/p&gt;
-&lt;p&gt;但是Fragment还有另一种情况, 即Fragment被压入back stack, 此时它没有被destroy(), 所以没有调用onSavedInstanceState()这个方法.&lt;br&gt;这种情况返回的时候, 会从onCreateView()开始, 并且savedInstanceState为null, 于是其中WebView之前的状态在此时丢失了.&lt;br&gt;解决这种情况可以利用Fragment实例并未销毁的条件, 增加一个成员变量bundle, 保存WebView的状态, 最终解决如下:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; Bundle webViewState;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onViewCreated&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(View view, Bundle savedInstanceState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onViewCreated(view, savedInstanceState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ButterKnife.bind(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, view);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    initWebView();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (webViewState != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;//Fragment实例并未被销毁, 重新create view&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        webView.restoreState(webViewState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (savedInstanceState != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;//Fragment实例被销毁重建&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        webView.restoreState(savedInstanceState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;//全新Fragment&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        webView.loadUrl(TEST_URL);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onPause&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onPause();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    webView.onPause();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;//Fragment不被销毁(Fragment被加入back stack)的情况下, 依靠Fragment中的成员变量保存WebView状态&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    webViewState = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Bundle();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    webView.saveState(webViewState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onSaveInstanceState&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle outState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onSaveInstanceState(outState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;//Fragment被销毁的情况, 依靠outState保存WebView状态&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (webView != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        webView.saveState(outState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;本文完整例子相关实验代码可见:&lt;br&gt;&lt;a href=&quot;https://github.com/mengdd/HelloActivityAndFragment&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HelloActivityAndFragment&lt;/a&gt;&lt;br&gt;中的State Restore Demo.&lt;/p&gt;
-&lt;h1 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h1&gt;&lt;p&gt;Developer Android:&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/Fragment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Fragment Reference&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentManager.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android FragmentManager Reference&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Posts:&lt;br&gt;&lt;a href=&quot;https://developer.android.com/training/basics/activity-lifecycle/recreating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Recreating an Activity&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/mengdd/archive/2012/12/17/2822291.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Activity的重新创建&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.jianshu.com/p/180d2cc0feb5&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;从源码角度剖析Fragment核心知识点&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.jianshu.com/p/bd4a8be309c8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Fragment源码阅读笔记&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://inthecheesefactory.com/blog/fragment-state-saving-best-practices/en&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Real Best Practices to Save/Restore Activity’s and Fragment’s state&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0327/2648.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android中保存和恢复Fragment状态的最好方法&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.androiddesignpatterns.com/2013/04/retaining-objects-across-config-changes.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Handling Configuration Changes with Fragments&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://trickyandroid.com/saving-android-view-state-correctly/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Saving Android View state correctly&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Tools:&lt;br&gt;&lt;a href=&quot;https://github.com/frankiesardo/icepick&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;icepick&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android中的状态保存和恢复&quot;&gt;&lt;a href=&quot;#Android中的状态保存和恢复&quot; class=&quot;headerlink&quot; title=&quot;Android中的状态保存和恢复&quot;&gt;&lt;/a&gt;Android中的状态保存和恢复&lt;/h1&gt;&lt;p&gt;Android中的状态保存和恢复, 包括Activity和Fragment以及其中View的状态处理.&lt;br&gt;Activity的状态除了其中的View和Fragment的状态之外, 还需要用户手动保存一些成员变量.&lt;br&gt;Fragment的状态有它自己的实例状态和其中的View状态, 因为其生命周期的灵活性和实际需要的不同, 情况会多一些.&lt;br&gt;根据源码, 列出了Fragment中实例状态和View状态保存和恢复的几个入口, 便于分析查看.&lt;br&gt;最后专门讲了WebView状态保存和恢复, 问题及处理.&lt;br&gt;还有一个工具类icepick的介绍.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Fragment" scheme="http://mengdd.github.io/tags/Fragment/"/>
-    
-      <category term="WebView" scheme="http://mengdd.github.io/tags/WebView/"/>
     
   </entry>
   
