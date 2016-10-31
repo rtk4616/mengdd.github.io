@@ -533,10 +533,10 @@
   
   <entry>
     <title>Android 7.1 App Shortcuts使用</title>
-    <link href="http://mengdd.github.io/uncategorized/2016/10/25/nougat-app-shortcuts/"/>
-    <id>http://mengdd.github.io/uncategorized/2016/10/25/nougat-app-shortcuts/</id>
+    <link href="http://mengdd.github.io/Android/Nougat/2016/10/25/nougat-app-shortcuts/"/>
+    <id>http://mengdd.github.io/Android/Nougat/2016/10/25/nougat-app-shortcuts/</id>
     <published>2016-10-25T06:00:01.000Z</published>
-    <updated>2016-10-25T06:41:32.000Z</updated>
+    <updated>2016-10-31T03:30:39.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-7-1-App-Shortcuts使用&quot;&gt;&lt;a href=&quot;#Android-7-1-App-Shortcuts使用&quot; class=&quot;headerlink&quot; title=&quot;Android 7.1 App Shortcuts使用&quot;&gt;&lt;/a&gt;Android 7.1 App Shortcuts使用&lt;/h1&gt;&lt;p&gt;Android 7.1已经发了预览版, 这里是API Overview: &lt;a href=&quot;https://developer.android.com/preview/api-overview.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;API overview&lt;/a&gt;.&lt;br&gt;其中App Shortcuts是新提供的一种快捷访问方式, 形式为长按应用图标出现的长条.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/images/app-shortcuts.png&quot; alt=&quot;app shortcuts&quot;&gt;&lt;br&gt;图来自: &lt;a href=&quot;https://catinean.com/2016/10/20/exploring-android-nougat-7-1-app-shortcuts/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Exploring Android Nougat 7.1 App Shortcuts&lt;/a&gt;&lt;/p&gt;
@@ -589,6 +589,10 @@
     
     </summary>
     
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/categories/Android/Nougat/"/>
+    
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
@@ -602,10 +606,10 @@
   
   <entry>
     <title>Android MVP模式 谷歌官方代码解读</title>
-    <link href="http://mengdd.github.io/uncategorized/2016/10/22/android-architecture-google-samples-analysis/"/>
-    <id>http://mengdd.github.io/uncategorized/2016/10/22/android-architecture-google-samples-analysis/</id>
+    <link href="http://mengdd.github.io/Android/Architecture/2016/10/22/android-architecture-google-samples-analysis/"/>
+    <id>http://mengdd.github.io/Android/Architecture/2016/10/22/android-architecture-google-samples-analysis/</id>
     <published>2016-10-22T11:11:27.000Z</published>
-    <updated>2016-10-22T10:26:02.000Z</updated>
+    <updated>2016-10-31T03:30:24.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Google官方MVP-Sample代码解读&quot;&gt;&lt;a href=&quot;#Google官方MVP-Sample代码解读&quot; class=&quot;headerlink&quot; title=&quot;Google官方MVP Sample代码解读&quot;&gt;&lt;/a&gt;Google官方MVP Sample代码解读&lt;/h1&gt;&lt;p&gt;关于Android程序的构架, 当前(2016.10)最流行的模式即为MVP模式, Google官方提供了Sample代码来展示这种模式的用法.&lt;br&gt;Repo地址: &lt;a href=&quot;https://github.com/googlesamples/android-architecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-architecture&lt;/a&gt;.&lt;br&gt;本文为阅读官方sample代码的阅读笔记和分析.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -767,6 +771,10 @@
       &lt;h1 id=&quot;Google官方MVP-Sample代码解读&quot;&gt;&lt;a href=&quot;#Google官方MVP-Sample代码解读&quot; class=&quot;headerlink&quot; title=&quot;Google官方MVP Sample代码解读&quot;&gt;&lt;/a&gt;Google官方MVP Sample代码解读&lt;/h1&gt;&lt;p&gt;关于Android程序的构架, 当前(2016.10)最流行的模式即为MVP模式, Google官方提供了Sample代码来展示这种模式的用法.&lt;br&gt;Repo地址: &lt;a href=&quot;https://github.com/googlesamples/android-architecture&quot;&gt;android-architecture&lt;/a&gt;.&lt;br&gt;本文为阅读官方sample代码的阅读笔记和分析.&lt;/p&gt;
     
     </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Architecture" scheme="http://mengdd.github.io/categories/Android/Architecture/"/>
     
     
       <category term="Content Provider" scheme="http://mengdd.github.io/tags/Content-Provider/"/>
