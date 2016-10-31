@@ -515,10 +515,6 @@
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
-    
       <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
@@ -526,6 +522,10 @@
       <category term="Alarm" scheme="http://mengdd.github.io/tags/Alarm/"/>
     
       <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
       <category term="TensorFlow" scheme="http://mengdd.github.io/tags/TensorFlow/"/>
     
@@ -785,15 +785,15 @@
     
       <category term="Data Binding" scheme="http://mengdd.github.io/tags/Data-Binding/"/>
     
-      <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
-    
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
+      <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
     
       <category term="Clean Architecture" scheme="http://mengdd.github.io/tags/Clean-Architecture/"/>
     
       <category term="Loader" scheme="http://mengdd.github.io/tags/Loader/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
   </entry>
   
@@ -1468,9 +1468,9 @@
     
       <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
     
-      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
-    
       <category term="Annotation" scheme="http://mengdd.github.io/tags/Annotation/"/>
+    
+      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
       <category term="pre-launch" scheme="http://mengdd.github.io/tags/pre-launch/"/>
     
@@ -2128,11 +2128,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
-    
       <category term="ScaleType" scheme="http://mengdd.github.io/tags/ScaleType/"/>
     
       <category term="Devices" scheme="http://mengdd.github.io/tags/Devices/"/>
+    
+      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
     
       <category term="Scrolling" scheme="http://mengdd.github.io/tags/Scrolling/"/>
     
