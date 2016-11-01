@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-11-01T10:13:57.000Z</updated>
+  <updated>2016-11-01T10:18:13.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2016/11/01/android-weekly-notes-issue-229/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2016/11/01/android-weekly-notes-issue-229/</id>
     <published>2016-11-01T10:01:50.000Z</published>
-    <updated>2016-11-01T10:13:57.000Z</updated>
+    <updated>2016-11-01T10:18:13.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-229&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-229&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #229&quot;&gt;&lt;/a&gt;Android Weekly Issue #229&lt;/h1&gt;&lt;p&gt;October 30th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-229&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #229&lt;/a&gt;&lt;br&gt;Android Weekly笔记, 本期内容包括: 性能库Pury的插件化; 一种新的多选设计和实现; 音频播放; Dagger的测试mock方案; ConstraintLayout的链式约束; Mobile Vision API的二维码扫描功能; RxJava的使用缺陷讨论; SOLID原则图解.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -72,7 +72,7 @@
 &lt;li&gt;加上&lt;code&gt;easymvp-rx&lt;/code&gt;插件后, 遵循Clean Architecture原则, 加入了domain层, 提供了UseCase的基类;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;Input-Mask&quot;&gt;&lt;a href=&quot;#Input-Mask&quot; class=&quot;headerlink&quot; title=&quot;Input Mask&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/RedMadRobot/input-mask-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Input Mask&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个小的工具库, 可以按格式显示用户的输入. 比如在输入上加括号, 每三位数字空一格之类的.&lt;/p&gt;
-&lt;h2 id=&quot;sdk-artifact-sync&quot;&gt;&lt;a href=&quot;#sdk-artifact-sync&quot; class=&quot;headerlink&quot; title=&quot;sdk-artifact-sync&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/JakeWharton/sdk-artifact-sync&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sdk-artifact-sync&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个脚本, 同步你local Android SDK中的所有artifaccts到一个remote的Maven artifact host上.&lt;/p&gt;
+&lt;h2 id=&quot;sdk-artifact-sync&quot;&gt;&lt;a href=&quot;#sdk-artifact-sync&quot; class=&quot;headerlink&quot; title=&quot;sdk-artifact-sync&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/JakeWharton/sdk-artifact-sync&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sdk-artifact-sync&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个脚本, 同步你local Android SDK中的所有artifacts到一个remote的Maven artifact host上.&lt;/p&gt;
 &lt;h2 id=&quot;material-remixer&quot;&gt;&lt;a href=&quot;#material-remixer&quot; class=&quot;headerlink&quot; title=&quot;material-remixer&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/material-foundation/material-remixer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;material-remixer&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;material-remixer是一个工具, 利用它可以实时调整产品的UI参数. 目标平台: Android, iOS和Web都能用的工具.&lt;/p&gt;
 &lt;h1 id=&quot;News&quot;&gt;&lt;a href=&quot;#News&quot; class=&quot;headerlink&quot; title=&quot;News&quot;&gt;&lt;/a&gt;News&lt;/h1&gt;&lt;h2 id=&quot;ConstraintLayout-beta-2-is-now-available&quot;&gt;&lt;a href=&quot;#ConstraintLayout-beta-2-is-now-available&quot; class=&quot;headerlink&quot; title=&quot;ConstraintLayout beta 2 is now available&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://sites.google.com/a/android.com/tools/recent/constraintlayoutbeta2isnowavailable&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ConstraintLayout beta 2 is now available&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;ConstraintLayout beta 2发布啦, 修改了一些issues并改善了性能.&lt;/p&gt;
 &lt;h2 id=&quot;Google-Play-Services-Release-Notes&quot;&gt;&lt;a href=&quot;#Google-Play-Services-Release-Notes&quot; class=&quot;headerlink&quot; title=&quot;Google Play Services Release Notes&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://developers.google.com/android/guides/releases#october_2016_-_v98&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Google Play Services Release Notes&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Google Play Service 9.8发布了.&lt;/p&gt;
