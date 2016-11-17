@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-11-11T08:13:03.000Z</updated>
+  <updated>2016-11-17T10:42:18.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -16,11 +16,125 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Android Weekly Notes Issue 231</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/</id>
+    <published>2016-11-17T10:25:37.000Z</published>
+    <updated>2016-11-17T10:42:18.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-231&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-231&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #231&quot;&gt;&lt;/a&gt;Android Weekly Issue #231&lt;/h1&gt;&lt;p&gt;November 13th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-231&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #231&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Android Weekly阅读笔记, Issue #231, 本期内容包括: MVP中的View做成passive响应式的, 返回Observable; Android Studio使用技巧; &lt;code&gt;BottomNavigationView&lt;/code&gt;的使用; App tracking; Kotlin; 用Kotlin实现的Filter Animation效果; Dagger2的&lt;code&gt;Scope&lt;/code&gt;和&lt;code&gt;Subcomponent&lt;/code&gt;使用; Espresso测试中mock dagger注入; Android和Java中的Reference和内存泄露; MVVM + RxJava构架实际使用的经验分享; 还有TV以及Audio相关的内容等.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Reactive-Views-retrying-errors&quot;&gt;&lt;a href=&quot;#Reactive-Views-retrying-errors&quot; class=&quot;headerlink&quot; title=&quot;Reactive Views: retrying errors&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/xing-engineering/reactive-views-retrying-errors-a59fffbd827f#.m2n2c6v6i&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reactive Views: retrying errors&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们的app近来重构采用了RxJava和Clean Architecture, 进而想要使用&lt;a href=&quot;http://martinfowler.com/eaaDev/PassiveScreen.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;passive view&lt;/a&gt;, 然后他们就发现了关于Reactive Views的一系列文章, 尤其是这一篇: &lt;a href=&quot;https://artemzin.com/blog/rxui-talking-to-android-view-layer-in-a-reactive-way/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxUi: Talking to Android View layer in a Reactive way&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;他们的主要工作就是把View也改成响应式的, 即View返回Observable. 在Presenter初始化的时候和View的Observable绑定, 所以事件发生的时候会trigger到presenter.&lt;/p&gt;
+&lt;p&gt;这项工作主要需要依赖于&lt;a href=&quot;https://github.com/JakeWharton/RxBinding&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxBinding&lt;/a&gt;, 由于RxBinding没有提供长按RecyclerView item的bind, 所以他们自己写了&lt;a href=&quot;https://gist.github.com/Shyish/92257b6348312b541aa4f6b205eb14e4&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一个&lt;/a&gt;.&lt;br&gt;Snackbar也是: &lt;a href=&quot;https://gist.github.com/Shyish/8af4cd774320c57ced0ec21f8840797e&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SnackbarActionOnSubscribe&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;作者采用这种方式重构了他们的代码, 使得view变成完全passive的.&lt;/p&gt;
+&lt;p&gt;并且其中还有一个&lt;code&gt;retryWhen()&lt;/code&gt;使用的解释: &lt;a href=&quot;http://blog.danlew.net/2016/01/25/rxjavas-repeatwhen-and-retrywhen-explained/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava’s repeatWhen and retryWhen, explained&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;50-Android-Studio-Tips-Tricks-amp-Resources&quot;&gt;&lt;a href=&quot;#50-Android-Studio-Tips-Tricks-amp-Resources&quot; class=&quot;headerlink&quot; title=&quot;50 Android Studio Tips, Tricks &amp;amp; Resources&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@mmbialas/50-android-studio-tips-tricks-resources-you-should-be-familiar-with-as-an-android-developer-af86e7cf56d2#.gzyghprf0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;50 Android Studio Tips, Tricks &amp;amp; Resources&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;设置Logcat的颜色; 使用&lt;a href=&quot;https://medium.com/google-developers/writing-more-code-by-writing-less-code-with-android-studio-live-templates-244f648d17c7#.2p54ef8jr&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Live Templates&lt;/a&gt;; 快捷键使用; Android Studio的插件; 还有一些资源分享.&lt;/p&gt;
+&lt;h2 id=&quot;BottomNavigationView&quot;&gt;&lt;a href=&quot;#BottomNavigationView&quot; class=&quot;headerlink&quot; title=&quot;BottomNavigationView&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/bottomnavigationview/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BottomNavigationView&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Design support library 25.0.0推出了BottomNavigationView, 本文介绍其使用.&lt;/p&gt;
+&lt;h2 id=&quot;The-key-concepts-of-app-tracking-for-developers&quot;&gt;&lt;a href=&quot;#The-key-concepts-of-app-tracking-for-developers&quot; class=&quot;headerlink&quot; title=&quot;The key concepts of app tracking for developers&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@sergii/the-key-concepts-of-app-tracking-for-developers-a11bebf1e65e#.mhdpwt9x9&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The key concepts of app tracking for developers&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章主要讲移动应用数据追踪和分析的几个原则:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;为什么你需要tracking;  &lt;/li&gt;
+&lt;li&gt;什么时候需要收集数据; &lt;/li&gt;
+&lt;li&gt;用什么Analytics tool; &lt;/li&gt;
+&lt;li&gt;用户隐私相关; &lt;/li&gt;
+&lt;li&gt;代码设计模式以及挑战; &lt;/li&gt;
+&lt;li&gt;如何debug和测试输出;&lt;/li&gt;
+&lt;li&gt;如何分析数据;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Why-You-Must-Try-Kotlin-For-Android-Development&quot;&gt;&lt;a href=&quot;#Why-You-Must-Try-Kotlin-For-Android-Development&quot; class=&quot;headerlink&quot; title=&quot;Why You Must Try Kotlin For Android Development?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@amitshekhar/why-you-must-try-kotlin-for-android-development-e14d00c8084b#.z0xt70upu&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Why You Must Try Kotlin For Android Development?&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;为什么要使用Kotlin来做Android开发? 简洁, 安全, 灵活, 和Java可互相操作.&lt;/p&gt;
+&lt;p&gt;文中介绍了Null Safety, Smart Casting, Default Arguments, Named Arguments, Functional Programming, Concise Code.&lt;/p&gt;
+&lt;h2 id=&quot;Implementing-Filter-Animation-in-Kotlin&quot;&gt;&lt;a href=&quot;#Implementing-Filter-Animation-in-Kotlin&quot; class=&quot;headerlink&quot; title=&quot;Implementing Filter Animation in Kotlin&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://yalantis.com/blog/develop-filter-animation-kotlin-android/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Implementing Filter Animation in Kotlin&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们搞了一个应用FIT, 为女性IT工作者提供社区和交流平台, 想要成为Quora加上Linkedin.&lt;/p&gt;
+&lt;p&gt;为了让用户选择分类和过滤器tag进行搜索, 他们开发了一个组件: &lt;a href=&quot;https://github.com/Yalantis/SearchFilter&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SearchFilter&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;文中讨论了这种设计的动画实现, 库是用Kotlin写的.&lt;/p&gt;
+&lt;h2 id=&quot;DI-101-—-Part-3&quot;&gt;&lt;a href=&quot;#DI-101-—-Part-3&quot; class=&quot;headerlink&quot; title=&quot;DI 101 — Part 3&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/di-101/di-101-part-3-f0136e67db8#.rdp4e4fwc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DI 101 — Part 3&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;本文讲什么是Scope, 如何定义Scope, 如何使用Scope和@Subcomponent.&lt;/p&gt;
+&lt;p&gt;Subcomponent会继承父类的所有bindings.&lt;/p&gt;
+&lt;p&gt;作者定义了一个Activity的Scope, 然后定义了一个Subcomponent专门给这个Activity用, 这个Subcomponent只在这个Activity的生命周期里存活. 代码例子比较简洁易懂.&lt;/p&gt;
+&lt;h2 id=&quot;How-Dagger-2-Helps-In-Android-Espresso-Tests&quot;&gt;&lt;a href=&quot;#How-Dagger-2-Helps-In-Android-Espresso-Tests&quot; class=&quot;headerlink&quot; title=&quot;How Dagger 2 Helps In Android Espresso Tests&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.ottodroid.net/?p=514&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How Dagger 2 Helps In Android Espresso Tests&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章介绍了如何在写Espresso测试的时候, 使用一个测试用的Dagger Component.&lt;/p&gt;
+&lt;h2 id=&quot;Finally-understanding-how-references-work-in-Android-and-Java&quot;&gt;&lt;a href=&quot;#Finally-understanding-how-references-work-in-Android-and-Java&quot; class=&quot;headerlink&quot; title=&quot;Finally understanding how references work in Android and Java&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/google-developer-experts/finally-understanding-how-references-work-in-android-and-java-26a0d9c92f83#.95piwft68&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Finally understanding how references work in Android and Java&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章讲了Java中的引用类型和Android中的内存泄露.&lt;/p&gt;
+&lt;p&gt;Java中的引用类型:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Strong reference&lt;/li&gt;
+&lt;li&gt;WeakReference&lt;/li&gt;
+&lt;li&gt;SoftReference&lt;/li&gt;
+&lt;li&gt;PhantomReference&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;作者详细介绍了每一种引用并用例子说明了使用场景. &lt;/p&gt;
+&lt;h2 id=&quot;MVVM-RxJava-Learnings&quot;&gt;&lt;a href=&quot;#MVVM-RxJava-Learnings&quot; class=&quot;headerlink&quot; title=&quot;MVVM + RxJava: Learnings&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/upday-devs/mvvm-rxjava-learnings-1819423f9592#.3rat89dq5&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MVVM + RxJava: Learnings&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们的新闻应用采用MVVM + RxJava架构, 本文总结了他们遇到的问题和学到的两点:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;暴露状态, 而不是事件;&lt;/li&gt;
+&lt;li&gt;所有的事情都应该通过ViewModel.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;Adding-TV-Channels-to-Your-App-with-the-TIF-Companion-Library&quot;&gt;&lt;a href=&quot;#Adding-TV-Channels-to-Your-App-with-the-TIF-Companion-Library&quot; class=&quot;headerlink&quot; title=&quot;Adding TV Channels to Your App with the TIF Companion Library&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://android-developers.blogspot.com.au/2016/11/adding-tv-channels-to-your-app-with-the-tif-companion-library.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Adding TV Channels to Your App with the TIF Companion Library&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;TV Input Framework(TIF)和Android TV让第三方应用开发者可以很容易地创建自己的电视频道. &lt;/p&gt;
+&lt;h2 id=&quot;Background-Audio-in-Android-With-MediaSessionCompat&quot;&gt;&lt;a href=&quot;#Background-Audio-in-Android-With-MediaSessionCompat&quot; class=&quot;headerlink&quot; title=&quot;Background Audio in Android With MediaSessionCompat&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://code.tutsplus.com/tutorials/background-audio-in-android-with-mediasessioncompat--cms-27030&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Background Audio in Android With MediaSessionCompat&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Android support library中的&lt;code&gt;MediaSessionCompat&lt;/code&gt;使用, 以及如何用它来做一个背景音乐.&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;FirebaseUI-Android&quot;&gt;&lt;a href=&quot;#FirebaseUI-Android&quot; class=&quot;headerlink&quot; title=&quot;FirebaseUI-Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/firebase/FirebaseUI-Android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FirebaseUI-Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;FirebaseUI for Android — UI Bindings for Firebase.&lt;/p&gt;
+&lt;h2 id=&quot;ChipsLayoutManager&quot;&gt;&lt;a href=&quot;#ChipsLayoutManager&quot; class=&quot;headerlink&quot; title=&quot;ChipsLayoutManager&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/BelooS/ChipsLayoutManager&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ChipsLayoutManager&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个自定义的RecyclerView的layout manager, 流式地显示很多小块的TextView.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-231&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-231&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #231&quot;&gt;&lt;/a&gt;Android Weekly Issue #231&lt;/h1&gt;&lt;p&gt;November 13th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-231&quot;&gt;Android Weekly Issue #231&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Android Weekly阅读笔记, Issue #231, 本期内容包括: MVP中的View做成passive响应式的, 返回Observable; Android Studio使用技巧; &lt;code&gt;BottomNavigationView&lt;/code&gt;的使用; App tracking; Kotlin; 用Kotlin实现的Filter Animation效果; Dagger2的&lt;code&gt;Scope&lt;/code&gt;和&lt;code&gt;Subcomponent&lt;/code&gt;使用; Espresso测试中mock dagger注入; Android和Java中的Reference和内存泄露; MVVM + RxJava构架实际使用的经验分享; 还有TV以及Audio相关的内容等.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
+    
+      <category term="TV" scheme="http://mengdd.github.io/tags/TV/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
+      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
+    
+      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
+    
+      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
+    
+      <category term="Passive View" scheme="http://mengdd.github.io/tags/Passive-View/"/>
+    
+      <category term="RxBinding" scheme="http://mengdd.github.io/tags/RxBinding/"/>
+    
+      <category term="Tracking" scheme="http://mengdd.github.io/tags/Tracking/"/>
+    
+      <category term="Analytics" scheme="http://mengdd.github.io/tags/Analytics/"/>
+    
+      <category term="Scope" scheme="http://mengdd.github.io/tags/Scope/"/>
+    
+      <category term="Subcomponent" scheme="http://mengdd.github.io/tags/Subcomponent/"/>
+    
+      <category term="Reference" scheme="http://mengdd.github.io/tags/Reference/"/>
+    
+      <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
+    
+      <category term="Media" scheme="http://mengdd.github.io/tags/Media/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android Weekly Notes Issue 230</title>
     <link href="http://mengdd.github.io/Android/Android-Weekly/2016/11/11/android-weekly-notes-issue-230/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2016/11/11/android-weekly-notes-issue-230/</id>
     <published>2016-11-11T04:57:21.000Z</published>
-    <updated>2016-11-11T08:13:03.000Z</updated>
+    <updated>2016-11-13T02:57:01.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-230&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-230&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #230&quot;&gt;&lt;/a&gt;Android Weekly Issue #230&lt;/h1&gt;&lt;p&gt;November 6th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-230&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #230&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的链式约束; Kotlin的Async-Await; RxJava2.0; 屏幕旋转导致的Activity重建; Throwable类的设计问题; Espresso测试中如何等待异步请求返回; Kotlin的扩展和运算符重载; Android KeyStore实现用户验证.&lt;/p&gt;
@@ -44,7 +158,7 @@
 &lt;h2 id=&quot;RxJava-and-Retrofit-Throwing-a-Tantrum&quot;&gt;&lt;a href=&quot;#RxJava-and-Retrofit-Throwing-a-Tantrum&quot; class=&quot;headerlink&quot; title=&quot;RxJava and Retrofit Throwing a Tantrum&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/square-corner-blog/no-cause-for-concern-rxjava-and-retrofit-throwing-a-tantrum-96c9e4ba8a6c#.p1ck4zijo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava and Retrofit Throwing a Tantrum&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者讨论了他们在项目中遇到的一个问题.&lt;br&gt;他们用&lt;code&gt;RxJavaHooks.enableAssemblyTracking();&lt;/code&gt;来收集RxJava崩溃栈信息, 可以显示出到底是哪一个Observable崩了.&lt;br&gt;使用这个工具以后发现了一个问题, 进而研究了JDK的&lt;code&gt;Throwable&lt;/code&gt;类.&lt;/p&gt;
 &lt;p&gt;原来cause不存在(this)和cause未知(null)是两种不同的情况, 但是&lt;code&gt;Throwable&lt;/code&gt;的&lt;code&gt;getCause()&lt;/code&gt;方法都会返回null.&lt;/p&gt;
 &lt;h2 id=&quot;Retrofitting-Espresso&quot;&gt;&lt;a href=&quot;#Retrofitting-Espresso&quot; class=&quot;headerlink&quot; title=&quot;Retrofitting Espresso&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://collectiveidea.com/blog/archives/2016/10/13/retrofitting-espresso/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Retrofitting Espresso&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;用Espresso做测试, 如何等待网络请求结束再验证UI.&lt;/p&gt;
-&lt;h2 id=&quot;Composing-functions-in-Kotlin-with-extensions-and-operators&quot;&gt;&lt;a href=&quot;#Composing-functions-in-Kotlin-with-extensions-and-operators&quot; class=&quot;headerlink&quot; title=&quot;Composing functions in Kotlin with extensions and operators&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.novoda.com/blog/composing-functions-in-kotlin-with-extensions-and-operators/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Composing functions in Kotlin with extensions and operators&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;K结合otlin的extensions和operator overloading功能, 改善function, 让代码变得更优雅.&lt;/p&gt;
+&lt;h2 id=&quot;Composing-functions-in-Kotlin-with-extensions-and-operators&quot;&gt;&lt;a href=&quot;#Composing-functions-in-Kotlin-with-extensions-and-operators&quot; class=&quot;headerlink&quot; title=&quot;Composing functions in Kotlin with extensions and operators&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.novoda.com/blog/composing-functions-in-kotlin-with-extensions-and-operators/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Composing functions in Kotlin with extensions and operators&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;结合Kotlin的extensions和operator overloading功能, 改善function, 让代码变得更优雅.&lt;/p&gt;
 &lt;h2 id=&quot;Authentication-sucks-Bad-security-too&quot;&gt;&lt;a href=&quot;#Authentication-sucks-Bad-security-too&quot; class=&quot;headerlink&quot; title=&quot;Authentication sucks. Bad security too&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@flschweiger/authentication-sucks-bad-security-too-345ed20463d4#.yl40vbtgd&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Authentication sucks. Bad security too&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个例子, 说明为什么老的验证方法用户体验不好, 我们如何在仍然考虑用户安全的情况下进行改善.&lt;/p&gt;
 &lt;p&gt;解决方案是用Android 6.0推出的Android Keystore.&lt;br&gt;作者展示了如何实现并提供了&lt;a href=&quot;https://github.com/flschweiger/SafeApp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Demo&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&quot;Design&quot;&gt;&lt;a href=&quot;#Design&quot; class=&quot;headerlink&quot; title=&quot;Design&quot;&gt;&lt;/a&gt;Design&lt;/h1&gt;&lt;h2 id=&quot;Eight-don’ts-for-your-Material-Design-app&quot;&gt;&lt;a href=&quot;#Eight-don’ts-for-your-Material-Design-app&quot; class=&quot;headerlink&quot; title=&quot;Eight don’ts for your Material Design app&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.prototypr.io/common-material-design-bad-practices-to-avoid-b7995f251329#.ij9u38lu7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Eight don’ts for your Material Design app&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Material Design app需要避免的8个点.&lt;/p&gt;
@@ -73,13 +187,13 @@
     
       <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
       <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
@@ -310,17 +424,17 @@
     
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
-      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
       <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
     
+      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
+    
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
+      <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
     
       <category term="Pury" scheme="http://mengdd.github.io/tags/Pury/"/>
     
       <category term="Multiselection" scheme="http://mengdd.github.io/tags/Multiselection/"/>
-    
-      <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
     
       <category term="Barcode Detection" scheme="http://mengdd.github.io/tags/Barcode-Detection/"/>
     
@@ -832,13 +946,13 @@
     
       <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
     
-      <category term="Alarm" scheme="http://mengdd.github.io/tags/Alarm/"/>
-    
-      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
-    
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
+      <category term="Alarm" scheme="http://mengdd.github.io/tags/Alarm/"/>
+    
+      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
     
       <category term="TensorFlow" scheme="http://mengdd.github.io/tags/TensorFlow/"/>
     
@@ -1098,15 +1212,15 @@
     
       <category term="Data Binding" scheme="http://mengdd.github.io/tags/Data-Binding/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
-    
       <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Clean Architecture" scheme="http://mengdd.github.io/tags/Clean-Architecture/"/>
     
       <category term="Loader" scheme="http://mengdd.github.io/tags/Loader/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
   </entry>
   
@@ -1254,8 +1368,6 @@
     
       <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
     
-      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
       <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
     
       <category term="Face Detection" scheme="http://mengdd.github.io/tags/Face-Detection/"/>
@@ -1275,6 +1387,8 @@
       <category term="Interface" scheme="http://mengdd.github.io/tags/Interface/"/>
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
+    
+      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
       <category term="Notification" scheme="http://mengdd.github.io/tags/Notification/"/>
     
@@ -1380,15 +1494,15 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
       <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
-      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
@@ -1524,13 +1638,13 @@
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
-      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
       <category term="Android 7.0" scheme="http://mengdd.github.io/tags/Android-7-0/"/>
     
       <category term="Quick Settings" scheme="http://mengdd.github.io/tags/Quick-Settings/"/>
     
       <category term="Shared-Element Transtion" scheme="http://mengdd.github.io/tags/Shared-Element-Transtion/"/>
+    
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
       <category term="ORM" scheme="http://mengdd.github.io/tags/ORM/"/>
     
@@ -1983,13 +2097,13 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
       <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
     
@@ -2435,11 +2549,11 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
+    
       <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-      <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
     
       <category term="ScaleType" scheme="http://mengdd.github.io/tags/ScaleType/"/>
     
@@ -2595,11 +2709,11 @@
     
       <category term="AnimatedVectorDrawable" scheme="http://mengdd.github.io/tags/AnimatedVectorDrawable/"/>
     
+      <category term="Bottom Sheet" scheme="http://mengdd.github.io/tags/Bottom-Sheet/"/>
+    
       <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
     
       <category term="Docker" scheme="http://mengdd.github.io/tags/Docker/"/>
-    
-      <category term="Bottom Sheet" scheme="http://mengdd.github.io/tags/Bottom-Sheet/"/>
     
       <category term="Certificate" scheme="http://mengdd.github.io/tags/Certificate/"/>
     
@@ -2792,71 +2906,6 @@
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
       <category term="AutoValue" scheme="http://mengdd.github.io/tags/AutoValue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 218</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/08/18/android-weekly-notes-issue-218/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2016/08/18/android-weekly-notes-issue-218/</id>
-    <published>2016-08-18T05:20:56.000Z</published>
-    <updated>2016-09-16T02:42:35.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-218&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-218&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #218&quot;&gt;&lt;/a&gt;Android Weekly Issue #218&lt;/h1&gt;&lt;p&gt;August 14th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-218&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://androidweekly.net/issues/issue-218&lt;/a&gt;&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h2&gt;&lt;h3 id=&quot;PathMorphing-with-AnimatedVectorDrawables&quot;&gt;&lt;a href=&quot;#PathMorphing-with-AnimatedVectorDrawables&quot; class=&quot;headerlink&quot; title=&quot;PathMorphing with AnimatedVectorDrawables&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://lewismcgeary.github.io/posts/animated-vector-drawable-pathMorphing/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PathMorphing with AnimatedVectorDrawables&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Android 5.0 推出了&lt;a href=&quot;https://developer.android.com/reference/android/graphics/drawable/VectorDrawable.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;VectorDrawable&lt;/a&gt;, 矢量图为处理多种屏幕尺寸的带来了很多好处. 这篇文章先介绍了VectorDrawable的使用, 然后主要讲如何实时操纵图像的改变, 用&lt;a href=&quot;https://developer.android.com/reference/android/graphics/drawable/AnimatedVectorDrawable.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AnimatedVectorDrawable&lt;/a&gt;实现一个图像变形的效果.&lt;br&gt;文中的例子是Android和Apple的log在互相变化.&lt;br&gt;&lt;a href=&quot;https://github.com/lewismcgeary/AndroidtoAppleVectorLogo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;source code available&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Android-UI-Instrumentation-test-with-Espresso&quot;&gt;&lt;a href=&quot;#Android-UI-Instrumentation-test-with-Espresso&quot; class=&quot;headerlink&quot; title=&quot;Android UI Instrumentation test with Espresso&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://mayojava.github.io/android/android-ui-instrumentation-test-with-espresso/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android UI Instrumentation test with Espresso&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;用Espresso写UI功能测试, 通常是: 定位UI元素, 然后与其交互, 检查UI元素的状态.&lt;br&gt;三种主要的组件是: ViewMatchers, ViewActions 和ViewAssertions.&lt;br&gt;一个简短的例子:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;onView(withId(R.id.my_view))            &lt;span class=&quot;comment&quot;&gt;// withId(R.id.my_view) - ViewMatcher&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .perform(click())                  &lt;span class=&quot;comment&quot;&gt;// click() - ViewAction&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .check(matches(isDisplayed()));   &lt;span class=&quot;comment&quot;&gt;//matches(isDisplayed()) - ViewAssertion&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;为了测试不受animation的影响, 有时候可能需要把设备上的Developer Options里的下面几个animation全关掉:&lt;br&gt;Window animation scale&lt;br&gt;Transition animation scale&lt;br&gt;Animator duration scale&lt;br&gt;然后这个文章里有具体的例子介绍如何写并且运行测试, 还附有相关源码.&lt;/p&gt;
-&lt;h3 id=&quot;How-to-Build-an-Android-App-for-Fire-TV-Part-1&quot;&gt;&lt;a href=&quot;#How-to-Build-an-Android-App-for-Fire-TV-Part-1&quot; class=&quot;headerlink&quot; title=&quot;How to Build an Android App for Fire TV - Part 1&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/amazon-appstore/developing-for-the-living-room-how-to-build-an-android-app-for-fire-tv-part-1-6ae108106fd2#.n39tl15pa&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to Build an Android App for Fire TV - Part 1&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;创建在亚马逊的Fire TV上跑的Android应用.&lt;br&gt;文后可以点进part 2.&lt;/p&gt;
-&lt;h3 id=&quot;Android-Wear-Development-for-beginners&quot;&gt;&lt;a href=&quot;#Android-Wear-Development-for-beginners&quot; class=&quot;headerlink&quot; title=&quot;Android Wear Development for beginners&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/android-news/android-wear-development-for-beginners-82c2b06ff13a#.15v0ar2g3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Wear Development for beginners&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Complication是指手表上显示的除了小时和分钟之外的东西, 比如, 一个电池指示标志.&lt;br&gt;使用了Complication API之后, 用户就可以自己选一个地方, 然后从应用的列表中选一个东东来显示.&lt;br&gt;Wear应用是嵌入到一个主应用里面的, 当google play上主应用的apk被安装到手机上的时候, Wearable应用会自动安装在配对的设备上.&lt;br&gt;这篇文章详细介绍了如何创建一个Wear应用, 代码在&lt;a href=&quot;https://github.com/moyheen/radar-watch-face&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;github&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;官方文档: &lt;a href=&quot;https://developer.android.com/wear/preview/features/complications.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Watch Face Complications&lt;/a&gt;&lt;br&gt;官方sample: &lt;a href=&quot;https://github.com/googlesamples/android-WatchFace&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-WatchFace&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Router-—-Everything-in-its-Right-Place&quot;&gt;&lt;a href=&quot;#Router-—-Everything-in-its-Right-Place&quot; class=&quot;headerlink&quot; title=&quot;Router — Everything in its Right Place&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/stories-from-eyeem/router-everything-in-its-right-place-4ca437871052#.cvou4493z&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Router — Everything in its Right Place&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;之前有一篇文章介绍了用装饰者模式来构建高度模块化的Android应用: &lt;a href=&quot;https://medium.com/stories-from-eyeem/creating-highly-modular-android-apps-933271fbdb7d#.4gtrccg9n&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Creating Highly Modular Android Apps&lt;/a&gt;&lt;br&gt;那篇文章里也有一个例子&lt;a href=&quot;https://github.com/eyeem/decorator&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Decorator&lt;/a&gt;.&lt;br&gt;这篇文章讲同样采用装饰者思想的一个库: &lt;a href=&quot;https://github.com/eyeem/router&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Router&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Router首先基于一个将URL映射到程序界面的库: &lt;a href=&quot;https://github.com/clayallsopp/routable-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;routable-android&lt;/a&gt;&lt;br&gt;Router在此基础上做出了一些扩展和改进, 可以用一个map文件(YAML/JSON/XML)来定义基本的构架.&lt;br&gt;输入是URL(可以带参数), 根据map进行解析, 然后传到plugins, 然后每个plugin创造一部分的输出, 当左右plugins的工作结束后, 输出就可用了(输出是由多个plugins组装而成的).&lt;br&gt;文末附有&lt;a href=&quot;https://github.com/eyeem/router/tree/master/app&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sample&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;Boosting-app-performance-with-reflectionless-de-serialization&quot;&gt;&lt;a href=&quot;#Boosting-app-performance-with-reflectionless-de-serialization&quot; class=&quot;headerlink&quot; title=&quot;Boosting app performance with reflectionless (de)serialization&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://makingvimeo.com/post/148808044404/boosting-app-performance-with-reflectionless&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Boosting app performance with reflectionless (de)serialization&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;这篇文章研究了在解析JSON响应的时候如何提高效率.&lt;br&gt;作者他们的应用Vimeo Android用了Retrofit来做网络请求, 用Gson来反序列化, 不好的一点就是有点慢, 因为Gson用反射来解析JSON. 为了改进,他们想要去除反射.&lt;br&gt;他们创建了自己的Gson TypeAdapters, 并且利用程序中各个不同大小的model来测量对比了了反序列化的时间.&lt;br&gt;他们的实验测试了不同的机器对于不同大小model的处理, 在多数情况下, 不用反射会提高性能, 但是也有例外, 在解析很大的model时, 在高性能的机器上, 反而是使用反射的情况比较快.&lt;br&gt;他们的库: &lt;a href=&quot;https://github.com/vimeo/stag-java&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;stag-java&lt;/a&gt;&lt;br&gt;STAG: Speedy Type Adapter Generation.&lt;/p&gt;
-&lt;h3 id=&quot;Introduction-to-Automated-Android-Testing-Part-4&quot;&gt;&lt;a href=&quot;#Introduction-to-Automated-Android-Testing-Part-4&quot; class=&quot;headerlink&quot; title=&quot;Introduction to Automated Android Testing - Part 4&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://riggaroo.co.za/introduction-android-testing-part-4/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Introduction to Automated Android Testing - Part 4&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;讲如何写测试的系列文章, 有一个案例sample: &lt;a href=&quot;https://github.com/riggaroo/GithubUsersSearchApp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GithubUsersSearchApp&lt;/a&gt;.&lt;br&gt;举例了一个MVP的真实例子, 然后给P写单元测试.&lt;br&gt;Presenter里有一个CompositeSubscription, 用来管理RxJava的subscriptions, detach的时候会注销所有的订阅, 防止了内存泄露和可能存在危险的view操作.&lt;br&gt;还创建了一个Contract接口, 把View和Presenter的接口定义写在里面.&lt;br&gt;这里面还有很机智的一点是把RxJava要用到的Scheduler也从presenter的构造函数传入, 这样在测试的时候就可以使用&lt;code&gt;Schedulers.immediate()&lt;/code&gt;, 而在View里面我们就按实际情况使用其他.&lt;/p&gt;
-&lt;h3 id=&quot;Introduction-to-Android-Testing-Part-3&quot;&gt;&lt;a href=&quot;#Introduction-to-Android-Testing-Part-3&quot; class=&quot;headerlink&quot; title=&quot;Introduction to Android Testing - Part 3&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://riggaroo.co.za/introduction-android-testing-part3/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Introduction to Android Testing - Part 3&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;这应该是跟上面那条一个系列文章的第三篇.&lt;br&gt;介绍了如何用Retrofit和RxJava请求Github API然后解析到models.&lt;br&gt;后面是写单元测试, 步骤很清楚, given, when, then.&lt;br&gt;可以从中学习一下怎么给这种Retrofit + RxJava的程序写单元测试.&lt;/p&gt;
-&lt;h3 id=&quot;Git-as-a-secure-private-Maven-repository&quot;&gt;&lt;a href=&quot;#Git-as-a-secure-private-Maven-repository&quot; class=&quot;headerlink&quot; title=&quot;Git as a secure private Maven repository&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://jeroenmols.com/blog/2016/02/05/wagongit/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Git as a secure private Maven repository&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://bitbucket.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bitbucket&lt;/a&gt; is a web-based hosting service for projects using Git.&lt;br&gt;讲了如何使用BitBucket或者Github作为一个private的Maven repository.&lt;br&gt;例子: &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WagonGitExample&lt;/a&gt;&lt;br&gt;Gradle 脚本: &lt;a href=&quot;https://github.com/JeroenMols/GitAsMaven&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitAsMaven&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Crash-reporting-in-Firebase&quot;&gt;&lt;a href=&quot;#Crash-reporting-in-Firebase&quot; class=&quot;headerlink&quot; title=&quot;Crash reporting in Firebase&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://segunfamisa.com/posts/firebase-crash-reporting&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Crash reporting in Firebase&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;比较简单的一个文章, 如何set up Firebase的crash reporting.&lt;br&gt;其实Firebase Crash Reporting一旦构建好之后, 不需要加java代码, 所有uncaught的异常都是自动报告的.&lt;br&gt;&lt;a href=&quot;https://firebase.google.com/docs/crash/android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Firebase Report Crashes&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;Isometric-AnimatedVectorDrawable-–-Part-1&quot;&gt;&lt;a href=&quot;#Isometric-AnimatedVectorDrawable-–-Part-1&quot; class=&quot;headerlink&quot; title=&quot;Isometric AnimatedVectorDrawable – Part 1&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/isometric-animatedvectordrawable-part-1/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Isometric AnimatedVectorDrawable – Part 1&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;神奇的&lt;a href=&quot;https://developer.android.com/reference/android/graphics/drawable/AnimatedVectorDrawable.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AnimatedVectorDrawable&lt;/a&gt;, 这篇文章讲了用它来实现栅格地形图, 游戏里可以升降的草地的类似的东东. (看文章里的图吧, 我也形容不好.)&lt;br&gt;遗憾的是pathData animation当前在VectorDrawableCompat library暂不支持, 所以文中所讲的技术只能在api 21及其之上使用.&lt;br&gt;文中的例子有9个方块, 4个三角形, 把SVG作为矢量图VectorDrawable导入Android Studio, 然后给每一个path起名字.&lt;br&gt;本文只是part 1, 预告了下一篇文章将讲如何动画.&lt;br&gt;Source code available here: &lt;a href=&quot;https://github.com/StylingAndroid/IsometricAnimatedVector/tree/Part1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IsometricAnimatedVector&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Design&quot;&gt;&lt;a href=&quot;#Design&quot; class=&quot;headerlink&quot; title=&quot;Design&quot;&gt;&lt;/a&gt;Design&lt;/h2&gt;&lt;h3 id=&quot;Don’t-just-port-an-iOS-navigation-model-to-Android&quot;&gt;&lt;a href=&quot;#Don’t-just-port-an-iOS-navigation-model-to-Android&quot; class=&quot;headerlink&quot; title=&quot;Don’t just port an iOS navigation model to Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.androidpolice.com/2016/08/13/opinion-bottom-navigation-material-guidelines-platform-awareness/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Don’t just port an iOS navigation model to Android&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;关于bottom nav bars的讨论.&lt;br&gt;Hamburger menu有时候感觉不是很理想, 是因为抽屉里的items总是隐藏状态, 用户不易发现和使用.&lt;br&gt;Bottom bar则把每一个item都时刻展现给用户, 在iOS上使用得很成功.&lt;br&gt;Google在2016年3月提供了Guides: &lt;a href=&quot;https://material.google.com/components/bottom-navigation.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bottom navigation&lt;/a&gt;.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;什么时候该用bottom navigation呢?&lt;br&gt;应用有3到5个top级别的目的地, 且它们需要直接被访问, 从各个目的地之间转换, 并且它们应该是具有同等重要性的.&lt;/li&gt;
-&lt;li&gt;什么时候bottom navigation不适用呢?&lt;br&gt;不能因为怕用户看不见一个东东, 就把它放在bottom nav bar, 作为推广手段.&lt;br&gt;bottom nav bar也不是用来放menu的, 比如放不下了加个more tab, 展开以后是更多的二级页面入口; 也不要用来放一些弹出窗口, 它们同样也不是top level的目的地.&lt;br&gt;bottom nav bar不能放低级别的目的地.&lt;br&gt;最后文章强调了每个平台应该遵从自己的特性, 对Android来说, 如果完全拷贝iOS的设计可能不是一个好主意.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h2&gt;&lt;h3 id=&quot;stag-java&quot;&gt;&lt;a href=&quot;#stag-java&quot; class=&quot;headerlink&quot; title=&quot;stag-java&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/vimeo/stag-java&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;stag-java&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Stag通过减少反射改善了Gson的性能, 为你的model对象自动生成TypeAdapters.&lt;/p&gt;
-&lt;h3 id=&quot;Router&quot;&gt;&lt;a href=&quot;#Router&quot; class=&quot;headerlink&quot; title=&quot;Router&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/eyeem/router&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Router&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;一个基于routable-android的新的Android URL router, 摒弃了Activity/Intent依赖, 并加入了新的特性.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-218&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-218&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #218&quot;&gt;&lt;/a&gt;Android Weekly Issue #218&lt;/h1&gt;&lt;p&gt;August 14th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-218&quot;&gt;http://androidweekly.net/issues/issue-218&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="AnimatedVectorDrawable" scheme="http://mengdd.github.io/tags/AnimatedVectorDrawable/"/>
-    
-      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
-    
-      <category term="TV" scheme="http://mengdd.github.io/tags/TV/"/>
-    
-      <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
-    
-      <category term="Router" scheme="http://mengdd.github.io/tags/Router/"/>
-    
-      <category term="Performance" scheme="http://mengdd.github.io/tags/Performance/"/>
-    
-      <category term="Maven" scheme="http://mengdd.github.io/tags/Maven/"/>
-    
-      <category term="Bottom Navigation" scheme="http://mengdd.github.io/tags/Bottom-Navigation/"/>
     
   </entry>
   

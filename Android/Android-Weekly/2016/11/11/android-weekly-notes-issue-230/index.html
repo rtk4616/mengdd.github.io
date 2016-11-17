@@ -19,7 +19,7 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 <meta property="og:site_name" content="Meng's pages">
 <meta property="og:description" content="Android Weekly Issue #230November 6th, 2016Android Weekly Issue #230.
 Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的链式约束; Kotlin的Async-Await; RxJava2.0; 屏幕旋转导致的Activity重建; Throwable类的设计问题; Es">
-<meta property="og:updated_time" content="2016-11-11T08:13:03.000Z">
+<meta property="og:updated_time" content="2016-11-13T02:57:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Weekly Notes Issue 230">
 <meta name="twitter:description" content="Android Weekly Issue #230November 6th, 2016Android Weekly Issue #230.
@@ -129,7 +129,7 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 <h2 id="RxJava-and-Retrofit-Throwing-a-Tantrum"><a href="#RxJava-and-Retrofit-Throwing-a-Tantrum" class="headerlink" title="RxJava and Retrofit Throwing a Tantrum"></a><a href="https://medium.com/square-corner-blog/no-cause-for-concern-rxjava-and-retrofit-throwing-a-tantrum-96c9e4ba8a6c#.p1ck4zijo" target="_blank" rel="external">RxJava and Retrofit Throwing a Tantrum</a></h2><p>作者讨论了他们在项目中遇到的一个问题.<br>他们用<code>RxJavaHooks.enableAssemblyTracking();</code>来收集RxJava崩溃栈信息, 可以显示出到底是哪一个Observable崩了.<br>使用这个工具以后发现了一个问题, 进而研究了JDK的<code>Throwable</code>类.</p>
 <p>原来cause不存在(this)和cause未知(null)是两种不同的情况, 但是<code>Throwable</code>的<code>getCause()</code>方法都会返回null.</p>
 <h2 id="Retrofitting-Espresso"><a href="#Retrofitting-Espresso" class="headerlink" title="Retrofitting Espresso"></a><a href="http://collectiveidea.com/blog/archives/2016/10/13/retrofitting-espresso/" target="_blank" rel="external">Retrofitting Espresso</a></h2><p>用Espresso做测试, 如何等待网络请求结束再验证UI.</p>
-<h2 id="Composing-functions-in-Kotlin-with-extensions-and-operators"><a href="#Composing-functions-in-Kotlin-with-extensions-and-operators" class="headerlink" title="Composing functions in Kotlin with extensions and operators"></a><a href="https://www.novoda.com/blog/composing-functions-in-kotlin-with-extensions-and-operators/" target="_blank" rel="external">Composing functions in Kotlin with extensions and operators</a></h2><p>K结合otlin的extensions和operator overloading功能, 改善function, 让代码变得更优雅.</p>
+<h2 id="Composing-functions-in-Kotlin-with-extensions-and-operators"><a href="#Composing-functions-in-Kotlin-with-extensions-and-operators" class="headerlink" title="Composing functions in Kotlin with extensions and operators"></a><a href="https://www.novoda.com/blog/composing-functions-in-kotlin-with-extensions-and-operators/" target="_blank" rel="external">Composing functions in Kotlin with extensions and operators</a></h2><p>结合Kotlin的extensions和operator overloading功能, 改善function, 让代码变得更优雅.</p>
 <h2 id="Authentication-sucks-Bad-security-too"><a href="#Authentication-sucks-Bad-security-too" class="headerlink" title="Authentication sucks. Bad security too"></a><a href="https://medium.com/@flschweiger/authentication-sucks-bad-security-too-345ed20463d4#.yl40vbtgd" target="_blank" rel="external">Authentication sucks. Bad security too</a></h2><p>一个例子, 说明为什么老的验证方法用户体验不好, 我们如何在仍然考虑用户安全的情况下进行改善.</p>
 <p>解决方案是用Android 6.0推出的Android Keystore.<br>作者展示了如何实现并提供了<a href="https://github.com/flschweiger/SafeApp" target="_blank" rel="external">Demo</a>.</p>
 <h1 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h1><h2 id="Eight-don’ts-for-your-Material-Design-app"><a href="#Eight-don’ts-for-your-Material-Design-app" class="headerlink" title="Eight don’ts for your Material Design app"></a><a href="https://blog.prototypr.io/common-material-design-bad-practices-to-avoid-b7995f251329#.ij9u38lu7" target="_blank" rel="external">Eight don’ts for your Material Design app</a></h2><p>Material Design app需要避免的8个点.</p>
@@ -150,7 +150,7 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Android-Weekly/">Android Weekly</a><a href="/tags/Espresso/">Espresso</a><a href="/tags/Retrofit/">Retrofit</a><a href="/tags/RxJava/">RxJava</a><a href="/tags/MVP/">MVP</a><a href="/tags/Kotlin/">Kotlin</a><a href="/tags/Mockito/">Mockito</a><a href="/tags/ConstraintLayout/">ConstraintLayout</a><a href="/tags/Async-Await/">Async-Await</a><a href="/tags/RxJava2-0/">RxJava2.0</a><a href="/tags/Activity/">Activity</a><a href="/tags/Rotation/">Rotation</a><a href="/tags/JDK/">JDK</a><a href="/tags/Authentication/">Authentication</a><a href="/tags/KeyStore/">KeyStore</a><a href="/tags/proguard/">proguard</a><a href="/tags/WifiManager/">WifiManager</a><a href="/tags/ConfigurationManager/">ConfigurationManager</a><a href="/tags/Material-Design/">Material Design</a>
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Android-Weekly/">Android Weekly</a><a href="/tags/Espresso/">Espresso</a><a href="/tags/Kotlin/">Kotlin</a><a href="/tags/Retrofit/">Retrofit</a><a href="/tags/RxJava/">RxJava</a><a href="/tags/MVP/">MVP</a><a href="/tags/Mockito/">Mockito</a><a href="/tags/ConstraintLayout/">ConstraintLayout</a><a href="/tags/Async-Await/">Async-Await</a><a href="/tags/RxJava2-0/">RxJava2.0</a><a href="/tags/Activity/">Activity</a><a href="/tags/Rotation/">Rotation</a><a href="/tags/JDK/">JDK</a><a href="/tags/Authentication/">Authentication</a><a href="/tags/KeyStore/">KeyStore</a><a href="/tags/proguard/">proguard</a><a href="/tags/WifiManager/">WifiManager</a><a href="/tags/ConfigurationManager/">ConfigurationManager</a><a href="/tags/Material-Design/">Material Design</a>
   </div>
 
 </div>
@@ -172,6 +172,14 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/" title="Android Weekly Notes Issue 231">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Android Weekly Notes Issue 231</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/Android/Retrofit/RxJava/2016/11/08/hello-retrofit-with-rxjava/"  title="Retrofit结合RxJava使用指南">
@@ -225,7 +233,7 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>27</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>28</sup></a></li>
 		  
 		
 		  
@@ -233,7 +241,7 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>13</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>14</sup></a></li>
 		  
 		
 		  
@@ -241,11 +249,11 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
 		  
 		
 		  
@@ -253,11 +261,11 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/Android/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
 		  
 		
 		  
@@ -286,15 +294,23 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>25</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>26</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>13</sup></a></li>
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>14</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>8</sup></a></li>
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVP/" title="MVP">MVP<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
 			
 		
 			
@@ -302,31 +318,11 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 			
 		
 			
-				<li><a href="/tags/MVP/" title="MVP">MVP<sup>6</sup></a></li>
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>4</sup></a></li>
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>5</sup></a></li>
 			
 		
 			
@@ -334,11 +330,15 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 			
 		
 			
-				<li><a href="/tags/Retrofit/" title="Retrofit">Retrofit<sup>3</sup></a></li>
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>3</sup></a></li>
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
 			
 		
 			
@@ -346,7 +346,11 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 			
 		
 			
-				<li><a href="/tags/Dagger/" title="Dagger">Dagger<sup>3</sup></a></li>
+				<li><a href="/tags/Retrofit/" title="Retrofit">Retrofit<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Memory-Leak/" title="Memory Leak">Memory Leak<sup>3</sup></a></li>
 			
 		
 			
@@ -354,15 +358,19 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 			
 		
 			
-				<li><a href="/tags/Reductor/" title="Reductor">Reductor<sup>2</sup></a></li>
+				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Security/" title="Security">Security<sup>2</sup></a></li>
+				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Nested-Fragments/" title="Nested Fragments">Nested Fragments<sup>2</sup></a></li>
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger/" title="Dagger">Dagger<sup>3</sup></a></li>
 			
 		
 		</ul>

@@ -1,0 +1,701 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android Weekly Notes Issue 231 | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="Android Weekly Issue #231November 13th, 2016Android Weekly Issue #231
+Android Weekly阅读笔记, Issue #231, 本期内容包括: MVP中的View做成passive响应式的, 返回Observable; Android Studio使用技巧; BottomNavigationView的使用; App tra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Weekly Notes Issue 231">
+<meta property="og:url" content="http://mengdd.github.io/Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="Android Weekly Issue #231November 13th, 2016Android Weekly Issue #231
+Android Weekly阅读笔记, Issue #231, 本期内容包括: MVP中的View做成passive响应式的, 返回Observable; Android Studio使用技巧; BottomNavigationView的使用; App tra">
+<meta property="og:updated_time" content="2016-11-17T10:42:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Weekly Notes Issue 231">
+<meta name="twitter:description" content="Android Weekly Issue #231November 13th, 2016Android Weekly Issue #231
+Android Weekly阅读笔记, Issue #231, 本期内容包括: MVP中的View做成passive响应式的, 返回Observable; Android Studio使用技巧; BottomNavigationView的使用; App tra">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/" title="Android Weekly Notes Issue 231" itemprop="url">Android Weekly Notes Issue 231</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-17T10:25:37.000Z" itemprop="datePublished"> Published 2016-11-17</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-231"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #231</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reactive-Views-retrying-errors"><span class="toc-number">2.1.</span> <span class="toc-text">Reactive Views: retrying errors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#50-Android-Studio-Tips-Tricks-amp-Resources"><span class="toc-number">2.2.</span> <span class="toc-text">50 Android Studio Tips, Tricks & Resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BottomNavigationView"><span class="toc-number">2.3.</span> <span class="toc-text">BottomNavigationView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-key-concepts-of-app-tracking-for-developers"><span class="toc-number">2.4.</span> <span class="toc-text">The key concepts of app tracking for developers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-You-Must-Try-Kotlin-For-Android-Development"><span class="toc-number">2.5.</span> <span class="toc-text">Why You Must Try Kotlin For Android Development?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Implementing-Filter-Animation-in-Kotlin"><span class="toc-number">2.6.</span> <span class="toc-text">Implementing Filter Animation in Kotlin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DI-101-—-Part-3"><span class="toc-number">2.7.</span> <span class="toc-text">DI 101 — Part 3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Dagger-2-Helps-In-Android-Espresso-Tests"><span class="toc-number">2.8.</span> <span class="toc-text">How Dagger 2 Helps In Android Espresso Tests</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Finally-understanding-how-references-work-in-Android-and-Java"><span class="toc-number">2.9.</span> <span class="toc-text">Finally understanding how references work in Android and Java</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM-RxJava-Learnings"><span class="toc-number">2.10.</span> <span class="toc-text">MVVM + RxJava: Learnings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-TV-Channels-to-Your-App-with-the-TIF-Companion-Library"><span class="toc-number">2.11.</span> <span class="toc-text">Adding TV Channels to Your App with the TIF Companion Library</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Background-Audio-in-Android-With-MediaSessionCompat"><span class="toc-number">2.12.</span> <span class="toc-text">Background Audio in Android With MediaSessionCompat</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FirebaseUI-Android"><span class="toc-number">3.1.</span> <span class="toc-text">FirebaseUI-Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ChipsLayoutManager"><span class="toc-number">3.2.</span> <span class="toc-text">ChipsLayoutManager</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Android-Weekly-Issue-231"><a href="#Android-Weekly-Issue-231" class="headerlink" title="Android Weekly Issue #231"></a>Android Weekly Issue #231</h1><p>November 13th, 2016<br><a href="http://androidweekly.net/issues/issue-231" target="_blank" rel="external">Android Weekly Issue #231</a></p>
+<p>Android Weekly阅读笔记, Issue #231, 本期内容包括: MVP中的View做成passive响应式的, 返回Observable; Android Studio使用技巧; <code>BottomNavigationView</code>的使用; App tracking; Kotlin; 用Kotlin实现的Filter Animation效果; Dagger2的<code>Scope</code>和<code>Subcomponent</code>使用; Espresso测试中mock dagger注入; Android和Java中的Reference和内存泄露; MVVM + RxJava构架实际使用的经验分享; 还有TV以及Audio相关的内容等.</p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Reactive-Views-retrying-errors"><a href="#Reactive-Views-retrying-errors" class="headerlink" title="Reactive Views: retrying errors"></a><a href="https://medium.com/xing-engineering/reactive-views-retrying-errors-a59fffbd827f#.m2n2c6v6i" target="_blank" rel="external">Reactive Views: retrying errors</a></h2><p>作者他们的app近来重构采用了RxJava和Clean Architecture, 进而想要使用<a href="http://martinfowler.com/eaaDev/PassiveScreen.html" target="_blank" rel="external">passive view</a>, 然后他们就发现了关于Reactive Views的一系列文章, 尤其是这一篇: <a href="https://artemzin.com/blog/rxui-talking-to-android-view-layer-in-a-reactive-way/" target="_blank" rel="external">RxUi: Talking to Android View layer in a Reactive way</a>.</p>
+<p>他们的主要工作就是把View也改成响应式的, 即View返回Observable. 在Presenter初始化的时候和View的Observable绑定, 所以事件发生的时候会trigger到presenter.</p>
+<p>这项工作主要需要依赖于<a href="https://github.com/JakeWharton/RxBinding" target="_blank" rel="external">RxBinding</a>, 由于RxBinding没有提供长按RecyclerView item的bind, 所以他们自己写了<a href="https://gist.github.com/Shyish/92257b6348312b541aa4f6b205eb14e4" target="_blank" rel="external">一个</a>.<br>Snackbar也是: <a href="https://gist.github.com/Shyish/8af4cd774320c57ced0ec21f8840797e" target="_blank" rel="external">SnackbarActionOnSubscribe</a>.</p>
+<p>作者采用这种方式重构了他们的代码, 使得view变成完全passive的.</p>
+<p>并且其中还有一个<code>retryWhen()</code>使用的解释: <a href="http://blog.danlew.net/2016/01/25/rxjavas-repeatwhen-and-retrywhen-explained/" target="_blank" rel="external">RxJava’s repeatWhen and retryWhen, explained</a>.</p>
+<h2 id="50-Android-Studio-Tips-Tricks-amp-Resources"><a href="#50-Android-Studio-Tips-Tricks-amp-Resources" class="headerlink" title="50 Android Studio Tips, Tricks &amp; Resources"></a><a href="https://medium.com/@mmbialas/50-android-studio-tips-tricks-resources-you-should-be-familiar-with-as-an-android-developer-af86e7cf56d2#.gzyghprf0" target="_blank" rel="external">50 Android Studio Tips, Tricks &amp; Resources</a></h2><p>设置Logcat的颜色; 使用<a href="https://medium.com/google-developers/writing-more-code-by-writing-less-code-with-android-studio-live-templates-244f648d17c7#.2p54ef8jr" target="_blank" rel="external">Live Templates</a>; 快捷键使用; Android Studio的插件; 还有一些资源分享.</p>
+<h2 id="BottomNavigationView"><a href="#BottomNavigationView" class="headerlink" title="BottomNavigationView"></a><a href="https://blog.stylingandroid.com/bottomnavigationview/" target="_blank" rel="external">BottomNavigationView</a></h2><p>Design support library 25.0.0推出了BottomNavigationView, 本文介绍其使用.</p>
+<h2 id="The-key-concepts-of-app-tracking-for-developers"><a href="#The-key-concepts-of-app-tracking-for-developers" class="headerlink" title="The key concepts of app tracking for developers"></a><a href="https://medium.com/@sergii/the-key-concepts-of-app-tracking-for-developers-a11bebf1e65e#.mhdpwt9x9" target="_blank" rel="external">The key concepts of app tracking for developers</a></h2><p>这篇文章主要讲移动应用数据追踪和分析的几个原则:</p>
+<ul>
+<li>为什么你需要tracking;  </li>
+<li>什么时候需要收集数据; </li>
+<li>用什么Analytics tool; </li>
+<li>用户隐私相关; </li>
+<li>代码设计模式以及挑战; </li>
+<li>如何debug和测试输出;</li>
+<li>如何分析数据;</li>
+</ul>
+<h2 id="Why-You-Must-Try-Kotlin-For-Android-Development"><a href="#Why-You-Must-Try-Kotlin-For-Android-Development" class="headerlink" title="Why You Must Try Kotlin For Android Development?"></a><a href="https://medium.com/@amitshekhar/why-you-must-try-kotlin-for-android-development-e14d00c8084b#.z0xt70upu" target="_blank" rel="external">Why You Must Try Kotlin For Android Development?</a></h2><p>为什么要使用Kotlin来做Android开发? 简洁, 安全, 灵活, 和Java可互相操作.</p>
+<p>文中介绍了Null Safety, Smart Casting, Default Arguments, Named Arguments, Functional Programming, Concise Code.</p>
+<h2 id="Implementing-Filter-Animation-in-Kotlin"><a href="#Implementing-Filter-Animation-in-Kotlin" class="headerlink" title="Implementing Filter Animation in Kotlin"></a><a href="https://yalantis.com/blog/develop-filter-animation-kotlin-android/" target="_blank" rel="external">Implementing Filter Animation in Kotlin</a></h2><p>作者他们搞了一个应用FIT, 为女性IT工作者提供社区和交流平台, 想要成为Quora加上Linkedin.</p>
+<p>为了让用户选择分类和过滤器tag进行搜索, 他们开发了一个组件: <a href="https://github.com/Yalantis/SearchFilter" target="_blank" rel="external">SearchFilter</a>. </p>
+<p>文中讨论了这种设计的动画实现, 库是用Kotlin写的.</p>
+<h2 id="DI-101-—-Part-3"><a href="#DI-101-—-Part-3" class="headerlink" title="DI 101 — Part 3"></a><a href="https://medium.com/di-101/di-101-part-3-f0136e67db8#.rdp4e4fwc" target="_blank" rel="external">DI 101 — Part 3</a></h2><p>本文讲什么是Scope, 如何定义Scope, 如何使用Scope和@Subcomponent.</p>
+<p>Subcomponent会继承父类的所有bindings.</p>
+<p>作者定义了一个Activity的Scope, 然后定义了一个Subcomponent专门给这个Activity用, 这个Subcomponent只在这个Activity的生命周期里存活. 代码例子比较简洁易懂.</p>
+<h2 id="How-Dagger-2-Helps-In-Android-Espresso-Tests"><a href="#How-Dagger-2-Helps-In-Android-Espresso-Tests" class="headerlink" title="How Dagger 2 Helps In Android Espresso Tests"></a><a href="http://www.ottodroid.net/?p=514" target="_blank" rel="external">How Dagger 2 Helps In Android Espresso Tests</a></h2><p>这篇文章介绍了如何在写Espresso测试的时候, 使用一个测试用的Dagger Component.</p>
+<h2 id="Finally-understanding-how-references-work-in-Android-and-Java"><a href="#Finally-understanding-how-references-work-in-Android-and-Java" class="headerlink" title="Finally understanding how references work in Android and Java"></a><a href="https://medium.com/google-developer-experts/finally-understanding-how-references-work-in-android-and-java-26a0d9c92f83#.95piwft68" target="_blank" rel="external">Finally understanding how references work in Android and Java</a></h2><p>这篇文章讲了Java中的引用类型和Android中的内存泄露.</p>
+<p>Java中的引用类型:</p>
+<ul>
+<li>Strong reference</li>
+<li>WeakReference</li>
+<li>SoftReference</li>
+<li>PhantomReference</li>
+</ul>
+<p>作者详细介绍了每一种引用并用例子说明了使用场景. </p>
+<h2 id="MVVM-RxJava-Learnings"><a href="#MVVM-RxJava-Learnings" class="headerlink" title="MVVM + RxJava: Learnings"></a><a href="https://medium.com/upday-devs/mvvm-rxjava-learnings-1819423f9592#.3rat89dq5" target="_blank" rel="external">MVVM + RxJava: Learnings</a></h2><p>作者他们的新闻应用采用MVVM + RxJava架构, 本文总结了他们遇到的问题和学到的两点:</p>
+<ol>
+<li>暴露状态, 而不是事件;</li>
+<li>所有的事情都应该通过ViewModel.</li>
+</ol>
+<h2 id="Adding-TV-Channels-to-Your-App-with-the-TIF-Companion-Library"><a href="#Adding-TV-Channels-to-Your-App-with-the-TIF-Companion-Library" class="headerlink" title="Adding TV Channels to Your App with the TIF Companion Library"></a><a href="http://android-developers.blogspot.com.au/2016/11/adding-tv-channels-to-your-app-with-the-tif-companion-library.html" target="_blank" rel="external">Adding TV Channels to Your App with the TIF Companion Library</a></h2><p>TV Input Framework(TIF)和Android TV让第三方应用开发者可以很容易地创建自己的电视频道. </p>
+<h2 id="Background-Audio-in-Android-With-MediaSessionCompat"><a href="#Background-Audio-in-Android-With-MediaSessionCompat" class="headerlink" title="Background Audio in Android With MediaSessionCompat"></a><a href="https://code.tutsplus.com/tutorials/background-audio-in-android-with-mediasessioncompat--cms-27030" target="_blank" rel="external">Background Audio in Android With MediaSessionCompat</a></h2><p>Android support library中的<code>MediaSessionCompat</code>使用, 以及如何用它来做一个背景音乐.</p>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="FirebaseUI-Android"><a href="#FirebaseUI-Android" class="headerlink" title="FirebaseUI-Android"></a><a href="https://github.com/firebase/FirebaseUI-Android" target="_blank" rel="external">FirebaseUI-Android</a></h2><p>FirebaseUI for Android — UI Bindings for Firebase.</p>
+<h2 id="ChipsLayoutManager"><a href="#ChipsLayoutManager" class="headerlink" title="ChipsLayoutManager"></a><a href="https://github.com/BelooS/ChipsLayoutManager" target="_blank" rel="external">ChipsLayoutManager</a></h2><p>一个自定义的RecyclerView的layout manager, 流式地显示很多小块的TextView.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Android-Weekly/">Android Weekly</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Dagger2/">Dagger2</a><a href="/tags/Android-Weekly/">Android Weekly</a><a href="/tags/Espresso/">Espresso</a><a href="/tags/TV/">TV</a><a href="/tags/Kotlin/">Kotlin</a><a href="/tags/RxJava/">RxJava</a><a href="/tags/MVP/">MVP</a><a href="/tags/Memory-Leak/">Memory Leak</a><a href="/tags/Tools/">Tools</a><a href="/tags/Android-Studio/">Android Studio</a><a href="/tags/MVVM/">MVVM</a><a href="/tags/BottomNavigationView/">BottomNavigationView</a><a href="/tags/Passive-View/">Passive View</a><a href="/tags/RxBinding/">RxBinding</a><a href="/tags/Tracking/">Tracking</a><a href="/tags/Analytics/">Analytics</a><a href="/tags/Scope/">Scope</a><a href="/tags/Subcomponent/">Subcomponent</a><a href="/tags/Reference/">Reference</a><a href="/tags/Audio/">Audio</a><a href="/tags/Media/">Media</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/" data-title="Android Weekly Notes Issue 231 | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Android/Android-Weekly/2016/11/11/android-weekly-notes-issue-230/"  title="Android Weekly Notes Issue 230">
+ <strong>下一篇：</strong><br/> 
+ <span>Android Weekly Notes Issue 230
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/" data-title="Android Weekly Notes Issue 231" data-url="http://mengdd.github.io/Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-231"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #231</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reactive-Views-retrying-errors"><span class="toc-number">2.1.</span> <span class="toc-text">Reactive Views: retrying errors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#50-Android-Studio-Tips-Tricks-amp-Resources"><span class="toc-number">2.2.</span> <span class="toc-text">50 Android Studio Tips, Tricks & Resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BottomNavigationView"><span class="toc-number">2.3.</span> <span class="toc-text">BottomNavigationView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-key-concepts-of-app-tracking-for-developers"><span class="toc-number">2.4.</span> <span class="toc-text">The key concepts of app tracking for developers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-You-Must-Try-Kotlin-For-Android-Development"><span class="toc-number">2.5.</span> <span class="toc-text">Why You Must Try Kotlin For Android Development?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Implementing-Filter-Animation-in-Kotlin"><span class="toc-number">2.6.</span> <span class="toc-text">Implementing Filter Animation in Kotlin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DI-101-—-Part-3"><span class="toc-number">2.7.</span> <span class="toc-text">DI 101 — Part 3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Dagger-2-Helps-In-Android-Espresso-Tests"><span class="toc-number">2.8.</span> <span class="toc-text">How Dagger 2 Helps In Android Espresso Tests</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Finally-understanding-how-references-work-in-Android-and-Java"><span class="toc-number">2.9.</span> <span class="toc-text">Finally understanding how references work in Android and Java</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM-RxJava-Learnings"><span class="toc-number">2.10.</span> <span class="toc-text">MVVM + RxJava: Learnings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-TV-Channels-to-Your-App-with-the-TIF-Companion-Library"><span class="toc-number">2.11.</span> <span class="toc-text">Adding TV Channels to Your App with the TIF Companion Library</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Background-Audio-in-Android-With-MediaSessionCompat"><span class="toc-number">2.12.</span> <span class="toc-text">Background Audio in Android With MediaSessionCompat</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FirebaseUI-Android"><span class="toc-number">3.1.</span> <span class="toc-text">FirebaseUI-Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ChipsLayoutManager"><span class="toc-number">3.2.</span> <span class="toc-text">ChipsLayoutManager</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>28</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-News/" title="Android News">Android News<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>14</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Architecture/" title="Architecture">Architecture<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/IDE/" title="IDE">IDE<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/" title="Retrofit">Retrofit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/RxJava/" title="RxJava">RxJava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/" title="Tools">Tools<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>26</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVP/" title="MVP">MVP<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Test/" title="Test">Test<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Retrofit/" title="Retrofit">Retrofit<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Memory-Leak/" title="Memory Leak">Memory Leak<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bottom-Sheet/" title="Bottom Sheet">Bottom Sheet<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger/" title="Dagger">Dagger<sup>3</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/mengdd/" target="_blank" title="圣骑士wind">圣骑士wind</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://talentprince.github.io/" target="_blank" title="长乐未央">长乐未央</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dandan Meng. <br/>
+			This is my blog. Welcome.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/mengdd" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wind"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dandanmeng';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75132850-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?83e8338b542a9fd155f68673d113e0ae";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
