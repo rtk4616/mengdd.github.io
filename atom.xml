@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-11-17T10:42:18.000Z</updated>
+  <updated>2016-11-25T08:41:36.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,142 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 232</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/11/25/android-weekly-notes-issue-232/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2016/11/25/android-weekly-notes-issue-232/</id>
+    <published>2016-11-25T08:32:57.000Z</published>
+    <updated>2016-11-25T08:41:36.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-232&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-232&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #232&quot;&gt;&lt;/a&gt;Android Weekly Issue #232&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-232&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #232&lt;/a&gt;&lt;br&gt;本期内容包括: Kotlin的优势讨论; MVVM模式结合RxJava和Retrofit的应用构架实现; Android中传感器使用; 如何给App写单元测试; Reductor的组合使用; Android应用进程被杀死的状态恢复和问题处理; Kotlin中的Anko; 后台任务处理库”Android Job”; VectorDrawable和PNG的使用问题等.&lt;/p&gt;
+&lt;p&gt;本期开源库: 给ImageView和RelativeLayout的底部加曲线; 长按弹框; Switch Button控件; 给View加深度/厚度的库.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;How-Kotlin-became-our-primary-language-for-Android&quot;&gt;&lt;a href=&quot;#How-Kotlin-became-our-primary-language-for-Android&quot; class=&quot;headerlink&quot; title=&quot;How Kotlin became our primary language for Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/uptech-team/how-kotlin-became-our-primary-language-for-android-3af7fd6a994c#.a50t4ple8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How Kotlin became our primary language for Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们team想要完全用kotlin开发一个应用.&lt;br&gt;本文是他们的心得体会.&lt;/p&gt;
+&lt;p&gt;关于函数式编程的学习, 作者推荐: &lt;a href=&quot;https://www.coursera.org/specializations/scala&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一个Scala的课程&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Kotlin的优势: 和Java可以互相调用; 函数式语言; function purity; 高阶函数(函数可以作为参数或返回值); 不可变性(val); Null-safety; Anko;  Kotlin Android extensions(移除了ButterKnife); 还有对初学者很友好, 可以摆脱很多第三方的依赖, 函数扩展等等优势.&lt;/p&gt;
+&lt;h2 id=&quot;RxJava-2-Android-MVVM-Lifecycle-App-Structure-with-Retrofit-2&quot;&gt;&lt;a href=&quot;#RxJava-2-Android-MVVM-Lifecycle-App-Structure-with-Retrofit-2&quot; class=&quot;headerlink&quot; title=&quot;RxJava 2: Android MVVM Lifecycle App Structure with Retrofit 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@manuelvicnt/rxjava2-android-mvvm-lifecycle-app-structure-with-retrofit-2-cf903849f49e#.jx3vg232m&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava 2: Android MVVM Lifecycle App Structure with Retrofit 2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者一年多以前写过一个这个文章: &lt;a href=&quot;https://medium.com/@manuelvicnt/rxjava-android-mvvm-app-structure-with-retrofit-a5605fa32c00#.44uq87s6w&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava: Android MVVM App structure with Retrofit&lt;/a&gt;, 介绍MVVM结合Retrofit和RxJava的App架构模式. 此篇文章是一年后作者对此的改进.&lt;/p&gt;
+&lt;p&gt;主要内容有:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;通过View和ViewModel之间的协议接口, 让ViewModel知道View的生命周期变化.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;RxJava2的流式类型: Completable, Maybe, Flowable的使用.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;用RxJava操作符组合网络请求: 让不同的网络请求一起发送, 并且都返回以后才得到通知 -&amp;gt; 用&lt;code&gt;.zip()&lt;/code&gt;. 顺序连接不同的网络请求 -&amp;gt; &lt;code&gt;.flatMap()&lt;/code&gt;, &lt;code&gt;.andThen()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;后台网络请求和View更新的处理: 不取消网络请求, 等View再次resume的时候检查状态再更新. 这里提供了两种选择, 一种是用前面提到的协议接口中的生命周期方法, 另一种是用&lt;code&gt;AsyncProcessor&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;Mock Retrofit的网络请求.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Tech-Talks-You-Do-Have-Something-To-Say&quot;&gt;&lt;a href=&quot;#Tech-Talks-You-Do-Have-Something-To-Say&quot; class=&quot;headerlink&quot; title=&quot;Tech Talks - You Do Have Something To Say!&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/upday-devs/tech-talks-you-do-have-something-to-say-a1a0ae23fa0#.61m7x6rj8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Tech Talks - You Do Have Something To Say!&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章鼓励你分享你的知识, 经验, 问题及解决方法,  无论是通过演讲还是写出来的方式.&lt;/p&gt;
+&lt;h2 id=&quot;Da-Real-Fragmentation-Sensors&quot;&gt;&lt;a href=&quot;#Da-Real-Fragmentation-Sensors&quot; class=&quot;headerlink&quot; title=&quot;Da Real Fragmentation - Sensors&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://pguardiola.com/blog/darealfragmentation-sensors/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Da Real Fragmentation - Sensors&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;介绍了Android中传感器的使用.&lt;/p&gt;
+&lt;h2 id=&quot;Simple-unit-tests-for-Android&quot;&gt;&lt;a href=&quot;#Simple-unit-tests-for-Android&quot; class=&quot;headerlink&quot; title=&quot;Simple unit tests for Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://stfalcon.com/en/blog/post/simple-unit-tests-for-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Simple unit tests for Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如何给你的App写简单的单元测试.&lt;/p&gt;
+&lt;h2 id=&quot;Reductor-Redux-for-Android-Part-2&quot;&gt;&lt;a href=&quot;#Reductor-Redux-for-Android-Part-2&quot; class=&quot;headerlink&quot; title=&quot;Reductor - Redux for Android. Part 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://yarikx.github.io/Reductor-composition/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reductor - Redux for Android. Part 2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这是系列文章中的一篇, 继续讲&lt;a href=&quot;https://github.com/Yarikx/reductor&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reductor&lt;/a&gt; library – Redux的Android版实现.&lt;/p&gt;
+&lt;p&gt;这篇文章结合例子将如何组合使用以及用@CombinedState来生成代码.&lt;/p&gt;
+&lt;h2 id=&quot;Android-process-death-—-and-the-big-implications-for-your-app&quot;&gt;&lt;a href=&quot;#Android-process-death-—-and-the-big-implications-for-your-app&quot; class=&quot;headerlink&quot; title=&quot;Android process death — and the (big) implications for your app&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/inloop/android-process-kill-and-the-big-implications-for-your-app-1ecbed4921cb#.iipoq2fne&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android process death — and the (big) implications for your app&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;本文探讨进程被杀死有可能导致的种种问题.&lt;/p&gt;
+&lt;p&gt;你的Android应用如果在paused或者stopped状态, 那么它任何时候都有可能会被系统杀死. 这时候你的Activity, Fragment和View状态将被保存, 当你回到应用的时候, 系统会重新启动进程, 重新创建Activity, 存储的状态会在bundle中返回.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这个过程存在一个问题&lt;/strong&gt;: 整个进程都被杀死了, 所有单例(或application scope的对象), 临时数据, 还有retained Fragment中的数据, 这些所有都会处于一种全新创建的状态, 但唯有一个不同, 一些在bundle中存储的状态被恢复出来了.&lt;/p&gt;
+&lt;p&gt;这样有可能会导致一些异常, 比如你的界面想要恢复一种状态, 但是数据已经被清空了.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如何测试这种情况呢?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用App, home键把它放进后台, 杀死app, 再恢复.&lt;/li&gt;
+&lt;li&gt;打开选项”Don’t Keep Activities”. 这种测试并不会杀死进程, 只会测试Activity的状态恢复.&lt;/li&gt;
+&lt;li&gt;设置Developer options中的Background Process Limit为”No background processes”. 这样把应用放在后台, 打开另一个应用, 再回来自己的应用, 将会重启进程.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;相关问题信号&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单例&lt;/li&gt;
+&lt;li&gt;保存可变数据的共享的实例&lt;/li&gt;
+&lt;li&gt;Application类中保存的数据和状态&lt;/li&gt;
+&lt;li&gt;可变的静态字段&lt;/li&gt;
+&lt;li&gt;Retained fragments(状态恢复了, 但是数据却丢失了)&lt;/li&gt;
+&lt;li&gt;基本上任何没有在&lt;code&gt;onSaveInstanceState()&lt;/code&gt;中保存但是你却依赖的状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些问题没有唯一的解决方案, 取决于你的应用.&lt;/p&gt;
+&lt;h2 id=&quot;400-faster-layouts-with-Anko&quot;&gt;&lt;a href=&quot;#400-faster-layouts-with-Anko&quot; class=&quot;headerlink&quot; title=&quot;400% faster layouts with Anko&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@vergauwen.simon/400-faster-layouts-with-anko-da17f32c45dd#.bz6a3y8ql&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;400% faster layouts with Anko&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者把自己的一个布局改为用Kotlin的Anko, 然后测试性能.&lt;/p&gt;
+&lt;p&gt;好处是:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;性能提升了, 避免了XML的运行时解析所花费的时间.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;可以动态地加入逻辑, 比如版本判断, 屏幕尺寸, 方向判断等.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;作者用的测试性能的工具是: &lt;a href=&quot;https://github.com/frogermcs/AndroidDevMetrics&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AndroidDevMetrics&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Background-Work-with-Android-Job-and-Dagger&quot;&gt;&lt;a href=&quot;#Background-Work-with-Android-Job-and-Dagger&quot; class=&quot;headerlink&quot; title=&quot;Background Work with Android Job and Dagger&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.adavis.info/2016/11/background-work-with-android-job-and.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Background Work with Android Job and Dagger&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在Android上的后台工作, 你可以选择&lt;code&gt;Alarm Manager&lt;/code&gt;, &lt;code&gt;Job Scheduler&lt;/code&gt;或&lt;code&gt;GCM Network Manager&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;为了帮开发者从每种实现中抽象出来, Evernote开源了一个库: Android Job. 本文介绍了这个库如何使用.&lt;/p&gt;
+&lt;h2 id=&quot;VectorDrawable-PNG&quot;&gt;&lt;a href=&quot;#VectorDrawable-PNG&quot; class=&quot;headerlink&quot; title=&quot;VectorDrawable PNG&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/vectordrawable-png/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;VectorDrawable PNG&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们的应用中有VectorDrawable的版本兼容问题, 用support library中的Compat版本也不好使, 于是他们在旧版本决定使用自动生成的png.&lt;/p&gt;
+&lt;p&gt;然后发现了生成png的颜色设置问题, 在旧版本生成的图片用的是fillColor而不是tintColor. 把fillColor设置成想要的颜色即可.&lt;/p&gt;
+&lt;h1 id=&quot;DESIGN&quot;&gt;&lt;a href=&quot;#DESIGN&quot; class=&quot;headerlink&quot; title=&quot;DESIGN&quot;&gt;&lt;/a&gt;DESIGN&lt;/h1&gt;&lt;h2 id=&quot;Depth-Library-by-Daniel-Zeller&quot;&gt;&lt;a href=&quot;#Depth-Library-by-Daniel-Zeller&quot; class=&quot;headerlink&quot; title=&quot;Depth Library by Daniel Zeller&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.androidexperiments.com/experiment/depth-library&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Depth Library by Daniel Zeller&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个应用, 展示了&lt;a href=&quot;https://github.com/danielzeller/Depth-LIB-Android-&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Depth-LIB-Android-&lt;/a&gt;的功能.&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;Crescento&quot;&gt;&lt;a href=&quot;#Crescento&quot; class=&quot;headerlink&quot; title=&quot;Crescento&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/developer-shivam/crescento/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Crescento&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在&lt;code&gt;ImageView&lt;/code&gt;和&lt;code&gt;RelativeLayout&lt;/code&gt;底部加上曲线的库.&lt;/p&gt;
+&lt;h2 id=&quot;LongPressPopup&quot;&gt;&lt;a href=&quot;#LongPressPopup&quot; class=&quot;headerlink&quot; title=&quot;LongPressPopup&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/RiccardoMoro/LongPressPopup&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;LongPressPopup&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;长按出现弹框的库.&lt;/p&gt;
+&lt;h2 id=&quot;RMSwitch&quot;&gt;&lt;a href=&quot;#RMSwitch&quot; class=&quot;headerlink&quot; title=&quot;RMSwitch&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/RiccardoMoro/RMSwitch&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RMSwitch&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Switch Button的库, 带有更多自定义扩展功能.&lt;/p&gt;
+&lt;h2 id=&quot;Depth-LIB-Android&quot;&gt;&lt;a href=&quot;#Depth-LIB-Android&quot; class=&quot;headerlink&quot; title=&quot;Depth-LIB-Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/danielzeller/Depth-LIB-Android-&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Depth-LIB-Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这个库给View加上深度/厚度.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-232&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-232&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #232&quot;&gt;&lt;/a&gt;Android Weekly Issue #232&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-232&quot;&gt;Android Weekly Issue #232&lt;/a&gt;&lt;br&gt;本期内容包括: Kotlin的优势讨论; MVVM模式结合RxJava和Retrofit的应用构架实现; Android中传感器使用; 如何给App写单元测试; Reductor的组合使用; Android应用进程被杀死的状态恢复和问题处理; Kotlin中的Anko; 后台任务处理库”Android Job”; VectorDrawable和PNG的使用问题等.&lt;/p&gt;
+&lt;p&gt;本期开源库: 给ImageView和RelativeLayout的底部加曲线; 长按弹框; Switch Button控件; 给View加深度/厚度的库.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
+    
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
+      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
+    
+      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="Sensor" scheme="http://mengdd.github.io/tags/Sensor/"/>
+    
+      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
+    
+      <category term="Unit Test" scheme="http://mengdd.github.io/tags/Unit-Test/"/>
+    
+      <category term="Process" scheme="http://mengdd.github.io/tags/Process/"/>
+    
+      <category term="State" scheme="http://mengdd.github.io/tags/State/"/>
+    
+      <category term="Anko" scheme="http://mengdd.github.io/tags/Anko/"/>
+    
+      <category term="VectorDrawable" scheme="http://mengdd.github.io/tags/VectorDrawable/"/>
+    
+      <category term="PNG" scheme="http://mengdd.github.io/tags/PNG/"/>
+    
+      <category term="Switch" scheme="http://mengdd.github.io/tags/Switch/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 231</title>
@@ -99,15 +235,17 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
-    
       <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
+    
+      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
+    
+      <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
     
       <category term="Passive View" scheme="http://mengdd.github.io/tags/Passive-View/"/>
     
@@ -122,8 +260,6 @@
       <category term="Subcomponent" scheme="http://mengdd.github.io/tags/Subcomponent/"/>
     
       <category term="Reference" scheme="http://mengdd.github.io/tags/Reference/"/>
-    
-      <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
     
       <category term="Media" scheme="http://mengdd.github.io/tags/Media/"/>
     
@@ -189,9 +325,9 @@
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
@@ -333,9 +469,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
   </entry>
   
@@ -430,11 +566,11 @@
     
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
-      <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
-    
       <category term="Pury" scheme="http://mengdd.github.io/tags/Pury/"/>
     
       <category term="Multiselection" scheme="http://mengdd.github.io/tags/Multiselection/"/>
+    
+      <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
     
       <category term="Barcode Detection" scheme="http://mengdd.github.io/tags/Barcode-Detection/"/>
     
@@ -942,13 +1078,13 @@
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
-    
-      <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
-    
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
+    
+      <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
     
       <category term="Alarm" scheme="http://mengdd.github.io/tags/Alarm/"/>
     
@@ -2099,13 +2235,13 @@
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
+      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
+    
       <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
-      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
     
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
@@ -2371,9 +2507,9 @@
     
       <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
       <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
       <category term="Okio" scheme="http://mengdd.github.io/tags/Okio/"/>
     
@@ -2551,10 +2687,6 @@
     
       <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
     
-      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
-    
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
       <category term="ScaleType" scheme="http://mengdd.github.io/tags/ScaleType/"/>
     
       <category term="Devices" scheme="http://mengdd.github.io/tags/Devices/"/>
@@ -2563,9 +2695,13 @@
     
       <category term="Scrolling" scheme="http://mengdd.github.io/tags/Scrolling/"/>
     
+      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
+    
       <category term="ExpandableRecyclerView" scheme="http://mengdd.github.io/tags/ExpandableRecyclerView/"/>
     
       <category term="Annotation" scheme="http://mengdd.github.io/tags/Annotation/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="ItemTouchHelper" scheme="http://mengdd.github.io/tags/ItemTouchHelper/"/>
     
@@ -2713,13 +2849,13 @@
     
       <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
     
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
       <category term="Docker" scheme="http://mengdd.github.io/tags/Docker/"/>
     
       <category term="Certificate" scheme="http://mengdd.github.io/tags/Certificate/"/>
     
       <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
-    
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
@@ -2805,107 +2941,6 @@
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
       <category term="Android News" scheme="http://mengdd.github.io/tags/Android-News/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 219</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/08/24/android-weekly-notes-issue-219/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2016/08/24/android-weekly-notes-issue-219/</id>
-    <published>2016-08-24T09:32:23.000Z</published>
-    <updated>2016-09-16T02:47:22.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-219&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-219&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #219&quot;&gt;&lt;/a&gt;Android Weekly Issue #219&lt;/h1&gt;&lt;p&gt;August 21st, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-219&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #219&lt;/a&gt;&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h2&gt;&lt;h3 id=&quot;Android-Bottom-Sheet&quot;&gt;&lt;a href=&quot;#Android-Bottom-Sheet&quot; class=&quot;headerlink&quot; title=&quot;Android: Bottom Sheet&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@emrullahluleci/android-bottom-sheet-30284293f066#.i3i4ggv13&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android: Bottom Sheet&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Bottom Sheet是一个从底部滑上来的组件, 关于这个&lt;a href=&quot;https://material.google.com/components/bottom-sheets.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Google Material Design&lt;/a&gt;有相关的guidelines.&lt;br&gt;这篇文章主要讲了基本使用, 比较简单.&lt;/p&gt;
-&lt;p&gt;这里私心推荐一下我自己的repo和另一个我觉得很好的教程:&lt;br&gt;&lt;a href=&quot;https://github.com/mengdd/AndroidDesignWidgetsSample&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AndroidDesignWidgetsSample&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout#bottom-sheets&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CodePath-handling-scrolls-with-CoordinatorLayout&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;DI-101-Part-1&quot;&gt;&lt;a href=&quot;#DI-101-Part-1&quot; class=&quot;headerlink&quot; title=&quot;DI 101 - Part 1&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/di-101/di-101-part-1-81896c2858a0#.sdgvcu8v3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DI 101 - Part 1&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Android平台的依赖注入.&lt;br&gt;文章开始讲了下依赖注入的概念, 当前在Android上的依赖注入最著名的是&lt;a href=&quot;http://google.github.io/dagger/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dagger2&lt;/a&gt;.&lt;br&gt;然后文章讲了如何set up dagger 2, 举了个例子, 写Module, Component, 然后使用.&lt;/p&gt;
-&lt;p&gt;这里再私心推荐一下我自己的一篇教程:&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/mengdd/p/5613889.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Using Dagger2 in Android&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Android-Security-Welcome-to-Shell-Permissions&quot;&gt;&lt;a href=&quot;#Android-Security-Welcome-to-Shell-Permissions&quot; class=&quot;headerlink&quot; title=&quot;Android Security: Welcome to Shell (Permissions)&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://doridori.github.io/Android-Security-welcome-to-shell/#sthash.2BSXwRAF.dpbs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Security: Welcome to Shell (Permissions)&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;作者在Reddit上看到了这么一句话:&lt;br&gt;&lt;code&gt;ADB is a shell that you get on a PC with the same permissions as if you were to run a shell/terminal app on the phone itself.&lt;/code&gt;&lt;br&gt;于是就写了这篇文章来讨论一下shell命令的权限问题, 关于系统底层的权限如何工作.&lt;br&gt;作者在里面提到了这本书&lt;a href=&quot;https://www.amazon.co.uk/Android-Security-Internals-Depth-Architecture/dp/1593275811&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Security Internals: An In-Depth Guide to Android’s Security Architecture&lt;/a&gt;.&lt;br&gt;关于Android安全方面的研究, 作者还建了一个repo: &lt;a href=&quot;https://github.com/doridori/Android-Security-Reference&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android-Security-Reference&lt;/a&gt;, 里面是关于安全问题的各种notes, still WIP.&lt;/p&gt;
-&lt;h3 id=&quot;Lessons-from-converting-an-app-to-100-Kotlin&quot;&gt;&lt;a href=&quot;#Lessons-from-converting-an-app-to-100-Kotlin&quot; class=&quot;headerlink&quot; title=&quot;Lessons from converting an app to 100% Kotlin&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/keepsafe-engineering/lessons-from-converting-an-app-to-100-kotlin-68984a05dcb6#.mrqsqq9ap&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Lessons from converting an app to 100% Kotlin&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;这是关于Kotlin的系列文章之part 1, part 2的文章在这里&lt;a href=&quot;https://medium.com/keepsafe-engineering/kotlin-the-good-the-bad-and-the-ugly-bf5f09b87e6f#.eyvm3gp5t&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Kotlin: The Good, The Bad, and The Ugly&lt;/a&gt;, 讨论Kotlin的语言设计.&lt;br&gt;本篇文章讲什么呢?&lt;br&gt;作者是一个应用的leader engineer, 学习了几天Kotlin之后, 觉得可以解决Java存在的一些痛点, 于是把应用改为用Kotlin了, 这篇文章是在此过程中的一些想法.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;方法数问题&lt;/strong&gt;: 因为dex对方法数有要求, 不能超过64k, 见这里:&lt;a href=&quot;https://developer.android.com/studio/build/multidex.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;multidex&lt;/a&gt;, 作者用了这个工具来统计方法数&lt;a href=&quot;https://github.com/KeepSafe/dexcount-gradle-plugin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dexcount-gradle-plugin&lt;/a&gt;. 最后证明迁移到Kotlin之后, 代码行数减少了30%, 方法数减少了10%.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Retrolambda&lt;/strong&gt;: 本来Retrolamda会生成匿名类, 并加上一些方法. Kotlin有内置的方法(apply), lamda可以直接传入, 不用生成匿名类, 不用添加额外的方法.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Guava&lt;/strong&gt;: Guava的功能已经被Kotlin的标准库覆盖, 作者举例了Guava中的&lt;code&gt;ComparisonChains&lt;/code&gt;, &lt;code&gt;Optional&lt;/code&gt;, lazy fields和&lt;code&gt;Preconditions&lt;/code&gt;等, 均有对应的Kotlin方法.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;ButterKnife&lt;/strong&gt;: ButterKnife仍然可以使用, 但是&lt;a href=&quot;https://kotlinlang.org/docs/tutorials/android-plugin.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Kotlin Android Extensions&lt;/a&gt;提供了更加自然的方式来访问绑定的views. 还有其他的方案比如&lt;a href=&quot;https://github.com/JakeWharton/kotterknife&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Kotterknife&lt;/a&gt;和&lt;a href=&quot;https://github.com/Kotlin/anko&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Anko&lt;/a&gt;, 但是这俩都各自有些缺点, 不如Kotlin Android Extensions好用.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;RxJava&lt;/strong&gt;: RxJava仍然是很好的, 但是由于对集合并没有函数式的方法, 所以有时候会用Kotlin替代一下.&lt;/p&gt;
-&lt;p&gt;Kotlin的一个优势就是它和Java可以互相调用, 所以可以逐步改动.&lt;br&gt;Intellij有自动把Java转化为Kotlin的功能, 但是有时候会有错.&lt;/p&gt;
-&lt;p&gt;作者推荐了学习Kotlin的资源:&lt;a href=&quot;http://kotlinlang.org/docs/reference/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reference&lt;/a&gt;.&lt;br&gt;最后鼓励大家使用Kotlin, 因为它现在已经足够成熟了.&lt;/p&gt;
-&lt;h3 id=&quot;Rewriting-Android-Priority-JobQueue-Lessons-Learned&quot;&gt;&lt;a href=&quot;#Rewriting-Android-Priority-JobQueue-Lessons-Learned&quot; class=&quot;headerlink&quot; title=&quot;Rewriting Android Priority JobQueue - Lessons Learned&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.birbit.com/rewriting-android-priority-jobqueue-lessons-learned/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Rewriting Android Priority JobQueue - Lessons Learned&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;作者有一个repo: &lt;a href=&quot;https://github.com/yigit/android-priority-jobqueue&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-priority-jobqueue&lt;/a&gt;, 是为Android写的任务队列管理framework, 用于调度管理后台任务.&lt;br&gt;后来Android自己也加了这个类&lt;a href=&quot;https://developer.android.com/reference/android/app/job/JobScheduler.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JobScheduler&lt;/a&gt;.&lt;br&gt;最近作者重写了这个库, 改善了稳定性并加了new features, 发了V2版, 然后写个文章分享一下心得:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;不要通过share memory来通信, 应该通过通信来share memory.&lt;br&gt;以前是多个线程访问加锁的共享资源, 线程里的一些字段标记为volatile. 新版JobManager改为单线程, 只有它可以访问共享资源, 其他线程都和JobManager通信. 这里有个文章在说这种方法&lt;a href=&quot;https://blog.golang.org/share-memory-by-communicating&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Share Memory By Communicating&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;如果你的代码需要做时钟相关的事情, 抽象出来.&lt;br&gt;这主要是为测试和CI考虑.&lt;/li&gt;
-&lt;li&gt;加新API之前多想想.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;Trello-Android-Schema-Upgrades&quot;&gt;&lt;a href=&quot;#Trello-Android-Schema-Upgrades&quot; class=&quot;headerlink&quot; title=&quot;Trello Android Schema Upgrades&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://tech.trello.com/android-schemas/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Trello Android Schema Upgrades&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Trello Android之前的数据库升级方式相当简单粗暴, 他们drop整个数据库, 重新创建, 然后用server上的数据填进来.&lt;br&gt;这样在以前是没有问题的, 因为Trello的每一个操作都会立即发送给server, 不支持离线操作, 所以server上的数据永远是最新的.&lt;br&gt;但是最近他们想支持离线工作了, 这就说明不能简单地删数据库了, 因为其中可能含有没有发给服务器的离线数据.&lt;br&gt;他们要升级数据库, 这篇文章讲了他们的升级策略和他们为数据库升级而写的测试.&lt;/p&gt;
-&lt;h3 id=&quot;Animating-the-text-lt-gt-dots-translation-on-password-field&quot;&gt;&lt;a href=&quot;#Animating-the-text-lt-gt-dots-translation-on-password-field&quot; class=&quot;headerlink&quot; title=&quot;Animating the text &amp;lt;-&amp;gt; dots translation on password field&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://twitter.com/crafty/status/766967057921417216?s=03&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Animating the text &amp;lt;-&amp;gt; dots translation on password field&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;这个链接点进去是Twitter.&lt;br&gt;在新的support库升级(August 2016, v24.2.0)&lt;a href=&quot;https://developer.android.com/topic/libraries/support-library/revisions.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Support Library Revision History&lt;/a&gt;中, TextInputLayout增加了密码可见的toggle. Nick Butcher决定给按钮和文字的改变都加上动画.&lt;br&gt;这是他的repo: &lt;a href=&quot;https://github.com/nickbutcher/plaid&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;plaid&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;Introducing-Android-code-style-guidelines-at-Buffer&quot;&gt;&lt;a href=&quot;#Introducing-Android-code-style-guidelines-at-Buffer&quot; class=&quot;headerlink&quot; title=&quot;Introducing Android code style guidelines at Buffer&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://overflow.buffer.com/2016/08/18/introducing-android-code-style-guidelines-buffer/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Introducing Android code style guidelines at Buffer&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;团队工作中, 有统一的代码风格很重要, 代码风格主要是代码的可读性和一致性相关问题.&lt;br&gt;作者他们为自己的Android App归档了新的code style: &lt;a href=&quot;https://github.com/bufferapp/android-guidelines/blob/master/project_style_guidelines.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;project style guidelines&lt;/a&gt;, 当然啦, 文档是在使用中不断成长的.&lt;br&gt;做这种事主要目标是以下几个点: 一致性, 可读性, 可维护性, 易于浏览查询, 有意义.&lt;br&gt;文档写得很详细, 涉及到各个方面, 值得一看.&lt;/p&gt;
-&lt;h3 id=&quot;Building-UserScope-with-Dagger-2&quot;&gt;&lt;a href=&quot;#Building-UserScope-with-Dagger-2&quot; class=&quot;headerlink&quot; title=&quot;Building UserScope with Dagger 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://frogermcs.github.io/building-userscope-with-dagger2/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Building UserScope with Dagger 2&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;关于Dagger 2里面自定义scope, 作者之前有一篇文章&lt;a href=&quot;http://frogermcs.github.io/dependency-injection-with-dagger-2-custom-scopes/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dependency injection with Dagger 2 - Custom scopes&lt;/a&gt;, 本篇文章继续了这个话题.&lt;br&gt;所谓scope呢, 就是限制了单例的生存周期, 有些单例可能在整个应用生命周期都存在, 另一些单例可能只需要存在一定的时间. Dagger 2默认只提供了一个scope @Singleton, 所以我们要根据需要自定义自己的scope.&lt;br&gt;作者的例子中定义了@UserScope, 以实例说明了他的实现, 还讨论了UserScope的状态恢复问题.&lt;br&gt;例子代码: &lt;a href=&quot;https://github.com/frogermcs/Dagger2Recipes-UserScope&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dagger2Recipes-UserScope&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Using-Java-8-Lambda-expressions-in-Android&quot;&gt;&lt;a href=&quot;#Using-Java-8-Lambda-expressions-in-Android&quot; class=&quot;headerlink&quot; title=&quot;Using Java 8 Lambda expressions in Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://mayojava.github.io/android/java/using-java8-lambda-expressions-in-android/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Using Java 8 Lambda expressions in Android&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Java 8的一个重要特性是加入了Lambda表达式.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Lambda表达式的语法&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;括号里是用逗号分隔的参数列表, 类型可以省略, 如果只有一个参数, 连括号也可以省略.&lt;br&gt;举例:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;TextView textView = (TextView) findViewById(R.id.text_view);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;textView.setOnLongClickListener(v -&amp;gt; System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;Long Click&quot;&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;箭头符号 &lt;code&gt;-&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;箭头后面的body是单个表达式或者一个语句块.&lt;br&gt;如果是单个表达式, java runtime会返回它的值;&lt;br&gt;如果是语句块, 用大括号&lt;code&gt;{}&lt;/code&gt;包起来.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;在Android中使用Lambda表达式&lt;/strong&gt;:&lt;br&gt;需要改build.gradle:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;android &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  defaultConfig &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    jackOptions &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      enabled true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  compileOptions &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    sourceCompatibility JavaVersion.VERSION_1_8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    targetCompatibility JavaVersion.VERSION_1_8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;还有另一种方式是使用RetroLambda plugin: &lt;a href=&quot;https://github.com/evant/gradle-retrolambda&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gradle-retrolambda&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Developing-for-Android-Wear-A-Noob’s-perspective&quot;&gt;&lt;a href=&quot;#Developing-for-Android-Wear-A-Noob’s-perspective&quot; class=&quot;headerlink&quot; title=&quot;Developing for Android Wear - A Noob’s perspective&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@moyinoluwa/developing-for-android-wear-a-noob-s-perspective-de47c4686ffb#.xjawtq69e&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Developing for Android Wear - A Noob’s perspective&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;这篇文章讲了作者作为一个新手, 第一次开发Wear应用的时候遇到的种种问题.&lt;br&gt;比如, 手表和手机是需要配对的, 在手机上安装Google的这个&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.google.android.wearable.app&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;软件&lt;/a&gt;, 才能和手表配对, 配对了之后, 给手机安装release版apk的时候就会自动给手表安装应用.&lt;br&gt;也可以在Android Studio中选择wear来单跑Wear应用安装到手表, 但是只有配对了才能和手机有通信.&lt;br&gt;使用Wear的模拟器, 还需要运行这个命令adb -d forward tcp:5601 tcp:5601来和连接到电脑的手机连接.&lt;br&gt;还有在传输Assets时, 作者按照官方文档的例子, 却遇到了一些方法不能在UI线程调用的问题, 后来也解决了.&lt;/p&gt;
-&lt;h3 id=&quot;Remote-config-with-Firebase&quot;&gt;&lt;a href=&quot;#Remote-config-with-Firebase&quot; class=&quot;headerlink&quot; title=&quot;Remote config with Firebase&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://segunfamisa.com/posts/firebase-remote-config&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Remote config with Firebase&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;作者讲了如何实现Firebase的Remote config.&lt;br&gt;Remote config可以使我们控制应用的更新, 而不用重新发布一个版本.&lt;br&gt;为什么要使用远程配置呢? 主要的原因是测试新的功能, 然后可以根据用户的反馈快速地做出响应, 把更好的行为呈现给用户. 简单来说就是做A/B Test.&lt;br&gt;Firebase的remote config很强大, 指定参数后可以指定应用条件, 包括国家, 系统, 应用版本, 随机等等.&lt;/p&gt;
-&lt;h2 id=&quot;DESIGN&quot;&gt;&lt;a href=&quot;#DESIGN&quot; class=&quot;headerlink&quot; title=&quot;DESIGN&quot;&gt;&lt;/a&gt;DESIGN&lt;/h2&gt;&lt;h3 id=&quot;Updates-in-Material-design-guidelines&quot;&gt;&lt;a href=&quot;#Updates-in-Material-design-guidelines&quot; class=&quot;headerlink&quot; title=&quot;Updates in Material design guidelines&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://material.google.com/material-design/whats-new.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Updates in Material design guidelines&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;2016年8月新发布的Material design包括了以下更新:&lt;br&gt;Notifications, Widgets, 确认操作和操作后的提示.&lt;br&gt;比较重要的更新是:&lt;br&gt;Navigation现在包括了如何使用Up和Back button.&lt;br&gt;还有使用全屏模式的三种模式:Lean back, Immersive, Lights Out以及它们相应的交互行为.&lt;/p&gt;
-&lt;h2 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h2&gt;&lt;h3 id=&quot;Auto-value-firebase&quot;&gt;&lt;a href=&quot;#Auto-value-firebase&quot; class=&quot;headerlink&quot; title=&quot;Auto-value-firebase&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/mattlogan/auto-value-firebase&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Auto-value-firebase&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;AutoValue的扩展, 用来创建Firebase的数据库对象.&lt;br&gt;&lt;a href=&quot;https://github.com/google/auto/tree/master/value&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AutoValue&lt;/a&gt;是google的一个库. 用来创建interchangeable的对象, 即如果两个对象的所有fields是相等的, 我们认为这两个对象相等.&lt;/p&gt;
-&lt;h3 id=&quot;Icicle&quot;&gt;&lt;a href=&quot;#Icicle&quot; class=&quot;headerlink&quot; title=&quot;Icicle&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/segunfamisa/Icicle&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Icicle&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;基于注解的一个工具, 用来保存和恢复实例的状态.&lt;br&gt;感觉跟&lt;a href=&quot;https://github.com/frankiesardo/icepick&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Icepick&lt;/a&gt;一样.&lt;/p&gt;
-&lt;h3 id=&quot;ReadMoreTextView&quot;&gt;&lt;a href=&quot;#ReadMoreTextView&quot; class=&quot;headerlink&quot; title=&quot;ReadMoreTextView&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/borjabravo10/ReadMoreTextView&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ReadMoreTextView&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;一个自定义的TextView, 可以指定按照文字长度或者行数截取显示, 带展开和关闭按钮操作.&lt;/p&gt;
-&lt;h3 id=&quot;Android-priority-jobqueue&quot;&gt;&lt;a href=&quot;#Android-priority-jobqueue&quot; class=&quot;headerlink&quot; title=&quot;Android-priority-jobqueue&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/yigit/android-priority-jobqueue&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android-priority-jobqueue&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;一个为Android写的后台任务队列管理程序.&lt;/p&gt;
-&lt;h2 id=&quot;NEWS&quot;&gt;&lt;a href=&quot;#NEWS&quot; class=&quot;headerlink&quot; title=&quot;NEWS&quot;&gt;&lt;/a&gt;NEWS&lt;/h2&gt;&lt;h3 id=&quot;Support-Library-Revision-History&quot;&gt;&lt;a href=&quot;#Support-Library-Revision-History&quot; class=&quot;headerlink&quot; title=&quot;Support Library Revision History&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://developer.android.com/topic/libraries/support-library/revisions.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Support Library Revision History&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Android Support Library 24.2.0发布啦(August 2016).&lt;/p&gt;
-&lt;p&gt;v4被分成了很多小模块.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;API更新&lt;/strong&gt;:&lt;br&gt;Custom Tabs可以控制instant app是否打开.&lt;br&gt;TextInputLayout加了密码可见的toggle.&lt;br&gt;Transition兼容到API 14及其以上.&lt;br&gt;Custom Tabs support library支持给secondary toolbar用RemoteViews.&lt;br&gt;AppCompatResources加了可以通过getDrawable()方法, 以resource id加载&lt;vector&gt;和&lt;animated-vector&gt;的功能.&lt;br&gt;CoordinatorLayout现在支持定义inset views, 然后指定其他Views给其让路. 就是当Snackbar出现的时候, FloatingActionButton躲开的那种行为, 只不过现在给任意的child view都可以设置了.&lt;br&gt;DiffUtil类可以计算出两个集合的不同, 然后得出一个更新操作的list, 可以交给RecyclerView.Adapter.&lt;br&gt;新增了RecyclerView.OnFlingListener. 有SnapHelper和LinearSnapHelper可供选择使用.&lt;/animated-vector&gt;&lt;/vector&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;行为改变&lt;/strong&gt;:&lt;br&gt;day/night模式改变的时候, activity将会自动重启.&lt;br&gt;如果status bar是透明的, Snacker现在会在navigation bar后面绘制.&lt;/p&gt;
-&lt;p&gt;其他还有一些deprecations和bug fixes.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-219&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-219&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #219&quot;&gt;&lt;/a&gt;Android Weekly Issue #219&lt;/h1&gt;&lt;p&gt;August 21st, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-219&quot;&gt;Android Weekly Issue #219&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
-    
-      <category term="Bottom Sheet" scheme="http://mengdd.github.io/tags/Bottom-Sheet/"/>
-    
-      <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
-    
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
-      <category term="JobScheduler" scheme="http://mengdd.github.io/tags/JobScheduler/"/>
-    
-      <category term="Trello" scheme="http://mengdd.github.io/tags/Trello/"/>
-    
-      <category term="TextInputLayout" scheme="http://mengdd.github.io/tags/TextInputLayout/"/>
-    
-      <category term="Code Style" scheme="http://mengdd.github.io/tags/Code-Style/"/>
-    
-      <category term="Java 8" scheme="http://mengdd.github.io/tags/Java-8/"/>
-    
-      <category term="Lambda" scheme="http://mengdd.github.io/tags/Lambda/"/>
-    
-      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
-      <category term="AutoValue" scheme="http://mengdd.github.io/tags/AutoValue/"/>
     
   </entry>
   
