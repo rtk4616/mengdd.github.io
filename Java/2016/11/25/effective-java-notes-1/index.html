@@ -1,0 +1,765 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Effective Java笔记一 创建和销毁对象 | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="Effective Java笔记一 创建和销毁对象
+第1条 考虑用静态工厂方法代替构造器
+第2条 遇到多个构造器参数时要考虑用构建器
+第3条 用私有构造器或者枚举类型强化Singleton属性
+第4条 通过私有构造器强化不可实例化的能力
+第5条 避免创建不必要的对象
+第6条 消除过期的对象引用
+第7条 避免使用终结方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective Java笔记一 创建和销毁对象">
+<meta property="og:url" content="http://mengdd.github.io/Java/2016/11/25/effective-java-notes-1/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="Effective Java笔记一 创建和销毁对象
+第1条 考虑用静态工厂方法代替构造器
+第2条 遇到多个构造器参数时要考虑用构建器
+第3条 用私有构造器或者枚举类型强化Singleton属性
+第4条 通过私有构造器强化不可实例化的能力
+第5条 避免创建不必要的对象
+第6条 消除过期的对象引用
+第7条 避免使用终结方法">
+<meta property="og:updated_time" content="2016-11-25T09:01:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Effective Java笔记一 创建和销毁对象">
+<meta name="twitter:description" content="Effective Java笔记一 创建和销毁对象
+第1条 考虑用静态工厂方法代替构造器
+第2条 遇到多个构造器参数时要考虑用构建器
+第3条 用私有构造器或者枚举类型强化Singleton属性
+第4条 通过私有构造器强化不可实例化的能力
+第5条 避免创建不必要的对象
+第6条 消除过期的对象引用
+第7条 避免使用终结方法">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/Java/2016/11/25/effective-java-notes-1/" title="Effective Java笔记一 创建和销毁对象" itemprop="url">Effective Java笔记一 创建和销毁对象</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-25T08:50:40.000Z" itemprop="datePublished"> Published 2016-11-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Effective-Java笔记一-创建和销毁对象"><span class="toc-number">1.</span> <span class="toc-text">Effective Java笔记一 创建和销毁对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1条-考虑用静态工厂方法代替构造器"><span class="toc-number">1.1.</span> <span class="toc-text">第1条 考虑用静态工厂方法代替构造器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2条-遇到多个构造器参数时要考虑用构建器"><span class="toc-number">1.2.</span> <span class="toc-text">第2条 遇到多个构造器参数时要考虑用构建器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3条-用私有构造器或者枚举类型强化Singleton属性"><span class="toc-number">1.3.</span> <span class="toc-text">第3条 用私有构造器或者枚举类型强化Singleton属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4条-通过私有构造器强化不可实例化的能力"><span class="toc-number">1.4.</span> <span class="toc-text">第4条 通过私有构造器强化不可实例化的能力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第5条-避免创建不必要的对象"><span class="toc-number">1.5.</span> <span class="toc-text">第5条 避免创建不必要的对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第6条-消除过期的对象引用"><span class="toc-number">1.6.</span> <span class="toc-text">第6条 消除过期的对象引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第7条-避免使用终结方法"><span class="toc-number">1.7.</span> <span class="toc-text">第7条 避免使用终结方法</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Effective-Java笔记一-创建和销毁对象"><a href="#Effective-Java笔记一-创建和销毁对象" class="headerlink" title="Effective Java笔记一 创建和销毁对象"></a>Effective Java笔记一 创建和销毁对象</h1><ul>
+<li>第1条 考虑用静态工厂方法代替构造器</li>
+<li>第2条 遇到多个构造器参数时要考虑用构建器</li>
+<li>第3条 用私有构造器或者枚举类型强化Singleton属性</li>
+<li>第4条 通过私有构造器强化不可实例化的能力</li>
+<li>第5条 避免创建不必要的对象</li>
+<li>第6条 消除过期的对象引用</li>
+<li>第7条 避免使用终结方法</li>
+</ul>
+<a id="more"></a>
+<h2 id="第1条-考虑用静态工厂方法代替构造器"><a href="#第1条-考虑用静态工厂方法代替构造器" class="headerlink" title="第1条 考虑用静态工厂方法代替构造器"></a>第1条 考虑用静态工厂方法代替构造器</h2><p>对于类而言, 最常用的获取实例的方法就是提供一个公有的构造器, 还有一种方法, 就是提供一个公有的静态工厂方法(static factory method), 返回类的实例.</p>
+<p>(注意此处的静态工厂方法与设计模式中的工厂方法模式不同.)</p>
+<p>提供静态工厂方法而不是公有构造, 这样做有几大<strong>优势</strong>:</p>
+<ul>
+<li>静态工厂方法<strong>有名称</strong>. 可以更确切地描述正被返回的对象.<br>当一个类需要多个带有相同签名的构造器时, 可以用静态工厂方法, 并且慎重地选择名称以便突出它们之间的区别.</li>
+<li><strong>不必在每次调用它们的时候都创建一个新对象.</strong> 可以重复利用实例. 如果程序经常请求创建相同的对象, 并且创建对象的代价很高, 这项改动可以提升性能. (不可变类, 单例, 枚举).</li>
+<li><strong>可以返回原类型的子类型对象.</strong> 适用于基于接口的框架, 可以隐藏实现类API, 也可以根据参数返回不同的子类型.<br>由于接口不能有静态方法, 因此按照惯例, 接口Type的静态工厂方法被放在一个名为Types的不可实例化的类中.<br>(Java的java.util.Collections). 服务提供者框架(Service Provider Framework, 如JDBC)的基础, 从实现中解耦.</li>
+<li><strong>在创建参数化类型实例的时候, 使代码更简洁.</strong> </li>
+</ul>
+<p>静态工厂方法的<strong>缺点</strong>:</p>
+<ul>
+<li>类如果不含public或者protected的构造器, 就不能被子类化. 对于公有的静态工厂方法所返回的非公有类, 也同样如此.</li>
+<li>静态工厂方法与其他的静态方法没有区别. 在API文档中没有明确标识出来. 可以使用一些惯用的名称来弥补这一劣势:<ul>
+<li><code>valueOf()</code>: 类型转换方法, 返回的实例与参数具有相同的值.</li>
+<li><code>of()</code>: valueOf()的一种更简洁的替代.</li>
+<li><code>getInstance()</code>: 返回的实例通过参数来描述, 对于单例来说, 该方法没有参数, 返回唯一的实例.</li>
+<li><code>newInstance()</code>: 像getInstance()一样, 但newInstance()能确保返回的每个实例都与其他实例不同.</li>
+<li><code>getType()</code>: 像getInstance()一样, Type表示返回的对象类型, 在工厂方法处于不同的类中的时候使用.</li>
+<li><code>newType()</code>: 和newInstance()一样, Type表示返回类型, 在工厂方法处于不同的类中的时候使用.</li>
+</ul>
+</li>
+</ul>
+<h2 id="第2条-遇到多个构造器参数时要考虑用构建器"><a href="#第2条-遇到多个构造器参数时要考虑用构建器" class="headerlink" title="第2条 遇到多个构造器参数时要考虑用构建器"></a>第2条 遇到多个构造器参数时要考虑用构建器</h2><p>静态工厂和构造器有一个共同的局限性: 它们都不能很好地扩展到大量的可选参数.</p>
+<p>重载多个构造器方法可行, 但是当有许多参数的时候, 代码会很难写难读.</p>
+<p>第二种替代方法是JavaBeans模式, 即一个无参数构造来创建对象, 然后调用setter方法来设置每个参数. 这种模式也有严重的缺点, 因为构造过程被分到了几个调用中, 在构造过程中JavaBean可能处于不一致的状态.<br>类无法通过检验构造器参数的有效性来保证一致性. 另一点是这种模式阻止了把类做成不可变的可能.</p>
+<p>第三种方法就是<strong>Builder模式</strong>. 不直接生成想要的对象, 而是利用必要参数调用构造器(或者静态工厂)得到一个builder对象, 然后在builder对象上调用类似setter的方法, 来设置可选参数, 最后调用无参的<code>build()</code>方法来生成不可变的对象.</p>
+<p>这个Builder是它构建的类的静态成员类.<br>Builder的setter方法返回Builder本身, 可以链式操作.</p>
+<p><strong>Builder模式的优势</strong>: 可读性增强; 可以有多个可变参数;  易于做参数检查和构造约束检查; 比JavaBeans更加安全; 灵活性: 可以利用单个builder构建多个对象, 可以自动填充某些域, 比如自增序列号.</p>
+<p>Builder模式的不足: 为了创建对象必须先创建Builder, 在某些十分注重性能的情况下, 可能就成了问题; Builder模式较冗长, 因此只有参数很多时才使用.</p>
+<h2 id="第3条-用私有构造器或者枚举类型强化Singleton属性"><a href="#第3条-用私有构造器或者枚举类型强化Singleton属性" class="headerlink" title="第3条 用私有构造器或者枚举类型强化Singleton属性"></a>第3条 用私有构造器或者枚举类型强化Singleton属性</h2><p><code>Singleton(单例)</code>指仅仅被实例化一次的类. 通常用来代表那些本质上唯一的系统组件. </p>
+<p>使类成为Singleton会使得它的客户端代码测试变得困难, 因为无法给它替换模拟实现, 除非它实现了一个充当其类型的接口.</p>
+<p>单例的实现: 私有构造方法, 类中保留一个字段实例(static, final), 用public直接公开字段或者用一个public static的<code>getInstance()</code>方法返回该字段.</p>
+<p>为了使单例实现序列化(<code>Serializable</code>), 仅仅在声明中加上<code>implements Serializable</code>是不够的, 为了维护并保证单例, 必须声明所有实例域都是<code>transient</code>的, 并提供一个<code>readResolve()</code>方法, 返回单例的实例. 否则每次反序列化一个实例时, 都会创建一个新的实例.</p>
+<p>从Java 1.5起, <strong>可以使用枚举来实现单例</strong>: 只需要编写一个包含单个元素的枚举类型.<br>这种方法无偿地提供了序列化机制, 绝对防止多次实例化.</p>
+<h2 id="第4条-通过私有构造器强化不可实例化的能力"><a href="#第4条-通过私有构造器强化不可实例化的能力" class="headerlink" title="第4条 通过私有构造器强化不可实例化的能力"></a>第4条 通过私有构造器强化不可实例化的能力</h2><p>只包含静态方法和静态域的类名声不太好, 因为有些人会滥用它们来编写过程化的程序. 尽管如此, 它们确实也有特有的用处, 比如:<br><code>java.lang.Math</code>, <code>java.util.Arrays</code>把基本类型的值或数组类型上的相关方法组织起来; <code>java.util.Collections</code>把实现特定接口的对象上的静态方法组织起来; 还可以利用这种类把final类上的方法组织起来, 以取代扩展该类的做法.</p>
+<p>这种工具类(utility class)不希望被实例化, 然而在缺少显式构造器的情况下, 系统会提供默认构造器, 可能会造成这些类被无意识地实例化.</p>
+<p>通过做成抽象类来强制该类不可被实例化, 这是行不通的, 因为可能会造成”这个类是用来被继承的”的误解, 而继承它的子类又可以被实例化.</p>
+<p>所以只要让这个类包含一个私有的构造器, 它就不能被实例化了. 进一步地, 可以在这个私有构造器中抛出异常. </p>
+<p>这种做法还会导致这个类不能被子类化, 因为子类构造器必须显式或隐式地调用super构造器. 在这种情况下, 子类就没有可访问的超类构造器可调用了.</p>
+<h2 id="第5条-避免创建不必要的对象"><a href="#第5条-避免创建不必要的对象" class="headerlink" title="第5条 避免创建不必要的对象"></a>第5条 避免创建不必要的对象</h2><p>一般来说, 最好能重用对象而不是每次需要的时候创建一个相同功能的新对象. 如果对象是<strong>不可变的(immutable)</strong>, 它就始终可以被重用.</p>
+<p>比如应该用:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"stringette"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>而不是:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="keyword">new</span> String(<span class="string">"stringette"</span>); <span class="comment">// Don't do this</span></span><br></pre></td></tr></table></figure></p>
+<p>包含相同字符串的字面常量对象是会被重用的.</p>
+<p>对于同时提供了静态工厂方法和构造方法的<strong>不可变类</strong>, 通常可以使用静态工厂方法而不是构造器, 以避免创建不必要的对象.<br>比如<code>Boolean.valueOf()</code>.</p>
+<p>除了重用不可变对象以外, 也可以重用那些已知不会被修改的可变对象. 比如把一个方法中需要用到的不变的数据保存成常量对象(<code>static final</code>), 只在初始化的时候创建一次(<code>用static块</code>), 这样就不用每次调用方法都重复创建.</p>
+<p>如果该方法永远不会调用, 那也不需要初始化相关的字段, 可以通过延迟初始化(lazily initializing)把这些对象的初始化放到方法第一次被调用的时候. (但是不建议这样做, 没有性能的显著提高, 并且会使方法看起来复杂.)</p>
+<p>前面的例子中, 所讨论的对象显然是能够被重用的, 因为它们被初始化之后不会再改变. 其他有些情形则并不总是这么明显了. (适配器(adapter)模式, Map的接口keySet()方法返回同样的Set实例).</p>
+<p>Java 1.5中加入了自动装箱(autoboxing), 会创建对象. 所以程序中优先使用基本类型而不是装箱基本类型, 要当心无意识的自动装箱. </p>
+<p>小对象的构造器只做很少量的显式工作, 创建和回收都是很廉价的, 所以通过创建附加的对象提升程序的清晰简洁性也是好事.</p>
+<p>通过维护自己的对象池(object pool)来避免创建对象并不是一种好的做法(代码, 内存), 除非池中的对象是非常重量级的. 正确使用的典型: 数据库连接池.</p>
+<h2 id="第6条-消除过期的对象引用"><a href="#第6条-消除过期的对象引用" class="headerlink" title="第6条 消除过期的对象引用"></a>第6条 消除过期的对象引用</h2><p>一个内存泄露的例子: 一个用数组实现的Stack, 依靠size标记来管理栈的深度, 但是这样从栈中弹出来的过期对象并没有被释放. </p>
+<p>称内存泄露为”无意识的对象保持(unintentional object retention)”更为恰当.</p>
+<p>修复方法: 一旦对象引用已经过期, 只需清空这些引用即可.</p>
+<p>清空对象引用应该是一种例外, 而不是一种规范行为. 消除过期引用最好的方法是让包含该引用的变量结束其生命周期. 如果你是在最紧凑的作用域范围内定义变量, 这种情形就会自然发生.</p>
+<p><strong>一般而言, 只要类是自己管理内存</strong>, 程序员就应该警惕内存泄露问题. 一旦元素被释放掉, 则该元素中包含的任何对象引用都应该被清空.</p>
+<p>内存泄露的<strong>另一个常见来源是缓存</strong>. 这个问题有这几种可能的解决方案: </p>
+<ul>
+<li>1.缓存项的生命周期由该键的外部引用决定 -&gt; <code>WeakHashMap</code>; </li>
+<li>2.缓存项的生命周期是否有意义并不是很容易确定 -&gt; 随着时间的推移或者新增项的时候删除没用的项.</li>
+</ul>
+<p>内存泄露的<strong>第三个常见来源是监听器和其他回调</strong>.<br>如果你实现了一个API, 客户端注册了回调却没有注销, 就会积聚对象.<br>API端可以只保存对象的弱引用来确保回调对象生命周期结束后会被垃圾回收. </p>
+<h2 id="第7条-避免使用终结方法"><a href="#第7条-避免使用终结方法" class="headerlink" title="第7条 避免使用终结方法"></a>第7条 避免使用终结方法</h2><p>终结方法(finalizer)通常是不可预测的, 也是很危险的, 一般情况下是不必要的.<br>使用终结方法会导致行为不稳定, 降低性能, 以及可移植性问题.</p>
+<p>不要把finalizer当成是C++中的析构器(destructors)的对应物.<br>在Java中, 当一个对象变得不可到达的时候, 垃圾回收器会回收与该对象相关联的存储空间.</p>
+<p>C++的析构器也可以用来回收其他的非内存资源, 而在Java中, 一般用try-finally块来完成类似的工作.</p>
+<p>终结方法的缺点在于不能保证会被及时地执行. 从一个对象变得不可到达开始, 到它的终结方法被执行, 所花费的时间是任意长的. JVM会延迟执行终结方法. </p>
+<p>及时地执行终结方法正是垃圾回收算法的一个主要功能. 这种算法在不同的JVM上不同. </p>
+<p>Java语言规范不仅不保证终结方法会被及时地执行, 而且根本就不保证它们会被执行. 所以不应该依赖于终结方法来更新重要的持久状态. </p>
+<p>不要被<code>System.gc()</code>和<code>System.runFinalization()</code>这两个方法所迷惑, 它们确实增加了终结方法被执行的机会, 但是它们并不保证终结方法一定会被执行. </p>
+<p>如果未捕获的异常在终结过程中被抛出来, 那么这种异常可以被忽略, 而且该对象的终结过程也会终止. </p>
+<p>使用终结方法有一个严重的性能损失. </p>
+<p>如果类的对象中封装的资源(例如文件或线程)确实需要终止, 应该怎么做才能不用编写终结方法呢? 只需<strong>提供一个显式的终止方法</strong>. 并要求该类的客户端在每个实例不再有用的时候调用这个方法. 注意, 该实例必须记录下自己是否已经被终止了, 如果被终止之后再被调用, 要抛出异常.<br>例子: <code>InputStream</code>, <code>OutputStream</code>和<code>java.sql.Connection</code>上的<code>close()</code>方法; <code>java.util.Timer</code>的<code>cancel()</code>方法.<br><code>Image.flush()</code>会释放实例相关资源, 但该实例仍处于可用的状态, 如果有必要会重新分配资源. </p>
+<p><strong>显式的终止方法通常与try-finally块结合使用, 以确保及时终止.</strong></p>
+<p>终结方法的好处, 它有两种合法用途:</p>
+<ul>
+<li>当显式终止方法被忘记调用时, 终结方法可以充当安全网(safety net). <strong>但是如果终结方法发现资源还未被终止, 应该记录日志警告, 这表示客户端代码中的bug.</strong></li>
+<li>对象的本地对等体(native peer), 垃圾回收器不会知道它, 当它的Java对等体被回收的时候, 它不会被回收. 如果本地对等体拥有必须被及时终止的资源, 那么该类就应该有一个显式的终止方法, 如前, 可以是本地方法或者它也可以调用本地方法; 如果本地对等体并不拥有关键资源, 终结方法是执行这项任务最合适的工具. </li>
+</ul>
+<p>注意, 终结方法链(finalizer chaining)并不会自动执行. 子类覆盖终结方法时, 必须手动调用超类的终结方法. try中终结子类, finally中终结超类. </p>
+<p>为了避免忘记调用超类的终结方法, 还有一种写法, 是在子类中写一个匿名的类, 该匿名类的单个实例被称为<strong>终结方法守卫者(finalizer guardian)</strong>, 当守卫者被终结的时候, 它执行外围实例的终结行为. 这样外围类并没有覆盖超类的终结方法, 保证了超类的终结方法一定会被执行. </p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Java/">Java</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/Java/2016/11/25/effective-java-notes-1/" data-title="Effective Java笔记一 创建和销毁对象 | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Android/Android-Weekly/2016/11/25/android-weekly-notes-issue-232/"  title="Android Weekly Notes Issue 232">
+ <strong>下一篇：</strong><br/> 
+ <span>Android Weekly Notes Issue 232
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="Java/2016/11/25/effective-java-notes-1/" data-title="Effective Java笔记一 创建和销毁对象" data-url="http://mengdd.github.io/Java/2016/11/25/effective-java-notes-1/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Effective-Java笔记一-创建和销毁对象"><span class="toc-number">1.</span> <span class="toc-text">Effective Java笔记一 创建和销毁对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1条-考虑用静态工厂方法代替构造器"><span class="toc-number">1.1.</span> <span class="toc-text">第1条 考虑用静态工厂方法代替构造器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2条-遇到多个构造器参数时要考虑用构建器"><span class="toc-number">1.2.</span> <span class="toc-text">第2条 遇到多个构造器参数时要考虑用构建器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3条-用私有构造器或者枚举类型强化Singleton属性"><span class="toc-number">1.3.</span> <span class="toc-text">第3条 用私有构造器或者枚举类型强化Singleton属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4条-通过私有构造器强化不可实例化的能力"><span class="toc-number">1.4.</span> <span class="toc-text">第4条 通过私有构造器强化不可实例化的能力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第5条-避免创建不必要的对象"><span class="toc-number">1.5.</span> <span class="toc-text">第5条 避免创建不必要的对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第6条-消除过期的对象引用"><span class="toc-number">1.6.</span> <span class="toc-text">第6条 消除过期的对象引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第7条-避免使用终结方法"><span class="toc-number">1.7.</span> <span class="toc-text">第7条 避免使用终结方法</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>29</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-News/" title="Android News">Android News<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Architecture/" title="Architecture">Architecture<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/IDE/" title="IDE">IDE<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/" title="Retrofit">Retrofit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/RxJava/" title="RxJava">RxJava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/" title="Tools">Tools<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>27</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>15</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVP/" title="MVP">MVP<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Retrofit/" title="Retrofit">Retrofit<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Memory-Leak/" title="Memory Leak">Memory Leak<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redux/" title="Redux">Redux<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Reductor/" title="Reductor">Reductor<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bottom-Sheet/" title="Bottom Sheet">Bottom Sheet<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>3</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/mengdd/" target="_blank" title="圣骑士wind">圣骑士wind</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://talentprince.github.io/" target="_blank" title="长乐未央">长乐未央</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dandan Meng. <br/>
+			This is my blog. Welcome.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/mengdd" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wind"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dandanmeng';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75132850-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?83e8338b542a9fd155f68673d113e0ae";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
