@@ -139,9 +139,9 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2016/11/25/android-weekly-notes-issue-232/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2016/11/25/android-weekly-notes-issue-232/</id>
     <published>2016-11-25T08:32:57.000Z</published>
-    <updated>2016-11-25T08:41:36.000Z</updated>
+    <updated>2016-11-28T06:25:18.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-232&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-232&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #232&quot;&gt;&lt;/a&gt;Android Weekly Issue #232&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-232&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #232&lt;/a&gt;&lt;br&gt;本期内容包括: Kotlin的优势讨论; MVVM模式结合RxJava和Retrofit的应用构架实现; Android中传感器使用; 如何给App写单元测试; Reductor的组合使用; Android应用进程被杀死的状态恢复和问题处理; Kotlin中的Anko; 后台任务处理库”Android Job”; VectorDrawable和PNG的使用问题等.&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-232&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-232&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #232&quot;&gt;&lt;/a&gt;Android Weekly Issue #232&lt;/h1&gt;&lt;p&gt;November 20th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-232&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #232&lt;/a&gt;&lt;br&gt;本期内容包括: Kotlin的优势讨论; MVVM模式结合RxJava和Retrofit的应用构架实现; Android中传感器使用; 如何给App写单元测试; Reductor的组合使用; Android应用进程被杀死的状态恢复和问题处理; Kotlin中的Anko; 后台任务处理库”Android Job”; VectorDrawable和PNG的使用问题等.&lt;/p&gt;
 &lt;p&gt;本期开源库: 给ImageView和RelativeLayout的底部加曲线; 长按弹框; Switch Button控件; 给View加深度/厚度的库.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;How-Kotlin-became-our-primary-language-for-Android&quot;&gt;&lt;a href=&quot;#How-Kotlin-became-our-primary-language-for-Android&quot; class=&quot;headerlink&quot; title=&quot;How Kotlin became our primary language for Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/uptech-team/how-kotlin-became-our-primary-language-for-android-3af7fd6a994c#.a50t4ple8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How Kotlin became our primary language for Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们team想要完全用kotlin开发一个应用.&lt;br&gt;本文是他们的心得体会.&lt;/p&gt;
@@ -150,26 +150,11 @@
 &lt;h2 id=&quot;RxJava-2-Android-MVVM-Lifecycle-App-Structure-with-Retrofit-2&quot;&gt;&lt;a href=&quot;#RxJava-2-Android-MVVM-Lifecycle-App-Structure-with-Retrofit-2&quot; class=&quot;headerlink&quot; title=&quot;RxJava 2: Android MVVM Lifecycle App Structure with Retrofit 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@manuelvicnt/rxjava2-android-mvvm-lifecycle-app-structure-with-retrofit-2-cf903849f49e#.jx3vg232m&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava 2: Android MVVM Lifecycle App Structure with Retrofit 2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者一年多以前写过一个这个文章: &lt;a href=&quot;https://medium.com/@manuelvicnt/rxjava-android-mvvm-app-structure-with-retrofit-a5605fa32c00#.44uq87s6w&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava: Android MVVM App structure with Retrofit&lt;/a&gt;, 介绍MVVM结合Retrofit和RxJava的App架构模式. 此篇文章是一年后作者对此的改进.&lt;/p&gt;
 &lt;p&gt;主要内容有:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;ol&gt;
-&lt;li&gt;通过View和ViewModel之间的协议接口, 让ViewModel知道View的生命周期变化.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ol&gt;
-&lt;li&gt;RxJava2的流式类型: Completable, Maybe, Flowable的使用.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ol&gt;
-&lt;li&gt;用RxJava操作符组合网络请求: 让不同的网络请求一起发送, 并且都返回以后才得到通知 -&amp;gt; 用&lt;code&gt;.zip()&lt;/code&gt;. 顺序连接不同的网络请求 -&amp;gt; &lt;code&gt;.flatMap()&lt;/code&gt;, &lt;code&gt;.andThen()&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ol&gt;
-&lt;li&gt;后台网络请求和View更新的处理: 不取消网络请求, 等View再次resume的时候检查状态再更新. 这里提供了两种选择, 一种是用前面提到的协议接口中的生命周期方法, 另一种是用&lt;code&gt;AsyncProcessor&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ol&gt;
-&lt;li&gt;Mock Retrofit的网络请求.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
+&lt;li&gt;1.通过View和ViewModel之间的协议接口, 让ViewModel知道View的生命周期变化.&lt;/li&gt;
+&lt;li&gt;2.RxJava2的流式类型: Completable, Maybe, Flowable的使用.&lt;/li&gt;
+&lt;li&gt;3.用RxJava操作符组合网络请求: 让不同的网络请求一起发送, 并且都返回以后才得到通知 -&amp;gt; 用&lt;code&gt;.zip()&lt;/code&gt;. 顺序连接不同的网络请求 -&amp;gt; &lt;code&gt;.flatMap()&lt;/code&gt;, &lt;code&gt;.andThen()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;4.后台网络请求和View更新的处理: 不取消网络请求, 等View再次resume的时候检查状态再更新. 这里提供了两种选择, 一种是用前面提到的协议接口中的生命周期方法, 另一种是用&lt;code&gt;AsyncProcessor&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;5.Mock Retrofit的网络请求.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;Tech-Talks-You-Do-Have-Something-To-Say&quot;&gt;&lt;a href=&quot;#Tech-Talks-You-Do-Have-Something-To-Say&quot; class=&quot;headerlink&quot; title=&quot;Tech Talks - You Do Have Something To Say!&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/upday-devs/tech-talks-you-do-have-something-to-say-a1a0ae23fa0#.61m7x6rj8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Tech Talks - You Do Have Something To Say!&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章鼓励你分享你的知识, 经验, 问题及解决方法,  无论是通过演讲还是写出来的方式.&lt;/p&gt;
 &lt;h2 id=&quot;Da-Real-Fragmentation-Sensors&quot;&gt;&lt;a href=&quot;#Da-Real-Fragmentation-Sensors&quot; class=&quot;headerlink&quot; title=&quot;Da Real Fragmentation - Sensors&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://pguardiola.com/blog/darealfragmentation-sensors/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Da Real Fragmentation - Sensors&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;介绍了Android中传感器的使用.&lt;/p&gt;
@@ -199,14 +184,8 @@
 &lt;h2 id=&quot;400-faster-layouts-with-Anko&quot;&gt;&lt;a href=&quot;#400-faster-layouts-with-Anko&quot; class=&quot;headerlink&quot; title=&quot;400% faster layouts with Anko&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@vergauwen.simon/400-faster-layouts-with-anko-da17f32c45dd#.bz6a3y8ql&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;400% faster layouts with Anko&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者把自己的一个布局改为用Kotlin的Anko, 然后测试性能.&lt;/p&gt;
 &lt;p&gt;好处是:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;ol&gt;
-&lt;li&gt;性能提升了, 避免了XML的运行时解析所花费的时间.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ol&gt;
-&lt;li&gt;可以动态地加入逻辑, 比如版本判断, 屏幕尺寸, 方向判断等.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
+&lt;li&gt;1.性能提升了, 避免了XML的运行时解析所花费的时间.&lt;/li&gt;
+&lt;li&gt;2.可以动态地加入逻辑, 比如版本判断, 屏幕尺寸, 方向判断等.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;作者用的测试性能的工具是: &lt;a href=&quot;https://github.com/frogermcs/AndroidDevMetrics&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AndroidDevMetrics&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Background-Work-with-Android-Job-and-Dagger&quot;&gt;&lt;a href=&quot;#Background-Work-with-Android-Job-and-Dagger&quot; class=&quot;headerlink&quot; title=&quot;Background Work with Android Job and Dagger&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.adavis.info/2016/11/background-work-with-android-job-and.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Background Work with Android Job and Dagger&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在Android上的后台工作, 你可以选择&lt;code&gt;Alarm Manager&lt;/code&gt;, &lt;code&gt;Job Scheduler&lt;/code&gt;或&lt;code&gt;GCM Network Manager&lt;/code&gt;.&lt;/p&gt;
@@ -222,7 +201,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Android-Weekly-Issue-232&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-232&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #232&quot;&gt;&lt;/a&gt;Android Weekly Issue #232&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-232&quot;&gt;Android Weekly Issue #232&lt;/a&gt;&lt;br&gt;本期内容包括: Kotlin的优势讨论; MVVM模式结合RxJava和Retrofit的应用构架实现; Android中传感器使用; 如何给App写单元测试; Reductor的组合使用; Android应用进程被杀死的状态恢复和问题处理; Kotlin中的Anko; 后台任务处理库”Android Job”; VectorDrawable和PNG的使用问题等.&lt;/p&gt;
+      &lt;h1 id=&quot;Android-Weekly-Issue-232&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-232&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #232&quot;&gt;&lt;/a&gt;Android Weekly Issue #232&lt;/h1&gt;&lt;p&gt;November 20th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-232&quot;&gt;Android Weekly Issue #232&lt;/a&gt;&lt;br&gt;本期内容包括: Kotlin的优势讨论; MVVM模式结合RxJava和Retrofit的应用构架实现; Android中传感器使用; 如何给App写单元测试; Reductor的组合使用; Android应用进程被杀死的状态恢复和问题处理; Kotlin中的Anko; 后台任务处理库”Android Job”; VectorDrawable和PNG的使用问题等.&lt;/p&gt;
 &lt;p&gt;本期开源库: 给ImageView和RelativeLayout的底部加曲线; 长按弹框; Switch Button控件; 给View加深度/厚度的库.&lt;/p&gt;
     
     </summary>
