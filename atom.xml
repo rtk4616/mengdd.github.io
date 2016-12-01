@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-11-25T09:01:32.000Z</updated>
+  <updated>2016-12-01T10:34:53.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,148 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/Java/2016/12/01/android-weekly-notes-issue-233/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/Java/2016/12/01/android-weekly-notes-issue-233/</id>
+    <published>2016-12-01T10:23:40.000Z</published>
+    <updated>2016-12-01T10:34:53.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-233&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-233&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #233&quot;&gt;&lt;/a&gt;Android Weekly Issue #233&lt;/h1&gt;&lt;p&gt;November 27th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-233&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #233&lt;/a&gt;&lt;br&gt;本期内容包括: 用Mockito做RxJava的单元测试; Android开发中的命令行使用; Android 7.1的App Shortcuts; 自定义View的绘制; 用Firebase的Remote Config进行feature逐步分发; APK分析工具的使用, APK瘦身讨论; RxJava处理网络请求和缓存; presenter的设计; 用Firebase发送push notification; transient关键字的使用等.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Testing-asynchronous-RxJava-code-using-Mockito&quot;&gt;&lt;a href=&quot;#Testing-asynchronous-RxJava-code-using-Mockito&quot; class=&quot;headerlink&quot; title=&quot;Testing asynchronous RxJava code using Mockito&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@fabioCollini/testing-asynchronous-rxjava-code-using-mockito-8ad831a16877#.yhndxn3y1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Testing asynchronous RxJava code using Mockito&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章讲了如何用Mockito给RxJava的异步请求代码写单元测试.&lt;br&gt;内容包括了:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如何设置Mockito的默认返回值. (通过自定义的&lt;code&gt;MockitoConfiguration&lt;/code&gt;类).&lt;/li&gt;
+&lt;li&gt;如何把异步变为同步测试. (1.用&lt;code&gt;blockingGet()&lt;/code&gt;; 2.在RxJava2中, 可以使用&lt;code&gt;TestObserver&lt;/code&gt;的&lt;code&gt;awaitTerminalEvent()&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://joel-costigliola.github.io/assertj/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AssertJ&lt;/a&gt;的使用.&lt;/li&gt;
+&lt;li&gt;测试异步代码. 使用Rule来替换原来的scheduler.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;flatMap()&lt;/code&gt;, &lt;code&gt;concatMap()&lt;/code&gt;, &lt;code&gt;concatMapEager()&lt;/code&gt;操作符的使用.&lt;/li&gt;
+&lt;li&gt;测试Timeout.&lt;/li&gt;
+&lt;li&gt;测试异常和retry逻辑.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;好用的工具: &lt;a href=&quot;http://joel-costigliola.github.io/assertj/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AssertJ&lt;/a&gt;&lt;br&gt;用来更方便地写Java测试中的assert语句.&lt;/p&gt;
+&lt;h2 id=&quot;Mastering-the-Terminal-side-of-Android-development&quot;&gt;&lt;a href=&quot;#Mastering-the-Terminal-side-of-Android-development&quot; class=&quot;headerlink&quot; title=&quot;Mastering the Terminal side of Android development&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@cesarmcferreira/mastering-the-terminal-side-of-android-development-e7520466c521#.5pjzgdn2s&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Mastering the Terminal side of Android development&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者分享了在Android开发中他是如何使用命令行的.&lt;/p&gt;
+&lt;p&gt;使用更好的命令行程序: &lt;a href=&quot;http://www.iterm2.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iTerm2&lt;/a&gt;.&lt;br&gt;它有很多有用的&lt;a href=&quot;https://www.iterm2.com/features.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;features&lt;/a&gt;, 比如分屏, 自定义颜色, 粘贴历史等.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;on-my-zsh&lt;/strong&gt;: &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;on-my-zsh&lt;/a&gt;内置了一个&lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;git plugin&lt;/a&gt;, 提供了很多aliases和功能.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/zsh-users/zsh-autosuggestions&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;zsh-autosuggestions&lt;/a&gt;会在你输入的时候根据历史提供建议.&lt;/p&gt;
+&lt;p&gt;你可以用Ctrl + R在命令历史中进行逆向智能搜索(Reverse intelligent search). 你开始输入这个命令, 命令行会在历史中寻找并自动补全. 你可以按Enter来执行这个命令, 或者左右箭头来编辑命令, 或者继续按Ctrl + R在其他可能的命令中寻找.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;dryrun&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果你在github上看到一个程序, 想要运行一下看看, 你不必再把它下载下来, 导入Android Studio了.&lt;/p&gt;
+&lt;p&gt;你只需要用&lt;a href=&quot;https://github.com/cesarferreira/dryrun&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dryrun&lt;/a&gt;, 一句命令就可以:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dryrun REMOTE_GIT_URL&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Build faster, build offline&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在build的时候使用–offline可以让所有依赖都使用缓存版本, 不再进行网络请求, 从而加快执行速度.&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;./gradlew assembleDevelopDebug --offline&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;./gradlew test --offline&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;在Android Studio中也可以进行设置.&lt;br&gt;在&lt;code&gt;Settings -&amp;gt; Build, Execution, Deployment -&amp;gt; Build tools -&amp;gt; Gradle&lt;/code&gt;中勾选&lt;code&gt;Offline work&lt;/code&gt;即可.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;alfi&lt;/strong&gt;&lt;br&gt;&lt;a href=&quot;https://github.com/cesarferreira/alfi&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;alfi&lt;/a&gt;是一个工具, 装了这个工具之后, 用一行命令就可以查到第三方库的依赖语句, 然后你就可以把它拷贝粘贴到&lt;code&gt;build.gradle&lt;/code&gt;中去了.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;gradle tasks shortcuts&lt;/strong&gt;&lt;br&gt;gradle的task有缩写版的, 比如:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;iDD for installDevelopmentDebug&lt;/li&gt;
+&lt;li&gt;aDD for assembleDevelopmentDebug&lt;/li&gt;
+&lt;li&gt;cC for connectedCheck&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Android Rocket Launcher&lt;/strong&gt;&lt;br&gt;&lt;a href=&quot;https://github.com/cesarferreira/android-rocket-launcher&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Rocket Launcher&lt;/a&gt;增加新的tasks, 在命令行启动应用.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;直接在console输出单元测试结果&lt;/strong&gt;:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;android &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  testOptions.unitTests.all &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    testLogging &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      events &amp;apos;passed&amp;apos;, &amp;apos;skipped&amp;apos;, &amp;apos;failed&amp;apos;, &amp;apos;standardOut&amp;apos;, &amp;apos;standardError&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      outputs.upToDateWhen &amp;#123; false &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      showStandardStreams = true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这个工具&lt;a href=&quot;https://github.com/JakeWharton/pidcat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pidcat&lt;/a&gt;可以指定包名显示log.&lt;/p&gt;
+&lt;h2 id=&quot;Exploring-Android-Nougat-7-1-App-Shortcuts&quot;&gt;&lt;a href=&quot;#Exploring-Android-Nougat-7-1-App-Shortcuts&quot; class=&quot;headerlink&quot; title=&quot;Exploring Android Nougat 7.1 App Shortcuts&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.novoda.com/blog/exploring-android-nougat-7-1-app-shortcuts/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Exploring Android Nougat 7.1 App Shortcuts&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章讲Android 7.1推出的App Shortcuts如何实现.&lt;/p&gt;
+&lt;h2 id=&quot;The-Quirks-of-Supporting-SDK-25&quot;&gt;&lt;a href=&quot;#The-Quirks-of-Supporting-SDK-25&quot; class=&quot;headerlink&quot; title=&quot;The Quirks of Supporting SDK 25&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.zdominguez.com/2016/11/the-quirks-of-supporting-sdk-25.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Quirks of Supporting SDK 25&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者分享了她在适配Nougat, API 25时学到的东西, 包括更换SDK版本, 圆形的启动icon, 还有app shortcuts. (根据文中的图标, 这个app居然是domain).&lt;/p&gt;
+&lt;h2 id=&quot;Android-draw-a-custom-view&quot;&gt;&lt;a href=&quot;#Android-draw-a-custom-view&quot; class=&quot;headerlink&quot; title=&quot;Android: draw a custom view&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@romandanylyk96/android-draw-a-custom-view-ef79fe2ff54b#.i4ipiz2u7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android: draw a custom view&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者自定义了一个ViewPager的page indicator: &lt;a href=&quot;https://github.com/romandanylyk/PageIndicatorView&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PageIndicatorView&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;这篇文章讲述了如何自定义View, 首先是View的生命周期, 然后是具体如何实现, 如何避免一些常见的错误, 最后是如何添加View的动画.&lt;br&gt;&lt;img src=&quot;/images/view-lifecycle.png&quot; alt=&quot;view-lifecycle&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;各个生命周期中应该干的事情&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;构造函数中: 解析自定义属性.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;onAttachedToWindow()&lt;/code&gt;中: 可以发现同一布局中相关的其他View, 其id是上一步通过自定义属性传入的.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;onMeasure()&lt;/code&gt;: 自定义View尺寸相关, 当覆盖这个方法时, 最后要调用&lt;code&gt;setMeasuredDimension(int width, int height)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;onLayout()&lt;/code&gt;: 一般这个方法是给ViewGroup的child指定位置和尺寸的, 对于自定义View来说, 没有child就没有必要覆盖这个方法.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;onDraw()&lt;/code&gt;: 这里是画东西的地方. 用canvas和Paint结合绘制. 需要注意的是&lt;code&gt;onDraw()&lt;/code&gt;会被多次调用, 当你有一些变化, 滚动滑动等, 都会重绘, 所以这个方法中不要创建新对象. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;View更新&lt;/strong&gt;&lt;br&gt;有两个方法可以让View重绘:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;invalidate()&lt;/code&gt;: 只是重新绘制, 调用&lt;code&gt;onDraw()&lt;/code&gt;方法.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;requestLayout()&lt;/code&gt;: 将会从&lt;code&gt;onMeasure()&lt;/code&gt;开始, 可能会改变尺寸, 然后根据新尺寸重新绘制.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Animation&lt;/strong&gt;&lt;br&gt;自定义View的动画是一帧帧进行的, 这就意味着你每一步都要调用&lt;code&gt;invalidate()&lt;/code&gt;来画它.&lt;/p&gt;
+&lt;p&gt;在自定义View中你的动画好助手是&lt;code&gt;ValueAnimator&lt;/code&gt;, 它可以让你动画任何值.&lt;/p&gt;
+&lt;h2 id=&quot;How-to-Stage-Rollout-Features-using-Firebase-Remote-Config&quot;&gt;&lt;a href=&quot;#How-to-Stage-Rollout-Features-using-Firebase-Remote-Config&quot; class=&quot;headerlink&quot; title=&quot;How to Stage Rollout Features using Firebase Remote Config&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://riggaroo.co.za/stage-rollout-features-firebase-remote-config-ios-android/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to Stage Rollout Features using Firebase Remote Config&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://support.google.com/googleplay/android-developer/answer/6346149?hl=en&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Staged Rollout&lt;/a&gt;是Google Play Store的一个feature. 让你可以慢慢地把新版App发布给一部分用户, 并逐渐增大比例. 使用Firebase Remote Config, 我们可以做的更多,  我们可以控制某个feature的发布.&lt;/p&gt;
+&lt;h2 id=&quot;Making-the-most-of-the-APK-analyzer&quot;&gt;&lt;a href=&quot;#Making-the-most-of-the-APK-analyzer&quot; class=&quot;headerlink&quot; title=&quot;Making the most of the APK analyzer&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/google-developers/making-the-most-of-the-apk-analyzer-c066cb871ea2#.36ccm5y0c&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Making the most of the APK analyzer&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Android Studio中Build菜单有一项是&lt;code&gt;Analyze APK...&lt;/code&gt;, 这是一个很有用的功能.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Raw File Size&lt;/code&gt;是apk在磁盘上的大小.&lt;br&gt;&lt;code&gt;Download size&lt;/code&gt;是估计下载你的应用所需要的数据流量大小, 考虑到了Play Store的压缩.&lt;/p&gt;
+&lt;p&gt;文件和文件夹是按照大小降序排列的. 这对于Apk瘦身来说很有用, 很容易发现最占地方的原因.&lt;/p&gt;
+&lt;p&gt;比如作者发现了一些png很占地方, 于是就用&lt;a href=&quot;https://developer.android.com/studio/write/vector-asset-studio.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PSD support in the Vector Asset import tool&lt;/a&gt;把它们转成了&lt;code&gt;VectorDrawable&lt;/code&gt;, 后向兼容用&lt;code&gt;VectorDrawableCompat&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;有一些没有压缩的WAV可以转成OGG. &lt;/p&gt;
+&lt;p&gt;在lib/里面, 发现它们要支持的三个ABI: x86, armeabi-v7a, armeabi, 解决的办法就是利用&lt;a href=&quot;https://developer.android.com/studio/build/configure-apk-splits.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;apk拆分&lt;/a&gt;, 针对每一个ABI有一个不同的版本.&lt;/p&gt;
+&lt;p&gt;还有一个优化是把&lt;code&gt;android:extractNativeLibs&lt;/code&gt; 属性设置为false, 这样系统就不会把.so文件在安装的时候从apk中拷贝到文件系统了. 这样应用的增量更新也会小一点.&lt;/p&gt;
+&lt;p&gt;这个功能有一个”Compare with”按钮, 利用它你可以比较两个apk的改变.&lt;/p&gt;
+&lt;p&gt;可以通过查看DEX文件来查看方法数限制 (Referenced Methods), 类混淆等问题.&lt;/p&gt;
+&lt;h2 id=&quot;Rxify-The-Anti-Cache-then-Network-OR-Network-then-Cache-Problem&quot;&gt;&lt;a href=&quot;#Rxify-The-Anti-Cache-then-Network-OR-Network-then-Cache-Problem&quot; class=&quot;headerlink&quot; title=&quot;Rxify : The Anti Cache-then-Network OR Network-then-Cache Problem&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.andevcon.com/news/rxify-the-anti-cache-then-network-or-network-then-cache-problem&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;Rxify&lt;/code&gt; : The Anti Cache-then-Network OR Network-then-Cache Problem&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;用RxJava处理网络请求和缓存.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果先使用Cache, 没有缓存的时候再进行网络请求. -&amp;gt; 用&lt;code&gt;.concatWith()&lt;/code&gt;和&lt;code&gt;.take(1)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;如果优先取网络最新数据, 没网的时候才用缓存数据. -&amp;gt; &lt;code&gt;.onErrorReturn()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Your-presenters-don’t-need-all-those-lifecycle-events&quot;&gt;&lt;a href=&quot;#Your-presenters-don’t-need-all-those-lifecycle-events&quot; class=&quot;headerlink&quot; title=&quot;Your presenters don’t need all those lifecycle events&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@anupcowkur/your-presenters-dont-need-all-those-lifecycle-events-721f500eeef4#.f7nupw3jo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Your presenters don’t need all those lifecycle events&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者认为在Presenter中放入太多生命周期的方法不太好, 他觉得最基本的只需要这两个方法:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Presenter&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onViewAttached&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(MVPView view)&lt;/span&gt;&lt;/span&gt;; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onViewDetached&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;当然当你需要更多的时候可以加入更多, 但是我们不应该每个生命周期方法都加进去.&lt;/p&gt;
+&lt;h2 id=&quot;How-to-send-notifications-using-Android-Firebase&quot;&gt;&lt;a href=&quot;#How-to-send-notifications-using-Android-Firebase&quot; class=&quot;headerlink&quot; title=&quot;How to send notifications using Android Firebase&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.survivingwithandroid.com/2016/09/android-firebase-push-notification.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to send notifications using Android Firebase&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;使用Firebase Messaging如何发送push notification.&lt;/p&gt;
+&lt;h2 id=&quot;RxRecipes-Wrap-your-way-to-Rx&quot;&gt;&lt;a href=&quot;#RxRecipes-Wrap-your-way-to-Rx&quot; class=&quot;headerlink&quot; title=&quot;RxRecipes: Wrap your way to Rx&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://hackernoon.com/rxrecipes-wrap-your-way-to-rx-fd40eb5254b6#.hbtcjp4rm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxRecipes: Wrap your way to Rx&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;使用&lt;code&gt;.fromCallable()&lt;/code&gt;来把一个同步方法包装成一个Observable. &lt;/p&gt;
+&lt;p&gt;并比较了和&lt;code&gt;.just()&lt;/code&gt;的区别. (&lt;code&gt;.just()&lt;/code&gt;发射的东西在创建的时候就确定了, 而&lt;code&gt;.fromCallable()&lt;/code&gt;是在subscribe的时候确定的.)&lt;/p&gt;
+&lt;h2 id=&quot;Diving-deeper-into-the-Java-transient-modifier&quot;&gt;&lt;a href=&quot;#Diving-deeper-into-the-Java-transient-modifier&quot; class=&quot;headerlink&quot; title=&quot;Diving deeper into the Java transient modifier&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/google-developer-experts/diving-deeper-into-the-java-transient-modifier-3b16eff68f42#.8pbk9i6fm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Diving deeper into the Java transient modifier&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;transient&lt;/code&gt;修饰符加在字段上时, 在对象被序列化的时候, 这个字段将被排除在外, 反序列化时这个字段将被初始化一个默认值.&lt;/p&gt;
+&lt;p&gt;可能的使用场景: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;实现了Serializable的User对象中的password字段.&lt;/li&gt;
+&lt;li&gt;一个Serializable的类中的某个字段是通过其他字段推导或派生出来的, 这些派生的字段没有必要被序列化, 于是把它们标记为&lt;code&gt;transient&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;注意transient和static是不能并存的, 因为static默认是transient的.&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;Tinker&quot;&gt;&lt;a href=&quot;#Tinker&quot; class=&quot;headerlink&quot; title=&quot;Tinker&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Tencent/tinker&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Tinker&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;腾讯的热补丁(hot-fix)解决方案, 支持不重新安装app的dex, library和资源更新.&lt;/p&gt;
+&lt;h2 id=&quot;Android-Debug-Database&quot;&gt;&lt;a href=&quot;#Android-Debug-Database&quot; class=&quot;headerlink&quot; title=&quot;Android-Debug-Database&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/amitshekhariitbhu/Android-Debug-Database&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android-Debug-Database&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在浏览器里看应用的数据库和shared preferences.&lt;/p&gt;
+&lt;h2 id=&quot;blurkit-android&quot;&gt;&lt;a href=&quot;#blurkit-android&quot; class=&quot;headerlink&quot; title=&quot;blurkit-android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/wonderkiln/blurkit-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;blurkit-android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;实时模糊布局. 像iOS一样.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-233&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-233&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #233&quot;&gt;&lt;/a&gt;Android Weekly Issue #233&lt;/h1&gt;&lt;p&gt;November 27th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-233&quot;&gt;Android Weekly Issue #233&lt;/a&gt;&lt;br&gt;本期内容包括: 用Mockito做RxJava的单元测试; Android开发中的命令行使用; Android 7.1的App Shortcuts; 自定义View的绘制; 用Firebase的Remote Config进行feature逐步分发; APK分析工具的使用, APK瘦身讨论; RxJava处理网络请求和缓存; presenter的设计; 用Firebase发送push notification; transient关键字的使用等.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+      <category term="Java" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/Java/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
+    
+      <category term="Terminal" scheme="http://mengdd.github.io/tags/Terminal/"/>
+    
+      <category term="Android 7.1" scheme="http://mengdd.github.io/tags/Android-7-1/"/>
+    
+      <category term="App Shortcuts" scheme="http://mengdd.github.io/tags/App-Shortcuts/"/>
+    
+      <category term="Custom View" scheme="http://mengdd.github.io/tags/Custom-View/"/>
+    
+      <category term="Remote Config" scheme="http://mengdd.github.io/tags/Remote-Config/"/>
+    
+      <category term="APK analyzer" scheme="http://mengdd.github.io/tags/APK-analyzer/"/>
+    
+      <category term="Cache" scheme="http://mengdd.github.io/tags/Cache/"/>
+    
+      <category term="push notification" scheme="http://mengdd.github.io/tags/push-notification/"/>
+    
+      <category term="transient" scheme="http://mengdd.github.io/tags/transient/"/>
+    
+      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Effective Java笔记一 创建和销毁对象</title>
@@ -333,9 +475,9 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
-    
       <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
+    
+      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
@@ -1438,11 +1580,11 @@
       <category term="Architecture" scheme="http://mengdd.github.io/categories/Android/Architecture/"/>
     
     
+      <category term="Content Provider" scheme="http://mengdd.github.io/tags/Content-Provider/"/>
+    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
-      <category term="Content Provider" scheme="http://mengdd.github.io/tags/Content-Provider/"/>
     
       <category term="Data Binding" scheme="http://mengdd.github.io/tags/Data-Binding/"/>
     
@@ -2607,11 +2749,11 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
+      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
+    
       <category term="Okio" scheme="http://mengdd.github.io/tags/Okio/"/>
     
       <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
-    
-      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
     
       <category term="Support Annotations" scheme="http://mengdd.github.io/tags/Support-Annotations/"/>
     
@@ -2789,8 +2931,6 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
-    
       <category term="ScaleType" scheme="http://mengdd.github.io/tags/ScaleType/"/>
     
       <category term="Devices" scheme="http://mengdd.github.io/tags/Devices/"/>
@@ -2806,6 +2946,8 @@
       <category term="ItemTouchHelper" scheme="http://mengdd.github.io/tags/ItemTouchHelper/"/>
     
       <category term="Fresco" scheme="http://mengdd.github.io/tags/Fresco/"/>
+    
+      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
     
   </entry>
   
@@ -2964,46 +3106,6 @@
       <category term="Recorder" scheme="http://mengdd.github.io/tags/Recorder/"/>
     
       <category term="tiger" scheme="http://mengdd.github.io/tags/tiger/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>commit(), commitNow()和commitAllowingStateLoss()</title>
-    <link href="http://mengdd.github.io/Android/2016/08/31/commit-commitNow-and-commitAllowingStateLoss/"/>
-    <id>http://mengdd.github.io/Android/2016/08/31/commit-commitNow-and-commitAllowingStateLoss/</id>
-    <published>2016-08-31T09:44:35.000Z</published>
-    <updated>2016-08-31T10:18:20.000Z</updated>
-    
-    <content type="html">&lt;p&gt;关于FragmentTransaction的各种提交方法: &lt;code&gt;commit()&lt;/code&gt;,&lt;code&gt;commitAllowingStateLoss()&lt;/code&gt;,&lt;code&gt;commitNow()&lt;/code&gt;和&lt;code&gt;commitNowAllowingStateLoss()&lt;/code&gt;.&lt;br&gt;作者Bryan Herbst发了一个blog &lt;a href=&quot;https://medium.com/@bherbst/the-many-flavors-of-commit-186608a015b1#.uwl2v86cx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The many flavors of commit()&lt;/a&gt;讨论这几个方法的特点和用途.&lt;br&gt;下文是中文摘要.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;FragmentTransaction的提交方法&quot;&gt;&lt;a href=&quot;#FragmentTransaction的提交方法&quot; class=&quot;headerlink&quot; title=&quot;FragmentTransaction的提交方法&quot;&gt;&lt;/a&gt;FragmentTransaction的提交方法&lt;/h1&gt;&lt;p&gt;support library的&lt;code&gt;FragmentTransaction&lt;/code&gt;现在提供了四种不同的方法来commit一个transaction:&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html#commit%28%29&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;commit()&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html#commitAllowingStateLoss%28%29&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;commitAllowingStateLoss()&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html#commitNow%28%29&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;commitNow()&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html#commitNowAllowingStateLoss%28%29&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;commitNowAllowingStateLoss()&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这篇文章分析了这四个方法的不同.&lt;/p&gt;
-&lt;h2 id=&quot;commit-vs-commitAllowingStateLoss&quot;&gt;&lt;a href=&quot;#commit-vs-commitAllowingStateLoss&quot; class=&quot;headerlink&quot; title=&quot;commit() vs commitAllowingStateLoss()&quot;&gt;&lt;/a&gt;commit() vs commitAllowingStateLoss()&lt;/h2&gt;&lt;p&gt;用&lt;code&gt;commit()&lt;/code&gt;提交有时候会遇到&lt;code&gt;IllegalStateException&lt;/code&gt;, 说你在&lt;code&gt;onSaveInstanceState()&lt;/code&gt;之后提交, 这里有另一个文章很好地分析了这个问题:&lt;a href=&quot;http://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Fragment Transactions &amp;amp; Activity State Loss&lt;/a&gt;&lt;br&gt;&lt;code&gt;commit()&lt;/code&gt;和&lt;code&gt;commitAllowingStateLoss()&lt;/code&gt;在实现上唯一的不同就是当你调用&lt;code&gt;commit()&lt;/code&gt;的时候, FragmentManger会检查是否已经存储了它自己的状态, 如果已经存了, 就抛出&lt;code&gt;IllegalStateException&lt;/code&gt;.&lt;br&gt;那么如果你调用的是&lt;code&gt;commitAllowingStateLoss()&lt;/code&gt;, 并且是在&lt;code&gt;onSaveInstanceState()&lt;/code&gt;之后, 你可能会丢失掉什么状态呢?&lt;br&gt;答案是你&lt;strong&gt;可能&lt;/strong&gt;会丢掉FragmentManager的状态, 即save之后任何被添加或被移除的Fragments.&lt;br&gt;举例说明:&lt;br&gt;1.在Activity里显示一个FragmentA;&lt;br&gt;2.然后Activity被后台, &lt;code&gt;onStop()&lt;/code&gt;和&lt;code&gt;onSaveInstanceState()&lt;/code&gt;被调用;&lt;br&gt;3.在某个事件触发下, 你用FragmentB replace FragmentA , 使用的是 &lt;code&gt;commitAllowingStateLoss()&lt;/code&gt;.&lt;br&gt;这时候, 用户再返回应用, 可能会有两种情况发生:&lt;br&gt;1.如果系统杀死了你的activity, 你的activity将会重建, 使用了上述步骤2保存的状态, 所以A会显示, B不会显示;&lt;br&gt;2.如果系统没有杀死你的activity, 它会被提到前台, FragmentB就会显示出来, 到下次Activity stop的时候, 这个包含了B的状态就会被存下来.&lt;br&gt;(上述测试可以利用开发者选项中的”Don’t Keep Activities”选项).&lt;br&gt;那么你要选择哪一种呢? 这就取决于你提交的是什么, 还有你是否能接受丢失.&lt;/p&gt;
-&lt;h2 id=&quot;commit-commitNow-和-executePendingTransactions&quot;&gt;&lt;a href=&quot;#commit-commitNow-和-executePendingTransactions&quot; class=&quot;headerlink&quot; title=&quot;commit(), commitNow() 和 executePendingTransactions()&quot;&gt;&lt;/a&gt;commit(), commitNow() 和 executePendingTransactions()&lt;/h2&gt;&lt;p&gt;使用&lt;code&gt;commit()&lt;/code&gt;的时候, 一旦调用, 这个commit并不是立即执行的, 它会被发送到主线程的任务队列当中去, 当主线程准备好执行它的时候执行.&lt;br&gt;&lt;code&gt;popBackStack()&lt;/code&gt;的工作也是这样, 发送到主线程任务队列中去. 也即说它们都是异步的.&lt;/p&gt;
-&lt;p&gt;但是有时候你希望你的操作是立即执行的, 之前的开发者会在&lt;code&gt;commit()&lt;/code&gt;调用之后加上 &lt;code&gt;executePendingTransactions()&lt;/code&gt;来保证立即执行, 即变异步为同步.&lt;br&gt;support library从v24.0.0开始提供了 &lt;code&gt;commitNow()&lt;/code&gt;方法, 之前用&lt;code&gt;executePendingTransactions()&lt;/code&gt;会将所有pending在队列中还有你新提交的transactions都执行了, 而&lt;code&gt;commitNow()&lt;/code&gt;将只会执行你当前要提交的transaction. 所以&lt;code&gt;commitNow()&lt;/code&gt;避免你会不小心执行了那些你可能并不想执行的transactions.&lt;/p&gt;
-&lt;p&gt;但是你不能对要加在back stack中的transaction使用&lt;code&gt;commitNow()&lt;/code&gt;, 即&lt;code&gt;addToBackStack()&lt;/code&gt;和&lt;code&gt;commitNow()&lt;/code&gt;不能同时使用.&lt;br&gt;为什么呢?&lt;br&gt;想想一下, 如果你有一个提交使用了&lt;code&gt;commit()&lt;/code&gt;, 紧接着又有另一个提交使用了&lt;code&gt;commitNow()&lt;/code&gt;, 两个都想加入back stack, 那back stack会变成什么样呢? 到底是哪个transaction在上, 哪个在下? 答案将是一种不确定的状态, 因为系统并没有提供任何保证来确保顺序, 所以系统决定干脆不支持这个操作.&lt;/p&gt;
-&lt;p&gt;前面提过&lt;code&gt;popBackStack()&lt;/code&gt;是异步的, 所以它同样也有一个同步的兄弟&lt;code&gt;popBackStackImmediate()&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;所以实际应用的时候怎么选择呢?&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;如果你需要同步的操作, 并且你不需要加到back stack里, 使用&lt;code&gt;commitNow()&lt;/code&gt;.&lt;br&gt;support library在FragmentPagerAdapter里就使用了commitNow()来保证在更新结束的时候, 正确的页面被加上或移除.&lt;/li&gt;
-&lt;li&gt;如果你操作很多transactions, 并且不需要同步, 或者你需要把transactions加在back stack里, 那就使用&lt;code&gt;commit()&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;如果你希望在某一个指定的点, 确保所有的transactions都被执行, 那么使用&lt;code&gt;executePendingTransactions()&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;Reference&quot;&gt;&lt;a href=&quot;#Reference&quot; class=&quot;headerlink&quot; title=&quot;Reference&quot;&gt;&lt;/a&gt;Reference&lt;/h1&gt;&lt;p&gt;这是Android Weekly #220的一篇文章, 我在做这期笔记的时候觉得这个写得很好, 所以决定单独拿出来说一说. 这期整体的笔记稍后推出, 敬请期待哇.&lt;br&gt;原文&lt;a href=&quot;https://medium.com/@bherbst/the-many-flavors-of-commit-186608a015b1#.uwl2v86cx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The many flavors of commit()&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于FragmentTransaction的各种提交方法: &lt;code&gt;commit()&lt;/code&gt;,&lt;code&gt;commitAllowingStateLoss()&lt;/code&gt;,&lt;code&gt;commitNow()&lt;/code&gt;和&lt;code&gt;commitNowAllowingStateLoss()&lt;/code&gt;.&lt;br&gt;作者Bryan Herbst发了一个blog &lt;a href=&quot;https://medium.com/@bherbst/the-many-flavors-of-commit-186608a015b1#.uwl2v86cx&quot;&gt;The many flavors of commit()&lt;/a&gt;讨论这几个方法的特点和用途.&lt;br&gt;下文是中文摘要.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Fragment" scheme="http://mengdd.github.io/tags/Fragment/"/>
     
   </entry>
   
