@@ -1,0 +1,702 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android Weekly Notes Issue 234 | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="Android Weekly Issue #234December 4th, 2016Android Weekly Issue #234本期内容包括: ConstraintLayout的使用; React Native教程; fastlane管理模拟器; Android中的任务调度; 文字sticker的实现; 给Android library加flavor; 更好的关键帧动画; SQLDelig">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Weekly Notes Issue 234">
+<meta property="og:url" content="http://mengdd.github.io/Android/Android-Weekly/React-Native/Java/2016/12/13/android-weekly-notes-issue-234/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="Android Weekly Issue #234December 4th, 2016Android Weekly Issue #234本期内容包括: ConstraintLayout的使用; React Native教程; fastlane管理模拟器; Android中的任务调度; 文字sticker的实现; 给Android library加flavor; 更好的关键帧动画; SQLDelig">
+<meta property="og:updated_time" content="2016-12-13T03:16:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Weekly Notes Issue 234">
+<meta name="twitter:description" content="Android Weekly Issue #234December 4th, 2016Android Weekly Issue #234本期内容包括: ConstraintLayout的使用; React Native教程; fastlane管理模拟器; Android中的任务调度; 文字sticker的实现; 给Android library加flavor; 更好的关键帧动画; SQLDelig">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/Android/Android-Weekly/React-Native/Java/2016/12/13/android-weekly-notes-issue-234/" title="Android Weekly Notes Issue 234" itemprop="url">Android Weekly Notes Issue 234</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2016-12-13T03:08:45.000Z" itemprop="datePublished"> Published 2016-12-13</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-234"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #234</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Guide-to-ConstraintLayout"><span class="toc-number">2.1.</span> <span class="toc-text">Guide to ConstraintLayout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-Native-Express"><span class="toc-number">2.2.</span> <span class="toc-text">React Native Express</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Managing-Android-Virtual-Devices-during-test-session"><span class="toc-number">2.3.</span> <span class="toc-text">Managing Android Virtual Devices during test session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#You-don’t-have-to-use-WeakReference-to-avoid-memory-leaks"><span class="toc-number">2.4.</span> <span class="toc-text">You don’t have to use WeakReference to avoid memory leaks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Effective-Java-for-Android"><span class="toc-number">2.5.</span> <span class="toc-text">Effective Java for Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scheduling-tasks-in-Android-made-easy"><span class="toc-number">2.6.</span> <span class="toc-text">Scheduling tasks in Android made easy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-create-beautiful-text-stickers-for-Android"><span class="toc-number">2.7.</span> <span class="toc-text">How to create beautiful text stickers for Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Elite-Worship"><span class="toc-number">2.8.</span> <span class="toc-text">Elite Worship</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Product-Flavors-for-Android-Libraries"><span class="toc-number">2.9.</span> <span class="toc-text">Product Flavors for Android Libraries</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keyframes-Delivering-scalable-high-quality-animations"><span class="toc-number">2.10.</span> <span class="toc-text">Keyframes: Delivering scalable, high-quality animations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQLDelight-Getting-Started"><span class="toc-number">2.11.</span> <span class="toc-text">SQLDelight: Getting Started</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Your-ViewHolders-are-Dumb-Make-’em-Not-Dumb"><span class="toc-number">2.12.</span> <span class="toc-text">Your ViewHolders are Dumb. Make ’em Not Dumb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#An-Introduction-to-Icon-Animation-Techniques"><span class="toc-number">2.13.</span> <span class="toc-text">An Introduction to Icon Animation Techniques</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OkLog-2-0-—-improved-Android-network-logging"><span class="toc-number">2.14.</span> <span class="toc-text">OkLog 2.0 — improved Android network logging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-Build-an-Android-App-for-Fire-TV-Part-4"><span class="toc-number">2.15.</span> <span class="toc-text">How to Build an Android App for Fire TV (Part 4)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#android-PageFlip"><span class="toc-number">3.1.</span> <span class="toc-text">android-PageFlip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#smart-scheduler-android"><span class="toc-number">3.2.</span> <span class="toc-text">smart-scheduler-android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PageLoader"><span class="toc-number">3.3.</span> <span class="toc-text">PageLoader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fastlane-plugin-automated-test-emulator-run"><span class="toc-number">3.4.</span> <span class="toc-text">fastlane-plugin-automated-test-emulator-run</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keyframes"><span class="toc-number">3.5.</span> <span class="toc-text">Keyframes</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Android-Weekly-Issue-234"><a href="#Android-Weekly-Issue-234" class="headerlink" title="Android Weekly Issue #234"></a>Android Weekly Issue #234</h1><p>December 4th, 2016<br><a href="http://androidweekly.net/issues/issue-234" target="_blank" rel="external">Android Weekly Issue #234</a><br>本期内容包括: ConstraintLayout的使用; React Native教程; fastlane管理模拟器; Android中的任务调度; 文字sticker的实现; 给Android library加flavor; 更好的关键帧动画; SQLDelight的使用; icon Animation; OkLog的使用等等.</p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Guide-to-ConstraintLayout"><a href="#Guide-to-ConstraintLayout" class="headerlink" title="Guide to ConstraintLayout"></a><a href="https://medium.com/@loutry/guide-to-constraintlayout-407cd87bc013#.pdg54u72z" target="_blank" rel="external">Guide to ConstraintLayout</a></h2><p>这篇文章教你如何使用<code>ConstraintLayout</code>, 有很多实际的例子.</p>
+<h2 id="React-Native-Express"><a href="#React-Native-Express" class="headerlink" title="React Native Express"></a><a href="http://www.reactnativeexpress.com/" target="_blank" rel="external">React Native Express</a></h2><p>一步一步地教你跨平台的Reactive Native, 比官方的文档要深入, 并且提供例子.</p>
+<h2 id="Managing-Android-Virtual-Devices-during-test-session"><a href="#Managing-Android-Virtual-Devices-during-test-session" class="headerlink" title="Managing Android Virtual Devices during test session"></a><a href="https://medium.com/azimolabs/managing-android-virtual-devices-during-test-session-98a403acffc2#.cu4nfhl6u" target="_blank" rel="external">Managing Android Virtual Devices during test session</a></h2><p>作者他们用<a href="https://github.com/fastlane/fastlane" target="_blank" rel="external">fastlane</a>管理模拟器, 并且开发了一个插件.</p>
+<h2 id="You-don’t-have-to-use-WeakReference-to-avoid-memory-leaks"><a href="#You-don’t-have-to-use-WeakReference-to-avoid-memory-leaks" class="headerlink" title="You don’t have to use WeakReference to avoid memory leaks"></a><a href="https://medium.com/google-developer-experts/weakreference-in-android-dd1e66b9be9d#.vmxu20g30" target="_blank" rel="external">You don’t have to use WeakReference to avoid memory leaks</a></h2><p>并不是到处都要用<code>WeakReference</code>来避免内存泄漏.</p>
+<h2 id="Effective-Java-for-Android"><a href="#Effective-Java-for-Android" class="headerlink" title="Effective Java for Android"></a><a href="https://medium.com/rocknnull/effective-java-for-android-cheatsheet-bf4e3433889a#.8t44xdb4t" target="_blank" rel="external">Effective Java for Android</a></h2><p>一个cheat-sheet, Effective Java中提到的内容, 作者列出了他认为在Android开发中最重要的几项:</p>
+<ul>
+<li>用private来限制不可实例化.</li>
+<li>使用静态工厂方法.</li>
+<li>使用Builders.</li>
+<li>避免互换性.</li>
+<li>静态内部类.</li>
+<li>使用泛型.</li>
+<li>返回空的集合而不是null.</li>
+<li>字符串连接用StringBuilder, 不要用+.</li>
+<li>可恢复的异常.</li>
+</ul>
+<h2 id="Scheduling-tasks-in-Android-made-easy"><a href="#Scheduling-tasks-in-Android-made-easy" class="headerlink" title="Scheduling tasks in Android made easy"></a><a href="https://blog.hypertrack.io/2016/12/01/scheduling-tasks-in-android-made-easy/" target="_blank" rel="external">Scheduling tasks in Android made easy</a></h2><p>分发异步任务的时候, 用很多选择: <code>AlarmManager</code>, <code>Handler</code>, <code>JobSheduler</code>, <code>GcmNetworkManager</code>. 作者他们的库: <a href="https://github.com/hypertrack/smart-scheduler-android" target="_blank" rel="external">smart-scheduler-android</a>就是用来有效地处理异步任务调度问题.</p>
+<h2 id="How-to-create-beautiful-text-stickers-for-Android"><a href="#How-to-create-beautiful-text-stickers-for-Android" class="headerlink" title="How to create beautiful text stickers for Android"></a><a href="https://medium.com/uptech-team/how-to-create-beautiful-text-stickers-for-android-10eeea0cee09#.11x8ar94q" target="_blank" rel="external">How to create beautiful text stickers for Android</a></h2><p>之前作者有一篇文章讲了如何创建Snapchat一样的图片stickers.</p>
+<p>本篇讲如何创建文字的stickers, 代码: <a href="https://github.com/uptechteam/MotionViews-Android" target="_blank" rel="external">MotionViews-Android</a>.</p>
+<h2 id="Elite-Worship"><a href="#Elite-Worship" class="headerlink" title="Elite Worship"></a><a href="http://blog.sqisland.com/2016/12/elite-worship.html" target="_blank" rel="external">Elite Worship</a></h2><p>Chiu-Ki Chan分享了一些她的看法, 关于精英崇拜, 和如何让社区更加平等, 鼓励每一个人都参与进来.</p>
+<h2 id="Product-Flavors-for-Android-Libraries"><a href="#Product-Flavors-for-Android-Libraries" class="headerlink" title="Product Flavors for Android Libraries"></a><a href="https://medium.com/@sahildave/product-flavors-for-android-library-d3b2d240fca2#.ravhhk30a" target="_blank" rel="external">Product Flavors for Android Libraries</a></h2><p>如何给Android Library加上不同的flavor使用.</p>
+<h2 id="Keyframes-Delivering-scalable-high-quality-animations"><a href="#Keyframes-Delivering-scalable-high-quality-animations" class="headerlink" title="Keyframes: Delivering scalable, high-quality animations"></a><a href="https://code.facebook.com/posts/354469174916519" target="_blank" rel="external">Keyframes: Delivering scalable, high-quality animations</a></h2><p>Facebook分享了一个库<a href="https://github.com/facebookincubator/Keyframes" target="_blank" rel="external">Keyframes</a>用来导出AE的动画, 并且在移动设备上播放它.</p>
+<h2 id="SQLDelight-Getting-Started"><a href="#SQLDelight-Getting-Started" class="headerlink" title="SQLDelight: Getting Started"></a><a href="https://medium.com/@tonyowen/sqldelight-getting-started-67054fe51306#.rske25ore" target="_blank" rel="external">SQLDelight: Getting Started</a></h2><p><a href="https://github.com/square/sqldelight" target="_blank" rel="external">sqldelight</a>是一个库, 可以用SQL语句来生成Java Model类.<br>SQLDelight也是一个Intellij插件.</p>
+<p>作者介绍了如何使用SQLDelight, 注意生成models需要结合AutoValue.</p>
+<h2 id="Your-ViewHolders-are-Dumb-Make-’em-Not-Dumb"><a href="#Your-ViewHolders-are-Dumb-Make-’em-Not-Dumb" class="headerlink" title="Your ViewHolders are Dumb. Make ’em Not Dumb"></a><a href="https://medium.com/@jonfhancock/your-viewholders-are-dumb-make-em-not-dumb-82e6f73f630c#.auaur0y3r" target="_blank" rel="external">Your ViewHolders are Dumb. Make ’em Not Dumb</a></h2><p>作者举例说明ViewHolder应该如何优化代码, 解放Adapter.</p>
+<h2 id="An-Introduction-to-Icon-Animation-Techniques"><a href="#An-Introduction-to-Icon-Animation-Techniques" class="headerlink" title="An Introduction to Icon Animation Techniques"></a><a href="http://www.androiddesignpatterns.com/2016/11/introduction-to-icon-animation-techniques.html" target="_blank" rel="external">An Introduction to Icon Animation Techniques</a></h2><p>如何创建漂亮的icon动画.</p>
+<h2 id="OkLog-2-0-—-improved-Android-network-logging"><a href="#OkLog-2-0-—-improved-Android-network-logging" class="headerlink" title="OkLog 2.0 — improved Android network logging"></a><a href="https://medium.com/@simonpercic/oklog-2-0-improved-android-network-logging-a72b2ffe4c66#.6h8w44eh8" target="_blank" rel="external">OkLog 2.0 — improved Android network logging</a></h2><p><a href="https://github.com/simonpercic/OkLog" target="_blank" rel="external">OkLog</a>是一个库, 可以在logcat中打印网络请求和响应, 点击进入页面查看, 本文介绍2.0版本的改进.</p>
+<h2 id="How-to-Build-an-Android-App-for-Fire-TV-Part-4"><a href="#How-to-Build-an-Android-App-for-Fire-TV-Part-4" class="headerlink" title="How to Build an Android App for Fire TV (Part 4)"></a><a href="https://medium.com/amazon-appstore/developing-for-the-living-room-how-to-build-an-android-app-for-fire-tv-part-4-cbe572a6f1e6#.zfg39casg" target="_blank" rel="external">How to Build an Android App for Fire TV (Part 4)</a></h2><p>本文是为Fire TV搭建一个Android App系列文章的第四篇.</p>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="android-PageFlip"><a href="#android-PageFlip" class="headerlink" title="android-PageFlip"></a><a href="https://github.com/eschao/android-PageFlip" target="_blank" rel="external">android-PageFlip</a></h2><p>3D的翻页效果.</p>
+<h2 id="smart-scheduler-android"><a href="#smart-scheduler-android" class="headerlink" title="smart-scheduler-android"></a><a href="https://github.com/hypertrack/smart-scheduler-android" target="_blank" rel="external">smart-scheduler-android</a></h2><p>用于周期性和非周期性任务分发的工具类.</p>
+<h2 id="PageLoader"><a href="#PageLoader" class="headerlink" title="PageLoader"></a><a href="https://github.com/arieridwan8/pageloader" target="_blank" rel="external">PageLoader</a></h2><p>一个简单的可定制化的loading页面库.</p>
+<h2 id="fastlane-plugin-automated-test-emulator-run"><a href="#fastlane-plugin-automated-test-emulator-run" class="headerlink" title="fastlane-plugin-automated-test-emulator-run"></a><a href="https://github.com/AzimoLabs/fastlane-plugin-automated-test-emulator-run" target="_blank" rel="external">fastlane-plugin-automated-test-emulator-run</a></h2><p>fastlane插件, 用于启动模拟器进行自动化测试.</p>
+<h2 id="Keyframes"><a href="#Keyframes" class="headerlink" title="Keyframes"></a><a href="https://github.com/facebookincubator/Keyframes" target="_blank" rel="external">Keyframes</a></h2><p>导出AE动画并在移动设备上播放的库.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Android-Weekly/">Android Weekly</a>►<a class="article-category-link" href="/categories/Android/Android-Weekly/React-Native/">React Native</a>►<a class="article-category-link" href="/categories/Android/Android-Weekly/React-Native/Java/">Java</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Android-Weekly/">Android Weekly</a><a href="/tags/Animation/">Animation</a><a href="/tags/ConstraintLayout/">ConstraintLayout</a><a href="/tags/React-Native/">React Native</a><a href="/tags/fastlane/">fastlane</a><a href="/tags/Effective-Java/">Effective Java</a><a href="/tags/Sticker/">Sticker</a><a href="/tags/Flavor/">Flavor</a><a href="/tags/SQLDelight/">SQLDelight</a><a href="/tags/OkLog/">OkLog</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/Android/Android-Weekly/React-Native/Java/2016/12/13/android-weekly-notes-issue-234/" data-title="Android Weekly Notes Issue 234 | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Android/Android-Weekly/Java/2016/12/01/android-weekly-notes-issue-233/"  title="Android Weekly Notes Issue 233">
+ <strong>下一篇：</strong><br/> 
+ <span>Android Weekly Notes Issue 233
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="Android/Android-Weekly/React-Native/Java/2016/12/13/android-weekly-notes-issue-234/" data-title="Android Weekly Notes Issue 234" data-url="http://mengdd.github.io/Android/Android-Weekly/React-Native/Java/2016/12/13/android-weekly-notes-issue-234/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-234"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #234</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Guide-to-ConstraintLayout"><span class="toc-number">2.1.</span> <span class="toc-text">Guide to ConstraintLayout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-Native-Express"><span class="toc-number">2.2.</span> <span class="toc-text">React Native Express</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Managing-Android-Virtual-Devices-during-test-session"><span class="toc-number">2.3.</span> <span class="toc-text">Managing Android Virtual Devices during test session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#You-don’t-have-to-use-WeakReference-to-avoid-memory-leaks"><span class="toc-number">2.4.</span> <span class="toc-text">You don’t have to use WeakReference to avoid memory leaks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Effective-Java-for-Android"><span class="toc-number">2.5.</span> <span class="toc-text">Effective Java for Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scheduling-tasks-in-Android-made-easy"><span class="toc-number">2.6.</span> <span class="toc-text">Scheduling tasks in Android made easy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-create-beautiful-text-stickers-for-Android"><span class="toc-number">2.7.</span> <span class="toc-text">How to create beautiful text stickers for Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Elite-Worship"><span class="toc-number">2.8.</span> <span class="toc-text">Elite Worship</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Product-Flavors-for-Android-Libraries"><span class="toc-number">2.9.</span> <span class="toc-text">Product Flavors for Android Libraries</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keyframes-Delivering-scalable-high-quality-animations"><span class="toc-number">2.10.</span> <span class="toc-text">Keyframes: Delivering scalable, high-quality animations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQLDelight-Getting-Started"><span class="toc-number">2.11.</span> <span class="toc-text">SQLDelight: Getting Started</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Your-ViewHolders-are-Dumb-Make-’em-Not-Dumb"><span class="toc-number">2.12.</span> <span class="toc-text">Your ViewHolders are Dumb. Make ’em Not Dumb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#An-Introduction-to-Icon-Animation-Techniques"><span class="toc-number">2.13.</span> <span class="toc-text">An Introduction to Icon Animation Techniques</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OkLog-2-0-—-improved-Android-network-logging"><span class="toc-number">2.14.</span> <span class="toc-text">OkLog 2.0 — improved Android network logging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-Build-an-Android-App-for-Fire-TV-Part-4"><span class="toc-number">2.15.</span> <span class="toc-text">How to Build an Android App for Fire TV (Part 4)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#android-PageFlip"><span class="toc-number">3.1.</span> <span class="toc-text">android-PageFlip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#smart-scheduler-android"><span class="toc-number">3.2.</span> <span class="toc-text">smart-scheduler-android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PageLoader"><span class="toc-number">3.3.</span> <span class="toc-text">PageLoader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fastlane-plugin-automated-test-emulator-run"><span class="toc-number">3.4.</span> <span class="toc-text">fastlane-plugin-automated-test-emulator-run</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keyframes"><span class="toc-number">3.5.</span> <span class="toc-text">Keyframes</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>31</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-News/" title="Android News">Android News<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Architecture/" title="Architecture">Architecture<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/IDE/" title="IDE">IDE<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/" title="Retrofit">Retrofit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/RxJava/" title="RxJava">RxJava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/" title="Tools">Tools<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>29</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>17</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>11</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVP/" title="MVP">MVP<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Retrofit/" title="Retrofit">Retrofit<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mockito/" title="Mockito">Mockito<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger/" title="Dagger">Dagger<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redux/" title="Redux">Redux<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Reductor/" title="Reductor">Reductor<sup>3</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/mengdd/" target="_blank" title="圣骑士wind">圣骑士wind</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://talentprince.github.io/" target="_blank" title="长乐未央">长乐未央</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dandan Meng. <br/>
+			This is my blog. Welcome.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/mengdd" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wind"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dandanmeng';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75132850-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?83e8338b542a9fd155f68673d113e0ae";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

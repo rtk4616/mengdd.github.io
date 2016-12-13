@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-12-01T10:34:53.000Z</updated>
+  <updated>2016-12-13T03:16:28.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -16,11 +16,94 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Android Weekly Notes Issue</title>
+    <title>Android Weekly Notes Issue 234</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/React-Native/Java/2016/12/13/android-weekly-notes-issue-234/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/React-Native/Java/2016/12/13/android-weekly-notes-issue-234/</id>
+    <published>2016-12-13T03:08:45.000Z</published>
+    <updated>2016-12-13T03:16:28.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-234&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-234&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #234&quot;&gt;&lt;/a&gt;Android Weekly Issue #234&lt;/h1&gt;&lt;p&gt;December 4th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-234&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #234&lt;/a&gt;&lt;br&gt;本期内容包括: ConstraintLayout的使用; React Native教程; fastlane管理模拟器; Android中的任务调度; 文字sticker的实现; 给Android library加flavor; 更好的关键帧动画; SQLDelight的使用; icon Animation; OkLog的使用等等.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Guide-to-ConstraintLayout&quot;&gt;&lt;a href=&quot;#Guide-to-ConstraintLayout&quot; class=&quot;headerlink&quot; title=&quot;Guide to ConstraintLayout&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@loutry/guide-to-constraintlayout-407cd87bc013#.pdg54u72z&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Guide to ConstraintLayout&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章教你如何使用&lt;code&gt;ConstraintLayout&lt;/code&gt;, 有很多实际的例子.&lt;/p&gt;
+&lt;h2 id=&quot;React-Native-Express&quot;&gt;&lt;a href=&quot;#React-Native-Express&quot; class=&quot;headerlink&quot; title=&quot;React Native Express&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.reactnativeexpress.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;React Native Express&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一步一步地教你跨平台的Reactive Native, 比官方的文档要深入, 并且提供例子.&lt;/p&gt;
+&lt;h2 id=&quot;Managing-Android-Virtual-Devices-during-test-session&quot;&gt;&lt;a href=&quot;#Managing-Android-Virtual-Devices-during-test-session&quot; class=&quot;headerlink&quot; title=&quot;Managing Android Virtual Devices during test session&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/azimolabs/managing-android-virtual-devices-during-test-session-98a403acffc2#.cu4nfhl6u&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Managing Android Virtual Devices during test session&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们用&lt;a href=&quot;https://github.com/fastlane/fastlane&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fastlane&lt;/a&gt;管理模拟器, 并且开发了一个插件.&lt;/p&gt;
+&lt;h2 id=&quot;You-don’t-have-to-use-WeakReference-to-avoid-memory-leaks&quot;&gt;&lt;a href=&quot;#You-don’t-have-to-use-WeakReference-to-avoid-memory-leaks&quot; class=&quot;headerlink&quot; title=&quot;You don’t have to use WeakReference to avoid memory leaks&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/google-developer-experts/weakreference-in-android-dd1e66b9be9d#.vmxu20g30&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;You don’t have to use WeakReference to avoid memory leaks&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;并不是到处都要用&lt;code&gt;WeakReference&lt;/code&gt;来避免内存泄漏.&lt;/p&gt;
+&lt;h2 id=&quot;Effective-Java-for-Android&quot;&gt;&lt;a href=&quot;#Effective-Java-for-Android&quot; class=&quot;headerlink&quot; title=&quot;Effective Java for Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/rocknnull/effective-java-for-android-cheatsheet-bf4e3433889a#.8t44xdb4t&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Effective Java for Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个cheat-sheet, Effective Java中提到的内容, 作者列出了他认为在Android开发中最重要的几项:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用private来限制不可实例化.&lt;/li&gt;
+&lt;li&gt;使用静态工厂方法.&lt;/li&gt;
+&lt;li&gt;使用Builders.&lt;/li&gt;
+&lt;li&gt;避免互换性.&lt;/li&gt;
+&lt;li&gt;静态内部类.&lt;/li&gt;
+&lt;li&gt;使用泛型.&lt;/li&gt;
+&lt;li&gt;返回空的集合而不是null.&lt;/li&gt;
+&lt;li&gt;字符串连接用StringBuilder, 不要用+.&lt;/li&gt;
+&lt;li&gt;可恢复的异常.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Scheduling-tasks-in-Android-made-easy&quot;&gt;&lt;a href=&quot;#Scheduling-tasks-in-Android-made-easy&quot; class=&quot;headerlink&quot; title=&quot;Scheduling tasks in Android made easy&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.hypertrack.io/2016/12/01/scheduling-tasks-in-android-made-easy/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Scheduling tasks in Android made easy&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;分发异步任务的时候, 用很多选择: &lt;code&gt;AlarmManager&lt;/code&gt;, &lt;code&gt;Handler&lt;/code&gt;, &lt;code&gt;JobSheduler&lt;/code&gt;, &lt;code&gt;GcmNetworkManager&lt;/code&gt;. 作者他们的库: &lt;a href=&quot;https://github.com/hypertrack/smart-scheduler-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;smart-scheduler-android&lt;/a&gt;就是用来有效地处理异步任务调度问题.&lt;/p&gt;
+&lt;h2 id=&quot;How-to-create-beautiful-text-stickers-for-Android&quot;&gt;&lt;a href=&quot;#How-to-create-beautiful-text-stickers-for-Android&quot; class=&quot;headerlink&quot; title=&quot;How to create beautiful text stickers for Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/uptech-team/how-to-create-beautiful-text-stickers-for-android-10eeea0cee09#.11x8ar94q&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to create beautiful text stickers for Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;之前作者有一篇文章讲了如何创建Snapchat一样的图片stickers.&lt;/p&gt;
+&lt;p&gt;本篇讲如何创建文字的stickers, 代码: &lt;a href=&quot;https://github.com/uptechteam/MotionViews-Android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MotionViews-Android&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Elite-Worship&quot;&gt;&lt;a href=&quot;#Elite-Worship&quot; class=&quot;headerlink&quot; title=&quot;Elite Worship&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://blog.sqisland.com/2016/12/elite-worship.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Elite Worship&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Chiu-Ki Chan分享了一些她的看法, 关于精英崇拜, 和如何让社区更加平等, 鼓励每一个人都参与进来.&lt;/p&gt;
+&lt;h2 id=&quot;Product-Flavors-for-Android-Libraries&quot;&gt;&lt;a href=&quot;#Product-Flavors-for-Android-Libraries&quot; class=&quot;headerlink&quot; title=&quot;Product Flavors for Android Libraries&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@sahildave/product-flavors-for-android-library-d3b2d240fca2#.ravhhk30a&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Product Flavors for Android Libraries&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如何给Android Library加上不同的flavor使用.&lt;/p&gt;
+&lt;h2 id=&quot;Keyframes-Delivering-scalable-high-quality-animations&quot;&gt;&lt;a href=&quot;#Keyframes-Delivering-scalable-high-quality-animations&quot; class=&quot;headerlink&quot; title=&quot;Keyframes: Delivering scalable, high-quality animations&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://code.facebook.com/posts/354469174916519&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Keyframes: Delivering scalable, high-quality animations&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Facebook分享了一个库&lt;a href=&quot;https://github.com/facebookincubator/Keyframes&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Keyframes&lt;/a&gt;用来导出AE的动画, 并且在移动设备上播放它.&lt;/p&gt;
+&lt;h2 id=&quot;SQLDelight-Getting-Started&quot;&gt;&lt;a href=&quot;#SQLDelight-Getting-Started&quot; class=&quot;headerlink&quot; title=&quot;SQLDelight: Getting Started&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@tonyowen/sqldelight-getting-started-67054fe51306#.rske25ore&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SQLDelight: Getting Started&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/square/sqldelight&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sqldelight&lt;/a&gt;是一个库, 可以用SQL语句来生成Java Model类.&lt;br&gt;SQLDelight也是一个Intellij插件.&lt;/p&gt;
+&lt;p&gt;作者介绍了如何使用SQLDelight, 注意生成models需要结合AutoValue.&lt;/p&gt;
+&lt;h2 id=&quot;Your-ViewHolders-are-Dumb-Make-’em-Not-Dumb&quot;&gt;&lt;a href=&quot;#Your-ViewHolders-are-Dumb-Make-’em-Not-Dumb&quot; class=&quot;headerlink&quot; title=&quot;Your ViewHolders are Dumb. Make ’em Not Dumb&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@jonfhancock/your-viewholders-are-dumb-make-em-not-dumb-82e6f73f630c#.auaur0y3r&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Your ViewHolders are Dumb. Make ’em Not Dumb&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者举例说明ViewHolder应该如何优化代码, 解放Adapter.&lt;/p&gt;
+&lt;h2 id=&quot;An-Introduction-to-Icon-Animation-Techniques&quot;&gt;&lt;a href=&quot;#An-Introduction-to-Icon-Animation-Techniques&quot; class=&quot;headerlink&quot; title=&quot;An Introduction to Icon Animation Techniques&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.androiddesignpatterns.com/2016/11/introduction-to-icon-animation-techniques.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;An Introduction to Icon Animation Techniques&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如何创建漂亮的icon动画.&lt;/p&gt;
+&lt;h2 id=&quot;OkLog-2-0-—-improved-Android-network-logging&quot;&gt;&lt;a href=&quot;#OkLog-2-0-—-improved-Android-network-logging&quot; class=&quot;headerlink&quot; title=&quot;OkLog 2.0 — improved Android network logging&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@simonpercic/oklog-2-0-improved-android-network-logging-a72b2ffe4c66#.6h8w44eh8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OkLog 2.0 — improved Android network logging&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/simonpercic/OkLog&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OkLog&lt;/a&gt;是一个库, 可以在logcat中打印网络请求和响应, 点击进入页面查看, 本文介绍2.0版本的改进.&lt;/p&gt;
+&lt;h2 id=&quot;How-to-Build-an-Android-App-for-Fire-TV-Part-4&quot;&gt;&lt;a href=&quot;#How-to-Build-an-Android-App-for-Fire-TV-Part-4&quot; class=&quot;headerlink&quot; title=&quot;How to Build an Android App for Fire TV (Part 4)&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/amazon-appstore/developing-for-the-living-room-how-to-build-an-android-app-for-fire-tv-part-4-cbe572a6f1e6#.zfg39casg&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to Build an Android App for Fire TV (Part 4)&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;本文是为Fire TV搭建一个Android App系列文章的第四篇.&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;android-PageFlip&quot;&gt;&lt;a href=&quot;#android-PageFlip&quot; class=&quot;headerlink&quot; title=&quot;android-PageFlip&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/eschao/android-PageFlip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-PageFlip&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;3D的翻页效果.&lt;/p&gt;
+&lt;h2 id=&quot;smart-scheduler-android&quot;&gt;&lt;a href=&quot;#smart-scheduler-android&quot; class=&quot;headerlink&quot; title=&quot;smart-scheduler-android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/hypertrack/smart-scheduler-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;smart-scheduler-android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;用于周期性和非周期性任务分发的工具类.&lt;/p&gt;
+&lt;h2 id=&quot;PageLoader&quot;&gt;&lt;a href=&quot;#PageLoader&quot; class=&quot;headerlink&quot; title=&quot;PageLoader&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/arieridwan8/pageloader&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PageLoader&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个简单的可定制化的loading页面库.&lt;/p&gt;
+&lt;h2 id=&quot;fastlane-plugin-automated-test-emulator-run&quot;&gt;&lt;a href=&quot;#fastlane-plugin-automated-test-emulator-run&quot; class=&quot;headerlink&quot; title=&quot;fastlane-plugin-automated-test-emulator-run&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/AzimoLabs/fastlane-plugin-automated-test-emulator-run&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fastlane-plugin-automated-test-emulator-run&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;fastlane插件, 用于启动模拟器进行自动化测试.&lt;/p&gt;
+&lt;h2 id=&quot;Keyframes&quot;&gt;&lt;a href=&quot;#Keyframes&quot; class=&quot;headerlink&quot; title=&quot;Keyframes&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/facebookincubator/Keyframes&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Keyframes&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;导出AE动画并在移动设备上播放的库.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-234&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-234&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #234&quot;&gt;&lt;/a&gt;Android Weekly Issue #234&lt;/h1&gt;&lt;p&gt;December 4th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-234&quot;&gt;Android Weekly Issue #234&lt;/a&gt;&lt;br&gt;本期内容包括: ConstraintLayout的使用; React Native教程; fastlane管理模拟器; Android中的任务调度; 文字sticker的实现; 给Android library加flavor; 更好的关键帧动画; SQLDelight的使用; icon Animation; OkLog的使用等等.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+      <category term="React Native" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/React-Native/"/>
+    
+      <category term="Java" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/React-Native/Java/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
+    
+      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
+    
+      <category term="React Native" scheme="http://mengdd.github.io/tags/React-Native/"/>
+    
+      <category term="fastlane" scheme="http://mengdd.github.io/tags/fastlane/"/>
+    
+      <category term="Effective Java" scheme="http://mengdd.github.io/tags/Effective-Java/"/>
+    
+      <category term="Sticker" scheme="http://mengdd.github.io/tags/Sticker/"/>
+    
+      <category term="Flavor" scheme="http://mengdd.github.io/tags/Flavor/"/>
+    
+      <category term="SQLDelight" scheme="http://mengdd.github.io/tags/SQLDelight/"/>
+    
+      <category term="OkLog" scheme="http://mengdd.github.io/tags/OkLog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 233</title>
     <link href="http://mengdd.github.io/Android/Android-Weekly/Java/2016/12/01/android-weekly-notes-issue-233/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/Java/2016/12/01/android-weekly-notes-issue-233/</id>
     <published>2016-12-01T10:23:40.000Z</published>
-    <updated>2016-12-01T10:34:53.000Z</updated>
+    <updated>2016-12-13T03:16:50.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-233&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-233&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #233&quot;&gt;&lt;/a&gt;Android Weekly Issue #233&lt;/h1&gt;&lt;p&gt;November 27th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-233&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #233&lt;/a&gt;&lt;br&gt;本期内容包括: 用Mockito做RxJava的单元测试; Android开发中的命令行使用; Android 7.1的App Shortcuts; 自定义View的绘制; 用Firebase的Remote Config进行feature逐步分发; APK分析工具的使用, APK瘦身讨论; RxJava处理网络请求和缓存; presenter的设计; 用Firebase发送push notification; transient关键字的使用等.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -475,15 +558,15 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
-    
       <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
+    
+      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
       <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
     
@@ -1318,10 +1401,6 @@
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
-    
       <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
@@ -1329,6 +1408,10 @@
       <category term="Alarm" scheme="http://mengdd.github.io/tags/Alarm/"/>
     
       <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
       <category term="TensorFlow" scheme="http://mengdd.github.io/tags/TensorFlow/"/>
     
@@ -1588,15 +1671,15 @@
     
       <category term="Data Binding" scheme="http://mengdd.github.io/tags/Data-Binding/"/>
     
-      <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
-    
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
+      <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
     
       <category term="Clean Architecture" scheme="http://mengdd.github.io/tags/Clean-Architecture/"/>
     
       <category term="Loader" scheme="http://mengdd.github.io/tags/Loader/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
   </entry>
   
@@ -2994,118 +3077,6 @@
       <category term="SharedPreferences" scheme="http://mengdd.github.io/tags/SharedPreferences/"/>
     
       <category term="Mutilprocess" scheme="http://mengdd.github.io/tags/Mutilprocess/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 220</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/09/01/android-weekly-notes-issue-220/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2016/09/01/android-weekly-notes-issue-220/</id>
-    <published>2016-09-01T06:05:48.000Z</published>
-    <updated>2016-09-16T02:50:28.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-220&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-220&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #220&quot;&gt;&lt;/a&gt;Android Weekly Issue #220&lt;/h1&gt;&lt;p&gt;August 28th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-220&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #220&lt;/a&gt;&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h2&gt;&lt;h3 id=&quot;Manage-dependencies-versions-with-gradle-extra-properties&quot;&gt;&lt;a href=&quot;#Manage-dependencies-versions-with-gradle-extra-properties&quot; class=&quot;headerlink&quot; title=&quot;Manage dependencies versions with gradle extra properties&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://segunfamisa.com/posts/android-gradle-extra-properties&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Manage dependencies versions with gradle extra properties&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;依赖管理的小Tip: 把依赖的版本号作为变量管理.&lt;br&gt;改造之后, build.gradle文件变成这样:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apply plugin: &amp;apos;com.android.application&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;android &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ext &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    supportLibraryVersion = &amp;apos;23.4.0&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    playServicesVersion = &amp;apos;9.2.1&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // support libraries&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &amp;quot;com.android.support:appcompat-v7:$supportLibraryVersion&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &amp;quot;com.android.support:design:$supportLibraryVersion&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &amp;quot;com.android.support:percent:$supportLibraryVersion&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &amp;quot;com.android.support:cardview-v7:$supportLibraryVersion&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &amp;quot;com.android.support:gridlayout-v7:$supportLibraryVersion&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //play services&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &amp;quot;com.google.android.gms:play-services-location:$playServicesVersion&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &amp;quot;com.google.android.gms:play-services-gcm:$playServicesVersion&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // other dependencies&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;定义了版本号变量, 原来hardcode时的单引号变成了双引号, 然后用$符号取变量值.&lt;/p&gt;
-&lt;p&gt;上面这个是app module里面使用的例子, 如果你的应用有多个module怎么办呢?&lt;br&gt;当然一种办法是每个module里定义一组版本号变量, 更方便的办法是在项目工程总目录的build.gradle文件里定义变量.&lt;br&gt;可以在工程的build文件里写&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ext &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // sdk and tools&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    minSdkVersion = 14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    targetSdkVersion = 23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compileSdkVersion = 23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    buildToolsVersion = &amp;apos;23.0.2&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // dependencies versions&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    supportLibraryVersion = &amp;apos;23.4.0&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    playServicesVersion = &amp;apos;9.2.1&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;也可以这样定义:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;project.ext.supportLibVersion = &amp;apos;24.0.0&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;使用的时候可以这样取值: &lt;code&gt;$rootProject.supportLibraryVersion&lt;/code&gt;.&lt;br&gt;也可以省略前面的rootProject, 直接取&lt;code&gt;$supportLibraryVersion&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Android-CI-with-Docker&quot;&gt;&lt;a href=&quot;#Android-CI-with-Docker&quot; class=&quot;headerlink&quot; title=&quot;Android CI with Docker&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@Malinskiy/android-ci-with-docker-a2f522086640#.ud9unt793&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android CI with Docker&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;作者讲了他怎么用Docker搭建CI.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;环境:&lt;br&gt;首先, CI需要Android环境(JDK 7&amp;amp;8, Android SDK, Gradle, Release keychain, google-services.json, etc).&lt;br&gt;装了这些环境之后, 需要保证他们在每一个CI实例上都是同步更新的.&lt;br&gt;用了Docker之后, 更新环境的步骤变为:&lt;br&gt;更新你的Dockerfile -&amp;gt; Push到版本管理系统 -&amp;gt; CI会build新的image, 然后push到docker registry.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Build:&lt;br&gt;&lt;code&gt;docker run -v ./app:/opt/app docker-ci-android:latest gradle assembleRelease&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Test:&lt;br&gt;有两种测试, 一种是单元测试, 只需要JVM; 另一种是UI或者功能测试, 需要Android.&lt;br&gt;emulator会有一些问题: &lt;a href=&quot;https://developer.android.com/training/articles/smp.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;why&lt;/a&gt;&lt;br&gt;所以你可能想要在更真实的机器上测试: &lt;a href=&quot;https://github.com/openstf/stf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;STF&lt;/a&gt;提供了服务, 你只需要用这个&lt;a href=&quot;https://github.com/Malinskiy/stf-client&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;stf-client&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Deploy:&lt;br&gt;部署用一些gradle的task就可以完成.&lt;br&gt;&lt;a href=&quot;https://docs.fabric.io/android/beta/gradle.html#distribution-with-gradle&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fabric&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://github.com/Triple-T/gradle-play-publisher&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gradle-play-publisher&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;后面还提到了一些扩展和问题.&lt;/p&gt;
-&lt;h3 id=&quot;Bottom-Sheets-in-Android&quot;&gt;&lt;a href=&quot;#Bottom-Sheets-in-Android&quot; class=&quot;headerlink&quot; title=&quot;Bottom Sheets in Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://mayojava.github.io/android/bottom-sheets-android/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bottom Sheets in Android&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;BottomSheet是support library 23.2加入的, 是从底部滑上来的一个块块, 用来向用户展现更多内容.&lt;br&gt;Support Library提供了:&lt;br&gt;&lt;code&gt;BottomSheetBehavior&lt;/code&gt;: 加在&lt;code&gt;CoordinatorLayout&lt;/code&gt;的直接child view上, 然后在java代码里get出来, 设置state控制其状态.&lt;br&gt;有HIDE, COLLAPSED和EXPANDED三种状态, 分别对应隐藏, 展开到指定高度(peekHeight)和完全展开.&lt;br&gt;&lt;code&gt;BottomSheetDialog&lt;/code&gt;:&lt;br&gt;&lt;code&gt;BottomSheetDialogFragment&lt;/code&gt;.&lt;br&gt;Behaviour是给View加行为, 后面这两种是更加模块化的dialog, 状态控制都一样.&lt;/p&gt;
-&lt;p&gt;这里推荐一下笔者自己的demo: &lt;a href=&quot;https://github.com/mengdd/AndroidDesignWidgetsSample&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AndroidDesignWidgetsSample&lt;/a&gt;&lt;br&gt;再推荐一下这篇文章里面的Bottom Sheets部分: &lt;a href=&quot;https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CodePath-Handling-Scrolls-with-CoordinatorLayout&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Certificate-public-key-pinning-using-Retrofit-2&quot;&gt;&lt;a href=&quot;#Certificate-public-key-pinning-using-Retrofit-2&quot; class=&quot;headerlink&quot; title=&quot;Certificate public key pinning using Retrofit 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@sreekumar_av/certificate-public-key-pinning-in-android-using-retrofit-2-0-74140800025b#.9ajsf36qp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Certificate public key pinning using Retrofit 2&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;SSL handshake, 交换了证书(Certificate), 这样客户端就可以通过证书来验证服务器的身份.&lt;br&gt;什么是Certificate public key pinning呢? 也叫作SSL pinning.&lt;/p&gt;
-&lt;p&gt;把host name和&lt;a href=&quot;https://tools.ietf.org/html/rfc7469#section-2.4&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;public key&lt;/a&gt;关联起来, 这个public key将用来和证书中的public key比较, 如果匹配了, 就证明你正在和正确的server通信.&lt;br&gt;而直接pinning证书相比pinning public key更容易一些, 但是也有不好的地方, 如果网站(比如Google)经常轮换证书(rotate its certificate), 你的应用就也得经常更新, 而这种情况一般证书里面的public keys是保持不变的.&lt;br&gt;如何在Android中用Retrofit实现pinning呢?&lt;br&gt;首先需要网站的public key的hash, 有很多获取方法, 参见&lt;a href=&quot;https://github.com/square/okhttp/blob/master/okhttp/src/main/java/okhttp3/CertificatePinner.java&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;okhttp3-CertificatePinner&lt;/a&gt;.&lt;br&gt;然后构建CertificatePinner类对象, 加到OkHttpClient上.&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;CertificatePinner certificatePinner = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; CertificatePinner.Builder()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                   .add(&lt;span class=&quot;string&quot;&gt;&quot;api.github.com&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;sha256/6wJsqVDF8K19zxfLxV5DGRneLyzso9adVdUN/exDacw=&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                   .build();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; OkHttpClient client = httpBuilder.certificatePinner(certificatePinner).build();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; Retrofit retrofit = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Retrofit.Builder()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                   .baseUrl(END_POINT)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                   .addConverterFactory(GsonConverterFactory.create())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                   .client(client)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                   .build();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;TLSv1.2从Android16+开始支持, 但是对于20+的设备默认是disabled的, 为了强制获取支持, 可以继承&lt;a href=&quot;http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/javax/net/ssl/SSLSocketFactory.java&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SSLSocketFactory&lt;/a&gt;, 强制设置为enabled, 代码见原文吧.&lt;br&gt;Github上有完整的代码&lt;a href=&quot;https://github.com/pollux-/PublicKeyPinning&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PublicKeyPinning&lt;/a&gt;&lt;br&gt;作者最后还推荐了一个测试的工具&lt;a href=&quot;https://mitmproxy.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mitmproxy&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;Isometric-AnimatedVectorDrawable-Part-3&quot;&gt;&lt;a href=&quot;#Isometric-AnimatedVectorDrawable-Part-3&quot; class=&quot;headerlink&quot; title=&quot;Isometric AnimatedVectorDrawable - Part 3&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/isometric-animatedvectordrawable-part-3/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Isometric AnimatedVectorDrawable - Part 3&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;作者继续讲了他如何构建方块地形图的动态效果.&lt;br&gt;一个AnimatedVectorDrawable的xml文件实际上是用来建立一个映射关系, 关联objectAnimators和VectorDrawable上的独立元素. 我们可以建立一个objectAnimator, 操纵我们的一块元素的动画效果.&lt;br&gt;文中实现了让方块地形动起来的动画效果.&lt;/p&gt;
-&lt;h3 id=&quot;The-many-flavors-of-commit&quot;&gt;&lt;a href=&quot;#The-many-flavors-of-commit&quot; class=&quot;headerlink&quot; title=&quot;The many flavors of commit()&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@bherbst/the-many-flavors-of-commit-186608a015b1#.uwl2v86cx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The many flavors of commit()&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;FragmentTransaction的提交方法&lt;/strong&gt;:&lt;br&gt;support library的&lt;code&gt;FragmentTransaction&lt;/code&gt;现在提供了四种不同的方法来commit一个transaction:&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html#commit%28%29&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;commit()&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html#commitAllowingStateLoss%28%29&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;commitAllowingStateLoss()&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html#commitNow%28%29&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;commitNow()&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/app/FragmentTransaction.html#commitNowAllowingStateLoss%28%29&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;commitNowAllowingStateLoss()&lt;/a&gt;&lt;br&gt;这篇文章分析了这四个方法的不同.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;commit() vs commitAllowingStateLoss()&lt;/strong&gt;:&lt;br&gt;用&lt;code&gt;commit()&lt;/code&gt;提交有时候会遇到&lt;code&gt;IllegalStateException&lt;/code&gt;, 说你在&lt;code&gt;onSaveInstanceState()&lt;/code&gt;之后提交, 这里有另一个文章很好地分析了这个问题:&lt;a href=&quot;http://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Fragment Transactions &amp;amp; Activity State Loss&lt;/a&gt;&lt;br&gt;&lt;code&gt;commit()&lt;/code&gt;和&lt;code&gt;commitAllowingStateLoss()&lt;/code&gt;在实现上唯一的不同就是当你调用&lt;code&gt;commit()&lt;/code&gt;的时候, FragmentManger会检查是否已经存储了它自己的状态, 如果已经存了, 就抛出&lt;code&gt;IllegalStateException&lt;/code&gt;.&lt;br&gt;那么如果你调用的是&lt;code&gt;commitAllowingStateLoss()&lt;/code&gt;, 并且是在&lt;code&gt;onSaveInstanceState()&lt;/code&gt;之后, 你可能会丢失掉什么状态呢?&lt;br&gt;答案是你&lt;strong&gt;可能&lt;/strong&gt;会丢掉FragmentManager的状态, 即save之后任何被添加或被移除的Fragments.&lt;br&gt;举例说明:&lt;br&gt;1.在Activity里显示一个FragmentA;&lt;br&gt;2.然后Activity被后台, &lt;code&gt;onStop()&lt;/code&gt;和&lt;code&gt;onSaveInstanceState()&lt;/code&gt;被调用;&lt;br&gt;3.在某个事件触发下, 你用FragmentB replace FragmentA , 使用的是 &lt;code&gt;commitAllowingStateLoss()&lt;/code&gt;.&lt;br&gt;这时候, 用户再返回应用, 可能会有两种情况发生:&lt;br&gt;1.如果系统杀死了你的activity, 你的activity将会重建, 使用了上述步骤2保存的状态, 所以A会显示, B不会显示;&lt;br&gt;2.如果系统没有杀死你的activity, 它会被提到前台, FragmentB就会显示出来, 到下次Activity stop的时候, 这个包含了B的状态就会被存下来.&lt;br&gt;(上述测试可以利用开发者选项中的”Don’t Keep Activities”选项).&lt;br&gt;那么你要选择哪一种呢? 这就取决于你提交的是什么, 还有你是否能接受丢失.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;commit(), commitNow() 和 executePendingTransactions()&lt;/strong&gt;:&lt;br&gt;使用&lt;code&gt;commit()&lt;/code&gt;的时候, 一旦调用, 这个commit并不是立即执行的, 它会被发送到主线程的任务队列当中去, 当主线程准备好执行它的时候执行.&lt;br&gt;&lt;code&gt;popBackStack()&lt;/code&gt;的工作也是这样, 发送到主线程任务队列中去. 也即说它们都是异步的.&lt;/p&gt;
-&lt;p&gt;但是有时候你希望你的操作是立即执行的, 之前的开发者会在&lt;code&gt;commit()&lt;/code&gt;调用之后加上 &lt;code&gt;executePendingTransactions()&lt;/code&gt;来保证立即执行, 即变异步为同步.&lt;br&gt;support library从v24.0.0开始提供了 &lt;code&gt;commitNow()&lt;/code&gt;方法, 之前用&lt;code&gt;executePendingTransactions()&lt;/code&gt;会将所有pending在队列中还有你新提交的transactions都执行了, 而&lt;code&gt;commitNow()&lt;/code&gt;将只会执行你当前要提交的transaction. 所以&lt;code&gt;commitNow()&lt;/code&gt;避免你会不小心执行了那些你可能并不想执行的transactions.&lt;/p&gt;
-&lt;p&gt;但是你不能对要加在back stack中的transaction使用&lt;code&gt;commitNow()&lt;/code&gt;, 即&lt;code&gt;addToBackStack()&lt;/code&gt;和&lt;code&gt;commitNow()&lt;/code&gt;不能同时使用.&lt;br&gt;为什么呢?&lt;br&gt;想想一下, 如果你有一个提交使用了&lt;code&gt;commit()&lt;/code&gt;, 紧接着又有另一个提交使用了&lt;code&gt;commitNow()&lt;/code&gt;, 两个都想加入back stack, 那back stack会变成什么样呢? 到底是哪个transaction在上, 哪个在下? 答案将是一种不确定的状态, 因为系统并没有提供任何保证来确保顺序, 所以系统决定干脆不支持这个操作.&lt;/p&gt;
-&lt;p&gt;前面提过&lt;code&gt;popBackStack()&lt;/code&gt;是异步的, 所以它同样也有一个同步的兄弟&lt;code&gt;popBackStackImmediate()&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;所以实际应用的时候怎么选择呢?&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;如果你需要同步的操作, 并且你不需要加到back stack里, 使用&lt;code&gt;commitNow()&lt;/code&gt;.&lt;br&gt;support library在FragmentPagerAdapter里就使用了commitNow()来保证在更新结束的时候, 正确的页面被加上或移除.&lt;/li&gt;
-&lt;li&gt;如果你操作很多transactions, 并且不需要同步, 或者你需要把transactions加在back stack里, 那就使用&lt;code&gt;commit()&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;如果你希望在某一个指定的点, 确保所有的transactions都被执行, 那么使用&lt;code&gt;executePendingTransactions()&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;Break-circular-dependency-with-RxJava-用RxJava打破循环依赖&quot;&gt;&lt;a href=&quot;#Break-circular-dependency-with-RxJava-用RxJava打破循环依赖&quot; class=&quot;headerlink&quot; title=&quot;Break circular dependency with RxJava 用RxJava打破循环依赖.&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@ferhatparmak/break-your-circular-dependency-with-rxjava-8a487345061#.4718laogc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Break circular dependency with RxJava&lt;/a&gt; 用RxJava打破循环依赖.&lt;/h3&gt;&lt;p&gt;当你把代码分成各个部分, 比如用MVP, 这些各个部分之间可能会有相互依赖, 比如View需要Presenter, Presenter也需要View.&lt;br&gt;作者也没有说双向关联有什么缺点, 但是他说RxJava可以把这种双向的依赖改成单向的.&lt;br&gt;作者的办法是使用&lt;a href=&quot;https://github.com/JakeWharton/RxBinding&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxBinding&lt;/a&gt;把button的click事件变成一个Observable, 然后Presenter监听click这个Observable, 后面接一个flatMap, 里面发网络请求, 得到结果之后再调用view的方法.&lt;br&gt;这么一改以后View中就不需要再持有Presenter的引用了.&lt;br&gt;举这个例子, 最后是想说, 如果你想从A中调用B的异步方法, 你不用总是在A中保存一个B的引用, 你可以把A中的事件作为一个Observable. 这样只需要B保存了A的引用就可以了.&lt;/p&gt;
-&lt;h3 id=&quot;Asynchronous-layout-inflation-异步解析layout&quot;&gt;&lt;a href=&quot;#Asynchronous-layout-inflation-异步解析layout&quot; class=&quot;headerlink&quot; title=&quot;Asynchronous layout inflation 异步解析layout&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@lupajz/asynchronous-layout-inflation-7cbca2653bf#.lld73d5uq&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Asynchronous layout inflation&lt;/a&gt; 异步解析layout&lt;/h3&gt;&lt;p&gt;最近的support library revision 24中, Google的开发者在v4包中加入了一个新的辅助类&lt;a href=&quot;https://developer.android.com/reference/android/support/v4/view/AsyncLayoutInflater.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AsyncLayoutInflater&lt;/a&gt;, 来实现布局的异步解析.&lt;/p&gt;
-&lt;p&gt;我们现在常用的布局解析inflate方法都是同步的, 那什么时候需要异步地做这件事情呢?&lt;br&gt;比如你想延迟加载布局中的一块, 或者你想把布局解析作为用户某个交互的一个响应. 这样就可以用这个异步布局解析类, 保证了主线程在inflation进行的时候仍然可响应.&lt;br&gt;怎么使用呢?&lt;br&gt;首先, 在主线程创建对象&lt;code&gt;AsyncLayoutInflater(this)&lt;/code&gt;,&lt;br&gt;用它inflate布局的时候第三个参数是一个&lt;code&gt;OnInflateFinishedListener&lt;/code&gt;回调.&lt;br&gt;以前同步方法的第三个参数是一个boolean, 说布局是否需要attach到parent上, 现在没有这个boolean参数了.&lt;br&gt;当然, 使用异步解析也有缺点:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;父类方法&lt;code&gt;generateLayoutParams()&lt;/code&gt;必须是线程安全的.&lt;/li&gt;
-&lt;li&gt;被创建的所有View不能创建Handler,或者调用&lt;code&gt;Looper.myLooper()&lt;/code&gt;方法.&lt;/li&gt;
-&lt;li&gt;不支持设置&lt;code&gt;LayoutInflater.Factory&lt;/code&gt;和&lt;code&gt;LayoutInflater.Factory2&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;不支持布局里有Fragment.&lt;br&gt;如果我们要异步inflate的布局不能支持异步, inflate的过程将会自动转化为在UI线程的解析.&lt;br&gt;作者文中附有Kotlin的例子.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;Introduction-to-Automated-Android-Testing-Part-5&quot;&gt;&lt;a href=&quot;#Introduction-to-Automated-Android-Testing-Part-5&quot; class=&quot;headerlink&quot; title=&quot;Introduction to Automated Android Testing - Part 5&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://riggaroo.co.za/introduction-automated-android-testing-part-5/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Introduction to Automated Android Testing - Part 5&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;系列文章的第五篇, 之前第四篇的时候写了Presenter, 定义了V和P的接口, 本篇接着写View接口的实现.&lt;/p&gt;
-&lt;p&gt;这里Presenter和View关联作者写了两个attachView()和detachView()方法, 前者在Presenter构造之后调用, 后者在Activity的onDestroy()里调用. 这里同时会unregister RxJava的subscriptions, 避免了内存泄露的发生.&lt;/p&gt;
-&lt;p&gt;作者在布局时用了&lt;code&gt;ConstraintLayout&lt;/code&gt;, 关于这个layout的使用她有另一个&lt;a href=&quot;https://riggaroo.co.za/constraintlayout-101-new-layout-builder-android-studio/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;blog&lt;/a&gt;&lt;br&gt;另外作者还加了Toolbar上的SearchView, 到此, 作者的这个app就基本完成了.&lt;br&gt;作者的代码里还有一个Injection类, 用来提供retrofit的service, 即代码中UserRepo的获取, 在Presenter构造时传入.&lt;/p&gt;
-&lt;p&gt;作者的代码: &lt;a href=&quot;https://github.com/riggaroo/GithubUsersSearchApp/tree/testing-tutorial-part5-complete&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GithubUsersSearchApp&lt;/a&gt;&lt;br&gt;预告下一篇将会加入UI测试.&lt;/p&gt;
-&lt;h3 id=&quot;DiffUtil-is-a-must&quot;&gt;&lt;a href=&quot;#DiffUtil-is-a-must&quot; class=&quot;headerlink&quot; title=&quot;DiffUtil is a must!&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@nullthemall/diffutil-is-a-must-797502bc1149#.lqfl9xikm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DiffUtil is a must!&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;support library 24.2.0推出了一个新的辅助类&lt;code&gt;DiffUtil&lt;/code&gt;, 它是用来解决什么问题的呢?&lt;br&gt;如果你的RecyclerView.Adapter第一次接收到了新的数据, 这很简单, 只需要将它们显示出来, 但如果已经有了数据, 新的数据又来了, 这时候怎么做才是最好的呢?&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/support/v7/util/DiffUtil.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DiffUtil&lt;/a&gt;来了, 它就是专门为了解决RecyclerView的Adapter更新而设计的, 他可以计算出前后两个list的不同, 然后返回一组更新操作, 把第一个list变为第二个list.&lt;br&gt;&lt;code&gt;DiffUtil&lt;/code&gt;需要知道你的两个list的基本信息: 长度, 基本item的比较.&lt;br&gt;&lt;code&gt;DiffUtil.Callback&lt;/code&gt;是用来向&lt;code&gt;DiffUtil&lt;/code&gt;提供这些基本信息的, 它是一个抽象类, 你需要继承它, 然后覆写里面的几个方法. 它的构造传入了两个待比较的list, 覆写的方法主要是get它们的size, 比较它们的内容.&lt;br&gt;Callback里还有一个&lt;code&gt;getChangePayload()&lt;/code&gt;方法, 它不是抽象的, 这个方法在&lt;code&gt;areItemsTheSame()&lt;/code&gt; 返回&lt;code&gt;true&lt;/code&gt;, 但是&lt;code&gt;areContentsTheSame()&lt;/code&gt;返回&lt;code&gt;false&lt;/code&gt;的时候被调用.&lt;br&gt;这意味着我们的item还是之前的那个item,但是可能里面的字段变化了.&lt;br&gt;这个方法的返回值即为两个对应item的diff, 基本来说, 这个方法返回的是为什么我们认为list变化了.&lt;br&gt;文中的代码例子返回了一个Bundle, 把compare不相等的字段都放进去了, 用的是new item的值.&lt;/p&gt;
-&lt;p&gt;一旦我们写好了这个Callback类, 剩下的事情就很简单了, 我们只需要在新数据到来的时候计算一下diff, 然后更新.&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@ &lt;span class=&quot;function&quot;&gt;Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onNewProducts&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(List&amp;lt;Product&amp;gt; newProducts)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ProductListDiffCallback(mProducts, newProducts));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    diffResult.dispatchUpdatesTo(mProductAdapter);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;当然上面&lt;code&gt;getChangePayload()&lt;/code&gt;返回的对象还得我们自己利用起来, 它会被&lt;code&gt;DiffResult&lt;/code&gt;分发到Adapter.&lt;br&gt;用的是&lt;code&gt;notifyItemRangeChange(position, count, payload)&lt;/code&gt;方法, 传到了Adapter的&lt;code&gt;onBindViewHolder()&lt;/code&gt;方法, 我们判断payload不为空时, 从里面拿出diff做更新.&lt;/p&gt;
-&lt;p&gt;文档里说&lt;code&gt;DiffUtil&lt;/code&gt;对很大的数据集可能比较费时, 所以建议把计算放在后台线程.&lt;/p&gt;
-&lt;p&gt;作者还给出了一个RxJava的例子, 各种flatMap.&lt;/p&gt;
-&lt;h2 id=&quot;DESIGN&quot;&gt;&lt;a href=&quot;#DESIGN&quot; class=&quot;headerlink&quot; title=&quot;DESIGN&quot;&gt;&lt;/a&gt;DESIGN&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://facebook.design/handskit&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Diverse Device Hands&lt;/a&gt;&lt;br&gt;Facebook的design资源, 很多拿着手机的手的照片.&lt;/p&gt;
-&lt;h2 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h2&gt;&lt;h3 id=&quot;unipiazza-android-twostepslogin&quot;&gt;&lt;a href=&quot;#unipiazza-android-twostepslogin&quot; class=&quot;headerlink&quot; title=&quot;unipiazza-android-twostepslogin&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/unipiazza/unipiazza-android-twostepslogin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;unipiazza-android-twostepslogin&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;一个实现两步登录的库, 比如Google web登录, Material Design.&lt;br&gt;要用它的布局, 然后设置一些属性, 还有UI交互事件的Listener.&lt;/p&gt;
-&lt;h3 id=&quot;Om-Recorder&quot;&gt;&lt;a href=&quot;#Om-Recorder&quot; class=&quot;headerlink&quot; title=&quot;Om Recorder&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://kailash09dabhi.github.io/OmRecorder/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Om Recorder&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;一个简单的Pcm / Wav 录音机, API简单, 可以录制Pcm和Wav音频, 可以配置输出, 有暂停功能.&lt;/p&gt;
-&lt;h3 id=&quot;tiger&quot;&gt;&lt;a href=&quot;#tiger&quot; class=&quot;headerlink&quot; title=&quot;tiger&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/google/tiger&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;tiger&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;又一个依赖注入库, 但是README里说这不算一个Google的官方产品, 官方的是&lt;a href=&quot;https://github.com/google/dagger&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dagger&lt;/a&gt;和&lt;a href=&quot;https://github.com/google/guice&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Guice&lt;/a&gt;.&lt;br&gt;这个tiger好像自称是目前最快的java依赖注入.&lt;/p&gt;
-&lt;h2 id=&quot;NEWS&quot;&gt;&lt;a href=&quot;#NEWS&quot; class=&quot;headerlink&quot; title=&quot;NEWS&quot;&gt;&lt;/a&gt;NEWS&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://android-developers.blogspot.com.au/2016/08/taking-final-wrapper-off-of-nougat.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Taking the final wrapper off of Android 7.0 Nougat&lt;/a&gt;&lt;br&gt;Android 7.0已经问世了, 从Nexus开始, 同时API 24的source code已经push到AOSP了.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-220&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-220&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #220&quot;&gt;&lt;/a&gt;Android Weekly Issue #220&lt;/h1&gt;&lt;p&gt;August 28th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-220&quot;&gt;Android Weekly Issue #220&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Fragment" scheme="http://mengdd.github.io/tags/Fragment/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="AnimatedVectorDrawable" scheme="http://mengdd.github.io/tags/AnimatedVectorDrawable/"/>
-    
-      <category term="Bottom Sheet" scheme="http://mengdd.github.io/tags/Bottom-Sheet/"/>
-    
-      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
-    
-      <category term="Docker" scheme="http://mengdd.github.io/tags/Docker/"/>
-    
-      <category term="Certificate" scheme="http://mengdd.github.io/tags/Certificate/"/>
-    
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
-    
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
-      <category term="AsyncLayoutInflater" scheme="http://mengdd.github.io/tags/AsyncLayoutInflater/"/>
-    
-      <category term="DiffUtil" scheme="http://mengdd.github.io/tags/DiffUtil/"/>
-    
-      <category term="Recorder" scheme="http://mengdd.github.io/tags/Recorder/"/>
-    
-      <category term="tiger" scheme="http://mengdd.github.io/tags/tiger/"/>
     
   </entry>
   
