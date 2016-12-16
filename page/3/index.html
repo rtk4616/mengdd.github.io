@@ -85,6 +85,70 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/Android/2016/09/07/hello-preferences-provider/" title="取代SharedPreferences的多进程解决方案" itemprop="url">取代SharedPreferences的多进程解决方案</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-07T03:19:32.000Z" itemprop="datePublished"> Published 2016-09-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Android的SharedPreferences用来存储一些键值对, 但是却不支持跨进程使用.<br>跨进程来用的话, 当然是放在数据库更可靠啦, 本文主要是给作者的新库<a href="https://github.com/mengdd/PreferencesProvider">PreferencesProvider</a>打个广告.<br>这是一个用ContentProvider实现的, 可以像SharedPreferences一样用于存储键值对, 支持跨进程使用.</p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/Android/2016/09/07/hello-preferences-provider/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Content-Provider/">Content Provider</a><a href="/tags/SharedPreferences/">SharedPreferences</a><a href="/tags/Mutilprocess/">Mutilprocess</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/Android/2016/09/07/hello-preferences-provider/#comments" class="ds-thread-count comments-count-link" data-thread-key="Android/2016/09/07/hello-preferences-provider/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/Android/Android-Weekly/2016/09/01/android-weekly-notes-issue-220/" title="Android Weekly Notes Issue 220" itemprop="url">Android Weekly Notes Issue 220</a>
   </h1>
   <p class="article-author">By
@@ -655,70 +719,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/Android/2016/06/02/android-fragment-usage-2-nested-fragments/" title="Android Fragment使用(二) 嵌套Fragments (Nested Fragments) 的使用及常见错误" itemprop="url">Android Fragment使用(二) 嵌套Fragments (Nested Fragments) 的使用及常见错误</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
-		
-  <p class="article-time">
-    <time datetime="2016-06-02T05:03:04.000Z" itemprop="datePublished"> Published 2016-06-02</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="嵌套Fragment的使用及常见错误"><a href="#嵌套Fragment的使用及常见错误" class="headerlink" title="嵌套Fragment的使用及常见错误"></a>嵌套Fragment的使用及常见错误</h1><p>嵌套Fragments (Nested Fragments), 是在Fragment内部又添加Fragment.<br>使用时, 主要要依靠宿主Fragment的 <code>getChildFragmentManager()</code> 来获取FragmentManger.<br>虽然看起来和在activity中添加fragment差不多, 但因为fragment生命周期及管理恢复模式不同, 其中有一些需要特别注意的地方.<br>本文内容还包括了从Fragment迁移到v4.Fragment代码中需要改动的一些地方.</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/Android/2016/06/02/android-fragment-usage-2-nested-fragments/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Android/">Android</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Fragment/">Fragment</a><a href="/tags/Nested-Fragments/">Nested Fragments</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/Android/2016/06/02/android-fragment-usage-2-nested-fragments/#comments" class="ds-thread-count comments-count-link" data-thread-key="Android/2016/06/02/android-fragment-usage-2-nested-fragments/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next<span></span></a>
@@ -747,7 +747,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>31</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>32</sup></a></li>
 		  
 		
 		  
@@ -755,7 +755,7 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>17</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>18</sup></a></li>
 		  
 		
 		  
@@ -775,15 +775,15 @@
 		  
 		
 		  
+			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/Android/Android-Weekly/Java/" title="Java">Java<sup>1</sup></a></li>
 		  
 		
 		  
 			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
 		  
 		
 		  
@@ -824,11 +824,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>29</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>30</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>17</sup></a></li>
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>18</sup></a></li>
 			
 		
 			
@@ -840,15 +840,11 @@
 			
 		
 			
-				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>6</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
 			
 		
 			
@@ -856,23 +852,19 @@
 			
 		
 			
+				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>6</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>4</sup></a></li>
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>4</sup></a></li>
 			
 		
 			
@@ -880,27 +872,35 @@
 			
 		
 			
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Test/" title="Test">Test<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>4</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Retrofit/" title="Retrofit">Retrofit<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Animation/" title="Animation">Animation<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mockito/" title="Mockito">Mockito<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Dagger/" title="Dagger">Dagger<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Redux/" title="Redux">Redux<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Reductor/" title="Reductor">Reductor<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Memory-Leak/" title="Memory Leak">Memory Leak<sup>3</sup></a></li>
 			
 		
 		</ul>
