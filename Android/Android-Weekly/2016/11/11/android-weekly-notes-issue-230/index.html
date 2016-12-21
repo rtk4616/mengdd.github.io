@@ -51,7 +51,7 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
 				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -71,7 +71,7 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:mengdd.github.io">
 					</form>
 					
@@ -94,14 +94,14 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
 		
   <p class="article-time">
-    <time datetime="2016-11-11T04:57:21.000Z" itemprop="datePublished"> Published 2016-11-11</time>
+    <time datetime="2016-11-11T04:57:21.000Z" itemprop="datePublished"> 发表于 2016-11-11</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-230"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #230</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Extending-Mockito"><span class="toc-number">2.1.</span> <span class="toc-text">Extending Mockito</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ConstraintLayout-Chains-–-Part-2"><span class="toc-number">2.2.</span> <span class="toc-text">ConstraintLayout Chains – Part 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-glimpse-of-Async-Await-on-Android"><span class="toc-number">2.3.</span> <span class="toc-text">A glimpse of Async-Await on Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What’s-different-in-2-0"><span class="toc-number">2.4.</span> <span class="toc-text">What’s different in 2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Activity-Revival-and-the-case-of-the-Rotating-Device"><span class="toc-number">2.5.</span> <span class="toc-text">Activity Revival and the case of the Rotating Device</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RxJava-and-Retrofit-Throwing-a-Tantrum"><span class="toc-number">2.6.</span> <span class="toc-text">RxJava and Retrofit Throwing a Tantrum</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Retrofitting-Espresso"><span class="toc-number">2.7.</span> <span class="toc-text">Retrofitting Espresso</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Composing-functions-in-Kotlin-with-extensions-and-operators"><span class="toc-number">2.8.</span> <span class="toc-text">Composing functions in Kotlin with extensions and operators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Authentication-sucks-Bad-security-too"><span class="toc-number">2.9.</span> <span class="toc-text">Authentication sucks. Bad security too</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Design"><span class="toc-number">3.</span> <span class="toc-text">Design</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Eight-don’ts-for-your-Material-Design-app"><span class="toc-number">3.1.</span> <span class="toc-text">Eight don’ts for your Material Design app</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">4.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-proguards"><span class="toc-number">4.1.</span> <span class="toc-text">Android-proguards</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Moxy"><span class="toc-number">4.2.</span> <span class="toc-text">Moxy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WiseFy"><span class="toc-number">4.3.</span> <span class="toc-text">WiseFy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VIDEOS-amp-PODCASTS"><span class="toc-number">5.</span> <span class="toc-text">VIDEOS & PODCASTS</span></a></li></ol>
 		
@@ -204,22 +204,22 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-230"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #230</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Extending-Mockito"><span class="toc-number">2.1.</span> <span class="toc-text">Extending Mockito</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ConstraintLayout-Chains-–-Part-2"><span class="toc-number">2.2.</span> <span class="toc-text">ConstraintLayout Chains – Part 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-glimpse-of-Async-Await-on-Android"><span class="toc-number">2.3.</span> <span class="toc-text">A glimpse of Async-Await on Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What’s-different-in-2-0"><span class="toc-number">2.4.</span> <span class="toc-text">What’s different in 2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Activity-Revival-and-the-case-of-the-Rotating-Device"><span class="toc-number">2.5.</span> <span class="toc-text">Activity Revival and the case of the Rotating Device</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RxJava-and-Retrofit-Throwing-a-Tantrum"><span class="toc-number">2.6.</span> <span class="toc-text">RxJava and Retrofit Throwing a Tantrum</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Retrofitting-Espresso"><span class="toc-number">2.7.</span> <span class="toc-text">Retrofitting Espresso</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Composing-functions-in-Kotlin-with-extensions-and-operators"><span class="toc-number">2.8.</span> <span class="toc-text">Composing functions in Kotlin with extensions and operators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Authentication-sucks-Bad-security-too"><span class="toc-number">2.9.</span> <span class="toc-text">Authentication sucks. Bad security too</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Design"><span class="toc-number">3.</span> <span class="toc-text">Design</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Eight-don’ts-for-your-Material-Design-app"><span class="toc-number">3.1.</span> <span class="toc-text">Eight don’ts for your Material Design app</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">4.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-proguards"><span class="toc-number">4.1.</span> <span class="toc-text">Android-proguards</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Moxy"><span class="toc-number">4.2.</span> <span class="toc-text">Moxy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WiseFy"><span class="toc-number">4.3.</span> <span class="toc-text">WiseFy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VIDEOS-amp-PODCASTS"><span class="toc-number">5.</span> <span class="toc-text">VIDEOS & PODCASTS</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -229,11 +229,11 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>32</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>33</sup></a></li>
 		  
 		
 		  
@@ -241,11 +241,15 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>18</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>19</sup></a></li>
 		  
 		
 		  
 			<li><a href="/categories/Android/Architecture/" title="Architecture">Architecture<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Design/" title="Design">Design<sup>1</sup></a></li>
 		  
 		
 		  
@@ -261,11 +265,11 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/Java/" title="Java">Java<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/Java/" title="Java">Java<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
 		  
 		
 		  
@@ -306,15 +310,15 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>30</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>31</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>18</sup></a></li>
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>19</sup></a></li>
 			
 		
 			
@@ -326,15 +330,11 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 			
 		
 			
-				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>6</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>6</sup></a></li>
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>6</sup></a></li>
 			
 		
 			
@@ -346,15 +346,19 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 			
 		
 			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>5</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Animation/" title="Animation">Animation<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>4</sup></a></li>
+				<li><a href="/tags/Test/" title="Test">Test<sup>4</sup></a></li>
 			
 		
 			
@@ -362,15 +366,15 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 			
 		
 			
-				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>4</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Test/" title="Test">Test<sup>4</sup></a></li>
+				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>4</sup></a></li>
 			
 		
 			
@@ -382,7 +386,7 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 			
 		
 			
-				<li><a href="/tags/Reductor/" title="Reductor">Reductor<sup>3</sup></a></li>
+				<li><a href="/tags/Security/" title="Security">Security<sup>3</sup></a></li>
 			
 		
 			
@@ -394,7 +398,7 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -422,7 +426,7 @@ Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的�
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
@@ -688,7 +692,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
