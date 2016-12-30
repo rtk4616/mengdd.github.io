@@ -53,7 +53,7 @@
 				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
 				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -73,7 +73,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:mengdd.github.io">
 					</form>
 					
@@ -96,14 +96,14 @@
 		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
 		
   <p class="article-time">
-    <time datetime="2016-05-31T04:51:19.000Z" itemprop="datePublished"> 发表于 2016-05-31</time>
+    <time datetime="2016-05-31T04:51:19.000Z" itemprop="datePublished"> Published 2016-05-31</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Fragment使用基础"><span class="toc-number">1.</span> <span class="toc-text">Fragment使用基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fragment添加"><span class="toc-number">1.1.</span> <span class="toc-text">Fragment添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-Stack"><span class="toc-number">1.2.</span> <span class="toc-text">Back Stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造和参数传递"><span class="toc-number">1.3.</span> <span class="toc-text">构造和参数传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fragment的通信"><span class="toc-number">1.4.</span> <span class="toc-text">Fragment的通信</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fragment的生命周期"><span class="toc-number">2.</span> <span class="toc-text">Fragment的生命周期</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FragmentTransaction基础操作"><span class="toc-number">3.</span> <span class="toc-text">FragmentTransaction基础操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#操作类型"><span class="toc-number">3.1.</span> <span class="toc-text">操作类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#remove-replace-是否加到back-stack对生命周期的影响"><span class="toc-number">3.2.</span> <span class="toc-text">remove(), replace()是否加到back stack对生命周期的影响</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol>
 		
@@ -214,22 +214,22 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Fragment使用基础"><span class="toc-number">1.</span> <span class="toc-text">Fragment使用基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fragment添加"><span class="toc-number">1.1.</span> <span class="toc-text">Fragment添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-Stack"><span class="toc-number">1.2.</span> <span class="toc-text">Back Stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造和参数传递"><span class="toc-number">1.3.</span> <span class="toc-text">构造和参数传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fragment的通信"><span class="toc-number">1.4.</span> <span class="toc-text">Fragment的通信</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fragment的生命周期"><span class="toc-number">2.</span> <span class="toc-text">Fragment的生命周期</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FragmentTransaction基础操作"><span class="toc-number">3.</span> <span class="toc-text">FragmentTransaction基础操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#操作类型"><span class="toc-number">3.1.</span> <span class="toc-text">操作类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#remove-replace-是否加到back-stack对生命周期的影响"><span class="toc-number">3.2.</span> <span class="toc-text">remove(), replace()是否加到back stack对生命周期的影响</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -239,11 +239,11 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>33</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>34</sup></a></li>
 		  
 		
 		  
@@ -251,7 +251,7 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>19</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>20</sup></a></li>
 		  
 		
 		  
@@ -263,19 +263,15 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
-		  
-		
-		  
 			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/Android/Tools/IDE/" title="IDE">IDE<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/Java/" title="Java">Java<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Tools/IDE/" title="IDE">IDE<sup>1</sup></a></li>
 		  
 		
 		  
@@ -284,6 +280,10 @@
 		
 		  
 			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Java/" title="Java">Java<sup>1</sup></a></li>
 		  
 		
 		  
@@ -320,15 +320,15 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>31</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>32</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>19</sup></a></li>
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>20</sup></a></li>
 			
 		
 			
@@ -340,19 +340,7 @@
 			
 		
 			
-				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>6</sup></a></li>
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>7</sup></a></li>
 			
 		
 			
@@ -360,11 +348,27 @@
 			
 		
 			
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>6</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>5</sup></a></li>
+				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>5</sup></a></li>
 			
 		
 			
@@ -372,19 +376,11 @@
 			
 		
 			
-				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>4</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Animation/" title="Animation">Animation<sup>4</sup></a></li>
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>4</sup></a></li>
 			
 		
 			
@@ -396,11 +392,15 @@
 			
 		
 			
-				<li><a href="/tags/Security/" title="Security">Security<sup>3</sup></a></li>
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Memory-Leak/" title="Memory Leak">Memory Leak<sup>3</sup></a></li>
+				<li><a href="/tags/Reductor/" title="Reductor">Reductor<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redux/" title="Redux">Redux<sup>3</sup></a></li>
 			
 		
 		</ul>
@@ -408,7 +408,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -436,7 +436,7 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
@@ -702,7 +702,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
