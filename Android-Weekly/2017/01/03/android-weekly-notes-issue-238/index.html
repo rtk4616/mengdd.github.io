@@ -1,0 +1,725 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android Weekly Notes Issue 238 | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="Android Weekly Issue #238January 1st, 2017Android Weekly Issue #238本期内容包括: Firebase发送Notification; RecyclerView的预取; 后台工作的实现方式讨论; RecyclerView分组数据; 跨平台应用工具Flutter介绍; Gradle依赖管理;写测试的一些注意事项; Android Thin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Weekly Notes Issue 238">
+<meta property="og:url" content="http://mengdd.github.io/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="Android Weekly Issue #238January 1st, 2017Android Weekly Issue #238本期内容包括: Firebase发送Notification; RecyclerView的预取; 后台工作的实现方式讨论; RecyclerView分组数据; 跨平台应用工具Flutter介绍; Gradle依赖管理;写测试的一些注意事项; Android Thin">
+<meta property="og:updated_time" content="2017-01-03T10:06:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Weekly Notes Issue 238">
+<meta name="twitter:description" content="Android Weekly Issue #238January 1st, 2017Android Weekly Issue #238本期内容包括: Firebase发送Notification; RecyclerView的预取; 后台工作的实现方式讨论; RecyclerView分组数据; 跨平台应用工具Flutter介绍; Gradle依赖管理;写测试的一些注意事项; Android Thin">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/" title="Android Weekly Notes Issue 238" itemprop="url">Android Weekly Notes Issue 238</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2017-01-03T10:02:01.000Z" itemprop="datePublished"> Published 2017-01-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-238"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #238</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mastering-Firebase-Notifications"><span class="toc-number">2.1.</span> <span class="toc-text">Mastering Firebase Notifications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RecyclerView-Prefetch"><span class="toc-number">2.2.</span> <span class="toc-text">RecyclerView Prefetch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things-to-consider-before-running-background-tasks"><span class="toc-number">2.3.</span> <span class="toc-text">Things to consider before running background tasks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-RecyclerView-Grouping-Data"><span class="toc-number">2.4.</span> <span class="toc-text">Android RecyclerView - Grouping Data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flutter-Intro"><span class="toc-number">2.5.</span> <span class="toc-text">Flutter Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-add-Gradle-dependencies-using-‘foreach’"><span class="toc-number">2.6.</span> <span class="toc-text">How to add Gradle dependencies using ‘foreach’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-practices-to-improve-app-engagement"><span class="toc-number">2.7.</span> <span class="toc-text">Best practices to improve app engagement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Do’s-and-Don’ts-of-Writing-Test-cases-in-Android"><span class="toc-number">2.8.</span> <span class="toc-text">The Do’s and Don’ts of Writing Test cases in Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Making-Rainbow-HAT-Work-with-the-Android-Things"><span class="toc-number">2.9.</span> <span class="toc-text">Making Rainbow HAT Work with the Android Things</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Christmas-Voice-–-Part-2"><span class="toc-number">2.10.</span> <span class="toc-text">Christmas Voice – Part 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Will-Android-do-for-the-IoT-what-it-did-for-mobile"><span class="toc-number">2.11.</span> <span class="toc-text">Will Android do for the IoT what it did for mobile?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set-up-a-CI-server-for-Android-dev"><span class="toc-number">2.12.</span> <span class="toc-text">Set up a CI server for Android dev</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DESIGN"><span class="toc-number">3.</span> <span class="toc-text">DESIGN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Material-Growth-amp-communications"><span class="toc-number">3.1.</span> <span class="toc-text">Material: Growth & communications</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">4.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PanoramaImageView"><span class="toc-number">4.1.</span> <span class="toc-text">PanoramaImageView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TextDecorator"><span class="toc-number">4.2.</span> <span class="toc-text">TextDecorator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delightful-SQLBrite"><span class="toc-number">4.3.</span> <span class="toc-text">Delightful-SQLBrite</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mainframer"><span class="toc-number">4.4.</span> <span class="toc-text">mainframer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#material-about-library"><span class="toc-number">4.5.</span> <span class="toc-text">material-about-library</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-snowfall"><span class="toc-number">4.6.</span> <span class="toc-text">android-snowfall</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-ExpandIcon"><span class="toc-number">4.7.</span> <span class="toc-text">Android-ExpandIcon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RxAnimations"><span class="toc-number">4.8.</span> <span class="toc-text">RxAnimations</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Android-Weekly-Issue-238"><a href="#Android-Weekly-Issue-238" class="headerlink" title="Android Weekly Issue #238"></a>Android Weekly Issue #238</h1><p>January 1st, 2017<br><a href="http://androidweekly.net/issues/issue-238" target="_blank" rel="external">Android Weekly Issue #238</a><br>本期内容包括: Firebase发送Notification; RecyclerView的预取; 后台工作的实现方式讨论; RecyclerView分组数据; 跨平台应用工具Flutter介绍; Gradle依赖管理;<br>写测试的一些注意事项; Android Things应用搭建及一些思考; 如何搭建CI等.</p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Mastering-Firebase-Notifications"><a href="#Mastering-Firebase-Notifications" class="headerlink" title="Mastering Firebase Notifications"></a><a href="https://medium.com/@Miqubel/mastering-firebase-notifications-36a3ffe57c41#.ykkpzrs4l" target="_blank" rel="external">Mastering Firebase Notifications</a></h2><p>用Firebase发通知:</p>
+<ul>
+<li>Console Notifications.</li>
+<li>使用命令行, 发送curl命令.</li>
+<li><code>FirebaseMessagingService</code>在应用前台的时候处理通知.</li>
+<li>如果应用前后台的时候都需要处理, 则发送data而不是notification.<br>官方文档<a href="https://firebase.google.com/docs/cloud-messaging/android/receive" target="_blank" rel="external">Firebase cloud-messaging</a>.</li>
+</ul>
+<h2 id="RecyclerView-Prefetch"><a href="#RecyclerView-Prefetch" class="headerlink" title="RecyclerView Prefetch"></a><a href="https://medium.com/google-developers/recyclerview-prefetch-c2f269075710#.21takened" target="_blank" rel="external">RecyclerView Prefetch</a></h2><p>作者研究了RecyclerView的渲染时间, 发现在滚动的时候很多的时间会花在新item的创建和bind上, 这样会推迟UI线程的其他工作, 还有RenderThread的后续工作, 如果超出了frame boundary, 就有可能会造成明显的卡顿.</p>
+<p>而同时前一帧, UI线程可能处于空闲状态.</p>
+<p>那么我们有没有可能以一种预取的方式, 把即将出现的View在提前的空闲阶段准备好呢?</p>
+<p>pre-fetch的优化已经在<a href="https://developer.android.com/topic/libraries/support-library/revisions.html#rev25-0-0" target="_blank" rel="external">Support Library v25</a>加入, <a href="https://developer.android.com/topic/libraries/support-library/revisions.html#25-1-0" target="_blank" rel="external">v25.1.0</a>有进一步的加强. 如果你没有自定义LayoutManager, 也没有嵌套<code>RecyclerView</code>, 那么你升级support library之后就自动获得了这项优化. 其他两种情况你还需要调用一些方法.</p>
+<p>你可以设置<code>LayoutManager.setItemPrefetchEnabled()</code>来对比开启和关闭预取功能前后的不同. 性能测量用<a href="https://developer.android.com/studio/profile/systrace.html" target="_blank" rel="external">Systrace</a>和<a href="https://developer.android.com/studio/profile/dev-options-rendering.html" target="_blank" rel="external">GPU profiling</a>.</p>
+<h2 id="Things-to-consider-before-running-background-tasks"><a href="#Things-to-consider-before-running-background-tasks" class="headerlink" title="Things to consider before running background tasks"></a><a href="https://blog.yipl.com.np/things-to-consider-before-running-background-tasks-e71f00d2ad3a#.baugcaodi" target="_blank" rel="external">Things to consider before running background tasks</a></h2><p>完成后台任务的几种方式和各自的优缺点分析.</p>
+<ul>
+<li>Thread.</li>
+<li>AsyncTask.</li>
+<li>Service.</li>
+<li>IntentService.</li>
+<li>Loader.</li>
+<li>JobService and JobScheduler. GCM Network Manager.</li>
+<li>RxJava.</li>
+</ul>
+<h2 id="Android-RecyclerView-Grouping-Data"><a href="#Android-RecyclerView-Grouping-Data" class="headerlink" title="Android RecyclerView - Grouping Data"></a><a href="https://krtkush.github.io/2016/07/08/android-recyclerview-grouping-data.html" target="_blank" rel="external">Android RecyclerView - Grouping Data</a></h2><p>作者展示了如何将RecyclerView中的数据分组展示, 在他的例子中是按照时间分组, 每一组开始是该组的时间占据一行.</p>
+<p>其实主要是前期的数据处理, 首先创建一个HashMap, 分组依据作为key, 符合该依据的数据作为值存在对应key的value list里; 然后给日期和数据创建一个共同的基类, 把HashMap再重新展开成一个List, 里面穿插好数据. 最后用RecyclerView按照数据类型不同显示两种布局.</p>
+<h2 id="Flutter-Intro"><a href="#Flutter-Intro" class="headerlink" title="Flutter Intro"></a><a href="https://medium.com/@develodroid/flutter-i-intro-and-install-a8bf6dfcc7c8#.f9ktsu3r8" target="_blank" rel="external">Flutter Intro</a></h2><p><a href="https://flutter.io/" target="_blank" rel="external">Flutter</a>是一个Google推出的新工具, 用来构建跨平台的应用.</p>
+<p>本文介绍了如何setup和创建一个Hello World.</p>
+<h2 id="How-to-add-Gradle-dependencies-using-‘foreach’"><a href="#How-to-add-Gradle-dependencies-using-‘foreach’" class="headerlink" title="How to add Gradle dependencies using ‘foreach’"></a><a href="https://hackernoon.com/android-how-to-add-gradle-dependencies-using-foreach-c4cbcc070458#.aplxhrmn3" target="_blank" rel="external">How to add Gradle dependencies using ‘foreach’</a></h2><p>一种管理依赖的方式, 把所有的依赖定义在同一个文件的不同分组里, 然后在每个module各自添加自己的分组即可.</p>
+<h2 id="Best-practices-to-improve-app-engagement"><a href="#Best-practices-to-improve-app-engagement" class="headerlink" title="Best practices to improve app engagement"></a><a href="https://android-developers.googleblog.com/2016/12/important-best-practices-to-improve-app-engagement.html" target="_blank" rel="external">Best practices to improve app engagement</a></h2><p>如何提高app的用户参与度.</p>
+<h2 id="The-Do’s-and-Don’ts-of-Writing-Test-cases-in-Android"><a href="#The-Do’s-and-Don’ts-of-Writing-Test-cases-in-Android" class="headerlink" title="The Do’s and Don’ts of Writing Test cases in Android"></a><a href="https://blog.mindorks.com/the-dos-and-don-ts-of-writing-test-cases-in-android-70f1b5dab3e1#.7ol81s1wo" target="_blank" rel="external">The Do’s and Don’ts of Writing Test cases in Android</a></h2><p>作者分享了在写测试的时候需要注意的几点:</p>
+<ul>
+<li>首先明确我们要测试的是什么, 预先条件是否满足, 如果是因为前置条件不满足, 那么并不是我们的测试本身失败了.</li>
+<li>每个测试都是独立完成的, 测试的执行顺序不应该影响结果.</li>
+<li>在测试中不要写条件语句. 条件语句是在实际代码中的, 每一个条件都应该对应一个单独的测试case.</li>
+<li>测试应该不受外部因素影响, 比如server和网络. 因为如果因为这类原因测试失败了, 并不代表我们的代码有bug.</li>
+</ul>
+<h2 id="Making-Rainbow-HAT-Work-with-the-Android-Things"><a href="#Making-Rainbow-HAT-Work-with-the-Android-Things" class="headerlink" title="Making Rainbow HAT Work with the Android Things"></a><a href="https://blog.egorand.me/making-rainbow-hat-work-with-the-android-things-2/" target="_blank" rel="external">Making Rainbow HAT Work with the Android Things</a></h2><p>一个Android Things应用.</p>
+<h2 id="Christmas-Voice-–-Part-2"><a href="#Christmas-Voice-–-Part-2" class="headerlink" title="Christmas Voice – Part 2"></a><a href="https://blog.stylingandroid.com/christmas-voice-part-2/" target="_blank" rel="external">Christmas Voice – Part 2</a></h2><p>一个小应用, 录音, 做转换并播放.</p>
+<h2 id="Will-Android-do-for-the-IoT-what-it-did-for-mobile"><a href="#Will-Android-do-for-the-IoT-what-it-did-for-mobile" class="headerlink" title="Will Android do for the IoT what it did for mobile?"></a><a href="https://medium.com/@carl.whalley/will-android-do-for-iot-what-it-did-for-mobile-c9ac79d06c#.41phc9zbb" target="_blank" rel="external">Will Android do for the IoT what it did for mobile?</a></h2><p>关于Android Things的一些看法.</p>
+<h2 id="Set-up-a-CI-server-for-Android-dev"><a href="#Set-up-a-CI-server-for-Android-dev" class="headerlink" title="Set up a CI server for Android dev"></a><a href="https://medium.com/@pamartineza/how-to-set-up-a-continuous-integration-server-for-android-development-ubuntu-jenkins-sonarqube-43c1ed6b08d3#.lzs2m4zg8" target="_blank" rel="external">Set up a CI server for Android dev</a></h2><p>如何搭建Android项目的CI, (Ubuntu + Jenkins + SonarQube).</p>
+<h1 id="DESIGN"><a href="#DESIGN" class="headerlink" title="DESIGN"></a>DESIGN</h1><h2 id="Material-Growth-amp-communications"><a href="#Material-Growth-amp-communications" class="headerlink" title="Material: Growth &amp; communications"></a><a href="https://material.io/guidelines/growth-communications/introduction.html#" target="_blank" rel="external">Material: Growth &amp; communications</a></h2><p>如何进行用户引导, feature发现和手势教育.</p>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="PanoramaImageView"><a href="#PanoramaImageView" class="headerlink" title="PanoramaImageView"></a><a href="https://github.com/gjiazhe/PanoramaImageView" target="_blank" rel="external">PanoramaImageView</a></h2><p>一个ImageView, 在设备转动的时候可以自动滚动内容.</p>
+<h2 id="TextDecorator"><a href="#TextDecorator" class="headerlink" title="TextDecorator"></a><a href="https://github.com/nntuyen/text-decorator" target="_blank" rel="external">TextDecorator</a></h2><p>可以给文字分段加上各种装饰, 下划线, 点击事件等.</p>
+<h2 id="Delightful-SQLBrite"><a href="#Delightful-SQLBrite" class="headerlink" title="Delightful-SQLBrite"></a><a href="https://github.com/geralt-encore/Delightful-SQLBrite" target="_blank" rel="external">Delightful-SQLBrite</a></h2><p>一个示例应用, 展示<a href="https://github.com/square/sqldelight" target="_blank" rel="external">SQLDelight</a>和<a href="https://github.com/square/sqlbrite" target="_blank" rel="external">SQLBrite</a>结合使用.</p>
+<h2 id="mainframer"><a href="#mainframer" class="headerlink" title="mainframer"></a><a href="https://github.com/gojuno/mainframer" target="_blank" rel="external">mainframer</a></h2><p>一个远程build的脚本.</p>
+<h2 id="material-about-library"><a href="#material-about-library" class="headerlink" title="material-about-library"></a><a href="https://github.com/daniel-stoneuk/material-about-library" target="_blank" rel="external">material-about-library</a></h2><p>创建一个Material风格about页面的库.</p>
+<h2 id="android-snowfall"><a href="#android-snowfall" class="headerlink" title="android-snowfall"></a><a href="https://github.com/JetradarMobile/android-snowfall" target="_blank" rel="external">android-snowfall</a></h2><p>下雪View.</p>
+<h2 id="Android-ExpandIcon"><a href="#Android-ExpandIcon" class="headerlink" title="Android-ExpandIcon"></a><a href="https://github.com/zagum/Android-ExpandIcon" target="_blank" rel="external">Android-ExpandIcon</a></h2><p>展开/合上的上下箭头icon, 支持点击和手势滑动切换.</p>
+<h2 id="RxAnimations"><a href="#RxAnimations" class="headerlink" title="RxAnimations"></a><a href="https://github.com/0ximDigital/RxAnimations" target="_blank" rel="external">RxAnimations</a></h2><p>Rx形式的动画库.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-Weekly/">Android Weekly</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Android-Weekly/">Android Weekly</a><a href="/tags/Firebase/">Firebase</a><a href="/tags/Gradle/">Gradle</a><a href="/tags/RecyclerView/">RecyclerView</a><a href="/tags/Notification/">Notification</a><a href="/tags/Testing/">Testing</a><a href="/tags/Android-Things/">Android Things</a><a href="/tags/Background-work/">Background work</a><a href="/tags/Flutter/">Flutter</a><a href="/tags/CI/">CI</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/" data-title="Android Weekly Notes Issue 238 | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Android/Android-Weekly/2016/12/30/android-weekly-notes-issue-237/"  title="Android Weekly Notes Issue 237">
+ <strong>下一篇：</strong><br/> 
+ <span>Android Weekly Notes Issue 237
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="Android-Weekly/2017/01/03/android-weekly-notes-issue-238/" data-title="Android Weekly Notes Issue 238" data-url="http://mengdd.github.io/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-238"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #238</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mastering-Firebase-Notifications"><span class="toc-number">2.1.</span> <span class="toc-text">Mastering Firebase Notifications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RecyclerView-Prefetch"><span class="toc-number">2.2.</span> <span class="toc-text">RecyclerView Prefetch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things-to-consider-before-running-background-tasks"><span class="toc-number">2.3.</span> <span class="toc-text">Things to consider before running background tasks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-RecyclerView-Grouping-Data"><span class="toc-number">2.4.</span> <span class="toc-text">Android RecyclerView - Grouping Data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flutter-Intro"><span class="toc-number">2.5.</span> <span class="toc-text">Flutter Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-add-Gradle-dependencies-using-‘foreach’"><span class="toc-number">2.6.</span> <span class="toc-text">How to add Gradle dependencies using ‘foreach’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-practices-to-improve-app-engagement"><span class="toc-number">2.7.</span> <span class="toc-text">Best practices to improve app engagement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Do’s-and-Don’ts-of-Writing-Test-cases-in-Android"><span class="toc-number">2.8.</span> <span class="toc-text">The Do’s and Don’ts of Writing Test cases in Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Making-Rainbow-HAT-Work-with-the-Android-Things"><span class="toc-number">2.9.</span> <span class="toc-text">Making Rainbow HAT Work with the Android Things</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Christmas-Voice-–-Part-2"><span class="toc-number">2.10.</span> <span class="toc-text">Christmas Voice – Part 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Will-Android-do-for-the-IoT-what-it-did-for-mobile"><span class="toc-number">2.11.</span> <span class="toc-text">Will Android do for the IoT what it did for mobile?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set-up-a-CI-server-for-Android-dev"><span class="toc-number">2.12.</span> <span class="toc-text">Set up a CI server for Android dev</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DESIGN"><span class="toc-number">3.</span> <span class="toc-text">DESIGN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Material-Growth-amp-communications"><span class="toc-number">3.1.</span> <span class="toc-text">Material: Growth & communications</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">4.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PanoramaImageView"><span class="toc-number">4.1.</span> <span class="toc-text">PanoramaImageView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TextDecorator"><span class="toc-number">4.2.</span> <span class="toc-text">TextDecorator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delightful-SQLBrite"><span class="toc-number">4.3.</span> <span class="toc-text">Delightful-SQLBrite</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mainframer"><span class="toc-number">4.4.</span> <span class="toc-text">mainframer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#material-about-library"><span class="toc-number">4.5.</span> <span class="toc-text">material-about-library</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-snowfall"><span class="toc-number">4.6.</span> <span class="toc-text">android-snowfall</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-ExpandIcon"><span class="toc-number">4.7.</span> <span class="toc-text">Android-ExpandIcon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RxAnimations"><span class="toc-number">4.8.</span> <span class="toc-text">RxAnimations</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>34</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-News/" title="Android News">Android News<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Weekly/" title="Android Weekly">Android Weekly<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Architecture/" title="Architecture">Architecture<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Design/" title="Design">Design<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/IDE/" title="IDE">IDE<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/" title="Retrofit">Retrofit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/RxJava/" title="RxJava">RxJava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/" title="Tools">Tools<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>33</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>11</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVP/" title="MVP">MVP<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Retrofit/" title="Retrofit">Retrofit<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Test/" title="Test">Test<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bottom-Sheet/" title="Bottom Sheet">Bottom Sheet<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Security/" title="Security">Security<sup>3</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/mengdd/" target="_blank" title="圣骑士wind">圣骑士wind</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://talentprince.github.io/" target="_blank" title="长乐未央">长乐未央</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dandan Meng. <br/>
+			This is my blog. Welcome.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/mengdd" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wind"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dandanmeng';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75132850-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?83e8338b542a9fd155f68673d113e0ae";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

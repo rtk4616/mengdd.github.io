@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2016-12-30T07:41:32.000Z</updated>
+  <updated>2017-01-03T10:06:48.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,98 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 238</title>
+    <link href="http://mengdd.github.io/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/"/>
+    <id>http://mengdd.github.io/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/</id>
+    <published>2017-01-03T10:02:01.000Z</published>
+    <updated>2017-01-03T10:06:48.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-238&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-238&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #238&quot;&gt;&lt;/a&gt;Android Weekly Issue #238&lt;/h1&gt;&lt;p&gt;January 1st, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-238&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #238&lt;/a&gt;&lt;br&gt;本期内容包括: Firebase发送Notification; RecyclerView的预取; 后台工作的实现方式讨论; RecyclerView分组数据; 跨平台应用工具Flutter介绍; Gradle依赖管理;&lt;br&gt;写测试的一些注意事项; Android Things应用搭建及一些思考; 如何搭建CI等.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Mastering-Firebase-Notifications&quot;&gt;&lt;a href=&quot;#Mastering-Firebase-Notifications&quot; class=&quot;headerlink&quot; title=&quot;Mastering Firebase Notifications&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@Miqubel/mastering-firebase-notifications-36a3ffe57c41#.ykkpzrs4l&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Mastering Firebase Notifications&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;用Firebase发通知:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Console Notifications.&lt;/li&gt;
+&lt;li&gt;使用命令行, 发送curl命令.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FirebaseMessagingService&lt;/code&gt;在应用前台的时候处理通知.&lt;/li&gt;
+&lt;li&gt;如果应用前后台的时候都需要处理, 则发送data而不是notification.&lt;br&gt;官方文档&lt;a href=&quot;https://firebase.google.com/docs/cloud-messaging/android/receive&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Firebase cloud-messaging&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;RecyclerView-Prefetch&quot;&gt;&lt;a href=&quot;#RecyclerView-Prefetch&quot; class=&quot;headerlink&quot; title=&quot;RecyclerView Prefetch&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/google-developers/recyclerview-prefetch-c2f269075710#.21takened&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RecyclerView Prefetch&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者研究了RecyclerView的渲染时间, 发现在滚动的时候很多的时间会花在新item的创建和bind上, 这样会推迟UI线程的其他工作, 还有RenderThread的后续工作, 如果超出了frame boundary, 就有可能会造成明显的卡顿.&lt;/p&gt;
+&lt;p&gt;而同时前一帧, UI线程可能处于空闲状态.&lt;/p&gt;
+&lt;p&gt;那么我们有没有可能以一种预取的方式, 把即将出现的View在提前的空闲阶段准备好呢?&lt;/p&gt;
+&lt;p&gt;pre-fetch的优化已经在&lt;a href=&quot;https://developer.android.com/topic/libraries/support-library/revisions.html#rev25-0-0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Support Library v25&lt;/a&gt;加入, &lt;a href=&quot;https://developer.android.com/topic/libraries/support-library/revisions.html#25-1-0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;v25.1.0&lt;/a&gt;有进一步的加强. 如果你没有自定义LayoutManager, 也没有嵌套&lt;code&gt;RecyclerView&lt;/code&gt;, 那么你升级support library之后就自动获得了这项优化. 其他两种情况你还需要调用一些方法.&lt;/p&gt;
+&lt;p&gt;你可以设置&lt;code&gt;LayoutManager.setItemPrefetchEnabled()&lt;/code&gt;来对比开启和关闭预取功能前后的不同. 性能测量用&lt;a href=&quot;https://developer.android.com/studio/profile/systrace.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Systrace&lt;/a&gt;和&lt;a href=&quot;https://developer.android.com/studio/profile/dev-options-rendering.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GPU profiling&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Things-to-consider-before-running-background-tasks&quot;&gt;&lt;a href=&quot;#Things-to-consider-before-running-background-tasks&quot; class=&quot;headerlink&quot; title=&quot;Things to consider before running background tasks&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.yipl.com.np/things-to-consider-before-running-background-tasks-e71f00d2ad3a#.baugcaodi&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Things to consider before running background tasks&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;完成后台任务的几种方式和各自的优缺点分析.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Thread.&lt;/li&gt;
+&lt;li&gt;AsyncTask.&lt;/li&gt;
+&lt;li&gt;Service.&lt;/li&gt;
+&lt;li&gt;IntentService.&lt;/li&gt;
+&lt;li&gt;Loader.&lt;/li&gt;
+&lt;li&gt;JobService and JobScheduler. GCM Network Manager.&lt;/li&gt;
+&lt;li&gt;RxJava.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Android-RecyclerView-Grouping-Data&quot;&gt;&lt;a href=&quot;#Android-RecyclerView-Grouping-Data&quot; class=&quot;headerlink&quot; title=&quot;Android RecyclerView - Grouping Data&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://krtkush.github.io/2016/07/08/android-recyclerview-grouping-data.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android RecyclerView - Grouping Data&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者展示了如何将RecyclerView中的数据分组展示, 在他的例子中是按照时间分组, 每一组开始是该组的时间占据一行.&lt;/p&gt;
+&lt;p&gt;其实主要是前期的数据处理, 首先创建一个HashMap, 分组依据作为key, 符合该依据的数据作为值存在对应key的value list里; 然后给日期和数据创建一个共同的基类, 把HashMap再重新展开成一个List, 里面穿插好数据. 最后用RecyclerView按照数据类型不同显示两种布局.&lt;/p&gt;
+&lt;h2 id=&quot;Flutter-Intro&quot;&gt;&lt;a href=&quot;#Flutter-Intro&quot; class=&quot;headerlink&quot; title=&quot;Flutter Intro&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@develodroid/flutter-i-intro-and-install-a8bf6dfcc7c8#.f9ktsu3r8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Flutter Intro&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://flutter.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Flutter&lt;/a&gt;是一个Google推出的新工具, 用来构建跨平台的应用.&lt;/p&gt;
+&lt;p&gt;本文介绍了如何setup和创建一个Hello World.&lt;/p&gt;
+&lt;h2 id=&quot;How-to-add-Gradle-dependencies-using-‘foreach’&quot;&gt;&lt;a href=&quot;#How-to-add-Gradle-dependencies-using-‘foreach’&quot; class=&quot;headerlink&quot; title=&quot;How to add Gradle dependencies using ‘foreach’&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://hackernoon.com/android-how-to-add-gradle-dependencies-using-foreach-c4cbcc070458#.aplxhrmn3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to add Gradle dependencies using ‘foreach’&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一种管理依赖的方式, 把所有的依赖定义在同一个文件的不同分组里, 然后在每个module各自添加自己的分组即可.&lt;/p&gt;
+&lt;h2 id=&quot;Best-practices-to-improve-app-engagement&quot;&gt;&lt;a href=&quot;#Best-practices-to-improve-app-engagement&quot; class=&quot;headerlink&quot; title=&quot;Best practices to improve app engagement&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://android-developers.googleblog.com/2016/12/important-best-practices-to-improve-app-engagement.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Best practices to improve app engagement&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如何提高app的用户参与度.&lt;/p&gt;
+&lt;h2 id=&quot;The-Do’s-and-Don’ts-of-Writing-Test-cases-in-Android&quot;&gt;&lt;a href=&quot;#The-Do’s-and-Don’ts-of-Writing-Test-cases-in-Android&quot; class=&quot;headerlink&quot; title=&quot;The Do’s and Don’ts of Writing Test cases in Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.mindorks.com/the-dos-and-don-ts-of-writing-test-cases-in-android-70f1b5dab3e1#.7ol81s1wo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Do’s and Don’ts of Writing Test cases in Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者分享了在写测试的时候需要注意的几点:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首先明确我们要测试的是什么, 预先条件是否满足, 如果是因为前置条件不满足, 那么并不是我们的测试本身失败了.&lt;/li&gt;
+&lt;li&gt;每个测试都是独立完成的, 测试的执行顺序不应该影响结果.&lt;/li&gt;
+&lt;li&gt;在测试中不要写条件语句. 条件语句是在实际代码中的, 每一个条件都应该对应一个单独的测试case.&lt;/li&gt;
+&lt;li&gt;测试应该不受外部因素影响, 比如server和网络. 因为如果因为这类原因测试失败了, 并不代表我们的代码有bug.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Making-Rainbow-HAT-Work-with-the-Android-Things&quot;&gt;&lt;a href=&quot;#Making-Rainbow-HAT-Work-with-the-Android-Things&quot; class=&quot;headerlink&quot; title=&quot;Making Rainbow HAT Work with the Android Things&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.egorand.me/making-rainbow-hat-work-with-the-android-things-2/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Making Rainbow HAT Work with the Android Things&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Android Things应用.&lt;/p&gt;
+&lt;h2 id=&quot;Christmas-Voice-–-Part-2&quot;&gt;&lt;a href=&quot;#Christmas-Voice-–-Part-2&quot; class=&quot;headerlink&quot; title=&quot;Christmas Voice – Part 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/christmas-voice-part-2/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Christmas Voice – Part 2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个小应用, 录音, 做转换并播放.&lt;/p&gt;
+&lt;h2 id=&quot;Will-Android-do-for-the-IoT-what-it-did-for-mobile&quot;&gt;&lt;a href=&quot;#Will-Android-do-for-the-IoT-what-it-did-for-mobile&quot; class=&quot;headerlink&quot; title=&quot;Will Android do for the IoT what it did for mobile?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@carl.whalley/will-android-do-for-iot-what-it-did-for-mobile-c9ac79d06c#.41phc9zbb&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Will Android do for the IoT what it did for mobile?&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;关于Android Things的一些看法.&lt;/p&gt;
+&lt;h2 id=&quot;Set-up-a-CI-server-for-Android-dev&quot;&gt;&lt;a href=&quot;#Set-up-a-CI-server-for-Android-dev&quot; class=&quot;headerlink&quot; title=&quot;Set up a CI server for Android dev&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@pamartineza/how-to-set-up-a-continuous-integration-server-for-android-development-ubuntu-jenkins-sonarqube-43c1ed6b08d3#.lzs2m4zg8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Set up a CI server for Android dev&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如何搭建Android项目的CI, (Ubuntu + Jenkins + SonarQube).&lt;/p&gt;
+&lt;h1 id=&quot;DESIGN&quot;&gt;&lt;a href=&quot;#DESIGN&quot; class=&quot;headerlink&quot; title=&quot;DESIGN&quot;&gt;&lt;/a&gt;DESIGN&lt;/h1&gt;&lt;h2 id=&quot;Material-Growth-amp-communications&quot;&gt;&lt;a href=&quot;#Material-Growth-amp-communications&quot; class=&quot;headerlink&quot; title=&quot;Material: Growth &amp;amp; communications&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://material.io/guidelines/growth-communications/introduction.html#&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Material: Growth &amp;amp; communications&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如何进行用户引导, feature发现和手势教育.&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;PanoramaImageView&quot;&gt;&lt;a href=&quot;#PanoramaImageView&quot; class=&quot;headerlink&quot; title=&quot;PanoramaImageView&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/gjiazhe/PanoramaImageView&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PanoramaImageView&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个ImageView, 在设备转动的时候可以自动滚动内容.&lt;/p&gt;
+&lt;h2 id=&quot;TextDecorator&quot;&gt;&lt;a href=&quot;#TextDecorator&quot; class=&quot;headerlink&quot; title=&quot;TextDecorator&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/nntuyen/text-decorator&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TextDecorator&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;可以给文字分段加上各种装饰, 下划线, 点击事件等.&lt;/p&gt;
+&lt;h2 id=&quot;Delightful-SQLBrite&quot;&gt;&lt;a href=&quot;#Delightful-SQLBrite&quot; class=&quot;headerlink&quot; title=&quot;Delightful-SQLBrite&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/geralt-encore/Delightful-SQLBrite&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Delightful-SQLBrite&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个示例应用, 展示&lt;a href=&quot;https://github.com/square/sqldelight&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SQLDelight&lt;/a&gt;和&lt;a href=&quot;https://github.com/square/sqlbrite&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SQLBrite&lt;/a&gt;结合使用.&lt;/p&gt;
+&lt;h2 id=&quot;mainframer&quot;&gt;&lt;a href=&quot;#mainframer&quot; class=&quot;headerlink&quot; title=&quot;mainframer&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/gojuno/mainframer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mainframer&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个远程build的脚本.&lt;/p&gt;
+&lt;h2 id=&quot;material-about-library&quot;&gt;&lt;a href=&quot;#material-about-library&quot; class=&quot;headerlink&quot; title=&quot;material-about-library&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/daniel-stoneuk/material-about-library&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;material-about-library&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;创建一个Material风格about页面的库.&lt;/p&gt;
+&lt;h2 id=&quot;android-snowfall&quot;&gt;&lt;a href=&quot;#android-snowfall&quot; class=&quot;headerlink&quot; title=&quot;android-snowfall&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/JetradarMobile/android-snowfall&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-snowfall&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;下雪View.&lt;/p&gt;
+&lt;h2 id=&quot;Android-ExpandIcon&quot;&gt;&lt;a href=&quot;#Android-ExpandIcon&quot; class=&quot;headerlink&quot; title=&quot;Android-ExpandIcon&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/zagum/Android-ExpandIcon&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android-ExpandIcon&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;展开/合上的上下箭头icon, 支持点击和手势滑动切换.&lt;/p&gt;
+&lt;h2 id=&quot;RxAnimations&quot;&gt;&lt;a href=&quot;#RxAnimations&quot; class=&quot;headerlink&quot; title=&quot;RxAnimations&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/0ximDigital/RxAnimations&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxAnimations&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Rx形式的动画库.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-238&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-238&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #238&quot;&gt;&lt;/a&gt;Android Weekly Issue #238&lt;/h1&gt;&lt;p&gt;January 1st, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-238&quot;&gt;Android Weekly Issue #238&lt;/a&gt;&lt;br&gt;本期内容包括: Firebase发送Notification; RecyclerView的预取; 后台工作的实现方式讨论; RecyclerView分组数据; 跨平台应用工具Flutter介绍; Gradle依赖管理;&lt;br&gt;写测试的一些注意事项; Android Things应用搭建及一些思考; 如何搭建CI等.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
+    
+      <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
+    
+      <category term="Notification" scheme="http://mengdd.github.io/tags/Notification/"/>
+    
+      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
+    
+      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
+    
+      <category term="Background work" scheme="http://mengdd.github.io/tags/Background-work/"/>
+    
+      <category term="Flutter" scheme="http://mengdd.github.io/tags/Flutter/"/>
+    
+      <category term="CI" scheme="http://mengdd.github.io/tags/CI/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 237</title>
@@ -94,9 +186,9 @@
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
-      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
-    
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
+    
+      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
     
       <category term="ContentProvider" scheme="http://mengdd.github.io/tags/ContentProvider/"/>
     
@@ -195,9 +287,9 @@
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
-      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
-    
       <category term="IoT" scheme="http://mengdd.github.io/tags/IoT/"/>
+    
+      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
     
       <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
@@ -333,11 +425,11 @@
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
+    
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
-    
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="Custom View" scheme="http://mengdd.github.io/tags/Custom-View/"/>
     
@@ -560,6 +652,8 @@
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
+      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
+    
       <category term="Terminal" scheme="http://mengdd.github.io/tags/Terminal/"/>
     
       <category term="Android 7.1" scheme="http://mengdd.github.io/tags/Android-7-1/"/>
@@ -577,8 +671,6 @@
       <category term="push notification" scheme="http://mengdd.github.io/tags/push-notification/"/>
     
       <category term="transient" scheme="http://mengdd.github.io/tags/transient/"/>
-    
-      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
     
   </entry>
   
@@ -790,9 +882,9 @@
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
-      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
-    
       <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
+    
+      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
@@ -900,13 +992,11 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
-    
       <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
-      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
+      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
     
-      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
+      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
@@ -915,6 +1005,8 @@
       <category term="Passive View" scheme="http://mengdd.github.io/tags/Passive-View/"/>
     
       <category term="RxBinding" scheme="http://mengdd.github.io/tags/RxBinding/"/>
+    
+      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
     
       <category term="Tracking" scheme="http://mengdd.github.io/tags/Tracking/"/>
     
@@ -1747,13 +1839,13 @@
     
       <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
     
-      <category term="Alarm" scheme="http://mengdd.github.io/tags/Alarm/"/>
-    
-      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
-    
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
+      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
+    
+      <category term="Alarm" scheme="http://mengdd.github.io/tags/Alarm/"/>
     
       <category term="TensorFlow" scheme="http://mengdd.github.io/tags/TensorFlow/"/>
     
@@ -2013,15 +2105,15 @@
     
       <category term="Data Binding" scheme="http://mengdd.github.io/tags/Data-Binding/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
-    
       <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Clean Architecture" scheme="http://mengdd.github.io/tags/Clean-Architecture/"/>
     
       <category term="Loader" scheme="http://mengdd.github.io/tags/Loader/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
   </entry>
   
@@ -2165,10 +2257,6 @@
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
-      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
-    
-      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
-    
       <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
     
       <category term="Face Detection" scheme="http://mengdd.github.io/tags/Face-Detection/"/>
@@ -2194,6 +2282,10 @@
       <category term="Notification" scheme="http://mengdd.github.io/tags/Notification/"/>
     
       <category term="font" scheme="http://mengdd.github.io/tags/font/"/>
+    
+      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
+    
+      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
   </entry>
   
@@ -2439,13 +2531,13 @@
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
-      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
       <category term="Android 7.0" scheme="http://mengdd.github.io/tags/Android-7-0/"/>
     
       <category term="Quick Settings" scheme="http://mengdd.github.io/tags/Quick-Settings/"/>
     
       <category term="Shared-Element Transtion" scheme="http://mengdd.github.io/tags/Shared-Element-Transtion/"/>
+    
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
       <category term="ORM" scheme="http://mengdd.github.io/tags/ORM/"/>
     
@@ -2696,9 +2788,11 @@
     
       <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
     
-      <category term="Annotation" scheme="http://mengdd.github.io/tags/Annotation/"/>
-    
       <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
+    
+      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
+    
+      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
       <category term="pre-launch" scheme="http://mengdd.github.io/tags/pre-launch/"/>
     
@@ -2712,213 +2806,11 @@
     
       <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
     
-      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
-    
-      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
+      <category term="Annotation" scheme="http://mengdd.github.io/tags/Annotation/"/>
     
       <category term="Adapter" scheme="http://mengdd.github.io/tags/Adapter/"/>
     
       <category term="Intro Screen" scheme="http://mengdd.github.io/tags/Intro-Screen/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 223</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/09/22/android-weekly-notes-issue-223/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2016/09/22/android-weekly-notes-issue-223/</id>
-    <published>2016-09-22T09:34:27.000Z</published>
-    <updated>2016-09-22T10:08:28.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-223&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-223&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #223&quot;&gt;&lt;/a&gt;Android Weekly Issue #223&lt;/h1&gt;&lt;p&gt;September 18th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-223&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #223&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本期内容包括:&lt;br&gt;Offline时间戳处理;  Accessibility的安全问题可能并不是个问题; 如何在单元测试和UI测试之间共享代码; Android中的指纹认证; 编译时间Kotlin vs Java; MVP结合RxJava, 让View来处理生命周期; RxJava2预览; 内存泄露处理; Gradle相关等等.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Offline-First-Introducing-TrueTime-for-Android&quot;&gt;&lt;a href=&quot;#Offline-First-Introducing-TrueTime-for-Android&quot; class=&quot;headerlink&quot; title=&quot;Offline First: Introducing TrueTime for Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://tech.instacart.com/truetime/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Offline First: Introducing TrueTime for Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;TrueTime是一个NTP library for &lt;a href=&quot;https://github.com/instacart/truetime.swift&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Swift&lt;/a&gt; and &lt;a href=&quot;https://github.com/instacart/truetime-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;其中NTP是Network Time Protocol.&lt;/p&gt;
-&lt;p&gt;作者他们有一个购物app, 但是时断时续的网络降低了用户体验, 所以他们进行了离线迁移, 准备出一系列文章分享相关的想法和在此过程中学到的东西.&lt;/p&gt;
-&lt;p&gt;本文是第一篇, 关于时间.&lt;/p&gt;
-&lt;p&gt;由于在设置里可以设置设备的日期和时间, 所以设备的时间并不一定是真实的时间, 我们在程序里&lt;code&gt;new Date()&lt;/code&gt;得到的其实是设备时间.&lt;/p&gt;
-&lt;p&gt;关于真实时间的计算, 他们开源了TrueTime库, Android和iOS都能用.&lt;/p&gt;
-&lt;p&gt;TrueTime如何计算真实时间的呢? 它其实是向NTP的server发了请求, 然后计算出的.&lt;/p&gt;
-&lt;p&gt;文中和库都说明了用法.&lt;/p&gt;
-&lt;h2 id=&quot;Android-Security-and-Accessibility&quot;&gt;&lt;a href=&quot;#Android-Security-and-Accessibility&quot; class=&quot;headerlink&quot; title=&quot;Android Security and Accessibility&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@ataulm/a-few-weeks-ago-android-weekly-promoted-a-post-highlighting-a-security-issue-with-the-android-5eae7ff6b8aa#.p25cbw2wl&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Security and Accessibility&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;之前有一个&lt;a href=&quot;https://android.jlelse.eu/android-accessibility-75fdc5810025#.94tpbl6z2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文章&lt;/a&gt;说Accessiblity存在安全隐患, 这个服务可能可以访问到一些隐私信息, 比如密码.&lt;/p&gt;
-&lt;p&gt;但是这篇文章的作者觉得前一篇文章作者的解决方案不是很好.&lt;/p&gt;
-&lt;p&gt;因为当用户开启Accessibility权限的时候, Android就已经给出了警告, 说明敏感信息可能会被观察到. 第三方的keyboard也可以访问这些信息, Android也是在开启的时候给出了警告.&lt;/p&gt;
-&lt;p&gt;另外对于前一篇文章作者提出的解决方案: &lt;code&gt;View.IMPORTANT_FOR_ACCESSIBILITY_NO&lt;/code&gt;&lt;br&gt;这样真正有视觉障碍的那部分用户也无法看到密码, 可能就无法登陆了.&lt;/p&gt;
-&lt;p&gt;所以本文作者建议的解决方案是, 可以弹一个对话框来提醒用户, 如果用户允许了, 再继续输入.&lt;/p&gt;
-&lt;h2 id=&quot;Sharing-code-between-UI-amp-unit-tests&quot;&gt;&lt;a href=&quot;#Sharing-code-between-UI-amp-unit-tests&quot; class=&quot;headerlink&quot; title=&quot;Sharing code between UI &amp;amp; unit tests&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://trickyandroid.com/android-test-tricks-sharing-code-between-unit-ui-tests/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sharing code between UI &amp;amp; unit tests&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Android的测试分两种:&lt;/p&gt;
-&lt;p&gt;一种是Unit tests. 单元测试, 在JVM上跑.&lt;/p&gt;
-&lt;p&gt;另一种是UI测试, 需要Android设备.&lt;/p&gt;
-&lt;p&gt;在Android Studio中对应&lt;code&gt;test&lt;/code&gt;和&lt;code&gt;androidTest&lt;/code&gt;文件夹.&lt;/p&gt;
-&lt;p&gt;这两个测试文件夹之间是不共享代码的, 即一个文件夹里不能访问另一个里面的代码.&lt;/p&gt;
-&lt;p&gt;但是如果我们想要共用一些代码, 是有办法解决的.&lt;/p&gt;
-&lt;p&gt;首先在app/src下新建一个文件夹, 比如叫&lt;code&gt;testShared&lt;/code&gt;. 里面添加要共享的代码.&lt;/p&gt;
-&lt;p&gt;然后在&lt;code&gt;app/build.gradle&lt;/code&gt;里面添加这个:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;android.sourceSets &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    test &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        java.srcDirs += &amp;quot;$projectDir/src/testShared&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    androidTest &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        java.srcDirs += &amp;quot;$projectDir/src/testShared&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;就可以在UI测试和单元测试中共享同一份代码了.&lt;/p&gt;
-&lt;h2 id=&quot;Synchronously-Animating-Colors-on-Android&quot;&gt;&lt;a href=&quot;#Synchronously-Animating-Colors-on-Android&quot; class=&quot;headerlink&quot; title=&quot;Synchronously Animating Colors on Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://kylewbanks.com/blog/animating-toolbar-tablayout-floatingactionbutton-and-statusbar-background-color-on-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Synchronously Animating Colors on Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者想做的一个效果是, 在切换tab的时候, 把&lt;code&gt;Toolbar&lt;/code&gt;, &lt;code&gt;TabLayout&lt;/code&gt;, &lt;code&gt;FloatingActionButton&lt;/code&gt;还有&lt;code&gt;StatusBar&lt;/code&gt;的颜色都动画地改变到另一个颜色.&lt;/p&gt;
-&lt;p&gt;实现很简单, 首先用当前颜色和目标颜色建立一个&lt;code&gt;ValueAnimator&lt;/code&gt;, 然后&lt;code&gt;addUpdateListener()&lt;/code&gt;在更新的过程中把值set给相应的控件:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;colorAnimation.addUpdateListener(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ValueAnimator.AnimatorUpdateListener() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onAnimationUpdate&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(ValueAnimator animator)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; color = (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;) animator.getAnimatedValue();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        toolbar.setBackgroundColor(color);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        tabLayout.setBackgroundColor(color);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(color));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (Build.VERSION.SDK_INT &amp;gt;= Build.VERSION_CODES.LOLLIPOP) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            getWindow().setStatusBarColor(color);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;colorAnimation.start();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;其中FloatingActionButton要用&lt;code&gt;setBackgroundTintList()&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;StatusBar在21及以上才支持&lt;code&gt;getWindow().setStatusBarColor(color);&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Android-Fingerprint-Authentication&quot;&gt;&lt;a href=&quot;#Android-Fingerprint-Authentication&quot; class=&quot;headerlink&quot; title=&quot;Android Fingerprint Authentication&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@aitorvs/android-fingerprint-authentication-44c047179d9a#.3og72boir&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Fingerprint Authentication&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;其实用户都不喜欢验证, 因为用户都比较懒, 不喜欢一次又一次地输入密码或者手势pattern, 但是不锁屏又不安全.&lt;/p&gt;
-&lt;p&gt;指纹验证&lt;a href=&quot;https://developer.android.com/about/versions/marshmallow/android-6.0.html#fingerprint-authentication&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Fingerprint Authentication&lt;/a&gt;是Android M (Android 6.0, API 23)引入的. 它就是为了解决这个问题, 提升用户体验. 这种non-disturbing和easy的方式, 让我们不用在安全和用户体验之间做出妥协.&lt;/p&gt;
-&lt;p&gt;如果你的应用需要做一些关键操作, 比如支付, 你需要用户在操作前授权, 那么指纹验证会很有帮助.&lt;/p&gt;
-&lt;p&gt;然后作者介绍了实现的细节.&lt;/p&gt;
-&lt;p&gt;最后作者附上了自己的相关库: &lt;a href=&quot;https://github.com/aitorvs/fingerlock&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fingerlock&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Kotlin-vs-Java-Compilation-Speed&quot;&gt;&lt;a href=&quot;#Kotlin-vs-Java-Compilation-Speed&quot; class=&quot;headerlink&quot; title=&quot;Kotlin vs Java: Compilation Speed&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/keepsafe-engineering/kotlin-vs-java-compilation-speed-e6c174b39b5d#.nep65secf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Kotlin vs Java: Compilation Speed&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这是作者关于Kotlin的第三篇文章, 作者在这篇文章里测试了Kotlin和Java的编译时间.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Clean build with No Gradle daemon&lt;/strong&gt;&lt;br&gt;Java编译比Kotlin快17%.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Clean build + Gradle daemon&lt;/strong&gt;&lt;br&gt;&lt;code&gt;org.gradle.daemon=true&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Java编译比Kotlin快13%.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Incremental builds&lt;/strong&gt;&lt;br&gt;&lt;code&gt;kotlin.incremental=true&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;在clean build的时候, Java可能快10-15%, 但是在增量build + gradle daemon时, kotlin和Java一样快, 甚至可能比Java更快一些.&lt;/p&gt;
-&lt;h2 id=&quot;Let-the-view-handle-the-lifecycle-in-MVP-by-using-RxJava&quot;&gt;&lt;a href=&quot;#Let-the-view-handle-the-lifecycle-in-MVP-by-using-RxJava&quot; class=&quot;headerlink&quot; title=&quot;Let the view handle the lifecycle in MVP by using RxJava&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@ferhatparmak/let-the-view-handle-the-lifecycle-in-mvp-by-using-rxjava-694d67923871#.vt21pzfr0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Let the view handle the lifecycle in MVP by using RxJava&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;问题:&lt;br&gt;作者举了一个例子, 在Fragment作为View的MVP中, 如果P从service取一些数据, 然后调用View的显示方法, 则还需要知道&lt;code&gt;onViewCreated()&lt;/code&gt;是不是已经调用过了.&lt;/p&gt;
-&lt;p&gt;解决方案:&lt;/p&gt;
-&lt;p&gt;首先创建一个Lifecycle的BehaviorSubject, 在&lt;code&gt;onViewCreated()&lt;/code&gt;的时候调用&lt;code&gt;onNext(null)&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;把View的方法改成返回一个Observable, presenter的方法调用View的方法时实际上是subscribe了一下:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ProductsFragment&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ProductsView&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; ProductsPresenter presenter;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;//Lifecycle subject. It is BehaviourSubject because it can be subscribed after onViewCreated call.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; BehaviorSubject&amp;lt;Void&amp;gt; onViewCreatedSubject = BehaviorSubject.create();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; Observable&amp;lt;Void&amp;gt; &lt;span class=&quot;title&quot;&gt;showProducts&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(List&amp;lt;Product&amp;gt; productList)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; onViewCreatedSubject. &lt;span class=&quot;comment&quot;&gt;// Wait for onViewCreated&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        doOnNext(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Action1&amp;lt;Object&amp;gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Object o)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;//Updates recyclerview adapter items&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onViewCreated&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(View view, @Nullable Bundle savedInstanceState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onViewCreated(view, savedInstanceState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    onViewCreatedSubject.onNext(&lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;Presenter:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ProductsFragmentPresenter&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ProductsPresenter&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; ProductsView view;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;loadProducts&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    productsService.getProducts()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      .flatMap(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Func1&amp;lt;Object, Observable&amp;lt;Void&amp;gt;&amp;gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; Observable&amp;lt;Void&amp;gt; &lt;span class=&quot;title&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(List&amp;lt;Product&amp;gt; productList)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;//Return the view&#39;s observable to show products. &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;//No need to check if the view is created!&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; view.showProducts(productList); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;) &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      .subscribe();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;当然这并不是一个完整的例子, 完整的例子还需要考虑&lt;code&gt;onDestroyView()&lt;/code&gt;还有注销等情况的处理.&lt;/p&gt;
-&lt;h2 id=&quot;Nougat-GCM-Network-Manager&quot;&gt;&lt;a href=&quot;#Nougat-GCM-Network-Manager&quot; class=&quot;headerlink&quot; title=&quot;Nougat - GCM Network Manager&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/nougat-gcm-network-manager/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Nougat - GCM Network Manager&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者搞了一个message app来研究Android 7的新特性.&lt;/p&gt;
-&lt;p&gt;他用到了&lt;a href=&quot;http://ryanharter.com/blog/2016/03/22/autovalue/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AutoValue&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;关于Android 7的另一篇文章: &lt;a href=&quot;https://commonsware.com/blog/2016/03/09/random-musings-n-developer-preview.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Random Musings on the N Developer Preview&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;他们的应用首先需要周期性地生产一些消息, 关于生产消息的实现, 作者没有用&lt;code&gt;AlarmManager&lt;/code&gt;, 也没有用&lt;code&gt;JobScheduler&lt;/code&gt;(因为只支持API 21及以上), 而是选用了&lt;code&gt;GCMNetworkManager&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;具体实现见原文, 有详细说明.&lt;br&gt;另: &lt;a href=&quot;https://github.com/StylingAndroid/Nougat/tree/GCMNetworkManager&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;代码&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这只是系列文章的第一篇, 后续应该会写更多.&lt;/p&gt;
-&lt;h2 id=&quot;TransactionTooLargeException-crashes-on-Nougat&quot;&gt;&lt;a href=&quot;#TransactionTooLargeException-crashes-on-Nougat&quot; class=&quot;headerlink&quot; title=&quot;TransactionTooLargeException crashes on Nougat&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://blog.sqisland.com/2016/09/transactiontoolargeexception-crashes-nougat.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TransactionTooLargeException crashes on Nougat&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者自己的应用在Activity转换的时候遇到了一个crash: &lt;code&gt;java.lang.RuntimeException: android.os.TransactionTooLargeException: data parcel size 700848 bytes.&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;之前应用里有相关的Warning log, 但是&lt;br&gt;Android 7 Nougat (API 24)把它作为异常抛出来了.&lt;/p&gt;
-&lt;p&gt;产生这个问题的原因是在&lt;code&gt;onSaveInstanceState()&lt;/code&gt;里面存了太多数据. 作者做了一个测试, 想看看这个限制大概是多少, 大概是500K左右. &lt;/p&gt;
-&lt;p&gt;所以这里是不应该用来存储太多数据的, 应该只存状态.&lt;/p&gt;
-&lt;p&gt;底下回复说每个进程都有1M的buffer来接收transactions, 但是是在没有任何其他IPC的情况下. 所以建议存储的状态数据少于100K或者50K, 当然越少越好.&lt;/p&gt;
-&lt;h2 id=&quot;Building-a-blazing-fast-ETC2-compressor&quot;&gt;&lt;a href=&quot;#Building-a-blazing-fast-ETC2-compressor&quot; class=&quot;headerlink&quot; title=&quot;Building a blazing fast ETC2 compressor&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@duhroach/building-a-blazing-fast-etc2-compressor-307f3e9aad99#.ixumn3e2v&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Building a blazing fast ETC2 compressor&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者是Google的, 以前做游戏的, 所以致力于Performances, GPU, 数据压缩等内容.&lt;/p&gt;
-&lt;p&gt;作者关注VR, 但是VR中要提升体验, 必定会增加图像的大小和质量.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Ericsson_Texture_Compression&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ETC textures&lt;/a&gt; 是OpenGLES 3.0的一种标准格式.&lt;/p&gt;
-&lt;p&gt;编码一个高质量的ETC2 texture会花费很多时间.&lt;br&gt;以在游戏界最流行的压缩工具&lt;a href=&quot;http://malideveloper.arm.com/resources/tools/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Mali GPU Texture Compression tool&lt;/a&gt;为例, 作者做了实验, 证明确实要花费很多时间(平均10分钟)来encode一个图.&lt;/p&gt;
-&lt;p&gt;所以作者他们开发了一个新的库: &lt;a href=&quot;https://github.com/google/etc2comp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;etc2comp&lt;/a&gt;, 一个很快的texture encoder.&lt;/p&gt;
-&lt;p&gt;然后和之前的工具做了比较, 平均时间提高到了10秒.&lt;/p&gt;
-&lt;p&gt;后来他说的技术细节我就看不懂了. 文后还有其他图像格式(JPG, PNG, WebP)相关的文章链接.&lt;/p&gt;
-&lt;h2 id=&quot;Low-Coupling-With-Rx-and-Dagger2-in-Android&quot;&gt;&lt;a href=&quot;#Low-Coupling-With-Rx-and-Dagger2-in-Android&quot; class=&quot;headerlink&quot; title=&quot;Low Coupling With Rx and Dagger2 in Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.ottodroid.net/?p=479&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Low Coupling With Rx and Dagger2 in Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者举例展示Android程序的解耦.&lt;/p&gt;
-&lt;p&gt;首先, 他展示一个高度耦合的Android程序, 然后加入Rx, 最后加入Dagger2, 从而一步一步地解耦这个项目.&lt;/p&gt;
-&lt;p&gt;项目的内容是发现Network中的Services. 这里有官方的Training: &lt;a href=&quot;https://developer.android.com/training/connect-devices-wirelessly/nsd.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Network Service Discovery&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;RxJava2-An-Early-Preview&quot;&gt;&lt;a href=&quot;#RxJava2-An-Early-Preview&quot; class=&quot;headerlink&quot; title=&quot;RxJava2: An Early Preview&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@theMikhail/rxjava2-an-early-preview-5b05de46b07#.ftflhi48n&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava2: An Early Preview&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;最近RxJava2有了第一个Release Candidate. 所以作者在这里先预览一下有哪些有趣的更新和新加的功能:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;New Dependency&lt;/strong&gt;:&lt;br&gt;添加了依赖: &lt;a href=&quot;http://www.reactive-streams.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ReactiveStreams&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Imports&lt;/strong&gt;:&lt;br&gt;RxJava2放在了一个不同的package下:&lt;/p&gt;
-&lt;p&gt;RxJava:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;compile ‘io.reactivex:rxjava:1.0.y-SNAPSHOT’&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;RxJava2:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;compile ‘io.reactivex.rxjava2:rxjava:x.y.z’&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;这意味着, 你可以同时用两个版本的库. 如果你要完全迁移的话, 你需要把所有的import都改到新包.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Null Emissions No Longer Permitted&lt;/strong&gt;:&lt;br&gt;不允许再发送null值了, 会直接抛出空指针异常.&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Observable.just(&lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//don’t do this&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;subject.onNext(&lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//don’t do this either&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;Under(Back)Pressure&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Backpressure&lt;/code&gt;是当&lt;code&gt;Observable&lt;/code&gt;发射值的速度比&lt;code&gt;Observer&lt;/code&gt;能处理的速度快时发生的.&lt;/p&gt;
-&lt;p&gt;RxJava2引入了一个新的Observable类&lt;code&gt;Flowable&lt;/code&gt;, with backpressure support.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Single Old and New&lt;/strong&gt;:&lt;br&gt;订阅一个Single现在可以用这个:&lt;br&gt;&lt;code&gt;SingleObserver&amp;lt;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Hit Me Maybe One More Type&lt;/strong&gt;:&lt;br&gt;一个新的类型叫&lt;code&gt;Maybe&lt;/code&gt;, 它是&lt;code&gt;Single&lt;/code&gt;和&lt;code&gt;Completable&lt;/code&gt;的混合体. 用来发射0或1个值.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;New BackPressured Subject: Processor&lt;/strong&gt;:&lt;br&gt;引入了一个新类型, &lt;code&gt;Processor&lt;/code&gt;, 它是一个有backpressure support的&lt;code&gt;Subject&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;New Names for Function and Action&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Func1&lt;/code&gt; -&amp;gt; &lt;code&gt;Function&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Func2&lt;/code&gt; -&amp;gt; &lt;code&gt;BiFunction&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FuncN&lt;/code&gt; -&amp;gt; &lt;code&gt;Function&amp;lt;Object[], R&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Func1&amp;lt;T, Boolean&amp;gt;&lt;/code&gt; -&amp;gt; &lt;code&gt;Predicate&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Action0&lt;/code&gt; -&amp;gt; &lt;code&gt;Consumer&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Action1&lt;/code&gt; -&amp;gt; &lt;code&gt;BiConsumer&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ActionN&lt;/code&gt; -&amp;gt; &lt;code&gt;Consumer&amp;lt;Object[]&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Subscriber is Now Disposable&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;因为和Reactive-Streams的命名冲突, 所以&lt;code&gt;Subscriber&lt;/code&gt;改名为&lt;code&gt;Disposable&lt;/code&gt;. 它有一个&lt;code&gt;.dispose()&lt;/code&gt;方法, 类似于&lt;code&gt;Subscription&lt;/code&gt;的&lt;code&gt;.unsubscribe()&lt;/code&gt;方法.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;onCompleted()&lt;/code&gt;也将变为&lt;code&gt;onComplete()&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Composite Subscriptions Changes&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;CompositeSubscription&lt;/code&gt; + &lt;code&gt;subscribe()&lt;/code&gt;-&amp;gt; &lt;code&gt;CompositeDisposable&lt;/code&gt; + &lt;code&gt;subscribeWith()&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Blocking Calls&lt;/strong&gt;:&lt;br&gt;RxJava2加了一些新的操作符来变异步为同步.&lt;br&gt;&lt;code&gt;.toBlocking.first()&lt;/code&gt; -&amp;gt; &lt;code&gt;.blockingFirst()&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Better Hooks for Plugins&lt;/strong&gt;:&lt;br&gt;plugin系统被重写了. 现在你可以覆写内置schedulers返回的值了. 这样你就可以在做单元测试的时候覆写&lt;code&gt;Schedulers.io()&lt;/code&gt;来返回同步的值, 甚至debug Schedulers.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;目标Release日期: October 29.&lt;/p&gt;
-&lt;p&gt;Retrofit已经支持RxJava2了:&lt;br&gt;&lt;a href=&quot;https://github.com/JakeWharton/retrofit2-rxjava2-adapter&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;retrofit-rxjava2-adapter&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这里还有一个Library用来把RxJava1转换到RxJava2: &lt;a href=&quot;https://github.com/akarnokd/RxJava2Interop&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava2Interop&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Sources:&lt;br&gt;&lt;a href=&quot;http://reactivex.io/RxJava/2.x/javadoc/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava 2.x javadoc&lt;/a&gt;,&lt;br&gt;&lt;a href=&quot;https://github.com/ReactiveX/RxJava/wiki/What%27s-different-in-2.0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github Wiki: What’s different in 2.0&lt;/a&gt;,&lt;br&gt;&lt;a href=&quot;http://stackoverflow.com/questions/38423079/differences-between-rxjava1-and-rxjava2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stackoverflow&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Eight-Ways-Your-Android-App-Can-STOP-Leaking-Memory&quot;&gt;&lt;a href=&quot;#Eight-Ways-Your-Android-App-Can-STOP-Leaking-Memory&quot; class=&quot;headerlink&quot; title=&quot;Eight Ways Your Android App Can STOP Leaking Memory&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://blog.nimbledroid.com/2016/09/06/stop-memory-leaks.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Eight Ways Your Android App Can STOP Leaking Memory&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;之前作者有个文章叫&lt;a href=&quot;http://blog.nimbledroid.com/2016/05/23/memory-leaks.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Eight Ways Your Android App Can Leak Memory&lt;/a&gt;, 讲的是Android应用中8种内存泄露的原因, 主要是泄露了Activity.&lt;/p&gt;
-&lt;p&gt;这篇文章主要讲解决方法:&lt;/p&gt;
-&lt;h3 id=&quot;Static-Activities&quot;&gt;&lt;a href=&quot;#Static-Activities&quot; class=&quot;headerlink&quot; title=&quot;Static Activities&quot;&gt;&lt;/a&gt;Static Activities&lt;/h3&gt;&lt;p&gt;错误原因: 把Activity存在一个静态引用里, Activity生命周期结束后仍然持有.&lt;/p&gt;
-&lt;p&gt;解决方法:&lt;br&gt;使用&lt;a href=&quot;https://developer.android.com/reference/java/lang/ref/WeakReference.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WeakReference&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;Static-Views&quot;&gt;&lt;a href=&quot;#Static-Views&quot; class=&quot;headerlink&quot; title=&quot;Static Views&quot;&gt;&lt;/a&gt;Static Views&lt;/h3&gt;&lt;p&gt;错误原因: 静态引用了View, 因为attached View引用了Activity, 所以等于间接引用了Activity.&lt;/p&gt;
-&lt;p&gt;解决方法:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;使用WeakReference;&lt;/li&gt;
-&lt;li&gt;在onDestroy()里面把引用置为null.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;Inner-Classes&quot;&gt;&lt;a href=&quot;#Inner-Classes&quot; class=&quot;headerlink&quot; title=&quot;Inner Classes&quot;&gt;&lt;/a&gt;Inner Classes&lt;/h3&gt;&lt;p&gt;内部类分两种, 静态内部类和非静态内部类: &lt;a href=&quot;https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Nested Class&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;错误原因: 在Activity里有一个内部类(非静态), 创建内部类的对象, 然后静态引用之. 因为内部类持有外部类的应用, 所以会造成内存泄露.&lt;/p&gt;
-&lt;p&gt;解决方法:&lt;br&gt;尽量不要存static引用.&lt;/p&gt;
-&lt;h3 id=&quot;匿名内部类-AsyncTask-Handler-Thread-TimerTask&quot;&gt;&lt;a href=&quot;#匿名内部类-AsyncTask-Handler-Thread-TimerTask&quot; class=&quot;headerlink&quot; title=&quot;匿名内部类 AsyncTask, Handler, Thread, TimerTask&quot;&gt;&lt;/a&gt;匿名内部类 AsyncTask, Handler, Thread, TimerTask&lt;/h3&gt;&lt;p&gt;错误原因:&lt;/p&gt;
-&lt;p&gt;如果你不在超出生命周期的地方引用它, 匿名内部类的对象是无害的.&lt;/p&gt;
-&lt;p&gt;但是上面的这些内部类对象全都是用来产生一些线程的, 这些线程是app全局的, 而且会引用创建它们的对象.&lt;/p&gt;
-&lt;p&gt;解决方法: &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;把上面的这些类改成静态内部类, 静态的内部类对象不会引用外部类的对象.&lt;/li&gt;
-&lt;li&gt;如果你坚持使用匿名内部类, 可以在Activity的onDestroy()里面终止线程.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;Sensor-Manager&quot;&gt;&lt;a href=&quot;#Sensor-Manager&quot; class=&quot;headerlink&quot; title=&quot;Sensor Manager&quot;&gt;&lt;/a&gt;Sensor Manager&lt;/h3&gt;&lt;p&gt;错误原因:&lt;/p&gt;
-&lt;p&gt;把Activity作为listener注册给了系统服务, 但是在Activity生命周期结束之前没有注销listener.&lt;/p&gt;
-&lt;p&gt;解决方法: 在生命周期结束前注销listener.&lt;/p&gt;
-&lt;h2 id=&quot;Auto-rename-Android-versionName-in-Gradle&quot;&gt;&lt;a href=&quot;#Auto-rename-Android-versionName-in-Gradle&quot; class=&quot;headerlink&quot; title=&quot;Auto rename Android versionName in Gradle&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@jagonzalez.develop/auto-rename-android-versionname-by-creating-custom-gradle-plugin-2922bbaaaed6#.cds2wvd05&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Auto rename Android versionName in Gradle&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在应用release的时候, 版本号是确定的, 这没问题. 在应用开发的时候, 如果每一个apk也有一个特定的版本号, 将会非常有帮助.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;自定义Gradle Plugin&lt;/strong&gt;:&lt;br&gt;&lt;code&gt;com.android.application&lt;/code&gt;就是一个gradle plugin.&lt;/p&gt;
-&lt;p&gt;有三种方式可以创建gradle plugin: &lt;a href=&quot;https://docs.gradle.org/current/userguide/custom_plugins.html#sec:packaging_a_plugin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;doc&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;本文作者选择了&lt;code&gt;buildSrc&lt;/code&gt;的方式, 因为这很容易, 而且可以被加到repo里, 但是这样将依附于你的project, 不能复用.&lt;/p&gt;
-&lt;p&gt;具体代码见原文.&lt;/p&gt;
-&lt;p&gt;这么做了之后, 每一次build的apk都自带了分支信息, Jira卡号, 或者任何你想带的信息.&lt;/p&gt;
-&lt;h2 id=&quot;Is-your-custom-view-interactive-aware&quot;&gt;&lt;a href=&quot;#Is-your-custom-view-interactive-aware&quot; class=&quot;headerlink&quot; title=&quot;Is your custom view interactive aware?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://renaudcerrato.github.io/2016/09/15/is-your-custom-view-interactive-aware/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Is your custom view interactive aware?&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;什么是&lt;strong&gt;Interactive View&lt;/strong&gt;?&lt;br&gt;当View是可见的, 即可以和用户交互, 即为interactive.&lt;/p&gt;
-&lt;p&gt;当你的自定义View做一些很重的工作, 比如循环的动画或者loading, 或者依赖于传感器, 当这种View变为不可见时,你需要做一些工作来节约电量.&lt;/p&gt;
-&lt;p&gt;作者写了一个辅助类: &lt;a href=&quot;https://gist.github.com/renaudcerrato/746e039700ac5eeaaea40808666e239f&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;InteractiveViewHelper&lt;/a&gt; 来做这个.&lt;/p&gt;
-&lt;p&gt;具体利用了View的这几个回调:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; View::onVisibilityChanged(View, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; View::onWindowVisibilityChanged()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; View::onAttachedToWindow()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; View::onDetachedFromWindow()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;还有两个ACTION:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Intent.ACTION_SCREEN_ON&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Intent.ACTION_SCREEN_OFF&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Beta-Testing-Your-Android-App-With-Build-Variants&quot;&gt;&lt;a href=&quot;#Beta-Testing-Your-Android-App-With-Build-Variants&quot; class=&quot;headerlink&quot; title=&quot;Beta Testing Your Android App With Build Variants&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://chikemgbemena.com/2016/09/16/beta-testing-your-app-with-build-variants/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Beta Testing Your Android App With Build Variants&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;讲了如何用Build Variants, 添加不同的Flavors.&lt;/p&gt;
-&lt;h2 id=&quot;Make-your-build-gradle-great-again&quot;&gt;&lt;a href=&quot;#Make-your-build-gradle-great-again&quot; class=&quot;headerlink&quot; title=&quot;Make your build.gradle great again&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@sergii/make-your-build-gradle-great-again-c84cc172a654#.y66yudcxc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Make your build.gradle great again&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;1-把你的build-gradle分成小份-更加模块化-用apply应用&quot;&gt;&lt;a href=&quot;#1-把你的build-gradle分成小份-更加模块化-用apply应用&quot; class=&quot;headerlink&quot; title=&quot;1. 把你的build.gradle分成小份, 更加模块化, 用apply应用.&quot;&gt;&lt;/a&gt;1. 把你的build.gradle分成小份, 更加模块化, 用&lt;code&gt;apply&lt;/code&gt;应用.&lt;/h3&gt;&lt;h3 id=&quot;2-在build-file里指明application-id&quot;&gt;&lt;a href=&quot;#2-在build-file里指明application-id&quot; class=&quot;headerlink&quot; title=&quot;2. 在build file里指明application id.&quot;&gt;&lt;/a&gt;2. 在build file里指明application id.&lt;/h3&gt;&lt;p&gt;applicationId是apk最终会用的包名.&lt;br&gt;packageName是用来找代码中的R, 和activity/service组件的相对路径.&lt;br&gt;如果不在build文件里指明applicationId可能会有一些问题.&lt;/p&gt;
-&lt;h3 id=&quot;3-给debug版使用一个不同的applicationId&quot;&gt;&lt;a href=&quot;#3-给debug版使用一个不同的applicationId&quot; class=&quot;headerlink&quot; title=&quot;3. 给debug版使用一个不同的applicationId.&quot;&gt;&lt;/a&gt;3. 给debug版使用一个不同的applicationId.&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;buildTypes &amp;#123;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    debug &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        applicationIdSuffix &amp;quot;.debug&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;好处是同一个机器上可以同时安装debug和release版.&lt;/p&gt;
-&lt;h3 id=&quot;4-统计build时间&quot;&gt;&lt;a href=&quot;#4-统计build时间&quot; class=&quot;headerlink&quot; title=&quot;4. 统计build时间.&quot;&gt;&lt;/a&gt;4. 统计build时间.&lt;/h3&gt;&lt;p&gt;用–profile命令. 或&lt;a href=&quot;https://scans.gradle.com/get-started?type=project&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Build Scans&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;还可以用&lt;a href=&quot;https://github.com/passy/build-time-tracker-plugin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;build-time-tracker-plugin&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;5-配置release&quot;&gt;&lt;a href=&quot;#5-配置release&quot; class=&quot;headerlink&quot; title=&quot;5. 配置release.&quot;&gt;&lt;/a&gt;5. 配置release.&lt;/h3&gt;&lt;p&gt;Proguard在Java层面工作, 对于资源是不管的, 只把R中的id删了.&lt;br&gt;如果想进一步处理不用的资源, 需要加:&lt;br&gt;&lt;code&gt;shrinkResources true&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;更深一步的居然还可以拆分apk: &lt;a href=&quot;https://developer.android.com/studio/build/configure-apk-splits.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;config-apk-splits&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;6-发现一些有用的tasks-或者自己开发-Reddit-page&quot;&gt;&lt;a href=&quot;#6-发现一些有用的tasks-或者自己开发-Reddit-page&quot; class=&quot;headerlink&quot; title=&quot;6. 发现一些有用的tasks, 或者自己开发. Reddit page.&quot;&gt;&lt;/a&gt;6. 发现一些有用的tasks, 或者自己开发. &lt;a href=&quot;https://www.reddit.com/r/androiddev/comments/3ig3gm/show_us_your_gradle_tasks&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reddit page&lt;/a&gt;.&lt;/h3&gt;&lt;h3 id=&quot;7-把依赖的版本号抽出来&quot;&gt;&lt;a href=&quot;#7-把依赖的版本号抽出来&quot; class=&quot;headerlink&quot; title=&quot;7. 把依赖的版本号抽出来.&quot;&gt;&lt;/a&gt;7. 把依赖的版本号抽出来.&lt;/h3&gt;&lt;h3 id=&quot;8-使用jcenter-响应更快&quot;&gt;&lt;a href=&quot;#8-使用jcenter-响应更快&quot; class=&quot;headerlink&quot; title=&quot;8. 使用jcenter, 响应更快.&quot;&gt;&lt;/a&gt;8. 使用jcenter, 响应更快.&lt;/h3&gt;&lt;h3 id=&quot;9-在开发时把最小sdk设为21或以上-会build得更快&quot;&gt;&lt;a href=&quot;#9-在开发时把最小sdk设为21或以上-会build得更快&quot; class=&quot;headerlink&quot; title=&quot;9. 在开发时把最小sdk设为21或以上, 会build得更快.&quot;&gt;&lt;/a&gt;9. 在开发时把最小sdk设为21或以上, 会build得更快.&lt;/h3&gt;&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;Android-Amazing-Open-Source-Apps&quot;&gt;&lt;a href=&quot;#Android-Amazing-Open-Source-Apps&quot; class=&quot;headerlink&quot; title=&quot;Android Amazing Open Source Apps&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@amitshekhar/android-amazing-open-source-apps-e44f520593cc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Amazing Open Source Apps&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章列举了一些好的开源app.&lt;br&gt;包括&lt;a href=&quot;https://github.com/google/iosched&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;google/iosched&lt;/a&gt;, &lt;a href=&quot;https://github.com/googlesamples/android-architecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-architecture&lt;/a&gt;, &lt;a href=&quot;https://github.com/DrKLO/Telegram&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Telegram&lt;/a&gt;, &lt;a href=&quot;https://github.com/nickbutcher/plaid&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Plaid&lt;/a&gt;, &lt;a href=&quot;https://github.com/wireapp/wire-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;wire-android&lt;/a&gt;, &lt;a href=&quot;https://github.com/ribot/ribot-app-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ribot/ribot-app-android&lt;/a&gt;, &lt;a href=&quot;https://github.com/pockethub/PocketHub&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PocketHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;DoorSignView&quot;&gt;&lt;a href=&quot;#DoorSignView&quot; class=&quot;headerlink&quot; title=&quot;DoorSignView&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/renaudcerrato/DoorSignView&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DoorSignView&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个自定义View, 显示门牌. AnimatedDoorSignView可以根据传感器进行动画.&lt;/p&gt;
-&lt;h2 id=&quot;Java-Error-Handler&quot;&gt;&lt;a href=&quot;#Java-Error-Handler&quot; class=&quot;headerlink&quot; title=&quot;Java Error Handler&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Workable/java-error-handler/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java Error Handler&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个统一的错误处理器. 为每一种错误建立全局默认的处理方式.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-223&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-223&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #223&quot;&gt;&lt;/a&gt;Android Weekly Issue #223&lt;/h1&gt;&lt;p&gt;September 18th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-223&quot;&gt;Android Weekly Issue #223&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本期内容包括:&lt;br&gt;Offline时间戳处理;  Accessibility的安全问题可能并不是个问题; 如何在单元测试和UI测试之间共享代码; Android中的指纹认证; 编译时间Kotlin vs Java; MVP结合RxJava, 让View来处理生命周期; RxJava2预览; 内存泄露处理; Gradle相关等等.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
-      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
-    
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
-      <category term="Accessibility" scheme="http://mengdd.github.io/tags/Accessibility/"/>
-    
-      <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
-    
-      <category term="Fingerprint" scheme="http://mengdd.github.io/tags/Fingerprint/"/>
-    
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
-      <category term="GCM" scheme="http://mengdd.github.io/tags/GCM/"/>
-    
-      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
   </entry>
   
