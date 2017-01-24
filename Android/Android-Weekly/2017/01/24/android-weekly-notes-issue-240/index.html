@@ -4,23 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Android 7.0 Nougat released | Meng&#39;s pages</title>
+    <title>Android Weekly Notes Issue 240 | Meng&#39;s pages</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Dandan Meng">
     
 
     
-    <meta name="description" content="Android 7.0 Nougat 牛轧糖于本月发布了. 从官方blog里可以了解到这个版本的新特性.">
+    <meta name="description" content="Android Weekly Issue #240January 15th, 2017Android Weekly Issue #240Hello, 各位亲, 从本篇笔记开始, 以后并不包含Android Weekly的每一篇文章了, 只是选一些我感兴趣的做笔记. 想要看全部文章的还请点击上面的链接.
+本期内容包括: 一个Android的RxJava教程; 关于测试中的注释讨论; Dagger2的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android 7.0 Nougat released">
-<meta property="og:url" content="http://mengdd.github.io/Android/Android-News/2016/08/29/android-7-0-Nougat-released/index.html">
+<meta property="og:title" content="Android Weekly Notes Issue 240">
+<meta property="og:url" content="http://mengdd.github.io/Android/Android-Weekly/2017/01/24/android-weekly-notes-issue-240/index.html">
 <meta property="og:site_name" content="Meng's pages">
-<meta property="og:description" content="Android 7.0 Nougat 牛轧糖于本月发布了. 从官方blog里可以了解到这个版本的新特性.">
-<meta property="og:updated_time" content="2016-08-29T10:22:43.000Z">
+<meta property="og:description" content="Android Weekly Issue #240January 15th, 2017Android Weekly Issue #240Hello, 各位亲, 从本篇笔记开始, 以后并不包含Android Weekly的每一篇文章了, 只是选一些我感兴趣的做笔记. 想要看全部文章的还请点击上面的链接.
+本期内容包括: 一个Android的RxJava教程; 关于测试中的注释讨论; Dagger2的">
+<meta property="og:updated_time" content="2017-01-24T02:58:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android 7.0 Nougat released">
-<meta name="twitter:description" content="Android 7.0 Nougat 牛轧糖于本月发布了. 从官方blog里可以了解到这个版本的新特性.">
+<meta name="twitter:title" content="Android Weekly Notes Issue 240">
+<meta name="twitter:description" content="Android Weekly Issue #240January 15th, 2017Android Weekly Issue #240Hello, 各位亲, 从本篇笔记开始, 以后并不包含Android Weekly的每一篇文章了, 只是选一些我感兴趣的做笔记. 想要看全部文章的还请点击上面的链接.
+本期内容包括: 一个Android的RxJava教程; 关于测试中的注释讨论; Dagger2的">
 
     
     <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
@@ -84,14 +87,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/Android/Android-News/2016/08/29/android-7-0-Nougat-released/" title="Android 7.0 Nougat released" itemprop="url">Android 7.0 Nougat released</a>
+      <a href="/Android/Android-Weekly/2017/01/24/android-weekly-notes-issue-240/" title="Android Weekly Notes Issue 240" itemprop="url">Android Weekly Notes Issue 240</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-29T10:14:26.000Z" itemprop="datePublished"> Published 2016-08-29</time>
+    <time datetime="2017-01-24T02:50:19.000Z" itemprop="datePublished"> Published 2017-01-24</time>
     
   </p>
 </header>
@@ -100,19 +103,66 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#更加个性化"><span class="toc-number">1.</span> <span class="toc-text">更加个性化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更有效率"><span class="toc-number">2.</span> <span class="toc-text">更有效率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更加省电"><span class="toc-number">3.</span> <span class="toc-text">更加省电</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更沉浸的体验"><span class="toc-number">4.</span> <span class="toc-text">更沉浸的体验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更安全"><span class="toc-number">5.</span> <span class="toc-text">更安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-240"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #240</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RxAndroid-Tutorial"><span class="toc-number">2.1.</span> <span class="toc-text">RxAndroid Tutorial</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Clean-tests-Part-2-Comments"><span class="toc-number">2.2.</span> <span class="toc-text">Clean tests, Part 2: Comments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Dagger2-Critical-things-to-know-before-you-implement"><span class="toc-number">2.3.</span> <span class="toc-text">Android Dagger2: Critical things to know before you implement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-“Effective-Java”-may-have-influenced-the-design-of-Kotlin"><span class="toc-number">2.4.</span> <span class="toc-text">How “Effective Java” may have influenced the design of Kotlin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reactive-apps-with-Model-View-Intent-Part-1"><span class="toc-number">2.5.</span> <span class="toc-text">Reactive apps with Model-View-Intent - Part 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Testing-SQLite-on-Android-–-Medium"><span class="toc-number">2.6.</span> <span class="toc-text">Testing SQLite on Android – Medium</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Desertplaceholder"><span class="toc-number">3.1.</span> <span class="toc-text">Desertplaceholder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-SwitchIcon"><span class="toc-number">3.2.</span> <span class="toc-text">Android-SwitchIcon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SlidesCodeHighlighter"><span class="toc-number">3.3.</span> <span class="toc-text">SlidesCodeHighlighter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GithubWidget"><span class="toc-number">3.4.</span> <span class="toc-text">GithubWidget</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>Android 7.0 Nougat 牛轧糖于本月发布了. 从官方blog里可以了解到这个版本的新特性.</p>
+		<h1 id="Android-Weekly-Issue-240"><a href="#Android-Weekly-Issue-240" class="headerlink" title="Android Weekly Issue #240"></a>Android Weekly Issue #240</h1><p>January 15th, 2017<br><a href="http://androidweekly.net/issues/issue-240" target="_blank" rel="external">Android Weekly Issue #240</a><br>Hello, 各位亲, 从本篇笔记开始, 以后并不包含Android Weekly的每一篇文章了, 只是选一些我感兴趣的做笔记. 想要看全部文章的还请点击上面的链接.</p>
+<p>本期内容包括: 一个Android的RxJava教程; 关于测试中的注释讨论; Dagger2的实现细节讨论; Kotlin语言设计中和Effective Java相关的点和优化; Reactive app的构建模式, 一个好的model层的重要性; 怎样写数据库测试.</p>
 <a id="more"></a>
-<p>Android 7.0 从2016年8月正式推出, 从Nexus设备开始发行.<br>据说此版本有250个主要的features, 其中值得高亮的几个是:</p>
-<h3 id="更加个性化"><a href="#更加个性化" class="headerlink" title="更加个性化"></a>更加个性化</h3><p>扩展了emoji: 现在内置有超过1500个emoji, 其中72是新增的.<br>快速设置控制: 快速设置给予了对一些东西更方便的访问途径, 比如蓝牙, Wi-Fi, 手电筒等. 在Android Nougat中, 你现在可以控制这些按钮的位置, 按自己的需要来移动它们.<br>支持多地点: app可以根据你的地点设置来定制内容, 如果你讲多种语言, 那么可能应用里搜索引擎会用多种语言返回给你结果.</p>
-<h3 id="更有效率"><a href="#更有效率" class="headerlink" title="更有效率"></a>更有效率</h3><p>不管你是在回复工作邮件或者跟朋友制定计划, Android Nougat让你的多任务变得更加容易.<br>Multi-window 多窗口: 可以同时显示两个应用窗口, 可拖拽调整窗口大小.<br>Direct Reply 直接回应: 可以直接回应通知, 不必打开app.<br>Quick Switch 快速转换: 双击overview button, 可以在你最近使用的两个app间切换.</p>
-<h3 id="更加省电"><a href="#更加省电" class="headerlink" title="更加省电"></a>更加省电</h3><p>从Android Marshmallow开始, 加了Doze模式, 让电池更加智能地工作. 在Android Nougat中, doze模式又做了一些改进, 在你走路的时候, 把手机装在兜里, 也会进入省电模式.</p>
-<h3 id="更沉浸的体验"><a href="#更沉浸的体验" class="headerlink" title="更沉浸的体验"></a>更沉浸的体验</h3><p>Android Nougat设计的时候也考虑了一些沉浸体验相关的东东, 支持VulkanTM(一个高级的3D渲染API)和Daydream(Google的mobile VR平台).</p>
-<h3 id="更安全"><a href="#更安全" class="headerlink" title="更安全"></a>更安全</h3><p>Seamless Updates 无缝更新: 现在Nougat可以后台安装应用了.<br>File-based encryption 文件加密: 设备上各个用户的文件得到了分离和保护.<br>Direct Boot 直接启动: 手机启动更快了, 当你重启设备时, 应用即便是在你没有解锁时也跑得更安全了.</p>
-<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p>更多信息请查看:<br><a href="https://developer.android.com/about/versions/nougat/index.html" target="_blank" rel="external">Android 7.0 Nougat</a><br><a href="https://android.googleblog.com/2016/08/android-70-nougat-more-powerful-os-made.html" target="_blank" rel="external">Android 7.0 Nougat: a more powerful OS, made for you</a><br><a href="http://android-developers.blogspot.com.au/2016/08/taking-final-wrapper-off-of-nougat.html" target="_blank" rel="external">Taking the final wrapper off of Android 7.0 Nougat</a> 揭开Android 7.0 (牛轧糖) 的最后一层面纱.</p>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="RxAndroid-Tutorial"><a href="#RxAndroid-Tutorial" class="headerlink" title="RxAndroid Tutorial"></a><a href="https://www.raywenderlich.com/141980/rxandroid-tutorial" target="_blank" rel="external">RxAndroid Tutorial</a></h2><p>一个RxAndroid的Tutorial, 内容包括:</p>
+<ul>
+<li>Reactive Programming是什么. -&gt; 把reactive programming比喻成excel里面的表达式.</li>
+<li>observable是什么.</li>
+<li>如何把按钮点击和输入文字改变事件事件变为observables.</li>
+<li>转换.</li>
+<li>过滤.</li>
+<li>指定线程.</li>
+<li>把多个observables联合成一个.</li>
+</ul>
+<h2 id="Clean-tests-Part-2-Comments"><a href="#Clean-tests-Part-2-Comments" class="headerlink" title="Clean tests, Part 2: Comments"></a><a href="https://android.jlelse.eu/clean-tests-part-2-comments-4016ee82f186#.15u9kq7jz" target="_blank" rel="external">Clean tests, Part 2: Comments</a></h2><p>上一篇文章里作者讨论了测试代码的命名, 这篇讨论注释.<br>在测试里我们经常会见到这样的注释:</p>
+<ul>
+<li>// GIVEN</li>
+<li>// WHEN</li>
+<li>// THEN</li>
+</ul>
+<p>注意每一次添加注释的时候都应该想清楚自己的代码是不是能够自解释, 而不是依赖于注释. 这条原则同样适用于产品代码和测试代码.</p>
+<p>为每一个测试重复这三行其实没有什么意义, 因为这个顺序是显而易见的.</p>
+<p>理想情况下, 简单的测试并不需要这些注释就显得很好看了, 如果是复杂的测试, 一般执行应该是一行, 验证也应该是一行, 如果需要太多验证我们应该考虑把它们抽取成多个测试方法. 而关于准备阶段, 如果我们真的需要很多准备的代码, 这是一种code smell, 可能说明我们要测试的这个方法做了太多事情, 可能我们应该先重构一下再进行测试.</p>
+<p>我们也应该好好利用<code>setUp()</code>方法, 让我们的测试看起来更干净.</p>
+<p>最后建议用一些比较好的assert库让最后的断言语句看起来更易懂.</p>
+<h2 id="Android-Dagger2-Critical-things-to-know-before-you-implement"><a href="#Android-Dagger2-Critical-things-to-know-before-you-implement" class="headerlink" title="Android Dagger2: Critical things to know before you implement"></a><a href="https://blog.mindorks.com/android-dagger2-critical-things-to-know-before-you-implement-275663aecc3e#.nxpqzmohn" target="_blank" rel="external">Android Dagger2: Critical things to know before you implement</a></h2><p>关于Dagger2的实现, 你应该搞清楚的几个关键点.</p>
+<ul>
+<li>实现单例的时候, 如果提供了@Provides方法, 那么@Singleton也要在这个provides方法上声明, 声明在类上是没有用的. (类的单例声明只和构造@Inject配合使用).</li>
+<li>在component中提供了get方法后, 如果这个get方法没有被调用, 则对象不会被实例化.</li>
+<li>Scope可以定义在该scope下的单例.</li>
+</ul>
+<h2 id="How-“Effective-Java”-may-have-influenced-the-design-of-Kotlin"><a href="#How-“Effective-Java”-may-have-influenced-the-design-of-Kotlin" class="headerlink" title="How “Effective Java” may have influenced the design of Kotlin"></a><a href="https://medium.com/@lukleDev/how-effective-java-may-have-influenced-the-design-of-kotlin-part-1-45fd64c2f974#.nqwl31wn6" target="_blank" rel="external">How “Effective Java” may have influenced the design of Kotlin</a></h2><p>Kotlin的设计中考虑到的和Effective Java相关的几个点:</p>
+<ul>
+<li>Kotlin的构造默认参数值进一步简化了Builder模式.</li>
+<li>更容易创建单例: 用object声明.</li>
+<li>用了data声明后, 再也不用自己写<code>equals()</code>和<code>hashCode()</code>了.</li>
+<li>properties自带了默认的get/set, 使用更加简洁, 也支持后续扩展.</li>
+<li>Kotlin中的override关键字是强制的而不是可选的.</li>
+</ul>
+<h2 id="Reactive-apps-with-Model-View-Intent-Part-1"><a href="#Reactive-apps-with-Model-View-Intent-Part-1" class="headerlink" title="Reactive apps with Model-View-Intent - Part 1"></a><a href="http://hannesdorfmann.com/android/mosby3-mvi-1" target="_blank" rel="external">Reactive apps with Model-View-Intent - Part 1</a></h2><p>作者用RxJava + Model-View-Intent (MVI)构建的Reactive App, 也即UI响应状态变化的App.</p>
+<p>首先作者列举了Android流行的模式MVC, MVP, MVVM, 这里面都会有一个Model. 但是作者发现大多数时候程序并没有Model这一层.</p>
+<p>构建一个好的Model层可以解决很多问题:</p>
+<ul>
+<li>状态.</li>
+<li>屏幕方向旋转.</li>
+<li>后退导航.</li>
+<li>进程死亡.</li>
+<li>不可变和单向的数据流.</li>
+<li>可调试和重复的状态.</li>
+<li>可测试性.</li>
+</ul>
+<p>最基本的理念就是把这个Model层作为唯一的真实状态来源.</p>
+<h2 id="Testing-SQLite-on-Android-–-Medium"><a href="#Testing-SQLite-on-Android-–-Medium" class="headerlink" title="Testing SQLite on Android – Medium"></a><a href="https://medium.com/@MAFI8919/testing-sqlite-on-android-bfa0733e11e7#.a4hufzbc7" target="_blank" rel="external">Testing SQLite on Android – Medium</a></h2><p>如何写SQLite数据库测试.</p>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="Desertplaceholder"><a href="#Desertplaceholder" class="headerlink" title="Desertplaceholder"></a><a href="https://github.com/JetradarMobile/desertplaceholder" target="_blank" rel="external">Desertplaceholder</a></h2><p>一个沙漠空白页面.</p>
+<h2 id="Android-SwitchIcon"><a href="#Android-SwitchIcon" class="headerlink" title="Android-SwitchIcon"></a><a href="https://github.com/zagum/Android-SwitchIcon" target="_blank" rel="external">Android-SwitchIcon</a></h2><p>Google launcher风格的Switch icon, enable时点亮, disable时灰去.</p>
+<h2 id="SlidesCodeHighlighter"><a href="#SlidesCodeHighlighter" class="headerlink" title="SlidesCodeHighlighter"></a><a href="https://github.com/romannurik/SlidesCodeHighlighter" target="_blank" rel="external">SlidesCodeHighlighter</a></h2><p>一个web应用, 让你可以把带有高亮的代码拷贝进slides.</p>
+<h2 id="GithubWidget"><a href="#GithubWidget" class="headerlink" title="GithubWidget"></a><a href="https://github.com/Nightonke/GithubWidget" target="_blank" rel="external">GithubWidget</a></h2><p>一个Github Widget, 显示Contributions, stars, followers, trending etc.</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -120,13 +170,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Android-News/">Android News</a>
+  <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Android-Weekly/">Android Weekly</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Android-News/">Android News</a>
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Dagger2/">Dagger2</a><a href="/tags/Android-Weekly/">Android Weekly</a><a href="/tags/Kotlin/">Kotlin</a><a href="/tags/RxJava/">RxJava</a><a href="/tags/Testing/">Testing</a><a href="/tags/SQLite/">SQLite</a>
   </div>
 
 </div>
@@ -135,7 +185,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mengdd.github.io/Android/Android-News/2016/08/29/android-7-0-Nougat-released/" data-title="Android 7.0 Nougat released | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  <div data-url="http://mengdd.github.io/Android/Android-Weekly/2017/01/24/android-weekly-notes-issue-240/" data-title="Android Weekly Notes Issue 240 | Meng&#39;s pages" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -148,19 +198,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/Android/2016/08/31/commit-commitNow-and-commitAllowingStateLoss/" title="commit(), commitNow()和commitAllowingStateLoss()">
-  <strong>上一篇：</strong><br/>
-  <span>
-  commit(), commitNow()和commitAllowingStateLoss()</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/Android/Android-Weekly/2016/08/24/android-weekly-notes-issue-219/"  title="Android Weekly Notes Issue 219">
+<a href="/Android-Weekly/2017/01/10/android-weekly-notes-issue-239/"  title="Android Weekly Notes Issue 239">
  <strong>下一篇：</strong><br/> 
- <span>Android Weekly Notes Issue 219
+ <span>Android Weekly Notes Issue 239
 </span>
 </a>
 </div>
@@ -169,7 +211,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="Android/Android-News/2016/08/29/android-7-0-Nougat-released/" data-title="Android 7.0 Nougat released" data-url="http://mengdd.github.io/Android/Android-News/2016/08/29/android-7-0-Nougat-released/"></div>
+	<div class="ds-thread" data-thread-key="Android/Android-Weekly/2017/01/24/android-weekly-notes-issue-240/" data-title="Android Weekly Notes Issue 240" data-url="http://mengdd.github.io/Android/Android-Weekly/2017/01/24/android-weekly-notes-issue-240/"></div>
 </section>
 
 
@@ -185,7 +227,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#更加个性化"><span class="toc-number">1.</span> <span class="toc-text">更加个性化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更有效率"><span class="toc-number">2.</span> <span class="toc-text">更有效率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更加省电"><span class="toc-number">3.</span> <span class="toc-text">更加省电</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更沉浸的体验"><span class="toc-number">4.</span> <span class="toc-text">更沉浸的体验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更安全"><span class="toc-number">5.</span> <span class="toc-text">更安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-240"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #240</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RxAndroid-Tutorial"><span class="toc-number">2.1.</span> <span class="toc-text">RxAndroid Tutorial</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Clean-tests-Part-2-Comments"><span class="toc-number">2.2.</span> <span class="toc-text">Clean tests, Part 2: Comments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Dagger2-Critical-things-to-know-before-you-implement"><span class="toc-number">2.3.</span> <span class="toc-text">Android Dagger2: Critical things to know before you implement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-“Effective-Java”-may-have-influenced-the-design-of-Kotlin"><span class="toc-number">2.4.</span> <span class="toc-text">How “Effective Java” may have influenced the design of Kotlin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reactive-apps-with-Model-View-Intent-Part-1"><span class="toc-number">2.5.</span> <span class="toc-text">Reactive apps with Model-View-Intent - Part 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Testing-SQLite-on-Android-–-Medium"><span class="toc-number">2.6.</span> <span class="toc-text">Testing SQLite on Android – Medium</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Desertplaceholder"><span class="toc-number">3.1.</span> <span class="toc-text">Desertplaceholder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-SwitchIcon"><span class="toc-number">3.2.</span> <span class="toc-text">Android-SwitchIcon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SlidesCodeHighlighter"><span class="toc-number">3.3.</span> <span class="toc-text">SlidesCodeHighlighter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GithubWidget"><span class="toc-number">3.4.</span> <span class="toc-text">GithubWidget</span></a></li></ol></li></ol>
  
   </div>
 

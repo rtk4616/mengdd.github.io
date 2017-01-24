@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-01-10T06:29:56.000Z</updated>
+  <updated>2017-01-24T02:58:10.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,99 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 240</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/01/24/android-weekly-notes-issue-240/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/01/24/android-weekly-notes-issue-240/</id>
+    <published>2017-01-24T02:50:19.000Z</published>
+    <updated>2017-01-24T02:58:10.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-240&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-240&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #240&quot;&gt;&lt;/a&gt;Android Weekly Issue #240&lt;/h1&gt;&lt;p&gt;January 15th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-240&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #240&lt;/a&gt;&lt;br&gt;Hello, 各位亲, 从本篇笔记开始, 以后并不包含Android Weekly的每一篇文章了, 只是选一些我感兴趣的做笔记. 想要看全部文章的还请点击上面的链接.&lt;/p&gt;
+&lt;p&gt;本期内容包括: 一个Android的RxJava教程; 关于测试中的注释讨论; Dagger2的实现细节讨论; Kotlin语言设计中和Effective Java相关的点和优化; Reactive app的构建模式, 一个好的model层的重要性; 怎样写数据库测试.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;RxAndroid-Tutorial&quot;&gt;&lt;a href=&quot;#RxAndroid-Tutorial&quot; class=&quot;headerlink&quot; title=&quot;RxAndroid Tutorial&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.raywenderlich.com/141980/rxandroid-tutorial&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxAndroid Tutorial&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个RxAndroid的Tutorial, 内容包括:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reactive Programming是什么. -&amp;gt; 把reactive programming比喻成excel里面的表达式.&lt;/li&gt;
+&lt;li&gt;observable是什么.&lt;/li&gt;
+&lt;li&gt;如何把按钮点击和输入文字改变事件事件变为observables.&lt;/li&gt;
+&lt;li&gt;转换.&lt;/li&gt;
+&lt;li&gt;过滤.&lt;/li&gt;
+&lt;li&gt;指定线程.&lt;/li&gt;
+&lt;li&gt;把多个observables联合成一个.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Clean-tests-Part-2-Comments&quot;&gt;&lt;a href=&quot;#Clean-tests-Part-2-Comments&quot; class=&quot;headerlink&quot; title=&quot;Clean tests, Part 2: Comments&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://android.jlelse.eu/clean-tests-part-2-comments-4016ee82f186#.15u9kq7jz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Clean tests, Part 2: Comments&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;上一篇文章里作者讨论了测试代码的命名, 这篇讨论注释.&lt;br&gt;在测试里我们经常会见到这样的注释:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;// GIVEN&lt;/li&gt;
+&lt;li&gt;// WHEN&lt;/li&gt;
+&lt;li&gt;// THEN&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;注意每一次添加注释的时候都应该想清楚自己的代码是不是能够自解释, 而不是依赖于注释. 这条原则同样适用于产品代码和测试代码.&lt;/p&gt;
+&lt;p&gt;为每一个测试重复这三行其实没有什么意义, 因为这个顺序是显而易见的.&lt;/p&gt;
+&lt;p&gt;理想情况下, 简单的测试并不需要这些注释就显得很好看了, 如果是复杂的测试, 一般执行应该是一行, 验证也应该是一行, 如果需要太多验证我们应该考虑把它们抽取成多个测试方法. 而关于准备阶段, 如果我们真的需要很多准备的代码, 这是一种code smell, 可能说明我们要测试的这个方法做了太多事情, 可能我们应该先重构一下再进行测试.&lt;/p&gt;
+&lt;p&gt;我们也应该好好利用&lt;code&gt;setUp()&lt;/code&gt;方法, 让我们的测试看起来更干净.&lt;/p&gt;
+&lt;p&gt;最后建议用一些比较好的assert库让最后的断言语句看起来更易懂.&lt;/p&gt;
+&lt;h2 id=&quot;Android-Dagger2-Critical-things-to-know-before-you-implement&quot;&gt;&lt;a href=&quot;#Android-Dagger2-Critical-things-to-know-before-you-implement&quot; class=&quot;headerlink&quot; title=&quot;Android Dagger2: Critical things to know before you implement&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.mindorks.com/android-dagger2-critical-things-to-know-before-you-implement-275663aecc3e#.nxpqzmohn&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Dagger2: Critical things to know before you implement&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;关于Dagger2的实现, 你应该搞清楚的几个关键点.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;实现单例的时候, 如果提供了@Provides方法, 那么@Singleton也要在这个provides方法上声明, 声明在类上是没有用的. (类的单例声明只和构造@Inject配合使用).&lt;/li&gt;
+&lt;li&gt;在component中提供了get方法后, 如果这个get方法没有被调用, 则对象不会被实例化.&lt;/li&gt;
+&lt;li&gt;Scope可以定义在该scope下的单例.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;How-“Effective-Java”-may-have-influenced-the-design-of-Kotlin&quot;&gt;&lt;a href=&quot;#How-“Effective-Java”-may-have-influenced-the-design-of-Kotlin&quot; class=&quot;headerlink&quot; title=&quot;How “Effective Java” may have influenced the design of Kotlin&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@lukleDev/how-effective-java-may-have-influenced-the-design-of-kotlin-part-1-45fd64c2f974#.nqwl31wn6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How “Effective Java” may have influenced the design of Kotlin&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Kotlin的设计中考虑到的和Effective Java相关的几个点:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Kotlin的构造默认参数值进一步简化了Builder模式.&lt;/li&gt;
+&lt;li&gt;更容易创建单例: 用object声明.&lt;/li&gt;
+&lt;li&gt;用了data声明后, 再也不用自己写&lt;code&gt;equals()&lt;/code&gt;和&lt;code&gt;hashCode()&lt;/code&gt;了.&lt;/li&gt;
+&lt;li&gt;properties自带了默认的get/set, 使用更加简洁, 也支持后续扩展.&lt;/li&gt;
+&lt;li&gt;Kotlin中的override关键字是强制的而不是可选的.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Reactive-apps-with-Model-View-Intent-Part-1&quot;&gt;&lt;a href=&quot;#Reactive-apps-with-Model-View-Intent-Part-1&quot; class=&quot;headerlink&quot; title=&quot;Reactive apps with Model-View-Intent - Part 1&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://hannesdorfmann.com/android/mosby3-mvi-1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reactive apps with Model-View-Intent - Part 1&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者用RxJava + Model-View-Intent (MVI)构建的Reactive App, 也即UI响应状态变化的App.&lt;/p&gt;
+&lt;p&gt;首先作者列举了Android流行的模式MVC, MVP, MVVM, 这里面都会有一个Model. 但是作者发现大多数时候程序并没有Model这一层.&lt;/p&gt;
+&lt;p&gt;构建一个好的Model层可以解决很多问题:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;状态.&lt;/li&gt;
+&lt;li&gt;屏幕方向旋转.&lt;/li&gt;
+&lt;li&gt;后退导航.&lt;/li&gt;
+&lt;li&gt;进程死亡.&lt;/li&gt;
+&lt;li&gt;不可变和单向的数据流.&lt;/li&gt;
+&lt;li&gt;可调试和重复的状态.&lt;/li&gt;
+&lt;li&gt;可测试性.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最基本的理念就是把这个Model层作为唯一的真实状态来源.&lt;/p&gt;
+&lt;h2 id=&quot;Testing-SQLite-on-Android-–-Medium&quot;&gt;&lt;a href=&quot;#Testing-SQLite-on-Android-–-Medium&quot; class=&quot;headerlink&quot; title=&quot;Testing SQLite on Android – Medium&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@MAFI8919/testing-sqlite-on-android-bfa0733e11e7#.a4hufzbc7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Testing SQLite on Android – Medium&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如何写SQLite数据库测试.&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;Desertplaceholder&quot;&gt;&lt;a href=&quot;#Desertplaceholder&quot; class=&quot;headerlink&quot; title=&quot;Desertplaceholder&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/JetradarMobile/desertplaceholder&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Desertplaceholder&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个沙漠空白页面.&lt;/p&gt;
+&lt;h2 id=&quot;Android-SwitchIcon&quot;&gt;&lt;a href=&quot;#Android-SwitchIcon&quot; class=&quot;headerlink&quot; title=&quot;Android-SwitchIcon&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/zagum/Android-SwitchIcon&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android-SwitchIcon&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Google launcher风格的Switch icon, enable时点亮, disable时灰去.&lt;/p&gt;
+&lt;h2 id=&quot;SlidesCodeHighlighter&quot;&gt;&lt;a href=&quot;#SlidesCodeHighlighter&quot; class=&quot;headerlink&quot; title=&quot;SlidesCodeHighlighter&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/romannurik/SlidesCodeHighlighter&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SlidesCodeHighlighter&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个web应用, 让你可以把带有高亮的代码拷贝进slides.&lt;/p&gt;
+&lt;h2 id=&quot;GithubWidget&quot;&gt;&lt;a href=&quot;#GithubWidget&quot; class=&quot;headerlink&quot; title=&quot;GithubWidget&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Nightonke/GithubWidget&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GithubWidget&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Github Widget, 显示Contributions, stars, followers, trending etc.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-240&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-240&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #240&quot;&gt;&lt;/a&gt;Android Weekly Issue #240&lt;/h1&gt;&lt;p&gt;January 15th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-240&quot;&gt;Android Weekly Issue #240&lt;/a&gt;&lt;br&gt;Hello, 各位亲, 从本篇笔记开始, 以后并不包含Android Weekly的每一篇文章了, 只是选一些我感兴趣的做笔记. 想要看全部文章的还请点击上面的链接.&lt;/p&gt;
+&lt;p&gt;本期内容包括: 一个Android的RxJava教程; 关于测试中的注释讨论; Dagger2的实现细节讨论; Kotlin语言设计中和Effective Java相关的点和优化; Reactive app的构建模式, 一个好的model层的重要性; 怎样写数据库测试.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
+    
+      <category term="SQLite" scheme="http://mengdd.github.io/tags/SQLite/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 239</title>
@@ -183,7 +276,7 @@
     <link href="http://mengdd.github.io/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/"/>
     <id>http://mengdd.github.io/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/</id>
     <published>2017-01-03T10:02:01.000Z</published>
-    <updated>2017-01-03T10:06:48.000Z</updated>
+    <updated>2017-01-10T06:22:32.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-238&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-238&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #238&quot;&gt;&lt;/a&gt;Android Weekly Issue #238&lt;/h1&gt;&lt;p&gt;January 1st, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-238&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #238&lt;/a&gt;&lt;br&gt;本期内容包括: Firebase发送Notification; RecyclerView的预取; 后台工作的实现方式讨论; RecyclerView分组数据; 跨平台应用工具Flutter介绍; Gradle依赖管理;&lt;br&gt;写测试的一些注意事项; Android Things应用搭建及一些思考; 如何搭建CI等.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -450,9 +543,9 @@
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
-      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
-    
       <category term="IoT" scheme="http://mengdd.github.io/tags/IoT/"/>
+    
+      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
     
       <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
@@ -588,11 +681,11 @@
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
+    
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
-    
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="Custom View" scheme="http://mengdd.github.io/tags/Custom-View/"/>
     
@@ -1045,9 +1138,9 @@
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
-      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
-    
       <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
+    
+      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
@@ -1145,15 +1238,15 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
+    
+      <category term="TV" scheme="http://mengdd.github.io/tags/TV/"/>
+    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
-      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
-    
-      <category term="TV" scheme="http://mengdd.github.io/tags/TV/"/>
     
       <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
     
@@ -1161,11 +1254,11 @@
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
+      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
+    
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
-    
-      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
     
       <category term="Passive View" scheme="http://mengdd.github.io/tags/Passive-View/"/>
     
@@ -1241,6 +1334,8 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
+    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
@@ -1249,11 +1344,9 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
+      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
-      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
       <category term="Async-Await" scheme="http://mengdd.github.io/tags/Async-Await/"/>
     
@@ -1998,10 +2091,6 @@
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
-    
       <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
@@ -2009,6 +2098,10 @@
       <category term="Alarm" scheme="http://mengdd.github.io/tags/Alarm/"/>
     
       <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
       <category term="TensorFlow" scheme="http://mengdd.github.io/tags/TensorFlow/"/>
     
@@ -2268,15 +2361,15 @@
     
       <category term="Data Binding" scheme="http://mengdd.github.io/tags/Data-Binding/"/>
     
-      <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
-    
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
+      <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
     
       <category term="Clean Architecture" scheme="http://mengdd.github.io/tags/Clean-Architecture/"/>
     
       <category term="Loader" scheme="http://mengdd.github.io/tags/Loader/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
   </entry>
   
@@ -2410,15 +2503,19 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="Bottom Navigation" scheme="http://mengdd.github.io/tags/Bottom-Navigation/"/>
+    
       <category term="Bottom Sheet" scheme="http://mengdd.github.io/tags/Bottom-Sheet/"/>
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
       <category term="AutoValue" scheme="http://mengdd.github.io/tags/AutoValue/"/>
     
-      <category term="Bottom Navigation" scheme="http://mengdd.github.io/tags/Bottom-Navigation/"/>
-    
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
+    
+      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
     
       <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
     
@@ -2445,10 +2542,6 @@
       <category term="Notification" scheme="http://mengdd.github.io/tags/Notification/"/>
     
       <category term="font" scheme="http://mengdd.github.io/tags/font/"/>
-    
-      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
-    
-      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
   </entry>
   
@@ -2567,154 +2660,6 @@
       <category term="Data Binding" scheme="http://mengdd.github.io/tags/Data-Binding/"/>
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 225</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/10/09/android-weekly-notes-issue-225/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2016/10/09/android-weekly-notes-issue-225/</id>
-    <published>2016-10-09T02:32:42.000Z</published>
-    <updated>2016-10-09T04:48:44.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-225&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-225&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #225&quot;&gt;&lt;/a&gt;Android Weekly Issue #225&lt;/h1&gt;&lt;p&gt;October 2nd, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-225&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #225&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本期内容包括: Android 7.0的Quick Settings; Firebase; 兼容旧版本的shared element transition; Wear; ORM: 用ActiveAndroid做数据库存储; 崩溃报告工具对比; Google Cast API介绍; Google的播放器库ExoPlayer 2.x发布; 项目的包结构整理; Task API的使用等等.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Android-7-0的快速设置-Quick-Settings-Tiles&quot;&gt;&lt;a href=&quot;#Android-7-0的快速设置-Quick-Settings-Tiles&quot; class=&quot;headerlink&quot; title=&quot;Android 7.0的快速设置 Quick Settings Tiles&quot;&gt;&lt;/a&gt;Android 7.0的快速设置 &lt;a href=&quot;https://medium.com/google-developers/quick-settings-tiles-e3c22daf93a8#.4q0cxslwd&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Quick Settings Tiles&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;从Android 7.0 (API 24)开始, 任何app都可以创建一个quick settings tile, 快速访问关键功能.&lt;br&gt;它除了是一个展示最新信息的UI, 点击一个片还可以trigger后台任务, 打开dialog或activity.&lt;/p&gt;
-&lt;p&gt;一个好的quick settings tile:&lt;br&gt;决定是否要建立这样一个tile时, 主要考虑紧急性和频繁性两个方面.&lt;/p&gt;
-&lt;p&gt;每一个tile和一个&lt;a href=&quot;https://developer.android.com/reference/android/service/quicksettings/TileService.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TileService&lt;/a&gt;关联. 和其他service一样, 它需要在manifest中注册, 它的label和icon就是显示在quick settings上的文字和图片.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TileService的生命周期&lt;/strong&gt;:&lt;br&gt;TileService是一个&lt;a href=&quot;https://developer.android.com/guide/components/bound-services.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bound service&lt;/a&gt;, 它的生命周期主要由系统控制. 主要有三个阶段: being added, listening, being removed.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;onTileAdded()&lt;/code&gt;: 当用户添加这个tile到quick settings.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;onStartListening()&lt;/code&gt;: tile变为可见.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;onStopListening()&lt;/code&gt;: tile变为不可见.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;onTileRemoved()&lt;/code&gt;: 用户移除这个tile.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;以上这是默认模式, 如果你准确地知道何时更新, 你可以使用&lt;a href=&quot;https://developer.android.com/reference/android/service/quicksettings/TileService.html#META_DATA_ACTIVE_TILE&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;active mode&lt;/a&gt;.&lt;br&gt;此时更新的回调&lt;code&gt;onStartListening()&lt;/code&gt;是通过静态方法主动触发的.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;更新UI&lt;/strong&gt;:&lt;br&gt;UI是&lt;a href=&quot;https://developer.android.com/reference/android/service/quicksettings/Tile.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Tile&lt;/a&gt;, 主要包含icon, label, description和state. 最后必须调用&lt;code&gt;updateTile()&lt;/code&gt;方法.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;处理点击&lt;/strong&gt;:&lt;br&gt;在&lt;code&gt;onClick()&lt;/code&gt;回调触发的时候, 我们可以启动一些后台工作, 或者&lt;code&gt;showDialog()&lt;/code&gt;, 或者&lt;code&gt;startActivityAndCollapse()&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;对于锁屏的机器有一些限制, 不能打开dialog, 并且activity需要有一个特定的flag, 有一个&lt;code&gt;unlockAndRun()&lt;/code&gt;方法可以让用户先解锁后做一些工作.&lt;/p&gt;
-&lt;p&gt;长按tile默认会打开app的app info屏, 当然这个行为也可以override. 只要给你想打开的activity加上&lt;code&gt;ACTION_QS_TILE_PREFERENCES&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Android开发最佳实践-Android-Development-Best-Practices&quot;&gt;&lt;a href=&quot;#Android开发最佳实践-Android-Development-Best-Practices&quot; class=&quot;headerlink&quot; title=&quot;Android开发最佳实践 Android Development Best Practices&quot;&gt;&lt;/a&gt;Android开发最佳实践 &lt;a href=&quot;https://medium.freecodecamp.com/android-development-best-practices-83c94b027fd3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Development Best Practices&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;关于性能:&lt;br&gt;&lt;a href=&quot;https://developer.android.com/training/best-performance.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Best Practices for Performance&lt;/a&gt;;&lt;br&gt;&lt;a href=&quot;https://github.com/amitshekhariitbhu/awesome-android-complete-reference#performance-and-optimization&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Performance and Optimization&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;关于架构:&lt;br&gt;&lt;a href=&quot;https://github.com/googlesamples/android-architecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-architecture&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;写单元测试和UI测试.&lt;/p&gt;
-&lt;p&gt;使用Proguard, Stetho.&lt;br&gt;复用布局, 使用&lt;merge&gt;标签.&lt;br&gt;&lt;a href=&quot;https://developer.android.com/training/improving-layouts/reusing-layouts.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;reusing-layouts&lt;/a&gt;.&lt;/merge&gt;&lt;/p&gt;
-&lt;p&gt;把launcher icons放在mipmap文件夹下.&lt;/p&gt;
-&lt;p&gt;多用shape和selector而不是图片.&lt;/p&gt;
-&lt;p&gt;避免深层次的布局.&lt;/p&gt;
-&lt;p&gt;向Intent或Bundler传数据时, 使用&lt;code&gt;Parcelable&lt;/code&gt;而不是&lt;code&gt;Serializable&lt;/code&gt;. 因为后者使用反射而比较慢.&lt;/p&gt;
-&lt;p&gt;不要在UI线程进行文件操作.&lt;/p&gt;
-&lt;p&gt;明白Bitmaps. 因为它们占用很多memory. &lt;a href=&quot;https://developer.android.com/training/displaying-bitmaps/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Displaying Bitmaps&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;使用style来避免重复的属性设置.&lt;/p&gt;
-&lt;p&gt;需要时使用Fragment.&lt;/p&gt;
-&lt;p&gt;明白Activity的生命周期.&lt;/p&gt;
-&lt;p&gt;使用得到公认的libraries而不是自己的实现.&lt;/p&gt;
-&lt;p&gt;在各种机器上测试.&lt;/p&gt;
-&lt;h2 id=&quot;Recap-Of-Google-Launchpad-Build-Lagos-All-About-Firebase&quot;&gt;&lt;a href=&quot;#Recap-Of-Google-Launchpad-Build-Lagos-All-About-Firebase&quot; class=&quot;headerlink&quot; title=&quot;Recap Of Google Launchpad Build Lagos : All About Firebase&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://chikemgbemena.com/2016/09/27/recap-lagos-launchpad-developers-conference-all-about-firebase/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Recap Of Google Launchpad Build Lagos : All About Firebase&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者参加了一个叫Google Launchpad Build的会议, 这篇文章是总结, 全部是关于Firebase的.&lt;/p&gt;
-&lt;h2 id=&quot;Android-Shared-Element-Transitions-for-all&quot;&gt;&lt;a href=&quot;#Android-Shared-Element-Transitions-for-all&quot; class=&quot;headerlink&quot; title=&quot;Android Shared-Element Transitions for all&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@aitorvs/android-shared-element-transitions-for-all-b90e9361507d#.rlu4u7kmy&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Shared-Element Transitions for all&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在Lollipop+的设备上, shared element的transition动画很好实现, 但是在旧的版本上该怎么办呢? 作者展示了他的方法:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Activity A捕捉origin view的初始值, 通过Intent把它们传给Activity B;&lt;/li&gt;
-&lt;li&gt;Activity B完全透明地启动;&lt;/li&gt;
-&lt;li&gt;Activity B读取bundle中的值, 准备场景;&lt;/li&gt;
-&lt;li&gt;Acitivty B运行shared element动画.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;几个实现细节:&lt;/p&gt;
-&lt;p&gt;需要知道View在B中的位置, 时机是layout之后, 但是draw之前, 即&lt;code&gt;onPreDraw()&lt;/code&gt;.&lt;br&gt;返回时只需要把这个动画反向播放即可.&lt;/p&gt;
-&lt;h2 id=&quot;Writing-Better-Adapters&quot;&gt;&lt;a href=&quot;#Writing-Better-Adapters&quot; class=&quot;headerlink&quot; title=&quot;Writing Better Adapters&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@dpreussler/writing-better-adapters-1b09758407d2#.c5av797rd&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing Better Adapters&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;(这个上一期刚讲过, 不知道为什么重复了. )&lt;/p&gt;
-&lt;p&gt;就是关于RecyclerView的Adapter, 作者认为多种View类型时, Adapter中太多的instance of和强制类型转换不是一种好做法, 于是提出了他的做法. &lt;/p&gt;
-&lt;h2 id=&quot;Android-Wear-Accessing-the-Data-Layer-API&quot;&gt;&lt;a href=&quot;#Android-Wear-Accessing-the-Data-Layer-API&quot; class=&quot;headerlink&quot; title=&quot;Android Wear: Accessing the Data Layer API&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@manuelvicnt/android-wear-accessing-the-data-layer-api-d64fd55982e3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Wear: Accessing the Data Layer API&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Data Layer API是Google Play services的一部分, 用于不同设备(手机和手表)间的数据交换.&lt;/p&gt;
-&lt;p&gt;作者先提供了代码, 发送和存储数据, 监听数据变化.&lt;/p&gt;
-&lt;p&gt;问题是, 如果Wear第二次向mobile请求数据, mobile发送了和上一次一样的数据, Wear并不会进入&lt;code&gt;onDataChanged()&lt;/code&gt;, 因为数据并没有变化.&lt;/p&gt;
-&lt;p&gt;所以作者想知道如何从Data Layer API来获取数据, 并展示了他的方法在不同情形下的应用.&lt;/p&gt;
-&lt;h2 id=&quot;Espresso-Tests-For-TextSwitcher&quot;&gt;&lt;a href=&quot;#Espresso-Tests-For-TextSwitcher&quot; class=&quot;headerlink&quot; title=&quot;Espresso Tests For TextSwitcher&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.ottodroid.net/?p=493&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Espresso Tests For TextSwitcher&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者想给TextSwitcher写Espresso测试.&lt;/p&gt;
-&lt;p&gt;从Android Studio 2.2开始, 你可以录制你的操作, IDE将会自动为你生成Espresso测试代码. 但是作者录了一个有关TextSwitcher的测试之后, 跑失败了.&lt;/p&gt;
-&lt;p&gt;这是因为&lt;code&gt;TextSwitcher&lt;/code&gt;继承了&lt;code&gt;ViewSwitcher&lt;/code&gt;, 其实现其实是把两个TextView加到了布局里.&lt;br&gt;所以Espresso抛出了&lt;code&gt;AmbiguousViewMatcherException&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;所以作者根据可见性区分了它俩, 修复了测试.&lt;br&gt;还可以根据child view的index来区分.&lt;/p&gt;
-&lt;h2 id=&quot;Animating-Android-Activities-and-Views-with-Slide-Animations&quot;&gt;&lt;a href=&quot;#Animating-Android-Activities-and-Views-with-Slide-Animations&quot; class=&quot;headerlink&quot; title=&quot;Animating Android Activities and Views with Slide Animations&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://kylewbanks.com/blog/left-and-right-slide-animations-on-android-activity-or-view&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Animating Android Activities and Views with Slide Animations&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者展示了如何给Activity和View加上左右滑动的动画.&lt;/p&gt;
-&lt;h2 id=&quot;Guide-to-ORM-using-ActiveAndroid-Part-1&quot;&gt;&lt;a href=&quot;#Guide-to-ORM-using-ActiveAndroid-Part-1&quot; class=&quot;headerlink&quot; title=&quot;Guide to ORM using ActiveAndroid: Part 1&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.rscottcarson.com/2016/09/22/the-ultimate-guide-to-orm-in-android-using-activeandroid-part-1/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Guide to ORM using ActiveAndroid: Part 1&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这是一个系列教程, 相关的代码在: &lt;a href=&quot;https://github.com/rscottcarson/ActiveAndroid-Tutorial&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ActiveAndroid-Tutorial&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;什么是ORM(Object-Relational Mapping)呢?&lt;br&gt;a technique to convert between incompatible type-systems in an object-oriented programming language.&lt;br&gt;在面向对象的语言中, 转换不兼容的类型的技术.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.activeandroid.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ActiveAndroid&lt;/a&gt;是一个ORM(object relational mapper), 让你不用写SQL语句, 就可以读写数据库.&lt;/p&gt;
-&lt;p&gt;其他类似的工具还有&lt;a href=&quot;https://realm.io/docs/java/latest/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Realm&lt;/a&gt;和&lt;a href=&quot;http://ormlite.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OrmLite&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;A-Comparison-of-Android-Crash-Reporting-Tools&quot;&gt;&lt;a href=&quot;#A-Comparison-of-Android-Crash-Reporting-Tools&quot; class=&quot;headerlink&quot; title=&quot;A Comparison of Android Crash Reporting Tools&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.captechconsulting.com/blogs/a-comparison-of-android-crash-reporting-tools&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A Comparison of Android Crash Reporting Tools&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者对比了几种崩溃报告工具, 并介绍了如何使用.&lt;br&gt;包括: Firebase, &lt;a href=&quot;https://fabric.io/kits/android/crashlytics/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Crashlytics&lt;/a&gt;, &lt;a href=&quot;https://www.apteligent.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Apteligent&lt;/a&gt;, &lt;a href=&quot;https://bugsnag.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bugsnag&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Google-Play-Services-Google-Cast-v3-and-Media&quot;&gt;&lt;a href=&quot;#Google-Play-Services-Google-Cast-v3-and-Media&quot; class=&quot;headerlink&quot; title=&quot;Google Play Services: Google Cast v3 and Media&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://code.tutsplus.com/tutorials/google-play-services-google-cast-v3-and-media--cms-26893&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Google Play Services: Google Cast v3 and Media&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Google Cast是一个让用户把网上的内容发送到设备上的技术. 通常用来和TV交换内容.&lt;/p&gt;
-&lt;p&gt;作者详细地介绍了如何使用Google Cast SDK来创建应用.&lt;/p&gt;
-&lt;p&gt;注: 要建造客户端程序, 首先需要注册: &lt;a href=&quot;https://cast.google.com/publish/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://cast.google.com/publish/&lt;/a&gt;.&lt;br&gt;这是收费的.&lt;/p&gt;
-&lt;h2 id=&quot;ExoPlayer-2-x-It’s-here-plus-FAQs&quot;&gt;&lt;a href=&quot;#ExoPlayer-2-x-It’s-here-plus-FAQs&quot; class=&quot;headerlink&quot; title=&quot;ExoPlayer 2.x - It’s here (plus FAQs)!&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/google-exoplayer/exoplayer-2-x-its-here-plus-faqs-cce34b0d4c7b#.h6m9czs7y&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ExoPlayer 2.x - It’s here (plus FAQs)!&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Google的库&lt;a href=&quot;https://github.com/google/ExoPlayer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;google/ExoPlayer&lt;/a&gt;升级到v2.x了.&lt;br&gt;(它是一个Media Player, YouTube用的就是它.)&lt;br&gt;这次是个重大更新, 添加了很多新功能, 推荐大家以后用新版.&lt;/p&gt;
-&lt;h2 id=&quot;How-We-Rethought-our-Complete-Package-Structure-for-Buffer-on-Android&quot;&gt;&lt;a href=&quot;#How-We-Rethought-our-Complete-Package-Structure-for-Buffer-on-Android&quot; class=&quot;headerlink&quot; title=&quot;How We Rethought our Complete Package Structure for Buffer on Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://overflow.buffer.com/2016/09/26/android-rethinking-package-structure/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How We Rethought our Complete Package Structure for Buffer on Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们重新整理了项目的包结构, 总结了整个过程还有从中学到的东东.&lt;/p&gt;
-&lt;p&gt;作者他们之前的包结构是按类型的, 有activities, fragments, adapters等包. 因为类名以类型终结, 所以索性就按整个分组.&lt;/p&gt;
-&lt;p&gt;当app变得越来越大, 这种组织方式发现就不太好, 感觉很难找东西, 并且感觉没什么结构.&lt;/p&gt;
-&lt;p&gt;经过改变之后, 作者他们采用了一种更加整洁并且易于导航的结构.&lt;/p&gt;
-&lt;p&gt;新结构中, 当添加一个新的feature, 就保持在同一个目录中, 这样就不用来回切换目录.&lt;/p&gt;
-&lt;p&gt;作者他们的新结构有四个总目录: &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;data&lt;/li&gt;
-&lt;li&gt;ui&lt;/li&gt;
-&lt;li&gt;injection&lt;/li&gt;
-&lt;li&gt;util&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;data&lt;/strong&gt;中包含网络请求及相关的models, preferences, database, data models, 还有其他和数据直接关联的东西.&lt;/p&gt;
-&lt;p&gt;其中和不同API关联的models又分别组织在子目录下.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;ui&lt;/strong&gt;目录中包含所有和UI相关的组件, 在这个包中按照功能又拆分了子目录. 其中有base包, 用来盛放Fragment, Activity和MVP的基类, 接口等; 还有common包, 用来盛放公共控件.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;injection&lt;/strong&gt;中包含所有依赖注入的类, 分component, module和scope的子目录.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;util&lt;/strong&gt;中含有Helper和Utility类.&lt;/p&gt;
-&lt;h2 id=&quot;Become-a-Firebase-Taskmaster-Part-3&quot;&gt;&lt;a href=&quot;#Become-a-Firebase-Taskmaster-Part-3&quot; class=&quot;headerlink&quot; title=&quot;Become a Firebase Taskmaster! (Part 3)&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://firebase.googleblog.com/2016/09/become-a-firebase-taskmaster-part-3_29.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Become a Firebase Taskmaster! (Part 3)&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这是系列文章的第三篇, 这个系列是关于Play services的&lt;a href=&quot;https://developers.google.com/android/guides/tasks&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Task API&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;如果项目里已经依赖了Firebase, 变自动包含了Task API, 如果不想用Firebase, 可以单独添加依赖:&lt;br&gt;&lt;code&gt;compile &amp;#39;com.google.android.gms:play-services-tasks:9.6.1&amp;#39;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;创建新的Task可以用下面这两个方法:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;Task&amp;lt;TResult&amp;gt; &lt;span class=&quot;title&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Callable&amp;lt;TResult&amp;gt; callable)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Task&amp;lt;TResult&amp;gt; &lt;span class=&quot;title&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Executor executor, Callable&amp;lt;TResult&amp;gt; callable)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;第一个&lt;code&gt;call()&lt;/code&gt;方法在主线程执行任务, 第二个&lt;code&gt;call()&lt;/code&gt;方法可以把工作提交给一个&lt;code&gt;Executor&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://developer.android.com/reference/java/util/concurrent/Callable.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Callable&lt;/a&gt;有点类似于Runnable:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;CarlyCallable&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Callable&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;String&lt;/span&gt;&amp;gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; Exception &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;Call me maybe&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;参数制定了方法的返回值的类型, 进而也是创建出Task的类型.&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Task&amp;lt;String&amp;gt; task = Tasks.call(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; CarlyCallable());&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;想要链式执行, 进行后续操作, 可以用&lt;a href=&quot;https://developers.google.com/android/reference/com/google/android/gms/tasks/Continuation&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Continuation&lt;/a&gt;.&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;SeparateWays&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Continuation&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;String&lt;/span&gt;, &lt;span class=&quot;title&quot;&gt;List&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;String&lt;/span&gt;&amp;gt;&amp;gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; List&amp;lt;String&amp;gt; &lt;span class=&quot;title&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Task&amp;lt;String&amp;gt; task)&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; Exception &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; Arrays.asList(task.getResult().split(&lt;span class=&quot;string&quot;&gt;&quot; +&quot;&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;它继承接口时指定了输入和输出的类型, 它的输入来自于Task的输出.&lt;/p&gt;
-&lt;p&gt;可以多写几个Continuation类然后连起来:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Task&amp;lt;String&amp;gt; playlist = Tasks.call(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; CarlyCallable())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .continueWith(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; SeparateWays())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .continueWith(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; AllShookUp())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .continueWith(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ComeTogether());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;playlist.addOnSuccessListener(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; OnSuccessListener&amp;lt;String&amp;gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onSuccess&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String message)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// The final String with all the words randomized is here&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h1 id=&quot;LIBRIARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRIARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRIARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRIARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;groupie&quot;&gt;&lt;a href=&quot;#groupie&quot; class=&quot;headerlink&quot; title=&quot;groupie&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Genius/groupie&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;groupie&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;显示和管理复杂的RecyclerView布局, 把你的items按照逻辑分组管理.&lt;/p&gt;
-&lt;h2 id=&quot;android-junit5&quot;&gt;&lt;a href=&quot;#android-junit5&quot; class=&quot;headerlink&quot; title=&quot;android-junit5&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/aurae/android-junit5&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-junit5&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Gradle插件, 用JUnit5做Android的单元测试.&lt;/p&gt;
-&lt;h2 id=&quot;epoxy&quot;&gt;&lt;a href=&quot;#epoxy&quot; class=&quot;headerlink&quot; title=&quot;epoxy&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/airbnb/epoxy&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;epoxy&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;用来构建复杂的RecyclerView屏.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-225&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-225&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #225&quot;&gt;&lt;/a&gt;Android Weekly Issue #225&lt;/h1&gt;&lt;p&gt;October 2nd, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-225&quot;&gt;Android Weekly Issue #225&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本期内容包括: Android 7.0的Quick Settings; Firebase; 兼容旧版本的shared element transition; Wear; ORM: 用ActiveAndroid做数据库存储; 崩溃报告工具对比; Google Cast API介绍; Google的播放器库ExoPlayer 2.x发布; 项目的包结构整理; Task API的使用等等.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
-    
-      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
-      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
-    
-      <category term="Android 7.0" scheme="http://mengdd.github.io/tags/Android-7-0/"/>
-    
-      <category term="Quick Settings" scheme="http://mengdd.github.io/tags/Quick-Settings/"/>
-    
-      <category term="Shared-Element Transtion" scheme="http://mengdd.github.io/tags/Shared-Element-Transtion/"/>
-    
-      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
-      <category term="ORM" scheme="http://mengdd.github.io/tags/ORM/"/>
-    
-      <category term="ActiveAndroid" scheme="http://mengdd.github.io/tags/ActiveAndroid/"/>
-    
-      <category term="Crash Reporting" scheme="http://mengdd.github.io/tags/Crash-Reporting/"/>
-    
-      <category term="Google Cast" scheme="http://mengdd.github.io/tags/Google-Cast/"/>
-    
-      <category term="ExoPlayer" scheme="http://mengdd.github.io/tags/ExoPlayer/"/>
-    
-      <category term="Packages" scheme="http://mengdd.github.io/tags/Packages/"/>
-    
-      <category term="Task" scheme="http://mengdd.github.io/tags/Task/"/>
     
   </entry>
   
