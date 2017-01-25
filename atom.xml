@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-01-24T02:58:10.000Z</updated>
+  <updated>2017-01-25T01:52:53.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,124 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 241</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/01/25/android-weekly-notes-issue-241/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/01/25/android-weekly-notes-issue-241/</id>
+    <published>2017-01-25T01:40:01.000Z</published>
+    <updated>2017-01-25T01:52:53.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-241&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-241&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #241&quot;&gt;&lt;/a&gt;Android Weekly Issue #241&lt;/h1&gt;&lt;p&gt;January 22nd, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-241&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #241&lt;/a&gt;&lt;br&gt;本期内容包括: 经典导航模式Master/Detail的设计和实现; APK的大小讨论和增量下载大小的预估工具; Model-View-Intent模式的讨论和实现; 分多个modules对build时间的影响; 测试中能够利用的一些Android特有的接缝设计(manifest, build config, resource).&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Case-Study-Master-Detail-Pattern-Revisited&quot;&gt;&lt;a href=&quot;#Case-Study-Master-Detail-Pattern-Revisited&quot; class=&quot;headerlink&quot; title=&quot;Case Study. Master/Detail Pattern Revisited&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://goneremote.io/master-detail-pattern/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Case Study. Master/Detail Pattern Revisited&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Master/Detail是一种经典的导航流, master屏包含一个list, detail显示某一项的详细信息. &lt;a href=&quot;https://developer.android.com/training/implementing-navigation/descendant.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Doc&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;作者讲了他适配多种屏幕(包括平板)的设计, 以及简单的实现.&lt;/p&gt;
+&lt;h2 id=&quot;Tracking-app-update-sizes&quot;&gt;&lt;a href=&quot;#Tracking-app-update-sizes&quot; class=&quot;headerlink&quot; title=&quot;Tracking app update sizes&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/google-developers/tracking-app-update-sizes-1a1f57634f7b#.v2ecs8u4t&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Tracking app update sizes&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;以前作者有一系列的&lt;a href=&quot;https://medium.com/google-developers/smallerapk-part-1-anatomy-of-an-apk-da83c25e7003#.dv2tfqdyq&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文章&lt;/a&gt;讲过apk的组成以及如何减少apk的大小.&lt;/p&gt;
+&lt;p&gt;事实上app的大小可以分下面四种:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;提交到Google Play的APK文件大小.&lt;/li&gt;
+&lt;li&gt;初始的下载大小.&lt;/li&gt;
+&lt;li&gt;在设备上的安装大小.&lt;/li&gt;
+&lt;li&gt;更新下载大小.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;之前的一些文章可能都在讨论如何减少初始的大小, 但是大多数情况用户可能只安装你的应用一次, 之后就只是从Play Store更新, 所以应用的更新大小也是很重要的.&lt;/p&gt;
+&lt;p&gt;事实上Android Studio(2.2+)改善了打包apk的机制, (&lt;a href=&quot;https://android-developers.googleblog.com/2016/11/understanding-apk-packaging-in-android-studio-2-2.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;apk packaging&lt;/a&gt;), 使得每一个build都尽可能地相似, 这样Play Store就能计算出一个较小的delta更新. 另外, Play Store也引入了新的算法, 比如最近的&lt;a href=&quot;https://android-developers.googleblog.com/2016/12/saving-data-reducing-the-size-of-app-updates-by-65-percent.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;File-By-File patching&lt;/a&gt;, 同样也有效减小了更新的大小.&lt;/p&gt;
+&lt;p&gt;所以我们要注意的就是不要介入和干扰当前Android Studio和Play Store的这些优化, 比如不要用自定义的ZIP加密设置来自己压缩APK. 也不要用Zopfli来再次压缩APK.&lt;/p&gt;
+&lt;p&gt;Play Store上会显示应用的下载大小, 如果用户已经安装了, 则显示的是更新大小.&lt;/p&gt;
+&lt;p&gt;对于开发者来说, 如果能在发布前知道这些信息就更好了, 所以作者他们开源了这个库: &lt;a href=&quot;https://github.com/googlesamples/apk-patch-size-estimator&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;apk-patch-size-estimator&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这是一个命令行的工具, 可以集成到CI里, 也可以手动比较两个apk文件.&lt;/p&gt;
+&lt;p&gt;这个工具实现了当前Play Store的算法, 可以帮你估计出初始的apk下载大小和更新下载大小.&lt;/p&gt;
+&lt;p&gt;(注意下载大小和apk文件大小不同因为Play Store可能会做进一步压缩.)&lt;/p&gt;
+&lt;p&gt;同样, Android Studio中也有一个图形化的 APK Analyzer工具, 可以做apk的比较, 让你看到到底是哪一部分的尺寸增长了.&lt;/p&gt;
+&lt;h2 id=&quot;Reactive-Apps-with-Model-View-Intent-Part-2&quot;&gt;&lt;a href=&quot;#Reactive-Apps-with-Model-View-Intent-Part-2&quot; class=&quot;headerlink&quot; title=&quot;Reactive Apps with Model-View-Intent - Part 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://hannesdorfmann.com/android/mosby3-mvi-2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reactive Apps with Model-View-Intent - Part 2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;上一篇文章讨论了一个好的Model层可以解决很多问题. 这篇来介绍&lt;code&gt;Model-View-Intent&lt;/code&gt;模式.&lt;/p&gt;
+&lt;h3 id=&quot;Model-View-Intent模式&quot;&gt;&lt;a href=&quot;#Model-View-Intent模式&quot; class=&quot;headerlink&quot; title=&quot;Model-View-Intent模式&quot;&gt;&lt;/a&gt;Model-View-Intent模式&lt;/h3&gt;&lt;p&gt;Model-View-Intent模式是在一个JavaScript的framework &lt;code&gt;cycle.js&lt;/code&gt;中提出的.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/view-model-intent.png&quot; alt=&quot;view-model-intent&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;intent()&lt;/code&gt;: 这个方法接收用户输入, 然后输出将会作为参数传给&lt;code&gt;model()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;model()&lt;/code&gt;: 接收&lt;code&gt;intent()&lt;/code&gt;的输出作为自己的输入, 来操纵Model, 这个方法的输出是一个新的Model(状态变化). 所以它不应该更新一个已经存在的Model. 因为我们想要不可变性. 注意这里是唯一一个允许创建新Model的地方.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;view()&lt;/code&gt;: 接收&lt;code&gt;model()&lt;/code&gt;方法返回的model作为输入, 然后将其展示出来.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;用RxJava连接&quot;&gt;&lt;a href=&quot;#用RxJava连接&quot; class=&quot;headerlink&quot; title=&quot;用RxJava连接&quot;&gt;&lt;/a&gt;用RxJava连接&lt;/h3&gt;&lt;p&gt;我们希望数据流是单向的, 于是我们用了RxJava, 它很适合这种基于事件的编程, 在这里主要是UI事件.&lt;/p&gt;
+&lt;p&gt;作者之后举了一个实现的例子, 在这个例子中他们的Model层用了ViewState后缀. &lt;code&gt;SearchInteractor&lt;/code&gt;用来执行搜索, 返回的结果是&lt;code&gt;Observable&amp;lt;SearchViewState&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;这个模式中定义的View接口里包含了&lt;code&gt;render()&lt;/code&gt;方法, 根据传入的状态model显示UI; 这个View接口其实还包含了&lt;code&gt;intent()&lt;/code&gt;的方法, 返回的是一个&lt;code&gt;Observable&lt;/code&gt;, UI中用了&lt;a href=&quot;https://github.com/JakeWharton/RxBinding&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxBinding&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;最后一步就是, 如何将View的intent和业务逻辑联系起来呢? 这里用到了一个额外的组件: &lt;code&gt;Presenter&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;这个Presenter看起来像这样:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;SearchPresenter&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MviBasePresenter&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;SearchView&lt;/span&gt;, &lt;span class=&quot;title&quot;&gt;SearchViewState&lt;/span&gt;&amp;gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; SearchInteractor searchInteractor;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;bindIntents&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Observable&amp;lt;SearchViewState&amp;gt; search =&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        intent(SearchView::searchIntent)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .switchMap(searchInteractor::search) &lt;span class=&quot;comment&quot;&gt;// I have used flatMap() in the video above, but switchMap() makes more sense here&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .observeOn(AndroidSchedulers.mainThread());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    subscribeViewState(search, SearchView::render);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;MviBasePresenter&lt;/code&gt;是&lt;a href=&quot;https://github.com/sockeqwe/mosby&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mosby&lt;/a&gt;中的一个类.&lt;br&gt;这个类做的事情就是当View第一次attach到Prensenter上时, 调用&lt;code&gt;bindIntent()&lt;/code&gt;方法将来自view的intent绑定到业务逻辑上, 只有第一次会绑定, 当View再次attach时不会发生.&lt;/p&gt;
+&lt;p&gt;而&lt;code&gt;subscribeViewState()&lt;/code&gt;方法则处理了定于管理, 避免内存泄露(具体原因见原文).&lt;/p&gt;
+&lt;h2 id=&quot;How-modularization-affects-build-time-of-an-Android-application&quot;&gt;&lt;a href=&quot;#How-modularization-affects-build-time-of-an-Android-application&quot; class=&quot;headerlink&quot; title=&quot;How modularization affects build time of an Android application&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@nikita.kozlov/how-modularisation-affects-build-time-of-an-android-application-43a984ce9968#.hzgv3h6cm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How modularization affects build time of an Android application&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Android应用至少有一个application module, build这个module之后得到一个.apk文件.&lt;/p&gt;
+&lt;p&gt;application module之间不能相互依赖, 它只能依赖于library, build library module的结果是得到一个.aar(Android Archive Library)文件.&lt;/p&gt;
+&lt;p&gt;build的过程可以粗略分为5个阶段:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1.准备依赖.&lt;/li&gt;
+&lt;li&gt;2.Merge资源和manifest.&lt;/li&gt;
+&lt;li&gt;3.编译. 从annotation processors开始, 把源码编译成字节码.&lt;/li&gt;
+&lt;li&gt;4.后处理. 所有以&lt;code&gt;transform&lt;/code&gt;开头的gradle tasks都属于这个阶段. 其中最重要的是&lt;code&gt;transformClassesWithMultidexlist&lt;/code&gt;和&lt;code&gt;transformClassesWithDex&lt;/code&gt;, 它们生成了.dex文件.&lt;/li&gt;
+&lt;li&gt;5.打包发布. 对library来说是生成.aar, 对application来说是生成.apk.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们都知道gradle只有在输入变化了的情况下才会重跑task. 而且如果一个module没有变化, 也不会被重新build, 那么就出现了一种假设: 多个module应用的增量build要比单个module的快, 因为只有被改变了的module才会重新编译.&lt;/p&gt;
+&lt;p&gt;作者想验证这种假设是否正确.&lt;br&gt;他用的工具就是:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;./gradle assembleDebug --profile&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;做了一系列实验之后证明这个假设还是有道理的.&lt;/p&gt;
+&lt;p&gt;实验过程中的一些发现:&lt;/p&gt;
+&lt;p&gt;1.当应用被拆分为多个modules之后, 改变application module中的代码, build时间会减少; 但是library中的代码, build时间反而会增加. 这是因为library build的时候debug和release的tasks都执行了(并不知道为什么).&lt;/p&gt;
+&lt;p&gt;当library module被这样添加的时候:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile project(path: &amp;apos;:app2&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile project(path: &amp;apos;:app3&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;不管app当前的build type是什么, app永远依赖的是library的release版本.&lt;/p&gt;
+&lt;p&gt;这是一个Gradle当前的限制. 参见&lt;a href=&quot;http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Library-Publication&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Library-Publication&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;幸运的是, 我们可以改变这一行为:&lt;br&gt;首先在library中添加:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;android &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    defaultConfig &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        defaultPublishConfig &amp;apos;release&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        publishNonDefault true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;让它也可以发布debug版.&lt;br&gt;在app中依赖的时候:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    debugCompile project(path: &amp;apos;:app2&amp;apos;, configuration: &amp;quot;debug&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    releaseCompile project(path: &amp;apos;:app2&amp;apos;, configuration: &amp;quot;release&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    debugCompile project(path: &amp;apos;:app3&amp;apos;, configuration: &amp;quot;debug&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    releaseCompile project(path: &amp;apos;:app3&amp;apos;, configuration: &amp;quot;release&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这样debug和release都只依赖各自对应版本的library了.&lt;/p&gt;
+&lt;p&gt;2.不管我们改动的是library中的代码还是application中的代码, application module永远都会被重新编译, 所以减小app module的尺寸很有意义.&lt;/p&gt;
+&lt;p&gt;3.上面这些都是library之间互相独立的情况, 如果library之间还有相互依赖, 那么build时间也会变长.&lt;/p&gt;
+&lt;p&gt;4.如果应用超出了DEX的方法数限制, 用了multidex, 也会增加build时间, Android 5.0开始使用了一个叫做ART的runtime, 在这方面有一些优化, 可以减少build时间, 所以我们可以在开发的时候设置最小API是21: &lt;a href=&quot;https://developer.android.com/studio/build/multidex.html#dev-build&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Optimize multidex in development builds&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Exploiting-Android-Seams-for-Testing-and-Flexibility&quot;&gt;&lt;a href=&quot;#Exploiting-Android-Seams-for-Testing-and-Flexibility&quot; class=&quot;headerlink&quot; title=&quot;Exploiting Android Seams for Testing and Flexibility&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.philosophicalhacker.com/post/exploiting-android-specific-seams-for-testing-and-flexibility/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Exploiting Android Seams for Testing and Flexibility&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如何让Android应用代码可测试? 答案是创建一些接缝. 这篇文章中, 作者将一些Android特有的接缝, 来让我们的应用更加灵活和易测.&lt;/p&gt;
+&lt;h3 id=&quot;Manifest接缝&quot;&gt;&lt;a href=&quot;#Manifest接缝&quot; class=&quot;headerlink&quot; title=&quot;Manifest接缝&quot;&gt;&lt;/a&gt;Manifest接缝&lt;/h3&gt;&lt;p&gt;使用&lt;a href=&quot;https://developer.android.com/studio/build/manifest-merge.html#merge_rule_markers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Merge rule markers&lt;/a&gt;可以方便地更改manifest.&lt;/p&gt;
+&lt;p&gt;比如在build variant是mock的时候, 由于我们在src/mock/AndroidManifest.xml里这样写:&lt;br&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- src/mock/AndroidManifest.xml --&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;activity&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;.StubConfigActivity&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;intent-filter&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.action.MAIN&quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;category&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.category.LAUNCHER&quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;intent-filter&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;activity&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;activity&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;.MainActivity&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;intent-filter&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;tools:node&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;remove&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.action.MAIN&quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;category&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.category.LAUNCHER&quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;intent-filter&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;activity&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;所以在build mock的时候, 启动Activity会被替换成上面这个&lt;code&gt;StubConfigActivity&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;还有更多的可能值得探索, 比如你可以替换filter的内容, 从而改变默认intent启动的Activity.&lt;/p&gt;
+&lt;h3 id=&quot;BuildConfig接缝&quot;&gt;&lt;a href=&quot;#BuildConfig接缝&quot; class=&quot;headerlink&quot; title=&quot;BuildConfig接缝&quot;&gt;&lt;/a&gt;BuildConfig接缝&lt;/h3&gt;&lt;p&gt;在gradle中可以根据不同的build variant来定义&lt;code&gt;BuildConfig&lt;/code&gt;中的变量值. &lt;/p&gt;
+&lt;p&gt;默认情况下&lt;code&gt;BuildConfig&lt;/code&gt;中会包含一些有用的变量比如&lt;code&gt;DEBUG&lt;/code&gt;和&lt;code&gt;FLAVOR&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;我们可以创建更多额外的变量:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;productFlavors &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  mock &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    buildConfigField(&amp;apos;Boolean&amp;apos;, &amp;apos;MOCK&amp;apos;, &amp;quot;true&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;一个简单的应用case是我们可以定义不同的base url:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;defaultConfig &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  buildConfigField(&amp;apos;String&amp;apos;, &amp;apos;API_BASE&amp;apos;, &amp;apos;\&amp;quot;api.awesomecompany.com\&amp;quot;&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;productFlavors &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  sandbox &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    buildConfigField(&amp;apos;String&amp;apos;, &amp;apos;API_BASE&amp;apos;, &amp;apos;\&amp;quot;localhost:8080\&amp;quot;&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Resource接缝&quot;&gt;&lt;a href=&quot;#Resource接缝&quot; class=&quot;headerlink&quot; title=&quot;Resource接缝&quot;&gt;&lt;/a&gt;Resource接缝&lt;/h3&gt;&lt;p&gt;不同build variants的资源就像manifest一样, 最后会被merged. 但是对于资源我们没有markers可以控制它们如何merge. &lt;/p&gt;
+&lt;p&gt;我们可以利用默认的merge行为: &lt;a href=&quot;https://developer.android.com/studio/write/add-resources.html#resource_merging&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Resource merging&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;优先级是这样的:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;build variant &amp;gt; build type &amp;gt; product flavor &amp;gt; main source set &amp;gt; library dependencies&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;所以我们可以把默认的资源放在main里, 然后在特定的build variant再创建一份覆盖它们.&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;Reptar&quot;&gt;&lt;a href=&quot;#Reptar&quot; class=&quot;headerlink&quot; title=&quot;Reptar&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Commit451/Reptar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reptar&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;RxJava2.x的有用的类的集合.&lt;/p&gt;
+&lt;h2 id=&quot;Toasty&quot;&gt;&lt;a href=&quot;#Toasty&quot; class=&quot;headerlink&quot; title=&quot;Toasty&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/GrenderG/Toasty&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Toasty&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;前面加了一个icon的Toast, 带背景颜色, 除了内置的error, info, success, warning等几种形式, 还可以自定义.&lt;/p&gt;
+&lt;h2 id=&quot;Google-Actions-Java-SDK&quot;&gt;&lt;a href=&quot;#Google-Actions-Java-SDK&quot; class=&quot;headerlink&quot; title=&quot;Google-Actions-Java-SDK&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/frogermcs/Google-Actions-Java-SDK&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Google-Actions-Java-SDK&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;非官方的Google Actions Java SDK.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-241&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-241&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #241&quot;&gt;&lt;/a&gt;Android Weekly Issue #241&lt;/h1&gt;&lt;p&gt;January 22nd, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-241&quot;&gt;Android Weekly Issue #241&lt;/a&gt;&lt;br&gt;本期内容包括: 经典导航模式Master/Detail的设计和实现; APK的大小讨论和增量下载大小的预估工具; Model-View-Intent模式的讨论和实现; 分多个modules对build时间的影响; 测试中能够利用的一些Android特有的接缝设计(manifest, build config, resource).&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
+    
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
+      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
+    
+      <category term="Master/Detail" scheme="http://mengdd.github.io/tags/Master-Detail/"/>
+    
+      <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
+    
+      <category term="Build Time" scheme="http://mengdd.github.io/tags/Build-Time/"/>
+    
+      <category term="Toast" scheme="http://mengdd.github.io/tags/Toast/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 240</title>
@@ -253,11 +371,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
+      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
+    
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
-      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
     
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
     
@@ -1136,11 +1254,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
       <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
       <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
+    
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
@@ -2511,11 +2629,11 @@
     
       <category term="AutoValue" scheme="http://mengdd.github.io/tags/AutoValue/"/>
     
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
       <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
       <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
       <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
     
@@ -2542,124 +2660,6 @@
       <category term="Notification" scheme="http://mengdd.github.io/tags/Notification/"/>
     
       <category term="font" scheme="http://mengdd.github.io/tags/font/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 226</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/10/12/android-weekly-notes-issue-226/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2016/10/12/android-weekly-notes-issue-226/</id>
-    <published>2016-10-12T09:46:27.000Z</published>
-    <updated>2016-10-12T09:58:43.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-226&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-226&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #226&quot;&gt;&lt;/a&gt;Android Weekly Issue #226&lt;/h1&gt;&lt;p&gt;October 9th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-226&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #226&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本期内容包括: 用Firebase做A/B Test; 用RxJava做动画; MVP; proguardFiles; RxJava和Android Data Binding的结合; Mockito的更新; Gradle configurations等.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;用Firebase做A-B-Test-A-B-Test-your-App-using-Firebase-Remote-Config&quot;&gt;&lt;a href=&quot;#用Firebase做A-B-Test-A-B-Test-your-App-using-Firebase-Remote-Config&quot; class=&quot;headerlink&quot; title=&quot;用Firebase做A/B Test A/B Test your App using Firebase Remote Config&quot;&gt;&lt;/a&gt;用Firebase做A/B Test &lt;a href=&quot;https://riggaroo.co.za/ab-test-app-firebase-remote-config/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A/B Test your App using Firebase Remote Config&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者讲了如何用Firebase的Remote Config做A/B Test.&lt;/p&gt;
-&lt;h2 id=&quot;用RxJava做动画-Android-animations-powered-by-RxJava&quot;&gt;&lt;a href=&quot;#用RxJava做动画-Android-animations-powered-by-RxJava&quot; class=&quot;headerlink&quot; title=&quot;用RxJava做动画 Android animations powered by RxJava&quot;&gt;&lt;/a&gt;用RxJava做动画 &lt;a href=&quot;https://pspdfkit.com/blog/2016/android-animations-powered-by-rx-java/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android animations powered by RxJava&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;动画基础&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;用&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/view/ViewPropertyAnimator.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ViewPropertyAnimator&lt;/a&gt; 操作View的属性动画很容易也很方便.&lt;/p&gt;
-&lt;p&gt;本文讲的内容主要用&lt;a href=&quot;https://developer.android.com/reference/android/support/v4/view/ViewPropertyAnimatorCompat.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ViewPropertyAnimatorCompat&lt;/a&gt;, 它是通过这个方法获得的: &lt;a href=&quot;https://developer.android.com/reference/android/support/v4/view/ViewCompat.html#animate(android.view.View&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ViewCompat.animate(targetView)&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;它是这样用的:&lt;br&gt;&lt;figure class=&quot;highlight kotlin&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ViewCompat.animate(someButton)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .scaleX(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;f)                         &lt;span class=&quot;comment&quot;&gt;// Scale to 0 horizontally&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .scaleY(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;f)                         &lt;span class=&quot;comment&quot;&gt;// Scale to 0 vertically&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .setDuration(&lt;span class=&quot;number&quot;&gt;300&lt;/span&gt;)                   &lt;span class=&quot;comment&quot;&gt;// Duration of the animation in milliseconds.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .withEndAction &amp;#123; removeView(view) &amp;#125; &lt;span class=&quot;comment&quot;&gt;// Called when the animation ends successfully.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://reactivex.io/RxJava/javadoc/rx/Completable.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Completable&lt;/a&gt; 是RxJava1.1.1加入的.&lt;/p&gt;
-&lt;p&gt;作者通过RxJava来做他们的动画效果.&lt;br&gt;这在链式连接多个动画和其他操作的时候很有用.&lt;/p&gt;
-&lt;h2 id=&quot;Android-Architecture-Patterns-Part-2-MVP&quot;&gt;&lt;a href=&quot;#Android-Architecture-Patterns-Part-2-MVP&quot; class=&quot;headerlink&quot; title=&quot;Android Architecture Patterns Part 2: MVP&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://upday.github.io/blog/model-view-presenter/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Architecture Patterns Part 2: MVP&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;关于Android程序的架构, google提供了&lt;a href=&quot;https://github.com/googlesamples/android-architecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Architecture Blueprints&lt;/a&gt;, 其中作者他们合作于&lt;a href=&quot;https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MVP &amp;amp; RxJava&lt;/a&gt;的sample.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;MVP(Model-View-Presenter)模式&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Model: 数据层. 负责与网络层和数据库层的逻辑交互.&lt;/li&gt;
-&lt;li&gt;View: UI层. 显示数据, 并向Presenter报告用户行为.&lt;/li&gt;
-&lt;li&gt;Presenter: 从Model拿数据, 应用到UI层, 管理UI的状态, 决定要显示什么以及响应用户的行为.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;V和P联系紧密, 所以它们通常会持有对方的引用. 为了给P做单元测试, V是一个抽象的接口. P和对应的V的关系定义在一个&lt;code&gt;Contract&lt;/code&gt;接口里, 这样可以让代码可读性更好, 更容易发现二者的联系.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;MVP模式 &amp;amp; RxJava在Android Architecture Blueprints里的应用&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Google blueprint的Sample是一个&lt;a href=&quot;https://github.com/googlesamples/android-architecture/wiki/To-do-app-specification&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;To Do应用&lt;/a&gt;. 它让用户可以创建, 阅读, 更新和删除to do task, 也可以过滤显示. RxJava主要是用来进行一些非主线程的异步操作.&lt;/p&gt;
-&lt;p&gt;然后作者详细说明了代码实现.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Model&lt;/strong&gt;中用RxJava在本地和网络取数据.&lt;br&gt;(他们的单元测试里是下划线和驼峰结合的方法命名方式.)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;View&lt;/strong&gt;有一个base接口:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;BaseView&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;T&lt;/span&gt;&amp;gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setPresenter&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(T presenter)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;View在&lt;code&gt;onResume()&lt;/code&gt;的时候调用Presenter的&lt;code&gt;subscribe()&lt;/code&gt;, &lt;code&gt;onPause()&lt;/code&gt;的时候调用Presenter的&lt;code&gt;unsubscribe()&lt;/code&gt;. 如果View接口的实现不是Fragment或Activity, 而是Android的自定义View, 那么在&lt;code&gt;onAttachedToWindow()&lt;/code&gt;和&lt;code&gt;onDetachedFromWindow()&lt;/code&gt;方法里分别调用这两个方法.&lt;/p&gt;
-&lt;p&gt;View的测试是用Espresso写的.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Presenter&lt;/strong&gt;也有一个base接口:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;BasePresenter&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;unsubscribe&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;View和Model都通过构造函数传入Presenter, 在Presenter构造里还要调用View的&lt;code&gt;setPresetner()&lt;/code&gt;方法.&lt;/p&gt;
-&lt;p&gt;每一个Presenter还要暴露一些其他的方法, 对应View中用户的行为.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;MVP模式的缺点&lt;/strong&gt;:&lt;br&gt;MVP模式很好地分离了概念, 当然这是好的. 但是当开发很小的app或者只是做一个原型时, 确实感觉过度设计了. 为了减少所用的接口, 有一些开发者省去了&lt;code&gt;Contract&lt;/code&gt;接口类, 也删掉了Presenter的接口.&lt;/p&gt;
-&lt;p&gt;当把UI的逻辑移到Presenter中时, 它就变成了一个全能的类, 代码很长. 为了解决这个问题, 可以进一步拆分代码, 并且记得创建单一职能, 并且可以被单元测试的类.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;:&lt;br&gt;&lt;a href=&quot;https://upday.github.io/blog/model-view-controller/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Model-View-Controller MVC模式&lt;/a&gt; 有两个主要的缺点: 首先, View持有Controller和Model的引用; 第二, 它没有把对UI逻辑的操作限制在单一的类里, 这个职能被Controller和View或者Model共享.&lt;/p&gt;
-&lt;p&gt;MVP模式解决了这两个问题: 砍断了View和Model之间的联系, 用Presenter来管理所有和View显示相关的逻辑(handles everything related to the presentation of the View), 并且这个类是很容易被单元测试的.&lt;/p&gt;
-&lt;h2 id=&quot;proguardFiles-A-Cautionary-Tale&quot;&gt;&lt;a href=&quot;#proguardFiles-A-Cautionary-Tale&quot; class=&quot;headerlink&quot; title=&quot;proguardFiles: A Cautionary Tale&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://stkent.github.io/2016/10/07/proguardfiles-a-cautionary-tale.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;proguardFiles: A Cautionary Tale&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者有三个buildTypes: debug, beta, release.&lt;/p&gt;
-&lt;p&gt;其中beta用了initWith(buildTypes.debug).&lt;br&gt;他想给不同的type加上不同的proguard files. 让debug不混淆(&lt;code&gt;-dontobfuscate&lt;/code&gt;), beta和release混淆.&lt;br&gt;结果却发现beta没有混淆.&lt;/p&gt;
-&lt;p&gt;查看代码发现&lt;code&gt;proguardFiles&lt;/code&gt;其实是将proguard files叠加.&lt;br&gt;作者找到的解决方式是用&lt;code&gt;setProguardFiles()&lt;/code&gt;:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;buildTypes &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  debug &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    proguardFiles getDefaultProguardFile(&amp;apos;proguard-android.txt&amp;apos;), &amp;apos;proguard-rules.pro&amp;apos;, &amp;apos;proguard-debug.pro&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  beta &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    initWith(buildTypes.debug)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // New!&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    setProguardFiles([getDefaultProguardFile(&amp;apos;proguard-android.txt&amp;apos;), &amp;apos;proguard-rules.pro&amp;apos;])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  release &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    proguardFiles getDefaultProguardFile(&amp;apos;proguard-android.txt&amp;apos;), &amp;apos;proguard-rules.pro&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;评论区有人指出还可以这样:&lt;br&gt;在&lt;code&gt;defaultConfig&lt;/code&gt;中:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;proguardFiles getDefaultProguardFile(&amp;apos;proguard-android.txt&amp;apos;), &amp;apos;proguard-rules.pro&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;然后在&lt;code&gt;debug&lt;/code&gt;中: 加&lt;code&gt;proguardFile &amp;#39;proguard-debug.pro&lt;/code&gt;, 这样更简洁一些.&lt;/p&gt;
-&lt;p&gt;相关文档: &lt;a href=&quot;https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.BuildType.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BuildType&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;RxJava-meets-Android-Data-Binding&quot;&gt;&lt;a href=&quot;#RxJava-meets-Android-Data-Binding&quot; class=&quot;headerlink&quot; title=&quot;RxJava meets Android Data Binding&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/tangoagency/rxjava-meets-android-data-binding-4ca5e1144107#.p13x1zwkc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava meets Android Data Binding&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者使用例子介绍了如何将RxJava和Android的Data Binding结合起来使用.&lt;/p&gt;
-&lt;h2 id=&quot;Mocking-Kotlin-with-Mockito&quot;&gt;&lt;a href=&quot;#Mocking-Kotlin-with-Mockito&quot; class=&quot;headerlink&quot; title=&quot;Mocking Kotlin with Mockito&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://hadihariri.com/2016/10/04/Mocking-Kotlin-With-Mockito/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Mocking Kotlin with Mockito&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;因为Kotlin默认类和方法都是final的, 如果你想要继承, 必须显式声明&lt;code&gt;open&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;当你想要在测试中Mock一些行为时, Mockito可能会报错, 因为它无法mock一个final的class/method.&lt;/p&gt;
-&lt;p&gt;于是你可能要修改源代码, 加&lt;code&gt;open&lt;/code&gt;或者是接口, 仅仅是为了测试.&lt;/p&gt;
-&lt;p&gt;Mockito 2解决了这个问题: &lt;a href=&quot;https://github.com/mockito/mockito/wiki/What&amp;#39;s-new-in-Mockito-2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What’s new in Mockito 2&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;你只需要在&lt;code&gt;resources/mockito-extensions&lt;/code&gt;目录下创建一个文件: &lt;code&gt;org.mockito.plugins.MockMaker&lt;/code&gt;.&lt;br&gt;里面只包含一行内容:&lt;br&gt;&lt;code&gt;mock-maker-inline&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Droidcon-NYC-2016-Victor-Nascimento&quot;&gt;&lt;a href=&quot;#Droidcon-NYC-2016-Victor-Nascimento&quot; class=&quot;headerlink&quot; title=&quot;Droidcon NYC 2016 - Victor Nascimento&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@victor.nascimento/droidcon-ny-2016-e037cb81559#.4ncx0xcgg&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Droidcon NYC 2016 - Victor Nascimento&lt;/a&gt;&lt;/h2&gt;&lt;h2 id=&quot;Droidcon-NYC-2016-Florina-Muntenescu&quot;&gt;&lt;a href=&quot;#Droidcon-NYC-2016-Florina-Muntenescu&quot; class=&quot;headerlink&quot; title=&quot;Droidcon NYC 2016 - Florina Muntenescu&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://upday.github.io/blog/droidcon_nyc/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Droidcon NYC 2016 - Florina Muntenescu&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这两篇是关于Droidcon NYC 2016的感想.&lt;/p&gt;
-&lt;h2 id=&quot;Android-Gradle-configurations&quot;&gt;&lt;a href=&quot;#Android-Gradle-configurations&quot; class=&quot;headerlink&quot; title=&quot;Android Gradle configurations&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.thedroidsonroids.com/blog/android/android-gradle-configurations/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Gradle configurations&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Gradle中的configuration是:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	annotationProcessor &amp;apos;com.jakewharton:butterknife-compiler:8.4.0&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	compile &amp;apos;com.jakewharton:butterknife:8.4.0&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	compile project(&amp;apos;:api&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	debugCompile &amp;apos;com.squareup.leakcanary:leakcanary-android:1.4&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	releaseCompile &amp;apos;com.squareup.leakcanary:leakcanary-android-no-op:1.4&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	androidTestCompile &amp;apos;com.android.support.test:runner:0.5&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	testCompile &amp;apos;org.robolectric:robolectric:3.1.2&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	testAnnotationProcessor &amp;apos;org.robolectric:robolectric-processor:3.1.2&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;模式是&lt;code&gt;configuationName dependencyNotation&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Configuration names由两部分组成:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;可选的前缀, 指定build variant, product flavor或者build type.&lt;/li&gt;
-&lt;li&gt;必需的后缀, 指定scope.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;比如在&lt;code&gt;debugCompile&lt;/code&gt;中, debug就是一个build type.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;compile&lt;/code&gt;没有前缀, 就表示它应用到所有的build类型里.&lt;/p&gt;
-&lt;p&gt;每一个正常的configuration都有一个相应的unit test版, 比如&lt;code&gt;testCompile&lt;/code&gt;, &lt;code&gt;testDebugCompile&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;对于功能测试来说是&lt;code&gt;androidTest&lt;/code&gt;, 只有这一种.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Scope&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Scope是和configuration应用的阶段有关:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;annotationProcessor/kapt: 注解处理;&lt;/li&gt;
-&lt;li&gt;provided/compileOnly: 编译期;&lt;/li&gt;
-&lt;li&gt;compile: 编译 + 执行;&lt;/li&gt;
-&lt;li&gt;apk: 执行期.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;继承&lt;/strong&gt;&lt;br&gt;Configuration可以继承, 意味着子类包含父类所有包含的项目.&lt;br&gt;比如&lt;code&gt;testCompile&lt;/code&gt;就继承了&lt;code&gt;compile&lt;/code&gt;.&lt;br&gt;但是注意继承必须显式声明, 并不是由名字看出来的, 比如&lt;code&gt;testAnnotationProcessor&lt;/code&gt;没有继承&lt;code&gt;annotationProcessor&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;利用继承可以定义单元测试和公共测试的基类, 这样它们的共享依赖就可以只声明一次.&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;configurations &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; [androidTestCompile, testCompile].each &amp;#123; it.extendsFrom commonTestCompile &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;android-data-binding-rxjava&quot;&gt;&lt;a href=&quot;#android-data-binding-rxjava&quot; class=&quot;headerlink&quot; title=&quot;android-data-binding-rxjava&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/TangoAgency/android-data-binding-rxjava&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-data-binding-rxjava&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;例子代码, 展示如何结合RxJava和Android data binding.&lt;/p&gt;
-&lt;h2 id=&quot;AnimatorDurationTile&quot;&gt;&lt;a href=&quot;#AnimatorDurationTile&quot; class=&quot;headerlink&quot; title=&quot;AnimatorDurationTile&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/nickbutcher/AnimatorDurationTile&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AnimatorDurationTile&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Quick Settings tile, 用于控制动画的duration scale.&lt;/p&gt;
-&lt;h2 id=&quot;DateTimeSeer&quot;&gt;&lt;a href=&quot;#DateTimeSeer&quot; class=&quot;headerlink&quot; title=&quot;DateTimeSeer&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/p-v/DateTimeSeer/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DateTimeSeer&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个关于日期和时间的自动提示输入框.&lt;/p&gt;
-&lt;h2 id=&quot;A-list-of-all-Android-permissions&quot;&gt;&lt;a href=&quot;#A-list-of-all-Android-permissions&quot; class=&quot;headerlink&quot; title=&quot;A list of all Android permissions&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://gist.github.com/Arinerron/1bcaadc7b1cbeae77de0263f4e15156f&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A list of all Android permissions&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Android所有权限的列表.&lt;/p&gt;
-&lt;h1 id=&quot;NEWS&quot;&gt;&lt;a href=&quot;#NEWS&quot; class=&quot;headerlink&quot; title=&quot;NEWS&quot;&gt;&lt;/a&gt;NEWS&lt;/h1&gt;&lt;h2 id=&quot;What’s-new-in-Mockito-2&quot;&gt;&lt;a href=&quot;#What’s-new-in-Mockito-2&quot; class=&quot;headerlink&quot; title=&quot;What’s new in Mockito 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/mockito/mockito/wiki/What%27s-new-in-Mockito-2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What’s new in Mockito 2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Mockito 2发布了, 有什么新东西呢?&lt;/p&gt;
-&lt;h2 id=&quot;Kotlin-1-0-5-EAP&quot;&gt;&lt;a href=&quot;#Kotlin-1-0-5-EAP&quot; class=&quot;headerlink&quot; title=&quot;Kotlin 1.0.5 EAP&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://discuss.kotlinlang.org/t/kotlin-1-0-5-eap/2023&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Kotlin 1.0.5 EAP&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Kotlin 1.0.5 EAP (Early Access Program).&lt;/p&gt;
-&lt;h2 id=&quot;What’s-next-for-android-apt&quot;&gt;&lt;a href=&quot;#What’s-next-for-android-apt&quot; class=&quot;headerlink&quot; title=&quot;What’s next for android-apt?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.littlerobots.nl/blog/Whats-next-for-android-apt/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What’s next for android-apt?&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;android-apt将不会再开发了, 因为它的功能已经被包含进了Android Gradle plugin.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-226&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-226&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #226&quot;&gt;&lt;/a&gt;Android Weekly Issue #226&lt;/h1&gt;&lt;p&gt;October 9th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-226&quot;&gt;Android Weekly Issue #226&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本期内容包括: 用Firebase做A/B Test; 用RxJava做动画; MVP; proguardFiles; RxJava和Android Data Binding的结合; Mockito的更新; Gradle configurations等.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
-      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
-      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
-    
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
-      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
-      <category term="Proguard" scheme="http://mengdd.github.io/tags/Proguard/"/>
-    
-      <category term="Data Binding" scheme="http://mengdd.github.io/tags/Data-Binding/"/>
-    
-      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
   </entry>
   

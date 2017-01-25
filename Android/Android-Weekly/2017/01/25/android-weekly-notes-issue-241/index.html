@@ -1,0 +1,753 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android Weekly Notes Issue 241 | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="Android Weekly Issue #241January 22nd, 2017Android Weekly Issue #241本期内容包括: 经典导航模式Master/Detail的设计和实现; APK的大小讨论和增量下载大小的预估工具; Model-View-Intent模式的讨论和实现; 分多个modules对build时间的影响; 测试中能够利用的一些Android特有的接缝设计(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Weekly Notes Issue 241">
+<meta property="og:url" content="http://mengdd.github.io/Android/Android-Weekly/2017/01/25/android-weekly-notes-issue-241/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="Android Weekly Issue #241January 22nd, 2017Android Weekly Issue #241本期内容包括: 经典导航模式Master/Detail的设计和实现; APK的大小讨论和增量下载大小的预估工具; Model-View-Intent模式的讨论和实现; 分多个modules对build时间的影响; 测试中能够利用的一些Android特有的接缝设计(">
+<meta property="og:image" content="http://mengdd.github.io/images/view-model-intent.png">
+<meta property="og:updated_time" content="2017-01-25T01:52:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Weekly Notes Issue 241">
+<meta name="twitter:description" content="Android Weekly Issue #241January 22nd, 2017Android Weekly Issue #241本期内容包括: 经典导航模式Master/Detail的设计和实现; APK的大小讨论和增量下载大小的预估工具; Model-View-Intent模式的讨论和实现; 分多个modules对build时间的影响; 测试中能够利用的一些Android特有的接缝设计(">
+<meta name="twitter:image" content="http://mengdd.github.io/images/view-model-intent.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/Android/Android-Weekly/2017/01/25/android-weekly-notes-issue-241/" title="Android Weekly Notes Issue 241" itemprop="url">Android Weekly Notes Issue 241</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2017-01-25T01:40:01.000Z" itemprop="datePublished"> Published 2017-01-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-241"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #241</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-Study-Master-Detail-Pattern-Revisited"><span class="toc-number">2.1.</span> <span class="toc-text">Case Study. Master/Detail Pattern Revisited</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tracking-app-update-sizes"><span class="toc-number">2.2.</span> <span class="toc-text">Tracking app update sizes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reactive-Apps-with-Model-View-Intent-Part-2"><span class="toc-number">2.3.</span> <span class="toc-text">Reactive Apps with Model-View-Intent - Part 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-View-Intent模式"><span class="toc-number">2.3.1.</span> <span class="toc-text">Model-View-Intent模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用RxJava连接"><span class="toc-number">2.3.2.</span> <span class="toc-text">用RxJava连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-modularization-affects-build-time-of-an-Android-application"><span class="toc-number">2.4.</span> <span class="toc-text">How modularization affects build time of an Android application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exploiting-Android-Seams-for-Testing-and-Flexibility"><span class="toc-number">2.5.</span> <span class="toc-text">Exploiting Android Seams for Testing and Flexibility</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Manifest接缝"><span class="toc-number">2.5.1.</span> <span class="toc-text">Manifest接缝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BuildConfig接缝"><span class="toc-number">2.5.2.</span> <span class="toc-text">BuildConfig接缝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resource接缝"><span class="toc-number">2.5.3.</span> <span class="toc-text">Resource接缝</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reptar"><span class="toc-number">3.1.</span> <span class="toc-text">Reptar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Toasty"><span class="toc-number">3.2.</span> <span class="toc-text">Toasty</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Google-Actions-Java-SDK"><span class="toc-number">3.3.</span> <span class="toc-text">Google-Actions-Java-SDK</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Android-Weekly-Issue-241"><a href="#Android-Weekly-Issue-241" class="headerlink" title="Android Weekly Issue #241"></a>Android Weekly Issue #241</h1><p>January 22nd, 2017<br><a href="http://androidweekly.net/issues/issue-241" target="_blank" rel="external">Android Weekly Issue #241</a><br>本期内容包括: 经典导航模式Master/Detail的设计和实现; APK的大小讨论和增量下载大小的预估工具; Model-View-Intent模式的讨论和实现; 分多个modules对build时间的影响; 测试中能够利用的一些Android特有的接缝设计(manifest, build config, resource).</p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Case-Study-Master-Detail-Pattern-Revisited"><a href="#Case-Study-Master-Detail-Pattern-Revisited" class="headerlink" title="Case Study. Master/Detail Pattern Revisited"></a><a href="http://goneremote.io/master-detail-pattern/" target="_blank" rel="external">Case Study. Master/Detail Pattern Revisited</a></h2><p>Master/Detail是一种经典的导航流, master屏包含一个list, detail显示某一项的详细信息. <a href="https://developer.android.com/training/implementing-navigation/descendant.html" target="_blank" rel="external">Android Doc</a>.</p>
+<p>作者讲了他适配多种屏幕(包括平板)的设计, 以及简单的实现.</p>
+<h2 id="Tracking-app-update-sizes"><a href="#Tracking-app-update-sizes" class="headerlink" title="Tracking app update sizes"></a><a href="https://medium.com/google-developers/tracking-app-update-sizes-1a1f57634f7b#.v2ecs8u4t" target="_blank" rel="external">Tracking app update sizes</a></h2><p>以前作者有一系列的<a href="https://medium.com/google-developers/smallerapk-part-1-anatomy-of-an-apk-da83c25e7003#.dv2tfqdyq" target="_blank" rel="external">文章</a>讲过apk的组成以及如何减少apk的大小.</p>
+<p>事实上app的大小可以分下面四种:</p>
+<ul>
+<li>提交到Google Play的APK文件大小.</li>
+<li>初始的下载大小.</li>
+<li>在设备上的安装大小.</li>
+<li>更新下载大小.</li>
+</ul>
+<p>之前的一些文章可能都在讨论如何减少初始的大小, 但是大多数情况用户可能只安装你的应用一次, 之后就只是从Play Store更新, 所以应用的更新大小也是很重要的.</p>
+<p>事实上Android Studio(2.2+)改善了打包apk的机制, (<a href="https://android-developers.googleblog.com/2016/11/understanding-apk-packaging-in-android-studio-2-2.html" target="_blank" rel="external">apk packaging</a>), 使得每一个build都尽可能地相似, 这样Play Store就能计算出一个较小的delta更新. 另外, Play Store也引入了新的算法, 比如最近的<a href="https://android-developers.googleblog.com/2016/12/saving-data-reducing-the-size-of-app-updates-by-65-percent.html" target="_blank" rel="external">File-By-File patching</a>, 同样也有效减小了更新的大小.</p>
+<p>所以我们要注意的就是不要介入和干扰当前Android Studio和Play Store的这些优化, 比如不要用自定义的ZIP加密设置来自己压缩APK. 也不要用Zopfli来再次压缩APK.</p>
+<p>Play Store上会显示应用的下载大小, 如果用户已经安装了, 则显示的是更新大小.</p>
+<p>对于开发者来说, 如果能在发布前知道这些信息就更好了, 所以作者他们开源了这个库: <a href="https://github.com/googlesamples/apk-patch-size-estimator" target="_blank" rel="external">apk-patch-size-estimator</a></p>
+<p>这是一个命令行的工具, 可以集成到CI里, 也可以手动比较两个apk文件.</p>
+<p>这个工具实现了当前Play Store的算法, 可以帮你估计出初始的apk下载大小和更新下载大小.</p>
+<p>(注意下载大小和apk文件大小不同因为Play Store可能会做进一步压缩.)</p>
+<p>同样, Android Studio中也有一个图形化的 APK Analyzer工具, 可以做apk的比较, 让你看到到底是哪一部分的尺寸增长了.</p>
+<h2 id="Reactive-Apps-with-Model-View-Intent-Part-2"><a href="#Reactive-Apps-with-Model-View-Intent-Part-2" class="headerlink" title="Reactive Apps with Model-View-Intent - Part 2"></a><a href="http://hannesdorfmann.com/android/mosby3-mvi-2" target="_blank" rel="external">Reactive Apps with Model-View-Intent - Part 2</a></h2><p>上一篇文章讨论了一个好的Model层可以解决很多问题. 这篇来介绍<code>Model-View-Intent</code>模式.</p>
+<h3 id="Model-View-Intent模式"><a href="#Model-View-Intent模式" class="headerlink" title="Model-View-Intent模式"></a>Model-View-Intent模式</h3><p>Model-View-Intent模式是在一个JavaScript的framework <code>cycle.js</code>中提出的.</p>
+<p><img src="/images/view-model-intent.png" alt="view-model-intent"></p>
+<ul>
+<li><code>intent()</code>: 这个方法接收用户输入, 然后输出将会作为参数传给<code>model()</code>.</li>
+<li><code>model()</code>: 接收<code>intent()</code>的输出作为自己的输入, 来操纵Model, 这个方法的输出是一个新的Model(状态变化). 所以它不应该更新一个已经存在的Model. 因为我们想要不可变性. 注意这里是唯一一个允许创建新Model的地方.</li>
+<li><code>view()</code>: 接收<code>model()</code>方法返回的model作为输入, 然后将其展示出来.</li>
+</ul>
+<h3 id="用RxJava连接"><a href="#用RxJava连接" class="headerlink" title="用RxJava连接"></a>用RxJava连接</h3><p>我们希望数据流是单向的, 于是我们用了RxJava, 它很适合这种基于事件的编程, 在这里主要是UI事件.</p>
+<p>作者之后举了一个实现的例子, 在这个例子中他们的Model层用了ViewState后缀. <code>SearchInteractor</code>用来执行搜索, 返回的结果是<code>Observable&lt;SearchViewState&gt;</code>.</p>
+<p>这个模式中定义的View接口里包含了<code>render()</code>方法, 根据传入的状态model显示UI; 这个View接口其实还包含了<code>intent()</code>的方法, 返回的是一个<code>Observable</code>, UI中用了<a href="https://github.com/JakeWharton/RxBinding" target="_blank" rel="external">RxBinding</a>.</p>
+<p>最后一步就是, 如何将View的intent和业务逻辑联系起来呢? 这里用到了一个额外的组件: <code>Presenter</code>.</p>
+<p>这个Presenter看起来像这样:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SearchPresenter</span> <span class="keyword">extends</span> <span class="title">MviBasePresenter</span>&lt;<span class="title">SearchView</span>, <span class="title">SearchViewState</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> SearchInteractor searchInteractor;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">bindIntents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Observable&lt;SearchViewState&gt; search =</span><br><span class="line">        intent(SearchView::searchIntent)</span><br><span class="line">            .switchMap(searchInteractor::search) <span class="comment">// I have used flatMap() in the video above, but switchMap() makes more sense here</span></span><br><span class="line">            .observeOn(AndroidSchedulers.mainThread());</span><br><span class="line"></span><br><span class="line">    subscribeViewState(search, SearchView::render);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>MviBasePresenter</code>是<a href="https://github.com/sockeqwe/mosby" target="_blank" rel="external">mosby</a>中的一个类.<br>这个类做的事情就是当View第一次attach到Prensenter上时, 调用<code>bindIntent()</code>方法将来自view的intent绑定到业务逻辑上, 只有第一次会绑定, 当View再次attach时不会发生.</p>
+<p>而<code>subscribeViewState()</code>方法则处理了定于管理, 避免内存泄露(具体原因见原文).</p>
+<h2 id="How-modularization-affects-build-time-of-an-Android-application"><a href="#How-modularization-affects-build-time-of-an-Android-application" class="headerlink" title="How modularization affects build time of an Android application"></a><a href="https://medium.com/@nikita.kozlov/how-modularisation-affects-build-time-of-an-android-application-43a984ce9968#.hzgv3h6cm" target="_blank" rel="external">How modularization affects build time of an Android application</a></h2><p>一个Android应用至少有一个application module, build这个module之后得到一个.apk文件.</p>
+<p>application module之间不能相互依赖, 它只能依赖于library, build library module的结果是得到一个.aar(Android Archive Library)文件.</p>
+<p>build的过程可以粗略分为5个阶段:</p>
+<ul>
+<li>1.准备依赖.</li>
+<li>2.Merge资源和manifest.</li>
+<li>3.编译. 从annotation processors开始, 把源码编译成字节码.</li>
+<li>4.后处理. 所有以<code>transform</code>开头的gradle tasks都属于这个阶段. 其中最重要的是<code>transformClassesWithMultidexlist</code>和<code>transformClassesWithDex</code>, 它们生成了.dex文件.</li>
+<li>5.打包发布. 对library来说是生成.aar, 对application来说是生成.apk.</li>
+</ul>
+<p>我们都知道gradle只有在输入变化了的情况下才会重跑task. 而且如果一个module没有变化, 也不会被重新build, 那么就出现了一种假设: 多个module应用的增量build要比单个module的快, 因为只有被改变了的module才会重新编译.</p>
+<p>作者想验证这种假设是否正确.<br>他用的工具就是:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gradle assembleDebug --profile</span><br></pre></td></tr></table></figure></p>
+<p>做了一系列实验之后证明这个假设还是有道理的.</p>
+<p>实验过程中的一些发现:</p>
+<p>1.当应用被拆分为多个modules之后, 改变application module中的代码, build时间会减少; 但是library中的代码, build时间反而会增加. 这是因为library build的时候debug和release的tasks都执行了(并不知道为什么).</p>
+<p>当library module被这样添加的时候:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile project(path: &apos;:app2&apos;)</span><br><span class="line">    compile project(path: &apos;:app3&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>不管app当前的build type是什么, app永远依赖的是library的release版本.</p>
+<p>这是一个Gradle当前的限制. 参见<a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Library-Publication" target="_blank" rel="external">Library-Publication</a>.</p>
+<p>幸运的是, 我们可以改变这一行为:<br>首先在library中添加:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        defaultPublishConfig &apos;release&apos;</span><br><span class="line">        publishNonDefault true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>让它也可以发布debug版.<br>在app中依赖的时候:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    debugCompile project(path: &apos;:app2&apos;, configuration: &quot;debug&quot;)</span><br><span class="line">    releaseCompile project(path: &apos;:app2&apos;, configuration: &quot;release&quot;)</span><br><span class="line"></span><br><span class="line">    debugCompile project(path: &apos;:app3&apos;, configuration: &quot;debug&quot;)</span><br><span class="line">    releaseCompile project(path: &apos;:app3&apos;, configuration: &quot;release&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样debug和release都只依赖各自对应版本的library了.</p>
+<p>2.不管我们改动的是library中的代码还是application中的代码, application module永远都会被重新编译, 所以减小app module的尺寸很有意义.</p>
+<p>3.上面这些都是library之间互相独立的情况, 如果library之间还有相互依赖, 那么build时间也会变长.</p>
+<p>4.如果应用超出了DEX的方法数限制, 用了multidex, 也会增加build时间, Android 5.0开始使用了一个叫做ART的runtime, 在这方面有一些优化, 可以减少build时间, 所以我们可以在开发的时候设置最小API是21: <a href="https://developer.android.com/studio/build/multidex.html#dev-build" target="_blank" rel="external">Optimize multidex in development builds</a>.</p>
+<h2 id="Exploiting-Android-Seams-for-Testing-and-Flexibility"><a href="#Exploiting-Android-Seams-for-Testing-and-Flexibility" class="headerlink" title="Exploiting Android Seams for Testing and Flexibility"></a><a href="https://www.philosophicalhacker.com/post/exploiting-android-specific-seams-for-testing-and-flexibility/" target="_blank" rel="external">Exploiting Android Seams for Testing and Flexibility</a></h2><p>如何让Android应用代码可测试? 答案是创建一些接缝. 这篇文章中, 作者将一些Android特有的接缝, 来让我们的应用更加灵活和易测.</p>
+<h3 id="Manifest接缝"><a href="#Manifest接缝" class="headerlink" title="Manifest接缝"></a>Manifest接缝</h3><p>使用<a href="https://developer.android.com/studio/build/manifest-merge.html#merge_rule_markers" target="_blank" rel="external">Merge rule markers</a>可以方便地更改manifest.</p>
+<p>比如在build variant是mock的时候, 由于我们在src/mock/AndroidManifest.xml里这样写:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- src/mock/AndroidManifest.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">activity</span></span><br><span class="line">  <span class="attr">android:name</span>=<span class="string">".StubConfigActivity"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">activity</span></span><br><span class="line">  <span class="attr">android:name</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">intent-filter</span> <span class="attr">tools:node</span>=<span class="string">"remove"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>所以在build mock的时候, 启动Activity会被替换成上面这个<code>StubConfigActivity</code>.</p>
+<p>还有更多的可能值得探索, 比如你可以替换filter的内容, 从而改变默认intent启动的Activity.</p>
+<h3 id="BuildConfig接缝"><a href="#BuildConfig接缝" class="headerlink" title="BuildConfig接缝"></a>BuildConfig接缝</h3><p>在gradle中可以根据不同的build variant来定义<code>BuildConfig</code>中的变量值. </p>
+<p>默认情况下<code>BuildConfig</code>中会包含一些有用的变量比如<code>DEBUG</code>和<code>FLAVOR</code>.</p>
+<p>我们可以创建更多额外的变量:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">productFlavors &#123;</span><br><span class="line">  mock &#123;</span><br><span class="line">    buildConfigField(&apos;Boolean&apos;, &apos;MOCK&apos;, &quot;true&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一个简单的应用case是我们可以定义不同的base url:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">defaultConfig &#123;</span><br><span class="line">  buildConfigField(&apos;String&apos;, &apos;API_BASE&apos;, &apos;\&quot;api.awesomecompany.com\&quot;&apos;)</span><br><span class="line">&#125;</span><br><span class="line">productFlavors &#123;</span><br><span class="line">  sandbox &#123;</span><br><span class="line">    buildConfigField(&apos;String&apos;, &apos;API_BASE&apos;, &apos;\&quot;localhost:8080\&quot;&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Resource接缝"><a href="#Resource接缝" class="headerlink" title="Resource接缝"></a>Resource接缝</h3><p>不同build variants的资源就像manifest一样, 最后会被merged. 但是对于资源我们没有markers可以控制它们如何merge. </p>
+<p>我们可以利用默认的merge行为: <a href="https://developer.android.com/studio/write/add-resources.html#resource_merging" target="_blank" rel="external">Resource merging</a>.</p>
+<p>优先级是这样的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">build variant &gt; build type &gt; product flavor &gt; main source set &gt; library dependencies</span><br></pre></td></tr></table></figure></p>
+<p>所以我们可以把默认的资源放在main里, 然后在特定的build variant再创建一份覆盖它们.</p>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="Reptar"><a href="#Reptar" class="headerlink" title="Reptar"></a><a href="https://github.com/Commit451/Reptar" target="_blank" rel="external">Reptar</a></h2><p>RxJava2.x的有用的类的集合.</p>
+<h2 id="Toasty"><a href="#Toasty" class="headerlink" title="Toasty"></a><a href="https://github.com/GrenderG/Toasty" target="_blank" rel="external">Toasty</a></h2><p>前面加了一个icon的Toast, 带背景颜色, 除了内置的error, info, success, warning等几种形式, 还可以自定义.</p>
+<h2 id="Google-Actions-Java-SDK"><a href="#Google-Actions-Java-SDK" class="headerlink" title="Google-Actions-Java-SDK"></a><a href="https://github.com/frogermcs/Google-Actions-Java-SDK" target="_blank" rel="external">Google-Actions-Java-SDK</a></h2><p>非官方的Google Actions Java SDK.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Android-Weekly/">Android Weekly</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Android-Weekly/">Android Weekly</a><a href="/tags/RxJava/">RxJava</a><a href="/tags/APK/">APK</a><a href="/tags/RxJava2/">RxJava2</a><a href="/tags/Testing/">Testing</a><a href="/tags/Master-Detail/">Master/Detail</a><a href="/tags/MVI/">MVI</a><a href="/tags/Build-Time/">Build Time</a><a href="/tags/Toast/">Toast</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/Android/Android-Weekly/2017/01/25/android-weekly-notes-issue-241/" data-title="Android Weekly Notes Issue 241 | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Android/Android-Weekly/2017/01/24/android-weekly-notes-issue-240/"  title="Android Weekly Notes Issue 240">
+ <strong>下一篇：</strong><br/> 
+ <span>Android Weekly Notes Issue 240
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="Android/Android-Weekly/2017/01/25/android-weekly-notes-issue-241/" data-title="Android Weekly Notes Issue 241" data-url="http://mengdd.github.io/Android/Android-Weekly/2017/01/25/android-weekly-notes-issue-241/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-241"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #241</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-Study-Master-Detail-Pattern-Revisited"><span class="toc-number">2.1.</span> <span class="toc-text">Case Study. Master/Detail Pattern Revisited</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tracking-app-update-sizes"><span class="toc-number">2.2.</span> <span class="toc-text">Tracking app update sizes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reactive-Apps-with-Model-View-Intent-Part-2"><span class="toc-number">2.3.</span> <span class="toc-text">Reactive Apps with Model-View-Intent - Part 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-View-Intent模式"><span class="toc-number">2.3.1.</span> <span class="toc-text">Model-View-Intent模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用RxJava连接"><span class="toc-number">2.3.2.</span> <span class="toc-text">用RxJava连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-modularization-affects-build-time-of-an-Android-application"><span class="toc-number">2.4.</span> <span class="toc-text">How modularization affects build time of an Android application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exploiting-Android-Seams-for-Testing-and-Flexibility"><span class="toc-number">2.5.</span> <span class="toc-text">Exploiting Android Seams for Testing and Flexibility</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Manifest接缝"><span class="toc-number">2.5.1.</span> <span class="toc-text">Manifest接缝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BuildConfig接缝"><span class="toc-number">2.5.2.</span> <span class="toc-text">BuildConfig接缝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resource接缝"><span class="toc-number">2.5.3.</span> <span class="toc-text">Resource接缝</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reptar"><span class="toc-number">3.1.</span> <span class="toc-text">Reptar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Toasty"><span class="toc-number">3.2.</span> <span class="toc-text">Toasty</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Google-Actions-Java-SDK"><span class="toc-number">3.3.</span> <span class="toc-text">Google-Actions-Java-SDK</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>36</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-News/" title="Android News">Android News<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Weekly/" title="Android Weekly">Android Weekly<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Architecture/" title="Architecture">Architecture<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Design/" title="Design">Design<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/IDE/" title="IDE">IDE<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/" title="Retrofit">Retrofit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/RxJava/" title="RxJava">RxJava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/" title="Tools">Tools<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>36</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>24</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVP/" title="MVP">MVP<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Test/" title="Test">Test<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RxJava2/" title="RxJava2">RxJava2<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Retrofit/" title="Retrofit">Retrofit<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Things/" title="Android Things">Android Things<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/mengdd/" target="_blank" title="圣骑士wind">圣骑士wind</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://talentprince.github.io/" target="_blank" title="长乐未央">长乐未央</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dandan Meng. <br/>
+			This is my blog. Welcome.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/mengdd" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wind"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dandanmeng';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75132850-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?83e8338b542a9fd155f68673d113e0ae";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
