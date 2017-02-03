@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-01-25T01:52:53.000Z</updated>
+  <updated>2017-02-03T09:37:34.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,126 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 242</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/02/03/android-weekly-notes-issue-242/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/02/03/android-weekly-notes-issue-242/</id>
+    <published>2017-02-03T09:27:49.000Z</published>
+    <updated>2017-02-03T09:37:34.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-242&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-242&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #242&quot;&gt;&lt;/a&gt;Android Weekly Issue #242&lt;/h1&gt;&lt;p&gt;January 29th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-242&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #242&lt;/a&gt;&lt;br&gt;本期内容包括: Android中常用的设计模式; 基于NoSQL的移动对象数据库–ObjectBox; MVC, MVP和MVVM模式的讨论; 一个Google Actions的Java SDK; 一个带黏性动画的FAB的实现; Kotlin 1.1的新功能; Firebase的实时数据库讨论; Model-View-Intent模式应用的实现; 关于实现gradient时透明颜色的使用.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Common-Design-Patterns-for-Android&quot;&gt;&lt;a href=&quot;#Common-Design-Patterns-for-Android&quot; class=&quot;headerlink&quot; title=&quot;Common Design Patterns for Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.raywenderlich.com/109843/common-design-patterns-for-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Common Design Patterns for Android&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;Creational-Patterns&quot;&gt;&lt;a href=&quot;#Creational-Patterns&quot; class=&quot;headerlink&quot; title=&quot;Creational Patterns&quot;&gt;&lt;/a&gt;Creational Patterns&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Builder&lt;/li&gt;
+&lt;li&gt;依赖注入: 举例: Dagger &lt;/li&gt;
+&lt;li&gt;Singleton&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Structural-Patterns&quot;&gt;&lt;a href=&quot;#Structural-Patterns&quot; class=&quot;headerlink&quot; title=&quot;Structural Patterns&quot;&gt;&lt;/a&gt;Structural Patterns&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Adapter&lt;/li&gt;
+&lt;li&gt;Facade: 举例: Retrofit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Behavioral-Patterns&quot;&gt;&lt;a href=&quot;#Behavioral-Patterns&quot; class=&quot;headerlink&quot; title=&quot;Behavioral Patterns&quot;&gt;&lt;/a&gt;Behavioral Patterns&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Command: 举例: EventBus&lt;/li&gt;
+&lt;li&gt;Observer: 举例: RxAndroid&lt;/li&gt;
+&lt;li&gt;Model View Controller&lt;/li&gt;
+&lt;li&gt;Model View ViewModel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;ObjectBox-The-new-Mobile-Database&quot;&gt;&lt;a href=&quot;#ObjectBox-The-new-Mobile-Database&quot; class=&quot;headerlink&quot; title=&quot;ObjectBox - The new Mobile Database&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://greenrobot.org/announcement/introducing-objectbox-beta/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ObjectBox - The new Mobile Database&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://greenrobot.org/objectbox/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ObjectBox&lt;/a&gt;是greenrobot发布的一个新的mobile对象数据库, 主要关注于性能, 据说superfast.&lt;/p&gt;
+&lt;p&gt;在ObjectBox中, 主要是把NoSQL技术迁移到mobile端使用. 之前他们创建的greenDAO, 据说是最快的Object/Relational Mapper (ORM) for Android and SQLite.&lt;/p&gt;
+&lt;p&gt;ObjectBox的5大特性:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Superfast.&lt;/li&gt;
+&lt;li&gt;Object API.&lt;/li&gt;
+&lt;li&gt;Instant unit testing.&lt;/li&gt;
+&lt;li&gt;Simple threading.&lt;/li&gt;
+&lt;li&gt;No manual schema migrations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;http://greenrobot.org/objectbox/documentation/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://github.com/greenrobot/ObjectBoxExamples&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Demo&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;MVC-vs-MVP-vs-MVVM-on-Android&quot;&gt;&lt;a href=&quot;#MVC-vs-MVP-vs-MVVM-on-Android&quot; class=&quot;headerlink&quot; title=&quot;MVC vs. MVP vs. MVVM on Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://realm.io/news/eric-maxwell-mvc-mvp-and-mvvm-on-android/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MVC vs. MVP vs. MVVM on Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;MVC, MVP, MVVM模式的介绍.&lt;/p&gt;
+&lt;h2 id=&quot;Building-Google-Actions-with-Java&quot;&gt;&lt;a href=&quot;#Building-Google-Actions-with-Java&quot; class=&quot;headerlink&quot; title=&quot;Building Google Actions with Java&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@froger_mcs/building-google-actions-with-java-696cffedbd01#.d6uuck1ho&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Building Google Actions with Java&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;非官方的&lt;a href=&quot;https://github.com/frogermcs/Google-Actions-Java-SDK&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Google Actions Java SDK&lt;/a&gt;, 本文为开发者介绍其如何使用.&lt;/p&gt;
+&lt;h2 id=&quot;Android-Gooey-FAB-is-EASY&quot;&gt;&lt;a href=&quot;#Android-Gooey-FAB-is-EASY&quot; class=&quot;headerlink&quot; title=&quot;Android Gooey FAB is EASY&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://myhexaville.com/2017/01/18/android-gooey-fab-easy/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Gooey FAB is EASY&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;实现一个胶黏的FAB.&lt;br&gt;首先作者展示了效果, 点击FAB, 从中逐渐分离中一个新的小按钮. 作者讨论了这种效果可能的实现方法:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用bitmap的mesh transformation, 这是能高度自定义的.&lt;/li&gt;
+&lt;li&gt;创建自定义View, 自己绘制Path.&lt;/li&gt;
+&lt;li&gt;最简单的办法: 用Animated Vector Drawable, 即本文所介绍的方法.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;源码在这里: &lt;a href=&quot;https://github.com/IhorKlimov/Android-Animations&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android-Animations&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;What-Comes-in-Kotlin-1-1-for-Android-Developers&quot;&gt;&lt;a href=&quot;#What-Comes-in-Kotlin-1-1-for-Android-Developers&quot; class=&quot;headerlink&quot; title=&quot;What Comes in Kotlin 1.1 for Android Developers?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.elpassion.com/what-comes-in-kotlin-1-1-for-android-developers-831d559f780f#.wlmujxwi3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What Comes in Kotlin 1.1 for Android Developers?&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Kotlin 1.1的新features.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Coroutines. 改善Kotlin中的异步编程.&lt;/li&gt;
+&lt;li&gt;Type Aliases. 可以为类型起别名.&lt;/li&gt;
+&lt;li&gt;Inlining Property Accessors.&lt;/li&gt;
+&lt;li&gt;Less Restrictive Inheritance. sealed类的子类不用再放在同一个类中; 非final的类现在也可以继承data类了.&lt;/li&gt;
+&lt;li&gt;Destructuring and Underscores.&lt;/li&gt;
+&lt;li&gt;Methods Count. 作者对比了一个sample程序, 用kotlin的不同版本, 发现用最新版kotlin确实会增加一些方法数, 但它仍然算是一个很轻量的库.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Understanding-the-Power-of-Firebase-Security-Rules&quot;&gt;&lt;a href=&quot;#Understanding-the-Power-of-Firebase-Security-Rules&quot; class=&quot;headerlink&quot; title=&quot;Understanding the Power of Firebase Security Rules&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@dftaiwo/understanding-the-power-of-firebase-security-rules-part-1-f46aae773a24#.cw34j1v2z&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Understanding the Power of Firebase Security Rules&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者要写关于Firebase的一系列文章: 第一和第二篇主要介绍实时数据库的规则, 第三篇介绍Storage的规则.&lt;/p&gt;
+&lt;p&gt;关于实时数据库规则的主要内容包括:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;识别你的用户.&lt;/li&gt;
+&lt;li&gt;控制数据访问权限.&lt;/li&gt;
+&lt;li&gt;验证创建, 更新和删除操作.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Reactive-apps-with-Model-View-Intent-Part-3&quot;&gt;&lt;a href=&quot;#Reactive-apps-with-Model-View-Intent-Part-3&quot; class=&quot;headerlink&quot; title=&quot;Reactive apps with Model-View-Intent - Part 3&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://hannesdorfmann.com/android/mosby3-mvi-3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reactive apps with Model-View-Intent - Part 3&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;上一篇中介绍了用Model-View-Intent模式来构建一个单相数据流的简单屏. 这篇文章接着讲如何用MVI和state reducer来构建一个复杂屏.&lt;/p&gt;
+&lt;p&gt;(感觉太复杂了我没仔细看).&lt;/p&gt;
+&lt;h2 id=&quot;Android-Dev-Tip-3-A-gotcha-with-color-transparent&quot;&gt;&lt;a href=&quot;#Android-Dev-Tip-3-A-gotcha-with-color-transparent&quot; class=&quot;headerlink&quot; title=&quot;Android Dev Tip #3: A gotcha with color/transparent&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://android.jlelse.eu/android-dev-tip-3-99da754151ad#.rarx8jafm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Dev Tip #3: A gotcha with color/transparent&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如果你要在xml中用gradient写一个渐变色, 对于透明色&lt;code&gt;@android:color/transparent.&lt;/code&gt;的使用一定要注意.&lt;/p&gt;
+&lt;p&gt;透明色&lt;code&gt;@android:color/transparent.&lt;/code&gt;的色值是&lt;code&gt;#00000000&lt;/code&gt;, 所以它实际上代表的是一个透明的黑色.&lt;/p&gt;
+&lt;p&gt;在gradient进行插值的时候, 会对ARGB每一个通道的色值都分别进行插值然后叠加.&lt;/p&gt;
+&lt;p&gt;所以如果你想要保持颜色不变, 只改变透明度, 也即Alpha通道的值, 你就应该把透明色中RGB颜色设置为和原来的颜色一样. &lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;PreviewSeekBar&quot;&gt;&lt;a href=&quot;#PreviewSeekBar&quot; class=&quot;headerlink&quot; title=&quot;PreviewSeekBar&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/rubensousa/PreviewSeekBar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PreviewSeekBar&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个带Preview的SeekBar.&lt;/p&gt;
+&lt;h2 id=&quot;AndroidTestingBox&quot;&gt;&lt;a href=&quot;#AndroidTestingBox&quot; class=&quot;headerlink&quot; title=&quot;AndroidTestingBox&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://roroche.github.io/AndroidTestingBox/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AndroidTestingBox&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Android项目, 用于实验各种测试工具.&lt;/p&gt;
+&lt;h2 id=&quot;FunctionalRx2&quot;&gt;&lt;a href=&quot;#FunctionalRx2&quot; class=&quot;headerlink&quot; title=&quot;FunctionalRx2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/pakoito/FunctionalRx2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FunctionalRx2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;a collection of constructs to simplify a functional programming approach to Java and Android.&lt;/p&gt;
+&lt;h2 id=&quot;gradle-completion&quot;&gt;&lt;a href=&quot;#gradle-completion&quot; class=&quot;headerlink&quot; title=&quot;gradle-completion&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/eriwen/gradle-completion&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gradle-completion&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;gradle的tab补全, for bash and zsh.&lt;/p&gt;
+&lt;h2 id=&quot;ObjectBox&quot;&gt;&lt;a href=&quot;#ObjectBox&quot; class=&quot;headerlink&quot; title=&quot;ObjectBox&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/greenrobot/ObjectBox&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ObjectBox&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;超快的移动平台对象数据库.&lt;/p&gt;
+&lt;h2 id=&quot;superlightstack&quot;&gt;&lt;a href=&quot;#superlightstack&quot; class=&quot;headerlink&quot; title=&quot;superlightstack&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/nextdimension/superlightstack&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;superlightstack&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个轻量级的库, 用于创建View的stack, 并处理转换和状态维持.&lt;/p&gt;
+&lt;h2 id=&quot;PicassoFaceDetectionTransformation&quot;&gt;&lt;a href=&quot;#PicassoFaceDetectionTransformation&quot; class=&quot;headerlink&quot; title=&quot;PicassoFaceDetectionTransformation&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/aryarohit07/PicassoFaceDetectionTransformation&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PicassoFaceDetectionTransformation&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个配合picasso使用的图像转换库, 可以根据人脸检测自动确定范围而切图.&lt;/p&gt;
+&lt;p&gt;(Readme中附有配合Glide和Fresco使用的版本.)&lt;/p&gt;
+&lt;h2 id=&quot;cwac-netsecurity&quot;&gt;&lt;a href=&quot;#cwac-netsecurity&quot; class=&quot;headerlink&quot; title=&quot;cwac-netsecurity&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/commonsguy/cwac-netsecurity&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cwac-netsecurity&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;This library contains a backport of the Android 7.0 network security configuration subsystem.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-242&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-242&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #242&quot;&gt;&lt;/a&gt;Android Weekly Issue #242&lt;/h1&gt;&lt;p&gt;January 29th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-242&quot;&gt;Android Weekly Issue #242&lt;/a&gt;&lt;br&gt;本期内容包括: Android中常用的设计模式; 基于NoSQL的移动对象数据库–ObjectBox; MVC, MVP和MVVM模式的讨论; 一个Google Actions的Java SDK; 一个带黏性动画的FAB的实现; Kotlin 1.1的新功能; Firebase的实时数据库讨论; Model-View-Intent模式应用的实现; 关于实现gradient时透明颜色的使用.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
+    
+      <category term="Color" scheme="http://mengdd.github.io/tags/Color/"/>
+    
+      <category term="Design Patterns" scheme="http://mengdd.github.io/tags/Design-Patterns/"/>
+    
+      <category term="ObjectBox" scheme="http://mengdd.github.io/tags/ObjectBox/"/>
+    
+      <category term="Google Actions" scheme="http://mengdd.github.io/tags/Google-Actions/"/>
+    
+      <category term="FAB" scheme="http://mengdd.github.io/tags/FAB/"/>
+    
+      <category term="Model-View-Intent" scheme="http://mengdd.github.io/tags/Model-View-Intent/"/>
+    
+      <category term="Gradient" scheme="http://mengdd.github.io/tags/Gradient/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 241</title>
@@ -117,9 +237,9 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
-    
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
+      <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -371,11 +491,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
-    
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
+      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
     
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
     
@@ -1254,11 +1374,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
       <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
       <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
-    
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
@@ -1366,15 +1486,15 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
-    
       <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
-      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
+      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
     
       <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
       <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
     
@@ -1691,11 +1811,11 @@
     
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
       <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
       <category term="Pury" scheme="http://mengdd.github.io/tags/Pury/"/>
     
@@ -2488,178 +2608,6 @@
       <category term="Clean Architecture" scheme="http://mengdd.github.io/tags/Clean-Architecture/"/>
     
       <category term="Loader" scheme="http://mengdd.github.io/tags/Loader/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 227</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/10/21/android-weekly-notes-issue-227/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2016/10/21/android-weekly-notes-issue-227/</id>
-    <published>2016-10-21T06:52:53.000Z</published>
-    <updated>2016-10-21T07:57:52.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-227&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-227&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #227&quot;&gt;&lt;/a&gt;Android Weekly Issue #227&lt;/h1&gt;&lt;p&gt;October 16th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-227&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #227&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;本期内容包括: Google的Mobile Vision API 人脸检测; Firebase的Remote Config; 与HashMap有关的优化; 提高RecyclerView帧率的优化; 使用AutoValue生成model代码; 开源库中抽象类和接口的使用讨论; Bottom Sheet的使用; Android Studio中的版本控制系统; ConstraintLayout的使用; 应用换Bottom Navigation; Nougat的Messaging Style Notification; 自定义字体; Reductor的使用等.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Face-Detection-Concepts-Overview&quot;&gt;&lt;a href=&quot;#Face-Detection-Concepts-Overview&quot; class=&quot;headerlink&quot; title=&quot;Face Detection Concepts Overview&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://developers.google.com/vision/face-detection-concepts&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Face Detection Concepts Overview&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章来自Mobile Vision, 讲人脸检测及相关概念.&lt;br&gt;API使用&lt;a href=&quot;https://developers.google.com/vision/android/detect-faces-tutorial&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Tutorial&lt;/a&gt;.&lt;br&gt;&lt;a href=&quot;https://github.com/googlesamples/android-vision&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sample&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Exploring-Firebase-on-Android-amp-iOS-Remote-Config&quot;&gt;&lt;a href=&quot;#Exploring-Firebase-on-Android-amp-iOS-Remote-Config&quot; class=&quot;headerlink&quot; title=&quot;Exploring Firebase on Android &amp;amp; iOS: Remote Config&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@hitherejoe/exploring-firebase-on-android-ios-remote-config-3e1407b088f6#.ozr0s8s5q&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Exploring Firebase on Android &amp;amp; iOS: Remote Config&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Remote config是Firebase提供的一个feature, 让我们可以定义参数, 在firebase的console管理, 从而在server端控制应用的UI或者行为, 并且可以选择生效的用户范围.&lt;/p&gt;
-&lt;p&gt;之前还有这个文章是关于&lt;a href=&quot;https://medium.com/exploring-android/exploring-firebase-on-android-ios-analytics-8484b61a21ba#.lu7cv7ejz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Firebase Analytics&lt;/a&gt;的.&lt;/p&gt;
-&lt;p&gt;本篇文章介绍了Firebase的Remote Config可以干什么, 以及怎么做, 解说很详细.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;参数&lt;/strong&gt;&lt;br&gt;我们用Remote Config定义的键值对叫参数(parameters).  它提供了这个参数相关的what信息(key, the identifier), 和how信息(value, the configuration).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;条件&lt;/strong&gt;&lt;br&gt;条件值(conditional value)也是一个键值对, 其中condition指定了需要满足的条件, value指定了满足条件时需要返回的值.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;优先级&lt;/strong&gt;&lt;br&gt;如果单个条件被满足, 那么返回对应的值; 如果多个条件都被满足, 那么返回主导条件(list上方的条件)对应的值; 如果没有条件满足, 则返回默认值; 如果没有定义默认值, 则什么也不返回.&lt;/p&gt;
-&lt;p&gt;文中还详细介绍了Android和iOS端的实现, 以及console的配置.&lt;/p&gt;
-&lt;h2 id=&quot;Android-App-Optimization-Using-ArrayMap-and-SparseArray&quot;&gt;&lt;a href=&quot;#Android-App-Optimization-Using-ArrayMap-and-SparseArray&quot; class=&quot;headerlink&quot; title=&quot;Android App Optimization Using ArrayMap and SparseArray&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@amitshekhar/android-app-optimization-using-arraymap-and-sparsearray-f2b4e2e3dc47#.29qai8u8j&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android App Optimization Using ArrayMap and SparseArray&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;当我们需要存储键值对的时候, 我们总是首先想到用&lt;code&gt;HashMap&lt;/code&gt;, 然而IDE(Android Studio)有时候会警告提醒你, 应该用&lt;code&gt;ArrayMap&lt;/code&gt;或&lt;code&gt;SparseArray&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;HashMap-vs-ArrayMap&quot;&gt;&lt;a href=&quot;#HashMap-vs-ArrayMap&quot; class=&quot;headerlink&quot; title=&quot;HashMap vs ArrayMap&quot;&gt;&lt;/a&gt;HashMap vs ArrayMap&lt;/h3&gt;&lt;p&gt;&lt;code&gt;ArrayMap&lt;/code&gt;比传统的&lt;code&gt;HashMap&lt;/code&gt;更节省内存, 因为它把自己的映射放在数组结构中: 一个整型数组放每一个item的hash code, 一个Object数组放key/value对. 这样避免了为每一个entry创建额外的对象, 而且数组增长也好控制.&lt;/p&gt;
-&lt;p&gt;注意&lt;code&gt;ArrayMap&lt;/code&gt;并不是为很大的数据集设计的, 并且它会比&lt;code&gt;HashMap&lt;/code&gt;慢一些, 以为查找需要二分查找, 增删需要在数组中操作.&lt;/p&gt;
-&lt;h3 id=&quot;HashMap&quot;&gt;&lt;a href=&quot;#HashMap&quot; class=&quot;headerlink&quot; title=&quot;HashMap&quot;&gt;&lt;/a&gt;HashMap&lt;/h3&gt;&lt;p&gt;&lt;code&gt;HashMap&lt;/code&gt;是一个&lt;code&gt;HashMap.Entry&lt;/code&gt;的数组, 其组成是key, value, HashCode, 还有一个指针.&lt;/p&gt;
-&lt;p&gt;当进行插入时: 首先计算出key的HashCode, 然后用这个hashCode找到对应的bucket, 如果已经存了元素, 则把旧元素的指针指向新元素, 即把bucket变为一个&lt;code&gt;LinkedList&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;当进行查询时: 复杂度为O(1), 但是这样是牺牲了更多的空间复杂度得到的.&lt;/p&gt;
-&lt;p&gt;HashMap的缺点:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;因为key和value都不能是原生类型, 所以插入时可能会有自动装箱, 导致创建额外的对象.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;HashMap.Entry&lt;/code&gt;本身就是一层额外的对象.&lt;/li&gt;
-&lt;li&gt;每次HashMap的收缩或者扩张, Buckets都要重新排列, 随着对象变多, 这个操作变得越发昂贵.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;ArrayMap&quot;&gt;&lt;a href=&quot;#ArrayMap&quot; class=&quot;headerlink&quot; title=&quot;ArrayMap&quot;&gt;&lt;/a&gt;ArrayMap&lt;/h3&gt;&lt;p&gt;&lt;code&gt;ArrayMap&lt;/code&gt;使用两个数组:&lt;br&gt;&lt;code&gt;int[] mHashes&lt;/code&gt;用来存哈希值; &lt;code&gt;Object[] mArray&lt;/code&gt;来存对象.&lt;/p&gt;
-&lt;p&gt;当插入键值对时: Key/Value被自动装箱, Key被插入到&lt;code&gt;mArray[]&lt;/code&gt;数组的下一个位置, Value也被插入到&lt;code&gt;mArray[]&lt;/code&gt;, 在Key的下一个位置.&lt;br&gt;计算出的哈希值被放在&lt;code&gt;mHashes[]&lt;/code&gt;的下一个位置.&lt;/p&gt;
-&lt;p&gt;当查询一个Key时: 首先计算出Key的哈希值, 在&lt;code&gt;mHashes&lt;/code&gt;中二分查找这个hashCode(时间复杂度(logN)), 当得到hash的index之后, 我们就知道&lt;code&gt;mArray&lt;/code&gt;中&lt;code&gt;2*index&lt;/code&gt;和&lt;code&gt;2*index+1&lt;/code&gt;的位置对应的是查找的key和value.&lt;/p&gt;
-&lt;p&gt;虽然时间复杂度提升了, 但是这样却更省空间.&lt;/p&gt;
-&lt;h3 id=&quot;推荐的数据结构&quot;&gt;&lt;a href=&quot;#推荐的数据结构&quot; class=&quot;headerlink&quot; title=&quot;推荐的数据结构:&quot;&gt;&lt;/a&gt;推荐的数据结构:&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;ArrayMap&amp;lt;K,V&amp;gt;&lt;/code&gt; in place of &lt;code&gt;HashMap&amp;lt;K,V&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ArraySet&amp;lt;K,V&amp;gt;&lt;/code&gt; in place of &lt;code&gt;HashSet&amp;lt;K,V&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;SparseArray&amp;lt;V&amp;gt;&lt;/code&gt; in place of &lt;code&gt;HashMap&amp;lt;Integer,V&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;SparseBooleanArray&lt;/code&gt; in place of &lt;code&gt;HashMap&amp;lt;Integer,Boolean&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;SparseIntArray&lt;/code&gt; in place of &lt;code&gt;HashMap&amp;lt;Integer,Integer&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;SparseLongArray&lt;/code&gt; in place of &lt;code&gt;HashMap&amp;lt;Integer,Long&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;LongSparseArray&amp;lt;V&amp;gt;&lt;/code&gt; in place of &lt;code&gt;HashMap&amp;lt;Long,V&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;RecyclerView-How-we-achieved-60-FPS-in-Workable’s-Android-App&quot;&gt;&lt;a href=&quot;#RecyclerView-How-we-achieved-60-FPS-in-Workable’s-Android-App&quot; class=&quot;headerlink&quot; title=&quot;RecyclerView: How we achieved 60 FPS in Workable’s Android App&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@p.tournaris/recyclerview-how-we-achieved-60-fps-tips-in-workables-android-app-recyclerviews-c646c796473c#.h4gimmdkp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RecyclerView: How we achieved 60 FPS in Workable’s Android App&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;我们经常会用RecyclerView来显示一个list的数据.&lt;br&gt;作者他们做的是一个招聘应用: Workable, 其中会用list来显示candidates.&lt;br&gt;他们还使用了DataBinding.&lt;br&gt;本文是作者他们关于RecyclerView的帧率所做的一些优化.&lt;/p&gt;
-&lt;p&gt;首先他们使用了Android Studio的Allocation Tracking, 然后上下滚动, 从报告发现, 他们布局中使用的&lt;code&gt;TableLayout&lt;/code&gt;花费了很多资源, 于是后来他们改为&lt;code&gt;LinearLayout&lt;/code&gt;加权重的方式来解决, 摆脱了耗费资源的&lt;code&gt;TableLayout&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;另一个引起很多资源分配的问题是, 对于需要大写的文字, xml中的:&lt;br&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;TextView&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;attr&quot;&gt;...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attr&quot;&gt;android:textAllCaps&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;attr&quot;&gt;...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;TextView&lt;/code&gt;的代码中会为此生成一个对象:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (allCaps) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    setTransformationMethod(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; AllCapsTransformationMethod(getContext()));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;这个在静态的布局中可能没有问题, 但是在一个滚动的list中可能会有些影响.&lt;/p&gt;
-&lt;p&gt;改进方法是改为用java String的&lt;code&gt;.toUpperCase()&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;然后他们使用了RecyclerView的&lt;code&gt;.onViewRecycled()&lt;/code&gt;方法. 这个方法让我们知道了RecyclerView中的一行何时被回收, 这样我们就可以释放一些不需要的资源.&lt;br&gt;他们使用了DataBinding, 所以这是一个合适的时机来删除ViewModel中的&lt;code&gt;OnPropertyChangedCallbacks&lt;/code&gt;, 然后清理ViewModel自身, 我们还可以清理之前用Glide load到ImageView中的图片.&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onViewRecycled&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Candidates holder)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(holder != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        holder.binding.getCandidateVM().removePropertyChangedCallback();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        holder.binding.setCandidateVM(&lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        holder.binding.setHighlightTerm(&lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        holder.binding.setShowJobTitle(&lt;span class=&quot;keyword&quot;&gt;false&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        holder.binding.setShowStage(&lt;span class=&quot;keyword&quot;&gt;false&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        holder.binding.executePendingBindings();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Glide.clear(holder.binding.candidateBrowserAvatar);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        holder.binding.candidateBrowserAvatar.setImageDrawable(&lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onViewRecycled(holder);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;作者他们的应用还有一些cache设置:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;binding.fragmentCandidateBrowseList.setItemViewCacheSize(&lt;span class=&quot;number&quot;&gt;30&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;binding.fragmentCandidateBrowseList.setDrawingCacheEnabled(&lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;binding.fragmentCandidateBrowseList.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;之后作者测量了他们的FPS, 显示是60 FPS, 并且发现去掉这些cache设置仍然是60.&lt;/p&gt;
-&lt;p&gt;测量帧率FPS的工具: &lt;a href=&quot;https://github.com/friendlyrobotnyc/TinyDancer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TinyDancer&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;No-more-value-classes-boilerplate-—-The-power-of-AutoValue&quot;&gt;&lt;a href=&quot;#No-more-value-classes-boilerplate-—-The-power-of-AutoValue&quot; class=&quot;headerlink&quot; title=&quot;No more value classes boilerplate — The power of AutoValue&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/rocknnull/no-more-value-classes-boilerplate-the-power-of-autovalue-bbaf36cf8bbe#.r72rsbe34&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;No more value classes boilerplate — The power of AutoValue&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在Java/Android编程中经常需要写model对象来存放一些数据, 使用Google的库&lt;a href=&quot;https://github.com/google/auto/tree/master/value&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AutoValue&lt;/a&gt;可以帮你自动生成这些类, 你需要做的就是定义你的字段, 然后给类加上注解.&lt;/p&gt;
-&lt;h3 id=&quot;Setup&quot;&gt;&lt;a href=&quot;#Setup&quot; class=&quot;headerlink&quot; title=&quot;Setup&quot;&gt;&lt;/a&gt;Setup&lt;/h3&gt;&lt;p&gt;在project的&lt;code&gt;build.gradle&lt;/code&gt;中:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;buildscript &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [...]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        [...]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        classpath &amp;apos;com.neenbedankt.gradle.plugins:android-apt:1.8&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;在app的&lt;code&gt;build.gradle&lt;/code&gt;中:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apply plugin: &amp;apos;com.neenbedankt.android-apt&amp;apos; // At the beginning&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[...]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [...]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    provided &amp;quot;com.google.auto.value:auto-value:1.2&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    apt &amp;quot;com.google.auto.value:auto-value:1.2&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;基本使用&quot;&gt;&lt;a href=&quot;#基本使用&quot; class=&quot;headerlink&quot; title=&quot;基本使用&quot;&gt;&lt;/a&gt;基本使用&lt;/h3&gt;&lt;p&gt;比如要创建Film类, 你可以写一个这样的抽象类:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@AutoValue&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Film&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; Film &lt;span class=&quot;title&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String name, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; year)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; AutoValue_Film(name, year);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;每一个字段都对应一个抽象方法.&lt;br&gt;build一下, &lt;code&gt;AutoValue_Film&lt;/code&gt;类就会自动生成, 加上静态工厂方法(上面的&lt;code&gt;create()&lt;/code&gt;方法) 然后就可以使用工厂方法来得到model:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Film matrix = Film.create(&lt;span class=&quot;string&quot;&gt;&quot;The Matrix&quot;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1999&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;点进自动生成的类&lt;code&gt;AutoValue_Film&lt;/code&gt;里可以看到, 连&lt;code&gt;hashCode()&lt;/code&gt;和&lt;code&gt;equals()&lt;/code&gt;方法都生成了.&lt;/p&gt;
-&lt;h3 id=&quot;用builder模式&quot;&gt;&lt;a href=&quot;#用builder模式&quot; class=&quot;headerlink&quot; title=&quot;用builder模式&quot;&gt;&lt;/a&gt;用builder模式&lt;/h3&gt;&lt;p&gt;上面的例子随着字段的增多, &lt;code&gt;create()&lt;/code&gt;方法的参数会变得很多, 用起来不方便, 那么此时就需要用Builder模式:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@AutoValue&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Film&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; Builder &lt;span class=&quot;title&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; AutoValue_Film.Builder();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;meta&quot;&gt;@AutoValue&lt;/span&gt;.Builder&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Builder&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; Builder &lt;span class=&quot;title&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String value)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; Builder &lt;span class=&quot;title&quot;&gt;setYear&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; value)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; Film &lt;span class=&quot;title&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;这样就可以很方便地加参数了:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Film matrix = Film.builder()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .setName(&lt;span class=&quot;string&quot;&gt;&quot;The Matrix&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .setYear(&lt;span class=&quot;number&quot;&gt;1999&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .setCategory(Category.FANTASY)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .setRating(&lt;span class=&quot;number&quot;&gt;8.7f&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .setDuration(&lt;span class=&quot;number&quot;&gt;136&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .setReleaseDate(releasedDate)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .setDirectors(directorsList)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .setCast(castList)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .build();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;AutoValue扩展-Parcelable&quot;&gt;&lt;a href=&quot;#AutoValue扩展-Parcelable&quot; class=&quot;headerlink&quot; title=&quot;AutoValue扩展 Parcelable&quot;&gt;&lt;/a&gt;AutoValue扩展 Parcelable&lt;/h3&gt;&lt;p&gt;有时候你需要在Activity之间传数据, 需要你的model是&lt;code&gt;Parcelable&lt;/code&gt;的, 此时你就可以用这个&lt;a href=&quot;https://github.com/rharter/auto-value-parcel&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;auto-value-parcel&lt;/a&gt;, 在代码里也只需要实现这个接口:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@AutoValue&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Film&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Parcelable&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   [...]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;还有很多的扩展库: &lt;a href=&quot;http://search.maven.org/#search%7Cga%7C1%7Cauto-value&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;extensions for AutoValue&lt;/a&gt;, 比如AutoValue-Gson, AutoValue-Cursor, AutoValue-With, AutoValue-Redacted等.&lt;/p&gt;
-&lt;h2 id=&quot;Consider-abstract-class-instead-of-interface&quot;&gt;&lt;a href=&quot;#Consider-abstract-class-instead-of-interface&quot; class=&quot;headerlink&quot; title=&quot;Consider abstract class instead of interface&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://hannesdorfmann.com/android/library-abstract-class&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Consider abstract class instead of interface&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章的作者说, 在library开发中, 应该考虑用抽象类而不是接口. 他的库是&lt;a href=&quot;https://github.com/sockeqwe/AdapterDelegates&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AdapterDelegates&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;作者先介绍了通用的概念比较:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;class vs. interface&lt;br&gt;接口更解耦, 更灵活, 只是定义了一个协议, 不限制实现.&lt;/li&gt;
-&lt;li&gt;interface vs. abstract class&lt;br&gt;抽象类会有继承的问题, 基类和子类会共享一些实现, 所以子类的编写者最好能清楚基类的实现, 这样才不会在写子类实现抽象方法的时候打破了基类作者的意图. 另外就是基类作者仍然可能会更新基类, 所以得时刻检查子类是否还是符合基类的设计意图.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;但是为什么作者还是要把自己库中的接口改为抽象类呢? 这是因为作者的库依赖于Android的库, Android的库中相关代码改了, 作者就得改自己的public接口, 加一个方法, 导致所有新版的使用者也都必须实现这个方法.&lt;/p&gt;
-&lt;p&gt;还有一个情况就是比如一个开发者使用了2.1版本, 但是他项目里依赖的另一个第三方库使用了2.0版本. 编译不会出错, 最终的apk中打包的是2.1版本. 然后在这个第三方库的组件里调用2.1才有的新方法时就会抛出错误.&lt;/p&gt;
-&lt;p&gt;为了解决这个问题, Jake Wharton建议在库的主要更新(major update)中更改发布的package name和group id: &lt;a href=&quot;http://jakewharton.com/java-interoperability-policy-for-major-version-updates/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jakewharton.com/java-interoperability-policy-for-major-version-updates/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;作者觉得那每次Android RecyclerView的Adapter更新都会导致自己的库major update, 所以他决定把自己的&lt;code&gt;AdapterDelegate&lt;/code&gt;接口改为抽象类. 这样他就可以对新增的方法提供默认空实现.&lt;/p&gt;
-&lt;p&gt;这样定义的抽象类只有抽象方法和一些空实现的方法, 并没有状态和行为的共享可能会传播给子类, 其实和接口是一样的.&lt;/p&gt;
-&lt;h2 id=&quot;Android-BottomSheetDialog&quot;&gt;&lt;a href=&quot;#Android-BottomSheetDialog&quot; class=&quot;headerlink&quot; title=&quot;Android BottomSheetDialog&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@anitas3791/android-bottomsheetdialog-3871a6e9d538#.462vjndmp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android BottomSheetDialog&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;实现bottom sheet的时候, 有三种选择: container view + &lt;code&gt;BottomSheetBehavior&lt;/code&gt;,  &lt;code&gt;BottomSheetDialogFragment&lt;/code&gt;, &lt;code&gt;BottomSheetDialog&lt;/code&gt;. 前两种的例子比较多, 作者要介绍的是第三种.&lt;/p&gt;
-&lt;p&gt;如何选择取决你的用途, container view + &lt;code&gt;BottomSheetBehavior&lt;/code&gt; 适用于&lt;a href=&quot;https://material.google.com/components/bottom-sheets.html#bottom-sheets-persistent-bottom-sheets&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;persistent bottom sheet&lt;/a&gt;, 而&lt;code&gt;BottomSheetDialogFragment&lt;/code&gt;和&lt;code&gt;BottomSheetDialog&lt;/code&gt;适用于&lt;a href=&quot;https://material.google.com/components/bottom-sheets.html#bottom-sheets-modal-bottom-sheets&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Modal bottom sheets&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;之后作者提供了实现代码, 附有theme定制和状态callback的设置.&lt;/p&gt;
-&lt;h2 id=&quot;The-VCS-client-of-Android-Studio&quot;&gt;&lt;a href=&quot;#The-VCS-client-of-Android-Studio&quot; class=&quot;headerlink&quot; title=&quot;The VCS client of Android Studio&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://saulmm.github.io/vcs-android-studio&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The VCS client of Android Studio&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章介绍Android Studio的版本控制系统.&lt;/p&gt;
-&lt;p&gt;在Android Studio 2.2开始, 加入了一个&lt;code&gt;Create command line launcher&lt;/code&gt;, 这样你就可以在命令行或者第三方的版本控制客户端使用Android Studio的diff/merge tool了.&lt;br&gt;作者使用的客户端是&lt;a href=&quot;https://www.sourcetreeapp.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SourceTree&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;用&lt;code&gt;cmd + shift + A&lt;/code&gt;可以用来find action, 然后就可以找到&lt;code&gt;Compare with branch&lt;/code&gt;:  可以比较当前文件和某个分支上的文件的diff;&lt;br&gt;另外还可以&lt;code&gt;Compare with...&lt;/code&gt;, 来比较和之前某一个特定提交的diff;  以及&lt;code&gt;Compare with Clipboard&lt;/code&gt;来和剪贴板做比较.&lt;/p&gt;
-&lt;p&gt;还有一些其他有用的快捷键, 请看原文吧.&lt;/p&gt;
-&lt;h2 id=&quot;Constraint-Layout-Icon-Label-Text&quot;&gt;&lt;a href=&quot;#Constraint-Layout-Icon-Label-Text&quot; class=&quot;headerlink&quot; title=&quot;Constraint Layout: Icon Label Text&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://blog.sqisland.com/2016/10/constraint-layout-icon-label-text.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Constraint Layout: Icon Label Text&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者想做这样一个UI, 左边是一个icon, 右边是两行字, icon的top和bottom分别和第一行字的top和bottom对齐.&lt;br&gt;&lt;img src=&quot;/images/icon-label-text.jpg&quot; alt=&quot;ConstraintLayout: Icon Label Text&quot;&gt;&lt;br&gt;怎么做呢? 她想到了用&lt;a href=&quot;https://developer.android.com/training/constraint-layout/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ConstraintLayout&lt;/a&gt;.&lt;br&gt;代码在这里: &lt;a href=&quot;https://github.com/chiuki/iconlabeltext&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iconlabeltext&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Bye-Bye-Burger&quot;&gt;&lt;a href=&quot;#Bye-Bye-Burger&quot; class=&quot;headerlink&quot; title=&quot;Bye, Bye Burger&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/startup-grind/bye-bye-burger-5bd963806015#.emir2u5kv&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bye, Bye Burger&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们的应用从burger menu改为bottom navigation, 此篇为心得分享和他们改版时设计中的一些细节讨论.&lt;/p&gt;
-&lt;p&gt;其中状态保存是一个最主要的技术问题.&lt;/p&gt;
-&lt;p&gt;改版之后, 作者他们的应用数据表明有以下几个好处:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;用户参与度提升了;&lt;/li&gt;
-&lt;li&gt;在底部导航有入口的功能使用率提高了;&lt;/li&gt;
-&lt;li&gt;并没有用户反馈说新的导航不好.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;Nougat-–-Messaging-Style-Notifications&quot;&gt;&lt;a href=&quot;#Nougat-–-Messaging-Style-Notifications&quot; class=&quot;headerlink&quot; title=&quot;Nougat – Messaging Style Notifications&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/nougat-messaging-style-notifications/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Nougat – Messaging Style Notifications&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Messaging Style Notifications是为信息应用特殊设计的, 提供了一个像对话一样的view.&lt;/p&gt;
-&lt;p&gt;Messaging-style notifications和Bundled notifications的主要区别是, Bundled notifications中我们持续创建新的notification, 然后它们被grouped together. 但是用Messaging-style notifications的时候, 我们只有一个notification, 然后我们把所有的信息添加进去.&lt;/p&gt;
-&lt;p&gt;作者展示了实现代码和效果, 注意这个Messaging style并不是后项兼容的, 只在Nougat及以后的版本才支持.&lt;/p&gt;
-&lt;h2 id=&quot;Bottom-sheet-everything&quot;&gt;&lt;a href=&quot;#Bottom-sheet-everything&quot; class=&quot;headerlink&quot; title=&quot;Bottom sheet everything&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.hidroh.com/2016/06/17/bottom-sheet-everything/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bottom sheet everything&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者介绍了他的应用中对于Bottom sheet的使用.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Deep linking with bottom sheet Activity&lt;/strong&gt;&lt;br&gt;作者用它处理Deep linking, 这样用户就不用每次都全屏打开, 只先提供一个peek, 如果真的感兴趣再打开.&lt;/p&gt;
-&lt;p&gt;实现是用一个透明的Activity, 还有状态栏处理的细节.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Bottom sheet settings menu&lt;/strong&gt;&lt;br&gt;关于Settings, 为了节省用户的trip, 作者它们的应用用了options menu的弹出菜单. 后来他们改用bottom sheet来实现, 并且结合了&lt;code&gt;PreferenceFragmentCompat&lt;/code&gt;, 省去了一些SharedPreferences的读写操作.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Supporting tablet users&lt;/strong&gt;&lt;br&gt;bottom sheet在平板上使用, 尤其是横屏的时候, 看起来不太好.&lt;br&gt;所以作者定制了Bottom sheet的宽度, 在平板上时是一个指定宽度, 在手机上维持原状.&lt;/p&gt;
-&lt;h2 id=&quot;Machine-Learning-for-with-the-Mobile-Vision-API—-Part-1&quot;&gt;&lt;a href=&quot;#Machine-Learning-for-with-the-Mobile-Vision-API—-Part-1&quot; class=&quot;headerlink&quot; title=&quot;Machine Learning for with the Mobile Vision API— Part 1&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://hackernoon.com/machine-learning-for-android-developers-with-the-mobile-vision-api-part-1-face-detection-e7e24a3e472f?gi=e6e15107d4d6#.8kmih1fyd&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Machine Learning for with the Mobile Vision API— Part 1&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;基于Google的Mobile Vision APIs现在Android开发者可以在应用里用上机器学习了.  现在这个Mobile Vision API包括三种类型Face Detection API, Barcode Detection API和Text API.&lt;/p&gt;
-&lt;p&gt;本文主要讲人脸检测部分, 后面会讲二维码检测和文字的API.&lt;/p&gt;
-&lt;p&gt;作者的demo展示了如何从一个静态照片中检测出人脸区域, 并且标记出landmark(眼睛, 鼻子, 嘴巴等), 之后可以根据这些特征位置加上一些覆盖标记.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/moyheen/face-detector&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sample code&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Custom-fonts-formatting-the-simple-way&quot;&gt;&lt;a href=&quot;#Custom-fonts-formatting-the-simple-way&quot; class=&quot;headerlink&quot; title=&quot;Custom fonts formatting, the simple way&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@andrei.rosca/custom-fonts-formatting-the-simple-way-c1a0e4f6687f#.kjv5uaaix&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Custom fonts formatting, the simple way&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在Android中自定义字体的一个库: &lt;a href=&quot;https://github.com/chrisjenx/Calligraphy&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Calligraphy&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;如果你的输入是html文字, 你想自动处理里面的tag(比如&lt;b&gt;), 用另一种字体, 怎么处理呢, 作者给出了代码.&lt;br&gt;&lt;img src=&quot;/images/custom-fonts-in-one-textview.png&quot; alt=&quot;custom font in one textview&quot;&gt;&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;完整的例子代码见: &lt;a href=&quot;https://github.com/andrei-egeniq/android-tibits/tree/master/StyleSpan&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sample code&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Reductor-Redux-for-Android-Part-1-Introduction&quot;&gt;&lt;a href=&quot;#Reductor-Redux-for-Android-Part-1-Introduction&quot; class=&quot;headerlink&quot; title=&quot;Reductor - Redux for Android. Part 1: Introduction&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://yarikx.github.io/Reductor-introduction/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reductor - Redux for Android. Part 1: Introduction&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;之前这个&lt;a href=&quot;https://yarikx.github.io/Reductor-prologue/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文章&lt;/a&gt;介绍过Reductor, 在Android Weekly之前也出现过, 我的笔记: &lt;a href=&quot;http://mengdd.github.io/Android/Android-Weekly/2016/10/02/android-weekly-notes-issue-224/#Reductor-Redux-for-Android&quot;&gt;Android Weekly Notes Issue 224&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/Yarikx/reductor&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reductor&lt;/a&gt;是一个状态管理的库, 用Java重新实现了JavaScript的库Redux.&lt;br&gt;它的中心思想:&lt;br&gt;&lt;img src=&quot;/images/redux-idea.png&quot; alt=&quot;redux idea&quot;&gt;&lt;/p&gt;
-&lt;p&gt;之前的一篇文章做了一个TODO app, 然后作者发现这种mutable的数据会导致失控的数据改变, 然后可能会出现无法预测的行为. 做了一些改动之后, 我们发现可以通过只保存一个immutable的对象和mutable的reference来避免这个问题.&lt;/p&gt;
-&lt;p&gt;这篇文章用Reductor来重新实现应用, 文中详细说明了代码实现.&lt;/p&gt;
-&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;ImageTransition&quot;&gt;&lt;a href=&quot;#ImageTransition&quot; class=&quot;headerlink&quot; title=&quot;ImageTransition&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/vikramkakkar/ImageTransition&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ImageTransition&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个很小的库, Activity直接的shared element transition动画, 把一个圆形的ImageView变换到下一个Activity的方形ImageView.&lt;/p&gt;
-&lt;h2 id=&quot;Design-Patterns-In-Kotlin&quot;&gt;&lt;a href=&quot;#Design-Patterns-In-Kotlin&quot; class=&quot;headerlink&quot; title=&quot;Design-Patterns-In-Kotlin&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/dbacinski/Design-Patterns-In-Kotlin/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Design-Patterns-In-Kotlin&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;用Kotlin实现的设计模式.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-227&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-227&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #227&quot;&gt;&lt;/a&gt;Android Weekly Issue #227&lt;/h1&gt;&lt;p&gt;October 16th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-227&quot;&gt;Android Weekly Issue #227&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;本期内容包括: Google的Mobile Vision API 人脸检测; Firebase的Remote Config; 与HashMap有关的优化; 提高RecyclerView帧率的优化; 使用AutoValue生成model代码; 开源库中抽象类和接口的使用讨论; Bottom Sheet的使用; Android Studio中的版本控制系统; ConstraintLayout的使用; 应用换Bottom Navigation; Nougat的Messaging Style Notification; 自定义字体; Reductor的使用等.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Bottom Navigation" scheme="http://mengdd.github.io/tags/Bottom-Navigation/"/>
-    
-      <category term="Bottom Sheet" scheme="http://mengdd.github.io/tags/Bottom-Sheet/"/>
-    
-      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
-      <category term="AutoValue" scheme="http://mengdd.github.io/tags/AutoValue/"/>
-    
-      <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
-    
-      <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
-    
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
-      <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
-    
-      <category term="Face Detection" scheme="http://mengdd.github.io/tags/Face-Detection/"/>
-    
-      <category term="Optimization" scheme="http://mengdd.github.io/tags/Optimization/"/>
-    
-      <category term="HashMap" scheme="http://mengdd.github.io/tags/HashMap/"/>
-    
-      <category term="ArrayMap" scheme="http://mengdd.github.io/tags/ArrayMap/"/>
-    
-      <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
-    
-      <category term="FPS" scheme="http://mengdd.github.io/tags/FPS/"/>
-    
-      <category term="Abstract class" scheme="http://mengdd.github.io/tags/Abstract-class/"/>
-    
-      <category term="Interface" scheme="http://mengdd.github.io/tags/Interface/"/>
-    
-      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
-    
-      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
-      <category term="Notification" scheme="http://mengdd.github.io/tags/Notification/"/>
-    
-      <category term="font" scheme="http://mengdd.github.io/tags/font/"/>
     
   </entry>
   
