@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-02-06T07:54:46.000Z</updated>
+  <updated>2017-02-07T04:58:18.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,103 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 243</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/02/07/android-weekly-notes-issue-243/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/02/07/android-weekly-notes-issue-243/</id>
+    <published>2017-02-07T04:52:37.000Z</published>
+    <updated>2017-02-07T04:58:18.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-243&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-243&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #243&quot;&gt;&lt;/a&gt;Android Weekly Issue #243&lt;/h1&gt;&lt;p&gt;February 5th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-243&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #243&lt;/a&gt;&lt;br&gt;本期内容包括: ConstraintLayout的动画; 用Kotlin写测试; RxJava的练习项目; 一个库: Coordinators的介绍; 一个自动报告Google Play反馈的工具; Service的测试; 动画工具Lottie的介绍; Mutability的讨论;&lt;br&gt;Nougat的多语言支持和相关的一个有趣的case; 使用StrictMode来发现问题.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Constraint-Layout-Animations&quot;&gt;&lt;a href=&quot;#Constraint-Layout-Animations&quot; class=&quot;headerlink&quot; title=&quot;Constraint Layout Animations&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.uwanttolearn.com/android/constraint-layout-animations-dynamic-constraints-ui-java-hell/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Constraint Layout Animations&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者举例说明了如何在Java代码中动态地改变约束条件, 从而使&lt;code&gt;ConstraintLayout&lt;/code&gt;中的View动起来.&lt;/p&gt;
+&lt;h2 id=&quot;Android-Testing-with-Kotlin&quot;&gt;&lt;a href=&quot;#Android-Testing-with-Kotlin&quot; class=&quot;headerlink&quot; title=&quot;Android Testing with Kotlin&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://fernandocejas.com/2017/02/03/android-testing-with-kotlin/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Testing with Kotlin&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如果你想逐渐地迁移代码到Kotlin, 你可以从测试开始, 这样你也不用更改产品环境的代码, 就先熟悉了Kotlin.&lt;/p&gt;
+&lt;p&gt;本篇文章详细讲了如何setup, 然后写各种测试:&lt;/p&gt;
+&lt;h3 id=&quot;JUnit测试&quot;&gt;&lt;a href=&quot;#JUnit测试&quot; class=&quot;headerlink&quot; title=&quot;JUnit测试&quot;&gt;&lt;/a&gt;JUnit测试&lt;/h3&gt;&lt;p&gt;需要JUnit, &lt;a href=&quot;https://github.com/nhaarman/mockito-kotlin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mockito-kotlin&lt;/a&gt;和&lt;a href=&quot;https://github.com/MarkusAmshove/Kluent&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Kluent&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;对于在&lt;code&gt;setUp()&lt;/code&gt;方法中初始化的变量, 需要标记为&lt;code&gt;lateinit&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;Robolectric测试&quot;&gt;&lt;a href=&quot;#Robolectric测试&quot; class=&quot;headerlink&quot; title=&quot;Robolectric测试&quot;&gt;&lt;/a&gt;Robolectric测试&lt;/h3&gt;&lt;p&gt;作者封装了一个基类, 把所有Mockito相关的东东包装在里面. 这样在Mockito升级的时候不用更改每一个测试文件.&lt;/p&gt;
+&lt;h3 id=&quot;Espresso测试&quot;&gt;&lt;a href=&quot;#Espresso测试&quot; class=&quot;headerlink&quot; title=&quot;Espresso测试&quot;&gt;&lt;/a&gt;Espresso测试&lt;/h3&gt;&lt;p&gt;同样, 这里作者也创建了几个基类, 将所有Espresso相关的东东包装起来.&lt;/p&gt;
+&lt;h2 id=&quot;Practical-challenges-for-RxJava-learners&quot;&gt;&lt;a href=&quot;#Practical-challenges-for-RxJava-learners&quot; class=&quot;headerlink&quot; title=&quot;Practical challenges for RxJava learners&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@sergii/practical-challenges-for-rxjava-learners-1821c454de9#.9icb22hrr&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Practical challenges for RxJava learners&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者建议通过实践来检验和学习RxJava技能, 之前他用过这个Repo: &lt;a href=&quot;https://github.com/Froussios/Intro-To-RxJava&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Intro-To-RxJava&lt;/a&gt;, 现在他又新推出了这个&lt;a href=&quot;https://github.com/sergiiz/RxBasicsKata&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Repo&lt;/a&gt;, 针对RxJava2的.&lt;/p&gt;
+&lt;h2 id=&quot;Coordinators-solving-a-problem-you-didn’t-even-know-you-had&quot;&gt;&lt;a href=&quot;#Coordinators-solving-a-problem-you-didn’t-even-know-you-had&quot; class=&quot;headerlink&quot; title=&quot;Coordinators: solving a problem you didn’t even know you had&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://hackernoon.com/coordinators-solving-a-problem-you-didnt-even-know-you-had-e86623f15ebf#.mcx15cssl&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Coordinators: solving a problem you didn’t even know you had&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Square发布了一个库叫&lt;a href=&quot;https://github.com/square/coordinators&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;coordinators&lt;/a&gt;, 这个库是用来分离View中的一些控制逻辑.&lt;/p&gt;
+&lt;h2 id=&quot;Review-Reporter-Part-1&quot;&gt;&lt;a href=&quot;#Review-Reporter-Part-1&quot; class=&quot;headerlink&quot; title=&quot;Review-Reporter: Part 1 &quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/azimolabs/review-reporter-part-1-connecting-to-google-play-8abd37edc49f#.a0s5gx66j&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Review-Reporter: Part 1 &lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们做了一个小项目: &lt;a href=&quot;https://github.com/AzimoLabs/Review-Reporter&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Review-Reporter&lt;/a&gt;, 可以自动把Google Play上新的用户回复发到slack, firebase, Jira上. 本篇文章讲了他们是怎么做的.&lt;/p&gt;
+&lt;h2 id=&quot;How-to-test-a-Service&quot;&gt;&lt;a href=&quot;#How-to-test-a-Service&quot; class=&quot;headerlink&quot; title=&quot;How to test a Service&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@josiassena/android-how-to-unit-test-a-service-67e5340544a5#.qg3751nxg&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to test a Service&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Android官方文档介绍了如何测试Service: &lt;a href=&quot;https://developer.android.com/training/testing/integration-testing/service-testing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Testing your Service&lt;/a&gt;. 本文作者介绍他是如何做的.&lt;/p&gt;
+&lt;h2 id=&quot;Introducing-Lottie&quot;&gt;&lt;a href=&quot;#Introducing-Lottie&quot; class=&quot;headerlink&quot; title=&quot;Introducing Lottie&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/airbnb-engineering/introducing-lottie-4ff4a0afac0e#.e7wojthmp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Introducing Lottie&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://airbnb.design/lottie/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Lottie&lt;/a&gt;是一个iOS, Android和React Native的库, 可以实时渲染After Effects的动画, 让native的应用像使用静态文件一样简单地使用复杂的动画.&lt;/p&gt;
+&lt;h2 id=&quot;Learning-to-use-and-abuse-Mutability&quot;&gt;&lt;a href=&quot;#Learning-to-use-and-abuse-Mutability&quot; class=&quot;headerlink&quot; title=&quot;Learning to use and abuse Mutability&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/google-developer-experts/learning-to-use-and-abuse-mutability-b4c71576299#.diungnuw6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Learning to use and abuse Mutability&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;An immutable class is a class whose state cannot be changed once it has been created.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这篇文章分享了作者关于Java中的mutability &amp;amp; immutability的一些想法.&lt;/p&gt;
+&lt;h2 id=&quot;A-Curious-Case-of-Multiple-Locales&quot;&gt;&lt;a href=&quot;#A-Curious-Case-of-Multiple-Locales&quot; class=&quot;headerlink&quot; title=&quot;A Curious Case of Multiple Locales&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.egorand.me/a-curious-case-of-multiple-locales/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A Curious Case of Multiple Locales&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Android N的一个新feature就是可以在设置中选择多种语言.&lt;/p&gt;
+&lt;p&gt;比如一个用户, 她会说意大利语和德语, 她使用的是一个低于Android 7的手机, 她把手机语言设置为意大利语.&lt;/p&gt;
+&lt;p&gt;有一个app, 支持两种语言, 默认是英语, 然后还支持德语.&lt;/p&gt;
+&lt;p&gt;但是这个应用在这个用户的手机上打开时, 发现自己并不支持意大利语, 于是会显示英语(默认)而不是德语, 因为应用又不知道这个用户还会德语.&lt;/p&gt;
+&lt;p&gt;后来用户把手机升级了, 用了Android 7的系统, 她发现可以设置支持多种语言, 于是, 于是她设置了两种语言, 意大利语和德语. 在新手机上装之前那个app的时候发现现在显示的是德语.&lt;/p&gt;
+&lt;p&gt;因为应用现在知道了用户还会讲德语.&lt;/p&gt;
+&lt;p&gt;现在, 假设我们需要进行向下兼容以前的旧版本设备, 我们加入了&lt;code&gt;appcompat-v7&lt;/code&gt;, 用户更新后, 英语又出现了. &lt;/p&gt;
+&lt;p&gt;这是因为&lt;code&gt;appcompat-v7&lt;/code&gt;中含有一些意大利语的资源, 因为所有的资源在build的时候都会merge到一起, 所以现在app也包含了这些资源. 系统认为现在app能够支持用户的第一语言了, 然后就查找对应的资源, 当然没查找到, 于是就使用了默认资源, 也就是英语.&lt;/p&gt;
+&lt;p&gt;我们有什么办法可以解决这个问题呢? 答案是这样:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;defaultConfig &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  resConfigs &amp;quot;en&amp;quot;, &amp;quot;de&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这样就告诉了Gradle我们只支持这两种语言, 所有其他的资源都不会被打包进来.&lt;/p&gt;
+&lt;p&gt;验证的方法是使用Android Studio的&lt;code&gt;Analyze APK&lt;/code&gt;来查看string有多少种configurations.&lt;/p&gt;
+&lt;h2 id=&quot;Use-StrictMode-To-Find-Things-You-Did-By-Accident&quot;&gt;&lt;a href=&quot;#Use-StrictMode-To-Find-Things-You-Did-By-Accident&quot; class=&quot;headerlink&quot; title=&quot;Use StrictMode To Find Things You Did By Accident&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.mindorks.com/use-strictmode-to-find-things-you-did-by-accident-in-android-development-4cf0e7c8d997#.l5tbilx16&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Use StrictMode To Find Things You Did By Accident&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;StrictMode&lt;/code&gt;是一个开发工具, 用于发现一些问题, 好让你来修复它们. &lt;/p&gt;
+&lt;p&gt;一个常用的情景是用来捕捉主线程的IO操作, 避免ANR弹框.&lt;/p&gt;
+&lt;p&gt;如何使用呢? 很简单, 只需要在应用启动时初始化一下, 可以是你的Application, Activity或其他组件的&lt;code&gt;onCreate()&lt;/code&gt;方法:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onCreate&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (DEVELOPER_MODE) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        StrictMode.setThreadPolicy(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; StrictMode.ThreadPolicy.Builder()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .detectDiskReads()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .detectDiskWrites()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .detectNetwork()   &lt;span class=&quot;comment&quot;&gt;// or .detectAll() for all detectable problems&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .penaltyLog()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .build());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        StrictMode.setVmPolicy(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; StrictMode.VmPolicy.Builder()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .detectLeakedSqlLiteObjects()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .detectLeakedClosableObjects()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .penaltyLog()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .penaltyDeath()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .build());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onCreate();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;你可以决定检测到问题时要发生什么, 比如:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;penaltyDeath()&lt;/code&gt;: 整个进程崩溃.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;penaltyDialog()&lt;/code&gt;: 显示Dialog.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;penaltyLog()&lt;/code&gt;: 显示log.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;更多的处理见: &lt;a href=&quot;https://developer.android.com/reference/android/os/StrictMode.ThreadPolicy.Builder.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;StrictMode.ThreadPolicy.Builder&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;StrictMode文档: &lt;a href=&quot;https://developer.android.com/reference/android/os/StrictMode.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;StrictMode&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;android-material-stepper&quot;&gt;&lt;a href=&quot;#android-material-stepper&quot; class=&quot;headerlink&quot; title=&quot;android-material-stepper&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/stepstone-tech/android-material-stepper&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-material-stepper&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Material steppers的库, 类似于配合ViewPager使用的indicators.&lt;/p&gt;
+&lt;h2 id=&quot;AOSP-Support-Library-Contribution-Guide&quot;&gt;&lt;a href=&quot;#AOSP-Support-Library-Contribution-Guide&quot; class=&quot;headerlink&quot; title=&quot;AOSP Support Library Contribution Guide&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://android.googlesource.com/platform/frameworks/support/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AOSP Support Library Contribution Guide&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Google开放了对support library的bug修改和文档更新.&lt;/p&gt;
+&lt;h2 id=&quot;sqlite-android&quot;&gt;&lt;a href=&quot;#sqlite-android&quot; class=&quot;headerlink&quot; title=&quot;sqlite-android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/requery/sqlite-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sqlite-android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Android的SQLite库, 包含了最新的SQLite版本.&lt;/p&gt;
+&lt;h2 id=&quot;Review-Reporter&quot;&gt;&lt;a href=&quot;#Review-Reporter&quot; class=&quot;headerlink&quot; title=&quot;Review-Reporter&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/AzimoLabs/Review-Reporter&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Review-Reporter&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Google Play反馈的自动提示, 支持提示到Slack和Jira.&lt;/p&gt;
+&lt;h2 id=&quot;SimpleRecyclerView&quot;&gt;&lt;a href=&quot;#SimpleRecyclerView&quot; class=&quot;headerlink&quot; title=&quot;SimpleRecyclerView&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/jaychang0917/SimpleRecyclerView&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SimpleRecyclerView&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;更简单好用的RecyclerView.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-243&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-243&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #243&quot;&gt;&lt;/a&gt;Android Weekly Issue #243&lt;/h1&gt;&lt;p&gt;February 5th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-243&quot;&gt;Android Weekly Issue #243&lt;/a&gt;&lt;br&gt;本期内容包括: ConstraintLayout的动画; 用Kotlin写测试; RxJava的练习项目; 一个库: Coordinators的介绍; 一个自动报告Google Play反馈的工具; Service的测试; 动画工具Lottie的介绍; Mutability的讨论;&lt;br&gt;Nougat的多语言支持和相关的一个有趣的case; 使用StrictMode来发现问题.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
+    
+      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
+    
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
+    
+      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
+    
+      <category term="Service" scheme="http://mengdd.github.io/tags/Service/"/>
+    
+      <category term="Lottie" scheme="http://mengdd.github.io/tags/Lottie/"/>
+    
+      <category term="Mutability" scheme="http://mengdd.github.io/tags/Mutability/"/>
+    
+      <category term="Locales" scheme="http://mengdd.github.io/tags/Locales/"/>
+    
+      <category term="StrictMode" scheme="http://mengdd.github.io/tags/StrictMode/"/>
+    
+  </entry>
   
   <entry>
     <title>Say Hello to ConstraintLayout</title>
@@ -310,9 +407,9 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
       <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
+    
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -405,9 +502,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
       <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
@@ -564,11 +661,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
+      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
+    
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
-      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
     
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
     
@@ -986,11 +1083,11 @@
     
       <category term="AnimatedVectorDrawable" scheme="http://mengdd.github.io/tags/AnimatedVectorDrawable/"/>
     
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
+    
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
-      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
@@ -1447,11 +1544,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
       <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
       <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
+    
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
@@ -1545,15 +1642,15 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
       <category term="TV" scheme="http://mengdd.github.io/tags/TV/"/>
-    
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
@@ -1645,9 +1742,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
       <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
@@ -1655,9 +1752,9 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
-    
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
+    
+      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
       <category term="Async-Await" scheme="http://mengdd.github.io/tags/Async-Await/"/>
     
@@ -1876,9 +1973,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
       <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
@@ -2392,11 +2489,11 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
-    
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
     
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
@@ -2415,79 +2512,6 @@
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
       <category term="TensorFlow" scheme="http://mengdd.github.io/tags/TensorFlow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android 7.1 App Shortcuts使用</title>
-    <link href="http://mengdd.github.io/Android/Nougat/2016/10/25/nougat-app-shortcuts/"/>
-    <id>http://mengdd.github.io/Android/Nougat/2016/10/25/nougat-app-shortcuts/</id>
-    <published>2016-10-25T06:00:01.000Z</published>
-    <updated>2016-10-31T03:30:39.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-7-1-App-Shortcuts使用&quot;&gt;&lt;a href=&quot;#Android-7-1-App-Shortcuts使用&quot; class=&quot;headerlink&quot; title=&quot;Android 7.1 App Shortcuts使用&quot;&gt;&lt;/a&gt;Android 7.1 App Shortcuts使用&lt;/h1&gt;&lt;p&gt;Android 7.1已经发了预览版, 这里是API Overview: &lt;a href=&quot;https://developer.android.com/preview/api-overview.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;API overview&lt;/a&gt;.&lt;br&gt;其中App Shortcuts是新提供的一种快捷访问方式, 形式为长按应用图标出现的长条.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/app-shortcuts.png&quot; alt=&quot;app shortcuts&quot;&gt;&lt;br&gt;图来自: &lt;a href=&quot;https://catinean.com/2016/10/20/exploring-android-nougat-7-1-app-shortcuts/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Exploring Android Nougat 7.1 App Shortcuts&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;点击快捷方式可以访问应用功能, 并且这种快捷方式也可以被拖拽到桌面单独放置.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;App-Shortcuts-是什么&quot;&gt;&lt;a href=&quot;#App-Shortcuts-是什么&quot; class=&quot;headerlink&quot; title=&quot;App Shortcuts 是什么&quot;&gt;&lt;/a&gt;App Shortcuts 是什么&lt;/h2&gt;&lt;p&gt;其中App Shortcuts是指在桌面长按app图标而出现的快捷方式, 可以为你的app的关键功能添加更快速的入口而不用先打开app.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/app-shortcuts-doc.png&quot; alt=&quot;app shortcuts&quot;&gt;&lt;/p&gt;
-&lt;p&gt;点击快捷方式可以访问应用功能, 并且这种快捷方式也可以被拖拽到桌面单独放置, 变成单独的桌面快捷方式(pinned shortcuts).&lt;/p&gt;
-&lt;p&gt;有两种shortcuts:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;静态的: 在xml中定义, 适用于一些通用的动作.&lt;/li&gt;
-&lt;li&gt;动态的: 由&lt;a href=&quot;https://developer.android.com/reference/android/content/pm/ShortcutManager.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ShortcutManager&lt;/a&gt;发布, 可以根据用户的行为或者偏好添加, 可以动态更新.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;每一个应用目前最多可以有5个shortcuts(静态 + 动态).&lt;/p&gt;
-&lt;p&gt;运行条件:&lt;br&gt;应用添加App Shortcuts是Android 7.1(API 25)的API, 所以只能在Android 7.1的设备上显示, 同时需要launcher支持, 比如Pixel launcher(Pixel设备的默认launcher), Now launcher(Nexus设备上的launcher)现在就支持, 其他launcher也可以提供支持.&lt;/p&gt;
-&lt;h2 id=&quot;静态Shortcuts使用&quot;&gt;&lt;a href=&quot;#静态Shortcuts使用&quot; class=&quot;headerlink&quot; title=&quot;静态Shortcuts使用&quot;&gt;&lt;/a&gt;静态Shortcuts使用&lt;/h2&gt;&lt;p&gt;静态的Shortcuts是写在xml中的, 直到下一次应用升级, 不能被改变.&lt;br&gt;要添加静态shortcuts只需两步:&lt;br&gt;首先, 在应用的Manifest中启动Activity上添加&lt;code&gt;&amp;lt;meta-data&amp;gt;&lt;/code&gt;:&lt;/p&gt;
-&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;activity&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;.MainActivity&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;intent-filter&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.action.MAIN&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;category&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.category.LAUNCHER&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;intent-filter&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta-data&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.app.shortcuts&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:resource&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@xml/shortcuts&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;activity&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;然后在&lt;code&gt;res/xml/&lt;/code&gt;目录下创建&lt;code&gt;shortcuts.xml&lt;/code&gt;文件, 里面包含静态的shortcuts:&lt;br&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;shortcuts&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;xmlns:android&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;shortcut&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:enabled&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:icon&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@drawable/ic_check_circle_black_24dp&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutDisabledMessage&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_disabled_message&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutId&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;static&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutLongLabel&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_long_label_1&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutShortLabel&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_short_label_1&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;intent&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:action&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.action.VIEW&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetClass&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat.shortcuts.StaticShortcutActivity&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetPackage&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;shortcut&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;shortcut&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:enabled&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:icon&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@drawable/ic_android_black_24dp&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutDisabledMessage&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_disabled_message&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutId&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;static_2&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutLongLabel&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_long_label_2&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;attr&quot;&gt;android:shortcutShortLabel&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;@string/static_shortcut_short_label_2&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;intent&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:action&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;android.intent.action.MAIN&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetClass&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat.MainActivity&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetPackage&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;intent&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:action&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat.action.STATIC_SHORTCUT_2&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetClass&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat.shortcuts.StaticShortcutActivity&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;attr&quot;&gt;android:targetPackage&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;com.ddmeng.hellonougat&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;shortcut&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;shortcuts&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;这就好了, 这个文件添加了两个shortcuts, 点击都将打开指定的Activity, 本例子中是&lt;code&gt;StaticShortcutActivity&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;用多个Intent构建back-stack&quot;&gt;&lt;a href=&quot;#用多个Intent构建back-stack&quot; class=&quot;headerlink&quot; title=&quot;用多个Intent构建back stack&quot;&gt;&lt;/a&gt;用多个Intent构建back stack&lt;/h3&gt;&lt;p&gt;上面这个文件里添加了两个静态的shortcuts, 第一个关联了一个Activity, 点击shortcut将直接打开这个Activity, 回退的时候回到桌面.&lt;/p&gt;
-&lt;p&gt;如果你想要的效果是点击back键回到应用里的某个界面, 那么可以利用多个intents来构建back stack, 比如在第二个shortcut里面, 点击shortcut还是打开目标Activity, 这个指定目标Activity的Intent放在最后, 但是回退会返回到MainActivity, 即之前的那个Intent.&lt;/p&gt;
-&lt;h2 id=&quot;动态Shortcuts使用&quot;&gt;&lt;a href=&quot;#动态Shortcuts使用&quot; class=&quot;headerlink&quot; title=&quot;动态Shortcuts使用&quot;&gt;&lt;/a&gt;动态Shortcuts使用&lt;/h2&gt;&lt;p&gt;动态的shortcuts可以在用户使用app的过程中构建, 更新, 或者删除.&lt;br&gt;使用&lt;a href=&quot;https://developer.android.com/reference/android/content/pm/ShortcutManager.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ShortcutManager&lt;/a&gt;可以对动态shortcuts完成下面几种操作:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Publish发布: &lt;code&gt;setDynamicShortcuts()&lt;/code&gt;, &lt;code&gt;addDynamicShortcuts(List)&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;Update更新: &lt;code&gt;updateShortcuts(List)&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;Remove删除: &lt;code&gt;removeDynamicShortcuts(List)&lt;/code&gt;, &lt;code&gt;removeAllDynamicShortcuts()&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;比如添加一个动态shortcut:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ShortcutInfo shortcut = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ShortcutInfo.Builder(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;id1&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .setShortLabel(&lt;span class=&quot;string&quot;&gt;&quot;Web site&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .setLongLabel(&lt;span class=&quot;string&quot;&gt;&quot;Open the web site&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .setIcon(Icon.createWithResource(context, R.drawable.icon_website))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .setIntent(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Intent(Intent.ACTION_VIEW,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                   Uri.parse(&lt;span class=&quot;string&quot;&gt;&quot;https://www.mysite.example.com/&quot;&lt;/span&gt;)))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .build();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;点击这个shortcut会发出一个打开网页的Intent, 让你选择浏览器, 从而打开网址.&lt;/p&gt;
-&lt;h3 id=&quot;多个Intent构建back-stack&quot;&gt;&lt;a href=&quot;#多个Intent构建back-stack&quot; class=&quot;headerlink&quot; title=&quot;多个Intent构建back stack&quot;&gt;&lt;/a&gt;多个Intent构建back stack&lt;/h3&gt;&lt;p&gt;动态的shortcut仍然可以用多个Intent来指定一个back stack, 那么打开目标Activity之后就可以返回到应用中的指定界面而不是回到launcher:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ShortcutInfo dynamicShortcut2 = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ShortcutInfo.Builder(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;shortcut_dynamic&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .setShortLabel(&lt;span class=&quot;string&quot;&gt;&quot;Dynamic Shortcut&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .setLongLabel(&lt;span class=&quot;string&quot;&gt;&quot;Open Dynamic shortcut 2&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .setIcon(Icon.createWithResource(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, R.drawable.ic_favorite_border_black_24dp))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .setIntents(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;comment&quot;&gt;// this dynamic shortcut set up a back stack using Intents, when pressing back, will go to MainActivity&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;comment&quot;&gt;// the last Intent is what the shortcut really opened&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Intent[]&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Intent(Intent.ACTION_MAIN, Uri.EMPTY, &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Intent(DynamicShortcutActivity.ACTION_OPEN_DYNAMIC)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &lt;span class=&quot;comment&quot;&gt;// intent&#39;s action must be set&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .build();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;和静态一样, 最后一个Intent对应的是shortcut打开的界面&lt;code&gt;DynamicShortcutActivity&lt;/code&gt;, 前面的都是用来构建back stack, 即back退回到MainActivity.&lt;br&gt;注意这里的Intent必须指定Action, 否则会抛出异常.&lt;/p&gt;
-&lt;h2 id=&quot;Shortcuts的个数限制&quot;&gt;&lt;a href=&quot;#Shortcuts的个数限制&quot; class=&quot;headerlink&quot; title=&quot;Shortcuts的个数限制&quot;&gt;&lt;/a&gt;Shortcuts的个数限制&lt;/h2&gt;&lt;p&gt;Shortcuts的总数不能超过5个, 即静态和动态shortcuts加起来总数最多是五个.&lt;br&gt;当我们尝试添加第六个shortcut时, 应用会抛出异常: &lt;code&gt;java.lang.IllegalArgumentException: Max number of dynamic shortcuts exceeded&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;虽然总数限制是5个, 但是当我正好有5个(2个静态 + 3个动态)的时候, 长按只显示了4个shortcuts.&lt;br&gt;如图:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/app-shortcuts-demo-screenshot.png&quot; alt=&quot;app shortcuts&quot;&gt;&lt;/p&gt;
-&lt;p&gt;本文完整代码见: Demo地址: &lt;a href=&quot;https://github.com/mengdd/HelloNougat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HelloNougat&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Shortcuts的次序&quot;&gt;&lt;a href=&quot;#Shortcuts的次序&quot; class=&quot;headerlink&quot; title=&quot;Shortcuts的次序&quot;&gt;&lt;/a&gt;Shortcuts的次序&lt;/h2&gt;&lt;p&gt;当我们有多个Shortcuts之后, 默认它们是按照添加顺序排列的, 即按照添加顺序rank递增.&lt;/p&gt;
-&lt;p&gt;可以通过&lt;code&gt;setRank()&lt;/code&gt;来改变长按时它们显示的排序:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@TargetApi&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;25&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;updateDynamicShortcuts&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ShortcutInfo webShortcut = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ShortcutInfo.Builder(MainActivity.&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;shortcut_blog&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .setRank(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .build();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ShortcutInfo dynamicShortcut = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ShortcutInfo.Builder(MainActivity.&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;shortcut_dynamic&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .setRank(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .build();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// the rank value can not be set to negative, otherwise will throw&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// java.lang.IllegalArgumentException: Rank cannot be negative or bigger than MAX_RANK&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// the static shortcuts have the rank 0, so they will always be closest to launcher icon&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    shortcutManager.updateShortcuts(Arrays.asList(webShortcut, dynamicShortcut));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;这样更改之后, 原先排在最远端的&lt;code&gt;shortcut_dynamic&lt;/code&gt;被移到了第三个, &lt;code&gt;shortcut_blog&lt;/code&gt;被移到了它的后面.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;setRank()&lt;/code&gt;不接受负值, 会抛出异常.&lt;/p&gt;
-&lt;p&gt;我们只能改变动态shortcuts的排序, 静态的shortcuts等级为0, 它们是按照xml中写定的先后顺序排的, 所以:&lt;br&gt;&lt;code&gt;静态的shortcuts永远离应用icon最近, 动态shortcuts在其之上排序, rank越大的离应用icon越远.&lt;/code&gt;&lt;br&gt;如果没有指定rank, 则按生成的顺序递增.&lt;/p&gt;
-&lt;h2 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h2&gt;&lt;p&gt;App Shortcuts的官方文档: &lt;a href=&quot;https://developer.android.com/preview/shortcuts.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;App Shortcuts&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://catinean.com/2016/10/20/exploring-android-nougat-7-1-app-shortcuts/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Exploring Android Nougat 7.1 App Shortcuts&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Demo地址: &lt;a href=&quot;https://github.com/mengdd/HelloNougat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HelloNougat&lt;/a&gt;.&lt;br&gt;近期考虑加入更多Android 7 Nougat特性sample.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-7-1-App-Shortcuts使用&quot;&gt;&lt;a href=&quot;#Android-7-1-App-Shortcuts使用&quot; class=&quot;headerlink&quot; title=&quot;Android 7.1 App Shortcuts使用&quot;&gt;&lt;/a&gt;Android 7.1 App Shortcuts使用&lt;/h1&gt;&lt;p&gt;Android 7.1已经发了预览版, 这里是API Overview: &lt;a href=&quot;https://developer.android.com/preview/api-overview.html&quot;&gt;API overview&lt;/a&gt;.&lt;br&gt;其中App Shortcuts是新提供的一种快捷访问方式, 形式为长按应用图标出现的长条.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/app-shortcuts.png&quot; alt=&quot;app shortcuts&quot;&gt;&lt;br&gt;图来自: &lt;a href=&quot;https://catinean.com/2016/10/20/exploring-android-nougat-7-1-app-shortcuts/&quot;&gt;Exploring Android Nougat 7.1 App Shortcuts&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;点击快捷方式可以访问应用功能, 并且这种快捷方式也可以被拖拽到桌面单独放置.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Nougat" scheme="http://mengdd.github.io/categories/Android/Nougat/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
-    
-      <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
     
   </entry>
   

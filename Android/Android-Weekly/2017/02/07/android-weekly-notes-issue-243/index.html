@@ -1,0 +1,720 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android Weekly Notes Issue 243 | Meng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dandan Meng">
+    
+
+    
+    <meta name="description" content="Android Weekly Issue #243February 5th, 2017Android Weekly Issue #243本期内容包括: ConstraintLayout的动画; 用Kotlin写测试; RxJava的练习项目; 一个库: Coordinators的介绍; 一个自动报告Google Play反馈的工具; Service的测试; 动画工具Lottie的介绍; Mutab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Weekly Notes Issue 243">
+<meta property="og:url" content="http://mengdd.github.io/Android/Android-Weekly/2017/02/07/android-weekly-notes-issue-243/index.html">
+<meta property="og:site_name" content="Meng's pages">
+<meta property="og:description" content="Android Weekly Issue #243February 5th, 2017Android Weekly Issue #243本期内容包括: ConstraintLayout的动画; 用Kotlin写测试; RxJava的练习项目; 一个库: Coordinators的介绍; 一个自动报告Google Play反馈的工具; Service的测试; 动画工具Lottie的介绍; Mutab">
+<meta property="og:updated_time" content="2017-02-07T04:58:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Weekly Notes Issue 243">
+<meta name="twitter:description" content="Android Weekly Issue #243February 5th, 2017Android Weekly Issue #243本期内容包括: ConstraintLayout的动画; 用Kotlin写测试; RxJava的练习项目; 一个库: Coordinators的介绍; 一个自动报告Google Play反馈的工具; Service的测试; 动画工具Lottie的介绍; Mutab">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Meng&#39;s pages" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Meng&#39;s pages" title="Meng&#39;s pages"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
+				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mengdd.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/Android/Android-Weekly/2017/02/07/android-weekly-notes-issue-243/" title="Android Weekly Notes Issue 243" itemprop="url">Android Weekly Notes Issue 243</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
+		
+  <p class="article-time">
+    <time datetime="2017-02-07T04:52:37.000Z" itemprop="datePublished"> Published 2017-02-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-243"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #243</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Constraint-Layout-Animations"><span class="toc-number">2.1.</span> <span class="toc-text">Constraint Layout Animations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Testing-with-Kotlin"><span class="toc-number">2.2.</span> <span class="toc-text">Android Testing with Kotlin</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JUnit测试"><span class="toc-number">2.2.1.</span> <span class="toc-text">JUnit测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Robolectric测试"><span class="toc-number">2.2.2.</span> <span class="toc-text">Robolectric测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Espresso测试"><span class="toc-number">2.2.3.</span> <span class="toc-text">Espresso测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Practical-challenges-for-RxJava-learners"><span class="toc-number">2.3.</span> <span class="toc-text">Practical challenges for RxJava learners</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Coordinators-solving-a-problem-you-didn’t-even-know-you-had"><span class="toc-number">2.4.</span> <span class="toc-text">Coordinators: solving a problem you didn’t even know you had</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Review-Reporter-Part-1"><span class="toc-number">2.5.</span> <span class="toc-text">Review-Reporter: Part 1 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-test-a-Service"><span class="toc-number">2.6.</span> <span class="toc-text">How to test a Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introducing-Lottie"><span class="toc-number">2.7.</span> <span class="toc-text">Introducing Lottie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Learning-to-use-and-abuse-Mutability"><span class="toc-number">2.8.</span> <span class="toc-text">Learning to use and abuse Mutability</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Curious-Case-of-Multiple-Locales"><span class="toc-number">2.9.</span> <span class="toc-text">A Curious Case of Multiple Locales</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-StrictMode-To-Find-Things-You-Did-By-Accident"><span class="toc-number">2.10.</span> <span class="toc-text">Use StrictMode To Find Things You Did By Accident</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#android-material-stepper"><span class="toc-number">3.1.</span> <span class="toc-text">android-material-stepper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOSP-Support-Library-Contribution-Guide"><span class="toc-number">3.2.</span> <span class="toc-text">AOSP Support Library Contribution Guide</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqlite-android"><span class="toc-number">3.3.</span> <span class="toc-text">sqlite-android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Review-Reporter"><span class="toc-number">3.4.</span> <span class="toc-text">Review-Reporter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SimpleRecyclerView"><span class="toc-number">3.5.</span> <span class="toc-text">SimpleRecyclerView</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Android-Weekly-Issue-243"><a href="#Android-Weekly-Issue-243" class="headerlink" title="Android Weekly Issue #243"></a>Android Weekly Issue #243</h1><p>February 5th, 2017<br><a href="http://androidweekly.net/issues/issue-243" target="_blank" rel="external">Android Weekly Issue #243</a><br>本期内容包括: ConstraintLayout的动画; 用Kotlin写测试; RxJava的练习项目; 一个库: Coordinators的介绍; 一个自动报告Google Play反馈的工具; Service的测试; 动画工具Lottie的介绍; Mutability的讨论;<br>Nougat的多语言支持和相关的一个有趣的case; 使用StrictMode来发现问题.</p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Constraint-Layout-Animations"><a href="#Constraint-Layout-Animations" class="headerlink" title="Constraint Layout Animations"></a><a href="http://www.uwanttolearn.com/android/constraint-layout-animations-dynamic-constraints-ui-java-hell/" target="_blank" rel="external">Constraint Layout Animations</a></h2><p>作者举例说明了如何在Java代码中动态地改变约束条件, 从而使<code>ConstraintLayout</code>中的View动起来.</p>
+<h2 id="Android-Testing-with-Kotlin"><a href="#Android-Testing-with-Kotlin" class="headerlink" title="Android Testing with Kotlin"></a><a href="http://fernandocejas.com/2017/02/03/android-testing-with-kotlin/" target="_blank" rel="external">Android Testing with Kotlin</a></h2><p>如果你想逐渐地迁移代码到Kotlin, 你可以从测试开始, 这样你也不用更改产品环境的代码, 就先熟悉了Kotlin.</p>
+<p>本篇文章详细讲了如何setup, 然后写各种测试:</p>
+<h3 id="JUnit测试"><a href="#JUnit测试" class="headerlink" title="JUnit测试"></a>JUnit测试</h3><p>需要JUnit, <a href="https://github.com/nhaarman/mockito-kotlin" target="_blank" rel="external">mockito-kotlin</a>和<a href="https://github.com/MarkusAmshove/Kluent" target="_blank" rel="external">Kluent</a>.</p>
+<p>对于在<code>setUp()</code>方法中初始化的变量, 需要标记为<code>lateinit</code>.</p>
+<h3 id="Robolectric测试"><a href="#Robolectric测试" class="headerlink" title="Robolectric测试"></a>Robolectric测试</h3><p>作者封装了一个基类, 把所有Mockito相关的东东包装在里面. 这样在Mockito升级的时候不用更改每一个测试文件.</p>
+<h3 id="Espresso测试"><a href="#Espresso测试" class="headerlink" title="Espresso测试"></a>Espresso测试</h3><p>同样, 这里作者也创建了几个基类, 将所有Espresso相关的东东包装起来.</p>
+<h2 id="Practical-challenges-for-RxJava-learners"><a href="#Practical-challenges-for-RxJava-learners" class="headerlink" title="Practical challenges for RxJava learners"></a><a href="https://medium.com/@sergii/practical-challenges-for-rxjava-learners-1821c454de9#.9icb22hrr" target="_blank" rel="external">Practical challenges for RxJava learners</a></h2><p>作者建议通过实践来检验和学习RxJava技能, 之前他用过这个Repo: <a href="https://github.com/Froussios/Intro-To-RxJava" target="_blank" rel="external">Intro-To-RxJava</a>, 现在他又新推出了这个<a href="https://github.com/sergiiz/RxBasicsKata" target="_blank" rel="external">Repo</a>, 针对RxJava2的.</p>
+<h2 id="Coordinators-solving-a-problem-you-didn’t-even-know-you-had"><a href="#Coordinators-solving-a-problem-you-didn’t-even-know-you-had" class="headerlink" title="Coordinators: solving a problem you didn’t even know you had"></a><a href="https://hackernoon.com/coordinators-solving-a-problem-you-didnt-even-know-you-had-e86623f15ebf#.mcx15cssl" target="_blank" rel="external">Coordinators: solving a problem you didn’t even know you had</a></h2><p>Square发布了一个库叫<a href="https://github.com/square/coordinators" target="_blank" rel="external">coordinators</a>, 这个库是用来分离View中的一些控制逻辑.</p>
+<h2 id="Review-Reporter-Part-1"><a href="#Review-Reporter-Part-1" class="headerlink" title="Review-Reporter: Part 1 "></a><a href="https://medium.com/azimolabs/review-reporter-part-1-connecting-to-google-play-8abd37edc49f#.a0s5gx66j" target="_blank" rel="external">Review-Reporter: Part 1 </a></h2><p>作者他们做了一个小项目: <a href="https://github.com/AzimoLabs/Review-Reporter" target="_blank" rel="external">Review-Reporter</a>, 可以自动把Google Play上新的用户回复发到slack, firebase, Jira上. 本篇文章讲了他们是怎么做的.</p>
+<h2 id="How-to-test-a-Service"><a href="#How-to-test-a-Service" class="headerlink" title="How to test a Service"></a><a href="https://medium.com/@josiassena/android-how-to-unit-test-a-service-67e5340544a5#.qg3751nxg" target="_blank" rel="external">How to test a Service</a></h2><p>Android官方文档介绍了如何测试Service: <a href="https://developer.android.com/training/testing/integration-testing/service-testing.html" target="_blank" rel="external">Testing your Service</a>. 本文作者介绍他是如何做的.</p>
+<h2 id="Introducing-Lottie"><a href="#Introducing-Lottie" class="headerlink" title="Introducing Lottie"></a><a href="https://medium.com/airbnb-engineering/introducing-lottie-4ff4a0afac0e#.e7wojthmp" target="_blank" rel="external">Introducing Lottie</a></h2><p><a href="http://airbnb.design/lottie/" target="_blank" rel="external">Lottie</a>是一个iOS, Android和React Native的库, 可以实时渲染After Effects的动画, 让native的应用像使用静态文件一样简单地使用复杂的动画.</p>
+<h2 id="Learning-to-use-and-abuse-Mutability"><a href="#Learning-to-use-and-abuse-Mutability" class="headerlink" title="Learning to use and abuse Mutability"></a><a href="https://medium.com/google-developer-experts/learning-to-use-and-abuse-mutability-b4c71576299#.diungnuw6" target="_blank" rel="external">Learning to use and abuse Mutability</a></h2><blockquote>
+<p>An immutable class is a class whose state cannot be changed once it has been created.</p>
+</blockquote>
+<p>这篇文章分享了作者关于Java中的mutability &amp; immutability的一些想法.</p>
+<h2 id="A-Curious-Case-of-Multiple-Locales"><a href="#A-Curious-Case-of-Multiple-Locales" class="headerlink" title="A Curious Case of Multiple Locales"></a><a href="https://blog.egorand.me/a-curious-case-of-multiple-locales/" target="_blank" rel="external">A Curious Case of Multiple Locales</a></h2><p>Android N的一个新feature就是可以在设置中选择多种语言.</p>
+<p>比如一个用户, 她会说意大利语和德语, 她使用的是一个低于Android 7的手机, 她把手机语言设置为意大利语.</p>
+<p>有一个app, 支持两种语言, 默认是英语, 然后还支持德语.</p>
+<p>但是这个应用在这个用户的手机上打开时, 发现自己并不支持意大利语, 于是会显示英语(默认)而不是德语, 因为应用又不知道这个用户还会德语.</p>
+<p>后来用户把手机升级了, 用了Android 7的系统, 她发现可以设置支持多种语言, 于是, 于是她设置了两种语言, 意大利语和德语. 在新手机上装之前那个app的时候发现现在显示的是德语.</p>
+<p>因为应用现在知道了用户还会讲德语.</p>
+<p>现在, 假设我们需要进行向下兼容以前的旧版本设备, 我们加入了<code>appcompat-v7</code>, 用户更新后, 英语又出现了. </p>
+<p>这是因为<code>appcompat-v7</code>中含有一些意大利语的资源, 因为所有的资源在build的时候都会merge到一起, 所以现在app也包含了这些资源. 系统认为现在app能够支持用户的第一语言了, 然后就查找对应的资源, 当然没查找到, 于是就使用了默认资源, 也就是英语.</p>
+<p>我们有什么办法可以解决这个问题呢? 答案是这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">defaultConfig &#123;  </span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  resConfigs &quot;en&quot;, &quot;de&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就告诉了Gradle我们只支持这两种语言, 所有其他的资源都不会被打包进来.</p>
+<p>验证的方法是使用Android Studio的<code>Analyze APK</code>来查看string有多少种configurations.</p>
+<h2 id="Use-StrictMode-To-Find-Things-You-Did-By-Accident"><a href="#Use-StrictMode-To-Find-Things-You-Did-By-Accident" class="headerlink" title="Use StrictMode To Find Things You Did By Accident"></a><a href="https://blog.mindorks.com/use-strictmode-to-find-things-you-did-by-accident-in-android-development-4cf0e7c8d997#.l5tbilx16" target="_blank" rel="external">Use StrictMode To Find Things You Did By Accident</a></h2><p><code>StrictMode</code>是一个开发工具, 用于发现一些问题, 好让你来修复它们. </p>
+<p>一个常用的情景是用来捕捉主线程的IO操作, 避免ANR弹框.</p>
+<p>如何使用呢? 很简单, 只需要在应用启动时初始化一下, 可以是你的Application, Activity或其他组件的<code>onCreate()</code>方法:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (DEVELOPER_MODE) &#123;</span><br><span class="line">        StrictMode.setThreadPolicy(<span class="keyword">new</span> StrictMode.ThreadPolicy.Builder()</span><br><span class="line">                .detectDiskReads()</span><br><span class="line">                .detectDiskWrites()</span><br><span class="line">                .detectNetwork()   <span class="comment">// or .detectAll() for all detectable problems</span></span><br><span class="line">                .penaltyLog()</span><br><span class="line">                .build());</span><br><span class="line">        StrictMode.setVmPolicy(<span class="keyword">new</span> StrictMode.VmPolicy.Builder()</span><br><span class="line">                .detectLeakedSqlLiteObjects()</span><br><span class="line">                .detectLeakedClosableObjects()</span><br><span class="line">                .penaltyLog()</span><br><span class="line">                .penaltyDeath()</span><br><span class="line">                .build());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">super</span>.onCreate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>你可以决定检测到问题时要发生什么, 比如:</p>
+<ul>
+<li><code>penaltyDeath()</code>: 整个进程崩溃.</li>
+<li><code>penaltyDialog()</code>: 显示Dialog.</li>
+<li><code>penaltyLog()</code>: 显示log.</li>
+</ul>
+<p>更多的处理见: <a href="https://developer.android.com/reference/android/os/StrictMode.ThreadPolicy.Builder.html" target="_blank" rel="external">StrictMode.ThreadPolicy.Builder</a>.</p>
+<p>StrictMode文档: <a href="https://developer.android.com/reference/android/os/StrictMode.html" target="_blank" rel="external">StrictMode</a>.</p>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="android-material-stepper"><a href="#android-material-stepper" class="headerlink" title="android-material-stepper"></a><a href="https://github.com/stepstone-tech/android-material-stepper" target="_blank" rel="external">android-material-stepper</a></h2><p>一个Material steppers的库, 类似于配合ViewPager使用的indicators.</p>
+<h2 id="AOSP-Support-Library-Contribution-Guide"><a href="#AOSP-Support-Library-Contribution-Guide" class="headerlink" title="AOSP Support Library Contribution Guide"></a><a href="https://android.googlesource.com/platform/frameworks/support/" target="_blank" rel="external">AOSP Support Library Contribution Guide</a></h2><p>Google开放了对support library的bug修改和文档更新.</p>
+<h2 id="sqlite-android"><a href="#sqlite-android" class="headerlink" title="sqlite-android"></a><a href="https://github.com/requery/sqlite-android" target="_blank" rel="external">sqlite-android</a></h2><p>一个Android的SQLite库, 包含了最新的SQLite版本.</p>
+<h2 id="Review-Reporter"><a href="#Review-Reporter" class="headerlink" title="Review-Reporter"></a><a href="https://github.com/AzimoLabs/Review-Reporter" target="_blank" rel="external">Review-Reporter</a></h2><p>Google Play反馈的自动提示, 支持提示到Slack和Jira.</p>
+<h2 id="SimpleRecyclerView"><a href="#SimpleRecyclerView" class="headerlink" title="SimpleRecyclerView"></a><a href="https://github.com/jaychang0917/SimpleRecyclerView" target="_blank" rel="external">SimpleRecyclerView</a></h2><p>更简单好用的RecyclerView.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Android-Weekly/">Android Weekly</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Android-Weekly/">Android Weekly</a><a href="/tags/Kotlin/">Kotlin</a><a href="/tags/RxJava/">RxJava</a><a href="/tags/Animation/">Animation</a><a href="/tags/Nougat/">Nougat</a><a href="/tags/RecyclerView/">RecyclerView</a><a href="/tags/ConstraintLayout/">ConstraintLayout</a><a href="/tags/Android-7/">Android 7</a><a href="/tags/Testing/">Testing</a><a href="/tags/Service/">Service</a><a href="/tags/Lottie/">Lottie</a><a href="/tags/Mutability/">Mutability</a><a href="/tags/Locales/">Locales</a><a href="/tags/StrictMode/">StrictMode</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengdd.github.io/Android/Android-Weekly/2017/02/07/android-weekly-notes-issue-243/" data-title="Android Weekly Notes Issue 243 | Meng&#39;s pages" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Android/2017/02/06/hello-constraint-layout/"  title="Say Hello to ConstraintLayout">
+ <strong>下一篇：</strong><br/> 
+ <span>Say Hello to ConstraintLayout
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="Android/Android-Weekly/2017/02/07/android-weekly-notes-issue-243/" data-title="Android Weekly Notes Issue 243" data-url="http://mengdd.github.io/Android/Android-Weekly/2017/02/07/android-weekly-notes-issue-243/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-243"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #243</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Constraint-Layout-Animations"><span class="toc-number">2.1.</span> <span class="toc-text">Constraint Layout Animations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Testing-with-Kotlin"><span class="toc-number">2.2.</span> <span class="toc-text">Android Testing with Kotlin</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JUnit测试"><span class="toc-number">2.2.1.</span> <span class="toc-text">JUnit测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Robolectric测试"><span class="toc-number">2.2.2.</span> <span class="toc-text">Robolectric测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Espresso测试"><span class="toc-number">2.2.3.</span> <span class="toc-text">Espresso测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Practical-challenges-for-RxJava-learners"><span class="toc-number">2.3.</span> <span class="toc-text">Practical challenges for RxJava learners</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Coordinators-solving-a-problem-you-didn’t-even-know-you-had"><span class="toc-number">2.4.</span> <span class="toc-text">Coordinators: solving a problem you didn’t even know you had</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Review-Reporter-Part-1"><span class="toc-number">2.5.</span> <span class="toc-text">Review-Reporter: Part 1 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-test-a-Service"><span class="toc-number">2.6.</span> <span class="toc-text">How to test a Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introducing-Lottie"><span class="toc-number">2.7.</span> <span class="toc-text">Introducing Lottie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Learning-to-use-and-abuse-Mutability"><span class="toc-number">2.8.</span> <span class="toc-text">Learning to use and abuse Mutability</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Curious-Case-of-Multiple-Locales"><span class="toc-number">2.9.</span> <span class="toc-text">A Curious Case of Multiple Locales</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-StrictMode-To-Find-Things-You-Did-By-Accident"><span class="toc-number">2.10.</span> <span class="toc-text">Use StrictMode To Find Things You Did By Accident</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#android-material-stepper"><span class="toc-number">3.1.</span> <span class="toc-text">android-material-stepper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOSP-Support-Library-Contribution-Guide"><span class="toc-number">3.2.</span> <span class="toc-text">AOSP Support Library Contribution Guide</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqlite-android"><span class="toc-number">3.3.</span> <span class="toc-text">sqlite-android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Review-Reporter"><span class="toc-number">3.4.</span> <span class="toc-text">Review-Reporter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SimpleRecyclerView"><span class="toc-number">3.5.</span> <span class="toc-text">SimpleRecyclerView</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>39</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-News/" title="Android News">Android News<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Weekly/" title="Android Weekly">Android Weekly<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Architecture/" title="Architecture">Architecture<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Design/" title="Design">Design<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/IDE/" title="IDE">IDE<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Android-Weekly/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/" title="Retrofit">Retrofit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Retrofit/RxJava/" title="RxJava">RxJava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android/Tools/" title="Tools">Tools<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/others/" title="others">others<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>39</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>26</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>15</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVP/" title="MVP">MVP<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ConstraintLayout/" title="ConstraintLayout">ConstraintLayout<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Test/" title="Test">Test<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Testing/" title="Testing">Testing<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-7/" title="Android 7">Android 7<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Retrofit/" title="Retrofit">Retrofit<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/mengdd/" target="_blank" title="圣骑士wind">圣骑士wind</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://talentprince.github.io/" target="_blank" title="长乐未央">长乐未央</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dandan Meng. <br/>
+			This is my blog. Welcome.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/mengdd" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Dandan Meng">Dandan Meng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wind"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dandanmeng';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75132850-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?83e8338b542a9fd155f68673d113e0ae";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
