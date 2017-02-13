@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-02-07T04:58:18.000Z</updated>
+  <updated>2017-02-13T07:08:10.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,75 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 244</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/02/13/android-weekly-notes-issue-244/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/02/13/android-weekly-notes-issue-244/</id>
+    <published>2017-02-13T06:53:29.000Z</published>
+    <updated>2017-02-13T07:08:10.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-244&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-244&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #244&quot;&gt;&lt;/a&gt;Android Weekly Issue #244&lt;/h1&gt;&lt;p&gt;February 12th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-244&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #244&lt;/a&gt;&lt;br&gt;本期内容包括: Android Fragments使用教程; ClassyShark使用; Firebase的Personal App Indexing功能引出的一些权限问题; 关于应用内没有提供Privacy Policy的后续处理; Kotlin中的annotation processor讨论; Pull和Push模式的讲解; 为什么Android测试这么难; Android 7 Nougat不再支持用Intent发送&lt;code&gt;file:// URI&lt;/code&gt;, 应用需要改用&lt;code&gt;FileProvider&lt;/code&gt;实现原有功能.&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Android-Fragments-Tutorial-An-Introduction&quot;&gt;&lt;a href=&quot;#Android-Fragments-Tutorial-An-Introduction&quot; class=&quot;headerlink&quot; title=&quot;Android Fragments Tutorial: An Introduction&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.raywenderlich.com/149112/android-fragments-tutorial-introduction&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Fragments Tutorial: An Introduction&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一篇如何使用Fragments的讲解.&lt;/p&gt;
+&lt;h2 id=&quot;Exporting-data-from-ClassyShark&quot;&gt;&lt;a href=&quot;#Exporting-data-from-ClassyShark&quot; class=&quot;headerlink&quot; title=&quot;Exporting data from ClassyShark&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@BorisFarber/exporting-data-from-classyshark-e3cf3fe3fab8#.e2r76detr&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Exporting data from ClassyShark&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;用&lt;a href=&quot;https://github.com/google/android-classyshark&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ClassyShark&lt;/a&gt;的APK dashboardA检查apk的问题(重复依赖, 过期依赖等).&lt;br&gt;本文介绍如何一次性导出全部的数据.&lt;/p&gt;
+&lt;h2 id=&quot;Post-mortem-Firebase-vs-permissions&quot;&gt;&lt;a href=&quot;#Post-mortem-Firebase-vs-permissions&quot; class=&quot;headerlink&quot; title=&quot;Post-mortem : Firebase vs permissions&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://jeremie-martinez.com/2017/02/08/firebase-permissions/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Post-mortem : Firebase vs permissions&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;两周前Firebase发布了一个新功能: &lt;a href=&quot;https://firebase.google.com/docs/app-indexing/android/personal-content&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Personal App Indexing&lt;/a&gt;. 之后遇到了一些权限相关的问题, 本文讨论遇到的具体问题和解决方法, 然后他们发布了一个hotfix版本.&lt;/p&gt;
+&lt;h2 id=&quot;Did-you-get-one-of-these-Google-Play-Developer-Policy-Violation-Emails&quot;&gt;&lt;a href=&quot;#Did-you-get-one-of-these-Google-Play-Developer-Policy-Violation-Emails&quot; class=&quot;headerlink&quot; title=&quot;Did you get one of these Google Play Developer Policy Violation Emails?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@ali.muzaffar/did-you-get-one-of-these-google-play-developer-policy-violation-emails-6c529ceb082d#.glctt861o&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Did you get one of these Google Play Developer Policy Violation Emails?&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如果你的应用使用了一些”dangerous permissions”, 你需要在应用或者Google Play上附有privacy policy, 否则你就会收到Google Play的邮件.&lt;/p&gt;
+&lt;p&gt;作者他的Demo app也收到了这种邮件, 所以他提供了他的解决方法.&lt;/p&gt;
+&lt;p&gt;他找到了这个&lt;a href=&quot;https://privacypolicytemplate.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;网站&lt;/a&gt;, 这是他最后写成的&lt;a href=&quot;https://gist.github.com/alphamu/c42f6c3fce530ca5e804e672fed70d78&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Gist&lt;/a&gt;. 利用&lt;a href=&quot;https://rawgit.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RawGit&lt;/a&gt;可以将github上的文件url转成用HTML显示的url. 之后在app中设置一个链接, 点击打开这个url就可以了.&lt;/p&gt;
+&lt;h2 id=&quot;Pushing-the-limits-of-Kotlin-annotation-processing&quot;&gt;&lt;a href=&quot;#Pushing-the-limits-of-Kotlin-annotation-processing&quot; class=&quot;headerlink&quot; title=&quot;Pushing the limits of Kotlin annotation processing&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@workingkills/pushing-the-limits-of-kotlin-annotation-processing-8611027b6711#.7crkk5m68&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Pushing the limits of Kotlin annotation processing&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;关于Kotlin的annotation processor支持, 是一个很复杂的问题, 作者讨论了关于这个问题的历史进展和当前的局限性.&lt;/p&gt;
+&lt;h2 id=&quot;Pull-vs-Push-amp-Imperative-vs-Reactive-Reactive-Programming&quot;&gt;&lt;a href=&quot;#Pull-vs-Push-amp-Imperative-vs-Reactive-Reactive-Programming&quot; class=&quot;headerlink&quot; title=&quot;Pull vs Push &amp;amp; Imperative vs Reactive - Reactive Programming&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.uwanttolearn.com/android/pull-vs-push-imperative-vs-reactive-reactive-programming-android-rxjava2-hell-part2/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Pull vs Push &amp;amp; Imperative vs Reactive - Reactive Programming&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者用浅显的代码例子解释了Pull和Push模式的区别, 一个是自己不停地查询读取, 另一个是等改变发生的时候收到通知. &lt;/p&gt;
+&lt;h2 id=&quot;Why-Android-Testing-is-so-Hard-Historical-Edition&quot;&gt;&lt;a href=&quot;#Why-Android-Testing-is-so-Hard-Historical-Edition&quot; class=&quot;headerlink&quot; title=&quot;Why Android Testing is so Hard: Historical Edition&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.philosophicalhacker.com/post/why-android-testing-is-so-hard-historical-edition/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Why Android Testing is so Hard: Historical Edition&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;为什么Android项目这么难测试呢? 作者认为主要有三方面的历史原因: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Performance方面的考虑. &lt;/li&gt;
+&lt;li&gt;对Android组件的误解.&lt;/li&gt;
+&lt;li&gt;Android和Unit Testing出现的时机.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Sharing-files-though-Intents-are-you-ready-for-Nougat&quot;&gt;&lt;a href=&quot;#Sharing-files-though-Intents-are-you-ready-for-Nougat&quot; class=&quot;headerlink&quot; title=&quot;Sharing files though Intents: are you ready for Nougat?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@quiro91/sharing-files-though-intents-are-you-ready-for-nougat-70f7e9294a0b#.h3f06hxg7A&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sharing files though Intents: are you ready for Nougat?&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Android 7 Nougat引入了一些文件系统的权限变化, 来增强安全性.&lt;/p&gt;
+&lt;p&gt;如果你已经把&lt;code&gt;targetSdkVersion&lt;/code&gt;升到了24+, 并且你用Intent发送一个&lt;code&gt;file:// URI&lt;/code&gt;, 你将会得到一个&lt;code&gt;FileUriExposedException&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;解决办法是使用&lt;code&gt;FileProvider&lt;/code&gt;.&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;SlidingSquaresLoader&quot;&gt;&lt;a href=&quot;#SlidingSquaresLoader&quot; class=&quot;headerlink&quot; title=&quot;SlidingSquaresLoader&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/biodunalfet/SlidingSquaresLoader&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SlidingSquaresLoader&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个有趣的动画方块的loading图案.&lt;/p&gt;
+&lt;h2 id=&quot;ason&quot;&gt;&lt;a href=&quot;#ason&quot; class=&quot;headerlink&quot; title=&quot;ason&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/afollestad/ason&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ason&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个JSON库, 简化了序列化, 更易使用.&lt;/p&gt;
+&lt;h2 id=&quot;Intro-To-RxJava&quot;&gt;&lt;a href=&quot;#Intro-To-RxJava&quot; class=&quot;headerlink&quot; title=&quot;Intro-To-RxJava&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/PareshMayani/Intro-To-RxJava&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Intro-To-RxJava&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;上一期有一篇文章提过的RxJava练习项目.&lt;/p&gt;
+&lt;h2 id=&quot;chuck&quot;&gt;&lt;a href=&quot;#chuck&quot; class=&quot;headerlink&quot; title=&quot;chuck&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/jgilfelt/chuck&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;chuck&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;An in-app HTTP inspector for Android OkHttp clients.&lt;br&gt;截取请求和响应, 点击通知可以查看UI显示.&lt;/p&gt;
+&lt;h2 id=&quot;android-parcelable-intellij-plugin-kotlin&quot;&gt;&lt;a href=&quot;#android-parcelable-intellij-plugin-kotlin&quot; class=&quot;headerlink&quot; title=&quot;android-parcelable-intellij-plugin-kotlin&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/nekocode/android-parcelable-intellij-plugin-kotlin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-parcelable-intellij-plugin-kotlin&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;为kotlin的类生成Parcelable代码的插件.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-244&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-244&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #244&quot;&gt;&lt;/a&gt;Android Weekly Issue #244&lt;/h1&gt;&lt;p&gt;February 12th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-244&quot;&gt;Android Weekly Issue #244&lt;/a&gt;&lt;br&gt;本期内容包括: Android Fragments使用教程; ClassyShark使用; Firebase的Personal App Indexing功能引出的一些权限问题; 关于应用内没有提供Privacy Policy的后续处理; Kotlin中的annotation processor讨论; Pull和Push模式的讲解; 为什么Android测试这么难; Android 7 Nougat不再支持用Intent发送&lt;code&gt;file:// URI&lt;/code&gt;, 应用需要改用&lt;code&gt;FileProvider&lt;/code&gt;实现原有功能.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Fragment" scheme="http://mengdd.github.io/tags/Fragment/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
+    
+      <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
+    
+      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
+    
+      <category term="ClassyShark" scheme="http://mengdd.github.io/tags/ClassyShark/"/>
+    
+      <category term="Permission" scheme="http://mengdd.github.io/tags/Permission/"/>
+    
+      <category term="Privacy Policy" scheme="http://mengdd.github.io/tags/Privacy-Policy/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 243</title>
@@ -88,15 +157,15 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -407,9 +476,9 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
-    
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
+      <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -661,11 +730,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
-    
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
+      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
     
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
     
@@ -759,9 +828,9 @@
     
       <category term="Notification" scheme="http://mengdd.github.io/tags/Notification/"/>
     
-      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
-    
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
+    
+      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
       <category term="Background work" scheme="http://mengdd.github.io/tags/Background-work/"/>
     
@@ -850,9 +919,9 @@
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
-      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
-    
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
+    
+      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
     
       <category term="ContentProvider" scheme="http://mengdd.github.io/tags/ContentProvider/"/>
     
@@ -947,9 +1016,9 @@
     
       <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
     
-      <category term="Design" scheme="http://mengdd.github.io/tags/Design/"/>
-    
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
+    
+      <category term="Design" scheme="http://mengdd.github.io/tags/Design/"/>
     
       <category term="IoT" scheme="http://mengdd.github.io/tags/IoT/"/>
     
@@ -1083,17 +1152,17 @@
     
       <category term="AnimatedVectorDrawable" scheme="http://mengdd.github.io/tags/AnimatedVectorDrawable/"/>
     
-      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
+    
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
+    
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
-    
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="Custom View" scheme="http://mengdd.github.io/tags/Custom-View/"/>
     
@@ -1316,8 +1385,6 @@
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
-      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
-    
       <category term="Terminal" scheme="http://mengdd.github.io/tags/Terminal/"/>
     
       <category term="Android 7.1" scheme="http://mengdd.github.io/tags/Android-7-1/"/>
@@ -1335,6 +1402,8 @@
       <category term="push notification" scheme="http://mengdd.github.io/tags/push-notification/"/>
     
       <category term="transient" scheme="http://mengdd.github.io/tags/transient/"/>
+    
+      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
     
   </entry>
   
@@ -1540,15 +1609,15 @@
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
       <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
-    
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
@@ -1646,11 +1715,11 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
       <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
       <category term="TV" scheme="http://mengdd.github.io/tags/TV/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
@@ -1658,13 +1727,13 @@
     
       <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
-      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
-    
-      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
-    
       <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
+    
+      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
     
       <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
     
@@ -1742,19 +1811,19 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
       <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
+    
+      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
       <category term="Async-Await" scheme="http://mengdd.github.io/tags/Async-Await/"/>
     
@@ -1890,9 +1959,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
   </entry>
   
@@ -1981,11 +2050,11 @@
     
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
       <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
       <category term="Pury" scheme="http://mengdd.github.io/tags/Pury/"/>
     
@@ -2430,88 +2499,6 @@
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 228</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/Nougat/Design-Support-Library/2016/10/26/android-weekly-notes-issue-228/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/Nougat/Design-Support-Library/2016/10/26/android-weekly-notes-issue-228/</id>
-    <published>2016-10-26T04:00:24.000Z</published>
-    <updated>2016-10-26T04:11:58.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-228&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-228&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #228&quot;&gt;&lt;/a&gt;Android Weekly Issue #228&lt;/h1&gt;&lt;p&gt;October 23rd, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-228&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #228&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本期内容包括:&lt;br&gt;Android 7.1的App Shortcuts; Searchbar的设计讨论; Nougat的Direct Reply; Alarms API讨论; Support Library的BottomNavigationView; MVVM模式; Dagger2的subcomponent实现; Test Rules介绍等.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Android-7-1-Static-Shortcut&quot;&gt;&lt;a href=&quot;#Android-7-1-Static-Shortcut&quot; class=&quot;headerlink&quot; title=&quot;Android 7.1 Static Shortcut&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@tonyowen/android-7-1-static-shortcut-6c42d81ba11b#.8emk7ssh1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android 7.1 Static Shortcut&lt;/a&gt;&lt;/h2&gt;&lt;h2 id=&quot;Exploring-Android-Nougat-7-1-App-Shortcuts&quot;&gt;&lt;a href=&quot;#Exploring-Android-Nougat-7-1-App-Shortcuts&quot; class=&quot;headerlink&quot; title=&quot;Exploring Android Nougat 7.1 App Shortcuts&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://catinean.com/2016/10/20/exploring-android-nougat-7-1-app-shortcuts/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Exploring Android Nougat 7.1 App Shortcuts&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这两篇文章都在介绍Android 7.1的App Shortcuts.&lt;/p&gt;
-&lt;p&gt;本博客相关文章: &lt;a href=&quot;http://www.cnblogs.com/mengdd/p/5996665.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android 7.1 App Shortcuts使用
-&lt;/a&gt; .&lt;/p&gt;
-&lt;h2 id=&quot;Exposing-the-Searchbar&quot;&gt;&lt;a href=&quot;#Exposing-the-Searchbar&quot; class=&quot;headerlink&quot; title=&quot;Exposing the Searchbar&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@alexstyl/https-medium-com-alexstyl-animating-the-toolbar-7a8f1aab39dd#.283nz252o&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Exposing the Searchbar&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;比起点击一个search icon, 然后进入搜索屏, 用户更喜欢一个search bar, 然后直接就可以在主屏上进行搜索.&lt;/p&gt;
-&lt;p&gt;作者对于他们的应用想到的解决方式就是, 在主屏上放一个search bar,然后 用一个transition, 把主屏和搜索屏(两个Activity)衔接起来, 这样用户在点击search bar之后, 不会感觉到他们打开了一个新屏.&lt;/p&gt;
-&lt;p&gt;另一个效果就是, 在点击search bar之后, 当前屏fade away, search bar展开, 在第二屏直接打开键盘, 用户可以进行搜索.&lt;/p&gt;
-&lt;p&gt;Code: &lt;a href=&quot;https://github.com/alexstyl/Material-SearchTransition&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Material-SearchTransition&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Nougat-Direct-Reply&quot;&gt;&lt;a href=&quot;#Nougat-Direct-Reply&quot; class=&quot;headerlink&quot; title=&quot;Nougat - Direct Reply&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/nougat-direct-reply/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Nougat - Direct Reply&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Direct Reply是指用户可以直接回复Notification, 而不用打开app.&lt;br&gt;这篇文章作者示例了如何实现在message app中用Direct Reply清除消息和直接回复.&lt;/p&gt;
-&lt;h2 id=&quot;Da-Real-Fragmentation-Alarms&quot;&gt;&lt;a href=&quot;#Da-Real-Fragmentation-Alarms&quot; class=&quot;headerlink&quot; title=&quot;Da Real Fragmentation - Alarms&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://pguardiola.com/blog/darealfragmentation-alarms/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Da Real Fragmentation - Alarms&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者这篇文章先是详细介绍了Alarm的各个选项和使用情形, 以及它的API版本变化.&lt;/p&gt;
-&lt;h2 id=&quot;Bottom-Navigation-View-in-the-Design-Support-Library&quot;&gt;&lt;a href=&quot;#Bottom-Navigation-View-in-the-Design-Support-Library&quot; class=&quot;headerlink&quot; title=&quot;Bottom Navigation View in the Design Support Library&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.autsoft.hu/now-you-can-use-the-bottom-navigation-view-in-the-design-support-library/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bottom Navigation View in the Design Support Library&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在Design Support Library 25.0.0中, Google发布了Bottom Navigation的官方实现: &lt;a href=&quot;https://developer.android.com/reference/android/support/design/widget/BottomNavigationView.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BottomNavigationView&lt;/a&gt;.&lt;br&gt;这篇文章写了如何使用这个View, 并且最后列出了一些第三方库.&lt;/p&gt;
-&lt;h2 id=&quot;Shades-of-MVVM&quot;&gt;&lt;a href=&quot;#Shades-of-MVVM&quot; class=&quot;headerlink&quot; title=&quot;Shades of MVVM&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.bignerdranch.com/blog/shades-of-mvvm/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Shades of MVVM&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者讨论了MVVM模式及它的几种变形.&lt;/p&gt;
-&lt;h2 id=&quot;Activities-Subcomponents-Multibinding-in-Dagger-2&quot;&gt;&lt;a href=&quot;#Activities-Subcomponents-Multibinding-in-Dagger-2&quot; class=&quot;headerlink&quot; title=&quot;Activities Subcomponents Multibinding in Dagger 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/azimolabs/activities-subcomponents-multibinding-in-dagger-2-85d6053d6a95#.p9bh8bjoc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Activities Subcomponents Multibinding in Dagger 2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/dagger/releases/tag/dagger-2.7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dagger-2.7&lt;/a&gt; 添加了&lt;code&gt;@Modules.subcomponents&lt;/code&gt;.&lt;br&gt;本文演示了如何用这个更好地添加子ActivityComponent. 而不用每次都借助AppComponent. 这样做除了解耦之外, 对于测试时很有帮助.&lt;/p&gt;
-&lt;p&gt;例子代码: &lt;a href=&quot;https://github.com/frogermcs/Dagger2Recipes-ActivitiesMultibinding&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dagger2Recipes-ActivitiesMultibinding&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Experimenting-with-TensorFlow-on-Android-Part-1&quot;&gt;&lt;a href=&quot;#Experimenting-with-TensorFlow-on-Android-Part-1&quot; class=&quot;headerlink&quot; title=&quot;Experimenting with TensorFlow on Android Part 1 &quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@mgazar/experimenting-with-tensorflow-on-android-pt-1-362683b31838#.ylwet4d3p&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Experimenting with TensorFlow on Android Part 1 &lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.tensorflow.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TensorFlow&lt;/a&gt;是一个Machine Intelligence开源库, 主要的用途是数据计算, deep learning等.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.bazel.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bazel&lt;/a&gt;是一个build tool, 功能类似于gradle.&lt;/p&gt;
-&lt;p&gt;本文讲了如何setup.&lt;/p&gt;
-&lt;h2 id=&quot;Understanding-Test-Rules&quot;&gt;&lt;a href=&quot;#Understanding-Test-Rules&quot; class=&quot;headerlink&quot; title=&quot;Understanding Test Rules&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.egorand.me/understanding-test-rules/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Understanding Test Rules&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Espresso中的Rule是如何工作的呢?&lt;br&gt;之前有一个文章: &lt;a href=&quot;http://cwd.dhemery.com/2010/12/junit-rules/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Using Rules To Influence JUnit Test Execution&lt;/a&gt;说明JUnit中的Rule是如何工作的.&lt;/p&gt;
-&lt;p&gt;然后作者讲了如何自定义一个TestRule.&lt;/p&gt;
-&lt;h1 id=&quot;DESIGN&quot;&gt;&lt;a href=&quot;#DESIGN&quot; class=&quot;headerlink&quot; title=&quot;DESIGN&quot;&gt;&lt;/a&gt;DESIGN&lt;/h1&gt;&lt;h2 id=&quot;Sketch-template-for-app-shortcuts&quot;&gt;&lt;a href=&quot;#Sketch-template-for-app-shortcuts&quot; class=&quot;headerlink&quot; title=&quot;Sketch template for app shortcuts&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://plus.google.com/+RomanNurik/posts/3HMBgjn546j&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sketch template for app shortcuts&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者分享了为Android 7.1的app shortcuts功能而准备的sketch模板.&lt;/p&gt;
-&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;PageIndicatorView&quot;&gt;&lt;a href=&quot;#PageIndicatorView&quot; class=&quot;headerlink&quot; title=&quot;PageIndicatorView&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/romandanylyk/PageIndicatorView&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PageIndicatorView&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Page Indicator, 结合Android ViewPager使用的, 转换时有点点连接的功能.&lt;/p&gt;
-&lt;h2 id=&quot;PermissionUtil&quot;&gt;&lt;a href=&quot;#PermissionUtil&quot; class=&quot;headerlink&quot; title=&quot;PermissionUtil&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/kayvannj/PermissionUtil&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PermissionUtil&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Android 6.0 permission请求的库.&lt;/p&gt;
-&lt;h2 id=&quot;DeviceAnimationTestRule&quot;&gt;&lt;a href=&quot;#DeviceAnimationTestRule&quot; class=&quot;headerlink&quot; title=&quot;DeviceAnimationTestRule&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/VictorAlbertos/DeviceAnimationTestRule&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DeviceAnimationTestRule&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个JUnit rule, 用来disable和enable设备动画.&lt;/p&gt;
-&lt;h2 id=&quot;DiagonalLayout&quot;&gt;&lt;a href=&quot;#DiagonalLayout&quot; class=&quot;headerlink&quot; title=&quot;DiagonalLayout&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/florent37/DiagonalLayout&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DiagonalLayout&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;对角线布局, 感觉怪怪的.&lt;/p&gt;
-&lt;h1 id=&quot;NEWS&quot;&gt;&lt;a href=&quot;#NEWS&quot; class=&quot;headerlink&quot; title=&quot;NEWS&quot;&gt;&lt;/a&gt;NEWS&lt;/h1&gt;&lt;h2 id=&quot;Android-7-1-Developer-Preview&quot;&gt;&lt;a href=&quot;#Android-7-1-Developer-Preview&quot; class=&quot;headerlink&quot; title=&quot;Android 7.1 Developer Preview&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://android-developers.blogspot.com.au/2016/10/android71-dev-preview-available.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android 7.1 Developer Preview&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Android 7.1发了Developer Preview啦.&lt;br&gt;官网Overview在这里: &lt;a href=&quot;https://developer.android.com/preview/api-overview.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android 7.1 for Developers&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;ConstraintLayout-beta-1-is-now-available&quot;&gt;&lt;a href=&quot;#ConstraintLayout-beta-1-is-now-available&quot; class=&quot;headerlink&quot; title=&quot;ConstraintLayout beta 1 is now available&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://sites.google.com/a/android.com/tools/recent/constraintlayoutbeta1isnowavailable&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ConstraintLayout beta 1 is now available&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;ConstraintLayout beta 1发布啦.&lt;/p&gt;
-&lt;h1 id=&quot;TOOLS&quot;&gt;&lt;a href=&quot;#TOOLS&quot; class=&quot;headerlink&quot; title=&quot;TOOLS&quot;&gt;&lt;/a&gt;TOOLS&lt;/h1&gt;&lt;h2 id=&quot;Learn-You-a-Git&quot;&gt;&lt;a href=&quot;#Learn-You-a-Git&quot; class=&quot;headerlink&quot; title=&quot;Learn You a Git&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://karumi.github.io/learnyougit/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Learn You a Git&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;教你学习Git的工具.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-228&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-228&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #228&quot;&gt;&lt;/a&gt;Android Weekly Issue #228&lt;/h1&gt;&lt;p&gt;October 23rd, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-228&quot;&gt;Android Weekly Issue #228&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本期内容包括:&lt;br&gt;Android 7.1的App Shortcuts; Searchbar的设计讨论; Nougat的Direct Reply; Alarms API讨论; Support Library的BottomNavigationView; MVVM模式; Dagger2的subcomponent实现; Test Rules介绍等.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-      <category term="Nougat" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/Nougat/"/>
-    
-      <category term="Design Support Library" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/Nougat/Design-Support-Library/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
-    
-      <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
-    
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
-    
-      <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
-    
-      <category term="Alarm" scheme="http://mengdd.github.io/tags/Alarm/"/>
-    
-      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
-    
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
-    
-      <category term="TensorFlow" scheme="http://mengdd.github.io/tags/TensorFlow/"/>
     
   </entry>
   
