@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-02-13T07:08:10.000Z</updated>
+  <updated>2017-02-22T07:56:33.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,178 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 245</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/02/22/android-weekly-notes-issue-245/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/02/22/android-weekly-notes-issue-245/</id>
+    <published>2017-02-22T07:35:47.000Z</published>
+    <updated>2017-02-22T07:56:33.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-245&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-245&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #245&quot;&gt;&lt;/a&gt;Android Weekly Issue #245&lt;/h1&gt;&lt;p&gt;February 19th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-245&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #245&lt;/a&gt;&lt;br&gt;本期内容: 写好单元测试的几条原则; 如何mock Kotlin的对象; 如何消除God Object -&amp;gt; Context; 如何用Android来打电话和发短信, 以及相应事件的监听; 一个监控用电情况的应用(Android Things);&lt;br&gt;用Keystore保存敏感信息; 依赖注入和Dagger 2的使用; Wear应用向Wear 2.0的迁移; 用ViewPager构建无Fragment的应用结构; Android应用的压力测试讨论; RxJava中&lt;code&gt;Subscription&lt;/code&gt;注销处理不当引起的内存泄露; 单元测试并不是完全可靠; Trello向离线模式迁移的架构变化.&lt;/p&gt;
+&lt;p&gt;本周推荐的代码里有一个顶部提示控件, 一个手势检测库, 还有一个loading view的库.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Write-awesome-unit-tests&quot;&gt;&lt;a href=&quot;#Write-awesome-unit-tests&quot; class=&quot;headerlink&quot; title=&quot;Write awesome unit tests&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://jeroenmols.com/blog/2017/02/16/unittests/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Write awesome unit tests&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者关于写好单元测试提供了三条简单的规则以及每条规则对应的一些建议.&lt;/p&gt;
+&lt;h3 id=&quot;1-尽快尽早地跑测试&quot;&gt;&lt;a href=&quot;#1-尽快尽早地跑测试&quot; class=&quot;headerlink&quot; title=&quot;1. 尽快尽早地跑测试.&quot;&gt;&lt;/a&gt;1. 尽快尽早地跑测试.&lt;/h3&gt;&lt;p&gt;尽量在每次改动之后都跑跑测试, 及早发现问题. 你的测试跑得越快你就越有可能经常跑它们.&lt;/p&gt;
+&lt;p&gt;为了让测试跑得很快:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;让测试跑在JVM上而不是设备上.&lt;/li&gt;
+&lt;li&gt;仅测试独立的逻辑模块.&lt;/li&gt;
+&lt;li&gt;不要包含UI, 数据库, 或者网络测试在你的主测试套件中.&lt;/li&gt;
+&lt;li&gt;测试中不要使用wait/sleep.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;2-小并且关注点集中的测试&quot;&gt;&lt;a href=&quot;#2-小并且关注点集中的测试&quot; class=&quot;headerlink&quot; title=&quot;2. 小并且关注点集中的测试&quot;&gt;&lt;/a&gt;2. 小并且关注点集中的测试&lt;/h3&gt;&lt;p&gt;对每一个bug来说, 应该有且只有一个测试挂掉, 并且测试失败的原因应该能从测试方法名上看出来.&lt;/p&gt;
+&lt;p&gt;这样就迫使你每一个测试只检查一件事情, 导致你的测试小并且简单易懂, 也好维护. &lt;/p&gt;
+&lt;p&gt;实现tips:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;测试中只有一条assert/verify语句.&lt;/li&gt;
+&lt;li&gt;有更多的小测试, 而不是几个大测试.&lt;/li&gt;
+&lt;li&gt;测试的名字能清楚地描述失败的原因.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;3-100-的可靠性&quot;&gt;&lt;a href=&quot;#3-100-的可靠性&quot; class=&quot;headerlink&quot; title=&quot;3. 100%的可靠性&quot;&gt;&lt;/a&gt;3. 100%的可靠性&lt;/h3&gt;&lt;p&gt;你的测试应该是完全值得信赖的, 不应该随机失败, 否则你将会对测试失去信任, 也不再会认真对待测试的失败.&lt;/p&gt;
+&lt;p&gt;所以你的测试应该是100%可靠的, 只在真的有问题的时候才失败.&lt;/p&gt;
+&lt;p&gt;建议是:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在JVM上跑测试, 因为到设备的连接可能会中断.&lt;/li&gt;
+&lt;li&gt;在测试的时候mock网络通信.&lt;/li&gt;
+&lt;li&gt;把UI/集成测试移出你的单元测试套件.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Helping-to-Mock-Tests-in-Kotlin&quot;&gt;&lt;a href=&quot;#Helping-to-Mock-Tests-in-Kotlin&quot; class=&quot;headerlink&quot; title=&quot;Helping to Mock Tests in Kotlin&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@orogersilva/helping-androiddev-to-mock-tests-in-kotlin-ab3be5204559#.wetcvdvbt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Helping to Mock Tests in Kotlin&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;因为Kotlin中的类默认是&lt;code&gt;final&lt;/code&gt;的, 要继承的话需要显示地声明&lt;code&gt;open&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;如果只是为了在单元测试中mock就要加个open吗? 不.&lt;/p&gt;
+&lt;p&gt;本篇文章就介绍如何如何mock Kotlin的对象, 而不用该它的声明.&lt;/p&gt;
+&lt;p&gt;首先, &lt;a href=&quot;https://kotlinlang.org/docs/tutorials/kotlin-android.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Set up&lt;/a&gt;; 然后, 使用这个库&lt;a href=&quot;https://github.com/nhaarman/mockito-kotlin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mockito-kotlin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;文中详细介绍了使用细节, 以及对&lt;code&gt;any()&lt;/code&gt;方法的讨论.&lt;/p&gt;
+&lt;h2 id=&quot;How-and-Why-I-Kill-God-Objects&quot;&gt;&lt;a href=&quot;#How-and-Why-I-Kill-God-Objects&quot; class=&quot;headerlink&quot; title=&quot;How and Why I Kill God Objects&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.philosophicalhacker.com/post/towards-godless-android-development-how-and-why-i-kill-god-objects/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How and Why I Kill God Objects&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在面向对象编程中, God Objects是应该被避免的.&lt;/p&gt;
+&lt;p&gt;在Android开发中, 最常见的一种God对象是Context. 本文介绍如何清除这个God对象, 同样的方法也可以用来处理其他对象.&lt;/p&gt;
+&lt;p&gt;首先说为什么要干掉Context?&lt;br&gt;在做TDD的过程中, 我们希望是面向接口的, 而且我们不应该mock非我们拥有的类型.&lt;br&gt;所以我们不应该直接mock外部的API, 而是应该创建一个自己的接口层.&lt;/p&gt;
+&lt;p&gt;作者发现很多类其实并不真正需要一个Context, 它们只是需要得到string或者存储的键值对.&lt;/p&gt;
+&lt;p&gt;之后文中举例介绍了如何通过定义接口摆脱Context.&lt;/p&gt;
+&lt;h2 id=&quot;How-to-Make-Calls-and-Use-SMS-in-Android-Apps&quot;&gt;&lt;a href=&quot;#How-to-Make-Calls-and-Use-SMS-in-Android-Apps&quot; class=&quot;headerlink&quot; title=&quot;How to Make Calls and Use SMS in Android Apps&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://code.tutsplus.com/tutorials/how-to-make-calls-and-use-sms-in-android-apps--cms-28168&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to Make Calls and Use SMS in Android Apps&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;如何拨打电话&lt;/strong&gt;:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;String dial = &lt;span class=&quot;string&quot;&gt;&quot;tel:&quot;&lt;/span&gt; + phoneNo;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;startActivity(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Intent(Intent.ACTION_DIAL, Uri.parse(dial)));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;(不需要权限).&lt;/p&gt;
+&lt;p&gt;如果想在app里直接拨出去电话, 需要权限&lt;code&gt;android.permission.CALL_PHON&lt;/code&gt;, 并且改用&lt;code&gt;ACTION_CALL&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;监控电话事件&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;需要权限&lt;code&gt;android.permission.READ_PHONE_STATE&lt;/code&gt;.来监控来电, 打出去的电话需要这个权限: &lt;code&gt;android.permission.PROCESS_OUTGOING_CALLS&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;具体实现就是在&lt;code&gt;TelephonyManager&lt;/code&gt;注册监听器&lt;code&gt;PhoneStateListener&lt;/code&gt;. 如果是在Activity中需要在对应的生命周期注销监听器.&lt;/p&gt;
+&lt;p&gt;如果需要后台监控, 则需要用到&lt;code&gt;BroadcastReceiver&lt;/code&gt;, 过滤actions为&lt;code&gt;android.intent.action.PHONE_STATE&lt;/code&gt;和&lt;code&gt;android.intent.action.NEW_OUTGOING_CALL&lt;/code&gt;.&lt;br&gt;除了获取相应的电话号码, 还可以进一步阻止电话的拨出.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;发送短信&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;发短信也是两种方法, 启动一个短信客户端程序, 或者直接从程序里发.&lt;/p&gt;
+&lt;p&gt;启动其他程序:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Intent smsIntent = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Intent(Intent.ACTION_SENDTO, Uri.parse(&lt;span class=&quot;string&quot;&gt;&quot;smsto:&quot;&lt;/span&gt; + phoneNo));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;smsIntent.putExtra(&lt;span class=&quot;string&quot;&gt;&quot;sms_body&quot;&lt;/span&gt;, message);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;startActivity(smsIntent);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;自己发: 需要权限&lt;code&gt;android.permission.SEND_SMS&lt;/code&gt;.&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SmsManager smsManager = SmsManager.getDefault();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;smsManager.sendTextMessage(phoneNo, &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;, message, &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注意Android 6.0以上的设备, 本文提到的这些危险权限都是需要动态请求的.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;收短信&lt;/strong&gt;:&lt;br&gt;通过&lt;code&gt;BroadcastReceiver&lt;/code&gt;, 需要权限&lt;code&gt;android.permission.RECEIVE_SMS&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Android-Things-Electricity-Monitoring-App&quot;&gt;&lt;a href=&quot;#Android-Things-Electricity-Monitoring-App&quot; class=&quot;headerlink&quot; title=&quot;Android Things - Electricity Monitoring App&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://riggaroo.co.za/android-things-electricity-monitoring-app/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Things - Electricity Monitoring App&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者分享了一个她的Android Things的应用(和Github repo), 可以监控她家的用电情况.&lt;/p&gt;
+&lt;h2 id=&quot;Using-Keystore-system-to-store-and-retrieve-sensitive-information&quot;&gt;&lt;a href=&quot;#Using-Keystore-system-to-store-and-retrieve-sensitive-information&quot; class=&quot;headerlink&quot; title=&quot;Using Keystore system to store and retrieve sensitive information&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@josiassena/using-the-android-keystore-system-to-store-sensitive-information-3a56175a454b#.nu3gw39qp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Using Keystore system to store and retrieve sensitive information&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;利用Android的Keystore来存储一些敏感信息.&lt;/p&gt;
+&lt;h2 id=&quot;The-lost-droid-and-the-magic-Dagger&quot;&gt;&lt;a href=&quot;#The-lost-droid-and-the-magic-Dagger&quot; class=&quot;headerlink&quot; title=&quot;The lost droid and the magic Dagger&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/rocknnull/the-lost-droid-and-the-magic-dagger-an-intro-to-dependency-injection-for-android-c686f4399117#.k5vgmxsjh&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The lost droid and the magic Dagger&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一篇依赖注入的介绍文章.&lt;br&gt;先介绍依赖注入是什么, 有什么优点, 接着介绍Dagger 2的使用.&lt;/p&gt;
+&lt;h2 id=&quot;Wear-2-0-Match-Timer-–-Part-1&quot;&gt;&lt;a href=&quot;#Wear-2-0-Match-Timer-–-Part-1&quot; class=&quot;headerlink&quot; title=&quot;Wear 2.0: Match Timer – Part 1&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/wear-2-0-match-timer-part-1/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Wear 2.0: Match Timer – Part 1&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者把他的Wear应用升级到了Wear 2.0.&lt;/p&gt;
+&lt;h2 id=&quot;ViewPager-without-Fragments&quot;&gt;&lt;a href=&quot;#ViewPager-without-Fragments&quot; class=&quot;headerlink&quot; title=&quot;ViewPager without Fragments&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.ottodroid.net/?p=523&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ViewPager without Fragments&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一些开发者可能不想选择Fragment, 这篇文章里有相关讨论: &lt;a href=&quot;https://medium.com/square-corner-blog/advocating-against-android-fragments-81fd0b462c97#.e4k145h1b&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Advocating Against Android Fragments&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;作者推荐了一些在不用Fragment的情况下构建App的库: &lt;a href=&quot;https://github.com/bluelinelabs/Conductor&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Conductor&lt;/a&gt;, &lt;a href=&quot;https://github.com/sockeqwe/mosby&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mosby&lt;/a&gt;, &lt;a href=&quot;https://github.com/square/flow&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;flow&lt;/a&gt;, &lt;a href=&quot;https://github.com/square/mortar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mortar&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;而本篇文章想要展示另一种方法, 既不用Fragment, 也不用上述的第三方库来构建一个App -&amp;gt; 用ViewPager.&lt;/p&gt;
+&lt;p&gt;在PagerAdapter里管理了一个Presenter的List, 每一个Presenter管理一个View. 具体实现见原文.&lt;/p&gt;
+&lt;h2 id=&quot;Stress-testing-Android-apps&quot;&gt;&lt;a href=&quot;#Stress-testing-Android-apps&quot; class=&quot;headerlink&quot; title=&quot;Stress-testing Android apps&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://android.jlelse.eu/stress-testing-android-apps-601311ebf590#.8kqor9m39&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stress-testing Android apps&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;之前大神JakeWharton有一个Sample App: &lt;a href=&quot;https://github.com/JakeWharton/u2020&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JakeWharton/u2020&lt;/a&gt;, 里面有一个debug drawer, 可以用来模拟不同的测试情形, 比如网络连接不好, 延迟, 或者网络错误等等.&lt;/p&gt;
+&lt;p&gt;作者他们的App也有一个类似的debug drawer, 他们讨论出了一个需要测试的情形的checklist:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;网络延迟&lt;/li&gt;
+&lt;li&gt;错误率&lt;/li&gt;
+&lt;li&gt;离线模式&lt;/li&gt;
+&lt;li&gt;屏幕旋转&lt;/li&gt;
+&lt;li&gt;应用在后台被杀死&lt;/li&gt;
+&lt;li&gt;应用升级&lt;/li&gt;
+&lt;li&gt;Key Bashing&lt;/li&gt;
+&lt;li&gt;多窗口模式 (Android N)&lt;/li&gt;
+&lt;li&gt;TransactionTooLargeException (Android N)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;作者甚至发现其中的一些项目组合起来测试非常有趣.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;网络延迟: 可结合方向改变/app后台被杀死测试.&lt;/li&gt;
+&lt;li&gt;错误率: 可以检查错误是否被正确处理并被报告.&lt;/li&gt;
+&lt;li&gt;离线模式: 关掉网络或者打开飞行模式, 检测正在执行的网络请求是否会引起崩溃; 是否正确通知了用户连接丢失了; 所有应该被cach的内容是否被正确cach了.&lt;/li&gt;
+&lt;li&gt;方向改变: 检查:  正在进行的请求会怎么办? app的状态是否被正确恢复了? 是否加载了当前方向对应的正确资源?&lt;/li&gt;
+&lt;li&gt;App在后台被杀死: 可以通过命令: &lt;code&gt;adb shell am kill YOUR_PACKAGNE_NAME&lt;/code&gt;或者”Do not keep activities”来模拟这种情形. 相关阅读: &lt;a href=&quot;https://developer.android.com/training/monitoring-device-state/doze-standby.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Optimizing for Doze and App Standby&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;App更新: 升级后之前的数据是否被保存了?&lt;/li&gt;
+&lt;li&gt;Key Bashing: 剧烈的滑动和敲击可能产生一些奇怪的错误. 可以跑Monkey来测试一下你的应用: &lt;code&gt;adb shell monkey -p YOUR_PACKAGNE_NAME&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;多窗口模式(Android N): 列出了一些多窗口的测试项目, 详情见原文.&lt;/li&gt;
+&lt;li&gt;TransactionTooLargeException (Android N): Bundle中的数据不能太大, 超过限制, 在Android N以上会直接抛异常.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;How-to-leak-memory-with-Subscriptions-in-RxJava&quot;&gt;&lt;a href=&quot;#How-to-leak-memory-with-Subscriptions-in-RxJava&quot; class=&quot;headerlink&quot; title=&quot;How to leak memory with Subscriptions in RxJava&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@scanarch/how-to-leak-memory-with-subscriptions-in-rxjava-ae0ef01ad361#.20w4lbkxq&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to leak memory with Subscriptions in RxJava&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;文中举了一个例子, 用RxJava结合MVP, 做网络请求, 更新UI, 很常见的使用情形. &lt;/p&gt;
+&lt;p&gt;在生命周期结束的时候调用RxJava的&lt;code&gt;Subscription.unsubscribe()&lt;/code&gt;来注销, 以结束还在进行的网络请求.&lt;/p&gt;
+&lt;p&gt;看上去没有什么问题, 但是程序实际运行, 反复旋转屏幕进行测试, &lt;code&gt;StrictMode&lt;/code&gt;报告出了Activity的&lt;code&gt;InstanceCountViolation&lt;/code&gt;, dump memory的确看到了多个Activity的实例. 这是为什么呢? &lt;/p&gt;
+&lt;p&gt;作者深究原因, 发现&lt;code&gt;Subscriber&lt;/code&gt;的子类存储的都是final的字段, 比如这个类:&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ActionSubscriber&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;T&lt;/span&gt;&amp;gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Subscriber&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;T&lt;/span&gt;&amp;gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; Action1&amp;lt;? &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt; T&amp;gt; onNext;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; Action1&amp;lt;Throwable&amp;gt; onError;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; Action0 onCompleted;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ActionSubscriber&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Action1&amp;lt;? &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt; T&amp;gt; onNext, Action1&amp;lt;Throwable&amp;gt; onError, Action0 onCompleted)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.onNext = onNext;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.onError = onError;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.onCompleted = onCompleted;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;因为它们都是final的, 所以最后即便执行了注销操作, 也是没有办法把它们置为null的.&lt;/p&gt;
+&lt;p&gt;在生命周期结束的时候注销的操作是这样:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    subscription.unsubscribe();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    view = &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这个&lt;code&gt;subscription&lt;/code&gt;是&lt;code&gt;subscribe()&lt;/code&gt;方法的返回值, 被保存在Presenter的一个字段里, 它实际就是&lt;code&gt;Subscriber&lt;/code&gt;对象.&lt;/p&gt;
+&lt;p&gt;这里的问题就是, 在&lt;code&gt;destroy()&lt;/code&gt;之后, 该引用并没有被置为null, 导致了下面的引用链:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Presenter -&amp;gt; subscription字段, 也即匿名的`Subscriber`对象 -&amp;gt; final字段 -&amp;gt; 对view的引用 -&amp;gt; 对Activity的引用.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;从而造成了内存泄露.&lt;/p&gt;
+&lt;p&gt;解决的办法有两个:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在&lt;code&gt;subscription.unsubscribe();&lt;/code&gt;之后把&lt;code&gt;subscription&lt;/code&gt;字段置为null.&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;CompositeSubscription&lt;/code&gt;, 它可以管理多个&lt;code&gt;Subscription&lt;/code&gt;对象, 用它的&lt;code&gt;clear()&lt;/code&gt;方法, 它会unsubscribe所有项目并且清除所有的引用.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;文后还列了相关的资料, 作者发现问题并寻找原因的思路很值得学习.&lt;/p&gt;
+&lt;h2 id=&quot;Your-Unit-tests-might-not-be-as-reliable-as-you-thought&quot;&gt;&lt;a href=&quot;#Your-Unit-tests-might-not-be-as-reliable-as-you-thought&quot; class=&quot;headerlink&quot; title=&quot;Your Unit tests might not be as reliable as you thought&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://afterecho.uk/blog/your-unit-tests-might-not-be-as-reliable-as-you-thought.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Your Unit tests might not be as reliable as you thought&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者举了个例子, 说明即便你的单元测试过了, 也不保证你的产品代码一定没问题.&lt;/p&gt;
+&lt;p&gt;他的例子是&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SimpleDateFormat fmt = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; SimpleDateFormat(&lt;span class=&quot;string&quot;&gt;&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSXXX&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;失败的原因是因为&lt;code&gt;XXX&lt;/code&gt;格式是在Android 4.3以上才支持的, 它是在&lt;code&gt;java.text&lt;/code&gt;包下的. 所以实际在高版本的设备还运行正常, 换个低版本的设备就崩溃了.&lt;/p&gt;
+&lt;p&gt;所以单元测试并不一定可靠, 因为跑单元测试的JVM和Android设备上的JVM有可能不一样.&lt;/p&gt;
+&lt;h2 id=&quot;Airplane-Mode-Enabling-Trello-Mobile-Offline&quot;&gt;&lt;a href=&quot;#Airplane-Mode-Enabling-Trello-Mobile-Offline&quot; class=&quot;headerlink&quot; title=&quot;Airplane Mode: Enabling Trello Mobile Offline&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://tech.trello.com/sync-architecture/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Airplane Mode: Enabling Trello Mobile Offline&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Trello移动移动现在有离线模式了. 作者介绍了他们的心路历程和架构变化. (比较简单和笼统的介绍).&lt;/p&gt;
+&lt;h2 id=&quot;Self-guided-resources-to-Android-development&quot;&gt;&lt;a href=&quot;#Self-guided-resources-to-Android-development&quot; class=&quot;headerlink&quot; title=&quot;Self-guided resources to Android development&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://twitter.com/corey_latislaw/status/831624360175603713?s=03&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Self-guided resources to Android development&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这是一条Twitter, 作者分享了Android的学习资源. (可惜我打不开里面说的链接, 不知为何.)&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;Alerter&quot;&gt;&lt;a href=&quot;#Alerter&quot; class=&quot;headerlink&quot; title=&quot;Alerter&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Tapadoo/Alerter&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Alerter&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个加在Window的Decor View上面的顶部提示栏, 类似于Snackbar和Toast一类的东东. 可定制外观, icon, 加多行字, 可添加click事件.&lt;/p&gt;
+&lt;h2 id=&quot;sensey&quot;&gt;&lt;a href=&quot;#sensey&quot; class=&quot;headerlink&quot; title=&quot;sensey&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/nisrulz/sensey&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sensey&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个好用的手势检测库.&lt;/p&gt;
+&lt;h2 id=&quot;mkloader&quot;&gt;&lt;a href=&quot;#mkloader&quot; class=&quot;headerlink&quot; title=&quot;mkloader&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/nntuyen/mkloader&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mkloader&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;好看并且平滑的自定义loading view. 目前支持好几种图案.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-245&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-245&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #245&quot;&gt;&lt;/a&gt;Android Weekly Issue #245&lt;/h1&gt;&lt;p&gt;February 19th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-245&quot;&gt;Android Weekly Issue #245&lt;/a&gt;&lt;br&gt;本期内容: 写好单元测试的几条原则; 如何mock Kotlin的对象; 如何消除God Object -&amp;gt; Context; 如何用Android来打电话和发短信, 以及相应事件的监听; 一个监控用电情况的应用(Android Things);&lt;br&gt;用Keystore保存敏感信息; 依赖注入和Dagger 2的使用; Wear应用向Wear 2.0的迁移; 用ViewPager构建无Fragment的应用结构; Android应用的压力测试讨论; RxJava中&lt;code&gt;Subscription&lt;/code&gt;注销处理不当引起的内存泄露; 单元测试并不是完全可靠; Trello向离线模式迁移的架构变化.&lt;/p&gt;
+&lt;p&gt;本周推荐的代码里有一个顶部提示控件, 一个手势检测库, 还有一个loading view的库.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
+    
+      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
+    
+      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
+    
+      <category term="Unit Test" scheme="http://mengdd.github.io/tags/Unit-Test/"/>
+    
+      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
+    
+      <category term="God Objects" scheme="http://mengdd.github.io/tags/God-Objects/"/>
+    
+      <category term="Call" scheme="http://mengdd.github.io/tags/Call/"/>
+    
+      <category term="SMS" scheme="http://mengdd.github.io/tags/SMS/"/>
+    
+      <category term="Keystore" scheme="http://mengdd.github.io/tags/Keystore/"/>
+    
+      <category term="Dagger 2" scheme="http://mengdd.github.io/tags/Dagger-2/"/>
+    
+      <category term="Wear 2.0" scheme="http://mengdd.github.io/tags/Wear-2-0/"/>
+    
+      <category term="ViewPager" scheme="http://mengdd.github.io/tags/ViewPager/"/>
+    
+      <category term="Alert" scheme="http://mengdd.github.io/tags/Alert/"/>
+    
+      <category term="Gesture" scheme="http://mengdd.github.io/tags/Gesture/"/>
+    
+      <category term="Loading" scheme="http://mengdd.github.io/tags/Loading/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 244</title>
@@ -66,15 +238,15 @@
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
-      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
       <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
-      <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
-    
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
+    
+      <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
       <category term="ClassyShark" scheme="http://mengdd.github.io/tags/ClassyShark/"/>
     
@@ -153,9 +325,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
@@ -346,11 +518,11 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
@@ -571,13 +743,13 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -820,17 +992,17 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
       <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
       <category term="Notification" scheme="http://mengdd.github.io/tags/Notification/"/>
     
-      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
-    
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
+    
+      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
     
       <category term="Background work" scheme="http://mengdd.github.io/tags/Background-work/"/>
     
@@ -915,13 +1087,13 @@
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
-      <category term="ExoPlayer" scheme="http://mengdd.github.io/tags/ExoPlayer/"/>
-    
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
-      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
+      <category term="ExoPlayer" scheme="http://mengdd.github.io/tags/ExoPlayer/"/>
     
       <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
+    
+      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
     
       <category term="ContentProvider" scheme="http://mengdd.github.io/tags/ContentProvider/"/>
     
@@ -1016,9 +1188,9 @@
     
       <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
     
-      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
-    
       <category term="Design" scheme="http://mengdd.github.io/tags/Design/"/>
+    
+      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
       <category term="IoT" scheme="http://mengdd.github.io/tags/IoT/"/>
     
@@ -1375,13 +1547,13 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
@@ -1607,13 +1779,13 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
@@ -1711,29 +1883,29 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
       <category term="TV" scheme="http://mengdd.github.io/tags/TV/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
       <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
+    
+      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
+    
+      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
       <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
-      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
-    
-      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
     
       <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
     
@@ -1813,13 +1985,13 @@
     
       <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
@@ -1959,9 +2131,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
       <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
   </entry>
   
@@ -2042,19 +2214,19 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
-    
       <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
       <category term="Pury" scheme="http://mengdd.github.io/tags/Pury/"/>
     
@@ -2065,440 +2237,6 @@
       <category term="Barcode Detection" scheme="http://mengdd.github.io/tags/Barcode-Detection/"/>
     
       <category term="SOLID" scheme="http://mengdd.github.io/tags/SOLID/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用Android Studio开发最常用到的快捷键</title>
-    <link href="http://mengdd.github.io/Android/Tools/IDE/2016/10/27/android-studio-shortcuts-used-frequently/"/>
-    <id>http://mengdd.github.io/Android/Tools/IDE/2016/10/27/android-studio-shortcuts-used-frequently/</id>
-    <published>2016-10-27T14:23:45.000Z</published>
-    <updated>2016-10-28T07:09:06.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-Studio常用快捷键&quot;&gt;&lt;a href=&quot;#Android-Studio常用快捷键&quot; class=&quot;headerlink&quot; title=&quot;Android Studio常用快捷键&quot;&gt;&lt;/a&gt;Android Studio常用快捷键&lt;/h1&gt;&lt;p&gt;Android Studio日常开发常用快捷键.&lt;br&gt;快捷键版本: Mac OS X 10.5+&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;搜索查看类&quot;&gt;&lt;a href=&quot;#搜索查看类&quot; class=&quot;headerlink&quot; title=&quot;搜索查看类&quot;&gt;&lt;/a&gt;搜索查看类&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;搜索所有文件&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;double Shift&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;搜索文件&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;搜索类文件&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;搜索符号&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;打开最近的文件&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + E&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;打开最近编辑过的文件&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + E&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;在文件内搜索&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + F&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;全文搜索&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + F&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;显示结构, 类中方法&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + F12&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;跳到当前文件&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;F4&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;从以上查找中途退出&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;ESC&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;发现引用&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Opt + F7(显示在下面)/ Opt + Cmd + F7(显示在当前)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;查找定义&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + B/ Cmd + 单击, 找到定义后再次点击会显示所有引用&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;找子类/实现&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + B&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;找基类/接口&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + U&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;高亮Usages&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + F7&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;查找Action&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + A&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;显示文件在项目中的位置&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Opt + F1, 再加Enter&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;复制当前文件的路径&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + C&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;编辑类&quot;&gt;&lt;a href=&quot;#编辑类&quot; class=&quot;headerlink&quot; title=&quot;编辑类&quot;&gt;&lt;/a&gt;编辑类&lt;/h2&gt;&lt;h3 id=&quot;编辑&quot;&gt;&lt;a href=&quot;#编辑&quot; class=&quot;headerlink&quot; title=&quot;编辑&quot;&gt;&lt;/a&gt;编辑&lt;/h3&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;复制&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + C&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;剪切&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;粘贴&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + V&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;从剪切板粘贴&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + V&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;复制当前行或当前选中块&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + D&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;以光标位置向前, 删除一个词&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Opt + delete&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;删除一行&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + delete&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;把代码包起来: try-catch等&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + T&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;查看方法的参数信息&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + P&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;生成&quot;&gt;&lt;a href=&quot;#生成&quot; class=&quot;headerlink&quot; title=&quot;生成&quot;&gt;&lt;/a&gt;生成&lt;/h3&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;生成方法&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + N&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;生成未定义的方法&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Opt + Enter&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Override方法&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;实现(implement)方法&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + I&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;自动补全&quot;&gt;&lt;a href=&quot;#自动补全&quot; class=&quot;headerlink&quot; title=&quot;自动补全&quot;&gt;&lt;/a&gt;自动补全&lt;/h3&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;加import语句&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Opt + Enter&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;显示Warning信息并采用快捷修复&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Opt + Enter&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;重构&quot;&gt;&lt;a href=&quot;#重构&quot; class=&quot;headerlink&quot; title=&quot;重构&quot;&gt;&lt;/a&gt;重构&lt;/h3&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;重命名&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Shift + F6&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;更改签名(重构方法)&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + F6&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;提取方法M,变量V,字段F,常量C,参数P&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + M,V,F,C,P&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;内联&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + N&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;选择-移动&quot;&gt;&lt;a href=&quot;#选择-移动&quot; class=&quot;headerlink&quot; title=&quot;选择, 移动&quot;&gt;&lt;/a&gt;选择, 移动&lt;/h3&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;移动到某一行&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + L&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;选中行&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + 方向&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;选中词&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Opt + 上下方向&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;按词移动光标&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Opt + 左右方向&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;返回上/下一次光标所在的地方&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + 左右方向&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;移动当前行&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + 上下方向&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;格式化&quot;&gt;&lt;a href=&quot;#格式化&quot; class=&quot;headerlink&quot; title=&quot;格式化&quot;&gt;&lt;/a&gt;格式化&lt;/h3&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;格式化代码&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + L&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;优化imports&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + Opt + O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;注释&quot;&gt;&lt;a href=&quot;#注释&quot; class=&quot;headerlink&quot; title=&quot;注释&quot;&gt;&lt;/a&gt;注释&lt;/h3&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;行注释&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + /&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;块注释&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Opt + /&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;运行调试类&quot;&gt;&lt;a href=&quot;#运行调试类&quot; class=&quot;headerlink&quot; title=&quot;运行调试类&quot;&gt;&lt;/a&gt;运行调试类&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;运行&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + R&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;运行…&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + Opt + R&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;调试&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + D&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;调试…&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + Opt + D&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;设置断点&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + F8&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;单步执行&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;F8&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;跑到光标处&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Opt + F9&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;看表达式&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Opt + F8&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Resume&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Opt + Cmd + R&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;查看所有断点&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Shift + Cmd + F8&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;测试类&quot;&gt;&lt;a href=&quot;#测试类&quot; class=&quot;headerlink&quot; title=&quot;测试类&quot;&gt;&lt;/a&gt;测试类&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;生成或打开测试类&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + T&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;运行测试&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + Shift + R&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;调试测试&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + Shift + D&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;版本控制类&quot;&gt;&lt;a href=&quot;#版本控制类&quot; class=&quot;headerlink&quot; title=&quot;版本控制类&quot;&gt;&lt;/a&gt;版本控制类&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;显示版本控制窗口&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + 9&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;显示Diff&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + D&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;下一个Diff&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;F7&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;在Diff中打开文件&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;F4&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;窗口类&quot;&gt;&lt;a href=&quot;#窗口类&quot; class=&quot;headerlink&quot; title=&quot;窗口类&quot;&gt;&lt;/a&gt;窗口类&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;用途&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;Mac快捷键&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;显示Android Monitor&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + 6&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;代码全屏或退出&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + Shift + F12&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;打开Preferences&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + ,&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;打开项目结构窗口&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Cmd + ;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;快速切换scheme&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl + `&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;Resources&quot;&gt;&lt;a href=&quot;#Resources&quot; class=&quot;headerlink&quot; title=&quot;Resources&quot;&gt;&lt;/a&gt;Resources&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://developer.android.com/studio/intro/keyboard-shortcuts.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://saulmm.github.io/the-powerful-android-studio&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The powerful Android Studio&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Studio常用快捷键&quot;&gt;&lt;a href=&quot;#Android-Studio常用快捷键&quot; class=&quot;headerlink&quot; title=&quot;Android Studio常用快捷键&quot;&gt;&lt;/a&gt;Android Studio常用快捷键&lt;/h1&gt;&lt;p&gt;Android Studio日常开发常用快捷键.&lt;br&gt;快捷键版本: Mac OS X 10.5+&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Tools" scheme="http://mengdd.github.io/categories/Android/Tools/"/>
-    
-      <category term="IDE" scheme="http://mengdd.github.io/categories/Android/Tools/IDE/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
   </entry>
   

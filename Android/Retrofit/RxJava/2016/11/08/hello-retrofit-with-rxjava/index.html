@@ -48,7 +48,7 @@
 				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
 				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -68,7 +68,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:mengdd.github.io">
 					</form>
 					
@@ -91,14 +91,14 @@
 		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
 		
   <p class="article-time">
-    <time datetime="2016-11-08T02:36:59.000Z" itemprop="datePublished"> 发表于 2016-11-08</time>
+    <time datetime="2016-11-08T02:36:59.000Z" itemprop="datePublished"> Published 2016-11-08</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Retrofit结合RxJava使用指南"><span class="toc-number">1.</span> <span class="toc-text">Retrofit结合RxJava使用指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Retrofit单独使用"><span class="toc-number">1.1.</span> <span class="toc-text">Retrofit单独使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Setup"><span class="toc-number">1.1.1.</span> <span class="toc-text">Setup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备API和model类"><span class="toc-number">1.1.2.</span> <span class="toc-text">准备API和model类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用Retrofit发送请求并得到结果"><span class="toc-number">1.1.3.</span> <span class="toc-text">利用Retrofit发送请求并得到结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步和异步"><span class="toc-number">1.1.4.</span> <span class="toc-text">同步和异步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Converter"><span class="toc-number">1.1.5.</span> <span class="toc-text">Converter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Path和参数"><span class="toc-number">1.1.6.</span> <span class="toc-text">Path和参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Retrofit-RxJava"><span class="toc-number">1.2.</span> <span class="toc-text">Retrofit + RxJava</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Setup-with-RxJava"><span class="toc-number">1.2.1.</span> <span class="toc-text">Setup with RxJava</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#添加RxJava依赖"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">添加RxJava依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Retrofit结合RxJava"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Retrofit结合RxJava</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Retrofit-RxJava请求实例"><span class="toc-number">1.2.2.</span> <span class="toc-text">Retrofit + RxJava请求实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用RxJava进行线程切换"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">用RxJava进行线程切换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RxJava处理多个请求的例子"><span class="toc-number">1.2.3.</span> <span class="toc-text">RxJava处理多个请求的例子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#线程问题处理"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">线程问题处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取消订阅"><span class="toc-number">1.2.4.</span> <span class="toc-text">取消订阅</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo说明"><span class="toc-number">1.3.</span> <span class="toc-text">Demo说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">1.4.</span> <span class="toc-text">References</span></a></li></ol></li></ol>
 		
@@ -203,7 +203,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/RxJava/">RxJava</a><a href="/tags/Retrofit/">Retrofit</a>
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Retrofit/">Retrofit</a><a href="/tags/RxJava/">RxJava</a>
   </div>
 
 </div>
@@ -257,22 +257,22 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Retrofit结合RxJava使用指南"><span class="toc-number">1.</span> <span class="toc-text">Retrofit结合RxJava使用指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Retrofit单独使用"><span class="toc-number">1.1.</span> <span class="toc-text">Retrofit单独使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Setup"><span class="toc-number">1.1.1.</span> <span class="toc-text">Setup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备API和model类"><span class="toc-number">1.1.2.</span> <span class="toc-text">准备API和model类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用Retrofit发送请求并得到结果"><span class="toc-number">1.1.3.</span> <span class="toc-text">利用Retrofit发送请求并得到结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步和异步"><span class="toc-number">1.1.4.</span> <span class="toc-text">同步和异步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Converter"><span class="toc-number">1.1.5.</span> <span class="toc-text">Converter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Path和参数"><span class="toc-number">1.1.6.</span> <span class="toc-text">Path和参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Retrofit-RxJava"><span class="toc-number">1.2.</span> <span class="toc-text">Retrofit + RxJava</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Setup-with-RxJava"><span class="toc-number">1.2.1.</span> <span class="toc-text">Setup with RxJava</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#添加RxJava依赖"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">添加RxJava依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Retrofit结合RxJava"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Retrofit结合RxJava</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Retrofit-RxJava请求实例"><span class="toc-number">1.2.2.</span> <span class="toc-text">Retrofit + RxJava请求实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用RxJava进行线程切换"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">用RxJava进行线程切换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RxJava处理多个请求的例子"><span class="toc-number">1.2.3.</span> <span class="toc-text">RxJava处理多个请求的例子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#线程问题处理"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">线程问题处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取消订阅"><span class="toc-number">1.2.4.</span> <span class="toc-text">取消订阅</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo说明"><span class="toc-number">1.3.</span> <span class="toc-text">Demo说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">1.4.</span> <span class="toc-text">References</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -282,11 +282,11 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>40</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>41</sup></a></li>
 		  
 		
 		  
@@ -294,7 +294,7 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>25</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>26</sup></a></li>
 		  
 		
 		  
@@ -322,11 +322,11 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/Java/" title="Java">Java<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/Java/" title="Java">Java<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
 		  
 		
 		  
@@ -334,11 +334,11 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Nougat/" title="Nougat">Nougat<sup>1</sup></a></li>
 		  
 		
 		  
@@ -367,31 +367,31 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>40</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>41</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>27</sup></a></li>
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>28</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>15</sup></a></li>
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>16</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>11</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/MVP/" title="MVP">MVP<sup>9</sup></a></li>
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>12</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVP/" title="MVP">MVP<sup>9</sup></a></li>
 			
 		
 			
@@ -403,7 +403,7 @@
 			
 		
 			
-				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>7</sup></a></li>
+				<li><a href="/tags/Testing/" title="Testing">Testing<sup>7</sup></a></li>
 			
 		
 			
@@ -411,7 +411,7 @@
 			
 		
 			
-				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>7</sup></a></li>
 			
 		
 			
@@ -419,7 +419,7 @@
 			
 		
 			
-				<li><a href="/tags/Testing/" title="Testing">Testing<sup>6</sup></a></li>
+				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
 			
 		
 			
@@ -427,19 +427,11 @@
 			
 		
 			
-				<li><a href="/tags/Android-7/" title="Android 7">Android 7<sup>5</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Test/" title="Test">Test<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Wear/" title="Wear">Wear<sup>5</sup></a></li>
+				<li><a href="/tags/Android-Things/" title="Android Things">Android Things<sup>5</sup></a></li>
 			
 		
 			
@@ -447,7 +439,15 @@
 			
 		
 			
-				<li><a href="/tags/Android-Things/" title="Android Things">Android Things<sup>4</sup></a></li>
+				<li><a href="/tags/Test/" title="Test">Test<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-7/" title="Android 7">Android 7<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Wear/" title="Wear">Wear<sup>5</sup></a></li>
 			
 		
 		</ul>
@@ -455,7 +455,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -483,7 +483,7 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
@@ -749,7 +749,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
