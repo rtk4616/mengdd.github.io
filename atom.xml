@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-02-22T07:56:33.000Z</updated>
+  <updated>2017-02-27T09:34:42.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,135 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Realm数据库使用指南</title>
+    <link href="http://mengdd.github.io/Android/Database/Realm/2017/02/27/android-realm-guide/"/>
+    <id>http://mengdd.github.io/Android/Database/Realm/2017/02/27/android-realm-guide/</id>
+    <published>2017-02-27T09:32:23.000Z</published>
+    <updated>2017-02-27T09:34:42.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Realm数据库使用指南&quot;&gt;&lt;a href=&quot;#Android-Realm数据库使用指南&quot; class=&quot;headerlink&quot; title=&quot;Android Realm数据库使用指南&quot;&gt;&lt;/a&gt;Android Realm数据库使用指南&lt;/h1&gt;&lt;p&gt;Realm数据库, 目前有Java, Objective‑C, React Native, Swift, Xamarin的几种实现, 是一套用来取代SQLite的解决方案. &lt;/p&gt;
+&lt;p&gt;本文面向Android开发, 所以只讨论Java实现.&lt;br&gt;目前Realm Java的最新版本是2.3.1.&lt;/p&gt;
+&lt;p&gt;官方文档在此: &lt;a href=&quot;https://realm.io/docs/java/latest/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;realm java doc&lt;/a&gt;, 花一个下午就可以基本过一遍, 之后随时查用. &lt;/p&gt;
+&lt;p&gt;我写了一个小程序&lt;a href=&quot;https://github.com/mengdd/TodoRealm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TodoRealm&lt;/a&gt;, 使用Realm做数据库实现的一个To-do应用,  在实际使用的过程中也有一些发现.&lt;/p&gt;
+&lt;p&gt;本文是我自己看文档的时候的一些记录, 有一些实际使用时的发现也穿插在对应的章节了.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;Setup&quot;&gt;&lt;a href=&quot;#Setup&quot; class=&quot;headerlink&quot; title=&quot;Setup&quot;&gt;&lt;/a&gt;Setup&lt;/h2&gt;&lt;p&gt;在项目的根build.gradle的文件中添加:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;buildscript &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    repositories &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        jcenter()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        classpath &amp;quot;io.realm:realm-gradle-plugin:2.3.0&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后在app的build.gradle文件中添加:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apply plugin: &amp;apos;realm-android&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Done.&lt;/p&gt;
+&lt;h2 id=&quot;Models&quot;&gt;&lt;a href=&quot;#Models&quot; class=&quot;headerlink&quot; title=&quot;Models&quot;&gt;&lt;/a&gt;Models&lt;/h2&gt;&lt;p&gt;Model类只要继承&lt;code&gt;RealmObject&lt;/code&gt;即可.&lt;/p&gt;
+&lt;h3 id=&quot;字段类型&quot;&gt;&lt;a href=&quot;#字段类型&quot; class=&quot;headerlink&quot; title=&quot;字段类型&quot;&gt;&lt;/a&gt;字段类型&lt;/h3&gt;&lt;p&gt;Model类中可以包含的字段类型包括基本数据类型(及它们的装箱类型)和Date类, 另外也可以包含&lt;code&gt;RealmObject&lt;/code&gt;的子类或者是&lt;code&gt;RealmList&amp;lt;? extends RealmObject&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;字段性质&quot;&gt;&lt;a href=&quot;#字段性质&quot; class=&quot;headerlink&quot; title=&quot;字段性质&quot;&gt;&lt;/a&gt;字段性质&lt;/h3&gt;&lt;p&gt;在字段上加注解可以定义字段的性质:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;@Required&lt;/code&gt;表明字段非null.&lt;br&gt;原生类型和&lt;code&gt;RealmList&lt;/code&gt;类型默认是非null的.&lt;br&gt;&lt;code&gt;RealmObject&lt;/code&gt;字段永远是可以为null的.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;@Ignore&lt;/code&gt;表示字段不会被存储.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;@Index&lt;/code&gt;加索引.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;@PrimaryKey&lt;/code&gt;加主键, 主键只能有一个, 主键默认加索引.&lt;/p&gt;
+&lt;p&gt;但是注意主键默认没有加&lt;code&gt;@Required&lt;/code&gt;, 如果主键要求非null, 需要显式添加&lt;code&gt;@Required&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;主键使用&quot;&gt;&lt;a href=&quot;#主键使用&quot; class=&quot;headerlink&quot; title=&quot;主键使用&quot;&gt;&lt;/a&gt;主键使用&lt;/h3&gt;&lt;p&gt;有主键才能使用&lt;code&gt;copyToRealmOrUpdate()&lt;/code&gt;这个方法.&lt;br&gt;主键类型必须是String或者整型(byte, short, int, long)或者它们的装箱类型(Byte, Short, Integer, Long).&lt;/p&gt;
+&lt;p&gt;有主键的对象创建的时候不能使用&lt;code&gt;createObject(Class&amp;lt;E&amp;gt; clazz)&lt;/code&gt;方法, 而应该使用&lt;code&gt;createObject(Class&amp;lt;E&amp;gt; clazz, Object primaryKeyValue)&lt;/code&gt;附上主键.&lt;/p&gt;
+&lt;p&gt;或者用&lt;br&gt;&lt;code&gt;copyToRealm(obj)&lt;/code&gt;或&lt;code&gt;copyToRealmOrUpdate(obj)&lt;/code&gt;, 前者遇到主键冲突时会崩溃, 后者遇到主键冲突会更新已有对象.&lt;/p&gt;
+&lt;h3 id=&quot;自动更新的对象&quot;&gt;&lt;a href=&quot;#自动更新的对象&quot; class=&quot;headerlink&quot; title=&quot;自动更新的对象&quot;&gt;&lt;/a&gt;自动更新的对象&lt;/h3&gt;&lt;p&gt;Realm中的数据对象是自动更新(Auto-Updating)的, 对象一旦被查询出来, 后续发生的任何数据改变也会立即反映在结果中, 不需要刷新对象.&lt;/p&gt;
+&lt;p&gt;这是一个非常有用的特性, 结合数据变化的通知可以很方便地刷新UI.&lt;/p&gt;
+&lt;h2 id=&quot;关系&quot;&gt;&lt;a href=&quot;#关系&quot; class=&quot;headerlink&quot; title=&quot;关系&quot;&gt;&lt;/a&gt;关系&lt;/h2&gt;&lt;p&gt;Realm model对象间可以很方便地建立关系.&lt;br&gt;你可以在Model中存储另一个对象的引用, 建立多对一的关系; 也可以存储一组对象&lt;code&gt;RealmList&amp;lt;T&amp;gt;&lt;/code&gt;, 建立一对多或多对多的关系.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;RealmList&amp;lt;T&amp;gt;&lt;/code&gt;的getter永远也不会返回null, 它只会返回一个为空的list.&lt;br&gt;把这个字段设置为null可以清空这个list.&lt;/p&gt;
+&lt;h2 id=&quot;初始化&quot;&gt;&lt;a href=&quot;#初始化&quot; class=&quot;headerlink&quot; title=&quot;初始化&quot;&gt;&lt;/a&gt;初始化&lt;/h2&gt;&lt;p&gt;Realm在使用之前需要调用初始化:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Realm.init(context);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;建议把它放在Application的&lt;code&gt;onCreate()&lt;/code&gt;里.&lt;/p&gt;
+&lt;h3 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h3&gt;&lt;p&gt;配置类: &lt;code&gt;RealmConfiguration&lt;/code&gt;定义了Realm的创建配置.&lt;br&gt;最基本的配置:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;RealmConfiguration config = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; RealmConfiguration.Builder().build();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;它会创建一个叫&lt;code&gt;default.realm&lt;/code&gt;的文件, 放在&lt;code&gt;Context.getFilesDir()&lt;/code&gt;的目录下.&lt;/p&gt;
+&lt;p&gt;如果我们想自定义一个配置, 可以这样写:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// The RealmConfiguration is created using the builder pattern.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// The Realm file will be located in Context.getFilesDir() with name &quot;myrealm.realm&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;RealmConfiguration config = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; RealmConfiguration.Builder()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .name(&lt;span class=&quot;string&quot;&gt;&quot;myrealm.realm&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .encryptionKey(getKey())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .schemaVersion(&lt;span class=&quot;number&quot;&gt;42&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .modules(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; MySchemaModule())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .migration(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; MyMigration())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .build();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// Use the config&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Realm realm = Realm.getInstance(config);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;所以我们是可以有多个配置, 访问多个Realm实例的.&lt;/p&gt;
+&lt;p&gt;我们可以把配置设置为默认配置:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Realm.init(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;RealmConfiguration config = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; RealmConfiguration.Builder().build();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Realm.setDefaultConfiguration(config);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;之后用&lt;code&gt;Realm.getDefaultInstance()&lt;/code&gt;取到的就是这个默认配置对应的实例.&lt;/p&gt;
+&lt;h2 id=&quot;数据库迁移&quot;&gt;&lt;a href=&quot;#数据库迁移&quot; class=&quot;headerlink&quot; title=&quot;数据库迁移&quot;&gt;&lt;/a&gt;数据库迁移&lt;/h2&gt;&lt;p&gt;迁移的策略是通过config指定的:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;RealmConfiguration config = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; RealmConfiguration.Builder()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .schemaVersion(&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;// Must be bumped when the schema changes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .migration(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; MyMigration()) &lt;span class=&quot;comment&quot;&gt;// Migration to run instead of throwing an exception&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .build()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;其中&lt;code&gt;MyMigration&lt;/code&gt;实现了&lt;code&gt;RealmMigration&lt;/code&gt;接口, 在&lt;code&gt;migrate()&lt;/code&gt;方法中根据新旧版本号进行一步一步地升级.&lt;/p&gt;
+&lt;p&gt;具体例子见&lt;a href=&quot;https://github.com/realm/realm-java/blob/master/examples/migrationExample/src/main/java/io/realm/examples/realmmigrationexample/model/Migration.java&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Migration&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;关于Realm的close&quot;&gt;&lt;a href=&quot;#关于Realm的close&quot; class=&quot;headerlink&quot; title=&quot;关于Realm的close()&quot;&gt;&lt;/a&gt;关于Realm的close()&lt;/h2&gt;&lt;p&gt;一个打开的Realm实例会持有一些资源, 有一些是Java不能自动管理的, 所以就需要打开实例的代码负责在不需要的时候将其关闭.&lt;/p&gt;
+&lt;p&gt;Realm的instance是引用计数的(reference counted cache), 在同一个线程中获取后续实例是免费的, 但是底层的资源只有当所有实例被释放了之后才能释放. 也即你调用了多少次&lt;code&gt;getInstance()&lt;/code&gt;, 就需要调用相应次数的&lt;code&gt;close()&lt;/code&gt;方法.&lt;/p&gt;
+&lt;p&gt;比较建议的方法是在Activity或Fragment的生命周期中处理Realm实例的开启和释放:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在Activity的&lt;code&gt;onCreate()&lt;/code&gt;中&lt;code&gt;getInstance()&lt;/code&gt;, &lt;code&gt;onDestroy()&lt;/code&gt;中&lt;code&gt;close()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;在Fragment的&lt;code&gt;onCreateView()&lt;/code&gt;中&lt;code&gt;getInstance()&lt;/code&gt;, &lt;code&gt;onDestroyView()&lt;/code&gt;中&lt;code&gt;close()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果多个Fragment相关的都是同一个数据库实例, 那么在Activity中处理更好一些.&lt;/p&gt;
+&lt;h2 id=&quot;写&quot;&gt;&lt;a href=&quot;#写&quot; class=&quot;headerlink&quot; title=&quot;写&quot;&gt;&lt;/a&gt;写&lt;/h2&gt;&lt;p&gt;写操作一般的流程是这样:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// Obtain a Realm instance&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Realm realm = Realm.getDefaultInstance();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;realm.beginTransaction();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//... add or update objects here ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;realm.commitTransaction();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这里创建对象可以用&lt;code&gt;createObject()&lt;/code&gt;方法或者&lt;code&gt;copyToRealm()&lt;/code&gt;方法.&lt;br&gt;前者是先创建再set值, 后者是先new对象再更新数据库.&lt;/p&gt;
+&lt;p&gt;如果不想自己处理&lt;code&gt;beginTransaction()&lt;/code&gt;, &lt;code&gt;cancelTransaction()&lt;/code&gt;和&lt;code&gt;commitTransaction()&lt;/code&gt;, 可以直接调用&lt;code&gt;realm.executeTransaction()&lt;/code&gt;方法:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;realm.executeTransaction(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Realm.Transaction() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Realm realm)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        User user = realm.createObject(User.class);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        user.setName(&lt;span class=&quot;string&quot;&gt;&quot;John&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        user.setEmail(&lt;span class=&quot;string&quot;&gt;&quot;john@corporation.com&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;异步&quot;&gt;&lt;a href=&quot;#异步&quot; class=&quot;headerlink&quot; title=&quot;异步&quot;&gt;&lt;/a&gt;异步&lt;/h3&gt;&lt;p&gt;因为transactions之间是互相阻塞的.&lt;br&gt;异步执行可以用这个方法:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;realm.executeTransactionAsync(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Realm.Transaction() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Realm bgRealm)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                User user = bgRealm.createObject(User.class);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                user.setName(&lt;span class=&quot;string&quot;&gt;&quot;John&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                user.setEmail(&lt;span class=&quot;string&quot;&gt;&quot;john@corporation.com&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;, &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Realm.Transaction.OnSuccess() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onSuccess&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;comment&quot;&gt;// Transaction was a success.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;, &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Realm.Transaction.OnError() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onError&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Throwable error)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;comment&quot;&gt;// Transaction failed and was automatically canceled.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这两个回调是Optional的, 它们只能在有Looper的线程调用.&lt;/p&gt;
+&lt;p&gt;注意: 这个方法的返回值对象可以用于在Activity/Fragment生命周期结束的时候取消未完的操作.&lt;/p&gt;
+&lt;h3 id=&quot;删除和更新&quot;&gt;&lt;a href=&quot;#删除和更新&quot; class=&quot;headerlink&quot; title=&quot;删除和更新&quot;&gt;&lt;/a&gt;删除和更新&lt;/h3&gt;&lt;p&gt;所有的写操作都要放在transaction中进行, 如上, 不同的操作只是其中具体方法不同.&lt;/p&gt;
+&lt;p&gt;删除操作:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; RealmResults&amp;lt;User&amp;gt; users = getUsers();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// method 1:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;users.get(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;).deleteFromRealm();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// method 2:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;users.deleteFromRealm(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// delete all&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;users.deleteAllFromRealm();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;更新操作:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;realm.copyToRealmOrUpdate(obj);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;注意: 这个方法需要Model有主键.&lt;/p&gt;
+&lt;h2 id=&quot;查询&quot;&gt;&lt;a href=&quot;#查询&quot; class=&quot;headerlink&quot; title=&quot;查询&quot;&gt;&lt;/a&gt;查询&lt;/h2&gt;&lt;p&gt;查询可以流式地写:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// Or alternatively do the same all at once (the &quot;Fluent interface&quot;):&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;RealmResults&amp;lt;User&amp;gt; result2 = realm.where(User.class)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                  .equalTo(&lt;span class=&quot;string&quot;&gt;&quot;name&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;John&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                  .or()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                  .equalTo(&lt;span class=&quot;string&quot;&gt;&quot;name&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Peter&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                  .findAll();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;查询条件默认是and的关系, or则需要显式指定.&lt;/p&gt;
+&lt;p&gt;这个&lt;code&gt;RealmResults&lt;/code&gt;是继承Java的&lt;code&gt;AbstractList&lt;/code&gt;的, 是有序的集合, 可以通过索引访问.&lt;br&gt;&lt;code&gt;RealmResults&lt;/code&gt;永远不会为null, 当查不到结果时, 它的&lt;code&gt;size()&lt;/code&gt;返回0.&lt;/p&gt;
+&lt;h3 id=&quot;查询的线程&quot;&gt;&lt;a href=&quot;#查询的线程&quot; class=&quot;headerlink&quot; title=&quot;查询的线程&quot;&gt;&lt;/a&gt;查询的线程&lt;/h3&gt;&lt;p&gt;基本上所有的查询都是很快进行的, 足够在UI线程上同步进行.&lt;br&gt;所以绝大多数情况在UI线程上使用&lt;code&gt;findAll()&lt;/code&gt;是没有问题的.&lt;/p&gt;
+&lt;p&gt;如果你要进行非常复杂的查询, 或者你的查询是在非常大的数据集上进行的, 你可以选择异步查询, 使用&lt;code&gt;findAllAsync()&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;查询条件是一个集合-gt-in&quot;&gt;&lt;a href=&quot;#查询条件是一个集合-gt-in&quot; class=&quot;headerlink&quot; title=&quot;查询条件是一个集合 -&amp;gt; in()&quot;&gt;&lt;/a&gt;查询条件是一个集合 -&amp;gt; &lt;code&gt;in()&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;如果想要查询的某一个字段的值是在一个集合中, 比如我有一个id的集合, 我现在想把id在这个集合中的项目全都查出来, 这就可以使用in操作符:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;RealmResults&amp;lt;TodoList&amp;gt; toDeleteLists = realm.where(TodoList.class).in(&lt;span class=&quot;string&quot;&gt;&quot;id&quot;&lt;/span&gt;, ids).findAll();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;链式查询&quot;&gt;&lt;a href=&quot;#链式查询&quot; class=&quot;headerlink&quot; title=&quot;链式查询&quot;&gt;&lt;/a&gt;链式查询&lt;/h3&gt;&lt;p&gt;查询的时候可以利用link或关系来查询, 比如一个Person类中含有一个&lt;code&gt;RealmList&amp;lt;Dog&amp;gt; dogs&lt;/code&gt;的字段.&lt;br&gt;查询的时候可以这样:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;RealmResults&amp;lt;Person&amp;gt; persons = realm.where(Person.class)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                .equalTo(&lt;span class=&quot;string&quot;&gt;&quot;dogs.color&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Brown&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                .findAll();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;利用字段名&lt;code&gt;dogs.&lt;/code&gt;来查询一个dog的属性, 再查出拥有这种特定属性dog的人.&lt;/p&gt;
+&lt;p&gt;但是反向地, 我们能不能查询主人是满足特定属性的人的所有dogs呢? 目前(2017.2.17)这种查询仍是不支持的. 这里有讨论:  &lt;a href=&quot;https://github.com/realm/realm-java/issues/607&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;realm-java-issue-607&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt; 所以两种解决办法: 一是做两次查询; 二是在Dog类的model里加入对Person的引用.&lt;/p&gt;
+&lt;h2 id=&quot;Notifications&quot;&gt;&lt;a href=&quot;#Notifications&quot; class=&quot;headerlink&quot; title=&quot;Notifications&quot;&gt;&lt;/a&gt;Notifications&lt;/h2&gt;&lt;p&gt;可以添加一个listener, 在数据改变的时候收到更新.&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MyActivity&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Activity&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; Realm realm;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; RealmChangeListener realmListener;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle savedInstanceState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onCreate(savedInstanceState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      realm = Realm.getDefaultInstance();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      realmListener = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; RealmChangeListener() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onChange&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Realm realm)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;// ... do something with the updates (UI, etc.) ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      realm.addChangeListener(realmListener);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onDestroy&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onDestroy();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// Remove the listener.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        realm.removeChangeListener(realmListener);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// Close the Realm instance.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        realm.close();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;注意listener需要在不用的时候删除掉. &lt;/p&gt;
+&lt;p&gt;可以用这样删除所有的listeners:&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;realm.removeAllChangeListeners();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Listener不一定要和Realm绑定, 也可以和具体的&lt;code&gt;RealmObject&lt;/code&gt;或者&lt;code&gt;RealmResults&lt;/code&gt;绑定.&lt;br&gt;当Listener被调用的时候, 它绑定的对象是自动更新的, 不需要手动刷新.&lt;/p&gt;
+&lt;h2 id=&quot;查看数据库的工具&quot;&gt;&lt;a href=&quot;#查看数据库的工具&quot; class=&quot;headerlink&quot; title=&quot;查看数据库的工具&quot;&gt;&lt;/a&gt;查看数据库的工具&lt;/h2&gt;&lt;p&gt;用Stetho不能直接查看Realm的数据库, 看不到.&lt;br&gt;需要用这个工具配置一下: &lt;a href=&quot;https://github.com/uPhyca/stetho-realm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;stetho-realm&lt;/a&gt;.&lt;br&gt;之后就可以在浏览器中查看Realm的数据库了.&lt;/p&gt;
+&lt;p&gt;(但是感觉这个工具不是很好用, 有时候不显示数据, 有时候显示的是旧数据.)&lt;/p&gt;
+&lt;p&gt;也可以用官方提供的Realm Browser来查看, 但是只有Mac版.&lt;br&gt;如何查看看这里: &lt;a href=&quot;http://stackoverflow.com/questions/28465706/how-to-find-my-realm-file/28465803#28465803&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;StackOverflow answer&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;实际使用的感想和遇到的问题&quot;&gt;&lt;a href=&quot;#实际使用的感想和遇到的问题&quot; class=&quot;headerlink&quot; title=&quot;实际使用的感想和遇到的问题&quot;&gt;&lt;/a&gt;实际使用的感想和遇到的问题&lt;/h2&gt;&lt;h3 id=&quot;优点&quot;&gt;&lt;a href=&quot;#优点&quot; class=&quot;headerlink&quot; title=&quot;优点&quot;&gt;&lt;/a&gt;优点&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;建立Model之间的关系很方便也很直接, 查询的时候自动关联了其中的关系.&lt;/li&gt;
+&lt;li&gt;自动更新(Auto-Updating)的特性很有用, 不用再关心数据的刷新, 只用关心UI的刷新. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如一旦给Adapter绑定了数据, 之后的数据更新只需要在onChange()里面通知Adapter调用&lt;code&gt;notifyDataSetChanged()&lt;/code&gt;即可.&lt;/p&gt;
+&lt;p&gt;当然我并没有用&lt;code&gt;RealmBaseAdapter&lt;/code&gt;和&lt;code&gt;RealmRecyclerViewAdapter&lt;/code&gt;, 估计这两个更好用, 官方有例子, 这里不再赘述.&lt;/p&gt;
+&lt;h3 id=&quot;缺点&quot;&gt;&lt;a href=&quot;#缺点&quot; class=&quot;headerlink&quot; title=&quot;缺点&quot;&gt;&lt;/a&gt;缺点&lt;/h3&gt;&lt;p&gt;这里有的也不能说是缺点, 只是使用起来觉得不方便的地方. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;限制了创建对象和操作对象必须在同一个线程.&lt;br&gt;违反了这条会报错: &lt;code&gt;java.lang.IllegalStateException: Realm access from incorrect thread. Realm objects can only be accessed on the thread they were created.&lt;/code&gt; 比如我们在UI线程查询出来的对象, 想要异步地删除或者更新, 我们必须在新的线程重新查询.&lt;/li&gt;
+&lt;li&gt;没有主键自增的功能, 见&lt;a href=&quot;https://github.com/realm/realm-java/issues/469&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Issue #469&lt;/a&gt;, 需要自己控制主键自增.&lt;/li&gt;
+&lt;li&gt;从List中删除了一项之后, 最后的一项会移动过来补到被删除的那一项原来的位置. 这是因为人家就是这么设计的&lt;a href=&quot;http://stackoverflow.com/questions/37480785/realm-order-of-records-was-changed&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;stackoverflow&lt;/a&gt;. 默认情况下是没有排序的, 数据按照添加的顺序返回, 但是这并不是一种保证, 所以当删除了中间的元素, 后面的会补上这个位置, 以保证底层的数据是放在一起的. 解决办法就是指定一个排序规则.&lt;/li&gt;
+&lt;li&gt;查询出来的对象不可以临时改变其数据, 否则会报错: &lt;code&gt;java.lang.IllegalStateException: Changing Realm data can only be done from inside a transaction.&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;不支持反向link的查询. (见前面链式查询部分的介绍).&lt;/li&gt;
+&lt;li&gt;不支持级联删除. 即从数据库中删除一个对象的时候, 不会删除其中&lt;code&gt;RealmObject&lt;/code&gt;子类或&lt;code&gt;RealmList&lt;/code&gt;类型的字段在数据库中对应的数据. &lt;a href=&quot;https://github.com/realm/realm-java/issues/1104&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Issue #1104&lt;/a&gt;, &lt;a href=&quot;https://github.com/realm/realm-java/issues/2717&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Issue #2717&lt;/a&gt;. 这点也可以理解, 因为model之间的关系可能是多对多的. 所以需要实现级联删除的地方需要手动处理.&lt;/li&gt;
+&lt;li&gt;测试不方便: &lt;code&gt;RealmResults&lt;/code&gt;对象即不能被mock也不能被new; 所有的Model对象也不能被mock. 因为&lt;code&gt;Mockito can only mock non-private &amp;amp; non-final classes.&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;资源&quot;&gt;&lt;a href=&quot;#资源&quot; class=&quot;headerlink&quot; title=&quot;资源&quot;&gt;&lt;/a&gt;资源&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/realm/realm-java&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github repo realm-java&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://realm.io/docs/java/latest/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Realm Java Doc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我的练习Demo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/mengdd/TodoRealm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TodoRealm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Realm数据库使用指南&quot;&gt;&lt;a href=&quot;#Android-Realm数据库使用指南&quot; class=&quot;headerlink&quot; title=&quot;Android Realm数据库使用指南&quot;&gt;&lt;/a&gt;Android Realm数据库使用指南&lt;/h1&gt;&lt;p&gt;Realm数据库, 目前有Java, Objective‑C, React Native, Swift, Xamarin的几种实现, 是一套用来取代SQLite的解决方案. &lt;/p&gt;
+&lt;p&gt;本文面向Android开发, 所以只讨论Java实现.&lt;br&gt;目前Realm Java的最新版本是2.3.1.&lt;/p&gt;
+&lt;p&gt;官方文档在此: &lt;a href=&quot;https://realm.io/docs/java/latest/&quot;&gt;realm java doc&lt;/a&gt;, 花一个下午就可以基本过一遍, 之后随时查用. &lt;/p&gt;
+&lt;p&gt;我写了一个小程序&lt;a href=&quot;https://github.com/mengdd/TodoRealm&quot;&gt;TodoRealm&lt;/a&gt;, 使用Realm做数据库实现的一个To-do应用,  在实际使用的过程中也有一些发现.&lt;/p&gt;
+&lt;p&gt;本文是我自己看文档的时候的一些记录, 有一些实际使用时的发现也穿插在对应的章节了.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Database" scheme="http://mengdd.github.io/categories/Android/Database/"/>
+    
+      <category term="Realm" scheme="http://mengdd.github.io/categories/Android/Database/Realm/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Database" scheme="http://mengdd.github.io/tags/Database/"/>
+    
+      <category term="Realm" scheme="http://mengdd.github.io/tags/Realm/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 245</title>
@@ -151,9 +280,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
@@ -238,9 +367,9 @@
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
       <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
@@ -325,19 +454,19 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -518,17 +647,17 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
       <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Color" scheme="http://mengdd.github.io/tags/Color/"/>
     
@@ -648,9 +777,9 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
       <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
+    
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -743,13 +872,13 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
       <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -902,11 +1031,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
+      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
+    
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
-      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
     
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
     
@@ -992,9 +1121,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
-    
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
     
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
@@ -1087,13 +1216,13 @@
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
-      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
       <category term="ExoPlayer" scheme="http://mengdd.github.io/tags/ExoPlayer/"/>
     
-      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
+      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
+    
+      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
     
       <category term="ContentProvider" scheme="http://mengdd.github.io/tags/ContentProvider/"/>
     
@@ -1192,9 +1321,9 @@
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
-      <category term="IoT" scheme="http://mengdd.github.io/tags/IoT/"/>
-    
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
+    
+      <category term="IoT" scheme="http://mengdd.github.io/tags/IoT/"/>
     
       <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
@@ -1324,17 +1453,17 @@
     
       <category term="AnimatedVectorDrawable" scheme="http://mengdd.github.io/tags/AnimatedVectorDrawable/"/>
     
-      <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
-    
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
+    
+      <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="Custom View" scheme="http://mengdd.github.io/tags/Custom-View/"/>
     
@@ -1547,15 +1676,17 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
-      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
+    
+      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
     
       <category term="Terminal" scheme="http://mengdd.github.io/tags/Terminal/"/>
     
@@ -1574,8 +1705,6 @@
       <category term="push notification" scheme="http://mengdd.github.io/tags/push-notification/"/>
     
       <category term="transient" scheme="http://mengdd.github.io/tags/transient/"/>
-    
-      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
     
   </entry>
   
@@ -1779,19 +1908,19 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
       <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="Redux" scheme="http://mengdd.github.io/tags/Redux/"/>
     
       <category term="Reductor" scheme="http://mengdd.github.io/tags/Reductor/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="Sensor" scheme="http://mengdd.github.io/tags/Sensor/"/>
     
@@ -1883,31 +2012,31 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
       <category term="TV" scheme="http://mengdd.github.io/tags/TV/"/>
     
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
     
       <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
-      <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
-    
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
-    
-      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
     
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
+    
+      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
     
       <category term="Passive View" scheme="http://mengdd.github.io/tags/Passive-View/"/>
     
@@ -1983,6 +2112,8 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
       <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
       <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
@@ -1991,11 +2122,9 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
-    
-      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
       <category term="Async-Await" scheme="http://mengdd.github.io/tags/Async-Await/"/>
     
@@ -2134,109 +2263,6 @@
       <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 229</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/11/01/android-weekly-notes-issue-229/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2016/11/01/android-weekly-notes-issue-229/</id>
-    <published>2016-11-01T10:01:50.000Z</published>
-    <updated>2016-11-01T10:18:13.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-229&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-229&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #229&quot;&gt;&lt;/a&gt;Android Weekly Issue #229&lt;/h1&gt;&lt;p&gt;October 30th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-229&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #229&lt;/a&gt;&lt;br&gt;Android Weekly笔记, 本期内容包括: 性能库Pury的插件化; 一种新的多选设计和实现; 音频播放; Dagger的测试mock方案; ConstraintLayout的链式约束; Mobile Vision API的二维码扫描功能; RxJava的使用缺陷讨论; SOLID原则图解.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Get-access-to-raw-profiling-results-with-plugins-for-Pury&quot;&gt;&lt;a href=&quot;#Get-access-to-raw-profiling-results-with-plugins-for-Pury&quot; class=&quot;headerlink&quot; title=&quot;Get access to raw profiling results with plugins for Pury&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@nikita.kozlov/get-access-to-raw-profiling-results-with-plugins-for-pury-f9a7cc5e8345#.y26lx22wo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Get access to raw profiling results with plugins for Pury&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Pury是一个做profile的工具, 前面有过一篇文章介绍: &lt;a href=&quot;https://medium.com/@nikita.kozlov/pury-new-way-to-profile-your-android-application-7e248b5f615e#.57ggfep5p&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Pury&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;本文是作者的另一篇文章, 讲Pury的插件化和扩展.&lt;/p&gt;
-&lt;p&gt;另外, 作者最近正在集成Google Analytics到Pury中.&lt;/p&gt;
-&lt;h2 id=&quot;Building-a-Multiselection-Solution-for-Android-in-Kotlin&quot;&gt;&lt;a href=&quot;#Building-a-Multiselection-Solution-for-Android-in-Kotlin&quot; class=&quot;headerlink&quot; title=&quot;Building a Multiselection Solution for Android in Kotlin&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://yalantis.com/blog/how-we-created-a-multiselection-solution-for-android/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Building a Multiselection Solution for Android in Kotlin&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在移动应用上的多选设计很难, 通常不是很灵活, 用起来也不舒服. &lt;/p&gt;
-&lt;p&gt;本文推荐了一种全新的多选设计: 把屏幕分为两部分: 包括主要的列表和选中列表. 选中的项目自动移动到选中列表中去.&lt;/p&gt;
-&lt;p&gt;这个设计概念的实现: &lt;code&gt;ViewPager&lt;/code&gt; + 两个&lt;code&gt;RecyclerView&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;作者选用了kotlin来实现. 列举了几个kotlin的features: Extension functions, Null safety, Collections, Better syntax.&lt;/p&gt;
-&lt;p&gt;作者的库: &lt;a href=&quot;https://github.com/Yalantis/Multi-Selection&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Multi-Selection&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;本文中还介绍了如何使用这个库.&lt;/p&gt;
-&lt;h2 id=&quot;Audio-not-playing-in-Android&quot;&gt;&lt;a href=&quot;#Audio-not-playing-in-Android&quot; class=&quot;headerlink&quot; title=&quot;Audio (not) playing in Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/uptech-team/audio-not-playing-in-android-cde9a0fdfafd#.kp7qsjuha&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Audio (not) playing in Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;关于Android上的音频播放, 作者的总结文章. &lt;/p&gt;
-&lt;p&gt;音频播放的方式有:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://developer.android.com/reference/android/media/MediaPlayer.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MediaPlayer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://developer.android.com/reference/android/media/SoundPool.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SoundPool&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://developer.android.com/reference/android/media/AudioTrack.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AudioTrack&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/google/ExoPlayer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ExoPlayer&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;关于&lt;code&gt;MediaPlayer&lt;/code&gt;的使用, 官方文档: &lt;a href=&quot;https://developer.android.com/guide/topics/media/mediaplayer.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Media Playback&lt;/a&gt;, 本文中有一张图是&lt;code&gt;MediaPlayer&lt;/code&gt;的生命周期图.&lt;/p&gt;
-&lt;p&gt;作者逐个列举了实际使用这些API时可能会遇到的一些issues. 并且最终选择的最佳解决方案是Google的&lt;a href=&quot;https://github.com/google/ExoPlayer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ExoPlayer&lt;/a&gt;, 2.0版本已经解决了她之前遇到的所有issues.&lt;/p&gt;
-&lt;h2 id=&quot;Providing-test-doubles-with-Dagger-1-and-Dagger-2&quot;&gt;&lt;a href=&quot;#Providing-test-doubles-with-Dagger-1-and-Dagger-2&quot; class=&quot;headerlink&quot; title=&quot;Providing test doubles with Dagger 1 and Dagger 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.egorand.me/providing-test-doubles-with-dagger-1-and-dagger-2/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Providing test doubles with Dagger 1 and Dagger 2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章讲在使用Dagger1和Dagger2的项目中, 如何为测试mock依赖.&lt;/p&gt;
-&lt;h2 id=&quot;ConstraintLayout-Chains-–-Part-1&quot;&gt;&lt;a href=&quot;#ConstraintLayout-Chains-–-Part-1&quot; class=&quot;headerlink&quot; title=&quot;ConstraintLayout Chains – Part 1&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/constraintlayout-chains-spread-chains/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ConstraintLayout Chains – Part 1&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者讲了&lt;code&gt;ConstraintLayout&lt;/code&gt;的一个重要特性: chains, 链.&lt;br&gt;chains是一个机制, 把一些独立的Views链起来, 然后我们可以对这一个集合来采取一些行为.&lt;/p&gt;
-&lt;p&gt;比如选中一个parent下的两个TextView(这两个本来是分别对齐parent的左右), 然后选择”Center Horizontally”, 就是建立了一个链.&lt;br&gt;在xml中实际上给这两个view都各自加上了一条限制条件, 限制它们在对方的(左/右)边, 这两条对称性的限制条件就构成了一个链.&lt;/p&gt;
-&lt;p&gt;这种链叫spread chains, 是默认的style.&lt;/p&gt;
-&lt;h2 id=&quot;Machine-Learning-with-the-Mobile-Vision-API-—-Part-2&quot;&gt;&lt;a href=&quot;#Machine-Learning-with-the-Mobile-Vision-API-—-Part-2&quot; class=&quot;headerlink&quot; title=&quot;Machine Learning with the Mobile Vision API — Part 2 &quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://hackernoon.com/machine-learning-for-android-developers-with-the-mobile-vision-api-part-2-barcode-detection-61e84c858518#.3dy9fgj56&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Machine Learning with the Mobile Vision API — Part 2 &lt;/a&gt;&lt;/h2&gt;&lt;p&gt;使用&lt;a href=&quot;https://developers.google.com/vision/barcodes-overview&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Mobile Vision的Barcode API&lt;/a&gt;来进行二维码检测.&lt;br&gt;Code: &lt;a href=&quot;https://github.com/moyheen/barcode-detector&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;barcode-detector&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Reactive-Frustrations&quot;&gt;&lt;a href=&quot;#Reactive-Frustrations&quot; class=&quot;headerlink&quot; title=&quot;Reactive Frustrations&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://upday.github.io/blog/reactive_frustrations_1/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reactive Frustrations&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;大多数Rx相关的文章都说优点, 本篇不同, 作者分享了在使用RxJava过程中碰到的一些烦人的事情.&lt;br&gt;不过尽管有这些挫折, RxJava仍然是一个很棒的工具.&lt;/p&gt;
-&lt;h3 id=&quot;文档&quot;&gt;&lt;a href=&quot;#文档&quot; class=&quot;headerlink&quot; title=&quot;文档&quot;&gt;&lt;/a&gt;文档&lt;/h3&gt;&lt;p&gt;RxJava的文档有时候对初学者来说会很具迷惑性.&lt;br&gt;推荐看: &lt;a href=&quot;http://rxmarbles.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxMarbles&lt;/a&gt;, 有操作符图解.&lt;/p&gt;
-&lt;h3 id=&quot;匿名类&quot;&gt;&lt;a href=&quot;#匿名类&quot; class=&quot;headerlink&quot; title=&quot;匿名类&quot;&gt;&lt;/a&gt;匿名类&lt;/h3&gt;&lt;p&gt;RxJava的使用中会构建很多匿名类.&lt;br&gt;推荐使用: &lt;a href=&quot;https://github.com/orfjackal/retrolambda&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Retrolambda&lt;/a&gt;, &lt;a href=&quot;https://kotlinlang.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Kotlin&lt;/a&gt;, 或&lt;a href=&quot;https://source.android.com/source/jack.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Jack&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;忘记subscribe&quot;&gt;&lt;a href=&quot;#忘记subscribe&quot; class=&quot;headerlink&quot; title=&quot;忘记subscribe&quot;&gt;&lt;/a&gt;忘记subscribe&lt;/h3&gt;&lt;p&gt;这是一个常见的错误, 如果只写好了Observable但没有触发, 通常是没有subscribe, 因为Observable是被动的, 只有当被订阅的时候才会触发.&lt;/p&gt;
-&lt;h3 id=&quot;代码的推理&quot;&gt;&lt;a href=&quot;#代码的推理&quot; class=&quot;headerlink&quot; title=&quot;代码的推理&quot;&gt;&lt;/a&gt;代码的推理&lt;/h3&gt;&lt;p&gt;有时候很难看见一块代码就知道执行结果, 必须往上游排查.&lt;/p&gt;
-&lt;p&gt;所以作者在他们的项目中规定了一项对于Observable的命名规范:&lt;br&gt;&lt;code&gt;...Once&lt;/code&gt;表示只发射一次; &lt;code&gt;...Stream&lt;/code&gt;表示会发射值, 或者不发射, 但是不会completes; &lt;code&gt;...OnceAndStream&lt;/code&gt;订阅时会发射值, 之后可能会继续发射, 但是不会停止.&lt;/p&gt;
-&lt;h3 id=&quot;map操作符&quot;&gt;&lt;a href=&quot;#map操作符&quot; class=&quot;headerlink&quot; title=&quot;...map操作符&quot;&gt;&lt;/a&gt;&lt;code&gt;...map&lt;/code&gt;操作符&lt;/h3&gt;&lt;p&gt;有一些比较容易混淆的操作符:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;flatMap&lt;/code&gt;: 并行;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;switchMap&lt;/code&gt;: 中断前一个, 串行;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;concatMap&lt;/code&gt;: 等待前一个结束, 串行;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;Designing-something-S-O-L-I-D&quot;&gt;&lt;a href=&quot;#Designing-something-S-O-L-I-D&quot; class=&quot;headerlink&quot; title=&quot;Designing something S.O.L.I.D&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.novoda.com/blog/designing-something-solid/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Designing something S.O.L.I.D&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;SOLID&lt;/strong&gt;是软件开发的五项原则:&lt;/p&gt;
-&lt;p&gt;SOLID (single responsibility, open-closed, Liskov substitution, interface segregation and dependency inversion).&lt;/p&gt;
-&lt;p&gt;这里是&lt;a href=&quot;https://en.wikipedia.org/wiki/SOLID_(object-oriented_design&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Wiki&lt;/a&gt;)的解释.&lt;/p&gt;
-&lt;p&gt;这篇文章图形化地解释了SOLID, 配图和例子都很有趣.&lt;/p&gt;
-&lt;h1 id=&quot;DESIGN&quot;&gt;&lt;a href=&quot;#DESIGN&quot; class=&quot;headerlink&quot; title=&quot;DESIGN&quot;&gt;&lt;/a&gt;DESIGN&lt;/h1&gt;&lt;h2 id=&quot;Design-Is-Never-Done&quot;&gt;&lt;a href=&quot;#Design-Is-Never-Done&quot; class=&quot;headerlink&quot; title=&quot;Design Is Never Done&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://design.google.com/articles/design-is-never-done/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Design Is Never Done&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Material Design的新工具套件和开源项目.&lt;/p&gt;
-&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;EasyMVP&quot;&gt;&lt;a href=&quot;#EasyMVP&quot; class=&quot;headerlink&quot; title=&quot;EasyMVP&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://6thsolution.github.io/EasyMVP/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;EasyMVP&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个MVP库. 比较特别的几点:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;使用注解来注入Presenter(可以和Dagger2结合使用, 否则只能注入无参构造), 绑定Presenter和View的生命周期;&lt;/li&gt;
-&lt;li&gt;使用Loaders来字啊configurations changes时保存Presenter;&lt;/li&gt;
-&lt;li&gt;加上&lt;code&gt;easymvp-rx&lt;/code&gt;插件后, 遵循Clean Architecture原则, 加入了domain层, 提供了UseCase的基类;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;Input-Mask&quot;&gt;&lt;a href=&quot;#Input-Mask&quot; class=&quot;headerlink&quot; title=&quot;Input Mask&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/RedMadRobot/input-mask-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Input Mask&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个小的工具库, 可以按格式显示用户的输入. 比如在输入上加括号, 每三位数字空一格之类的.&lt;/p&gt;
-&lt;h2 id=&quot;sdk-artifact-sync&quot;&gt;&lt;a href=&quot;#sdk-artifact-sync&quot; class=&quot;headerlink&quot; title=&quot;sdk-artifact-sync&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/JakeWharton/sdk-artifact-sync&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sdk-artifact-sync&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个脚本, 同步你local Android SDK中的所有artifacts到一个remote的Maven artifact host上.&lt;/p&gt;
-&lt;h2 id=&quot;material-remixer&quot;&gt;&lt;a href=&quot;#material-remixer&quot; class=&quot;headerlink&quot; title=&quot;material-remixer&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/material-foundation/material-remixer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;material-remixer&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;material-remixer是一个工具, 利用它可以实时调整产品的UI参数. 目标平台: Android, iOS和Web都能用的工具.&lt;/p&gt;
-&lt;h1 id=&quot;News&quot;&gt;&lt;a href=&quot;#News&quot; class=&quot;headerlink&quot; title=&quot;News&quot;&gt;&lt;/a&gt;News&lt;/h1&gt;&lt;h2 id=&quot;ConstraintLayout-beta-2-is-now-available&quot;&gt;&lt;a href=&quot;#ConstraintLayout-beta-2-is-now-available&quot; class=&quot;headerlink&quot; title=&quot;ConstraintLayout beta 2 is now available&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://sites.google.com/a/android.com/tools/recent/constraintlayoutbeta2isnowavailable&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ConstraintLayout beta 2 is now available&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;ConstraintLayout beta 2发布啦, 修改了一些issues并改善了性能.&lt;/p&gt;
-&lt;h2 id=&quot;Google-Play-Services-Release-Notes&quot;&gt;&lt;a href=&quot;#Google-Play-Services-Release-Notes&quot; class=&quot;headerlink&quot; title=&quot;Google Play Services Release Notes&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://developers.google.com/android/guides/releases#october_2016_-_v98&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Google Play Services Release Notes&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Google Play Service 9.8发布了.&lt;/p&gt;
-&lt;h2 id=&quot;Some-new-Firebase-libraries&quot;&gt;&lt;a href=&quot;#Some-new-Firebase-libraries&quot; class=&quot;headerlink&quot; title=&quot;Some new Firebase libraries&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://firebase.googleblog.com/2016/10/start-your-week-off-with-some-new-firebase-libraries.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Some new Firebase libraries&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Firebase也发了新版.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-229&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-229&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #229&quot;&gt;&lt;/a&gt;Android Weekly Issue #229&lt;/h1&gt;&lt;p&gt;October 30th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-229&quot;&gt;Android Weekly Issue #229&lt;/a&gt;&lt;br&gt;Android Weekly笔记, 本期内容包括: 性能库Pury的插件化; 一种新的多选设计和实现; 音频播放; Dagger的测试mock方案; ConstraintLayout的链式约束; Mobile Vision API的二维码扫描功能; RxJava的使用缺陷讨论; SOLID原则图解.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-      <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
-    
-      <category term="Mobile Vision" scheme="http://mengdd.github.io/tags/Mobile-Vision/"/>
-    
-      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
-    
-      <category term="Pury" scheme="http://mengdd.github.io/tags/Pury/"/>
-    
-      <category term="Multiselection" scheme="http://mengdd.github.io/tags/Multiselection/"/>
-    
-      <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
-    
-      <category term="Barcode Detection" scheme="http://mengdd.github.io/tags/Barcode-Detection/"/>
-    
-      <category term="SOLID" scheme="http://mengdd.github.io/tags/SOLID/"/>
     
   </entry>
   
