@@ -21,7 +21,7 @@
 <meta property="og:description" content="Android Realm数据库使用指南Realm数据库, 目前有Java, Objective‑C, React Native, Swift, Xamarin的几种实现, 是一套用来取代SQLite的解决方案. 
 本文面向Android开发, 所以只讨论Java实现.目前Realm Java的最新版本是2.3.1.
 官方文档在此: realm java doc, 花一个下午就可以基本过一遍, 之">
-<meta property="og:updated_time" content="2017-02-27T09:34:42.000Z">
+<meta property="og:updated_time" content="2017-02-28T01:59:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Realm数据库使用指南">
 <meta name="twitter:description" content="Android Realm数据库使用指南Realm数据库, 目前有Java, Objective‑C, React Native, Swift, Xamarin的几种实现, 是一套用来取代SQLite的解决方案. 
@@ -54,7 +54,7 @@
 				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
 				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -74,7 +74,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:mengdd.github.io">
 					</form>
 					
@@ -97,14 +97,14 @@
 		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
 		
   <p class="article-time">
-    <time datetime="2017-02-27T09:32:23.000Z" itemprop="datePublished"> Published 2017-02-27</time>
+    <time datetime="2017-02-27T09:32:23.000Z" itemprop="datePublished"> 发表于 2017-02-27</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Realm数据库使用指南"><span class="toc-number">1.</span> <span class="toc-text">Android Realm数据库使用指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Setup"><span class="toc-number">1.1.</span> <span class="toc-text">Setup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Models"><span class="toc-number">1.2.</span> <span class="toc-text">Models</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字段类型"><span class="toc-number">1.2.1.</span> <span class="toc-text">字段类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字段性质"><span class="toc-number">1.2.2.</span> <span class="toc-text">字段性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主键使用"><span class="toc-number">1.2.3.</span> <span class="toc-text">主键使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动更新的对象"><span class="toc-number">1.2.4.</span> <span class="toc-text">自动更新的对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关系"><span class="toc-number">1.3.</span> <span class="toc-text">关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化"><span class="toc-number">1.4.</span> <span class="toc-text">初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">1.4.1.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库迁移"><span class="toc-number">1.5.</span> <span class="toc-text">数据库迁移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于Realm的close"><span class="toc-number">1.6.</span> <span class="toc-text">关于Realm的close()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写"><span class="toc-number">1.7.</span> <span class="toc-text">写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#异步"><span class="toc-number">1.7.1.</span> <span class="toc-text">异步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除和更新"><span class="toc-number">1.7.2.</span> <span class="toc-text">删除和更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询"><span class="toc-number">1.8.</span> <span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询的线程"><span class="toc-number">1.8.1.</span> <span class="toc-text">查询的线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询条件是一个集合-gt-in"><span class="toc-number">1.8.2.</span> <span class="toc-text">查询条件是一个集合 -> in()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链式查询"><span class="toc-number">1.8.3.</span> <span class="toc-text">链式查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Notifications"><span class="toc-number">1.9.</span> <span class="toc-text">Notifications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看数据库的工具"><span class="toc-number">1.10.</span> <span class="toc-text">查看数据库的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实际使用的感想和遇到的问题"><span class="toc-number">1.11.</span> <span class="toc-text">实际使用的感想和遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-number">1.11.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-number">1.11.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资源"><span class="toc-number">1.12.</span> <span class="toc-text">资源</span></a></li></ol></li></ol>
 		
@@ -120,7 +120,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath &quot;io.realm:realm-gradle-plugin:2.3.0&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后在app的build.gradle文件中添加:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &apos;realm-android&apos;</span><br></pre></td></tr></table></figure></p>
 <p>Done.</p>
-<h2 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h2><p>Model类只要继承<code>RealmObject</code>即可.</p>
+<h2 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h2><p>Model类只要继承<code>RealmObject</code>即可.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">RealmObject</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String          name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>             age;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Ignore</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>             sessionId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Standard getters &amp; setters generated by your IDE…</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> name; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>   <span class="title">setName</span><span class="params">(String name)</span> </span>&#123; <span class="keyword">this</span>.name = name; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span>    <span class="title">getAge</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> age; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>   <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123; <span class="keyword">this</span>.age = age; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span>    <span class="title">getSessionId</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> sessionId; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>   <span class="title">setSessionId</span><span class="params">(<span class="keyword">int</span> sessionId)</span> </span>&#123; <span class="keyword">this</span>.sessionId = sessionId; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h3><p>Model类中可以包含的字段类型包括基本数据类型(及它们的装箱类型)和Date类, 另外也可以包含<code>RealmObject</code>的子类或者是<code>RealmList&lt;? extends RealmObject&gt;</code>.</p>
 <h3 id="字段性质"><a href="#字段性质" class="headerlink" title="字段性质"></a>字段性质</h3><p>在字段上加注解可以定义字段的性质:</p>
 <p><code>@Required</code>表明字段非null.<br>原生类型和<code>RealmList</code>类型默认是非null的.<br><code>RealmObject</code>字段永远是可以为null的.</p>
@@ -146,6 +146,7 @@
 <h2 id="数据库迁移"><a href="#数据库迁移" class="headerlink" title="数据库迁移"></a>数据库迁移</h2><p>迁移的策略是通过config指定的:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RealmConfiguration config = <span class="keyword">new</span> RealmConfiguration.Builder()</span><br><span class="line">    .schemaVersion(<span class="number">2</span>) <span class="comment">// Must be bumped when the schema changes</span></span><br><span class="line">    .migration(<span class="keyword">new</span> MyMigration()) <span class="comment">// Migration to run instead of throwing an exception</span></span><br><span class="line">    .build()</span><br></pre></td></tr></table></figure></p>
 <p>其中<code>MyMigration</code>实现了<code>RealmMigration</code>接口, 在<code>migrate()</code>方法中根据新旧版本号进行一步一步地升级.</p>
 <p>具体例子见<a href="https://github.com/realm/realm-java/blob/master/examples/migrationExample/src/main/java/io/realm/examples/realmmigrationexample/model/Migration.java" target="_blank" rel="external">Migration</a>.</p>
+<p>开发的时候为了方便我用的是<code>.deleteRealmIfMigrationNeeded()</code>, 这样在需要数据库迁移的时候直接就删了数据重新开始了.</p>
 <h2 id="关于Realm的close"><a href="#关于Realm的close" class="headerlink" title="关于Realm的close()"></a>关于Realm的close()</h2><p>一个打开的Realm实例会持有一些资源, 有一些是Java不能自动管理的, 所以就需要打开实例的代码负责在不需要的时候将其关闭.</p>
 <p>Realm的instance是引用计数的(reference counted cache), 在同一个线程中获取后续实例是免费的, 但是底层的资源只有当所有实例被释放了之后才能释放. 也即你调用了多少次<code>getInstance()</code>, 就需要调用相应次数的<code>close()</code>方法.</p>
 <p>比较建议的方法是在Activity或Fragment的生命周期中处理Realm实例的开启和释放:</p>
@@ -163,7 +164,7 @@
 <h3 id="删除和更新"><a href="#删除和更新" class="headerlink" title="删除和更新"></a>删除和更新</h3><p>所有的写操作都要放在transaction中进行, 如上, 不同的操作只是其中具体方法不同.</p>
 <p>删除操作:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> RealmResults&lt;User&gt; users = getUsers();</span><br><span class="line"><span class="comment">// method 1:</span></span><br><span class="line">users.get(<span class="number">0</span>).deleteFromRealm();</span><br><span class="line"><span class="comment">// method 2:</span></span><br><span class="line">users.deleteFromRealm(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// delete all</span></span><br><span class="line">users.deleteAllFromRealm();</span><br></pre></td></tr></table></figure></p>
 <p>更新操作:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">realm.copyToRealmOrUpdate(obj);</span><br></pre></td></tr></table></figure></p>
-<p>注意: 这个方法需要Model有主键.</p>
+<p>注意: 这个方法需要Model有主键, 会更新obj的主键对应的对象, 如果不存在则新建对象.</p>
 <h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><p>查询可以流式地写:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Or alternatively do the same all at once (the "Fluent interface"):</span></span><br><span class="line">RealmResults&lt;User&gt; result2 = realm.where(User.class)</span><br><span class="line">                                  .equalTo(<span class="string">"name"</span>, <span class="string">"John"</span>)</span><br><span class="line">                                  .or()</span><br><span class="line">                                  .equalTo(<span class="string">"name"</span>, <span class="string">"Peter"</span>)</span><br><span class="line">                                  .findAll();</span><br></pre></td></tr></table></figure></p>
 <p>查询条件默认是and的关系, or则需要显式指定.</p>
 <p>这个<code>RealmResults</code>是继承Java的<code>AbstractList</code>的, 是有序的集合, 可以通过索引访问.<br><code>RealmResults</code>永远不会为null, 当查不到结果时, 它的<code>size()</code>返回0.</p>
@@ -264,22 +265,22 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Realm数据库使用指南"><span class="toc-number">1.</span> <span class="toc-text">Android Realm数据库使用指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Setup"><span class="toc-number">1.1.</span> <span class="toc-text">Setup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Models"><span class="toc-number">1.2.</span> <span class="toc-text">Models</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字段类型"><span class="toc-number">1.2.1.</span> <span class="toc-text">字段类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字段性质"><span class="toc-number">1.2.2.</span> <span class="toc-text">字段性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主键使用"><span class="toc-number">1.2.3.</span> <span class="toc-text">主键使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动更新的对象"><span class="toc-number">1.2.4.</span> <span class="toc-text">自动更新的对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关系"><span class="toc-number">1.3.</span> <span class="toc-text">关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化"><span class="toc-number">1.4.</span> <span class="toc-text">初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">1.4.1.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库迁移"><span class="toc-number">1.5.</span> <span class="toc-text">数据库迁移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于Realm的close"><span class="toc-number">1.6.</span> <span class="toc-text">关于Realm的close()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写"><span class="toc-number">1.7.</span> <span class="toc-text">写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#异步"><span class="toc-number">1.7.1.</span> <span class="toc-text">异步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除和更新"><span class="toc-number">1.7.2.</span> <span class="toc-text">删除和更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询"><span class="toc-number">1.8.</span> <span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询的线程"><span class="toc-number">1.8.1.</span> <span class="toc-text">查询的线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询条件是一个集合-gt-in"><span class="toc-number">1.8.2.</span> <span class="toc-text">查询条件是一个集合 -> in()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链式查询"><span class="toc-number">1.8.3.</span> <span class="toc-text">链式查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Notifications"><span class="toc-number">1.9.</span> <span class="toc-text">Notifications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看数据库的工具"><span class="toc-number">1.10.</span> <span class="toc-text">查看数据库的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实际使用的感想和遇到的问题"><span class="toc-number">1.11.</span> <span class="toc-text">实际使用的感想和遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-number">1.11.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-number">1.11.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资源"><span class="toc-number">1.12.</span> <span class="toc-text">资源</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -289,7 +290,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
@@ -382,7 +383,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -470,7 +471,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -498,7 +499,7 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
@@ -764,7 +765,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
