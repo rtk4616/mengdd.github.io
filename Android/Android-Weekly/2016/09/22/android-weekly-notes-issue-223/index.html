@@ -51,7 +51,7 @@
 				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
 				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -71,7 +71,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:mengdd.github.io">
 					</form>
 					
@@ -94,14 +94,14 @@
 		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-22T09:34:27.000Z" itemprop="datePublished"> 发表于 2016-09-22</time>
+    <time datetime="2016-09-22T09:34:27.000Z" itemprop="datePublished"> Published 2016-09-22</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-223"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #223</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Offline-First-Introducing-TrueTime-for-Android"><span class="toc-number">2.1.</span> <span class="toc-text">Offline First: Introducing TrueTime for Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Security-and-Accessibility"><span class="toc-number">2.2.</span> <span class="toc-text">Android Security and Accessibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sharing-code-between-UI-amp-unit-tests"><span class="toc-number">2.3.</span> <span class="toc-text">Sharing code between UI & unit tests</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Synchronously-Animating-Colors-on-Android"><span class="toc-number">2.4.</span> <span class="toc-text">Synchronously Animating Colors on Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Fingerprint-Authentication"><span class="toc-number">2.5.</span> <span class="toc-text">Android Fingerprint Authentication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kotlin-vs-Java-Compilation-Speed"><span class="toc-number">2.6.</span> <span class="toc-text">Kotlin vs Java: Compilation Speed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Let-the-view-handle-the-lifecycle-in-MVP-by-using-RxJava"><span class="toc-number">2.7.</span> <span class="toc-text">Let the view handle the lifecycle in MVP by using RxJava</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nougat-GCM-Network-Manager"><span class="toc-number">2.8.</span> <span class="toc-text">Nougat - GCM Network Manager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TransactionTooLargeException-crashes-on-Nougat"><span class="toc-number">2.9.</span> <span class="toc-text">TransactionTooLargeException crashes on Nougat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building-a-blazing-fast-ETC2-compressor"><span class="toc-number">2.10.</span> <span class="toc-text">Building a blazing fast ETC2 compressor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Low-Coupling-With-Rx-and-Dagger2-in-Android"><span class="toc-number">2.11.</span> <span class="toc-text">Low Coupling With Rx and Dagger2 in Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RxJava2-An-Early-Preview"><span class="toc-number">2.12.</span> <span class="toc-text">RxJava2: An Early Preview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eight-Ways-Your-Android-App-Can-STOP-Leaking-Memory"><span class="toc-number">2.13.</span> <span class="toc-text">Eight Ways Your Android App Can STOP Leaking Memory</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Static-Activities"><span class="toc-number">2.13.1.</span> <span class="toc-text">Static Activities</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Static-Views"><span class="toc-number">2.13.2.</span> <span class="toc-text">Static Views</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inner-Classes"><span class="toc-number">2.13.3.</span> <span class="toc-text">Inner Classes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名内部类-AsyncTask-Handler-Thread-TimerTask"><span class="toc-number">2.13.4.</span> <span class="toc-text">匿名内部类 AsyncTask, Handler, Thread, TimerTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sensor-Manager"><span class="toc-number">2.13.5.</span> <span class="toc-text">Sensor Manager</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Auto-rename-Android-versionName-in-Gradle"><span class="toc-number">2.14.</span> <span class="toc-text">Auto rename Android versionName in Gradle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Is-your-custom-view-interactive-aware"><span class="toc-number">2.15.</span> <span class="toc-text">Is your custom view interactive aware?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Beta-Testing-Your-Android-App-With-Build-Variants"><span class="toc-number">2.16.</span> <span class="toc-text">Beta Testing Your Android App With Build Variants</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Make-your-build-gradle-great-again"><span class="toc-number">2.17.</span> <span class="toc-text">Make your build.gradle great again</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-把你的build-gradle分成小份-更加模块化-用apply应用"><span class="toc-number">2.17.1.</span> <span class="toc-text">1. 把你的build.gradle分成小份, 更加模块化, 用apply应用.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在build-file里指明application-id"><span class="toc-number">2.17.2.</span> <span class="toc-text">2. 在build file里指明application id.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-给debug版使用一个不同的applicationId"><span class="toc-number">2.17.3.</span> <span class="toc-text">3. 给debug版使用一个不同的applicationId.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-统计build时间"><span class="toc-number">2.17.4.</span> <span class="toc-text">4. 统计build时间.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-配置release"><span class="toc-number">2.17.5.</span> <span class="toc-text">5. 配置release.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-发现一些有用的tasks-或者自己开发-Reddit-page"><span class="toc-number">2.17.6.</span> <span class="toc-text">6. 发现一些有用的tasks, 或者自己开发. Reddit page.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-把依赖的版本号抽出来"><span class="toc-number">2.17.7.</span> <span class="toc-text">7. 把依赖的版本号抽出来.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-使用jcenter-响应更快"><span class="toc-number">2.17.8.</span> <span class="toc-text">8. 使用jcenter, 响应更快.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-在开发时把最小sdk设为21或以上-会build得更快"><span class="toc-number">2.17.9.</span> <span class="toc-text">9. 在开发时把最小sdk设为21或以上, 会build得更快.</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Amazing-Open-Source-Apps"><span class="toc-number">3.1.</span> <span class="toc-text">Android Amazing Open Source Apps</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DoorSignView"><span class="toc-number">3.2.</span> <span class="toc-text">DoorSignView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-Error-Handler"><span class="toc-number">3.3.</span> <span class="toc-text">Java Error Handler</span></a></li></ol></li></ol>
 		
@@ -271,7 +271,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Android-Weekly/">Android Weekly</a><a href="/tags/Kotlin/">Kotlin</a><a href="/tags/Gradle/">Gradle</a><a href="/tags/RxJava/">RxJava</a><a href="/tags/MVP/">MVP</a><a href="/tags/Accessibility/">Accessibility</a><a href="/tags/Memory-Leak/">Memory Leak</a><a href="/tags/Nougat/">Nougat</a><a href="/tags/Test/">Test</a><a href="/tags/Fingerprint/">Fingerprint</a><a href="/tags/RxJava2/">RxJava2</a><a href="/tags/GCM/">GCM</a>
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Android-Weekly/">Android Weekly</a><a href="/tags/Kotlin/">Kotlin</a><a href="/tags/Gradle/">Gradle</a><a href="/tags/RxJava/">RxJava</a><a href="/tags/MVP/">MVP</a><a href="/tags/Accessibility/">Accessibility</a><a href="/tags/Test/">Test</a><a href="/tags/Fingerprint/">Fingerprint</a><a href="/tags/RxJava2/">RxJava2</a><a href="/tags/Nougat/">Nougat</a><a href="/tags/GCM/">GCM</a><a href="/tags/Memory-Leak/">Memory Leak</a>
   </div>
 
 </div>
@@ -325,22 +325,22 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Weekly-Issue-223"><span class="toc-number">1.</span> <span class="toc-text">Android Weekly Issue #223</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTICLES-amp-TUTORIALS"><span class="toc-number">2.</span> <span class="toc-text">ARTICLES & TUTORIALS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Offline-First-Introducing-TrueTime-for-Android"><span class="toc-number">2.1.</span> <span class="toc-text">Offline First: Introducing TrueTime for Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Security-and-Accessibility"><span class="toc-number">2.2.</span> <span class="toc-text">Android Security and Accessibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sharing-code-between-UI-amp-unit-tests"><span class="toc-number">2.3.</span> <span class="toc-text">Sharing code between UI & unit tests</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Synchronously-Animating-Colors-on-Android"><span class="toc-number">2.4.</span> <span class="toc-text">Synchronously Animating Colors on Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Fingerprint-Authentication"><span class="toc-number">2.5.</span> <span class="toc-text">Android Fingerprint Authentication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kotlin-vs-Java-Compilation-Speed"><span class="toc-number">2.6.</span> <span class="toc-text">Kotlin vs Java: Compilation Speed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Let-the-view-handle-the-lifecycle-in-MVP-by-using-RxJava"><span class="toc-number">2.7.</span> <span class="toc-text">Let the view handle the lifecycle in MVP by using RxJava</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nougat-GCM-Network-Manager"><span class="toc-number">2.8.</span> <span class="toc-text">Nougat - GCM Network Manager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TransactionTooLargeException-crashes-on-Nougat"><span class="toc-number">2.9.</span> <span class="toc-text">TransactionTooLargeException crashes on Nougat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building-a-blazing-fast-ETC2-compressor"><span class="toc-number">2.10.</span> <span class="toc-text">Building a blazing fast ETC2 compressor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Low-Coupling-With-Rx-and-Dagger2-in-Android"><span class="toc-number">2.11.</span> <span class="toc-text">Low Coupling With Rx and Dagger2 in Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RxJava2-An-Early-Preview"><span class="toc-number">2.12.</span> <span class="toc-text">RxJava2: An Early Preview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eight-Ways-Your-Android-App-Can-STOP-Leaking-Memory"><span class="toc-number">2.13.</span> <span class="toc-text">Eight Ways Your Android App Can STOP Leaking Memory</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Static-Activities"><span class="toc-number">2.13.1.</span> <span class="toc-text">Static Activities</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Static-Views"><span class="toc-number">2.13.2.</span> <span class="toc-text">Static Views</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inner-Classes"><span class="toc-number">2.13.3.</span> <span class="toc-text">Inner Classes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名内部类-AsyncTask-Handler-Thread-TimerTask"><span class="toc-number">2.13.4.</span> <span class="toc-text">匿名内部类 AsyncTask, Handler, Thread, TimerTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sensor-Manager"><span class="toc-number">2.13.5.</span> <span class="toc-text">Sensor Manager</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Auto-rename-Android-versionName-in-Gradle"><span class="toc-number">2.14.</span> <span class="toc-text">Auto rename Android versionName in Gradle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Is-your-custom-view-interactive-aware"><span class="toc-number">2.15.</span> <span class="toc-text">Is your custom view interactive aware?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Beta-Testing-Your-Android-App-With-Build-Variants"><span class="toc-number">2.16.</span> <span class="toc-text">Beta Testing Your Android App With Build Variants</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Make-your-build-gradle-great-again"><span class="toc-number">2.17.</span> <span class="toc-text">Make your build.gradle great again</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-把你的build-gradle分成小份-更加模块化-用apply应用"><span class="toc-number">2.17.1.</span> <span class="toc-text">1. 把你的build.gradle分成小份, 更加模块化, 用apply应用.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在build-file里指明application-id"><span class="toc-number">2.17.2.</span> <span class="toc-text">2. 在build file里指明application id.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-给debug版使用一个不同的applicationId"><span class="toc-number">2.17.3.</span> <span class="toc-text">3. 给debug版使用一个不同的applicationId.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-统计build时间"><span class="toc-number">2.17.4.</span> <span class="toc-text">4. 统计build时间.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-配置release"><span class="toc-number">2.17.5.</span> <span class="toc-text">5. 配置release.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-发现一些有用的tasks-或者自己开发-Reddit-page"><span class="toc-number">2.17.6.</span> <span class="toc-text">6. 发现一些有用的tasks, 或者自己开发. Reddit page.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-把依赖的版本号抽出来"><span class="toc-number">2.17.7.</span> <span class="toc-text">7. 把依赖的版本号抽出来.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-使用jcenter-响应更快"><span class="toc-number">2.17.8.</span> <span class="toc-text">8. 使用jcenter, 响应更快.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-在开发时把最小sdk设为21或以上-会build得更快"><span class="toc-number">2.17.9.</span> <span class="toc-text">9. 在开发时把最小sdk设为21或以上, 会build得更快.</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LIBRARIES-amp-CODE"><span class="toc-number">3.</span> <span class="toc-text">LIBRARIES & CODE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Amazing-Open-Source-Apps"><span class="toc-number">3.1.</span> <span class="toc-text">Android Amazing Open Source Apps</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DoorSignView"><span class="toc-number">3.2.</span> <span class="toc-text">DoorSignView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-Error-Handler"><span class="toc-number">3.3.</span> <span class="toc-text">Java Error Handler</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -350,11 +350,11 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>42</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>43</sup></a></li>
 		  
 		
 		  
@@ -366,7 +366,7 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>26</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>27</sup></a></li>
 		  
 		
 		  
@@ -382,11 +382,11 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
 		  
 		
 		  
@@ -394,7 +394,7 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
 		  
 		
 		  
@@ -402,7 +402,7 @@
 		  
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
 		  
 		
 		  
@@ -443,27 +443,23 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>42</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>43</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>28</sup></a></li>
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>29</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>16</sup></a></li>
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>17</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>12</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>9</sup></a></li>
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>13</sup></a></li>
 			
 		
 			
@@ -471,19 +467,23 @@
 			
 		
 			
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>9</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Testing/" title="Testing">Testing<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>7</sup></a></li>
+				<li><a href="/tags/Testing/" title="Testing">Testing<sup>8</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>7</sup></a></li>
 			
 		
 			
@@ -495,27 +495,15 @@
 			
 		
 			
-				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>6</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-7/" title="Android 7">Android 7<sup>5</sup></a></li>
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-Things/" title="Android Things">Android Things<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Test/" title="Test">Test<sup>5</sup></a></li>
+				<li><a href="/tags/RxJava2/" title="RxJava2">RxJava2<sup>5</sup></a></li>
 			
 		
 			
@@ -523,7 +511,19 @@
 			
 		
 			
-				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>5</sup></a></li>
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Things/" title="Android Things">Android Things<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-7/" title="Android 7">Android 7<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Test/" title="Test">Test<sup>5</sup></a></li>
 			
 		
 		</ul>
@@ -531,7 +531,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -559,7 +559,7 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
@@ -825,7 +825,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

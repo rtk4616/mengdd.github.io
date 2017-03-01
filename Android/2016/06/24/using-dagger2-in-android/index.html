@@ -48,7 +48,7 @@
 				<h1 class="site-name"><a href="/" title="Meng&#39;s pages">Meng&#39;s pages</a></h1>
 				<h2 class="blog-motto">Android developer and maybe other intersting things.</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -68,7 +68,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:mengdd.github.io">
 					</form>
 					
@@ -91,14 +91,14 @@
 		<a href="/about" title="Dandan Meng" target="_blank" itemprop="author">Dandan Meng</a>
 		
   <p class="article-time">
-    <time datetime="2016-06-24T05:22:44.000Z" itemprop="datePublished"> 发表于 2016-06-24</time>
+    <time datetime="2016-06-24T05:22:44.000Z" itemprop="datePublished"> Published 2016-06-24</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用依赖注入的好处"><span class="toc-number">1.</span> <span class="toc-text">使用依赖注入的好处</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dagger2的使用"><span class="toc-number">2.</span> <span class="toc-text">Dagger2的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Set-Up"><span class="toc-number">2.1.</span> <span class="toc-text">Set Up</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用注解"><span class="toc-number">2.2.</span> <span class="toc-text">常用注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dagger2基本使用"><span class="toc-number">2.3.</span> <span class="toc-text">Dagger2基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最简单的一个实例"><span class="toc-number">2.3.1.</span> <span class="toc-text">最简单的一个实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单例-Singleton"><span class="toc-number">2.3.2.</span> <span class="toc-text">单例@Singleton</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Module-和-Provides的使用"><span class="toc-number">2.3.3.</span> <span class="toc-text">@Module 和 @Provides的使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dagger2中几种常用注解总结"><span class="toc-number">3.</span> <span class="toc-text">Dagger2中几种常用注解总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Inject"><span class="toc-number">3.0.1.</span> <span class="toc-text">@Inject</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Module-和-Provides"><span class="toc-number">3.0.2.</span> <span class="toc-text">@Module 和 @Provides</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Component"><span class="toc-number">3.0.3.</span> <span class="toc-text">@Component</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">4.</span> <span class="toc-text">参考资料:</span></a></li></ol>
 		
@@ -242,22 +242,22 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用依赖注入的好处"><span class="toc-number">1.</span> <span class="toc-text">使用依赖注入的好处</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dagger2的使用"><span class="toc-number">2.</span> <span class="toc-text">Dagger2的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Set-Up"><span class="toc-number">2.1.</span> <span class="toc-text">Set Up</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用注解"><span class="toc-number">2.2.</span> <span class="toc-text">常用注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dagger2基本使用"><span class="toc-number">2.3.</span> <span class="toc-text">Dagger2基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最简单的一个实例"><span class="toc-number">2.3.1.</span> <span class="toc-text">最简单的一个实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单例-Singleton"><span class="toc-number">2.3.2.</span> <span class="toc-text">单例@Singleton</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Module-和-Provides的使用"><span class="toc-number">2.3.3.</span> <span class="toc-text">@Module 和 @Provides的使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dagger2中几种常用注解总结"><span class="toc-number">3.</span> <span class="toc-text">Dagger2中几种常用注解总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Inject"><span class="toc-number">3.0.1.</span> <span class="toc-text">@Inject</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Module-和-Provides"><span class="toc-number">3.0.2.</span> <span class="toc-text">@Module 和 @Provides</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Component"><span class="toc-number">3.0.3.</span> <span class="toc-text">@Component</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">4.</span> <span class="toc-text">参考资料:</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="mengdd" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -267,11 +267,11 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>42</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>43</sup></a></li>
 		  
 		
 		  
@@ -283,7 +283,7 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>26</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/" title="Android Weekly">Android Weekly<sup>27</sup></a></li>
 		  
 		
 		  
@@ -299,11 +299,11 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/Nougat/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Design-Support-Library/" title="Design Support Library">Design Support Library<sup>1</sup></a></li>
 		  
 		
 		  
@@ -311,7 +311,7 @@
 		  
 		
 		  
-			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
 		  
 		
 		  
@@ -319,7 +319,7 @@
 		  
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+			<li><a href="/categories/Android/Android-Weekly/React-Native/Java/" title="Java">Java<sup>1</sup></a></li>
 		  
 		
 		  
@@ -360,27 +360,23 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>42</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>43</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>28</sup></a></li>
+				<li><a href="/tags/Android-Weekly/" title="Android Weekly">Android Weekly<sup>29</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>16</sup></a></li>
+				<li><a href="/tags/RxJava/" title="RxJava">RxJava<sup>17</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>12</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>9</sup></a></li>
+				<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>13</sup></a></li>
 			
 		
 			
@@ -388,19 +384,23 @@
 			
 		
 			
+				<li><a href="/tags/Firebase/" title="Firebase">Firebase<sup>9</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Nougat/" title="Nougat">Nougat<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Testing/" title="Testing">Testing<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>7</sup></a></li>
+				<li><a href="/tags/Testing/" title="Testing">Testing<sup>8</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Fragment/" title="Fragment">Fragment<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dagger2/" title="Dagger2">Dagger2<sup>7</sup></a></li>
 			
 		
 			
@@ -412,27 +412,15 @@
 			
 		
 			
-				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>6</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Espresso/" title="Espresso">Espresso<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-7/" title="Android 7">Android 7<sup>5</sup></a></li>
+				<li><a href="/tags/Gradle/" title="Gradle">Gradle<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-Things/" title="Android Things">Android Things<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Test/" title="Test">Test<sup>5</sup></a></li>
+				<li><a href="/tags/RxJava2/" title="RxJava2">RxJava2<sup>5</sup></a></li>
 			
 		
 			
@@ -440,7 +428,19 @@
 			
 		
 			
-				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>5</sup></a></li>
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Things/" title="Android Things">Android Things<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-7/" title="Android 7">Android 7<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Test/" title="Test">Test<sup>5</sup></a></li>
 			
 		
 		</ul>
@@ -448,7 +448,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -476,7 +476,7 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
@@ -742,7 +742,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
