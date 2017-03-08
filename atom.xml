@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-03-01T09:53:20.000Z</updated>
+  <updated>2017-03-08T06:56:54.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,121 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 247</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/03/08/android-weekly-notes-issue-247/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/03/08/android-weekly-notes-issue-247/</id>
+    <published>2017-03-08T06:49:43.000Z</published>
+    <updated>2017-03-08T06:56:54.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-247&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-247&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #247&quot;&gt;&lt;/a&gt;Android Weekly Issue #247&lt;/h1&gt;&lt;p&gt;March 5th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-247&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #247&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;本期内容包括: 离线模式的实现; RxJava2的测试支持; MVI模式中的单向数据流; FlexboxLayout的使用; 用脚本来配置项目的版本名和版本号; Fragment的转场动画; MVP模式的几点原则;&lt;br&gt;RxJava中需要注意的一些点; RxJava在Android中的实现例子; JUnit 5使用.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Offline-support-“Try-again-later”-no-more&quot;&gt;&lt;a href=&quot;#Offline-support-“Try-again-later”-no-more&quot; class=&quot;headerlink&quot; title=&quot;Offline support: “Try again, later”, no more&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@yonatanvlevin/offline-support-try-again-later-no-more-afc33eba79dc#.p90haop40&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Offline support: “Try again, later”, no more&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者他们的应用很好地处理了离线模式, 他们的基本原则是, 应用中不需要显示任何的loading控件.&lt;/p&gt;
+&lt;p&gt;在离线装填下, 在用户看来仍是可以提交请求的, 只不过出现了一个sync的小图标, 一旦当用户再次连上网络, 他的请求就会被发送出去.&lt;/p&gt;
+&lt;p&gt;然后作者讲了他们的程序设计:&lt;br&gt;首先是MVP结构, 使用了Content Provider包装的SQLite数据库. (此处列举了使用Content Provider的若干优点).&lt;/p&gt;
+&lt;p&gt;后台的同步工作, 他们选择了&lt;code&gt;GCMNetworkManager&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;基本流程是这样: 但用户提交请求, 首先存储在数据库中, 状态为pending, 然后后台service发送请求, 如果成功, 则更新数据库中的状态为synced; 如果失败, 则用&lt;code&gt;GcmNetworkManager&lt;/code&gt;schedule一个task, 在网络连接恢复时再做一次尝试, 成功和失败的处理同上一步.&lt;/p&gt;
+&lt;h2 id=&quot;Story-Code&quot;&gt;&lt;a href=&quot;#Story-Code&quot; class=&quot;headerlink&quot; title=&quot;Story Code&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://publicobject.com/2017/02/06/story-code/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Story Code&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者讲了一种方法, 以一种叙事的方式来写一个测试故事, 然后把它分成很多个小的测试cases. 这样可以用来驱动API的设计和其实现等.&lt;/p&gt;
+&lt;h2 id=&quot;Testing-RxJava2&quot;&gt;&lt;a href=&quot;#Testing-RxJava2&quot; class=&quot;headerlink&quot; title=&quot;Testing RxJava2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.infoq.com/articles/Testing-RxJava2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Testing RxJava2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;本文介绍RxJava2中内置的关于测试的支持.&lt;/p&gt;
+&lt;p&gt;测试一个&lt;code&gt;Observable&lt;/code&gt;可以用&lt;code&gt;TestObserver&lt;/code&gt;; 测试&lt;code&gt;Flowable&lt;/code&gt;可以用&lt;code&gt;TestSubscriber&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;如何测试在不同线程上的工作?&lt;br&gt;有几种选择:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;把Observable变为blocking的. -&amp;gt; &lt;code&gt;blockingIterable()&lt;/code&gt;, 缺点: 测试慢.&lt;/li&gt;
+&lt;li&gt;强制测试等待, 直到某个条件达成. -&amp;gt; &lt;code&gt;awaitTerminalEvent()&lt;/code&gt;. 此处还推荐一个库: &lt;a href=&quot;https://github.com/awaitility/awaitility&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;awaitility&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;把schedular换为一个immediate的. &lt;code&gt;RxJavaPlugins.setComputationSchedulerHandler(scheduler -&amp;gt; Schedulers.trampoline());&lt;/code&gt;. 需要最后reset一下, 可以用JUnit的TestRule来进行简化.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用&lt;code&gt;TestScheduler&lt;/code&gt;可以操纵时间, 进行白盒测试.&lt;br&gt;利用它在测试中可以精确控制时间过去了多少, 我们可以测试在中间的时间点的状态.&lt;br&gt;值得注意的是它控制的并不是真实的时间, 真实的时间还是立即就度过了的, 所以不会降低测试的速度.&lt;/p&gt;
+&lt;p&gt;我们也可以利用&lt;code&gt;TestRule&lt;/code&gt;和&lt;code&gt;RxJavaPlugins&lt;/code&gt;来把这个scheduler设置为测试时候要切换成的scheduler.&lt;/p&gt;
+&lt;h2 id=&quot;Syncing-Changes&quot;&gt;&lt;a href=&quot;#Syncing-Changes&quot; class=&quot;headerlink&quot; title=&quot;Syncing Changes&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://tech.trello.com/syncing-changes/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Syncing Changes&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Trello的离线模式实现文章系列之二. 基本的原则是在离线的时候把改动(deltas)存在数据库里, 之后有机会再同步给server.&lt;/p&gt;
+&lt;p&gt;本文介绍了他们如何计算delta和将它们按时间上传到服务器.&lt;/p&gt;
+&lt;h2 id=&quot;Reactive-Apps-With-MVI-Part-4&quot;&gt;&lt;a href=&quot;#Reactive-Apps-With-MVI-Part-4&quot; class=&quot;headerlink&quot; title=&quot;Reactive Apps With MVI - Part 4&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://hannesdorfmann.com/android/mosby3-mvi-4&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reactive Apps With MVI - Part 4&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;MVI系列文章的第四篇. 本篇讲如何构建独立的UI单元.&lt;/p&gt;
+&lt;p&gt;作者认为Presenter之间的Parent-Child关系是一种code smell, 因为这样引入了一种强耦合的关系, 不好读, 不好维护.&lt;/p&gt;
+&lt;p&gt;你也许要问那Presenter之间如何通信呢? 答案是, 它们根本就不需要通信, 它们只需要更新和观测同一个Model(可以说业务逻辑), 让底层来通知它们事件的发生就可以了.&lt;/p&gt;
+&lt;h2 id=&quot;Resources-for-Learning-how-to-Test-Android-Apps&quot;&gt;&lt;a href=&quot;#Resources-for-Learning-how-to-Test-Android-Apps&quot; class=&quot;headerlink&quot; title=&quot;Resources for Learning how to Test Android Apps&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.philosophicalhacker.com/post/some-resources-for-learning-how-to-test-android-apps/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Resources for Learning how to Test Android Apps&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;关于Android测试的相关资源分享.&lt;/p&gt;
+&lt;h2 id=&quot;Unboxing-the-FlexboxLayout&quot;&gt;&lt;a href=&quot;#Unboxing-the-FlexboxLayout&quot; class=&quot;headerlink&quot; title=&quot;Unboxing the FlexboxLayout&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.devcenter.co/unboxing-the-flexboxlayout-a7cfd125f023#.ulop7q1jz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Unboxing the FlexboxLayout&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者想实现一个动态关键字的流式布局, 可以根据parent的宽度自动换行.&lt;/p&gt;
+&lt;p&gt;他想了几种方法, 都不太合适, 所以最后选择了&lt;code&gt;FlexboxLayout&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;作者尝试了单独使用&lt;code&gt;FlexboxLayout&lt;/code&gt;和 将&lt;code&gt;FlexboxLayoutManager()&lt;/code&gt;设置为&lt;code&gt;RecyclerView&lt;/code&gt;的Layout Manager两种办法来实现他想要的效果.&lt;/p&gt;
+&lt;h2 id=&quot;Configuring-Android-Project-Version-Name-amp-Code&quot;&gt;&lt;a href=&quot;#Configuring-Android-Project-Version-Name-amp-Code&quot; class=&quot;headerlink&quot; title=&quot;Configuring Android Project - Version Name &amp;amp; Code&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@dmytrodanylyk/configuring-android-project-version-name-code-b168952f3323#.v20pogayh&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Configuring Android Project - Version Name &amp;amp; Code&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;首先介绍了&lt;a href=&quot;https://git-scm.com/docs/git-describe&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;git-describe&lt;/a&gt;命令.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git describe -tags&lt;/code&gt;可以输出当前最近的tag和它之后有几个提交, 还有最新提交的hash.&lt;/p&gt;
+&lt;p&gt;作者建议使用这个库: &lt;a href=&quot;https://github.com/ajoberstar/grgit&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;grgit&lt;/a&gt;, 写一个script-git-version.gradle:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;buildscript &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    repositories &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        jcenter()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        classpath &amp;apos;org.ajoberstar:grgit:1.5.0&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;import org.ajoberstar.grgit.Grgit&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ext &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    git = Grgit.open(currentDir: projectDir)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gitVersionName = git.describe()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gitVersionCode = git.tag.list().size()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gitVersionCodeTime = git.head().time&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;task printVersion() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    println(&amp;quot;Version Name: $gitVersionName&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    println(&amp;quot;Version Code: $gitVersionCode&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    println(&amp;quot;Version Code Time: $gitVersionCodeTime&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在主文件中apply这个文件.&lt;/p&gt;
+&lt;p&gt;执行printVersion task后会输出类似这样的信息:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Version Name: 1.0-2-gdca226a&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Version Code: 2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Version Code Time: 1484407970&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这样使用:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;productFlavors &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dev &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        versionCode gitVersionCodeTime&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        versionName gitVersionName&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    prod &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        versionCode gitVersionCode&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        versionName gitVersionName&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这样就自动生成了版本号和版本名.&lt;br&gt;你还可以进一步设计, 在版本名中包括分支名, 时间戳之类的.&lt;/p&gt;
+&lt;h2 id=&quot;Workcation-App-Part-1-Fragment-custom-transition&quot;&gt;&lt;a href=&quot;#Workcation-App-Part-1-Fragment-custom-transition&quot; class=&quot;headerlink&quot; title=&quot;Workcation App - Part 1. Fragment custom transition&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.thedroidsonroids.com/blog/android/workcation-app-part-1-fragments-custom-transition/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Workcation App - Part 1. Fragment custom transition&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者的系列文章, 讨论他的项目中的动画的实现.&lt;br&gt;本文是第一篇, 介绍进入map的转场动画.&lt;/p&gt;
+&lt;p&gt;首先, 在map加载完毕后, 存一个截图放在缓存里, 然后用一个自定义的Transition来做缩放和渐变的动画, 最后把它设置为fragment的转场动画.&lt;/p&gt;
+&lt;h2 id=&quot;Model-View-Presenter-Android-guidelines&quot;&gt;&lt;a href=&quot;#Model-View-Presenter-Android-guidelines&quot; class=&quot;headerlink&quot; title=&quot;Model-View-Presenter: Android guidelines&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@cervonefrancesco/model-view-presenter-android-guidelines-94970b430ddf#.s1d1l3dkt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Model-View-Presenter: Android guidelines&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;MVP实现的一些guidelines和最佳实践.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1.View要无脑和被动.&lt;/li&gt;
+&lt;li&gt;2.Presenter要和framework无关, 不依赖任何Android的类.&lt;/li&gt;
+&lt;li&gt;3.写一个协议描述View和Presenter的交互.&lt;/li&gt;
+&lt;li&gt;4.定义命名规则来区分职责.&lt;/li&gt;
+&lt;li&gt;5.不要在Presenter里创建生命周期的回调方法.&lt;/li&gt;
+&lt;li&gt;6.Presenter和View是一对一的关系. 可以定义&lt;code&gt;attach()&lt;/code&gt;和&lt;code&gt;detach()&lt;/code&gt;或&lt;code&gt;start()&lt;/code&gt;和&lt;code&gt;stop()&lt;/code&gt;来关联和解除关联.&lt;/li&gt;
+&lt;li&gt;7.不要在Presenter里用Bundle保存状态. 因为不能包含Android的类.&lt;/li&gt;
+&lt;li&gt;8.不要保存Presenter. 因为Presenter并不是一个数据类.&lt;/li&gt;
+&lt;li&gt;9.在Model中提供cache来恢复View的状态.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;5-Not-So-Obvious-Things-About-RxJava&quot;&gt;&lt;a href=&quot;#5-Not-So-Obvious-Things-About-RxJava&quot; class=&quot;headerlink&quot; title=&quot;5 Not So Obvious Things About RxJava&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@jagsaund/5-not-so-obvious-things-about-rxjava-c388bd19efbc#.dl9lo390z&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;5 Not So Obvious Things About RxJava&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;RxJava使用学习中的五点(RxJava1.2.6).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么时候用&lt;code&gt;map()&lt;/code&gt;或者&lt;code&gt;flatMap()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;不使用&lt;code&gt;Observable.create()&lt;/code&gt;来创建observables. 使用其他更方便的方法, 比如&lt;code&gt;syncOnSubscribe&lt;/code&gt;, &lt;code&gt;fromCallable&lt;/code&gt;, &lt;code&gt;fromEmitter&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;如何处理Backpressure.&lt;/li&gt;
+&lt;li&gt;如和能让流不因为errors而停下来.&lt;/li&gt;
+&lt;li&gt;如何分享Observable到多个订阅者 -&amp;gt; &lt;code&gt;share()&lt;/code&gt;或&lt;code&gt;publish()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Simplify-Concurrency-with-Reactive-Modelling-on-Android&quot;&gt;&lt;a href=&quot;#Simplify-Concurrency-with-Reactive-Modelling-on-Android&quot; class=&quot;headerlink&quot; title=&quot;Simplify Concurrency with Reactive Modelling on Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.toptal.com/android/simplify-concurrency-reactive-modelling-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Simplify Concurrency with Reactive Modelling on Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;用RxJava来处理Android上的并发和异步.&lt;br&gt;作者的文章中举了很详尽的各种例子.&lt;/p&gt;
+&lt;h2 id=&quot;JUnit-5-Getting-Started&quot;&gt;&lt;a href=&quot;#JUnit-5-Getting-Started&quot; class=&quot;headerlink&quot; title=&quot;JUnit 5: Getting Started&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/junit-5-getting-started/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JUnit 5: Getting Started&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;使用JUnit 5做测试.&lt;br&gt;本文讲了一些在Android上setup可能会遇到的问题及怎么解决.&lt;/p&gt;
+&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;FastHub&quot;&gt;&lt;a href=&quot;#FastHub&quot; class=&quot;headerlink&quot; title=&quot;FastHub&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/k0shk0sh/FastHub&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FastHub&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个Android的Github客户端.&lt;/p&gt;
+&lt;h2 id=&quot;gradle-android-javafmt-plugin&quot;&gt;&lt;a href=&quot;#gradle-android-javafmt-plugin&quot; class=&quot;headerlink&quot; title=&quot;gradle-android-javafmt-plugin&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/f2prateek/gradle-android-javafmt-plugin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gradle-android-javafmt-plugin&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个gradle plugin, 自动format代码.&lt;/p&gt;
+&lt;h2 id=&quot;HtmlCompat&quot;&gt;&lt;a href=&quot;#HtmlCompat&quot; class=&quot;headerlink&quot; title=&quot;HtmlCompat&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Pixplicity/HtmlCompat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HtmlCompat&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Android中Html类的兼容库.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-247&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-247&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #247&quot;&gt;&lt;/a&gt;Android Weekly Issue #247&lt;/h1&gt;&lt;p&gt;March 5th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-247&quot;&gt;Android Weekly Issue #247&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;本期内容包括: 离线模式的实现; RxJava2的测试支持; MVI模式中的单向数据流; FlexboxLayout的使用; 用脚本来配置项目的版本名和版本号; Fragment的转场动画; MVP模式的几点原则;&lt;br&gt;RxJava中需要注意的一些点; RxJava在Android中的实现例子; JUnit 5使用.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Fragment" scheme="http://mengdd.github.io/tags/Fragment/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
+      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
+    
+      <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
+    
+      <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
+    
+      <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
+    
+      <category term="Version Name" scheme="http://mengdd.github.io/tags/Version-Name/"/>
+    
+      <category term="Git" scheme="http://mengdd.github.io/tags/Git/"/>
+    
+      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
+    
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 246</title>
@@ -84,9 +199,9 @@
     
       <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
-      <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
-    
       <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
+    
+      <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
     
       <category term="In-App Billing" scheme="http://mengdd.github.io/tags/In-App-Billing/"/>
     
@@ -735,9 +850,9 @@
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
       <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Color" scheme="http://mengdd.github.io/tags/Color/"/>
     
@@ -2112,9 +2227,9 @@
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
-      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
-    
       <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
+    
+      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
     
       <category term="Audio" scheme="http://mengdd.github.io/tags/Audio/"/>
     
@@ -2133,100 +2248,6 @@
       <category term="Reference" scheme="http://mengdd.github.io/tags/Reference/"/>
     
       <category term="Media" scheme="http://mengdd.github.io/tags/Media/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 230</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/11/11/android-weekly-notes-issue-230/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2016/11/11/android-weekly-notes-issue-230/</id>
-    <published>2016-11-11T04:57:21.000Z</published>
-    <updated>2016-11-13T02:57:01.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-230&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-230&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #230&quot;&gt;&lt;/a&gt;Android Weekly Issue #230&lt;/h1&gt;&lt;p&gt;November 6th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-230&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #230&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的链式约束; Kotlin的Async-Await; RxJava2.0; 屏幕旋转导致的Activity重建; Throwable类的设计问题; Espresso测试中如何等待异步请求返回; Kotlin的扩展和运算符重载; Android KeyStore实现用户验证.&lt;/p&gt;
-&lt;p&gt;代码部分有proguard的库, mvp的库和WifiManager, ConfigurationManager的包装库.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;ARTICLES-amp-TUTORIALS&quot;&gt;&lt;a href=&quot;#ARTICLES-amp-TUTORIALS&quot; class=&quot;headerlink&quot; title=&quot;ARTICLES &amp;amp; TUTORIALS&quot;&gt;&lt;/a&gt;ARTICLES &amp;amp; TUTORIALS&lt;/h1&gt;&lt;h2 id=&quot;Extending-Mockito&quot;&gt;&lt;a href=&quot;#Extending-Mockito&quot; class=&quot;headerlink&quot; title=&quot;Extending Mockito&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://jeroenmols.com/blog/2016/10/31/mockitomatchers/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Extending Mockito&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这篇文章讲了如何扩展Mockito, 简化对参数的验证.&lt;/p&gt;
-&lt;p&gt;首先作者举了之前验证参数的例子, 用的是ArgumentCaptor, 写起来很麻烦, 用了自定义的matcher之后简化了很多.&lt;/p&gt;
-&lt;h2 id=&quot;ConstraintLayout-Chains-–-Part-2&quot;&gt;&lt;a href=&quot;#ConstraintLayout-Chains-–-Part-2&quot; class=&quot;headerlink&quot; title=&quot;ConstraintLayout Chains – Part 2&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.stylingandroid.com/constraintlayout-chains-part-2/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ConstraintLayout Chains – Part 2&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;上一篇文章讲过在ConstraintLayout中如何创建对称的链式约束, 本篇文章介绍chainStyle的不同设置和比较.&lt;/p&gt;
-&lt;p&gt;默认的spread chain: 均匀分布;&lt;br&gt;inside spread chain: 边缘元素顶边, 中间均匀分布.&lt;/p&gt;
-&lt;p&gt;如果指定了权重, 将会按照权重布局. 那么spread chain和inside spread chain就没有区别了.&lt;/p&gt;
-&lt;p&gt;packed chain: 默认会把所有元素都放在一起放在中间, 可以指定bias来定义偏移基准, 默认bias是0.5, bias设置为0.25的意思就是往左偏. &lt;/p&gt;
-&lt;h2 id=&quot;A-glimpse-of-Async-Await-on-Android&quot;&gt;&lt;a href=&quot;#A-glimpse-of-Async-Await-on-Android&quot; class=&quot;headerlink&quot; title=&quot;A glimpse of Async-Await on Android&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@haarman.niek/async-await-in-android-f0202cf31088#.bdf3jarxd&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A glimpse of Async-Await on Android&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Kotlin 1.1推出了&lt;a href=&quot;https://github.com/Kotlin/kotlin-coroutines&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;coroutines&lt;/a&gt;, 这是一个让计算可以在某个点暂停然后之后又恢复的功能, 例子是几年前C#的&lt;a href=&quot;http://blog.stephencleary.com/2012/02/async-and-await.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Async-Await&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;作者先举例说明了异步操作的几种常见实现, 最后结合自己的库用Async-Await做了一个例子.&lt;/p&gt;
-&lt;h2 id=&quot;What’s-different-in-2-0&quot;&gt;&lt;a href=&quot;#What’s-different-in-2-0&quot; class=&quot;headerlink&quot; title=&quot;What’s different in 2.0&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/ReactiveX/RxJava/wiki/What&amp;#39;s-different-in-2.0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What’s different in 2.0&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;RxJava2.0.0已经发布了. 这是它的wiki page来介绍2.0有什么不同.&lt;/p&gt;
-&lt;h2 id=&quot;Activity-Revival-and-the-case-of-the-Rotating-Device&quot;&gt;&lt;a href=&quot;#Activity-Revival-and-the-case-of-the-Rotating-Device&quot; class=&quot;headerlink&quot; title=&quot;Activity Revival and the case of the Rotating Device&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/google-developers/activity-revival-and-the-case-of-the-rotating-device-167e34f9a30d#.fwrqz8nit&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Activity Revival and the case of the Rotating Device&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;本篇文章讲configuration变化(比如屏幕旋转)导致的Activity重建.&lt;/p&gt;
-&lt;p&gt;为什么configuration变化的时候要重建Activity呢? 因为系统想要尽力地做一些helpful的事情, 希望在这种时候能重新加载正确的资源.&lt;/p&gt;
-&lt;p&gt;怎么处理呢?&lt;/p&gt;
-&lt;p&gt;方法一: 让系统自动处理. 在屏幕旋转时, &lt;code&gt;onSaveInstanceState()&lt;/code&gt;会在Activity销毁前调用, 可以存储一些状态, 之后重建的时候从bundle中拿出来恢复.&lt;/p&gt;
-&lt;p&gt;方法二: 自己处理. 如果你想要获取更多控制, 那么你可以在manifest中声明&lt;code&gt;configChanges&lt;/code&gt;类型, 然后在Activity中覆写&lt;code&gt;onConfigurationChanged()&lt;/code&gt;方法, 来自己做处理.&lt;/p&gt;
-&lt;p&gt;另外文章中还讨论了网络请求, 屏幕方向设置, retained fragment的使用等.&lt;/p&gt;
-&lt;h2 id=&quot;RxJava-and-Retrofit-Throwing-a-Tantrum&quot;&gt;&lt;a href=&quot;#RxJava-and-Retrofit-Throwing-a-Tantrum&quot; class=&quot;headerlink&quot; title=&quot;RxJava and Retrofit Throwing a Tantrum&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/square-corner-blog/no-cause-for-concern-rxjava-and-retrofit-throwing-a-tantrum-96c9e4ba8a6c#.p1ck4zijo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava and Retrofit Throwing a Tantrum&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作者讨论了他们在项目中遇到的一个问题.&lt;br&gt;他们用&lt;code&gt;RxJavaHooks.enableAssemblyTracking();&lt;/code&gt;来收集RxJava崩溃栈信息, 可以显示出到底是哪一个Observable崩了.&lt;br&gt;使用这个工具以后发现了一个问题, 进而研究了JDK的&lt;code&gt;Throwable&lt;/code&gt;类.&lt;/p&gt;
-&lt;p&gt;原来cause不存在(this)和cause未知(null)是两种不同的情况, 但是&lt;code&gt;Throwable&lt;/code&gt;的&lt;code&gt;getCause()&lt;/code&gt;方法都会返回null.&lt;/p&gt;
-&lt;h2 id=&quot;Retrofitting-Espresso&quot;&gt;&lt;a href=&quot;#Retrofitting-Espresso&quot; class=&quot;headerlink&quot; title=&quot;Retrofitting Espresso&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://collectiveidea.com/blog/archives/2016/10/13/retrofitting-espresso/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Retrofitting Espresso&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;用Espresso做测试, 如何等待网络请求结束再验证UI.&lt;/p&gt;
-&lt;h2 id=&quot;Composing-functions-in-Kotlin-with-extensions-and-operators&quot;&gt;&lt;a href=&quot;#Composing-functions-in-Kotlin-with-extensions-and-operators&quot; class=&quot;headerlink&quot; title=&quot;Composing functions in Kotlin with extensions and operators&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.novoda.com/blog/composing-functions-in-kotlin-with-extensions-and-operators/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Composing functions in Kotlin with extensions and operators&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;结合Kotlin的extensions和operator overloading功能, 改善function, 让代码变得更优雅.&lt;/p&gt;
-&lt;h2 id=&quot;Authentication-sucks-Bad-security-too&quot;&gt;&lt;a href=&quot;#Authentication-sucks-Bad-security-too&quot; class=&quot;headerlink&quot; title=&quot;Authentication sucks. Bad security too&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/@flschweiger/authentication-sucks-bad-security-too-345ed20463d4#.yl40vbtgd&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Authentication sucks. Bad security too&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个例子, 说明为什么老的验证方法用户体验不好, 我们如何在仍然考虑用户安全的情况下进行改善.&lt;/p&gt;
-&lt;p&gt;解决方案是用Android 6.0推出的Android Keystore.&lt;br&gt;作者展示了如何实现并提供了&lt;a href=&quot;https://github.com/flschweiger/SafeApp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Demo&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id=&quot;Design&quot;&gt;&lt;a href=&quot;#Design&quot; class=&quot;headerlink&quot; title=&quot;Design&quot;&gt;&lt;/a&gt;Design&lt;/h1&gt;&lt;h2 id=&quot;Eight-don’ts-for-your-Material-Design-app&quot;&gt;&lt;a href=&quot;#Eight-don’ts-for-your-Material-Design-app&quot; class=&quot;headerlink&quot; title=&quot;Eight don’ts for your Material Design app&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://blog.prototypr.io/common-material-design-bad-practices-to-avoid-b7995f251329#.ij9u38lu7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Eight don’ts for your Material Design app&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Material Design app需要避免的8个点.&lt;/p&gt;
-&lt;h1 id=&quot;LIBRARIES-amp-CODE&quot;&gt;&lt;a href=&quot;#LIBRARIES-amp-CODE&quot; class=&quot;headerlink&quot; title=&quot;LIBRARIES &amp;amp; CODE&quot;&gt;&lt;/a&gt;LIBRARIES &amp;amp; CODE&lt;/h1&gt;&lt;h2 id=&quot;Android-proguards&quot;&gt;&lt;a href=&quot;#Android-proguards&quot; class=&quot;headerlink&quot; title=&quot;Android-proguards&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/yongjhih/android-proguards&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android-proguards&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;使用一行就可以加上所有流行库的proguard.&lt;/p&gt;
-&lt;h2 id=&quot;Moxy&quot;&gt;&lt;a href=&quot;#Moxy&quot; class=&quot;headerlink&quot; title=&quot;Moxy&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Arello-Mobile/Moxy&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Moxy&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一个MVP的库.&lt;/p&gt;
-&lt;h2 id=&quot;WiseFy&quot;&gt;&lt;a href=&quot;#WiseFy&quot; class=&quot;headerlink&quot; title=&quot;WiseFy&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/isuPatches/WiseFy&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WiseFy&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;包装了Android的WifiManager和ConnectivityManager的一个库.&lt;/p&gt;
-&lt;h1 id=&quot;VIDEOS-amp-PODCASTS&quot;&gt;&lt;a href=&quot;#VIDEOS-amp-PODCASTS&quot; class=&quot;headerlink&quot; title=&quot;VIDEOS &amp;amp; PODCASTS&quot;&gt;&lt;/a&gt;VIDEOS &amp;amp; PODCASTS&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/playlist?list=PLnVy79PaFHMXJha06t6pWfkYcATV4oPvC&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Droidcon NYC 2016&lt;/a&gt;&lt;br&gt;所有Droidcon NYC 2016的视频资源.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-230&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-230&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #230&quot;&gt;&lt;/a&gt;Android Weekly Issue #230&lt;/h1&gt;&lt;p&gt;November 6th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-230&quot;&gt;Android Weekly Issue #230&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Android Weekly笔记, 本期内容包括: Mockito的扩展; ConstraintLayout的链式约束; Kotlin的Async-Await; RxJava2.0; 屏幕旋转导致的Activity重建; Throwable类的设计问题; Espresso测试中如何等待异步请求返回; Kotlin的扩展和运算符重载; Android KeyStore实现用户验证.&lt;/p&gt;
-&lt;p&gt;代码部分有proguard的库, mvp的库和WifiManager, ConfigurationManager的包装库.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
-    
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
-    
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
-      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
-    
-      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
-      <category term="Async-Await" scheme="http://mengdd.github.io/tags/Async-Await/"/>
-    
-      <category term="RxJava2.0" scheme="http://mengdd.github.io/tags/RxJava2-0/"/>
-    
-      <category term="Activity" scheme="http://mengdd.github.io/tags/Activity/"/>
-    
-      <category term="Rotation" scheme="http://mengdd.github.io/tags/Rotation/"/>
-    
-      <category term="JDK" scheme="http://mengdd.github.io/tags/JDK/"/>
-    
-      <category term="Authentication" scheme="http://mengdd.github.io/tags/Authentication/"/>
-    
-      <category term="KeyStore" scheme="http://mengdd.github.io/tags/KeyStore/"/>
-    
-      <category term="proguard" scheme="http://mengdd.github.io/tags/proguard/"/>
-    
-      <category term="WifiManager" scheme="http://mengdd.github.io/tags/WifiManager/"/>
-    
-      <category term="ConfigurationManager" scheme="http://mengdd.github.io/tags/ConfigurationManager/"/>
-    
-      <category term="Material Design" scheme="http://mengdd.github.io/tags/Material-Design/"/>
     
   </entry>
   
