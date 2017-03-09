@@ -116,9 +116,9 @@
     
       <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
     
-      <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
-    
       <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
+    
+      <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
     
       <category term="Version Name" scheme="http://mengdd.github.io/tags/Version-Name/"/>
     
@@ -199,9 +199,9 @@
     
       <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
-      <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
-    
       <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
+    
+      <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
     
       <category term="In-App Billing" scheme="http://mengdd.github.io/tags/In-App-Billing/"/>
     
@@ -344,7 +344,7 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2017/02/22/android-weekly-notes-issue-245/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2017/02/22/android-weekly-notes-issue-245/</id>
     <published>2017-02-22T07:35:47.000Z</published>
-    <updated>2017-02-22T07:56:33.000Z</updated>
+    <updated>2017-03-09T05:46:02.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-245&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-245&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #245&quot;&gt;&lt;/a&gt;Android Weekly Issue #245&lt;/h1&gt;&lt;p&gt;February 19th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-245&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #245&lt;/a&gt;&lt;br&gt;本期内容: 写好单元测试的几条原则; 如何mock Kotlin的对象; 如何消除God Object -&amp;gt; Context; 如何用Android来打电话和发短信, 以及相应事件的监听; 一个监控用电情况的应用(Android Things);&lt;br&gt;用Keystore保存敏感信息; 依赖注入和Dagger 2的使用; Wear应用向Wear 2.0的迁移; 用ViewPager构建无Fragment的应用结构; Android应用的压力测试讨论; RxJava中&lt;code&gt;Subscription&lt;/code&gt;注销处理不当引起的内存泄露; 单元测试并不是完全可靠; Trello向离线模式迁移的架构变化.&lt;/p&gt;
 &lt;p&gt;本周推荐的代码里有一个顶部提示控件, 一个手势检测库, 还有一个loading view的库.&lt;/p&gt;
@@ -473,6 +473,8 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
@@ -496,8 +498,6 @@
       <category term="SMS" scheme="http://mengdd.github.io/tags/SMS/"/>
     
       <category term="Keystore" scheme="http://mengdd.github.io/tags/Keystore/"/>
-    
-      <category term="Dagger 2" scheme="http://mengdd.github.io/tags/Dagger-2/"/>
     
       <category term="Wear 2.0" scheme="http://mengdd.github.io/tags/Wear-2-0/"/>
     
@@ -1083,10 +1083,10 @@
   
   <entry>
     <title>Android Weekly Notes Issue 239</title>
-    <link href="http://mengdd.github.io/Android-Weekly/2017/01/10/android-weekly-notes-issue-239/"/>
-    <id>http://mengdd.github.io/Android-Weekly/2017/01/10/android-weekly-notes-issue-239/</id>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/01/10/android-weekly-notes-issue-239/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/01/10/android-weekly-notes-issue-239/</id>
     <published>2017-01-10T06:10:31.000Z</published>
-    <updated>2017-01-10T06:29:56.000Z</updated>
+    <updated>2017-03-09T05:45:06.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-239&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-239&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #239&quot;&gt;&lt;/a&gt;Android Weekly Issue #239&lt;/h1&gt;&lt;p&gt;January 8th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-239&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #239&lt;/a&gt;&lt;br&gt;本期内容包括: Android Things开发; Android中有用却不常见的一些API介绍(拼写检查, 文字识别, 时间log, 截图, 创建PDF); Gradle依赖管理冲突和解决办法; Looper, Handler和HandlerThread; 兼顾Wear1.0和2.0的部署方式; 打开PDF的实现方法; 单元测试的命名; Robolectric的弊病; 迁移到RxJava2的好处和面临的挑战. &lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -1213,7 +1213,9 @@
     
     </summary>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android-Weekly/"/>
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
     
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
@@ -1246,10 +1248,10 @@
   
   <entry>
     <title>Android Weekly Notes Issue 238</title>
-    <link href="http://mengdd.github.io/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/"/>
-    <id>http://mengdd.github.io/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/</id>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/01/03/android-weekly-notes-issue-238/</id>
     <published>2017-01-03T10:02:01.000Z</published>
-    <updated>2017-01-10T06:22:32.000Z</updated>
+    <updated>2017-03-09T05:43:45.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-Weekly-Issue-238&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-238&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #238&quot;&gt;&lt;/a&gt;Android Weekly Issue #238&lt;/h1&gt;&lt;p&gt;January 1st, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-238&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Weekly Issue #238&lt;/a&gt;&lt;br&gt;本期内容包括: Firebase发送Notification; RecyclerView的预取; 后台工作的实现方式讨论; RecyclerView分组数据; 跨平台应用工具Flutter介绍; Gradle依赖管理;&lt;br&gt;写测试的一些注意事项; Android Things应用搭建及一些思考; 如何搭建CI等.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -1309,7 +1311,9 @@
     
     </summary>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android-Weekly/"/>
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
     
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
@@ -2221,9 +2225,9 @@
     
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
-      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
-    
       <category term="Tools" scheme="http://mengdd.github.io/tags/Tools/"/>
+    
+      <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
     
