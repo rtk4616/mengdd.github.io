@@ -501,8 +501,8 @@
 <p>所以只要让这个类包含一个私有的构造器, 它就不能被实例化了. 进一步地, 可以在这个私有构造器中抛出异常. </p>
 <p>这种做法还会导致这个类不能被子类化, 因为子类构造器必须显式或隐式地调用super构造器. 在这种情况下, 子类就没有可访问的超类构造器可调用了.</p>
 <h2 id="第5条-避免创建不必要的对象"><a href="#第5条-避免创建不必要的对象" class="headerlink" title="第5条 避免创建不必要的对象"></a>第5条 避免创建不必要的对象</h2><p>一般来说, 最好能重用对象而不是每次需要的时候创建一个相同功能的新对象. 如果对象是<strong>不可变的(immutable)</strong>, 它就始终可以被重用.</p>
-<p>比如应该用:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"stringette"</span>;</span><br></pre></td></tr></table></figure></p>
-<p>而不是:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="keyword">new</span> String(<span class="string">"stringette"</span>); <span class="comment">// Don't do this</span></span><br></pre></td></tr></table></figure></p>
+<p>比如应该用:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String s = <span class="string">"stringette"</span>;</div></pre></td></tr></table></figure></p>
+<p>而不是:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String s = <span class="keyword">new</span> String(<span class="string">"stringette"</span>); <span class="comment">// Don't do this</span></div></pre></td></tr></table></figure></p>
 <p>包含相同字符串的字面常量对象是会被重用的.</p>
 <p>对于同时提供了静态工厂方法和构造方法的<strong>不可变类</strong>, 通常可以使用静态工厂方法而不是构造器, 以避免创建不必要的对象.<br>比如<code>Boolean.valueOf()</code>.</p>
 <p>除了重用不可变对象以外, 也可以重用那些已知不会被修改的可变对象. 比如把一个方法中需要用到的不变的数据保存成常量对象(<code>static final</code>), 只在初始化的时候创建一次(<code>用static块</code>), 这样就不用每次调用方法都重复创建.</p>
@@ -680,7 +680,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -691,7 +691,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">225</span>
+                <span class="site-state-item-count">223</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -439,7 +439,7 @@
 <a id="more"></a>
 <h1 id="Fragment使用基础"><a href="#Fragment使用基础" class="headerlink" title="Fragment使用基础"></a>Fragment使用基础</h1><h2 id="Fragment添加"><a href="#Fragment添加" class="headerlink" title="Fragment添加"></a>Fragment添加</h2><p>方法一: 布局里的标签<fragment><br>标识符: tag, id, 如果都没有, container的id将会被使用.</fragment></p>
 <p>方法二: 动态添加<br>动态添加利用了一个transaction:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">FragmentManager fragmentManager = getFragmentManager();</span><br><span class="line">Fragment fragment = fragmentManager.findFragmentByTag(FragmentB.TAG);</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">null</span> == fragment) &#123;</span><br><span class="line">    FragmentB fragmentB = <span class="keyword">new</span> FragmentB();</span><br><span class="line">    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();</span><br><span class="line">    fragmentTransaction.add(R.id.fragment_container, fragmentB, FragmentB.TAG)</span><br><span class="line">                       .commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">FragmentManager fragmentManager = getFragmentManager();</div><div class="line">Fragment fragment = fragmentManager.findFragmentByTag(FragmentB.TAG);</div><div class="line"><span class="keyword">if</span> (<span class="keyword">null</span> == fragment) &#123;</div><div class="line">    FragmentB fragmentB = <span class="keyword">new</span> FragmentB();</div><div class="line">    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();</div><div class="line">    fragmentTransaction.add(R.id.fragment_container, fragmentB, FragmentB.TAG)</div><div class="line">                       .commit();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><code>commit()</code>方法并不立即执行transaction中包含的动作,而是把它加入到UI线程队列中.<br>如果想要立即执行,可以在commit之后立即调用FragmentManager的<a href="https://developer.android.com/reference/android/app/FragmentManager.html#executePendingTransactions(" target="_blank" rel="external"><code>executePendingTransactions()</code></a>)方法.</p>
 <p><code>commit()</code>方法必须在状态存储之前调用,否则会抛出异常,如果觉得状态丢失没关系,可以调用<code>commitAllowingStateLoss()</code>. 但是除非万不得已, 一般不推荐用这个方法, 会掩盖很多错误.</p>
 <h2 id="Back-Stack"><a href="#Back-Stack" class="headerlink" title="Back Stack"></a>Back Stack</h2><p>Activity的back stack: 系统维护, 每个task一个back stack.<br>Fragment的back stack: 宿主activity掌管, 每个activity一个.</p>
@@ -448,7 +448,7 @@
 <h2 id="构造和参数传递"><a href="#构造和参数传递" class="headerlink" title="构造和参数传递"></a>构造和参数传递</h2><p>所有的Fragment都必须有一个<code>public的无参构造函数</code>, 因为framework经常会在需要的时候重新创建实例(状态恢复时), 它需要的就是这个构造.<br>如果无参构造没有提供,会有异常.</p>
 <p>所以<code>不要给Fragment写有参数的构造函数, 也不要企图搞个什么单例的Fragment</code>. 这些都是反设计的.</p>
 <p>参数传递的正确姿势:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> FragmentWithParameters <span class="title">newInstance</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    FragmentWithParameters fragmentWithParameter = <span class="keyword">new</span> FragmentWithParameters();</span><br><span class="line">    Bundle args = <span class="keyword">new</span> Bundle();</span><br><span class="line">    args.putInt(NUM, num);</span><br><span class="line">    fragmentWithParameter.setArguments(args);</span><br><span class="line">    <span class="keyword">return</span> fragmentWithParameter;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    num = getArguments() != <span class="keyword">null</span> ? getArguments().getInt(NUM) : <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> FragmentWithParameters <span class="title">newInstance</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">    FragmentWithParameters fragmentWithParameter = <span class="keyword">new</span> FragmentWithParameters();</div><div class="line">    Bundle args = <span class="keyword">new</span> Bundle();</div><div class="line">    args.putInt(NUM, num);</div><div class="line">    fragmentWithParameter.setArguments(args);</div><div class="line">    <span class="keyword">return</span> fragmentWithParameter;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    num = getArguments() != <span class="keyword">null</span> ? getArguments().getInt(NUM) : <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这里是提供了一个静态方法, 也可以new出对象后自己set Bundle参数.</p>
 <h2 id="Fragment的通信"><a href="#Fragment的通信" class="headerlink" title="Fragment的通信"></a>Fragment的通信</h2><p>除了DialogFragment和嵌套Fragment需要与自己的parent fragment通信以外, 一般的fragment是不与其他fragment有任何通信的. 因为要求应尽量独立, 模块化, 可复用.<br>fragment与自己的parent activity (除了嵌套和dialog的情况外, 这个parent通常是activity) 有直接通信, 一般以这三种方式:</p>
 <ol>
@@ -462,7 +462,7 @@
 <p><img src="/images/fragment-lifecycle.png" alt=""><br><img src="/images/fragment-lifecycle-2.png" alt=""><br><img src="/images/activity-fragment-lifecycle.png" alt=""><br><img src="/images/fragment-lifecycle-with-callbacks.png" alt=""></p>
 <p>上面这个图来自于: <a href="https://corner.squareup.com/2014/10/advocating-against-android-fragments.html" target="_blank" rel="external">https://corner.squareup.com/2014/10/advocating-against-android-fragments.html</a><br>这里还有一个更吊的图: <a href="https://github.com/xxv/android-lifecycle" target="_blank" rel="external">https://github.com/xxv/android-lifecycle</a></p>
 <h1 id="FragmentTransaction基础操作"><a href="#FragmentTransaction基础操作" class="headerlink" title="FragmentTransaction基础操作"></a>FragmentTransaction基础操作</h1><h2 id="操作类型"><a href="#操作类型" class="headerlink" title="操作类型"></a>操作类型</h2><p><a href="https://developer.android.com/reference/android/app/FragmentTransaction.html" target="_blank" rel="external">FragmentTransaction</a> 中对Fragment有如下几种操作:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">attach(), detach()</span><br><span class="line">add(), remove(),</span><br><span class="line">show(), hide(),</span><br><span class="line">replace()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">attach(), detach()</div><div class="line">add(), remove(),</div><div class="line">show(), hide(),</div><div class="line">replace()</div></pre></td></tr></table></figure>
 <p>除了<code>replace()</code>以外其他都是成对的.</p>
 <p>其中<code>attach()</code>和<code>detach()</code>不是很常用.<br>调用<code>detach()</code>之后, fragment实际的生命周期会走到onDestroyView(), 但不会走onDestroy()和onDetach(), 也即fragment本身并没有被销毁, 只是view被销毁了. 这和addToBackStack()的情况一样, 尽管调用detach()的时候没有addToBackStack(), 仍然只是走到view被销毁的阶段.</p>
 <p><code>add()</code>和<code>remove()</code>是将fragment添加和移除.<br>remove()比detach()要彻底一些, 如果不加入到back stack, remove()的时候, fragment的生命周期会一直走到onDetach().</p>
@@ -516,8 +516,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/uncategorized/2016/05/23/set-up-github-pages-with-hexo/" rel="next" title="Set up github pages with Hexo">
-                <i class="fa fa-chevron-left"></i> Set up github pages with Hexo
+              <a href="/uncategorized/2016/05/31/test-links/" rel="next" title="Test Links">
+                <i class="fa fa-chevron-left"></i> Test Links
               </a>
             
           </div>
@@ -526,8 +526,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/uncategorized/2016/05/31/test-links/" rel="prev" title="Test Links">
-                Test Links <i class="fa fa-chevron-right"></i>
+              <a href="/Android/2016/06/02/android-fragment-usage-2-nested-fragments/" rel="prev" title="Android Fragment使用(二) 嵌套Fragments (Nested Fragments) 的使用及常见错误">
+                Android Fragment使用(二) 嵌套Fragments (Nested Fragments) 的使用及常见错误 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -615,7 +615,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -626,7 +626,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">225</span>
+                <span class="site-state-item-count">223</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

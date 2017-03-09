@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android,Android Weekly,Espresso,Wear,Firebase,Android 7.0,Quick Settings,Shared-Element Transtion,Animation,ORM,ActiveAndroid,Crash Reporting,Google Cast,ExoPlayer,Packages,Task," />
+  <meta name="keywords" content="Android,Android Weekly,Wear,Firebase,Espresso,Animation,Android 7.0,Quick Settings,Shared-Element Transtion,ORM,ActiveAndroid,Crash Reporting,Google Cast,ExoPlayer,Packages,Task," />
 
 
 
@@ -526,14 +526,14 @@
 <p><strong>util</strong>中含有Helper和Utility类.</p>
 <h2 id="Become-a-Firebase-Taskmaster-Part-3"><a href="#Become-a-Firebase-Taskmaster-Part-3" class="headerlink" title="Become a Firebase Taskmaster! (Part 3)"></a><a href="https://firebase.googleblog.com/2016/09/become-a-firebase-taskmaster-part-3_29.html" target="_blank" rel="external">Become a Firebase Taskmaster! (Part 3)</a></h2><p>这是系列文章的第三篇, 这个系列是关于Play services的<a href="https://developers.google.com/android/guides/tasks" target="_blank" rel="external">Task API</a>. </p>
 <p>如果项目里已经依赖了Firebase, 变自动包含了Task API, 如果不想用Firebase, 可以单独添加依赖:<br><code>compile &#39;com.google.android.gms:play-services-tasks:9.6.1&#39;</code></p>
-<p>创建新的Task可以用下面这两个方法:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Task&lt;TResult&gt; <span class="title">call</span><span class="params">(Callable&lt;TResult&gt; callable)</span></span><br><span class="line">Task&lt;TResult&gt; <span class="title">call</span><span class="params">(Executor executor, Callable&lt;TResult&gt; callable)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>创建新的Task可以用下面这两个方法:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function">Task&lt;TResult&gt; <span class="title">call</span><span class="params">(Callable&lt;TResult&gt; callable)</span></span></div><div class="line">Task&lt;TResult&gt; <span class="title">call</span><span class="params">(Executor executor, Callable&lt;TResult&gt; callable)</span></div></pre></td></tr></table></figure></p>
 <p>第一个<code>call()</code>方法在主线程执行任务, 第二个<code>call()</code>方法可以把工作提交给一个<code>Executor</code>.</p>
-<p><a href="https://developer.android.com/reference/java/util/concurrent/Callable.html" target="_blank" rel="external">Callable</a>有点类似于Runnable:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CarlyCallable</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Call me maybe"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://developer.android.com/reference/java/util/concurrent/Callable.html" target="_blank" rel="external">Callable</a>有点类似于Runnable:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CarlyCallable</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Call me maybe"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>参数制定了方法的返回值的类型, 进而也是创建出Task的类型.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Task&lt;String&gt; task = Tasks.call(<span class="keyword">new</span> CarlyCallable());</span><br></pre></td></tr></table></figure>
-<p>想要链式执行, 进行后续操作, 可以用<a href="https://developers.google.com/android/reference/com/google/android/gms/tasks/Continuation" target="_blank" rel="external">Continuation</a>.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SeparateWays</span> <span class="keyword">implements</span> <span class="title">Continuation</span>&lt;<span class="title">String</span>, <span class="title">List</span>&lt;<span class="title">String</span>&gt;&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">then</span><span class="params">(Task&lt;String&gt; task)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.asList(task.getResult().split(<span class="string">" +"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Task&lt;String&gt; task = Tasks.call(<span class="keyword">new</span> CarlyCallable());</div></pre></td></tr></table></figure>
+<p>想要链式执行, 进行后续操作, 可以用<a href="https://developers.google.com/android/reference/com/google/android/gms/tasks/Continuation" target="_blank" rel="external">Continuation</a>.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SeparateWays</span> <span class="keyword">implements</span> <span class="title">Continuation</span>&lt;<span class="title">String</span>, <span class="title">List</span>&lt;<span class="title">String</span>&gt;&gt; </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">then</span><span class="params">(Task&lt;String&gt; task)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">return</span> Arrays.asList(task.getResult().split(<span class="string">" +"</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>它继承接口时指定了输入和输出的类型, 它的输入来自于Task的输出.</p>
-<p>可以多写几个Continuation类然后连起来:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Task&lt;String&gt; playlist = Tasks.call(<span class="keyword">new</span> CarlyCallable())</span><br><span class="line">        .continueWith(<span class="keyword">new</span> SeparateWays())</span><br><span class="line">        .continueWith(<span class="keyword">new</span> AllShookUp())</span><br><span class="line">        .continueWith(<span class="keyword">new</span> ComeTogether());</span><br><span class="line">playlist.addOnSuccessListener(<span class="keyword">new</span> OnSuccessListener&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// The final String with all the words randomized is here</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>可以多写几个Continuation类然后连起来:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Task&lt;String&gt; playlist = Tasks.call(<span class="keyword">new</span> CarlyCallable())</div><div class="line">        .continueWith(<span class="keyword">new</span> SeparateWays())</div><div class="line">        .continueWith(<span class="keyword">new</span> AllShookUp())</div><div class="line">        .continueWith(<span class="keyword">new</span> ComeTogether());</div><div class="line">playlist.addOnSuccessListener(<span class="keyword">new</span> OnSuccessListener&lt;String&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(String message)</span> </span>&#123;</div><div class="line">        <span class="comment">// The final String with all the words randomized is here</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <h1 id="LIBRIARIES-amp-CODE"><a href="#LIBRIARIES-amp-CODE" class="headerlink" title="LIBRIARIES &amp; CODE"></a>LIBRIARIES &amp; CODE</h1><h2 id="groupie"><a href="#groupie" class="headerlink" title="groupie"></a><a href="https://github.com/Genius/groupie" target="_blank" rel="external">groupie</a></h2><p>显示和管理复杂的RecyclerView布局, 把你的items按照逻辑分组管理.</p>
 <h2 id="android-junit5"><a href="#android-junit5" class="headerlink" title="android-junit5"></a><a href="https://github.com/aurae/android-junit5" target="_blank" rel="external">android-junit5</a></h2><p>Gradle插件, 用JUnit5做Android的单元测试.</p>
 <h2 id="epoxy"><a href="#epoxy" class="headerlink" title="epoxy"></a><a href="https://github.com/airbnb/epoxy" target="_blank" rel="external">epoxy</a></h2><p>用来构建复杂的RecyclerView屏.</p>
@@ -569,19 +569,19 @@
           
             <a href="/tags/Android-Weekly/" rel="tag"># Android Weekly</a>
           
-            <a href="/tags/Espresso/" rel="tag"># Espresso</a>
-          
             <a href="/tags/Wear/" rel="tag"># Wear</a>
           
             <a href="/tags/Firebase/" rel="tag"># Firebase</a>
+          
+            <a href="/tags/Espresso/" rel="tag"># Espresso</a>
+          
+            <a href="/tags/Animation/" rel="tag"># Animation</a>
           
             <a href="/tags/Android-7-0/" rel="tag"># Android 7.0</a>
           
             <a href="/tags/Quick-Settings/" rel="tag"># Quick Settings</a>
           
             <a href="/tags/Shared-Element-Transtion/" rel="tag"># Shared-Element Transtion</a>
-          
-            <a href="/tags/Animation/" rel="tag"># Animation</a>
           
             <a href="/tags/ORM/" rel="tag"># ORM</a>
           
@@ -707,7 +707,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -718,7 +718,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">225</span>
+                <span class="site-state-item-count">223</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

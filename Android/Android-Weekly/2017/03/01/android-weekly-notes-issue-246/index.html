@@ -448,7 +448,7 @@
 <h2 id="Sharing-files-through-Intents-part-2"><a href="#Sharing-files-through-Intents-part-2" class="headerlink" title="Sharing files through Intents (part 2)"></a><a href="https://medium.com/@quiro91/sharing-files-through-intents-part-2-fixing-the-permissions-before-lollipop-ceb9bb0eec3a#.ci4hqoauq" target="_blank" rel="external">Sharing files through Intents (part 2)</a></h2><p>之前介绍过因为Android 7 Nougat对文件权限的限制, 不能再依靠Intent来发送<code>file://uri</code>数据了, 应该用<code>FileProvider</code>. 但是你采用了这些新方法之后, 在一些Android的旧版本上有可能会遇到问题.</p>
 <p>你可能遇到这种异常: <code>java.lang.SecurityException: Permission Denial</code>.</p>
 <p>在API 16及以上, 系统有一个方法<code>migrateExtraStreamToClipData()</code>会根据你的Intent的action帮你迁移数据到ClipData, 并自动帮你加上权限. 见代码: <a href="http://androidxref.com/7.1.1_r6/xref/frameworks/base/core/java/android/content/Intent.java#9037" target="_blank" rel="external">Intent</a>. 但是之前的版本却没有.</p>
-<p>所以解决办法是在原本的代码中加上这两句:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &lt;= Build.VERSION_CODES.LOLLIPOP) &#123;</span><br><span class="line">    takePictureIntent.setClipData(ClipData.newRawUri(<span class="string">""</span>, photoURI));</span><br><span class="line">    takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION|Intent.FLAG_GRANT_READ_URI_PERMISSION);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以解决办法是在原本的代码中加上这两句:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &lt;= Build.VERSION_CODES.LOLLIPOP) &#123;</div><div class="line">    takePictureIntent.setClipData(ClipData.newRawUri(<span class="string">""</span>, photoURI));</div><div class="line">    takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION|Intent.FLAG_GRANT_READ_URI_PERMISSION);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>之所以要包括LOLLIPOP是因为<code>migrateExtraStreamToClipData()</code>这个方法是在preview版本之后才加上的, 所以不能保证所有的LOLLIPOP的设备都有这个方法.</p>
 <h2 id="What-Unit-Tests-are-Trying-to-Tell-us-about-Activities-Pt-1"><a href="#What-Unit-Tests-are-Trying-to-Tell-us-about-Activities-Pt-1" class="headerlink" title="What Unit Tests are Trying to Tell us about Activities: Pt. 1"></a><a href="https://www.philosophicalhacker.com/post/what-unit-tests-are-trying-to-tell-us-about-activities-pt1/" target="_blank" rel="external">What Unit Tests are Trying to Tell us about Activities: Pt. 1</a></h2><p>“android-centric”的构架是指用Activity/Fragment作为屏幕基本构架单元的程序架构. 作者的系列文章要讨论为什么这种架构是对测试不友好的.</p>
 <h2 id="Build-flexible-layouts-with-FlexboxLayout"><a href="#Build-flexible-layouts-with-FlexboxLayout" class="headerlink" title="Build flexible layouts with FlexboxLayout"></a><a href="https://android-developers.googleblog.com/2017/02/build-flexible-layouts-with.html" target="_blank" rel="external">Build flexible layouts with FlexboxLayout</a></h2><p>Google去年开源了<a href="https://github.com/google/flexbox-layout" target="_blank" rel="external">flexbox-layout</a>, 目的是将CSS中的<a href="https://www.w3.org/TR/css-flexbox-1/" target="_blank" rel="external">Flexible Layout module</a>引入到Android中来. 本文介绍了FlexboxLayout十分有用的几种情况, 附有demos.</p>
@@ -635,7 +635,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -646,7 +646,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">225</span>
+                <span class="site-state-item-count">223</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

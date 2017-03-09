@@ -432,7 +432,7 @@
 <p>我本来以为跟Jekyll一样本地运行好了, push上去就生效了, 结果并没有.<br>访问原地址, github pages并不生效,居然还是原来的那个样子.</p>
 <p>查了一下是因为deploy没有设置.</p>
 <p>打开<code>_config.yml</code>文件,找到deploy字段, 设置一下.<br>我的是这样写的:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/mengdd/mengdd.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/mengdd/mengdd.github.io</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
 <p>然后执行一下这条命令:<br><code>npm install hexo-deployer-git --save</code><br>这条命令执行后package.json会有一条改动, 新添加了一个插件.<br>把这个提交了.</p>
 <p>然后generate和deploy:<br><code>$ hexo generate --deploy</code><br><code>$ hexo deploy --generate</code><br>这两条命令是一样的.<br>运行这条命令的时候可能会要求你输入github的账户名和密码(如果你没有配置SSH key的话).<br>这个需要等待比较长的时间, 实际上最后它是给master分支做了一个<code>git push -f</code><br>所以它实际上是不用你自己push的.</p>
 <p>之后就可以访问啦: <a href="http://mengdd.github.io/">http://mengdd.github.io/</a><br>哒哒!</p>
@@ -488,8 +488,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Android/2016/05/31/android-fragment-usage-1-basic-part/" rel="prev" title="Android Fragment使用(一) 基础篇 温故知新">
-                Android Fragment使用(一) 基础篇 温故知新 <i class="fa fa-chevron-right"></i>
+              <a href="/uncategorized/2016/05/31/test-links/" rel="prev" title="Test Links">
+                Test Links <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -577,7 +577,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -588,7 +588,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">225</span>
+                <span class="site-state-item-count">223</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
