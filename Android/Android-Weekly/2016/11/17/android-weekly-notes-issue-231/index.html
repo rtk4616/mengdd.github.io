@@ -407,7 +407,7 @@ Android Weekly阅读笔记, Issue #231, 本期内容包括: MVP中的View做成p
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -612,8 +612,11 @@ Android Weekly阅读笔记, Issue #231, 本期内容包括: MVP中的View做成p
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/"
-           data-title="Android Weekly Notes Issue 231" data-url="http://mengdd.github.io/Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -880,32 +883,38 @@ Android Weekly阅读笔记, Issue #231, 本期内容包括: MVP中的View做成p
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"mengddgithub"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+    <script type="text/javascript">
+      var disqus_shortname = 'dandanmeng';
+      var disqus_identifier = 'Android/Android-Weekly/2016/11/17/android-weekly-notes-issue-231/';
+
+      var disqus_title = "Android Weekly Notes Issue 231";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
   
-
-
-
 
 
 
