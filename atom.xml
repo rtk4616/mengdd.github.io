@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-03-24T09:31:13.000Z</updated>
+  <updated>2017-03-31T09:32:28.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -16,11 +16,120 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Android Weekly Notes Issue 250</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/03/31/android-weekly-notes-issue-250/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/03/31/android-weekly-notes-issue-250/</id>
+    <published>2017-03-31T08:50:01.000Z</published>
+    <updated>2017-03-31T09:32:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-250"><a href="#Android-Weekly-Issue-250" class="headerlink" title="Android Weekly Issue #250"></a>Android Weekly Issue #250</h1><p>March 26th, 2017<br><a href="http://androidweekly.net/issues/issue-250" target="_blank" rel="external">Android Weekly Issue #250</a>.<br>本期内容: 好几篇关于Android O预览版的文章; JUnit 5的动态测试; 作为团队里唯一的Android开发如何学习和工作; Support库新推出的基于物理的动画API: SpringAnimation; Uber Rider项目重构中关于依赖注入的scope层级的改动; Kotlin和RxJava的简洁性.</p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="O-h-yeah-What-we-look-forward-to-in-Android-O"><a href="#O-h-yeah-What-we-look-forward-to-in-Android-O" class="headerlink" title="O-h yeah! What we look forward to in Android O"></a><a href="https://www.novoda.com/blog/o-h-yeah-what-we-look-forward-to-in-android-o/" target="_blank" rel="external">O-h yeah! What we look forward to in Android O</a></h2><p>Google宣布了最新Android O的预览程序. Novoda team查看了最新文档来看看什么新特性最让大家欣喜.</p>
+<ul>
+<li>更宽广的色域和多种颜色空间支持:<br>我们不再被限制在sRGB的颜色空间里, 文档见<a href="https://developer.android.com/reference/android/graphics/ColorSpace.html" target="_blank" rel="external">ColorSpace</a>.</li>
+<li>字体支持.</li>
+<li>Adaptive icons: Android N中提供了圆形的启动图标; 从Android O开始, 手机开发商和launcher开发者们可以指定一个mask到应用提供的背景图上.</li>
+<li>ACCESSIBILITY按钮: Accessibility services(比如TalkBack)可以在有软导航键的设备上添加一个按钮.</li>
+<li>指纹手势.</li>
+<li>自动大小的TextView.</li>
+<li>Autofill APIs. 自动填表.</li>
+</ul>
+<h2 id="JUnit-5-Dynamic-Tests"><a href="#JUnit-5-Dynamic-Tests" class="headerlink" title="JUnit 5: Dynamic Tests"></a><a href="https://blog.stylingandroid.com/junit-5-dynamic-tests/" target="_blank" rel="external">JUnit 5: Dynamic Tests</a></h2><p>本篇讲如何简化一个测试cases都很类似的test suite.</p>
+<p>首先, 找出不同的部分, 抽取一个方法, 把不相同的部分作为参数传进去.</p>
+<p>然后用JUnit 5的动态测试(Dynamic Tests)特性.<br>两个关键组件: <code>TextFactory</code>和<code>DynamicTest</code>.<br>文中代码详细说明了它们的用法.</p>
+<h2 id="Flying-Solo-with-Android-Development"><a href="#Flying-Solo-with-Android-Development" class="headerlink" title="Flying Solo with Android Development"></a><a href="https://hackernoon.com/flying-solo-with-android-development-c52d911b62bf?gi=c13f45395440#.bdab0pxgy" target="_blank" rel="external">Flying Solo with Android Development</a></h2><p>作者几经周转, 从4人Android团队到2人团队, 现在又到了一个新团队, 作为团队里唯一Android开发. 在这篇文章中, 她分享了一些觉得不错的学习资源和她平时的工作习惯以及建议.</p>
+<h2 id="Introduction-to-SpringAnimation-with-examples"><a href="#Introduction-to-SpringAnimation-with-examples" class="headerlink" title="Introduction to SpringAnimation with examples"></a><a href="https://www.thedroidsonroids.com/blog/android/springanimation-examples/" target="_blank" rel="external">Introduction to SpringAnimation with examples</a></h2><p>本文讲弹簧效果动画的实现.</p>
+<p><a href="https://developer.android.com/reference/android/support/animation/package-summary.html" target="_blank" rel="external">Dynamic-animation</a>是Android Support Library 25.3.0最新引进的, 用于实现基于物理的动画.</p>
+<p>作者这篇文章介绍了<a href="https://developer.android.com/reference/android/support/animation/SpringAnimation.html" target="_blank" rel="external">SpringAnimation</a>和<a href="https://developer.android.com/reference/android/support/animation/SpringForce.html" target="_blank" rel="external">SpringForce</a>的用法, 提供了几个例子, 动态改变View的位置, 旋转和大小属性: <a href="https://github.com/AlexKrupa/android-springanimation-examples" target="_blank" rel="external">android-springanimation-examples
+</a>.</p>
+<h2 id="Rewriting-Uber-Engineering’s-Rider-App-with-Deep-Scope-Hierarchies"><a href="#Rewriting-Uber-Engineering’s-Rider-App-with-Deep-Scope-Hierarchies" class="headerlink" title="Rewriting Uber Engineering’s Rider App with Deep Scope Hierarchies"></a><a href="https://eng.uber.com/deep-scope-hierarchies/" target="_blank" rel="external">Rewriting Uber Engineering’s Rider App with Deep Scope Hierarchies</a></h2><p>Android Uber rider app的重构.<br>主要讨论了由于存在很多共用组件, 所以依赖注入的设计需要改进.</p>
+<p>首先介绍了旧的设计: 两级Scope层次.<br>后来他们的新设计采用了深层次的scope层级, 减少了耦合.</p>
+<p>最后又介绍了几种他们曾经考虑过的架构模式.</p>
+<h2 id="It’s-time-to-kiss-goodbye-to-your-implicit-BroadcastReceivers"><a href="#It’s-time-to-kiss-goodbye-to-your-implicit-BroadcastReceivers" class="headerlink" title="It’s time to kiss goodbye to your implicit BroadcastReceivers"></a><a href="https://medium.com/@iiro.krankka/its-time-to-kiss-goodbye-to-your-implicit-broadcastreceivers-eefafd9f4f8a#.67j4153n6" target="_blank" rel="external">It’s time to kiss goodbye to your implicit BroadcastReceivers</a></h2><p>Android O的preview已经出来了: <a href="https://developer.android.com/preview/index.html" target="_blank" rel="external">Android O Preview</a>. 这是它列出来的<a href="https://developer.android.com/preview/behavior-changes.html" target="_blank" rel="external">Behavior changes</a>.</p>
+<p>如果你想要把app target到Android O, 而且你的manifest中注册了一些隐式的BroadcastReceiver. 那么这篇文章就是为你准备的.</p>
+<p>Android做这一切的出发点都是为了节约电量.</p>
+<p>Android 7.0的时候就<a href="https://developer.android.com/about/versions/nougat/android-7.0-changes.html#bg-opt" target="_blank" rel="external">移除了三种隐式广播的支持</a>. 它们是<code>CONNECTIVITY_ACTION</code>,  <code>ACTION_NEW_PICTURE</code>和<code>ACTION_NEW_VIDEO</code>.</p>
+<p>现在Android O中, 除了<a href="https://developer.android.com/preview/features/background-broadcasts.html" target="_blank" rel="external">background-broadcasts</a>中提到的, 其他所有在manifest中注册的隐式广播都不再工作了. (注意这里的关键字: manifest中注册, 隐式广播.)</p>
+<p>那么你的manifest中如果有receiver, 现在应该怎么办呢?</p>
+<p>首先看看你的广播是否是隐式的. 根据<a href="https://developer.android.com/preview/features/background.html#broadcasts" target="_blank" rel="external">文档</a>, 所有跟你的应用没有直接关系的广播都是隐式的; 而直接相关的都是显式的.</p>
+<p>然后检查你的应用是否真的受到了影响, 因为有一些隐式的广播是例外情况.</p>
+<p>真的受到影响了怎么办呢? 使用<code>JobScheduler</code>来拯救. 但是它只在API 21以上有, 如果你的最低API小于21, 可以用官方推荐的<a href="https://github.com/firebase/firebase-jobdispatcher-android" target="_blank" rel="external">firebase-jobdispatcher-android</a>. 作者他们团队用的是Evernote的<a href="https://github.com/evernote/android-job" target="_blank" rel="external">android-job</a>.</p>
+<p>如果上面的库仍然不能帮到你, 你可以考虑把广播换成动态注册的.<br>不管你的广播是隐式的还是显式的, <code>Context.registerReceiver()</code>是永远有效的. 但缺陷就是注销以后就不能再收到事件了.</p>
+<h2 id="Random-Musings-on-the-O-Developer-Preview-1"><a href="#Random-Musings-on-the-O-Developer-Preview-1" class="headerlink" title="Random Musings on the O Developer Preview 1"></a><a href="https://commonsware.com/blog/2017/03/22/random-musings-o-developer-preview-1.html" target="_blank" rel="external">Random Musings on the O Developer Preview 1</a></h2><p>作者对Android O预览的一些看法.</p>
+<h3 id="比较令人担心的几点"><a href="#比较令人担心的几点" class="headerlink" title="比较令人担心的几点"></a>比较令人担心的几点</h3><ul>
+<li>后台工作的处理: 许多隐式的广播可能不再起作用, 可能会改变某些应用的行为.</li>
+<li>多显示支持. 允许用户把一个activity投射到外部显示器上. 这个行为还需要进一步测试, 如果我们投射到一个不可触摸的显示器上会怎样?</li>
+<li>关于磁盘空间, 缓存目录.</li>
+<li>Support Libraries支持的最小API为14.</li>
+</ul>
+<h3 id="有启发性的几点"><a href="#有启发性的几点" class="headerlink" title="有启发性的几点"></a>有启发性的几点</h3><ul>
+<li>可以给Notification设置timeout.</li>
+<li>Picture-in-Picture (PIP)模式. 一种特殊的多窗口模式, 多数被用来播放视频, TV已经有了.</li>
+<li>新字体.</li>
+<li>Storage Access Framework (SAF) -&gt; Seekable streams.</li>
+<li>WebView将支持allow-cleartext设置.</li>
+<li>应用安装其他应用需要用户授权.</li>
+<li>Content provider分页查询.</li>
+<li><code>FragmentLifecycleCallbacks</code>.</li>
+<li><code>SmsManager</code>可以创建tokens.</li>
+<li><code>SharedPreferences</code>提供了接口, 可以更换底层存储实现.</li>
+<li><code>findViewById()</code>不再需要强转.</li>
+</ul>
+<h3 id="其他你可能感兴趣的"><a href="#其他你可能感兴趣的" class="headerlink" title="其他你可能感兴趣的"></a>其他你可能感兴趣的</h3><ul>
+<li><code>View.setTooltipText()</code>.</li>
+<li><code>TextView.setJustify()</code>.</li>
+<li>提供了padding和margin的Vertical和Horizontal属性, 这样一下就可以设置同一方向上的两个值.</li>
+<li><code>ProgressBar.setMin()</code>.</li>
+<li><code>ANDROID_ID</code>现在是对每个应用来说, 而不是用户或设备. 见<a href="https://developer.android.com/preview/behavior-changes.html#privacy-all" target="_blank" rel="external">Privacy</a>.</li>
+</ul>
+<h2 id="Writing-Concise-Code-with-Kotlin-and-RxJava"><a href="#Writing-Concise-Code-with-Kotlin-and-RxJava" class="headerlink" title="Writing Concise Code with Kotlin and RxJava"></a><a href="https://pspdfkit.com/blog/2017/writing-concise-code-with-kotlin-and-rxjava/" target="_blank" rel="external">Writing Concise Code with Kotlin and RxJava</a></h2><p>用Github API举例子, 用RxJava和Kotlin实现一个功能, 说明了它们的简洁性.</p>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="Fakeit"><a href="#Fakeit" class="headerlink" title="Fakeit"></a><a href="https://github.com/moove-it/fakeit" target="_blank" rel="external">Fakeit</a></h2><p>Kotlin版的假数据生成器.</p>
+<h2 id="Cicerone"><a href="#Cicerone" class="headerlink" title="Cicerone"></a><a href="https://github.com/terrakok/Cicerone" target="_blank" rel="external">Cicerone</a></h2><p>一个轻量级的Android导航库.</p>
+<h2 id="data-binding-validator"><a href="#data-binding-validator" class="headerlink" title="data-binding-validator"></a><a href="https://github.com/Ilhasoft/data-binding-validator" target="_blank" rel="external">data-binding-validator</a></h2><p>表单数据验证器, 使用data binding framework实现.</p>
+<h2 id="LabCoat"><a href="#LabCoat" class="headerlink" title="LabCoat"></a><a href="https://github.com/Commit451/LabCoat" target="_blank" rel="external">LabCoat</a></h2><p>GitLab client for Android.</p>
+<h1 id="NEWS"><a href="#NEWS" class="headerlink" title="NEWS"></a>NEWS</h1><h2 id="O-MG-the-Developer-Preview-of-Android-O-is-here"><a href="#O-MG-the-Developer-Preview-of-Android-O-is-here" class="headerlink" title="O-MG, the Developer Preview of Android O is here!"></a><a href="https://android-developers.googleblog.com/2017/03/first-preview-of-android-o.html" target="_blank" rel="external">O-MG, the Developer Preview of Android O is here!</a></h2><p>Google发布了下一个系统版本Android O的开发者预览版.</p>
+<h1 id="TOOLS"><a href="#TOOLS" class="headerlink" title="TOOLS"></a>TOOLS</h1><h2 id="Android-Studio-meets-Slack"><a href="#Android-Studio-meets-Slack" class="headerlink" title="Android Studio meets Slack"></a><a href="https://instapk.com/" target="_blank" rel="external">Android Studio meets Slack</a></h2><p>一个小工具, 可以直接把Android Studio打的包发到Slack去.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-250&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-250&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #250&quot;&gt;&lt;/a&gt;Android Weekly Issue #250&lt;/h1&gt;&lt;p&gt;March 26th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-250&quot;&gt;Android Weekly Issue #250&lt;/a&gt;.&lt;br&gt;本期内容: 好几篇关于Android O预览版的文章; JUnit 5的动态测试; 作为团队里唯一的Android开发如何学习和工作; Support库新推出的基于物理的动画API: SpringAnimation; Uber Rider项目重构中关于依赖注入的scope层级的改动; Kotlin和RxJava的简洁性.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
+    
+      <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
+    
+      <category term="SpringAnimation" scheme="http://mengdd.github.io/tags/SpringAnimation/"/>
+    
+      <category term="Injection" scheme="http://mengdd.github.io/tags/Injection/"/>
+    
+      <category term="BroadcastReceiver" scheme="http://mengdd.github.io/tags/BroadcastReceiver/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android Weekly Notes Issue 249</title>
     <link href="http://mengdd.github.io/Android/Android-Weekly/2017/03/24/android-weekly-notes-issue-249/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2017/03/24/android-weekly-notes-issue-249/</id>
     <published>2017-03-24T09:13:37.000Z</published>
-    <updated>2017-03-24T09:31:13.000Z</updated>
+    <updated>2017-03-24T09:41:33.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-249"><a href="#Android-Weekly-Issue-249" class="headerlink" title="Android Weekly Issue #249"></a>Android Weekly Issue #249</h1><p>March 19th, 2017<br><a href="http://androidweekly.net/issues/issue-249" target="_blank" rel="external">Android Weekly Issue #249</a></p>
 <p>本期内容包括: 一个设计的实现Demo讨论; Kotlin的Coroutines可能还是没有RxJava好用; 在构建SDK/Libraries时需要注意的事项; 如何用OpenGL和JBox2D实现一个好看的多气泡选择器效果;<br>网络请求中Etag, If-Modified-Since的工作原理和用OkHttp的客户端实现; 用ClassyShark导出类型分析; 指纹认证实现代码; MVI模式对调试带来的好处; 用TensorFlow做一个图像识别处理器.</p>
@@ -90,8 +199,7 @@
 <p>这种动画效果用于让用户在一系列的选择项中做出选择, 气泡自由浮动, 一旦被选中就会变大一点.</p>
 <p>作者选择的是用Kotlin, OpenGL和JBox2D(物理引擎).</p>
 <p>详细介绍的内容包括: 如何用GLSL写vertex shader和fragment shader; 如何贴图; 用JBox2D来实现气泡的动画(需要自己实现重力); 检测用户手势移动气泡; 发现用户点击的气泡.</p>
-<p>项目在Github: <a href="https://github.com/igalata/Bubble-Picker" target="_blank" rel="external">Bubble-Picker
-</a>.</p>
+<p>项目在Github: <a href="https://github.com/igalata/Bubble-Picker" target="_blank" rel="external">Bubble-Picker</a>.</p>
 <h2 id="Reducing-networking-footprint-with-OkHttp-Etags-and-If-Modified-Since"><a href="#Reducing-networking-footprint-with-OkHttp-Etags-and-If-Modified-Since" class="headerlink" title="Reducing networking footprint with OkHttp, Etags and If-Modified-Since"></a><a href="https://android.jlelse.eu/reducing-your-networking-footprint-with-okhttp-etags-and-if-modified-since-b598b8dd81a1#.260pws449" target="_blank" rel="external">Reducing networking footprint with OkHttp, Etags and If-Modified-Since</a></h2><h3 id="If-Modified-Since和Last-Modified"><a href="#If-Modified-Since和Last-Modified" class="headerlink" title="If-Modified-Since和Last-Modified"></a>If-Modified-Since和Last-Modified</h3><p>Header中使用了If-Modified-Since和Last-Modified, 如果两次请求之间内容并未改变, 第二次, server就会返回<code>304 NOT MODIFIED</code>, 并且响应不含body.</p>
 <p><img src="/images/if-modified-since-and-last-modified.png" alt="if-modified-since and last-modified"></p>
 <h3 id="Etag和If-None-Match"><a href="#Etag和If-None-Match" class="headerlink" title="Etag和If-None-Match"></a>Etag和If-None-Match</h3><p>Etag工作的原理类似, 它实现起来不容易出错, 但是需要server跑一个完整的查询, 并且每次都创建一个hash.</p>
@@ -157,11 +265,11 @@
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
-      <category term="Fingerprint" scheme="http://mengdd.github.io/tags/Fingerprint/"/>
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
+      <category term="Fingerprint" scheme="http://mengdd.github.io/tags/Fingerprint/"/>
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
@@ -169,11 +277,13 @@
     
       <category term="OkHttp" scheme="http://mengdd.github.io/tags/OkHttp/"/>
     
+      <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
+    
       <category term="ClassyShark" scheme="http://mengdd.github.io/tags/ClassyShark/"/>
     
-      <category term="ViewSwitcher" scheme="http://mengdd.github.io/tags/ViewSwitcher/"/>
-    
       <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
+    
+      <category term="ViewSwitcher" scheme="http://mengdd.github.io/tags/ViewSwitcher/"/>
     
       <category term="Coroutines" scheme="http://mengdd.github.io/tags/Coroutines/"/>
     
@@ -191,8 +301,6 @@
     
       <category term="If-Modified-Since" scheme="http://mengdd.github.io/tags/If-Modified-Since/"/>
     
-      <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
-    
       <category term="Machine Learning" scheme="http://mengdd.github.io/tags/Machine-Learning/"/>
     
   </entry>
@@ -202,7 +310,7 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2017/03/17/android-weekly-notes-issue-248/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2017/03/17/android-weekly-notes-issue-248/</id>
     <published>2017-03-17T02:51:51.000Z</published>
-    <updated>2017-03-17T06:57:22.000Z</updated>
+    <updated>2017-03-31T09:07:08.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-248"><a href="#Android-Weekly-Issue-248" class="headerlink" title="Android Weekly Issue #248"></a>Android Weekly Issue #248</h1><p>March 5th, 2017<br><a href="http://androidweekly.net/issues/issue-248" target="_blank" rel="external">Android Weekly Issue #248</a>.<br>本期内容包括: 为什么有时候应该让你的应用崩溃(而不是一味保护); Trello离线模式实现中两个id的问题; 如何让Dagger的component按照scope保存, 在屏幕旋转时不重建; 用Dagger构建Realm的数据库迁移逻辑;<br>利用各种mock工具写单元测试; Map上markers的动画实现; JUnit5中@DisplayName的使用; RxJava中的Single和Completable使用; 举例说明如何给FindBugs写自定义的探测器; Android中静态代码分析工具的使用; Trello离线实现中sync失败情况的处理.</p>
 <a id="more"></a>
@@ -301,9 +409,9 @@
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
-      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
-    
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
+    
+      <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
       <category term="Crash" scheme="http://mengdd.github.io/tags/Crash/"/>
     
@@ -313,7 +421,7 @@
     
       <category term="Google Map" scheme="http://mengdd.github.io/tags/Google-Map/"/>
     
-      <category term="JUnit5" scheme="http://mengdd.github.io/tags/JUnit5/"/>
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
       <category term="FindBugs" scheme="http://mengdd.github.io/tags/FindBugs/"/>
     
@@ -412,27 +520,27 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
-      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
-    
       <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
     
-      <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
       <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
+    
+      <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
     
       <category term="Version Name" scheme="http://mengdd.github.io/tags/Version-Name/"/>
     
       <category term="Git" scheme="http://mengdd.github.io/tags/Git/"/>
     
-      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
+      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
     
   </entry>
   
@@ -505,9 +613,9 @@
     
       <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
-      <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
-    
       <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
+    
+      <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
     
       <category term="In-App Billing" scheme="http://mengdd.github.io/tags/In-App-Billing/"/>
     
@@ -1156,9 +1264,9 @@
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
       <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Color" scheme="http://mengdd.github.io/tags/Color/"/>
     
@@ -1284,9 +1392,9 @@
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
-      <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
-    
       <category term="Master/Detail" scheme="http://mengdd.github.io/tags/Master-Detail/"/>
+    
+      <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
     
       <category term="Build Time" scheme="http://mengdd.github.io/tags/Build-Time/"/>
     
@@ -1530,13 +1638,13 @@
     
       <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
     
-      <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
+      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+      <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
-      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
     
@@ -2183,9 +2291,9 @@
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
@@ -2193,13 +2301,13 @@
     
       <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
     
-      <category term="Custom View" scheme="http://mengdd.github.io/tags/Custom-View/"/>
-    
       <category term="Terminal" scheme="http://mengdd.github.io/tags/Terminal/"/>
     
       <category term="Android 7.1" scheme="http://mengdd.github.io/tags/Android-7-1/"/>
     
       <category term="App Shortcuts" scheme="http://mengdd.github.io/tags/App-Shortcuts/"/>
+    
+      <category term="Custom View" scheme="http://mengdd.github.io/tags/Custom-View/"/>
     
       <category term="Remote Config" scheme="http://mengdd.github.io/tags/Remote-Config/"/>
     
@@ -2210,125 +2318,6 @@
       <category term="push notification" scheme="http://mengdd.github.io/tags/push-notification/"/>
     
       <category term="transient" scheme="http://mengdd.github.io/tags/transient/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Effective Java笔记一 创建和销毁对象</title>
-    <link href="http://mengdd.github.io/Java/2016/11/25/effective-java-notes-1/"/>
-    <id>http://mengdd.github.io/Java/2016/11/25/effective-java-notes-1/</id>
-    <published>2016-11-25T08:50:40.000Z</published>
-    <updated>2016-11-25T09:01:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Effective-Java笔记一-创建和销毁对象"><a href="#Effective-Java笔记一-创建和销毁对象" class="headerlink" title="Effective Java笔记一 创建和销毁对象"></a>Effective Java笔记一 创建和销毁对象</h1><ul>
-<li>第1条 考虑用静态工厂方法代替构造器</li>
-<li>第2条 遇到多个构造器参数时要考虑用构建器</li>
-<li>第3条 用私有构造器或者枚举类型强化Singleton属性</li>
-<li>第4条 通过私有构造器强化不可实例化的能力</li>
-<li>第5条 避免创建不必要的对象</li>
-<li>第6条 消除过期的对象引用</li>
-<li>第7条 避免使用终结方法</li>
-</ul>
-<a id="more"></a>
-<h2 id="第1条-考虑用静态工厂方法代替构造器"><a href="#第1条-考虑用静态工厂方法代替构造器" class="headerlink" title="第1条 考虑用静态工厂方法代替构造器"></a>第1条 考虑用静态工厂方法代替构造器</h2><p>对于类而言, 最常用的获取实例的方法就是提供一个公有的构造器, 还有一种方法, 就是提供一个公有的静态工厂方法(static factory method), 返回类的实例.</p>
-<p>(注意此处的静态工厂方法与设计模式中的工厂方法模式不同.)</p>
-<p>提供静态工厂方法而不是公有构造, 这样做有几大<strong>优势</strong>:</p>
-<ul>
-<li>静态工厂方法<strong>有名称</strong>. 可以更确切地描述正被返回的对象.<br>当一个类需要多个带有相同签名的构造器时, 可以用静态工厂方法, 并且慎重地选择名称以便突出它们之间的区别.</li>
-<li><strong>不必在每次调用它们的时候都创建一个新对象.</strong> 可以重复利用实例. 如果程序经常请求创建相同的对象, 并且创建对象的代价很高, 这项改动可以提升性能. (不可变类, 单例, 枚举).</li>
-<li><strong>可以返回原类型的子类型对象.</strong> 适用于基于接口的框架, 可以隐藏实现类API, 也可以根据参数返回不同的子类型.<br>由于接口不能有静态方法, 因此按照惯例, 接口Type的静态工厂方法被放在一个名为Types的不可实例化的类中.<br>(Java的java.util.Collections). 服务提供者框架(Service Provider Framework, 如JDBC)的基础, 从实现中解耦.</li>
-<li><strong>在创建参数化类型实例的时候, 使代码更简洁.</strong> </li>
-</ul>
-<p>静态工厂方法的<strong>缺点</strong>:</p>
-<ul>
-<li>类如果不含public或者protected的构造器, 就不能被子类化. 对于公有的静态工厂方法所返回的非公有类, 也同样如此.</li>
-<li>静态工厂方法与其他的静态方法没有区别. 在API文档中没有明确标识出来. 可以使用一些惯用的名称来弥补这一劣势:<ul>
-<li><code>valueOf()</code>: 类型转换方法, 返回的实例与参数具有相同的值.</li>
-<li><code>of()</code>: valueOf()的一种更简洁的替代.</li>
-<li><code>getInstance()</code>: 返回的实例通过参数来描述, 对于单例来说, 该方法没有参数, 返回唯一的实例.</li>
-<li><code>newInstance()</code>: 像getInstance()一样, 但newInstance()能确保返回的每个实例都与其他实例不同.</li>
-<li><code>getType()</code>: 像getInstance()一样, Type表示返回的对象类型, 在工厂方法处于不同的类中的时候使用.</li>
-<li><code>newType()</code>: 和newInstance()一样, Type表示返回类型, 在工厂方法处于不同的类中的时候使用.</li>
-</ul>
-</li>
-</ul>
-<h2 id="第2条-遇到多个构造器参数时要考虑用构建器"><a href="#第2条-遇到多个构造器参数时要考虑用构建器" class="headerlink" title="第2条 遇到多个构造器参数时要考虑用构建器"></a>第2条 遇到多个构造器参数时要考虑用构建器</h2><p>静态工厂和构造器有一个共同的局限性: 它们都不能很好地扩展到大量的可选参数.</p>
-<p>重载多个构造器方法可行, 但是当有许多参数的时候, 代码会很难写难读.</p>
-<p>第二种替代方法是JavaBeans模式, 即一个无参数构造来创建对象, 然后调用setter方法来设置每个参数. 这种模式也有严重的缺点, 因为构造过程被分到了几个调用中, 在构造过程中JavaBean可能处于不一致的状态.<br>类无法通过检验构造器参数的有效性来保证一致性. 另一点是这种模式阻止了把类做成不可变的可能.</p>
-<p>第三种方法就是<strong>Builder模式</strong>. 不直接生成想要的对象, 而是利用必要参数调用构造器(或者静态工厂)得到一个builder对象, 然后在builder对象上调用类似setter的方法, 来设置可选参数, 最后调用无参的<code>build()</code>方法来生成不可变的对象.</p>
-<p>这个Builder是它构建的类的静态成员类.<br>Builder的setter方法返回Builder本身, 可以链式操作.</p>
-<p><strong>Builder模式的优势</strong>: 可读性增强; 可以有多个可变参数;  易于做参数检查和构造约束检查; 比JavaBeans更加安全; 灵活性: 可以利用单个builder构建多个对象, 可以自动填充某些域, 比如自增序列号.</p>
-<p>Builder模式的不足: 为了创建对象必须先创建Builder, 在某些十分注重性能的情况下, 可能就成了问题; Builder模式较冗长, 因此只有参数很多时才使用.</p>
-<h2 id="第3条-用私有构造器或者枚举类型强化Singleton属性"><a href="#第3条-用私有构造器或者枚举类型强化Singleton属性" class="headerlink" title="第3条 用私有构造器或者枚举类型强化Singleton属性"></a>第3条 用私有构造器或者枚举类型强化Singleton属性</h2><p><code>Singleton(单例)</code>指仅仅被实例化一次的类. 通常用来代表那些本质上唯一的系统组件. </p>
-<p>使类成为Singleton会使得它的客户端代码测试变得困难, 因为无法给它替换模拟实现, 除非它实现了一个充当其类型的接口.</p>
-<p>单例的实现: 私有构造方法, 类中保留一个字段实例(static, final), 用public直接公开字段或者用一个public static的<code>getInstance()</code>方法返回该字段.</p>
-<p>为了使单例实现序列化(<code>Serializable</code>), 仅仅在声明中加上<code>implements Serializable</code>是不够的, 为了维护并保证单例, 必须声明所有实例域都是<code>transient</code>的, 并提供一个<code>readResolve()</code>方法, 返回单例的实例. 否则每次反序列化一个实例时, 都会创建一个新的实例.</p>
-<p>从Java 1.5起, <strong>可以使用枚举来实现单例</strong>: 只需要编写一个包含单个元素的枚举类型.<br>这种方法无偿地提供了序列化机制, 绝对防止多次实例化.</p>
-<h2 id="第4条-通过私有构造器强化不可实例化的能力"><a href="#第4条-通过私有构造器强化不可实例化的能力" class="headerlink" title="第4条 通过私有构造器强化不可实例化的能力"></a>第4条 通过私有构造器强化不可实例化的能力</h2><p>只包含静态方法和静态域的类名声不太好, 因为有些人会滥用它们来编写过程化的程序. 尽管如此, 它们确实也有特有的用处, 比如:<br><code>java.lang.Math</code>, <code>java.util.Arrays</code>把基本类型的值或数组类型上的相关方法组织起来; <code>java.util.Collections</code>把实现特定接口的对象上的静态方法组织起来; 还可以利用这种类把final类上的方法组织起来, 以取代扩展该类的做法.</p>
-<p>这种工具类(utility class)不希望被实例化, 然而在缺少显式构造器的情况下, 系统会提供默认构造器, 可能会造成这些类被无意识地实例化.</p>
-<p>通过做成抽象类来强制该类不可被实例化, 这是行不通的, 因为可能会造成”这个类是用来被继承的”的误解, 而继承它的子类又可以被实例化.</p>
-<p>所以只要让这个类包含一个私有的构造器, 它就不能被实例化了. 进一步地, 可以在这个私有构造器中抛出异常. </p>
-<p>这种做法还会导致这个类不能被子类化, 因为子类构造器必须显式或隐式地调用super构造器. 在这种情况下, 子类就没有可访问的超类构造器可调用了.</p>
-<h2 id="第5条-避免创建不必要的对象"><a href="#第5条-避免创建不必要的对象" class="headerlink" title="第5条 避免创建不必要的对象"></a>第5条 避免创建不必要的对象</h2><p>一般来说, 最好能重用对象而不是每次需要的时候创建一个相同功能的新对象. 如果对象是<strong>不可变的(immutable)</strong>, 它就始终可以被重用.</p>
-<p>比如应该用:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String s = <span class="string">"stringette"</span>;</div></pre></td></tr></table></figure></p>
-<p>而不是:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String s = <span class="keyword">new</span> String(<span class="string">"stringette"</span>); <span class="comment">// Don't do this</span></div></pre></td></tr></table></figure></p>
-<p>包含相同字符串的字面常量对象是会被重用的.</p>
-<p>对于同时提供了静态工厂方法和构造方法的<strong>不可变类</strong>, 通常可以使用静态工厂方法而不是构造器, 以避免创建不必要的对象.<br>比如<code>Boolean.valueOf()</code>.</p>
-<p>除了重用不可变对象以外, 也可以重用那些已知不会被修改的可变对象. 比如把一个方法中需要用到的不变的数据保存成常量对象(<code>static final</code>), 只在初始化的时候创建一次(<code>用static块</code>), 这样就不用每次调用方法都重复创建.</p>
-<p>如果该方法永远不会调用, 那也不需要初始化相关的字段, 可以通过延迟初始化(lazily initializing)把这些对象的初始化放到方法第一次被调用的时候. (但是不建议这样做, 没有性能的显著提高, 并且会使方法看起来复杂.)</p>
-<p>前面的例子中, 所讨论的对象显然是能够被重用的, 因为它们被初始化之后不会再改变. 其他有些情形则并不总是这么明显了. (适配器(adapter)模式, Map的接口keySet()方法返回同样的Set实例).</p>
-<p>Java 1.5中加入了自动装箱(autoboxing), 会创建对象. 所以程序中优先使用基本类型而不是装箱基本类型, 要当心无意识的自动装箱. </p>
-<p>小对象的构造器只做很少量的显式工作, 创建和回收都是很廉价的, 所以通过创建附加的对象提升程序的清晰简洁性也是好事.</p>
-<p>通过维护自己的对象池(object pool)来避免创建对象并不是一种好的做法(代码, 内存), 除非池中的对象是非常重量级的. 正确使用的典型: 数据库连接池.</p>
-<h2 id="第6条-消除过期的对象引用"><a href="#第6条-消除过期的对象引用" class="headerlink" title="第6条 消除过期的对象引用"></a>第6条 消除过期的对象引用</h2><p>一个内存泄露的例子: 一个用数组实现的Stack, 依靠size标记来管理栈的深度, 但是这样从栈中弹出来的过期对象并没有被释放. </p>
-<p>称内存泄露为”无意识的对象保持(unintentional object retention)”更为恰当.</p>
-<p>修复方法: 一旦对象引用已经过期, 只需清空这些引用即可.</p>
-<p>清空对象引用应该是一种例外, 而不是一种规范行为. 消除过期引用最好的方法是让包含该引用的变量结束其生命周期. 如果你是在最紧凑的作用域范围内定义变量, 这种情形就会自然发生.</p>
-<p><strong>一般而言, 只要类是自己管理内存</strong>, 程序员就应该警惕内存泄露问题. 一旦元素被释放掉, 则该元素中包含的任何对象引用都应该被清空.</p>
-<p>内存泄露的<strong>另一个常见来源是缓存</strong>. 这个问题有这几种可能的解决方案: </p>
-<ul>
-<li>1.缓存项的生命周期由该键的外部引用决定 -&gt; <code>WeakHashMap</code>; </li>
-<li>2.缓存项的生命周期是否有意义并不是很容易确定 -&gt; 随着时间的推移或者新增项的时候删除没用的项.</li>
-</ul>
-<p>内存泄露的<strong>第三个常见来源是监听器和其他回调</strong>.<br>如果你实现了一个API, 客户端注册了回调却没有注销, 就会积聚对象.<br>API端可以只保存对象的弱引用来确保回调对象生命周期结束后会被垃圾回收. </p>
-<h2 id="第7条-避免使用终结方法"><a href="#第7条-避免使用终结方法" class="headerlink" title="第7条 避免使用终结方法"></a>第7条 避免使用终结方法</h2><p>终结方法(finalizer)通常是不可预测的, 也是很危险的, 一般情况下是不必要的.<br>使用终结方法会导致行为不稳定, 降低性能, 以及可移植性问题.</p>
-<p>不要把finalizer当成是C++中的析构器(destructors)的对应物.<br>在Java中, 当一个对象变得不可到达的时候, 垃圾回收器会回收与该对象相关联的存储空间.</p>
-<p>C++的析构器也可以用来回收其他的非内存资源, 而在Java中, 一般用try-finally块来完成类似的工作.</p>
-<p>终结方法的缺点在于不能保证会被及时地执行. 从一个对象变得不可到达开始, 到它的终结方法被执行, 所花费的时间是任意长的. JVM会延迟执行终结方法. </p>
-<p>及时地执行终结方法正是垃圾回收算法的一个主要功能. 这种算法在不同的JVM上不同. </p>
-<p>Java语言规范不仅不保证终结方法会被及时地执行, 而且根本就不保证它们会被执行. 所以不应该依赖于终结方法来更新重要的持久状态. </p>
-<p>不要被<code>System.gc()</code>和<code>System.runFinalization()</code>这两个方法所迷惑, 它们确实增加了终结方法被执行的机会, 但是它们并不保证终结方法一定会被执行. </p>
-<p>如果未捕获的异常在终结过程中被抛出来, 那么这种异常可以被忽略, 而且该对象的终结过程也会终止. </p>
-<p>使用终结方法有一个严重的性能损失. </p>
-<p>如果类的对象中封装的资源(例如文件或线程)确实需要终止, 应该怎么做才能不用编写终结方法呢? 只需<strong>提供一个显式的终止方法</strong>. 并要求该类的客户端在每个实例不再有用的时候调用这个方法. 注意, 该实例必须记录下自己是否已经被终止了, 如果被终止之后再被调用, 要抛出异常.<br>例子: <code>InputStream</code>, <code>OutputStream</code>和<code>java.sql.Connection</code>上的<code>close()</code>方法; <code>java.util.Timer</code>的<code>cancel()</code>方法.<br><code>Image.flush()</code>会释放实例相关资源, 但该实例仍处于可用的状态, 如果有必要会重新分配资源. </p>
-<p><strong>显式的终止方法通常与try-finally块结合使用, 以确保及时终止.</strong></p>
-<p>终结方法的好处, 它有两种合法用途:</p>
-<ul>
-<li>当显式终止方法被忘记调用时, 终结方法可以充当安全网(safety net). <strong>但是如果终结方法发现资源还未被终止, 应该记录日志警告, 这表示客户端代码中的bug.</strong></li>
-<li>对象的本地对等体(native peer), 垃圾回收器不会知道它, 当它的Java对等体被回收的时候, 它不会被回收. 如果本地对等体拥有必须被及时终止的资源, 那么该类就应该有一个显式的终止方法, 如前, 可以是本地方法或者它也可以调用本地方法; 如果本地对等体并不拥有关键资源, 终结方法是执行这项任务最合适的工具. </li>
-</ul>
-<p>注意, 终结方法链(finalizer chaining)并不会自动执行. 子类覆盖终结方法时, 必须手动调用超类的终结方法. try中终结子类, finally中终结超类. </p>
-<p>为了避免忘记调用超类的终结方法, 还有一种写法, 是在子类中写一个匿名的类, 该匿名类的单个实例被称为<strong>终结方法守卫者(finalizer guardian)</strong>, 当守卫者被终结的时候, 它执行外围实例的终结行为. 这样外围类并没有覆盖超类的终结方法, 保证了超类的终结方法一定会被执行. </p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Effective-Java笔记一-创建和销毁对象&quot;&gt;&lt;a href=&quot;#Effective-Java笔记一-创建和销毁对象&quot; class=&quot;headerlink&quot; title=&quot;Effective Java笔记一 创建和销毁对象&quot;&gt;&lt;/a&gt;Effective Java笔记一 创建和销毁对象&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;第1条 考虑用静态工厂方法代替构造器&lt;/li&gt;
-&lt;li&gt;第2条 遇到多个构造器参数时要考虑用构建器&lt;/li&gt;
-&lt;li&gt;第3条 用私有构造器或者枚举类型强化Singleton属性&lt;/li&gt;
-&lt;li&gt;第4条 通过私有构造器强化不可实例化的能力&lt;/li&gt;
-&lt;li&gt;第5条 避免创建不必要的对象&lt;/li&gt;
-&lt;li&gt;第6条 消除过期的对象引用&lt;/li&gt;
-&lt;li&gt;第7条 避免使用终结方法&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="http://mengdd.github.io/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
     
   </entry>
   
