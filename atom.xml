@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-04-06T09:14:12.000Z</updated>
+  <updated>2017-04-11T09:47:50.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,113 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络使用和电池消耗 原因和改进</title>
+    <link href="http://mengdd.github.io/Android/2017/04/11/network-usage-and-battery-consumption/"/>
+    <id>http://mengdd.github.io/Android/2017/04/11/network-usage-and-battery-consumption/</id>
+    <published>2017-04-11T09:39:56.000Z</published>
+    <updated>2017-04-11T09:47:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="网络使用和电池消耗-原因和改进"><a href="#网络使用和电池消耗-原因和改进" class="headerlink" title="网络使用和电池消耗 原因和改进"></a>网络使用和电池消耗 原因和改进</h1><p>你的app发送的网络请求是电量消耗的主要原因, 本文先教你如何使用IDE工具来分类分析应用中的网络请求, 之后按照三种不同的网络请求分类, 分别给出优化建议, 减少电量消耗.</p>
+<p>本文是对Android官网<a href="https://developer.android.com/topic/performance/power/network/index.html" target="_blank" rel="external">Reducing Network Battery Drain</a>系列文章的翻译, 略有删减, 可以作为摘要看看. (翻译不当的地方还请见谅).</p>
+<a id="more"></a>
+<h2 id="收集网络数据-Collecting-Network-Traffic-Data"><a href="#收集网络数据-Collecting-Network-Traffic-Data" class="headerlink" title="收集网络数据 Collecting Network Traffic Data"></a>收集网络数据 <a href="https://developer.android.com/topic/performance/power/network/gather-data.html" target="_blank" rel="external">Collecting Network Traffic Data</a></h2><p>使用<a href="https://developer.android.com/studio/profile/ddms.html#network" target="_blank" rel="external">Network Traffic tool</a>可以看到你的app如何以及何时通过网络发送数据.<br>本节教你如何通过在代码中加tag来测量和分类网络请求, 然后教你如何部署, 测试和可视化你的网络请求.</p>
+<p>可以把网络请求分三类:</p>
+<ul>
+<li>用户发起的.</li>
+<li>App发起的.</li>
+<li>Server发起的. 比如notification.</li>
+</ul>
+<p>对这三个分类定义三个常量:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> USER_INITIATED = <span class="number">0x1000</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> APP_INITIATED = <span class="number">0x2000</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SERVER_INITIATED =<span class="number">0x3000</span>;</div></pre></td></tr></table></figure></p>
+<p>全文搜索:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">extends GcmTaskService|extends JobService|extends AbstractThreadedSyncAdapter|HttpUrlConnection|Volley|Glide|HttpClient</div></pre></td></tr></table></figure></p>
+<p>勾选Regular expression, File mask(s) 写 *.java.</p>
+<p>找出所有的网络请求后, 加上下面的代码:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (BuildConfig.NETWORK-TEST &amp;&amp; Build.VERSION.SDK_INT &gt;= <span class="number">14</span>) &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        TrafficStats.setThreadStatsTag(USER_INITIATED);</div><div class="line">        <span class="comment">// make network request using HttpClient.execute()</span></div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">        TrafficStats.clearThreadStatsTag();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其中build type的配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    ...</div><div class="line">    buildTypes &#123;</div><div class="line">        debug &#123;</div><div class="line">            // debuggable true is default for the debug buildType</div><div class="line">        &#125;</div><div class="line">        network-test &#123;</div><div class="line">            debuggable true</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行测试:<br>Tools &gt; Android &gt; Android Device Monitor.<br>选择tab: Network Statistics.<br>选择你的应用, 然后按开始按钮.<br>你可以用下面的命令来清除应用的数据:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb shell pm clear package.name.of.app</div></pre></td></tr></table></figure></p>
+<p>然后在你的应用中跑你想测试的应用场景即可.</p>
+<p>使用了不同tag的网络请求会用不同的颜色显示出来.</p>
+<h2 id="分析网络数据-Analyzing-Network-Traffic-Data"><a href="#分析网络数据-Analyzing-Network-Traffic-Data" class="headerlink" title="分析网络数据 Analyzing Network Traffic Data"></a>分析网络数据 <a href="https://developer.android.com/topic/performance/power/network/analyze-data.html" target="_blank" rel="external">Analyzing Network Traffic Data</a></h2><p>有效应用网络资源的特点: 应该有大段的时间网络硬件没有在使用中. 因为在移动设备上, 发送和接收数据, 长时间保持数据连接都会有巨大的花销. 如果你的应用访问网络很有效率, 那么网络通信看起来就应该是紧耦合的, 被无请求的休息时段合理地隔开.</p>
+<h3 id="分析网络数据类型"><a href="#分析网络数据类型" class="headerlink" title="分析网络数据类型"></a>分析网络数据类型</h3><p>如果你的网络请求图看起来存在这方面的问题, 我们就需要根据上一节中加tag而分三种类型形成的网络图来进行分析, 提供一些优化意见.</p>
+<h4 id="分析用户发起的网络请求"><a href="#分析用户发起的网络请求" class="headerlink" title="分析用户发起的网络请求"></a>分析用户发起的网络请求</h4><p>用户发起的网络请求: 当用户在执行一项特定的活动时, 可能可以有效地耦合在一起; 或者当用户不断请求附加信息时, 非均匀地展开. 当在分析用户发起的请求是, 你的目标是: 寻找频繁的网络使用模式, 还有试图创建或增加不使用网络的时段.</p>
+<p>这种网络请求优化的挑战是用户请求的不确定性. 另外, 用户在使用app的时候总是期待快速的响应, 所以推迟请求会降低用户体验. 一般来说, 当用户和app直接交互时, 快速响应的优先级是高于有效的网络请求使用的.</p>
+<p>这里是一些对于用户网络请求的优化手段:</p>
+<ul>
+<li>预取. <a href="https://developer.android.com/topic/performance/power/network/action-user-traffic.html#pre-fetch-data" target="_blank" rel="external">Pre-fetch Network Data</a>. 当用户执行一项操作的时候, 应用预计一下它下一步可能需要的数据, 在单个连接中批量获取它们, 然后持有它们直到用户请求它们.</li>
+<li>检测连接或监听变化. <a href="https://developer.android.com/topic/performance/power/network/action-user-traffic.html#check-or-listen" target="_blank" rel="external">Check for Connectivity or Listen for Changes</a>. 在执行更新前, 检测网络连接, 或者监听网络连接变化.</li>
+<li>减少连接数. <a href="https://developer.android.com/topic/performance/power/network/action-user-traffic.html#reduce-connections" target="_blank" rel="external">Reduce the Number of Connections</a>. 使用允许数据按集合下载的server APIs</li>
+</ul>
+<h4 id="分析app发起的网络请求"><a href="#分析app发起的网络请求" class="headerlink" title="分析app发起的网络请求"></a>分析app发起的网络请求</h4><p>由你的应用发起的网络请求通常是一个对有效网络带宽有很大影响的方面. 在分析应用的网络活动的时候, 寻找空闲时段, 决定它们是否能被扩展. 如果你看到一致的网络请求的模式, 你应该寻找一些方法来改进, 以允许切换到低功耗模式.</p>
+<p>一些优化app发起请求的手段:</p>
+<ul>
+<li>批处理和定时. <a href="https://developer.android.com/topic/performance/power/network/action-app-traffic.html#batch-schedule" target="_blank" rel="external">Batch and Schedule Network Requests</a> 推迟你的网络请求以便它们可以一起处理, 并且在一个对电池来说有优势的时间.</li>
+<li>允许系统检查连接. <a href="https://developer.android.com/topic/performance/power/network/action-app-traffic.html#check-connect" target="_blank" rel="external">Allow System to Check for Connectivity</a>. 应该避免仅仅为了检查网络连接而引起的电池耗损, 在应用休眠的时候, 你可以让系统来帮你做检查.</li>
+</ul>
+<h4 id="分析server发起的网络请求"><a href="#分析server发起的网络请求" class="headerlink" title="分析server发起的网络请求"></a>分析server发起的网络请求</h4><p>由server对应用发起的网络请求通常也是一个对有效网络带宽有很大影响的方面. 在分析来自server的网络活动的时候, 寻找非活跃的时期, 看它们是否能被增加. </p>
+<p>优化手段:</p>
+<ul>
+<li>使用GCM. <a href="https://developer.android.com/topic/performance/power/network/action-server-traffic.html#gcm" target="_blank" rel="external">Use GCM for Server Updates</a>. 考虑使用Google Cloud Messaging service来做server端的更新, 而不是轮询.</li>
+</ul>
+<h2 id="优化用户网络请求-Optimizing-User-Initiated-Network-Use"><a href="#优化用户网络请求-Optimizing-User-Initiated-Network-Use" class="headerlink" title="优化用户网络请求 Optimizing User-Initiated Network Use"></a>优化用户网络请求 <a href="https://developer.android.com/topic/performance/power/network/action-user-traffic.html" target="_blank" rel="external">Optimizing User-Initiated Network Use</a></h2><p>快速处理用户的请求保证了良好的用户体验, 所以与此相比, 节约能量的优先级比较低.</p>
+<h3 id="预取-Pre-fetch-Network-Data"><a href="#预取-Pre-fetch-Network-Data" class="headerlink" title="预取 Pre-fetch Network Data"></a>预取 Pre-fetch Network Data</h3><p>预取数据是一个减少数据传输的session数量很有效的方法. 使用预取, 在用户执行一个行为的时候, app预测下一步行为最有可能会用到的数据, 然后批量取出相关数据. 电池能量消耗因为两个原因被降低了:</p>
+<ul>
+<li>因为预取数据发生在mobile radio已经唤醒的状态, 所以不用再次唤醒. </li>
+<li>应用预取了数据, 不然可能需要重新发另外的请求或者唤醒radio.</li>
+</ul>
+<p>Tip: 为了查看是否你的应用可以从预取中获利, 你可以检查你的网络traffic, 寻找永远导致多个网络请求的特定系列的用户行为. 比如那些当用户浏览时增量下载文章内容的应用, 可以在用户当前查看的分类下预取一个或多个文章.</p>
+<p>更多可以查看: <a href="https://developer.android.com/training/efficient-downloads/efficient-network-access.html#PrefetchData" target="_blank" rel="external">Optimizing Downloads for Efficient Network Access</a>.</p>
+<h3 id="检查连接-Check-for-Connectivity-or-Listen-for-Changes"><a href="#检查连接-Check-for-Connectivity-or-Listen-for-Changes" class="headerlink" title="检查连接 Check for Connectivity or Listen for Changes"></a>检查连接 Check for Connectivity or Listen for Changes</h3><p>在移动设备上来说, 搜寻信号是最费能量的操作之一. 你的应用应该总是在发出用户请求之前检查连接状态. <a href="https://developer.android.com/topic/performance/power/network/action-app-traffic.html#choosing-scheduler" target="_blank" rel="external">Schedulers</a>可以帮你自动做这个.</p>
+<ul>
+<li>如果你的一些按钮依赖于网络连接, 用<a href="https://developer.android.com/reference/android/net/ConnectivityManager.html" target="_blank" rel="external">ConnectivityManager</a>来检查连接. 如果没有网络连接, app就可以节省下强制连接的电量. 具体做法见<a href="https://developer.android.com/training/monitoring-device-state/connectivity-monitoring.html#MonitorChanges" target="_blank" rel="external">Monitor for Changes in Connectivity</a>.</li>
+<li>如果没有网络的情况下, 你的应用整个界面都处于不可用状态, 那么你可以根据需要使用Broadcast Receivers. 在你的Activity处于前台时监听网络连接变化, 当没有连接的时候, 就不再发请求. 如果你的app检测到网络连接丢失, 除了检测网路连接的那个receiver, 它关闭掉其他所有的receivers.</li>
+</ul>
+<p>对于用户发起的请求, 一个最佳实践就是在请求之前检查连接, 如果网络连接不存在, 可以调度请求在连接上以后再进行. 调度器可以用一些方式来节省电量, 比如每次检查的时候连接失败, 那么就加倍延迟时间下次再检查.</p>
+<h3 id="减少连接数-Reduce-the-Number-of-Connections"><a href="#减少连接数-Reduce-the-Number-of-Connections" class="headerlink" title="减少连接数 Reduce the Number of Connections"></a>减少连接数 Reduce the Number of Connections</h3><p>一般来讲, 复用已存在的网络连接比启动新的更高效. 复用连接还允许网络更智能地对待拥堵和相关网络数据问题.<br>更多信息请看<a href="https://developer.android.com/training/efficient-downloads/efficient-network-access.html#ReduceConnections" target="_blank" rel="external">Optimizing Downloads for Efficient Network Access</a>.</p>
+<h2 id="优化App发起的网络请求-Optimizing-App-Initiated-Network-Use"><a href="#优化App发起的网络请求-Optimizing-App-Initiated-Network-Use" class="headerlink" title="优化App发起的网络请求 Optimizing App-Initiated Network Use"></a>优化App发起的网络请求 <a href="https://developer.android.com/topic/performance/power/network/action-app-traffic.html" target="_blank" rel="external">Optimizing App-Initiated Network Use</a></h2><p>你的应用发起的网络请求通常可以大幅度改善, 因为你可以对需要的资源做出计划并且设置访问它们的时间. 通过合理地调度时间, 可以创建出大段的设备radio空闲时间, 从而节约电量. 有一些Android的API可以用来调度网络访问, 并且其中的一些功能可以用来调节对其他应用的网络访问, 从而进一步优化电池性能.</p>
+<h3 id="批处理和定时-Batch-and-Schedule-Network-Requests"><a href="#批处理和定时-Batch-and-Schedule-Network-Requests" class="headerlink" title="批处理和定时 Batch and Schedule Network Requests"></a>批处理和定时 Batch and Schedule Network Requests</h3><p>随机处理单个的请求会花掉很多的能量, 一个更高效的方法是把一系列的请求放入一个队列一起处理.</p>
+<p>使用一个网络请求scheduler API用来管理和处理你的请求队列可以提高app的能量效率. Schedulers保存能量是通过把请求组合在一起, 让系统来处理. 它们还可以通过延迟一些请求, 等其他请求唤醒radio的时候, 或者等设备在充电的时候再做请求, 来进一步优化. Schedulers延迟和批处理请求是在系统范围的, 可以跨多个应用, 相比单个应用中的优化, 这给了它们更多优势.</p>
+<h4 id="选择一个batch-and-scheduling-API"><a href="#选择一个batch-and-scheduling-API" class="headerlink" title="选择一个batch-and-scheduling API"></a>选择一个batch-and-scheduling API</h4><p>Android提供了三种API, 对于大多数操作功能相似, 按推荐性从高到低排列:</p>
+<ul>
+<li><a href="https://developers.google.com/cloud-messaging/network-manager" target="_blank" rel="external">GCM Network Manager</a>. 要求使用Google Play services.</li>
+<li><a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">Job Scheduler</a>. Android 5.0 (API 21)及以上.</li>
+<li><a href="https://developer.android.com/training/sync-adapters/index.html" target="_blank" rel="external">Sync Adapter for scheduled syncs</a>. 相比于前两种来说, 这种实现起来比较复杂.</li>
+</ul>
+<h3 id="允许系统检验连接-Allow-System-to-Check-for-Connectivity"><a href="#允许系统检验连接-Allow-System-to-Check-for-Connectivity" class="headerlink" title="允许系统检验连接 Allow System to Check for Connectivity"></a>允许系统检验连接 Allow System to Check for Connectivity</h3><p>一个最严重且意外的电池消耗原因是当用户超出信号塔或接入点范围时. 在这种情况下, 用户可能并没有使用手机, 但是他们注意到设备变热, 电池电量变少.</p>
+<p>在这种情形下, 可能是app正在跑一个后台进程, 其中以固定时间间隔搜寻信号. 搜寻信号是一个很耗电的操作.</p>
+<p>避免这个问题的方法是用一种更高效的方式来查询信号连接情况. 对于app发起的请求, 可以用一个scheduler, 在其中用<a href="https://developer.android.com/training/monitoring-device-state/connectivity-monitoring.html" target="_blank" rel="external">Connectivity Manager</a>来检查连接. 如果没有网络连接, Connectivity Manager节约了能量, 因为它是自己检查了连接, 而不是启动了app来做检查. 可以进一步使用<a href="https://en.wikipedia.org/wiki/Exponential_backoff" target="_blank" rel="external">exponential backoff</a>来做优化, 如果没有连接, 那么扩大检查的时间间隔.</p>
+<h2 id="优化来自server的网络请求-Optimizing-Server-Initiated-Network-Use"><a href="#优化来自server的网络请求-Optimizing-Server-Initiated-Network-Use" class="headerlink" title="优化来自server的网络请求 Optimizing Server-Initiated Network Use"></a>优化来自server的网络请求 <a href="https://developer.android.com/topic/performance/power/network/action-server-traffic.html" target="_blank" rel="external">Optimizing Server-Initiated Network Use</a></h2><p>由server发往app的请求优化起来比较有难度. 一种解决方案是客户端轮询, 检查server是否有更新, 这种方式很浪费. 一种更有效率的方式是当有新数据的时候通知你的app.</p>
+<p><a href="https://developers.google.com/cloud-messaging/gcm" target="_blank" rel="external">Google Cloud Messaging</a> GCM就是为了解决这个问题. 让你的server可以向app发送通知, 提高了网络效率, 降低了能量消耗.</p>
+<h3 id="用GCM发送服务器更新-Send-Server-Updates-with-GCM"><a href="#用GCM发送服务器更新-Send-Server-Updates-with-GCM" class="headerlink" title="用GCM发送服务器更新 Send Server Updates with GCM"></a>用GCM发送服务器更新 Send Server Updates with GCM</h3><p>Google Cloud Messaging (GCM)是一个轻量级的机制, 用于server向app传输一些简短的信息. 使用了GCM之后, server就可以在有数据更新的时候通知app, 这个方法减少了app查询更新却没有数据的能量消耗, 也避免了周期性的轮询请求.</p>
+<p>注意: 通常情况使用<a href="https://developers.google.com/cloud-messaging/concept-options#setting-the-priority-of-a-message" target="_blank" rel="external">Normal priority</a>即可, 这样不会在设备非活跃或者低电量的时候唤醒设备.</p>
+<h2 id="优化一般的网络使用-Optimizing-General-Network-Use"><a href="#优化一般的网络使用-Optimizing-General-Network-Use" class="headerlink" title="优化一般的网络使用 Optimizing General Network Use"></a>优化一般的网络使用 <a href="https://developer.android.com/topic/performance/power/network/action-any-traffic.html" target="_blank" rel="external">Optimizing General Network Use</a></h2><p>一般情况下, 减少网络请求会对节约电量有帮助. 除了之前提到的改进方法, 你还应该知道一些一般性的方法. </p>
+<h3 id="压缩数据-Compress-Data"><a href="#压缩数据-Compress-Data" class="headerlink" title="压缩数据 Compress Data"></a>压缩数据 Compress Data</h3><p>减少发送或接受的数据量会帮助减少连接时间, 从而节约电量.<br>你可以:</p>
+<ul>
+<li>压缩数据, 用一些压缩方法, 比如GZIP压缩.</li>
+<li>使用简洁的数据协议. JSON和XML提供了可读性和语言灵活性, 但是它们都是很占带宽的模式, 并且在Android上有一些序列化花销.<br>二进制序列化格式, 比如<a href="https://developers.google.com/protocol-buffers/" target="_blank" rel="external">Protocol Buffers</a>或<a href="https://google.github.io/flatbuffers/" target="_blank" rel="external">FlatBuffers</a>, 提供了更小的数据包大小, 以及更快的编解码时间. 如果你的应用经常需要传输序列化数据, 这些格式会帮你获得解码时间和传输大小方面的优势.</li>
+</ul>
+<h3 id="本地缓存文件-Cache-Files-Locally"><a href="#本地缓存文件-Cache-Files-Locally" class="headerlink" title="本地缓存文件 Cache Files Locally"></a>本地缓存文件 Cache Files Locally</h3><p>应用可以通过缓存来避免下载重复的数据. 始终缓存静态资源, 包括要求下载的全尺寸图像, 并尽可能长时间缓存它们.</p>
+<p>缓存实现见: <a href="https://developer.android.com/training/efficient-downloads/redundant_redundant.html#LocalCache" target="_blank" rel="external">Cache Files Locally</a>.</p>
+<h3 id="优化预取缓存大小-Optimize-Pre-Fetch-Cache-Size"><a href="#优化预取缓存大小-Optimize-Pre-Fetch-Cache-Size" class="headerlink" title="优化预取缓存大小 Optimize Pre-Fetch Cache Size"></a>优化预取缓存大小 Optimize Pre-Fetch Cache Size</h3><p>根据本地文件系统的尺寸和当前的网络连接来优化预取缓存大小. 你可以使用connectivity manager来确定处于活动状态的网络类型(Wi-FI, LTE, HSPAP, EDGE, GPRS), 并修改你的预取程序来最小化电池负载.</p>
+<p>更多信息请看<a href="https://developer.android.com/training/efficient-downloads/connectivity_patterns.html#Bandwidth" target="_blank" rel="external">Use Modifying your Download Patterns Based on the Connectivity Type</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;网络使用和电池消耗-原因和改进&quot;&gt;&lt;a href=&quot;#网络使用和电池消耗-原因和改进&quot; class=&quot;headerlink&quot; title=&quot;网络使用和电池消耗 原因和改进&quot;&gt;&lt;/a&gt;网络使用和电池消耗 原因和改进&lt;/h1&gt;&lt;p&gt;你的app发送的网络请求是电量消耗的主要原因, 本文先教你如何使用IDE工具来分类分析应用中的网络请求, 之后按照三种不同的网络请求分类, 分别给出优化建议, 减少电量消耗.&lt;/p&gt;
+&lt;p&gt;本文是对Android官网&lt;a href=&quot;https://developer.android.com/topic/performance/power/network/index.html&quot;&gt;Reducing Network Battery Drain&lt;/a&gt;系列文章的翻译, 略有删减, 可以作为摘要看看. (翻译不当的地方还请见谅).&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Network" scheme="http://mengdd.github.io/tags/Network/"/>
+    
+      <category term="Battery" scheme="http://mengdd.github.io/tags/Battery/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 251</title>
@@ -99,11 +206,11 @@
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
+    
       <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
     
       <category term="Topography" scheme="http://mengdd.github.io/tags/Topography/"/>
-    
-      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
       <category term="Dependency Injection" scheme="http://mengdd.github.io/tags/Dependency-Injection/"/>
     
@@ -208,9 +315,9 @@
     
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
-      <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
-    
       <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
+    
+      <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
     
       <category term="SpringAnimation" scheme="http://mengdd.github.io/tags/SpringAnimation/"/>
     
@@ -365,9 +472,9 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Fingerprint" scheme="http://mengdd.github.io/tags/Fingerprint/"/>
-    
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
+    
+      <category term="Fingerprint" scheme="http://mengdd.github.io/tags/Fingerprint/"/>
     
       <category term="TensorFlow" scheme="http://mengdd.github.io/tags/TensorFlow/"/>
     
@@ -375,11 +482,13 @@
     
       <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
     
+      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
+    
+      <category term="Network" scheme="http://mengdd.github.io/tags/Network/"/>
+    
       <category term="ClassyShark" scheme="http://mengdd.github.io/tags/ClassyShark/"/>
     
       <category term="ViewSwitcher" scheme="http://mengdd.github.io/tags/ViewSwitcher/"/>
-    
-      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
     
       <category term="Coroutines" scheme="http://mengdd.github.io/tags/Coroutines/"/>
     
@@ -390,8 +499,6 @@
       <category term="OpenGL" scheme="http://mengdd.github.io/tags/OpenGL/"/>
     
       <category term="JBox2D" scheme="http://mengdd.github.io/tags/JBox2D/"/>
-    
-      <category term="Network" scheme="http://mengdd.github.io/tags/Network/"/>
     
       <category term="Etag" scheme="http://mengdd.github.io/tags/Etag/"/>
     
@@ -497,9 +604,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
       <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
@@ -626,17 +733,17 @@
     
       <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
     
-      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
-    
       <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
-    
-      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
     
       <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
     
       <category term="Version Name" scheme="http://mengdd.github.io/tags/Version-Name/"/>
     
       <category term="Git" scheme="http://mengdd.github.io/tags/Git/"/>
+    
+      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
+    
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
   </entry>
   
@@ -983,9 +1090,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
       <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
@@ -1163,15 +1270,15 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -1484,9 +1591,9 @@
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
-      <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
-    
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
+    
+      <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
     
       <category term="Master/Detail" scheme="http://mengdd.github.io/tags/Master-Detail/"/>
     
@@ -1577,9 +1684,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
       <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
@@ -1925,13 +2032,13 @@
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
-      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
       <category term="ExoPlayer" scheme="http://mengdd.github.io/tags/ExoPlayer/"/>
     
-      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
+      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
+    
+      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
     
       <category term="ContentProvider" scheme="http://mengdd.github.io/tags/ContentProvider/"/>
     
@@ -2026,9 +2133,9 @@
     
       <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
     
-      <category term="Design" scheme="http://mengdd.github.io/tags/Design/"/>
-    
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
+    
+      <category term="Design" scheme="http://mengdd.github.io/tags/Design/"/>
     
       <category term="IoT" scheme="http://mengdd.github.io/tags/IoT/"/>
     
@@ -2162,17 +2269,17 @@
     
       <category term="AnimatedVectorDrawable" scheme="http://mengdd.github.io/tags/AnimatedVectorDrawable/"/>
     
-      <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
-    
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
       <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
+    
+      <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="Custom View" scheme="http://mengdd.github.io/tags/Custom-View/"/>
     
@@ -2189,89 +2296,6 @@
       <category term="FragmentPagerAdapter" scheme="http://mengdd.github.io/tags/FragmentPagerAdapter/"/>
     
       <category term="FragmentStatePagerAdapter" scheme="http://mengdd.github.io/tags/FragmentStatePagerAdapter/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 234</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/React-Native/Java/2016/12/13/android-weekly-notes-issue-234/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/React-Native/Java/2016/12/13/android-weekly-notes-issue-234/</id>
-    <published>2016-12-13T03:08:45.000Z</published>
-    <updated>2016-12-13T03:16:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-234"><a href="#Android-Weekly-Issue-234" class="headerlink" title="Android Weekly Issue #234"></a>Android Weekly Issue #234</h1><p>December 4th, 2016<br><a href="http://androidweekly.net/issues/issue-234" target="_blank" rel="external">Android Weekly Issue #234</a><br>本期内容包括: ConstraintLayout的使用; React Native教程; fastlane管理模拟器; Android中的任务调度; 文字sticker的实现; 给Android library加flavor; 更好的关键帧动画; SQLDelight的使用; icon Animation; OkLog的使用等等.</p>
-<a id="more"></a>
-<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Guide-to-ConstraintLayout"><a href="#Guide-to-ConstraintLayout" class="headerlink" title="Guide to ConstraintLayout"></a><a href="https://medium.com/@loutry/guide-to-constraintlayout-407cd87bc013#.pdg54u72z" target="_blank" rel="external">Guide to ConstraintLayout</a></h2><p>这篇文章教你如何使用<code>ConstraintLayout</code>, 有很多实际的例子.</p>
-<h2 id="React-Native-Express"><a href="#React-Native-Express" class="headerlink" title="React Native Express"></a><a href="http://www.reactnativeexpress.com/" target="_blank" rel="external">React Native Express</a></h2><p>一步一步地教你跨平台的Reactive Native, 比官方的文档要深入, 并且提供例子.</p>
-<h2 id="Managing-Android-Virtual-Devices-during-test-session"><a href="#Managing-Android-Virtual-Devices-during-test-session" class="headerlink" title="Managing Android Virtual Devices during test session"></a><a href="https://medium.com/azimolabs/managing-android-virtual-devices-during-test-session-98a403acffc2#.cu4nfhl6u" target="_blank" rel="external">Managing Android Virtual Devices during test session</a></h2><p>作者他们用<a href="https://github.com/fastlane/fastlane" target="_blank" rel="external">fastlane</a>管理模拟器, 并且开发了一个插件.</p>
-<h2 id="You-don’t-have-to-use-WeakReference-to-avoid-memory-leaks"><a href="#You-don’t-have-to-use-WeakReference-to-avoid-memory-leaks" class="headerlink" title="You don’t have to use WeakReference to avoid memory leaks"></a><a href="https://medium.com/google-developer-experts/weakreference-in-android-dd1e66b9be9d#.vmxu20g30" target="_blank" rel="external">You don’t have to use WeakReference to avoid memory leaks</a></h2><p>并不是到处都要用<code>WeakReference</code>来避免内存泄漏.</p>
-<h2 id="Effective-Java-for-Android"><a href="#Effective-Java-for-Android" class="headerlink" title="Effective Java for Android"></a><a href="https://medium.com/rocknnull/effective-java-for-android-cheatsheet-bf4e3433889a#.8t44xdb4t" target="_blank" rel="external">Effective Java for Android</a></h2><p>一个cheat-sheet, Effective Java中提到的内容, 作者列出了他认为在Android开发中最重要的几项:</p>
-<ul>
-<li>用private来限制不可实例化.</li>
-<li>使用静态工厂方法.</li>
-<li>使用Builders.</li>
-<li>避免互换性.</li>
-<li>静态内部类.</li>
-<li>使用泛型.</li>
-<li>返回空的集合而不是null.</li>
-<li>字符串连接用StringBuilder, 不要用+.</li>
-<li>可恢复的异常.</li>
-</ul>
-<h2 id="Scheduling-tasks-in-Android-made-easy"><a href="#Scheduling-tasks-in-Android-made-easy" class="headerlink" title="Scheduling tasks in Android made easy"></a><a href="https://blog.hypertrack.io/2016/12/01/scheduling-tasks-in-android-made-easy/" target="_blank" rel="external">Scheduling tasks in Android made easy</a></h2><p>分发异步任务的时候, 用很多选择: <code>AlarmManager</code>, <code>Handler</code>, <code>JobSheduler</code>, <code>GcmNetworkManager</code>. 作者他们的库: <a href="https://github.com/hypertrack/smart-scheduler-android" target="_blank" rel="external">smart-scheduler-android</a>就是用来有效地处理异步任务调度问题.</p>
-<h2 id="How-to-create-beautiful-text-stickers-for-Android"><a href="#How-to-create-beautiful-text-stickers-for-Android" class="headerlink" title="How to create beautiful text stickers for Android"></a><a href="https://medium.com/uptech-team/how-to-create-beautiful-text-stickers-for-android-10eeea0cee09#.11x8ar94q" target="_blank" rel="external">How to create beautiful text stickers for Android</a></h2><p>之前作者有一篇文章讲了如何创建Snapchat一样的图片stickers.</p>
-<p>本篇讲如何创建文字的stickers, 代码: <a href="https://github.com/uptechteam/MotionViews-Android" target="_blank" rel="external">MotionViews-Android</a>.</p>
-<h2 id="Elite-Worship"><a href="#Elite-Worship" class="headerlink" title="Elite Worship"></a><a href="http://blog.sqisland.com/2016/12/elite-worship.html" target="_blank" rel="external">Elite Worship</a></h2><p>Chiu-Ki Chan分享了一些她的看法, 关于精英崇拜, 和如何让社区更加平等, 鼓励每一个人都参与进来.</p>
-<h2 id="Product-Flavors-for-Android-Libraries"><a href="#Product-Flavors-for-Android-Libraries" class="headerlink" title="Product Flavors for Android Libraries"></a><a href="https://medium.com/@sahildave/product-flavors-for-android-library-d3b2d240fca2#.ravhhk30a" target="_blank" rel="external">Product Flavors for Android Libraries</a></h2><p>如何给Android Library加上不同的flavor使用.</p>
-<h2 id="Keyframes-Delivering-scalable-high-quality-animations"><a href="#Keyframes-Delivering-scalable-high-quality-animations" class="headerlink" title="Keyframes: Delivering scalable, high-quality animations"></a><a href="https://code.facebook.com/posts/354469174916519" target="_blank" rel="external">Keyframes: Delivering scalable, high-quality animations</a></h2><p>Facebook分享了一个库<a href="https://github.com/facebookincubator/Keyframes" target="_blank" rel="external">Keyframes</a>用来导出AE的动画, 并且在移动设备上播放它.</p>
-<h2 id="SQLDelight-Getting-Started"><a href="#SQLDelight-Getting-Started" class="headerlink" title="SQLDelight: Getting Started"></a><a href="https://medium.com/@tonyowen/sqldelight-getting-started-67054fe51306#.rske25ore" target="_blank" rel="external">SQLDelight: Getting Started</a></h2><p><a href="https://github.com/square/sqldelight" target="_blank" rel="external">sqldelight</a>是一个库, 可以用SQL语句来生成Java Model类.<br>SQLDelight也是一个Intellij插件.</p>
-<p>作者介绍了如何使用SQLDelight, 注意生成models需要结合AutoValue.</p>
-<h2 id="Your-ViewHolders-are-Dumb-Make-’em-Not-Dumb"><a href="#Your-ViewHolders-are-Dumb-Make-’em-Not-Dumb" class="headerlink" title="Your ViewHolders are Dumb. Make ’em Not Dumb"></a><a href="https://medium.com/@jonfhancock/your-viewholders-are-dumb-make-em-not-dumb-82e6f73f630c#.auaur0y3r" target="_blank" rel="external">Your ViewHolders are Dumb. Make ’em Not Dumb</a></h2><p>作者举例说明ViewHolder应该如何优化代码, 解放Adapter.</p>
-<h2 id="An-Introduction-to-Icon-Animation-Techniques"><a href="#An-Introduction-to-Icon-Animation-Techniques" class="headerlink" title="An Introduction to Icon Animation Techniques"></a><a href="http://www.androiddesignpatterns.com/2016/11/introduction-to-icon-animation-techniques.html" target="_blank" rel="external">An Introduction to Icon Animation Techniques</a></h2><p>如何创建漂亮的icon动画.</p>
-<h2 id="OkLog-2-0-—-improved-Android-network-logging"><a href="#OkLog-2-0-—-improved-Android-network-logging" class="headerlink" title="OkLog 2.0 — improved Android network logging"></a><a href="https://medium.com/@simonpercic/oklog-2-0-improved-android-network-logging-a72b2ffe4c66#.6h8w44eh8" target="_blank" rel="external">OkLog 2.0 — improved Android network logging</a></h2><p><a href="https://github.com/simonpercic/OkLog" target="_blank" rel="external">OkLog</a>是一个库, 可以在logcat中打印网络请求和响应, 点击进入页面查看, 本文介绍2.0版本的改进.</p>
-<h2 id="How-to-Build-an-Android-App-for-Fire-TV-Part-4"><a href="#How-to-Build-an-Android-App-for-Fire-TV-Part-4" class="headerlink" title="How to Build an Android App for Fire TV (Part 4)"></a><a href="https://medium.com/amazon-appstore/developing-for-the-living-room-how-to-build-an-android-app-for-fire-tv-part-4-cbe572a6f1e6#.zfg39casg" target="_blank" rel="external">How to Build an Android App for Fire TV (Part 4)</a></h2><p>本文是为Fire TV搭建一个Android App系列文章的第四篇.</p>
-<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="android-PageFlip"><a href="#android-PageFlip" class="headerlink" title="android-PageFlip"></a><a href="https://github.com/eschao/android-PageFlip" target="_blank" rel="external">android-PageFlip</a></h2><p>3D的翻页效果.</p>
-<h2 id="smart-scheduler-android"><a href="#smart-scheduler-android" class="headerlink" title="smart-scheduler-android"></a><a href="https://github.com/hypertrack/smart-scheduler-android" target="_blank" rel="external">smart-scheduler-android</a></h2><p>用于周期性和非周期性任务分发的工具类.</p>
-<h2 id="PageLoader"><a href="#PageLoader" class="headerlink" title="PageLoader"></a><a href="https://github.com/arieridwan8/pageloader" target="_blank" rel="external">PageLoader</a></h2><p>一个简单的可定制化的loading页面库.</p>
-<h2 id="fastlane-plugin-automated-test-emulator-run"><a href="#fastlane-plugin-automated-test-emulator-run" class="headerlink" title="fastlane-plugin-automated-test-emulator-run"></a><a href="https://github.com/AzimoLabs/fastlane-plugin-automated-test-emulator-run" target="_blank" rel="external">fastlane-plugin-automated-test-emulator-run</a></h2><p>fastlane插件, 用于启动模拟器进行自动化测试.</p>
-<h2 id="Keyframes"><a href="#Keyframes" class="headerlink" title="Keyframes"></a><a href="https://github.com/facebookincubator/Keyframes" target="_blank" rel="external">Keyframes</a></h2><p>导出AE动画并在移动设备上播放的库.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-234&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-234&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #234&quot;&gt;&lt;/a&gt;Android Weekly Issue #234&lt;/h1&gt;&lt;p&gt;December 4th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-234&quot;&gt;Android Weekly Issue #234&lt;/a&gt;&lt;br&gt;本期内容包括: ConstraintLayout的使用; React Native教程; fastlane管理模拟器; Android中的任务调度; 文字sticker的实现; 给Android library加flavor; 更好的关键帧动画; SQLDelight的使用; icon Animation; OkLog的使用等等.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-      <category term="React Native" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/React-Native/"/>
-    
-      <category term="Java" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/React-Native/Java/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
-      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
-      <category term="React Native" scheme="http://mengdd.github.io/tags/React-Native/"/>
-    
-      <category term="fastlane" scheme="http://mengdd.github.io/tags/fastlane/"/>
-    
-      <category term="Effective Java" scheme="http://mengdd.github.io/tags/Effective-Java/"/>
-    
-      <category term="Sticker" scheme="http://mengdd.github.io/tags/Sticker/"/>
-    
-      <category term="Flavor" scheme="http://mengdd.github.io/tags/Flavor/"/>
-    
-      <category term="SQLDelight" scheme="http://mengdd.github.io/tags/SQLDelight/"/>
-    
-      <category term="OkLog" scheme="http://mengdd.github.io/tags/OkLog/"/>
     
   </entry>
   
