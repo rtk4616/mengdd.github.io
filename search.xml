@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title><![CDATA[Android Weekly Notes Issue 252]]></title>
+      <url>http://mengdd.github.io/Android/Android-Weekly/2017/04/13/android-weekly-notes-issue-252/</url>
+      <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-252"><a href="#Android-Weekly-Issue-252" class="headerlink" title="Android Weekly Issue #252"></a>Android Weekly Issue #252</h1><p>April 9th, 2017<br><a href="http://androidweekly.net/issues/issue-252" target="_blank" rel="external">Android Weekly Issue #252</a>.<br>本期内容: 变化的渐变背景实现; Kotlin 1.1特性; Parcelable数据处理; RecyclerView动画实现; MVI模式的实现; 远程team的合作; 面向对象的原则: Law of Demeter; 用JUnit 5和Kotlin结合写测试.<br>(本期内容有点水, 不知道是我的状态不好还是Weekly的状态不好).<br><a id="more"></a></p>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Make-a-moving-Gradient-Background-in-Android"><a href="#Make-a-moving-Gradient-Background-in-Android" class="headerlink" title="Make a moving Gradient Background in Android"></a><a href="http://thetechnocafe.com/make-a-moving-gradient-background-in-android/" target="_blank" rel="external">Make a moving Gradient Background in Android</a></h2><p>用AnimationList做一个不断改变的渐变色背景. </p>
+<p>用根节点是&lt;<animation-list>的drawable作为View的背景:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">animation-list</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line"> </div><div class="line">    <span class="tag">&lt;<span class="name">item</span></span></div><div class="line">        <span class="attr">android:drawable</span>=<span class="string">"@drawable/gradient_blue"</span></div><div class="line">        <span class="attr">android:duration</span>=<span class="string">"5000"</span>/&gt;</div><div class="line"> </div><div class="line">    <span class="tag">&lt;<span class="name">item</span></span></div><div class="line">        <span class="attr">android:drawable</span>=<span class="string">"@drawable/gradient_red"</span></div><div class="line">        <span class="attr">android:duration</span>=<span class="string">"5000"</span>/&gt;</div><div class="line"> </div><div class="line">    <span class="tag">&lt;<span class="name">item</span></span></div><div class="line">        <span class="attr">android:drawable</span>=<span class="string">"@drawable/gradient_teal"</span></div><div class="line">        <span class="attr">android:duration</span>=<span class="string">"5000"</span>/&gt;</div><div class="line"> </div><div class="line">    <span class="tag">&lt;<span class="name">item</span></span></div><div class="line">        <span class="attr">android:drawable</span>=<span class="string">"@drawable/gradient_purple"</span></div><div class="line">        <span class="attr">android:duration</span>=<span class="string">"5000"</span>/&gt;</div><div class="line"> </div><div class="line">    <span class="tag">&lt;<span class="name">item</span></span></div><div class="line">        <span class="attr">android:drawable</span>=<span class="string">"@drawable/gradient_indigo"</span></div><div class="line">        <span class="attr">android:duration</span>=<span class="string">"5000"</span>/&gt;</div><div class="line"> </div><div class="line"><span class="tag">&lt;/<span class="name">animation-list</span>&gt;</span></div></pre></td></tr></table></figure></animation-list></p>
+<p>其中的item是不同的渐变色drawable, 比如:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">shape</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line"> </div><div class="line">    <span class="tag">&lt;<span class="name">gradient</span></span></div><div class="line">        <span class="attr">android:angle</span>=<span class="string">"135"</span></div><div class="line">        <span class="attr">android:endColor</span>=<span class="string">"#34e89e"</span></div><div class="line">        <span class="attr">android:startColor</span>=<span class="string">"#0f3443"</span> /&gt;</div><div class="line"> </div><div class="line"><span class="tag">&lt;/<span class="name">shape</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在Java代码中获取, 然后start它即可:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linear_layout);</div><div class="line"> </div><div class="line">AnimationDrawable animationDrawable = (AnimationDrawable) linearLayout.getBackground();</div><div class="line"> </div><div class="line">animationDrawable.setEnterFadeDuration(<span class="number">2500</span>);</div><div class="line">animationDrawable.setExitFadeDuration(<span class="number">5000</span>);</div><div class="line"> </div><div class="line">animationDrawable.start();</div></pre></td></tr></table></figure></p>
+<p>另外, 作者推荐一个发现渐变色组合的网站: <a href="https://uigradients.com/#Pinky" target="_blank" rel="external">UiGradients</a>.</p>
+<h2 id="Kotlin-1-1-is-also-for-Android-Developers"><a href="#Kotlin-1-1-is-also-for-Android-Developers" class="headerlink" title="Kotlin 1.1 is also for Android Developers"></a><a href="https://blog.jetbrains.com/kotlin/2017/04/kotlin-1-1-is-also-for-android-developers/" target="_blank" rel="external">Kotlin 1.1 is also for Android Developers</a></h2><p>Kotlin 1.1带来的一些很酷的features.</p>
+<h2 id="Proper-Parcelable-Testing"><a href="#Proper-Parcelable-Testing" class="headerlink" title="Proper Parcelable Testing"></a><a href="http://blog.danlew.net/2017/04/03/proper-parcelable-testing/amp/" target="_blank" rel="external">Proper Parcelable Testing</a></h2><p>作者写了一个继承<code>Parcelable</code>接口的类, 然后把它存在savedInstanceState的Bundle里, 本文是他使用时的一些小建议.</p>
+<h2 id="RecyclerView-interaction-with-Animated-Markers-Part-3"><a href="#RecyclerView-interaction-with-Animated-Markers-Part-3" class="headerlink" title="RecyclerView interaction with Animated Markers - Part 3"></a><a href="https://www.thedroidsonroids.com/blog/workcation-app-part-3-recyclerview-interaction-with-animated-markers/" target="_blank" rel="external">RecyclerView interaction with Animated Markers - Part 3</a></h2><p>动画实现: 当滚动列表的时候, 对应的Marker在地图上突出显示.</p>
+<h2 id="My-take-on-Model-View-Intent-MVI-—-Part-1-State-Renderer"><a href="#My-take-on-Model-View-Intent-MVI-—-Part-1-State-Renderer" class="headerlink" title="My take on Model View Intent (MVI) — Part 1: State Renderer"></a><a href="https://hackernoon.com/model-view-intent-mvi-part-1-state-renderer-187e270db15c" target="_blank" rel="external">My take on Model View Intent (MVI) — Part 1: State Renderer</a></h2><p>作者很推荐MVI模式, 讲了自己的应用是如何实现这种模式的.</p>
+<p>简要说了用Espresso对本程序进行自动化UI测试的方法.</p>
+<h2 id="Effective-Remote-Teams"><a href="#Effective-Remote-Teams" class="headerlink" title="Effective Remote Teams"></a><a href="http://blog.viacom.tech/2017/04/07/effective-remote-teams/" target="_blank" rel="external">Effective Remote Teams</a></h2><p>remote team如何工作.</p>
+<h2 id="Object-Oriented-Tricks-2-Law-of-Demeter"><a href="#Object-Oriented-Tricks-2-Law-of-Demeter" class="headerlink" title="Object Oriented Tricks: #2 Law of Demeter"></a><a href="https://hackernoon.com/object-oriented-tricks-2-law-of-demeter-4ecc9becad85" target="_blank" rel="external">Object Oriented Tricks: #2 Law of Demeter</a></h2><p>面向对象编程Tricks系列之2: Law of Demeter, 德米特法则. </p>
+<p>每一个单元应该尽量少地知道其他单元的业务, 仅知道和自己紧密联系的单元业务. <strong>Tell Don’t Ask.</strong></p>
+<h2 id="JUnit-5-Kotlin"><a href="#JUnit-5-Kotlin" class="headerlink" title="JUnit 5: Kotlin"></a><a href="https://blog.stylingandroid.com/junit-5-kotlin/" target="_blank" rel="external">JUnit 5: Kotlin</a></h2><p>如何结合Kotlin和JUnit 5来写测试.</p>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="spruce-android"><a href="#spruce-android" class="headerlink" title="spruce-android"></a><a href="https://github.com/willowtreeapps/spruce-android" target="_blank" rel="external">spruce-android</a></h2><p>一个轻量级的动画库.</p>
+<h2 id="Traceur"><a href="#Traceur" class="headerlink" title="Traceur"></a><a href="https://github.com/T-Spoon/Traceur" target="_blank" rel="external">Traceur</a></h2><p>一个RxJava2的debug工具, 可以打出异步调用的最初崩溃信息.</p>
+<h2 id="scratch"><a href="#scratch" class="headerlink" title="scratch"></a><a href="https://github.com/willowtreeapps/scratch" target="_blank" rel="external">scratch</a></h2><p>清除用户数据然后重启应用.</p>
+<h2 id="what-the-thing"><a href="#what-the-thing" class="headerlink" title="what_the_thing"></a><a href="https://github.com/vigzmv/what_the_thing" target="_blank" rel="external">what_the_thing</a></h2><p>拿着相机对着东西, 然后学习如何用不同的语言来说它们的一个app, 用React Native实现.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+            <category> Android Weekly </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> Android Weekly </tag>
+            
+            <tag> Kotlin </tag>
+            
+            <tag> Animation </tag>
+            
+            <tag> RecyclerView </tag>
+            
+            <tag> MVI </tag>
+            
+            <tag> JUnit 5 </tag>
+            
+            <tag> AnimationList </tag>
+            
+            <tag> Parcelable </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[网络使用和电池消耗 原因和改进]]></title>
       <url>http://mengdd.github.io/Android/2017/04/11/network-usage-and-battery-consumption/</url>
       <content type="html"><![CDATA[<h1 id="网络使用和电池消耗-原因和改进"><a href="#网络使用和电池消耗-原因和改进" class="headerlink" title="网络使用和电池消耗 原因和改进"></a>网络使用和电池消耗 原因和改进</h1><p>你的app发送的网络请求是电量消耗的主要原因, 本文先教你如何使用IDE工具来分类分析应用中的网络请求, 之后按照三种不同的网络请求分类, 分别给出优化建议, 减少电量消耗.</p>
@@ -448,9 +505,9 @@
             
             <tag> RxJava </tag>
             
-            <tag> ConstraintLayout </tag>
-            
             <tag> Fingerprint </tag>
+            
+            <tag> ConstraintLayout </tag>
             
             <tag> TensorFlow </tag>
             
@@ -458,11 +515,9 @@
             
             <tag> MVI </tag>
             
-            <tag> Transition </tag>
-            
-            <tag> Network </tag>
-            
             <tag> ClassyShark </tag>
+            
+            <tag> Transition </tag>
             
             <tag> ViewSwitcher </tag>
             
@@ -475,6 +530,8 @@
             <tag> OpenGL </tag>
             
             <tag> JBox2D </tag>
+            
+            <tag> Network </tag>
             
             <tag> Etag </tag>
             
@@ -704,9 +761,9 @@
             
             <tag> MVI </tag>
             
-            <tag> FlexboxLayout </tag>
-            
             <tag> Offline </tag>
+            
+            <tag> FlexboxLayout </tag>
             
             <tag> Version Name </tag>
             
@@ -784,9 +841,9 @@
             
             <tag> FileProvider </tag>
             
-            <tag> Shared Element </tag>
-            
             <tag> FlexboxLayout </tag>
+            
+            <tag> Shared Element </tag>
             
             <tag> In-App Billing </tag>
             
@@ -1144,13 +1201,13 @@
             
             <tag> Testing </tag>
             
-            <tag> FileProvider </tag>
-            
             <tag> ClassyShark </tag>
             
             <tag> Permission </tag>
             
             <tag> Privacy Policy </tag>
+            
+            <tag> FileProvider </tag>
             
         </tags>
         
@@ -1225,15 +1282,15 @@
             
             <tag> RxJava </tag>
             
+            <tag> Nougat </tag>
+            
             <tag> Animation </tag>
+            
+            <tag> Android 7 </tag>
             
             <tag> RecyclerView </tag>
             
             <tag> ConstraintLayout </tag>
-            
-            <tag> Nougat </tag>
-            
-            <tag> Android 7 </tag>
             
             <tag> Testing </tag>
             
@@ -1422,8 +1479,6 @@
             
             <tag> MVC </tag>
             
-            <tag> Color </tag>
-            
             <tag> Design Patterns </tag>
             
             <tag> ObjectBox </tag>
@@ -1435,6 +1490,8 @@
             <tag> Model-View-Intent </tag>
             
             <tag> Gradient </tag>
+            
+            <tag> Color </tag>
             
         </tags>
         
@@ -1540,9 +1597,9 @@
             
             <tag> RxJava2 </tag>
             
-            <tag> Testing </tag>
-            
             <tag> APK </tag>
+            
+            <tag> Testing </tag>
             
             <tag> Master/Detail </tag>
             
@@ -1976,9 +2033,9 @@
             
             <tag> ConstraintLayout </tag>
             
-            <tag> Android Things </tag>
-            
             <tag> Java </tag>
+            
+            <tag> Android Things </tag>
             
             <tag> ContentProvider </tag>
             
@@ -2069,15 +2126,17 @@
             
             <tag> Security </tag>
             
-            <tag> Android Studio </tag>
-            
             <tag> Design </tag>
             
-            <tag> IoT </tag>
+            <tag> Android Studio </tag>
             
             <tag> Android Things </tag>
             
+            <tag> Color </tag>
+            
             <tag> FileProvider </tag>
+            
+            <tag> IoT </tag>
             
             <tag> IDE </tag>
             
@@ -2088,8 +2147,6 @@
             <tag> SmartLock </tag>
             
             <tag> NDK </tag>
-            
-            <tag> Color </tag>
             
         </tags>
         
@@ -2203,17 +2260,17 @@
             
             <tag> AnimatedVectorDrawable </tag>
             
+            <tag> Test </tag>
+            
+            <tag> Nougat </tag>
+            
             <tag> Animation </tag>
+            
+            <tag> Android 7 </tag>
             
             <tag> RecyclerView </tag>
             
             <tag> Android Studio </tag>
-            
-            <tag> Nougat </tag>
-            
-            <tag> Android 7 </tag>
-            
-            <tag> Test </tag>
             
             <tag> Custom View </tag>
             
@@ -2432,8 +2489,6 @@
             
             <tag> Mockito </tag>
             
-            <tag> Custom View </tag>
-            
             <tag> Java </tag>
             
             <tag> Terminal </tag>
@@ -2441,6 +2496,8 @@
             <tag> Android 7.1 </tag>
             
             <tag> App Shortcuts </tag>
+            
+            <tag> Custom View </tag>
             
             <tag> Remote Config </tag>
             
@@ -2647,11 +2704,11 @@
             
             <tag> RxJava </tag>
             
+            <tag> RxJava2 </tag>
+            
             <tag> Reductor </tag>
             
             <tag> Redux </tag>
-            
-            <tag> RxJava2 </tag>
             
             <tag> MVVM </tag>
             
@@ -2756,17 +2813,15 @@
             
             <tag> MVP </tag>
             
-            <tag> Android Studio </tag>
-            
             <tag> Tools </tag>
             
             <tag> Memory Leak </tag>
             
+            <tag> Android Studio </tag>
+            
             <tag> BottomNavigationView </tag>
             
             <tag> MVVM </tag>
-            
-            <tag> Audio </tag>
             
             <tag> Passive View </tag>
             
@@ -2781,6 +2836,8 @@
             <tag> Subcomponent </tag>
             
             <tag> Reference </tag>
+            
+            <tag> Audio </tag>
             
             <tag> Media </tag>
             
@@ -2848,11 +2905,11 @@
             
             <tag> MVP </tag>
             
-            <tag> ConstraintLayout </tag>
-            
             <tag> RxJava2 </tag>
             
             <tag> Mockito </tag>
+            
+            <tag> ConstraintLayout </tag>
             
             <tag> Async-Await </tag>
             
@@ -3071,19 +3128,19 @@
             
             <tag> RxJava </tag>
             
+            <tag> Test </tag>
+            
             <tag> Mobile Vision </tag>
             
             <tag> ConstraintLayout </tag>
             
-            <tag> Test </tag>
-            
             <tag> Dagger </tag>
+            
+            <tag> Audio </tag>
             
             <tag> Pury </tag>
             
             <tag> Multiselection </tag>
-            
-            <tag> Audio </tag>
             
             <tag> Barcode Detection </tag>
             
@@ -3582,13 +3639,13 @@
             
             <tag> Espresso </tag>
             
+            <tag> Test </tag>
+            
             <tag> Nougat </tag>
             
             <tag> Android 7 </tag>
             
             <tag> Shortcuts </tag>
-            
-            <tag> Test </tag>
             
             <tag> Alarm </tag>
             
@@ -3842,13 +3899,13 @@
         
         <tags>
             
-            <tag> Content Provider </tag>
-            
             <tag> RxJava </tag>
             
             <tag> MVP </tag>
             
             <tag> Data Binding </tag>
+            
+            <tag> Content Provider </tag>
             
             <tag> MVVM </tag>
             
@@ -3997,6 +4054,8 @@
             
             <tag> AutoValue </tag>
             
+            <tag> Nougat </tag>
+            
             <tag> Mobile Vision </tag>
             
             <tag> Face Detection </tag>
@@ -4018,8 +4077,6 @@
             <tag> Android Studio </tag>
             
             <tag> ConstraintLayout </tag>
-            
-            <tag> Nougat </tag>
             
             <tag> Notification </tag>
             
@@ -4267,13 +4324,13 @@
             
             <tag> Firebase </tag>
             
+            <tag> Animation </tag>
+            
             <tag> Android 7.0 </tag>
             
             <tag> Quick Settings </tag>
             
             <tag> Shared-Element Transtion </tag>
-            
-            <tag> Animation </tag>
             
             <tag> ORM </tag>
             
@@ -4523,11 +4580,11 @@
             
             <tag> Annotation </tag>
             
+            <tag> Memory Leak </tag>
+            
             <tag> Reductor </tag>
             
             <tag> Redux </tag>
-            
-            <tag> Memory Leak </tag>
             
             <tag> pre-launch </tag>
             
@@ -4730,13 +4787,13 @@
             
             <tag> Accessibility </tag>
             
-            <tag> Nougat </tag>
-            
             <tag> Test </tag>
             
             <tag> Fingerprint </tag>
             
             <tag> RxJava2 </tag>
+            
+            <tag> Nougat </tag>
             
             <tag> GCM </tag>
             
