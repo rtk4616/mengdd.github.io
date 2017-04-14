@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-04-13T08:14:06.000Z</updated>
+  <updated>2017-04-14T09:31:27.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,94 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>20+个很棒的Android开源项目</title>
+    <link href="http://mengdd.github.io/Android/Open-Source/2017/04/14/20-awesome-open-source-android-apps/"/>
+    <id>http://mengdd.github.io/Android/Open-Source/2017/04/14/20-awesome-open-source-android-apps/</id>
+    <published>2017-04-14T09:09:19.000Z</published>
+    <updated>2017-04-14T09:31:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="20-个很棒的Android开源项目"><a href="#20-个很棒的Android开源项目" class="headerlink" title="20+个很棒的Android开源项目"></a>20+个很棒的Android开源项目</h1><p>本文摘自文章: <a href="https://blog.aritraroy.in/20-awesome-open-source-android-apps-to-boost-your-development-skills-b62832cf0fa4" target="_blank" rel="external">20+ Awesome Open-Source Android Apps To Boost Your Development Skills</a>.</p>
+<p>考虑到原文在墙外, 故分享在此, 希望让更多开发者看到.</p>
+<a id="more"></a>
+<h2 id="LeafPic"><a href="#LeafPic" class="headerlink" title="LeafPic"></a><a href="https://github.com/HoraApps/LeafPic" target="_blank" rel="external">LeafPic</a></h2><p>难度: 初级.<br><img src="/images/open-source-leafpic.png" alt="Open Source LeafPic"></p>
+<p>图片和视频的Gallery app.<br>实现了动态主题.</p>
+<h2 id="Simple-Calendar"><a href="#Simple-Calendar" class="headerlink" title="Simple Calendar"></a><a href="https://github.com/SimpleMobileTools/Simple-Calendar" target="_blank" rel="external">Simple Calendar</a></h2><p>难度: 初级.</p>
+<p>一个简单好用的Calendar应用, 完全用Kotlin实现.</p>
+<p>另外可以从这个项目学习一下自定义的桌面widgets.</p>
+<h2 id="Amaze-File-Manager"><a href="#Amaze-File-Manager" class="headerlink" title="Amaze File Manager"></a><a href="https://github.com/arpitkh96/AmazeFileManager" target="_blank" rel="external">Amaze File Manager</a></h2><p>难度: 中级.<br><img src="/images/open-source-amaze-file-manager.jpeg" alt="Open Source Amaze File Manager"></p>
+<p>一个文件管理器.</p>
+<p>可以学习SD卡上的文件操作.</p>
+<p>但不建议学习这个项目中的编码标准.</p>
+<h2 id="Easy-Sound-Recorder"><a href="#Easy-Sound-Recorder" class="headerlink" title="Easy Sound Recorder"></a><a href="https://github.com/dkim0419/SoundRecorder" target="_blank" rel="external">Easy Sound Recorder</a></h2><p>难度: 初级.<br><img src="/images/open-source-easy-sound-recoder.png" alt="Open Source Easy Sound Recoder"></p>
+<p>一个简单的录音程序, 遵循Material Design.</p>
+<h2 id="MLManager"><a href="#MLManager" class="headerlink" title="MLManager"></a><a href="https://github.com/javiersantos/MLManager" target="_blank" rel="external">MLManager</a></h2><p>难度: 初级.</p>
+<p>一个App管理器, 可以学习如何得到所有安装应用的详细信息, 提取APK, 卸载程序等.</p>
+<h2 id="PhotoAffix"><a href="#PhotoAffix" class="headerlink" title="PhotoAffix"></a><a href="https://github.com/afollestad/photo-affix" target="_blank" rel="external">PhotoAffix</a></h2><p>难度: 初级.</p>
+<p>一个简单的应用, 可以水平或竖直地拼接照片.</p>
+<p>可以学习创建自定义View.</p>
+<h2 id="MovieGuide"><a href="#MovieGuide" class="headerlink" title="MovieGuide"></a><a href="https://github.com/esoxjem/MovieGuide" target="_blank" rel="external">MovieGuide</a></h2><p>难度: 中级.<br><img src="/images/open-source-movie-guide.png" alt="Open Source MovieGuide"></p>
+<p>一个流行电影浏览应用.<br>使用了: MVP, Clean Architecture, RxJava, Dagger2.</p>
+<h2 id="AnExplorer"><a href="#AnExplorer" class="headerlink" title="AnExplorer"></a><a href="https://github.com/1hakr/AnExplorer" target="_blank" rel="external">AnExplorer</a></h2><p>难度: 中级.</p>
+<p>一个轻量级的文件管理器, 为手机和平板设计.</p>
+<p>可以学到很多文件处理, 权限管理, loaders, 自定义View等相关的东西.</p>
+<h2 id="Minimal-ToDo"><a href="#Minimal-ToDo" class="headerlink" title="Minimal ToDo"></a><a href="https://github.com/avjinder/Minimal-Todo" target="_blank" rel="external">Minimal ToDo</a></h2><p>难度: 初级.</p>
+<p>一个Material Design的To-Do应用.<br>可以学到一些Android开发的基本知识, 适合初学者学习.</p>
+<p>但不要学习里面的包结构和代码规范, 这些不太标准.</p>
+<h2 id="Timber"><a href="#Timber" class="headerlink" title="Timber"></a><a href="https://github.com/naman14/Timber" target="_blank" rel="external">Timber</a></h2><p>难度: 高级.<br><img src="/images/open-source-timber.png" alt="Open Source Timber"></p>
+<p>一个很漂亮的, 功能完善的音乐播放器.</p>
+<p>这个项目很大, 所以对初学者来说想要一下把握全部的内容可能会有点困难, 但是对中高级开发者来说看一看应该会觉得挺有意思.</p>
+<h2 id="AnotherMonitor"><a href="#AnotherMonitor" class="headerlink" title="AnotherMonitor"></a><a href="https://github.com/AntonioRedondo/AnotherMonitor" target="_blank" rel="external">AnotherMonitor</a></h2><p>难度: 中级.<br><img src="/images/open-source-another-monitor.png" alt="Open Source AnotherMonitor"></p>
+<p>如果你想要学监控Android进程, 内存占用, CPU使用以及与这些相关的东西, 这个项目很适合.</p>
+<p>这个项目很小也很好理解, 但是编码和架构设计不是很好, 不应该遵循.</p>
+<h2 id="InstaMaterial"><a href="#InstaMaterial" class="headerlink" title="InstaMaterial"></a><a href="https://github.com/frogermcs/InstaMaterial" target="_blank" rel="external">InstaMaterial</a></h2><p>难度: 初级.</p>
+<p>这是一个学习Material Design的好项目. 这个项目复制了一些Instagram的功能, 结合了Material Design来实现.</p>
+<p>这里有很多Material Design的元素, 动画和转场.</p>
+<p>项目简单易懂, 适合各个阶段的学习者.</p>
+<h2 id="CoCoin"><a href="#CoCoin" class="headerlink" title="CoCoin"></a><a href="https://github.com/Nightonke/CoCoin" target="_blank" rel="external">CoCoin</a></h2><p>难度: 简单.<br><img src="/images/open-source-CoCoin.png" alt="Open Source CoCoin"></p>
+<p>一个详尽的个人财务记账应用, 界面干净漂亮.</p>
+<p>如果你想学习如何处理大量用户数据, 根据这些数据绘制各类图表, 写一些很酷的自定义View, 那么这个开源项目很适合你.</p>
+<h2 id="OmniNotes"><a href="#OmniNotes" class="headerlink" title="OmniNotes"></a><a href="https://github.com/federicoiosue/Omni-Notes" target="_blank" rel="external">OmniNotes</a></h2><p>难度: 中级.</p>
+<p>如果你想建一个跟Evernote类似的功能强大的笔记应用, 那么这个项目可以看看.</p>
+<p>这个项目很大, 有很多功能比如分享和搜索笔记, 上传图片, 视频, 音频, 在笔记中绘制草图, 添加提醒等. </p>
+<h2 id="Clip-Stack"><a href="#Clip-Stack" class="headerlink" title="Clip Stack"></a><a href="https://github.com/heruoxin/Clip-Stack" target="_blank" rel="external">Clip Stack</a></h2><p>难度: 初级.</p>
+<p>一个简单的剪贴板管理器.<br>项目很小, 简单易懂.</p>
+<p>但是包结构和代码架构, 命名及代码规范不推荐学习. 并且这个项目已经不再维护了.</p>
+<h2 id="Super-Clean-Master"><a href="#Super-Clean-Master" class="headerlink" title="Super Clean Master"></a><a href="https://github.com/joyoyao/superCleanMaster" target="_blank" rel="external">Super Clean Master</a></h2><p>难度: 高级.<br><img src="/images/open-source-super-clean-master.jpeg" alt="Open Source Super Clean Master"></p>
+<p>一键清理开源版, 包括内存加速, 缓存清理, 自启管理, 软件管理等.</p>
+<p>代码很优雅, 但是项目有一点复杂, 如果你想弄明白所有的事情, 得多花一点时间.</p>
+<h2 id="Travel-Mate"><a href="#Travel-Mate" class="headerlink" title="Travel Mate"></a><a href="https://github.com/Swati4star/Travel-Mate" target="_blank" rel="external">Travel Mate</a></h2><p>难度: 中级.</p>
+<p>一个旅游导览类应用, 依赖于位置和地图.<br>代码质量尚未达到标准, 但是对初级和中级开发者来说还是有很多值得学习的地方.</p>
+<h2 id="KISS"><a href="#KISS" class="headerlink" title="KISS"></a><a href="https://github.com/Neamar/KISS" target="_blank" rel="external">KISS</a></h2><p>难度: 中级.<br><img src="/images/open-source-KISS.png" alt="Open Source KISS"></p>
+<p>一个简单快速轻量级的launcher应用. 可以从中学习一些比较酷的features.</p>
+<p>项目很小很简单.</p>
+<h2 id="Turbo-Editor"><a href="#Turbo-Editor" class="headerlink" title="Turbo Editor"></a><a href="https://github.com/vmihalachi/turbo-editor" target="_blank" rel="external">Turbo Editor</a></h2><p>难度: 中级.<br><img src="/images/open-source-turbo-editor.png" alt="Open Source Turbo Editor"></p>
+<p>一个简单但强大的文字编辑应用. 你也可以使用这个编辑器来写代码, 对不同的语言支持代码高亮.</p>
+<p>从这个项目你可以学到如何做一个稳定健壮的文字(或代码)编辑器.</p>
+<h2 id="Wally"><a href="#Wally" class="headerlink" title="Wally"></a><a href="https://github.com/Musenkishi/wally" target="_blank" rel="external">Wally</a></h2><p>难度: 初级.</p>
+<p>一个简单快速的壁纸应用.<br>对于初学者来说可以学到很多东西.</p>
+<p>这个应用的架构很好, 使得这个应用易于维护和扩展. 这个应用的目的虽然简单, 但是实现目的的方法很好.</p>
+<h2 id="Pedometer"><a href="#Pedometer" class="headerlink" title="Pedometer"></a><a href="https://github.com/j4velin/Pedometer" target="_blank" rel="external">Pedometer</a></h2><p>难度: 初级.<br><img src="/images/open-source-pedometer.png" alt="Open Source Pedometer"></p>
+<p>一个简单轻量级的计步器, 使用硬件传感器来计算步数, 同时考虑到了电量使用问题, 最小化电量消耗.</p>
+<p>对于学习计步器实现来说是一个好项目, 但是代码标准和设计架构可能不够好.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;20-个很棒的Android开源项目&quot;&gt;&lt;a href=&quot;#20-个很棒的Android开源项目&quot; class=&quot;headerlink&quot; title=&quot;20+个很棒的Android开源项目&quot;&gt;&lt;/a&gt;20+个很棒的Android开源项目&lt;/h1&gt;&lt;p&gt;本文摘自文章: &lt;a href=&quot;https://blog.aritraroy.in/20-awesome-open-source-android-apps-to-boost-your-development-skills-b62832cf0fa4&quot;&gt;20+ Awesome Open-Source Android Apps To Boost Your Development Skills&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;考虑到原文在墙外, 故分享在此, 希望让更多开发者看到.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Open Source" scheme="http://mengdd.github.io/categories/Android/Open-Source/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 252</title>
@@ -255,11 +343,11 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Lambda" scheme="http://mengdd.github.io/tags/Lambda/"/>
+    
+      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
@@ -537,13 +625,13 @@
     
       <category term="TensorFlow" scheme="http://mengdd.github.io/tags/TensorFlow/"/>
     
-      <category term="OkHttp" scheme="http://mengdd.github.io/tags/OkHttp/"/>
-    
       <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
     
       <category term="ClassyShark" scheme="http://mengdd.github.io/tags/ClassyShark/"/>
     
       <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
+    
+      <category term="OkHttp" scheme="http://mengdd.github.io/tags/OkHttp/"/>
     
       <category term="ViewSwitcher" scheme="http://mengdd.github.io/tags/ViewSwitcher/"/>
     
@@ -663,21 +751,21 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
+    
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
-      <category term="Realm" scheme="http://mengdd.github.io/tags/Realm/"/>
-    
       <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
+    
+      <category term="Realm" scheme="http://mengdd.github.io/tags/Realm/"/>
     
       <category term="Crash" scheme="http://mengdd.github.io/tags/Crash/"/>
     
@@ -1149,9 +1237,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
@@ -1246,13 +1334,13 @@
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
+      <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
+    
       <category term="ClassyShark" scheme="http://mengdd.github.io/tags/ClassyShark/"/>
     
       <category term="Permission" scheme="http://mengdd.github.io/tags/Permission/"/>
     
       <category term="Privacy Policy" scheme="http://mengdd.github.io/tags/Privacy-Policy/"/>
-    
-      <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
   </entry>
   
@@ -1329,15 +1417,15 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
-      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
+    
+      <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -1530,6 +1618,8 @@
     
       <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
     
+      <category term="Color" scheme="http://mengdd.github.io/tags/Color/"/>
+    
       <category term="Design Patterns" scheme="http://mengdd.github.io/tags/Design-Patterns/"/>
     
       <category term="ObjectBox" scheme="http://mengdd.github.io/tags/ObjectBox/"/>
@@ -1541,8 +1631,6 @@
       <category term="Model-View-Intent" scheme="http://mengdd.github.io/tags/Model-View-Intent/"/>
     
       <category term="Gradient" scheme="http://mengdd.github.io/tags/Gradient/"/>
-    
-      <category term="Color" scheme="http://mengdd.github.io/tags/Color/"/>
     
   </entry>
   
@@ -1648,9 +1736,9 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
       <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
+    
+      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -1743,9 +1831,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
@@ -1904,11 +1992,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
+      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
+    
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
-      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
     
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
     
@@ -2091,9 +2179,9 @@
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
-      <category term="ExoPlayer" scheme="http://mengdd.github.io/tags/ExoPlayer/"/>
-    
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
+    
+      <category term="ExoPlayer" scheme="http://mengdd.github.io/tags/ExoPlayer/"/>
     
       <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
     
@@ -2104,115 +2192,6 @@
       <category term="Architecture" scheme="http://mengdd.github.io/tags/Architecture/"/>
     
       <category term="Concurrency" scheme="http://mengdd.github.io/tags/Concurrency/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 236</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/Design/2016/12/21/android-weekly-notes-issue-236/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/Design/2016/12/21/android-weekly-notes-issue-236/</id>
-    <published>2016-12-21T02:27:39.000Z</published>
-    <updated>2016-12-21T02:42:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-236"><a href="#Android-Weekly-Issue-236" class="headerlink" title="Android Weekly Issue #236"></a>Android Weekly Issue #236</h1><p>December 18th, 2016<br><a href="http://androidweekly.net/issues/issue-236" target="_blank" rel="external">Android Weekly Issue #236</a></p>
-<p>本期内容包括: Google的物联网平台Android Things; FileProvider; Android Studio的Layout Preview使用; Retrofit2使用; Google Sign-In和SmartLock; 把敏感信息放入NDK的解决方式.</p>
-<p>设计部分讨论了调色板的灵感来源和几个开发app的时候应该注意的问题.</p>
-<a id="more"></a>
-<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Getting-started-with-Android-Things"><a href="#Getting-started-with-Android-Things" class="headerlink" title="Getting started with Android Things"></a><a href="https://medium.com/@alexsimo/getting-started-with-android-things-b73be3295b42#.c1arra4ps" target="_blank" rel="external">Getting started with Android Things</a></h2><p>Internet of Things (物联网, IoT), 是互联网, 传统电信网等咨询承载体, 让所有能行使独立功能的物品之间实现互联互通的网络.</p>
-<p>2016年12月, Google发布了Android Things的开发者预览版, 这是一个专门为IoT设备定制的Android系统.</p>
-<p>本篇文章一步一步地教你如何写一个IoT的基本程序, 跑在Raspberry Pi 3 Model B上.</p>
-<h2 id="FileProvider"><a href="#FileProvider" class="headerlink" title="FileProvider"></a><a href="https://blog.stylingandroid.com/fileprovider/" target="_blank" rel="external">FileProvider</a></h2><p>上次我们提到了用<code>DownloadManager</code>下载的东西可以和其他应用分享, 那么如果我们下载的时候没有用<code>DownloadManager</code>呢? </p>
-<p>比较常见的情况是我们的应用需要分享内容到其他应用, 或者是文件的类型是我们应用不能自己处理的, 需要找一个支持这种文件类型的其他应用来帮我们打开它.</p>
-<p>怎么解决呢? 答案是用<code>FileProvider</code>.</p>
-<p>上一期有一篇文章也说过Android 7开始废弃了”file://“, 解决方案就是用<code>FileProvider</code>, 所以实现是一样的, 这里就不重复了.</p>
-<h2 id="Working-with-the-Layout-Preview"><a href="#Working-with-the-Layout-Preview" class="headerlink" title="Working with the Layout Preview"></a><a href="https://www.novoda.com/blog/layout-preview-101/" target="_blank" rel="external">Working with the Layout Preview</a></h2><p>Layout Preview向你展示了你的xml将如何在设备上显示. 你可以用它查看布局在不同的配置下如何显示, 比如可以切换横竖屏, 语言等等.</p>
-<p>但是它同样也有一些问题:</p>
-<p><strong>Issue #1: Preview显示空白</strong><br>当你的布局是由动态获取的数据来填充的, preview不知道如何填充, 所以你看到的是空白的. </p>
-<p>一个好的practice是使用<code>tools</code>命名空间, 指定一些只在preview阶段使用的属性. 这样你就可以指定一些text或src用来预览.</p>
-<p><strong>Tip #2: 使得动态内容在Preview可见</strong><br>如果你的图片是动态资源, 你也可以设置一些最大宽高给parent view, 以防真实的图片比期待的大太多或者是比例不对. 你可以设置<code>tools:layout_height</code> 和<code>tools:layout_width</code>, 还有<code>tools:background</code>在preview中查看view占多大.</p>
-<p>本文还推荐了另一个阅读资料: <a href="https://tips.seebrock3r.me/tools-of-the-trade-part-1-f3c1c73de898#.e038jlqyy" target="_blank" rel="external">Tools of the trade — Part 1</a></p>
-<p><strong>Tip #3: 修复坏掉的Previews</strong><br>当你创建一个自定义View的时候, 你需要确保你的View不需要任何外部依赖即可被实例化, 否则Preview可能看不到你的View. 因为Preview不是运行在你的app上的, 它只是运行在IDE的JVM上, 所以View framework之外的东西它是访问不到的.</p>
-<p>解决办法是在你的自定义View中做一些特殊处理, 比如把依赖注入放在<code>!isInEditMode()</code>里, 或者用<code>tools:</code>命名空间加一些默认值.</p>
-<p><strong>Tip #4: <merge> 布局没有被渲染</merge></strong></p>
-<p><merge>里面的控件在preview里会被重叠在一起.<br>解决的办法是使用<code>tools:showIn=&quot;layout&quot;</code>, 指定<merge>具体是显示在哪个布局里. 如果你有多个布局都用到这个<merge>, 你可以选一个.</merge></merge></merge></p>
-<p>从Android Studio 2.2开始, 你可以使用<code>tools:parentTag</code>来指定parent的类型, 比如<code>tools:parentTag=&quot;LinearLayout&quot;</code>.</p>
-<p><strong>Tip #5: 在Preview中显示隐藏的View</strong><br>如果你在layout中把view的visibility设置为gone, 那么它是不会在Preview中显示的. </p>
-<p>解决办法: 使用<code>tools:visibility=&quot;visible&quot;</code>.</p>
-<h2 id="Android-Things-Tutorials"><a href="#Android-Things-Tutorials" class="headerlink" title="Android Things Tutorials"></a><a href="https://blog.mindorks.com/android-things-tutorials-getting-started-8464c11009ff#.dhacx13kq" target="_blank" rel="external">Android Things Tutorials</a></h2><p>Android Things教程.</p>
-<h2 id="Get-Started-With-Retrofit-2-HTTP-Client"><a href="#Get-Started-With-Retrofit-2-HTTP-Client" class="headerlink" title="Get Started With Retrofit 2 HTTP Client"></a><a href="https://code.tutsplus.com/tutorials/getting-started-with-retrofit-2--cms-27792" target="_blank" rel="external">Get Started With Retrofit 2 HTTP Client</a></h2><p>本篇文章以实例讲述如何使用Retrofit, 虽然都是基础内容, 但讲解很详细.</p>
-<h2 id="Improving-sign-in-experience-with-Google-Sign-In-and-SmartLock"><a href="#Improving-sign-in-experience-with-Google-Sign-In-and-SmartLock" class="headerlink" title="Improving sign-in experience with Google Sign-In and SmartLock"></a><a href="https://medium.com/@p.tournaris/android-improving-sign-in-experience-with-google-sign-in-and-smartlock-f0bfd789602a#.dqh1aptm4" target="_blank" rel="external">Improving sign-in experience with Google Sign-In and SmartLock</a></h2><p>Google提供了两种方式来帮助我们改善用户的登录体验:<br>Google Sign-In(之前被称为Google+ Sign-In)和SmartLock.</p>
-<p>这篇文章举例解释了Google Sign-In和SmartLock的实现.</p>
-<p>Google Sign-In的部分比较简单.</p>
-<p>SmartLock让我们可以:</p>
-<ul>
-<li>让用户保存credentials.</li>
-<li>在打开应用的时候请求credentials.</li>
-<li>使用存在Chrome上的credentials, 这样我们的网站和app就可以共享credentials.</li>
-<li>显示Email提示, 让用户选择email地址.</li>
-<li>所有的这些信息都保存在Google的server里, 用户可以保存或删除.</li>
-</ul>
-<p>Demo app: <a href="https://github.com/charbgr/AuthManager" target="_blank" rel="external">charbgr/AuthManager</a></p>
-<h2 id="Storing-your-secure-information-in-the-NDK"><a href="#Storing-your-secure-information-in-the-NDK" class="headerlink" title="Storing your secure information in the NDK"></a><a href="https://www.androidsecurity.info/2016/12/15/storing-your-secure-information-in-the-ndk/" target="_blank" rel="external">Storing your secure information in the NDK</a></h2><p>这篇文章说敏感信息放在Java代码里不安全, 很容易被人反编译查看出来, 如果放在NDK里面就好一些, 你打开查看的只能是二进制文件, 很难找到.</p>
-<h1 id="DESIGN"><a href="#DESIGN" class="headerlink" title="DESIGN"></a>DESIGN</h1><h2 id="Introduction-to-Natural-palettes"><a href="#Introduction-to-Natural-palettes" class="headerlink" title="Introduction to Natural palettes"></a><a href="https://stories.uplabs.com/introduction-to-natural-palettes-9503bfeee3d5#.z9y0xf7zc" target="_blank" rel="external">Introduction to Natural palettes</a></h2><p>作者从大自然的图像中得到颜色组合的灵感.<br>文章中举了几个例子, 如何用相关的照片找到相关主题的调色板.</p>
-<p>另推荐一个网站: <a href="http://color.romanuke.com/" target="_blank" rel="external">IN COLOR<br> BALANCE</a></p>
-<h2 id="Make-your-Android-app-look-better"><a href="#Make-your-Android-app-look-better" class="headerlink" title="Make your Android app look better"></a><a href="https://hackernoon.com/make-your-android-app-look-less-shitty-5dd63c4938f1#.4q5ro3ty8" target="_blank" rel="external">Make your Android app look better</a></h2><p>让你的App看起来更好的几点建议:</p>
-<ul>
-<li>使用同一个图标集的图标.<br>(这里推荐了一些图片工具和网站.)</li>
-<li>使用Material Design设计的keylines, 使用固定的格子大小.</li>
-<li>使用颜色的时候小心一些. (这里推荐了一些调色板网站)</li>
-<li>选择字体要明智一些.</li>
-</ul>
-<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="Material-Components"><a href="#Material-Components" class="headerlink" title="Material Components"></a><a href="https://github.com/material-components" target="_blank" rel="external">Material Components</a></h2><p>模块化和可定制的Material Design UI组件. Android, iOS, Web.</p>
-<h2 id="Android-oss-from-Kickstarter"><a href="#Android-oss-from-Kickstarter" class="headerlink" title="Android-oss from Kickstarter"></a><a href="https://github.com/kickstarter/android-oss" target="_blank" rel="external">Android-oss from Kickstarter</a></h2><p>Kickstarter开源了他们的Android应用.</p>
-<h2 id="stencil"><a href="#stencil" class="headerlink" title="stencil"></a><a href="https://github.com/thoughtbot/stencil" target="_blank" rel="external">stencil</a></h2><p>一个kotlin写的Android库, 实现一种文字路径的动画.</p>
-<h2 id="AuthManager"><a href="#AuthManager" class="headerlink" title="AuthManager"></a><a href="https://github.com/charbgr/AuthManager" target="_blank" rel="external">AuthManager</a></h2><p>包装了Google Sign-In和SmartLock的Manager.</p>
-<h2 id="FolioReader-Android"><a href="#FolioReader-Android" class="headerlink" title="FolioReader-Android"></a><a href="https://github.com/FolioReader/FolioReader-Android" target="_blank" rel="external">FolioReader-Android</a></h2><p>一个ePub阅读器和解析框架.</p>
-<h2 id="BufferTextInputLayout"><a href="#BufferTextInputLayout" class="headerlink" title="BufferTextInputLayout"></a><a href="https://github.com/bufferapp/BufferTextInputLayout" target="_blank" rel="external">BufferTextInputLayout</a></h2><p>对Support Library中的<code>TextInputLayout</code>的扩展, 增加了字数统计.</p>
-<h2 id="TextLayoutBuilder"><a href="#TextLayoutBuilder" class="headerlink" title="TextLayoutBuilder"></a><a href="https://facebookincubator.github.io/TextLayoutBuilder/" target="_blank" rel="external">TextLayoutBuilder</a></h2><p>使用Builder模式来配置创建一个Layout的属性.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-236&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-236&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #236&quot;&gt;&lt;/a&gt;Android Weekly Issue #236&lt;/h1&gt;&lt;p&gt;December 18th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-236&quot;&gt;Android Weekly Issue #236&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本期内容包括: Google的物联网平台Android Things; FileProvider; Android Studio的Layout Preview使用; Retrofit2使用; Google Sign-In和SmartLock; 把敏感信息放入NDK的解决方式.&lt;/p&gt;
-&lt;p&gt;设计部分讨论了调色板的灵感来源和几个开发app的时候应该注意的问题.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-      <category term="Design" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/Design/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Security" scheme="http://mengdd.github.io/tags/Security/"/>
-    
-      <category term="Design" scheme="http://mengdd.github.io/tags/Design/"/>
-    
-      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
-    
-      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
-    
-      <category term="Color" scheme="http://mengdd.github.io/tags/Color/"/>
-    
-      <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
-    
-      <category term="IoT" scheme="http://mengdd.github.io/tags/IoT/"/>
-    
-      <category term="IDE" scheme="http://mengdd.github.io/tags/IDE/"/>
-    
-      <category term="Retrofit2" scheme="http://mengdd.github.io/tags/Retrofit2/"/>
-    
-      <category term="Sign In" scheme="http://mengdd.github.io/tags/Sign-In/"/>
-    
-      <category term="SmartLock" scheme="http://mengdd.github.io/tags/SmartLock/"/>
-    
-      <category term="NDK" scheme="http://mengdd.github.io/tags/NDK/"/>
     
   </entry>
   

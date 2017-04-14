@@ -4,6 +4,91 @@
   
     
     <entry>
+      <title><![CDATA[20+个很棒的Android开源项目]]></title>
+      <url>http://mengdd.github.io/Android/Open-Source/2017/04/14/20-awesome-open-source-android-apps/</url>
+      <content type="html"><![CDATA[<h1 id="20-个很棒的Android开源项目"><a href="#20-个很棒的Android开源项目" class="headerlink" title="20+个很棒的Android开源项目"></a>20+个很棒的Android开源项目</h1><p>本文摘自文章: <a href="https://blog.aritraroy.in/20-awesome-open-source-android-apps-to-boost-your-development-skills-b62832cf0fa4" target="_blank" rel="external">20+ Awesome Open-Source Android Apps To Boost Your Development Skills</a>.</p>
+<p>考虑到原文在墙外, 故分享在此, 希望让更多开发者看到.</p>
+<a id="more"></a>
+<h2 id="LeafPic"><a href="#LeafPic" class="headerlink" title="LeafPic"></a><a href="https://github.com/HoraApps/LeafPic" target="_blank" rel="external">LeafPic</a></h2><p>难度: 初级.<br><img src="/images/open-source-leafpic.png" alt="Open Source LeafPic"></p>
+<p>图片和视频的Gallery app.<br>实现了动态主题.</p>
+<h2 id="Simple-Calendar"><a href="#Simple-Calendar" class="headerlink" title="Simple Calendar"></a><a href="https://github.com/SimpleMobileTools/Simple-Calendar" target="_blank" rel="external">Simple Calendar</a></h2><p>难度: 初级.</p>
+<p>一个简单好用的Calendar应用, 完全用Kotlin实现.</p>
+<p>另外可以从这个项目学习一下自定义的桌面widgets.</p>
+<h2 id="Amaze-File-Manager"><a href="#Amaze-File-Manager" class="headerlink" title="Amaze File Manager"></a><a href="https://github.com/arpitkh96/AmazeFileManager" target="_blank" rel="external">Amaze File Manager</a></h2><p>难度: 中级.<br><img src="/images/open-source-amaze-file-manager.jpeg" alt="Open Source Amaze File Manager"></p>
+<p>一个文件管理器.</p>
+<p>可以学习SD卡上的文件操作.</p>
+<p>但不建议学习这个项目中的编码标准.</p>
+<h2 id="Easy-Sound-Recorder"><a href="#Easy-Sound-Recorder" class="headerlink" title="Easy Sound Recorder"></a><a href="https://github.com/dkim0419/SoundRecorder" target="_blank" rel="external">Easy Sound Recorder</a></h2><p>难度: 初级.<br><img src="/images/open-source-easy-sound-recoder.png" alt="Open Source Easy Sound Recoder"></p>
+<p>一个简单的录音程序, 遵循Material Design.</p>
+<h2 id="MLManager"><a href="#MLManager" class="headerlink" title="MLManager"></a><a href="https://github.com/javiersantos/MLManager" target="_blank" rel="external">MLManager</a></h2><p>难度: 初级.</p>
+<p>一个App管理器, 可以学习如何得到所有安装应用的详细信息, 提取APK, 卸载程序等.</p>
+<h2 id="PhotoAffix"><a href="#PhotoAffix" class="headerlink" title="PhotoAffix"></a><a href="https://github.com/afollestad/photo-affix" target="_blank" rel="external">PhotoAffix</a></h2><p>难度: 初级.</p>
+<p>一个简单的应用, 可以水平或竖直地拼接照片.</p>
+<p>可以学习创建自定义View.</p>
+<h2 id="MovieGuide"><a href="#MovieGuide" class="headerlink" title="MovieGuide"></a><a href="https://github.com/esoxjem/MovieGuide" target="_blank" rel="external">MovieGuide</a></h2><p>难度: 中级.<br><img src="/images/open-source-movie-guide.png" alt="Open Source MovieGuide"></p>
+<p>一个流行电影浏览应用.<br>使用了: MVP, Clean Architecture, RxJava, Dagger2.</p>
+<h2 id="AnExplorer"><a href="#AnExplorer" class="headerlink" title="AnExplorer"></a><a href="https://github.com/1hakr/AnExplorer" target="_blank" rel="external">AnExplorer</a></h2><p>难度: 中级.</p>
+<p>一个轻量级的文件管理器, 为手机和平板设计.</p>
+<p>可以学到很多文件处理, 权限管理, loaders, 自定义View等相关的东西.</p>
+<h2 id="Minimal-ToDo"><a href="#Minimal-ToDo" class="headerlink" title="Minimal ToDo"></a><a href="https://github.com/avjinder/Minimal-Todo" target="_blank" rel="external">Minimal ToDo</a></h2><p>难度: 初级.</p>
+<p>一个Material Design的To-Do应用.<br>可以学到一些Android开发的基本知识, 适合初学者学习.</p>
+<p>但不要学习里面的包结构和代码规范, 这些不太标准.</p>
+<h2 id="Timber"><a href="#Timber" class="headerlink" title="Timber"></a><a href="https://github.com/naman14/Timber" target="_blank" rel="external">Timber</a></h2><p>难度: 高级.<br><img src="/images/open-source-timber.png" alt="Open Source Timber"></p>
+<p>一个很漂亮的, 功能完善的音乐播放器.</p>
+<p>这个项目很大, 所以对初学者来说想要一下把握全部的内容可能会有点困难, 但是对中高级开发者来说看一看应该会觉得挺有意思.</p>
+<h2 id="AnotherMonitor"><a href="#AnotherMonitor" class="headerlink" title="AnotherMonitor"></a><a href="https://github.com/AntonioRedondo/AnotherMonitor" target="_blank" rel="external">AnotherMonitor</a></h2><p>难度: 中级.<br><img src="/images/open-source-another-monitor.png" alt="Open Source AnotherMonitor"></p>
+<p>如果你想要学监控Android进程, 内存占用, CPU使用以及与这些相关的东西, 这个项目很适合.</p>
+<p>这个项目很小也很好理解, 但是编码和架构设计不是很好, 不应该遵循.</p>
+<h2 id="InstaMaterial"><a href="#InstaMaterial" class="headerlink" title="InstaMaterial"></a><a href="https://github.com/frogermcs/InstaMaterial" target="_blank" rel="external">InstaMaterial</a></h2><p>难度: 初级.</p>
+<p>这是一个学习Material Design的好项目. 这个项目复制了一些Instagram的功能, 结合了Material Design来实现.</p>
+<p>这里有很多Material Design的元素, 动画和转场.</p>
+<p>项目简单易懂, 适合各个阶段的学习者.</p>
+<h2 id="CoCoin"><a href="#CoCoin" class="headerlink" title="CoCoin"></a><a href="https://github.com/Nightonke/CoCoin" target="_blank" rel="external">CoCoin</a></h2><p>难度: 简单.<br><img src="/images/open-source-CoCoin.png" alt="Open Source CoCoin"></p>
+<p>一个详尽的个人财务记账应用, 界面干净漂亮.</p>
+<p>如果你想学习如何处理大量用户数据, 根据这些数据绘制各类图表, 写一些很酷的自定义View, 那么这个开源项目很适合你.</p>
+<h2 id="OmniNotes"><a href="#OmniNotes" class="headerlink" title="OmniNotes"></a><a href="https://github.com/federicoiosue/Omni-Notes" target="_blank" rel="external">OmniNotes</a></h2><p>难度: 中级.</p>
+<p>如果你想建一个跟Evernote类似的功能强大的笔记应用, 那么这个项目可以看看.</p>
+<p>这个项目很大, 有很多功能比如分享和搜索笔记, 上传图片, 视频, 音频, 在笔记中绘制草图, 添加提醒等. </p>
+<h2 id="Clip-Stack"><a href="#Clip-Stack" class="headerlink" title="Clip Stack"></a><a href="https://github.com/heruoxin/Clip-Stack" target="_blank" rel="external">Clip Stack</a></h2><p>难度: 初级.</p>
+<p>一个简单的剪贴板管理器.<br>项目很小, 简单易懂.</p>
+<p>但是包结构和代码架构, 命名及代码规范不推荐学习. 并且这个项目已经不再维护了.</p>
+<h2 id="Super-Clean-Master"><a href="#Super-Clean-Master" class="headerlink" title="Super Clean Master"></a><a href="https://github.com/joyoyao/superCleanMaster" target="_blank" rel="external">Super Clean Master</a></h2><p>难度: 高级.<br><img src="/images/open-source-super-clean-master.jpeg" alt="Open Source Super Clean Master"></p>
+<p>一键清理开源版, 包括内存加速, 缓存清理, 自启管理, 软件管理等.</p>
+<p>代码很优雅, 但是项目有一点复杂, 如果你想弄明白所有的事情, 得多花一点时间.</p>
+<h2 id="Travel-Mate"><a href="#Travel-Mate" class="headerlink" title="Travel Mate"></a><a href="https://github.com/Swati4star/Travel-Mate" target="_blank" rel="external">Travel Mate</a></h2><p>难度: 中级.</p>
+<p>一个旅游导览类应用, 依赖于位置和地图.<br>代码质量尚未达到标准, 但是对初级和中级开发者来说还是有很多值得学习的地方.</p>
+<h2 id="KISS"><a href="#KISS" class="headerlink" title="KISS"></a><a href="https://github.com/Neamar/KISS" target="_blank" rel="external">KISS</a></h2><p>难度: 中级.<br><img src="/images/open-source-KISS.png" alt="Open Source KISS"></p>
+<p>一个简单快速轻量级的launcher应用. 可以从中学习一些比较酷的features.</p>
+<p>项目很小很简单.</p>
+<h2 id="Turbo-Editor"><a href="#Turbo-Editor" class="headerlink" title="Turbo Editor"></a><a href="https://github.com/vmihalachi/turbo-editor" target="_blank" rel="external">Turbo Editor</a></h2><p>难度: 中级.<br><img src="/images/open-source-turbo-editor.png" alt="Open Source Turbo Editor"></p>
+<p>一个简单但强大的文字编辑应用. 你也可以使用这个编辑器来写代码, 对不同的语言支持代码高亮.</p>
+<p>从这个项目你可以学到如何做一个稳定健壮的文字(或代码)编辑器.</p>
+<h2 id="Wally"><a href="#Wally" class="headerlink" title="Wally"></a><a href="https://github.com/Musenkishi/wally" target="_blank" rel="external">Wally</a></h2><p>难度: 初级.</p>
+<p>一个简单快速的壁纸应用.<br>对于初学者来说可以学到很多东西.</p>
+<p>这个应用的架构很好, 使得这个应用易于维护和扩展. 这个应用的目的虽然简单, 但是实现目的的方法很好.</p>
+<h2 id="Pedometer"><a href="#Pedometer" class="headerlink" title="Pedometer"></a><a href="https://github.com/j4velin/Pedometer" target="_blank" rel="external">Pedometer</a></h2><p>难度: 初级.<br><img src="/images/open-source-pedometer.png" alt="Open Source Pedometer"></p>
+<p>一个简单轻量级的计步器, 使用硬件传感器来计算步数, 同时考虑到了电量使用问题, 最小化电量消耗.</p>
+<p>对于学习计步器实现来说是一个好项目, 但是代码标准和设计架构可能不够好.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+            <category> Open Source </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android Weekly Notes Issue 252]]></title>
       <url>http://mengdd.github.io/Android/Android-Weekly/2017/04/13/android-weekly-notes-issue-252/</url>
       <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-252"><a href="#Android-Weekly-Issue-252" class="headerlink" title="Android Weekly Issue #252"></a>Android Weekly Issue #252</h1><p>April 9th, 2017<br><a href="http://androidweekly.net/issues/issue-252" target="_blank" rel="external">Android Weekly Issue #252</a>.<br>本期内容: 变化的渐变背景实现; Kotlin 1.1特性; Parcelable数据处理; RecyclerView动画实现; MVI模式的实现; 远程team的合作; 面向对象的原则: Law of Demeter; 用JUnit 5和Kotlin结合写测试.<br>(本期内容有点水, 不知道是我的状态不好还是Weekly的状态不好).<br><a id="more"></a></p>
@@ -234,11 +319,11 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> Espresso </tag>
-            
             <tag> Kotlin </tag>
             
             <tag> Lambda </tag>
+            
+            <tag> Espresso </tag>
             
             <tag> Mockito </tag>
             
@@ -511,13 +596,13 @@
             
             <tag> TensorFlow </tag>
             
-            <tag> OkHttp </tag>
-            
             <tag> MVI </tag>
             
             <tag> ClassyShark </tag>
             
             <tag> Transition </tag>
+            
+            <tag> OkHttp </tag>
             
             <tag> ViewSwitcher </tag>
             
@@ -635,21 +720,21 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> RxJava </tag>
             
-            <tag> RxJava2 </tag>
-            
             <tag> Mockito </tag>
+            
+            <tag> RxJava2 </tag>
             
             <tag> Dagger </tag>
             
-            <tag> Realm </tag>
-            
             <tag> JUnit 5 </tag>
+            
+            <tag> Realm </tag>
             
             <tag> Crash </tag>
             
@@ -1106,9 +1191,9 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> Kotlin </tag>
             
@@ -1201,13 +1286,13 @@
             
             <tag> Testing </tag>
             
+            <tag> FileProvider </tag>
+            
             <tag> ClassyShark </tag>
             
             <tag> Permission </tag>
             
             <tag> Privacy Policy </tag>
-            
-            <tag> FileProvider </tag>
             
         </tags>
         
@@ -1282,15 +1367,15 @@
             
             <tag> RxJava </tag>
             
-            <tag> Nougat </tag>
-            
             <tag> Animation </tag>
             
-            <tag> Android 7 </tag>
+            <tag> Nougat </tag>
             
             <tag> RecyclerView </tag>
             
             <tag> ConstraintLayout </tag>
+            
+            <tag> Android 7 </tag>
             
             <tag> Testing </tag>
             
@@ -1479,6 +1564,8 @@
             
             <tag> MVC </tag>
             
+            <tag> Color </tag>
+            
             <tag> Design Patterns </tag>
             
             <tag> ObjectBox </tag>
@@ -1490,8 +1577,6 @@
             <tag> Model-View-Intent </tag>
             
             <tag> Gradient </tag>
-            
-            <tag> Color </tag>
             
         </tags>
         
@@ -1595,9 +1680,9 @@
             
             <tag> RxJava </tag>
             
-            <tag> RxJava2 </tag>
-            
             <tag> APK </tag>
+            
+            <tag> RxJava2 </tag>
             
             <tag> Testing </tag>
             
@@ -1687,9 +1772,9 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> Kotlin </tag>
             
@@ -1846,11 +1931,11 @@
             
             <tag> RxJava </tag>
             
+            <tag> Handler </tag>
+            
             <tag> Test </tag>
             
             <tag> RxJava2 </tag>
-            
-            <tag> Handler </tag>
             
             <tag> Android Things </tag>
             
@@ -2029,9 +2114,9 @@
             
             <tag> Firebase </tag>
             
-            <tag> ExoPlayer </tag>
-            
             <tag> ConstraintLayout </tag>
+            
+            <tag> ExoPlayer </tag>
             
             <tag> Java </tag>
             
@@ -2130,13 +2215,11 @@
             
             <tag> Android Studio </tag>
             
+            <tag> IoT </tag>
+            
             <tag> Android Things </tag>
             
-            <tag> Color </tag>
-            
             <tag> FileProvider </tag>
-            
-            <tag> IoT </tag>
             
             <tag> IDE </tag>
             
@@ -2147,6 +2230,8 @@
             <tag> SmartLock </tag>
             
             <tag> NDK </tag>
+            
+            <tag> Color </tag>
             
         </tags>
         
@@ -2260,17 +2345,17 @@
             
             <tag> AnimatedVectorDrawable </tag>
             
+            <tag> Animation </tag>
+            
             <tag> Test </tag>
             
             <tag> Nougat </tag>
             
-            <tag> Animation </tag>
-            
-            <tag> Android 7 </tag>
-            
             <tag> RecyclerView </tag>
             
             <tag> Android Studio </tag>
+            
+            <tag> Android 7 </tag>
             
             <tag> Custom View </tag>
             
@@ -2485,9 +2570,9 @@
             
             <tag> MVP </tag>
             
-            <tag> Nougat </tag>
-            
             <tag> Mockito </tag>
+            
+            <tag> Nougat </tag>
             
             <tag> Java </tag>
             
@@ -2704,11 +2789,11 @@
             
             <tag> RxJava </tag>
             
-            <tag> RxJava2 </tag>
+            <tag> Redux </tag>
             
             <tag> Reductor </tag>
             
-            <tag> Redux </tag>
+            <tag> RxJava2 </tag>
             
             <tag> MVVM </tag>
             
@@ -2799,15 +2884,15 @@
             
             <tag> Android </tag>
             
+            <tag> Android Weekly </tag>
+            
             <tag> Dagger2 </tag>
             
-            <tag> Android Weekly </tag>
+            <tag> Kotlin </tag>
             
             <tag> Espresso </tag>
             
             <tag> TV </tag>
-            
-            <tag> Kotlin </tag>
             
             <tag> RxJava </tag>
             
@@ -2895,9 +2980,9 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> Espresso </tag>
-            
             <tag> Kotlin </tag>
+            
+            <tag> Espresso </tag>
             
             <tag> Retrofit </tag>
             
@@ -2905,9 +2990,9 @@
             
             <tag> MVP </tag>
             
-            <tag> RxJava2 </tag>
-            
             <tag> Mockito </tag>
+            
+            <tag> RxJava2 </tag>
             
             <tag> ConstraintLayout </tag>
             
@@ -3122,9 +3207,9 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> RxJava </tag>
             
@@ -3633,9 +3718,9 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> Espresso </tag>
             
@@ -3899,13 +3984,13 @@
         
         <tags>
             
+            <tag> Content Provider </tag>
+            
             <tag> RxJava </tag>
             
             <tag> MVP </tag>
             
             <tag> Data Binding </tag>
-            
-            <tag> Content Provider </tag>
             
             <tag> MVVM </tag>
             
@@ -4046,13 +4131,17 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> Bottom Navigation </tag>
-            
             <tag> Bottom Sheet </tag>
             
             <tag> Firebase </tag>
             
             <tag> AutoValue </tag>
+            
+            <tag> Bottom Navigation </tag>
+            
+            <tag> Redux </tag>
+            
+            <tag> Reductor </tag>
             
             <tag> Nougat </tag>
             
@@ -4081,10 +4170,6 @@
             <tag> Notification </tag>
             
             <tag> font </tag>
-            
-            <tag> Reductor </tag>
-            
-            <tag> Redux </tag>
             
         </tags>
         
@@ -4318,11 +4403,11 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> Espresso </tag>
-            
             <tag> Wear </tag>
             
             <tag> Firebase </tag>
+            
+            <tag> Espresso </tag>
             
             <tag> Animation </tag>
             
@@ -4580,12 +4665,6 @@
             
             <tag> Annotation </tag>
             
-            <tag> Memory Leak </tag>
-            
-            <tag> Reductor </tag>
-            
-            <tag> Redux </tag>
-            
             <tag> pre-launch </tag>
             
             <tag> Handler </tag>
@@ -4597,6 +4676,12 @@
             <tag> Methods Count </tag>
             
             <tag> APK </tag>
+            
+            <tag> Redux </tag>
+            
+            <tag> Reductor </tag>
+            
+            <tag> Memory Leak </tag>
             
             <tag> Adapter </tag>
             
@@ -4787,6 +4872,8 @@
             
             <tag> Accessibility </tag>
             
+            <tag> Memory Leak </tag>
+            
             <tag> Test </tag>
             
             <tag> Fingerprint </tag>
@@ -4796,8 +4883,6 @@
             <tag> Nougat </tag>
             
             <tag> GCM </tag>
-            
-            <tag> Memory Leak </tag>
             
         </tags>
         
@@ -5221,9 +5306,9 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> Security </tag>
             
@@ -5379,9 +5464,9 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> AnimatedVectorDrawable </tag>
-            
             <tag> Bottom Sheet </tag>
+            
+            <tag> AnimatedVectorDrawable </tag>
             
             <tag> Gradle </tag>
             
@@ -5545,13 +5630,11 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
             
-            <tag> Wear </tag>
-            
             <tag> Bottom Sheet </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> Security </tag>
             
@@ -5568,6 +5651,8 @@
             <tag> Java 8 </tag>
             
             <tag> Lambda </tag>
+            
+            <tag> Wear </tag>
             
             <tag> Firebase </tag>
             
@@ -5620,13 +5705,13 @@
             
             <tag> Android Weekly </tag>
             
+            <tag> Wear </tag>
+            
             <tag> AnimatedVectorDrawable </tag>
             
             <tag> Espresso </tag>
             
             <tag> TV </tag>
-            
-            <tag> Wear </tag>
             
             <tag> Router </tag>
             
@@ -6055,6 +6140,29 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Test Links]]></title>
+      <url>http://mengdd.github.io/uncategorized/2016/05/31/test-links/</url>
+      <content type="html"><![CDATA[<p><a href="http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330" target="_blank" rel="external">http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330</a></p>
+<p><a href="https://m.realestate.com.au/sold/property-house-act-waramanga-122532898" target="_blank" rel="external">https://m.realestate.com.au/sold/property-house-act-waramanga-122532898</a></p>
+<p>realestate.com.au/suggested-properties</p>
+<p><a href="http://www.realestate.com.au/suggested-properties" target="_blank" rel="external">http://www.realestate.com.au/suggested-properties</a></p>
+<p><a href="http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/" target="_blank" rel="external">http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/</a></p>
+<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false</a></p>
+<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search</a></p>
+<p><a href="http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16" target="_blank" rel="external">http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16</a></p>
+<p><a href="http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false</a></p>
+<p><a href="http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3</a> </p>
+<p><a href="https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc" target="_blank" rel="external">https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc</a> </p>
+<p><a href="http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1</a> </p>
+<p>2016-06-15<br><a href="http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1</a><br><a href="http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc</a><br><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date</a></p>
+<p>2016-08-03<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a></p>
+<p>2016-11-7<br>Property detail:<br><a href="http://www.realestate.com.au/property-apartment-vic-melbourne-122718062" target="_blank" rel="external">http://www.realestate.com.au/property-apartment-vic-melbourne-122718062</a><br>Saved Properties -&gt; should open second tab<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a><br>Saved Property Notification: -&gt; should open detail page on second tab<br>rea-app://saved-properties/122718062<br>Agenda deeplink: -&gt; should open inspections on second tab<br>rea-app://saved-properties/inbox-style</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android Fragment使用(一) 基础篇 温故知新]]></title>
       <url>http://mengdd.github.io/Android/2016/05/31/android-fragment-usage-1-basic-part/</url>
       <content type="html"><![CDATA[<p>Fragment使用的基本知识点总结, 包括Fragment的添加, 参数传递和通信, 生命周期和各种操作.</p>
@@ -6111,29 +6219,6 @@
             <tag> Fragment </tag>
             
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Test Links]]></title>
-      <url>http://mengdd.github.io/uncategorized/2016/05/31/test-links/</url>
-      <content type="html"><![CDATA[<p><a href="http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330" target="_blank" rel="external">http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330</a></p>
-<p><a href="https://m.realestate.com.au/sold/property-house-act-waramanga-122532898" target="_blank" rel="external">https://m.realestate.com.au/sold/property-house-act-waramanga-122532898</a></p>
-<p>realestate.com.au/suggested-properties</p>
-<p><a href="http://www.realestate.com.au/suggested-properties" target="_blank" rel="external">http://www.realestate.com.au/suggested-properties</a></p>
-<p><a href="http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/" target="_blank" rel="external">http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/</a></p>
-<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false</a></p>
-<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search</a></p>
-<p><a href="http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16" target="_blank" rel="external">http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16</a></p>
-<p><a href="http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false</a></p>
-<p><a href="http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3</a> </p>
-<p><a href="https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc" target="_blank" rel="external">https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc</a> </p>
-<p><a href="http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1</a> </p>
-<p>2016-06-15<br><a href="http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1</a><br><a href="http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc</a><br><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date</a></p>
-<p>2016-08-03<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a></p>
-<p>2016-11-7<br>Property detail:<br><a href="http://www.realestate.com.au/property-apartment-vic-melbourne-122718062" target="_blank" rel="external">http://www.realestate.com.au/property-apartment-vic-melbourne-122718062</a><br>Saved Properties -&gt; should open second tab<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a><br>Saved Property Notification: -&gt; should open detail page on second tab<br>rea-app://saved-properties/122718062<br>Agenda deeplink: -&gt; should open inspections on second tab<br>rea-app://saved-properties/inbox-style</p>
-]]></content>
-      
         
     </entry>
     
