@@ -4,6 +4,106 @@
   
     
     <entry>
+      <title><![CDATA[Android Weekly Notes Issue 253]]></title>
+      <url>http://mengdd.github.io/Android/Android-Weekly/2017/04/18/android-weekly-notes-issue-253/</url>
+      <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-253"><a href="#Android-Weekly-Issue-253" class="headerlink" title="Android Weekly Issue #253"></a>Android Weekly Issue #253</h1><p>April 16th, 2017<br><a href="http://androidweekly.net/issues/issue-253" target="_blank" rel="external">Android Weely Issue #253</a>.<br>本期内容包括: Android O新推出的自定义字体支持; 用Espresso测试自定义View; 在添加测试的过程中解耦在Activity中写的程序; SQLite的性能研究; 用FileProvider分享Glide的缓存文件; 基于物理的动画; Android O的隐式广播限制; RxJava和DiffUtil的结合; 向Mockito 2.x的迁移; 用Transition scene framework实现的shared element transition.<br><a id="more"></a></p>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Android-O-Fonts-–-Part-1"><a href="#Android-O-Fonts-–-Part-1" class="headerlink" title="Android O: Fonts – Part 1"></a><a href="https://blog.stylingandroid.com/android-o-fonts/" target="_blank" rel="external">Android O: Fonts – Part 1</a></h2><p>Android O中的自定义字体支持.</p>
+<p><a href="https://fonts.google.com/" target="_blank" rel="external">Google Fonts</a>是一个很好的资源网站, 里面的字体都是开源的, 可以在app中免费试用.</p>
+<p>下载了字体资源(.ttf)之后, 加入项目资源字体文件夹:<code>res/font/</code>, 点击会显示字体的preview.</p>
+<p>使用的时候只需要这样:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">android:fontFamily="@font/pacifico"</div></pre></td></tr></table></figure></p>
+<h2 id="Testing-Views-in-Isolation-with-Espresso-on-Android"><a href="#Testing-Views-in-Isolation-with-Espresso-on-Android" class="headerlink" title="Testing Views in Isolation with Espresso on Android"></a><a href="https://www.novoda.com/blog/testing-views-in-isolation-with-espresso/" target="_blank" rel="external">Testing Views in Isolation with Espresso on Android</a></h2><p>作者他们的项目用了很多自定义的View, 把逻辑包含进去. (其实我个人不是很赞成这种做法).</p>
+<p>本文介绍用Espresso来测试这种自定义View.</p>
+<h2 id="Test-Driving-away-Coupling-in-Activities"><a href="#Test-Driving-away-Coupling-in-Activities" class="headerlink" title="Test Driving away Coupling in Activities"></a><a href="https://www.philosophicalhacker.com/post/test-driving-away-coupling-in-activities/" target="_blank" rel="external">Test Driving away Coupling in Activities</a></h2><p>目标代码是一个Activity中有动态权限请求模块, 本文首先企图给它加上测试, 在加测试的过程中对原来的代码进行重构(抽取了View接口), 然后说明了这样做的好处: 解耦, 易于修改; 减少了重复代码.</p>
+<h2 id="Squeezing-Performance-from-SQLite"><a href="#Squeezing-Performance-from-SQLite" class="headerlink" title="Squeezing Performance from SQLite"></a><a href="https://medium.com/@JasonWyatt/squeezing-performance-from-sqlite-insertions-971aff98eef2" target="_blank" rel="external">Squeezing Performance from SQLite</a></h2><p>本文介绍当你需要在SQLite数据库中插入大量数据的时候, 各种做法以及它们的性能比较.</p>
+<h3 id="实验1-比较db-insert包不包transaction"><a href="#实验1-比较db-insert包不包transaction" class="headerlink" title="实验1: 比较db.insert包不包transaction."></a>实验1: 比较<code>db.insert</code>包不包transaction.</h3><p>结果: 把一系列<code>insert()</code>操作包在transaction里可以大幅度地改善性能.</p>
+<p>为什么呢? 根据<a href="https://sqlite.org/lang_transaction.html" target="_blank" rel="external">文档</a>:<br>如果你不显示地指定transaction, 那么SQLite自己会在每一个操作上加一个隐式的transaction.</p>
+<p>要知道SQLite只在transaction被提交的时候把插入数据写入磁盘, 所以, 如果你能减少transaction的数量, 你就可以减少磁盘访问, 从而提高效率.</p>
+<h3 id="实验2-比较db-execSQL和db-insert"><a href="#实验2-比较db-execSQL和db-insert" class="headerlink" title="实验2: 比较db.execSQL和db.insert."></a>实验2: 比较<code>db.execSQL</code>和<code>db.insert</code>.</h3><p>结果: 使用<code>db.execSQL</code>可以轻微地改善性能.</p>
+<p>原因: <code>db.insert()</code>包装抽象了SQL语句的创建, 这一层还是需要一点花销的.</p>
+<h3 id="实验3-用db-execSQL-批处理插入"><a href="#实验3-用db-execSQL-批处理插入" class="headerlink" title="实验3: 用db.execSQL()批处理插入."></a>实验3: 用<code>db.execSQL()</code>批处理插入.</h3><p>结果: 可以提升一部分性能.</p>
+<p>但是注意每个语句中有最大的变量数限制: 999. 所以如果你的表有越多列, 那么批处理所获得的性能提升就越少.</p>
+<h3 id="实验4-直接使用SQLiteStatement"><a href="#实验4-直接使用SQLiteStatement" class="headerlink" title="实验4: 直接使用SQLiteStatement."></a>实验4: 直接使用<code>SQLiteStatement</code>.</h3><p><code>SQLiteStatement</code>比<code>insert()</code>和<code>execSQL()</code>更底层.</p>
+<p>作者在这里做了两个实验: 一个是复用单条记录插入的<code>SQLiteStatement</code>语句对象; 另一个是复用批处理的<code>SQLiteStatement</code>语句对象.</p>
+<p>结果: 跟用<code>db.execSQL()</code>批处理相比: 复用单条记录插入的语句对象并没有获得性能改善; 但是复用批处理的插入语句可以提供一点儿性能的提高. </p>
+<h2 id="Share-the-Cache"><a href="#Share-the-Cache" class="headerlink" title="Share the Cache"></a><a href="http://emuneee.com/blog/2017/04/12/share-the-cache/" target="_blank" rel="external">Share the Cache</a></h2><p>很多app都有看图片的功能, 其中很多用了图片缓存库, 比如<a href="https://github.com/bumptech/glide" target="_blank" rel="external">Glide</a>来处理图片的缓存. 分享这些缓存的图片就有点tricky了, 要考虑到这些问题:</p>
+<ul>
+<li>我如何访问cache中的文件? </li>
+<li>其他应用也有权限访问这些文件吗?</li>
+<li>如果我需要手动拷贝文件到其他地方去, 我需要什么权限? </li>
+</ul>
+<p>有一种做法是: 首先把图片再缓存到其他公有的位置, 生成一个URI, 然后把这个URI用intent发送出去分享给其他应用. 这个听起来很简单, 但是实际上有点复杂, 因为读写外部存储都需要用户允许权限(Android 6.0以上).</p>
+<p>所以本文要介绍的是用<code>FileProvider</code>的方法.</p>
+<p>首先在Manifest中注册<code>FileProvider</code>.<br>然后在Glide中修改了缓存文件的路径.<br>(值得注意的是用Glide缓存的文件都是没有后缀名的, 所以作者在他的项目中强加了后缀名.) 最后再通过Intent分享出去:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String authority = “com.yourdomain.android.fileprovider”;</div><div class="line">Uri uri = FileProvider.getUriForFile(context, authority, file);</div><div class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_SEND);</div><div class="line">intent.putExtra(Intent.EXTRA_STREAM, uri);</div><div class="line">intent.setType(<span class="string">"image/jpeg"</span>);</div><div class="line">context.startActivity(Intent.createChooser(intent, “Share via”);</div></pre></td></tr></table></figure></p>
+<h2 id="Physics-based-Animation"><a href="#Physics-based-Animation" class="headerlink" title="Physics-based Animation"></a><a href="https://developer.android.com/guide/topics/graphics/physics-based-animation.html" target="_blank" rel="external">Physics-based Animation</a></h2><p>Google的官方文档, 介绍如何使用新的基于物理的动画系统. (physics-based animation).</p>
+<p>基于物理原理的动画看起来更自然, 更真实. </p>
+<p>文档中举了一个例子, 中途改变动画的目标值, 比较了基于Animator的动画和基于物理的动画有什么区别: 前者需要取消当前动画设定新的目标值, 速度发生了突变; 后者只是改变了受力, 速度是连续的, 看起来更自然.</p>
+<p>有关弹簧动画, 详情请见: <a href="https://developer.android.com/guide/topics/graphics/spring-animation.html" target="_blank" rel="external">Spring Animation</a>.</p>
+<h2 id="Android-O-and-the-Implicit-Broadcast-Ban"><a href="#Android-O-and-the-Implicit-Broadcast-Ban" class="headerlink" title="Android O and the Implicit Broadcast Ban"></a><a href="https://commonsware.com/blog/2017/04/11/android-o-implicit-broadcast-ban.html" target="_blank" rel="external">Android O and the Implicit Broadcast Ban</a></h2><p>Android O和隐性广播限制.</p>
+<p>首先解释了这种限制是什么; 为什么需要加上这条限制(RAM, Battery); 都有哪些广播受到影响; 以及对这一系统改动可以采取的一些应对政策(动态广播, 显式广播, 先不要升级, 改用其他的通信方式等).</p>
+<h2 id="A-nice-combination-of-RxJava-and-DiffUtil"><a href="#A-nice-combination-of-RxJava-and-DiffUtil" class="headerlink" title="A nice combination of RxJava and DiffUtil"></a><a href="https://android.jlelse.eu/a-nice-combination-of-rxjava-and-diffutil-fe3807186012" target="_blank" rel="external">A nice combination of RxJava and DiffUtil</a></h2><p>使用<a href="https://developer.android.com/reference/android/support/v7/util/DiffUtil.html" target="_blank" rel="external">DiffUtil</a>, 你只需要提供新旧数据的比较.</p>
+<p>但是如果你的数据集很大, 或者你要做的比较很复杂, 你应该避免在主线程调用<code>DiffUtil</code>的计算. 你可以把比较工作放在后台线程, 然后在主线程通知UI.</p>
+<p>因为你需要比较新旧数据, 所以你需要在后台线程访问当前数据, 这就意味着这个数据会在多个线程被访问, 可能你就需要同步或者线程安全的数据结构, 如何避免这些呢? -&gt; 使用RxJava.</p>
+<p>里面涉及到了对<code>.scan()</code>操作符的使用, 核心代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">disposable = ThingRepository</div><div class="line">    .latestThings(<span class="number">2</span>, TimeUnit.SECONDS)</div><div class="line">    .scan(initialPair, (pair, next) -&gt; &#123;</div><div class="line">      MyDiffCallback callback = <span class="keyword">new</span> MyDiffCallback(pair.first, next);</div><div class="line">      DiffUtil.DiffResult result = DiffUtil.calculateDiff(callback);</div><div class="line">      <span class="keyword">return</span> Pair.create(next, result);</div><div class="line">    &#125;)</div><div class="line">    .skip(<span class="number">1</span>)</div><div class="line">    .subscribeOn(computation())</div><div class="line">    .observeOn(mainThread())</div><div class="line">    .subscribe(listDiffResultPair -&gt; &#123;</div><div class="line">      adapter.setThings(listDiffResultPair.first);</div><div class="line">      listDiffResultPair.second.dispatchUpdatesTo(adapter);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
+<p>完整代码见: <a href="https://github.com/ErikHellman/RxJavaAndDiffUtil" target="_blank" rel="external">RxJavaAndDiffUtil</a>.</p>
+<h2 id="Mockito-2-x-over-PowerMock-Migration-Tips-and-Tricks"><a href="#Mockito-2-x-over-PowerMock-Migration-Tips-and-Tricks" class="headerlink" title="Mockito 2.x over PowerMock Migration Tips and Tricks"></a><a href="https://www.linkedin.com/pulse/mockito-2x-over-powermock-migration-tips-tricks-top-ten-hazem-saleh" target="_blank" rel="external">Mockito 2.x over PowerMock Migration Tips and Tricks</a></h2><p>Mockito 2.x发布了, 包括了可以mock final的的功能和对Java 8的支持等. </p>
+<p>如果你之前在用Mockito 1.x写测试, 现在如何迁移呢? 如果你之前的测试中还用了<code>PowerMock</code>, 那么迁移起来将会更加困难.</p>
+<p>本篇文章提到了你在把Mockito从1.x迁移到2.x的过程中可能会遇到的问题及解决方案.</p>
+<h2 id="Shared-Element-Transition-with-RecyclerView-and-Scenes-Part-4"><a href="#Shared-Element-Transition-with-RecyclerView-and-Scenes-Part-4" class="headerlink" title="Shared Element Transition with RecyclerView and Scenes - Part 4"></a><a href="https://www.thedroidsonroids.com/blog/workcation-app-part-4-shared-element-transition-recyclerview-scenes/" target="_blank" rel="external">Shared Element Transition with RecyclerView and Scenes - Part 4</a></h2><p>使用transition scene framework实现的shared element transition动画效果.</p>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="MaterialChipsInput"><a href="#MaterialChipsInput" class="headerlink" title="MaterialChipsInput"></a><a href="https://github.com/pchmn/MaterialChipsInput" target="_blank" rel="external">MaterialChipsInput</a></h2><p>Material Design中Chips组件的Android实现. 提供了两种Views: <code>ChipsInput</code>和<code>ChipView</code>.</p>
+<h2 id="AdaptiveTableLayout"><a href="#AdaptiveTableLayout" class="headerlink" title="AdaptiveTableLayout"></a><a href="https://github.com/Cleveroad/AdaptiveTableLayout" target="_blank" rel="external">AdaptiveTableLayout</a></h2><p>一个让你可以阅读, 编辑CSV文件的库.</p>
+<h1 id="NEWS"><a href="#NEWS" class="headerlink" title="NEWS"></a>NEWS</h1><h2 id="Java-8-Language-Features-Support-Update"><a href="#Java-8-Language-Features-Support-Update" class="headerlink" title="Java 8 Language Features Support Update"></a><a href="https://android-developers.googleblog.com/2017/04/java-8-language-features-support-update.html" target="_blank" rel="external">Java 8 Language Features Support Update</a></h2><p>Android Studio从2.4开始就要支持Java 8了! 预览版已经发布.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+            <category> Android Weekly </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> Android Weekly </tag>
+            
+            <tag> Espresso </tag>
+            
+            <tag> RxJava </tag>
+            
+            <tag> DiffUtil </tag>
+            
+            <tag> Animation </tag>
+            
+            <tag> Mockito </tag>
+            
+            <tag> FileProvider </tag>
+            
+            <tag> SQLite </tag>
+            
+            <tag> Shared Element </tag>
+            
+            <tag> Android O </tag>
+            
+            <tag> Physics-based Animation </tag>
+            
+            <tag> SpringAnimation </tag>
+            
+            <tag> Transition </tag>
+            
+            <tag> Font </tag>
+            
+            <tag> Glide </tag>
+            
+            <tag> Broadcast </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[20+个很棒的Android开源项目]]></title>
       <url>http://mengdd.github.io/Android/Open-Source/2017/04/14/20-awesome-open-source-android-apps/</url>
       <content type="html"><![CDATA[<h1 id="20-个很棒的Android开源项目"><a href="#20-个很棒的Android开源项目" class="headerlink" title="20+个很棒的Android开源项目"></a>20+个很棒的Android开源项目</h1><p>本文摘自文章: <a href="https://blog.aritraroy.in/20-awesome-open-source-android-apps-to-boost-your-development-skills-b62832cf0fa4" target="_blank" rel="external">20+ Awesome Open-Source Android Apps To Boost Your Development Skills</a>.</p>
@@ -319,19 +419,19 @@
             
             <tag> Android Weekly </tag>
             
+            <tag> Espresso </tag>
+            
             <tag> Kotlin </tag>
             
             <tag> Lambda </tag>
-            
-            <tag> Espresso </tag>
             
             <tag> Mockito </tag>
             
             <tag> Testing </tag>
             
-            <tag> JUnit 5 </tag>
-            
             <tag> Android O </tag>
+            
+            <tag> JUnit 5 </tag>
             
             <tag> Topography </tag>
             
@@ -434,11 +534,15 @@
             
             <tag> RxJava </tag>
             
+            <tag> Animation </tag>
+            
             <tag> Dagger </tag>
+            
+            <tag> Android O </tag>
             
             <tag> JUnit 5 </tag>
             
-            <tag> Android O </tag>
+            <tag> Physics-based Animation </tag>
             
             <tag> SpringAnimation </tag>
             
@@ -586,9 +690,9 @@
             
             <tag> Kotlin </tag>
             
-            <tag> Retrofit </tag>
-            
             <tag> RxJava </tag>
+            
+            <tag> Retrofit </tag>
             
             <tag> Fingerprint </tag>
             
@@ -596,13 +700,13 @@
             
             <tag> TensorFlow </tag>
             
+            <tag> OkHttp </tag>
+            
             <tag> MVI </tag>
             
             <tag> ClassyShark </tag>
             
             <tag> Transition </tag>
-            
-            <tag> OkHttp </tag>
             
             <tag> ViewSwitcher </tag>
             
@@ -720,15 +824,15 @@
             
             <tag> Android </tag>
             
-            <tag> Android Weekly </tag>
-            
             <tag> Dagger2 </tag>
+            
+            <tag> Android Weekly </tag>
             
             <tag> RxJava </tag>
             
-            <tag> Mockito </tag>
-            
             <tag> RxJava2 </tag>
+            
+            <tag> Mockito </tag>
             
             <tag> Dagger </tag>
             
@@ -846,17 +950,17 @@
             
             <tag> MVI </tag>
             
-            <tag> Offline </tag>
-            
             <tag> FlexboxLayout </tag>
+            
+            <tag> JUnit 5 </tag>
+            
+            <tag> Offline </tag>
             
             <tag> Version Name </tag>
             
             <tag> Git </tag>
             
             <tag> Transition </tag>
-            
-            <tag> JUnit 5 </tag>
             
         </tags>
         
@@ -926,9 +1030,9 @@
             
             <tag> FileProvider </tag>
             
-            <tag> FlexboxLayout </tag>
-            
             <tag> Shared Element </tag>
+            
+            <tag> FlexboxLayout </tag>
             
             <tag> In-App Billing </tag>
             
@@ -1191,9 +1295,9 @@
             
             <tag> Android </tag>
             
-            <tag> Android Weekly </tag>
-            
             <tag> Dagger2 </tag>
+            
+            <tag> Android Weekly </tag>
             
             <tag> Kotlin </tag>
             
@@ -1367,9 +1471,9 @@
             
             <tag> RxJava </tag>
             
-            <tag> Animation </tag>
-            
             <tag> Nougat </tag>
+            
+            <tag> Animation </tag>
             
             <tag> RecyclerView </tag>
             
@@ -1560,9 +1664,9 @@
             
             <tag> Animation </tag>
             
-            <tag> MVVM </tag>
-            
             <tag> MVC </tag>
+            
+            <tag> MVVM </tag>
             
             <tag> Color </tag>
             
@@ -1680,9 +1784,9 @@
             
             <tag> RxJava </tag>
             
-            <tag> APK </tag>
-            
             <tag> RxJava2 </tag>
+            
+            <tag> APK </tag>
             
             <tag> Testing </tag>
             
@@ -1772,9 +1876,9 @@
             
             <tag> Android </tag>
             
-            <tag> Android Weekly </tag>
-            
             <tag> Dagger2 </tag>
+            
+            <tag> Android Weekly </tag>
             
             <tag> Kotlin </tag>
             
@@ -1931,11 +2035,11 @@
             
             <tag> RxJava </tag>
             
-            <tag> Handler </tag>
-            
             <tag> Test </tag>
             
             <tag> RxJava2 </tag>
+            
+            <tag> Handler </tag>
             
             <tag> Android Things </tag>
             
@@ -2114,9 +2218,9 @@
             
             <tag> Firebase </tag>
             
-            <tag> ConstraintLayout </tag>
-            
             <tag> ExoPlayer </tag>
+            
+            <tag> ConstraintLayout </tag>
             
             <tag> Java </tag>
             
@@ -2345,11 +2449,11 @@
             
             <tag> AnimatedVectorDrawable </tag>
             
-            <tag> Animation </tag>
-            
             <tag> Test </tag>
             
             <tag> Nougat </tag>
+            
+            <tag> Animation </tag>
             
             <tag> RecyclerView </tag>
             
@@ -2570,9 +2674,9 @@
             
             <tag> MVP </tag>
             
-            <tag> Mockito </tag>
-            
             <tag> Nougat </tag>
+            
+            <tag> Mockito </tag>
             
             <tag> Java </tag>
             
@@ -2785,15 +2889,15 @@
             
             <tag> Kotlin </tag>
             
+            <tag> RxJava </tag>
+            
             <tag> Retrofit </tag>
             
-            <tag> RxJava </tag>
+            <tag> RxJava2 </tag>
             
             <tag> Redux </tag>
             
             <tag> Reductor </tag>
-            
-            <tag> RxJava2 </tag>
             
             <tag> MVVM </tag>
             
@@ -2884,29 +2988,31 @@
             
             <tag> Android </tag>
             
-            <tag> Android Weekly </tag>
-            
             <tag> Dagger2 </tag>
             
-            <tag> Kotlin </tag>
+            <tag> Android Weekly </tag>
             
             <tag> Espresso </tag>
             
             <tag> TV </tag>
             
+            <tag> Kotlin </tag>
+            
             <tag> RxJava </tag>
             
             <tag> MVP </tag>
             
-            <tag> Tools </tag>
-            
             <tag> Memory Leak </tag>
+            
+            <tag> Tools </tag>
             
             <tag> Android Studio </tag>
             
+            <tag> MVVM </tag>
+            
             <tag> BottomNavigationView </tag>
             
-            <tag> MVVM </tag>
+            <tag> Audio </tag>
             
             <tag> Passive View </tag>
             
@@ -2921,8 +3027,6 @@
             <tag> Subcomponent </tag>
             
             <tag> Reference </tag>
-            
-            <tag> Audio </tag>
             
             <tag> Media </tag>
             
@@ -2980,19 +3084,19 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> Kotlin </tag>
-            
             <tag> Espresso </tag>
             
-            <tag> Retrofit </tag>
+            <tag> Kotlin </tag>
             
             <tag> RxJava </tag>
             
+            <tag> Retrofit </tag>
+            
             <tag> MVP </tag>
             
-            <tag> Mockito </tag>
-            
             <tag> RxJava2 </tag>
+            
+            <tag> Mockito </tag>
             
             <tag> ConstraintLayout </tag>
             
@@ -3126,9 +3230,9 @@
             
             <tag> Android </tag>
             
-            <tag> Retrofit </tag>
-            
             <tag> RxJava </tag>
+            
+            <tag> Retrofit </tag>
             
         </tags>
         
@@ -3207,9 +3311,9 @@
             
             <tag> Android </tag>
             
-            <tag> Android Weekly </tag>
-            
             <tag> Dagger2 </tag>
+            
+            <tag> Android Weekly </tag>
             
             <tag> RxJava </tag>
             
@@ -3221,11 +3325,11 @@
             
             <tag> Dagger </tag>
             
-            <tag> Audio </tag>
-            
             <tag> Pury </tag>
             
             <tag> Multiselection </tag>
+            
+            <tag> Audio </tag>
             
             <tag> Barcode Detection </tag>
             
@@ -3718,15 +3822,19 @@
             
             <tag> Android </tag>
             
-            <tag> Android Weekly </tag>
-            
             <tag> Dagger2 </tag>
+            
+            <tag> Android Weekly </tag>
             
             <tag> Espresso </tag>
             
             <tag> Test </tag>
             
             <tag> Nougat </tag>
+            
+            <tag> MVVM </tag>
+            
+            <tag> Dagger </tag>
             
             <tag> Android 7 </tag>
             
@@ -3735,10 +3843,6 @@
             <tag> Alarm </tag>
             
             <tag> BottomNavigationView </tag>
-            
-            <tag> MVVM </tag>
-            
-            <tag> Dagger </tag>
             
             <tag> TensorFlow </tag>
             
@@ -3992,15 +4096,15 @@
             
             <tag> Data Binding </tag>
             
-            <tag> MVVM </tag>
-            
-            <tag> Dagger </tag>
-            
             <tag> MVC </tag>
+            
+            <tag> MVVM </tag>
             
             <tag> Clean Architecture </tag>
             
             <tag> Loader </tag>
+            
+            <tag> Dagger </tag>
             
         </tags>
         
@@ -4131,19 +4235,19 @@
             
             <tag> Android Weekly </tag>
             
+            <tag> Bottom Navigation </tag>
+            
             <tag> Bottom Sheet </tag>
             
             <tag> Firebase </tag>
             
             <tag> AutoValue </tag>
             
-            <tag> Bottom Navigation </tag>
+            <tag> Nougat </tag>
             
             <tag> Redux </tag>
             
             <tag> Reductor </tag>
-            
-            <tag> Nougat </tag>
             
             <tag> Mobile Vision </tag>
             
@@ -4403,19 +4507,19 @@
             
             <tag> Android Weekly </tag>
             
+            <tag> Espresso </tag>
+            
             <tag> Wear </tag>
             
             <tag> Firebase </tag>
-            
-            <tag> Espresso </tag>
-            
-            <tag> Animation </tag>
             
             <tag> Android 7.0 </tag>
             
             <tag> Quick Settings </tag>
             
             <tag> Shared-Element Transtion </tag>
+            
+            <tag> Animation </tag>
             
             <tag> ORM </tag>
             
@@ -4665,6 +4769,8 @@
             
             <tag> Annotation </tag>
             
+            <tag> Memory Leak </tag>
+            
             <tag> pre-launch </tag>
             
             <tag> Handler </tag>
@@ -4680,8 +4786,6 @@
             <tag> Redux </tag>
             
             <tag> Reductor </tag>
-            
-            <tag> Memory Leak </tag>
             
             <tag> Adapter </tag>
             
@@ -4864,15 +4968,13 @@
             
             <tag> Kotlin </tag>
             
+            <tag> Accessibility </tag>
+            
             <tag> Gradle </tag>
             
             <tag> RxJava </tag>
             
             <tag> MVP </tag>
-            
-            <tag> Accessibility </tag>
-            
-            <tag> Memory Leak </tag>
             
             <tag> Test </tag>
             
@@ -4883,6 +4985,8 @@
             <tag> Nougat </tag>
             
             <tag> GCM </tag>
+            
+            <tag> Memory Leak </tag>
             
         </tags>
         
@@ -5134,9 +5238,9 @@
             
             <tag> Espresso </tag>
             
-            <tag> MVP </tag>
-            
             <tag> Resources </tag>
+            
+            <tag> MVP </tag>
             
             <tag> Okio </tag>
             
@@ -5306,15 +5410,11 @@
             
             <tag> Android </tag>
             
-            <tag> Android Weekly </tag>
-            
             <tag> Dagger2 </tag>
             
+            <tag> Android Weekly </tag>
+            
             <tag> Security </tag>
-            
-            <tag> Gradle </tag>
-            
-            <tag> RxJava </tag>
             
             <tag> ScaleType </tag>
             
@@ -5324,9 +5424,13 @@
             
             <tag> Scrolling </tag>
             
+            <tag> Gradle </tag>
+            
             <tag> ExpandableRecyclerView </tag>
             
             <tag> Annotation </tag>
+            
+            <tag> RxJava </tag>
             
             <tag> ItemTouchHelper </tag>
             
@@ -5464,19 +5568,19 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> Bottom Sheet </tag>
-            
             <tag> AnimatedVectorDrawable </tag>
             
+            <tag> Bottom Sheet </tag>
+            
             <tag> Gradle </tag>
+            
+            <tag> RxJava </tag>
             
             <tag> Docker </tag>
             
             <tag> Certificate </tag>
             
             <tag> Retrofit </tag>
-            
-            <tag> RxJava </tag>
             
             <tag> MVP </tag>
             
@@ -5630,11 +5734,13 @@
             
             <tag> Android </tag>
             
+            <tag> Dagger2 </tag>
+            
             <tag> Android Weekly </tag>
             
-            <tag> Bottom Sheet </tag>
+            <tag> Wear </tag>
             
-            <tag> Dagger2 </tag>
+            <tag> Bottom Sheet </tag>
             
             <tag> Security </tag>
             
@@ -5651,8 +5757,6 @@
             <tag> Java 8 </tag>
             
             <tag> Lambda </tag>
-            
-            <tag> Wear </tag>
             
             <tag> Firebase </tag>
             
@@ -5705,13 +5809,13 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> Wear </tag>
-            
             <tag> AnimatedVectorDrawable </tag>
             
             <tag> Espresso </tag>
             
             <tag> TV </tag>
+            
+            <tag> Wear </tag>
             
             <tag> Router </tag>
             
@@ -6140,29 +6244,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Test Links]]></title>
-      <url>http://mengdd.github.io/uncategorized/2016/05/31/test-links/</url>
-      <content type="html"><![CDATA[<p><a href="http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330" target="_blank" rel="external">http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330</a></p>
-<p><a href="https://m.realestate.com.au/sold/property-house-act-waramanga-122532898" target="_blank" rel="external">https://m.realestate.com.au/sold/property-house-act-waramanga-122532898</a></p>
-<p>realestate.com.au/suggested-properties</p>
-<p><a href="http://www.realestate.com.au/suggested-properties" target="_blank" rel="external">http://www.realestate.com.au/suggested-properties</a></p>
-<p><a href="http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/" target="_blank" rel="external">http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/</a></p>
-<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false</a></p>
-<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search</a></p>
-<p><a href="http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16" target="_blank" rel="external">http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16</a></p>
-<p><a href="http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false</a></p>
-<p><a href="http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3</a> </p>
-<p><a href="https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc" target="_blank" rel="external">https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc</a> </p>
-<p><a href="http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1</a> </p>
-<p>2016-06-15<br><a href="http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1</a><br><a href="http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc</a><br><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date</a></p>
-<p>2016-08-03<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a></p>
-<p>2016-11-7<br>Property detail:<br><a href="http://www.realestate.com.au/property-apartment-vic-melbourne-122718062" target="_blank" rel="external">http://www.realestate.com.au/property-apartment-vic-melbourne-122718062</a><br>Saved Properties -&gt; should open second tab<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a><br>Saved Property Notification: -&gt; should open detail page on second tab<br>rea-app://saved-properties/122718062<br>Agenda deeplink: -&gt; should open inspections on second tab<br>rea-app://saved-properties/inbox-style</p>
-]]></content>
-      
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Android Fragment使用(一) 基础篇 温故知新]]></title>
       <url>http://mengdd.github.io/Android/2016/05/31/android-fragment-usage-1-basic-part/</url>
       <content type="html"><![CDATA[<p>Fragment使用的基本知识点总结, 包括Fragment的添加, 参数传递和通信, 生命周期和各种操作.</p>
@@ -6219,6 +6300,29 @@
             <tag> Fragment </tag>
             
         </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Test Links]]></title>
+      <url>http://mengdd.github.io/uncategorized/2016/05/31/test-links/</url>
+      <content type="html"><![CDATA[<p><a href="http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330" target="_blank" rel="external">http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330</a></p>
+<p><a href="https://m.realestate.com.au/sold/property-house-act-waramanga-122532898" target="_blank" rel="external">https://m.realestate.com.au/sold/property-house-act-waramanga-122532898</a></p>
+<p>realestate.com.au/suggested-properties</p>
+<p><a href="http://www.realestate.com.au/suggested-properties" target="_blank" rel="external">http://www.realestate.com.au/suggested-properties</a></p>
+<p><a href="http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/" target="_blank" rel="external">http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/</a></p>
+<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false</a></p>
+<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search</a></p>
+<p><a href="http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16" target="_blank" rel="external">http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16</a></p>
+<p><a href="http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false</a></p>
+<p><a href="http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3</a> </p>
+<p><a href="https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc" target="_blank" rel="external">https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc</a> </p>
+<p><a href="http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1</a> </p>
+<p>2016-06-15<br><a href="http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1</a><br><a href="http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc</a><br><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date</a></p>
+<p>2016-08-03<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a></p>
+<p>2016-11-7<br>Property detail:<br><a href="http://www.realestate.com.au/property-apartment-vic-melbourne-122718062" target="_blank" rel="external">http://www.realestate.com.au/property-apartment-vic-melbourne-122718062</a><br>Saved Properties -&gt; should open second tab<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a><br>Saved Property Notification: -&gt; should open detail page on second tab<br>rea-app://saved-properties/122718062<br>Agenda deeplink: -&gt; should open inspections on second tab<br>rea-app://saved-properties/inbox-style</p>
+]]></content>
+      
         
     </entry>
     

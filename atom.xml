@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-04-14T09:31:27.000Z</updated>
+  <updated>2017-04-19T02:02:17.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,108 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 253</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/04/18/android-weekly-notes-issue-253/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/04/18/android-weekly-notes-issue-253/</id>
+    <published>2017-04-18T10:02:29.000Z</published>
+    <updated>2017-04-19T02:02:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-253"><a href="#Android-Weekly-Issue-253" class="headerlink" title="Android Weekly Issue #253"></a>Android Weekly Issue #253</h1><p>April 16th, 2017<br><a href="http://androidweekly.net/issues/issue-253" target="_blank" rel="external">Android Weely Issue #253</a>.<br>本期内容包括: Android O新推出的自定义字体支持; 用Espresso测试自定义View; 在添加测试的过程中解耦在Activity中写的程序; SQLite的性能研究; 用FileProvider分享Glide的缓存文件; 基于物理的动画; Android O的隐式广播限制; RxJava和DiffUtil的结合; 向Mockito 2.x的迁移; 用Transition scene framework实现的shared element transition.<br><a id="more"></a></p>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Android-O-Fonts-–-Part-1"><a href="#Android-O-Fonts-–-Part-1" class="headerlink" title="Android O: Fonts – Part 1"></a><a href="https://blog.stylingandroid.com/android-o-fonts/" target="_blank" rel="external">Android O: Fonts – Part 1</a></h2><p>Android O中的自定义字体支持.</p>
+<p><a href="https://fonts.google.com/" target="_blank" rel="external">Google Fonts</a>是一个很好的资源网站, 里面的字体都是开源的, 可以在app中免费试用.</p>
+<p>下载了字体资源(.ttf)之后, 加入项目资源字体文件夹:<code>res/font/</code>, 点击会显示字体的preview.</p>
+<p>使用的时候只需要这样:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">android:fontFamily="@font/pacifico"</div></pre></td></tr></table></figure></p>
+<h2 id="Testing-Views-in-Isolation-with-Espresso-on-Android"><a href="#Testing-Views-in-Isolation-with-Espresso-on-Android" class="headerlink" title="Testing Views in Isolation with Espresso on Android"></a><a href="https://www.novoda.com/blog/testing-views-in-isolation-with-espresso/" target="_blank" rel="external">Testing Views in Isolation with Espresso on Android</a></h2><p>作者他们的项目用了很多自定义的View, 把逻辑包含进去. (其实我个人不是很赞成这种做法).</p>
+<p>本文介绍用Espresso来测试这种自定义View.</p>
+<h2 id="Test-Driving-away-Coupling-in-Activities"><a href="#Test-Driving-away-Coupling-in-Activities" class="headerlink" title="Test Driving away Coupling in Activities"></a><a href="https://www.philosophicalhacker.com/post/test-driving-away-coupling-in-activities/" target="_blank" rel="external">Test Driving away Coupling in Activities</a></h2><p>目标代码是一个Activity中有动态权限请求模块, 本文首先企图给它加上测试, 在加测试的过程中对原来的代码进行重构(抽取了View接口), 然后说明了这样做的好处: 解耦, 易于修改; 减少了重复代码.</p>
+<h2 id="Squeezing-Performance-from-SQLite"><a href="#Squeezing-Performance-from-SQLite" class="headerlink" title="Squeezing Performance from SQLite"></a><a href="https://medium.com/@JasonWyatt/squeezing-performance-from-sqlite-insertions-971aff98eef2" target="_blank" rel="external">Squeezing Performance from SQLite</a></h2><p>本文介绍当你需要在SQLite数据库中插入大量数据的时候, 各种做法以及它们的性能比较.</p>
+<h3 id="实验1-比较db-insert包不包transaction"><a href="#实验1-比较db-insert包不包transaction" class="headerlink" title="实验1: 比较db.insert包不包transaction."></a>实验1: 比较<code>db.insert</code>包不包transaction.</h3><p>结果: 把一系列<code>insert()</code>操作包在transaction里可以大幅度地改善性能.</p>
+<p>为什么呢? 根据<a href="https://sqlite.org/lang_transaction.html" target="_blank" rel="external">文档</a>:<br>如果你不显示地指定transaction, 那么SQLite自己会在每一个操作上加一个隐式的transaction.</p>
+<p>要知道SQLite只在transaction被提交的时候把插入数据写入磁盘, 所以, 如果你能减少transaction的数量, 你就可以减少磁盘访问, 从而提高效率.</p>
+<h3 id="实验2-比较db-execSQL和db-insert"><a href="#实验2-比较db-execSQL和db-insert" class="headerlink" title="实验2: 比较db.execSQL和db.insert."></a>实验2: 比较<code>db.execSQL</code>和<code>db.insert</code>.</h3><p>结果: 使用<code>db.execSQL</code>可以轻微地改善性能.</p>
+<p>原因: <code>db.insert()</code>包装抽象了SQL语句的创建, 这一层还是需要一点花销的.</p>
+<h3 id="实验3-用db-execSQL-批处理插入"><a href="#实验3-用db-execSQL-批处理插入" class="headerlink" title="实验3: 用db.execSQL()批处理插入."></a>实验3: 用<code>db.execSQL()</code>批处理插入.</h3><p>结果: 可以提升一部分性能.</p>
+<p>但是注意每个语句中有最大的变量数限制: 999. 所以如果你的表有越多列, 那么批处理所获得的性能提升就越少.</p>
+<h3 id="实验4-直接使用SQLiteStatement"><a href="#实验4-直接使用SQLiteStatement" class="headerlink" title="实验4: 直接使用SQLiteStatement."></a>实验4: 直接使用<code>SQLiteStatement</code>.</h3><p><code>SQLiteStatement</code>比<code>insert()</code>和<code>execSQL()</code>更底层.</p>
+<p>作者在这里做了两个实验: 一个是复用单条记录插入的<code>SQLiteStatement</code>语句对象; 另一个是复用批处理的<code>SQLiteStatement</code>语句对象.</p>
+<p>结果: 跟用<code>db.execSQL()</code>批处理相比: 复用单条记录插入的语句对象并没有获得性能改善; 但是复用批处理的插入语句可以提供一点儿性能的提高. </p>
+<h2 id="Share-the-Cache"><a href="#Share-the-Cache" class="headerlink" title="Share the Cache"></a><a href="http://emuneee.com/blog/2017/04/12/share-the-cache/" target="_blank" rel="external">Share the Cache</a></h2><p>很多app都有看图片的功能, 其中很多用了图片缓存库, 比如<a href="https://github.com/bumptech/glide" target="_blank" rel="external">Glide</a>来处理图片的缓存. 分享这些缓存的图片就有点tricky了, 要考虑到这些问题:</p>
+<ul>
+<li>我如何访问cache中的文件? </li>
+<li>其他应用也有权限访问这些文件吗?</li>
+<li>如果我需要手动拷贝文件到其他地方去, 我需要什么权限? </li>
+</ul>
+<p>有一种做法是: 首先把图片再缓存到其他公有的位置, 生成一个URI, 然后把这个URI用intent发送出去分享给其他应用. 这个听起来很简单, 但是实际上有点复杂, 因为读写外部存储都需要用户允许权限(Android 6.0以上).</p>
+<p>所以本文要介绍的是用<code>FileProvider</code>的方法.</p>
+<p>首先在Manifest中注册<code>FileProvider</code>.<br>然后在Glide中修改了缓存文件的路径.<br>(值得注意的是用Glide缓存的文件都是没有后缀名的, 所以作者在他的项目中强加了后缀名.) 最后再通过Intent分享出去:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String authority = “com.yourdomain.android.fileprovider”;</div><div class="line">Uri uri = FileProvider.getUriForFile(context, authority, file);</div><div class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_SEND);</div><div class="line">intent.putExtra(Intent.EXTRA_STREAM, uri);</div><div class="line">intent.setType(<span class="string">"image/jpeg"</span>);</div><div class="line">context.startActivity(Intent.createChooser(intent, “Share via”);</div></pre></td></tr></table></figure></p>
+<h2 id="Physics-based-Animation"><a href="#Physics-based-Animation" class="headerlink" title="Physics-based Animation"></a><a href="https://developer.android.com/guide/topics/graphics/physics-based-animation.html" target="_blank" rel="external">Physics-based Animation</a></h2><p>Google的官方文档, 介绍如何使用新的基于物理的动画系统. (physics-based animation).</p>
+<p>基于物理原理的动画看起来更自然, 更真实. </p>
+<p>文档中举了一个例子, 中途改变动画的目标值, 比较了基于Animator的动画和基于物理的动画有什么区别: 前者需要取消当前动画设定新的目标值, 速度发生了突变; 后者只是改变了受力, 速度是连续的, 看起来更自然.</p>
+<p>有关弹簧动画, 详情请见: <a href="https://developer.android.com/guide/topics/graphics/spring-animation.html" target="_blank" rel="external">Spring Animation</a>.</p>
+<h2 id="Android-O-and-the-Implicit-Broadcast-Ban"><a href="#Android-O-and-the-Implicit-Broadcast-Ban" class="headerlink" title="Android O and the Implicit Broadcast Ban"></a><a href="https://commonsware.com/blog/2017/04/11/android-o-implicit-broadcast-ban.html" target="_blank" rel="external">Android O and the Implicit Broadcast Ban</a></h2><p>Android O和隐性广播限制.</p>
+<p>首先解释了这种限制是什么; 为什么需要加上这条限制(RAM, Battery); 都有哪些广播受到影响; 以及对这一系统改动可以采取的一些应对政策(动态广播, 显式广播, 先不要升级, 改用其他的通信方式等).</p>
+<h2 id="A-nice-combination-of-RxJava-and-DiffUtil"><a href="#A-nice-combination-of-RxJava-and-DiffUtil" class="headerlink" title="A nice combination of RxJava and DiffUtil"></a><a href="https://android.jlelse.eu/a-nice-combination-of-rxjava-and-diffutil-fe3807186012" target="_blank" rel="external">A nice combination of RxJava and DiffUtil</a></h2><p>使用<a href="https://developer.android.com/reference/android/support/v7/util/DiffUtil.html" target="_blank" rel="external">DiffUtil</a>, 你只需要提供新旧数据的比较.</p>
+<p>但是如果你的数据集很大, 或者你要做的比较很复杂, 你应该避免在主线程调用<code>DiffUtil</code>的计算. 你可以把比较工作放在后台线程, 然后在主线程通知UI.</p>
+<p>因为你需要比较新旧数据, 所以你需要在后台线程访问当前数据, 这就意味着这个数据会在多个线程被访问, 可能你就需要同步或者线程安全的数据结构, 如何避免这些呢? -&gt; 使用RxJava.</p>
+<p>里面涉及到了对<code>.scan()</code>操作符的使用, 核心代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">disposable = ThingRepository</div><div class="line">    .latestThings(<span class="number">2</span>, TimeUnit.SECONDS)</div><div class="line">    .scan(initialPair, (pair, next) -&gt; &#123;</div><div class="line">      MyDiffCallback callback = <span class="keyword">new</span> MyDiffCallback(pair.first, next);</div><div class="line">      DiffUtil.DiffResult result = DiffUtil.calculateDiff(callback);</div><div class="line">      <span class="keyword">return</span> Pair.create(next, result);</div><div class="line">    &#125;)</div><div class="line">    .skip(<span class="number">1</span>)</div><div class="line">    .subscribeOn(computation())</div><div class="line">    .observeOn(mainThread())</div><div class="line">    .subscribe(listDiffResultPair -&gt; &#123;</div><div class="line">      adapter.setThings(listDiffResultPair.first);</div><div class="line">      listDiffResultPair.second.dispatchUpdatesTo(adapter);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
+<p>完整代码见: <a href="https://github.com/ErikHellman/RxJavaAndDiffUtil" target="_blank" rel="external">RxJavaAndDiffUtil</a>.</p>
+<h2 id="Mockito-2-x-over-PowerMock-Migration-Tips-and-Tricks"><a href="#Mockito-2-x-over-PowerMock-Migration-Tips-and-Tricks" class="headerlink" title="Mockito 2.x over PowerMock Migration Tips and Tricks"></a><a href="https://www.linkedin.com/pulse/mockito-2x-over-powermock-migration-tips-tricks-top-ten-hazem-saleh" target="_blank" rel="external">Mockito 2.x over PowerMock Migration Tips and Tricks</a></h2><p>Mockito 2.x发布了, 包括了可以mock final的的功能和对Java 8的支持等. </p>
+<p>如果你之前在用Mockito 1.x写测试, 现在如何迁移呢? 如果你之前的测试中还用了<code>PowerMock</code>, 那么迁移起来将会更加困难.</p>
+<p>本篇文章提到了你在把Mockito从1.x迁移到2.x的过程中可能会遇到的问题及解决方案.</p>
+<h2 id="Shared-Element-Transition-with-RecyclerView-and-Scenes-Part-4"><a href="#Shared-Element-Transition-with-RecyclerView-and-Scenes-Part-4" class="headerlink" title="Shared Element Transition with RecyclerView and Scenes - Part 4"></a><a href="https://www.thedroidsonroids.com/blog/workcation-app-part-4-shared-element-transition-recyclerview-scenes/" target="_blank" rel="external">Shared Element Transition with RecyclerView and Scenes - Part 4</a></h2><p>使用transition scene framework实现的shared element transition动画效果.</p>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="MaterialChipsInput"><a href="#MaterialChipsInput" class="headerlink" title="MaterialChipsInput"></a><a href="https://github.com/pchmn/MaterialChipsInput" target="_blank" rel="external">MaterialChipsInput</a></h2><p>Material Design中Chips组件的Android实现. 提供了两种Views: <code>ChipsInput</code>和<code>ChipView</code>.</p>
+<h2 id="AdaptiveTableLayout"><a href="#AdaptiveTableLayout" class="headerlink" title="AdaptiveTableLayout"></a><a href="https://github.com/Cleveroad/AdaptiveTableLayout" target="_blank" rel="external">AdaptiveTableLayout</a></h2><p>一个让你可以阅读, 编辑CSV文件的库.</p>
+<h1 id="NEWS"><a href="#NEWS" class="headerlink" title="NEWS"></a>NEWS</h1><h2 id="Java-8-Language-Features-Support-Update"><a href="#Java-8-Language-Features-Support-Update" class="headerlink" title="Java 8 Language Features Support Update"></a><a href="https://android-developers.googleblog.com/2017/04/java-8-language-features-support-update.html" target="_blank" rel="external">Java 8 Language Features Support Update</a></h2><p>Android Studio从2.4开始就要支持Java 8了! 预览版已经发布.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-253&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-253&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #253&quot;&gt;&lt;/a&gt;Android Weekly Issue #253&lt;/h1&gt;&lt;p&gt;April 16th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-253&quot;&gt;Android Weely Issue #253&lt;/a&gt;.&lt;br&gt;本期内容包括: Android O新推出的自定义字体支持; 用Espresso测试自定义View; 在添加测试的过程中解耦在Activity中写的程序; SQLite的性能研究; 用FileProvider分享Glide的缓存文件; 基于物理的动画; Android O的隐式广播限制; RxJava和DiffUtil的结合; 向Mockito 2.x的迁移; 用Transition scene framework实现的shared element transition.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="DiffUtil" scheme="http://mengdd.github.io/tags/DiffUtil/"/>
+    
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
+    
+      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
+    
+      <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
+    
+      <category term="SQLite" scheme="http://mengdd.github.io/tags/SQLite/"/>
+    
+      <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
+    
+      <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
+    
+      <category term="Physics-based Animation" scheme="http://mengdd.github.io/tags/Physics-based-Animation/"/>
+    
+      <category term="SpringAnimation" scheme="http://mengdd.github.io/tags/SpringAnimation/"/>
+    
+      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
+    
+      <category term="Font" scheme="http://mengdd.github.io/tags/Font/"/>
+    
+      <category term="Glide" scheme="http://mengdd.github.io/tags/Glide/"/>
+    
+      <category term="Broadcast" scheme="http://mengdd.github.io/tags/Broadcast/"/>
+    
+  </entry>
   
   <entry>
     <title>20+个很棒的Android开源项目</title>
@@ -343,19 +445,19 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
+    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Lambda" scheme="http://mengdd.github.io/tags/Lambda/"/>
-    
-      <category term="Espresso" scheme="http://mengdd.github.io/tags/Espresso/"/>
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
-      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
-    
       <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
+    
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
       <category term="Topography" scheme="http://mengdd.github.io/tags/Topography/"/>
     
@@ -370,7 +472,7 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2017/03/31/android-weekly-notes-issue-250/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2017/03/31/android-weekly-notes-issue-250/</id>
     <published>2017-03-31T08:50:01.000Z</published>
-    <updated>2017-03-31T09:32:28.000Z</updated>
+    <updated>2017-04-19T02:01:43.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-250"><a href="#Android-Weekly-Issue-250" class="headerlink" title="Android Weekly Issue #250"></a>Android Weekly Issue #250</h1><p>March 26th, 2017<br><a href="http://androidweekly.net/issues/issue-250" target="_blank" rel="external">Android Weekly Issue #250</a>.<br>本期内容: 好几篇关于Android O预览版的文章; JUnit 5的动态测试; 作为团队里唯一的Android开发如何学习和工作; Support库新推出的基于物理的动画API: SpringAnimation; Uber Rider项目重构中关于依赖注入的scope层级的改动; Kotlin和RxJava的简洁性.</p>
 <a id="more"></a>
@@ -460,11 +562,15 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
+    
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
+    
+      <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
     
       <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
-      <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
+      <category term="Physics-based Animation" scheme="http://mengdd.github.io/tags/Physics-based-Animation/"/>
     
       <category term="SpringAnimation" scheme="http://mengdd.github.io/tags/SpringAnimation/"/>
     
@@ -615,9 +721,9 @@
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="Fingerprint" scheme="http://mengdd.github.io/tags/Fingerprint/"/>
     
@@ -625,13 +731,13 @@
     
       <category term="TensorFlow" scheme="http://mengdd.github.io/tags/TensorFlow/"/>
     
+      <category term="OkHttp" scheme="http://mengdd.github.io/tags/OkHttp/"/>
+    
       <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
     
       <category term="ClassyShark" scheme="http://mengdd.github.io/tags/ClassyShark/"/>
     
       <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
-    
-      <category term="OkHttp" scheme="http://mengdd.github.io/tags/OkHttp/"/>
     
       <category term="ViewSwitcher" scheme="http://mengdd.github.io/tags/ViewSwitcher/"/>
     
@@ -751,15 +857,15 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
       <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
-    
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
+      <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
@@ -880,17 +986,17 @@
     
       <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
     
-      <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
-    
       <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
+    
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
+    
+      <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
     
       <category term="Version Name" scheme="http://mengdd.github.io/tags/Version-Name/"/>
     
       <category term="Git" scheme="http://mengdd.github.io/tags/Git/"/>
     
       <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
-    
-      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
   </entry>
   
@@ -963,9 +1069,9 @@
     
       <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
-      <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
-    
       <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
+    
+      <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
     
       <category term="In-App Billing" scheme="http://mengdd.github.io/tags/In-App-Billing/"/>
     
@@ -1237,9 +1343,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
       <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
@@ -1417,9 +1523,9 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
-    
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
       <category term="RecyclerView" scheme="http://mengdd.github.io/tags/RecyclerView/"/>
     
@@ -1614,9 +1720,9 @@
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
       <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Color" scheme="http://mengdd.github.io/tags/Color/"/>
     
@@ -1736,9 +1842,9 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
-    
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
+      <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
@@ -1831,9 +1937,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
       <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
@@ -1992,11 +2098,11 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
-    
       <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
+    
+      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
     
       <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
     
@@ -2101,97 +2207,6 @@
       <category term="Flutter" scheme="http://mengdd.github.io/tags/Flutter/"/>
     
       <category term="CI" scheme="http://mengdd.github.io/tags/CI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 237</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2016/12/30/android-weekly-notes-issue-237/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2016/12/30/android-weekly-notes-issue-237/</id>
-    <published>2016-12-30T07:30:25.000Z</published>
-    <updated>2016-12-30T07:41:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-237"><a href="#Android-Weekly-Issue-237" class="headerlink" title="Android Weekly Issue #237"></a>Android Weekly Issue #237</h1><p>December 25th, 2016<br><a href="http://androidweekly.net/issues/issue-237" target="_blank" rel="external">Android Weekly Issue #237</a><br>这是本年的最后一篇issue, 感谢大家.<br>本期内容包括: ConstraintLayout的使用; Android Things的应用; 如何利用第三方库使得Java具有Kotlin的一些新特性; Firebase是如何利用<code>ContentProvider</code>进行初始化的; Kotlin上的并发处理; 其他还有一些关于程序架构, 代码优化相关的讨论.</p>
-<a id="more"></a>
-<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Building-interfaces-with-ConstraintLayout"><a href="#Building-interfaces-with-ConstraintLayout" class="headerlink" title="Building interfaces with ConstraintLayout"></a><a href="https://medium.com/google-developers/building-interfaces-with-constraintlayout-3958fa38a9f7#.al6p1anu7" target="_blank" rel="external">Building interfaces with ConstraintLayout</a></h2><p>本文介绍<code>ConstraintLayout</code>的chains和ratios. 另外还提到很多使用<code>ConstraintLayout</code>的实现细节.</p>
-<p>所谓chains就是几个View之间建立的双向约束.</p>
-<p>ratios是帮助你设置View的宽高比, 它所做的事情和<a href="https://developer.android.com/reference/android/support/percent/PercentFrameLayout.html" target="_blank" rel="external">PercentFrameLayout</a>差不多, 但是不用添加额外的ViewGroup.</p>
-<h2 id="Electronic-Candle-using-Android-Things"><a href="#Electronic-Candle-using-Android-Things" class="headerlink" title="Electronic Candle using Android Things"></a><a href="https://plus.google.com/+DaveSmithDev/posts/4JN7ZaSKxaM" target="_blank" rel="external">Electronic Candle using Android Things</a></h2><p>用ObjectAnimator和Android Things搭建的一个电子蜡烛.</p>
-<h2 id="ExoPlayer-2-1-What’s-new"><a href="#ExoPlayer-2-1-What’s-new" class="headerlink" title="ExoPlayer 2.1 - What’s new"></a><a href="https://medium.com/google-exoplayer/exoplayer-2-1-whats-new-2832c09fedab#.po64o4uha" target="_blank" rel="external">ExoPlayer 2.1 - What’s new</a></h2><p>ExoPlayer 2.1有什么新功能.<br>这是他们的<a href="https://github.com/google/ExoPlayer/blob/release-v2/RELEASENOTES.md" target="_blank" rel="external">release notes</a>.</p>
-<h2 id="Living-Android-without-Kotlin"><a href="#Living-Android-without-Kotlin" class="headerlink" title="Living (Android) without Kotlin"></a><a href="https://hackernoon.com/living-android-without-kotlin-db7391a2b170#.7fm956ryk" target="_blank" rel="external">Living (Android) without Kotlin</a></h2><p>如果你因为种种原因不能在项目中使用kotlin, 这篇文章告诉你如何借助于一些工具和库用Java实现Kotlin的一些features.</p>
-<h2 id="Christmas-Voice-–-Part-1"><a href="#Christmas-Voice-–-Part-1" class="headerlink" title="Christmas Voice – Part 1"></a><a href="https://blog.stylingandroid.com/christmas-voice-part-1/" target="_blank" rel="external">Christmas Voice – Part 1</a></h2><p>作者发布了一个改变声音的应用, 并且将其开源了: <a href="https://github.com/StylingAndroid/ChristmasVoice" target="_blank" rel="external">ChristmasVoice</a>.</p>
-<h2 id="How-does-Firebase-initialize-on-Android"><a href="#How-does-Firebase-initialize-on-Android" class="headerlink" title="How does Firebase initialize on Android?"></a><a href="https://firebase.googleblog.com/2016/12/how-does-firebase-initialize-on-android.html" target="_blank" rel="external">How does Firebase initialize on Android?</a></h2><p>Firebase在Android上是如何初始化的?</p>
-<p>很多SDK在初始化的时候会要求应用传入<code>Context</code>. Firebase简化了这一步骤. 解决方案就是用了<code>ContentProvider</code>, 既解决了时间问题, 也得到了sdk需要的<code>Context</code>. 并且不需要应用的开发者添加任何额外的初始化代码.</p>
-<p>选择<code>ContentProvider</code>主要有两点原因:</p>
-<ul>
-<li><code>ContentProvider</code>初始化早.<br>当一个Android进程启动的时候, 首先会初始化每一个ContentProvider, 然后是Application, 最后是被Intent启动的组件. </li>
-</ul>
-<p>在ContentProvider初始化的时候, 就可以拿到Context了.</p>
-<ul>
-<li><code>ContentProvider</code>可以merge到最终的manifest里.<br><a href="https://developer.android.com/studio/build/manifest-merge.html" target="_blank" rel="external">Manifest merge</a>是在build的时候来定义你的应用最终的manifest. 最终的manifest会包含所有依赖的库的manifest中声明的组件.</li>
-</ul>
-<p>如果你也想选择用<code>ContentProvider</code>来做应用或库的初始化, 请注意authority的唯一性问题和<code>ContentProvider</code>只在主进程运行的问题.</p>
-<h2 id="Seductive-Code"><a href="#Seductive-Code" class="headerlink" title="Seductive Code"></a><a href="https://publicobject.com/2016/12/19/seductive-code/" target="_blank" rel="external">Seductive Code</a></h2><p>当我们在改善代码可读性的时候, 很有可能会影响到性能和可维护性. </p>
-<p>作者举例说明了他在实际编程中遇到的几个问题.</p>
-<h2 id="Testing-Android-Things-–-Unit-amp-Vendor-tests"><a href="#Testing-Android-Things-–-Unit-amp-Vendor-tests" class="headerlink" title="Testing Android Things – Unit &amp; Vendor tests"></a><a href="http://blog.blundellapps.co.uk/testing-android-things-iot-meets-java/" target="_blank" rel="external">Testing Android Things – Unit &amp; Vendor tests</a></h2><p>如何开发Android Things应用, 才能让测试更加容易. 本文以一个很小的LED灯闪烁程序为例.</p>
-<h2 id="Engineering-the-Architecture-Behind-Uber’s-New-Rider-App"><a href="#Engineering-the-Architecture-Behind-Uber’s-New-Rider-App" class="headerlink" title="Engineering the Architecture Behind Uber’s New Rider App"></a><a href="https://eng.uber.com/new-rider-app/" target="_blank" rel="external">Engineering the Architecture Behind Uber’s New Rider App</a></h2><p>Uber团队重新打造了他们的ride app, 提出了一个新的构架模式: Riblets.</p>
-<p>关于架构的选型, 已有的类型可以查看这个<a href="https://medium.com/ios-os-x-development/ios-architecture-patterns-ecba4c38de52#.tmcojtwgg" target="_blank" rel="external">iOS Architecture Patterns</a>.</p>
-<h2 id="Rebuilding-the-Buffer-Android-Composer"><a href="#Rebuilding-the-Buffer-Android-Composer" class="headerlink" title="Rebuilding the Buffer Android Composer"></a><a href="https://overflow.buffer.com/2016/12/22/rebuild-android-composer/" target="_blank" rel="external">Rebuilding the Buffer Android Composer</a></h2><p>作者重构了自己应用的代码, 应用了clean architecture, 本文讲述了其过程.</p>
-<h2 id="Papercut"><a href="#Papercut" class="headerlink" title="Papercut"></a><a href="http://stu.ie/?page_id=3133" target="_blank" rel="external">Papercut</a></h2><p><a href="https://github.com/Stuie/papercut" target="_blank" rel="external">Papercut</a>是一个库, 用来标记那些我们觉得需要删除或者需要重构的代码.</p>
-<h2 id="Concurrency-Primitives-in-Kotlin"><a href="#Concurrency-Primitives-in-Kotlin" class="headerlink" title="Concurrency Primitives in Kotlin"></a><a href="https://blog.egorand.me/concurrency-primitives-in-kotlin/" target="_blank" rel="external">Concurrency Primitives in Kotlin</a></h2><p>作者最近看了一本书, 讲Android的并发, 觉得很好, 想要用Kotlin来重写书中的例子, 结果发现:</p>
-<ul>
-<li>Kotlin中没有<code>synchronized</code>关键字.</li>
-<li>Kotlin中没有<code>volatile</code>关键字.</li>
-<li>Kotlin中的<code>Any</code>, 类比于Java中的<code>Object</code>, 但是却没有<code>wait()</code>, <code>notify()</code>和<code>notifyAll()</code>方法.</li>
-</ul>
-<p>所以Kotlin中的并发是怎么处理呢? 这里有个问题: <a href="https://discuss.kotlinlang.org/t/concurrency-in-kotlin/858" target="_blank" rel="external">Kotlin forum</a>, Kotlin语言的开发人员表示这些应该由库来处理, 而不是语言本身.</p>
-<p>尽管Kotlin不支持, 但是它还是提供了一些底层的并发工具.</p>
-<ul>
-<li>创建线程. 因为Kotlin可以调用Java代码, 所以仍然可以通过两种方法来创建线程.</li>
-<li><code>@Synchronized</code>注解和<code>synchronized()</code>方法.</li>
-<li><code>@Volatile</code>注解.</li>
-<li>没有<code>wait()</code>, <code>notify()</code>和<code>notifyAll()</code>方法, 但是可以把<code>Object</code>对象作为锁, 然后调用锁的这些方法.</li>
-</ul>
-<p><a href="http://stackoverflow.com/questions/35520583/why-there-are-no-concurrency-keywords-in-kotlin" target="_blank" rel="external">stackoverflow</a>上有一个相关问题, 答案很不错, 列了处理并发的一些有用的库.</p>
-<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="KataScreenshotAndroid"><a href="#KataScreenshotAndroid" class="headerlink" title="KataScreenshotAndroid"></a><a href="https://github.com/Karumi/KataScreenshotAndroid" target="_blank" rel="external">KataScreenshotAndroid</a></h2><p>一个Screen Kata应用, 用来练习做UI测试的.</p>
-<h2 id="Papercut-1"><a href="#Papercut-1" class="headerlink" title="Papercut"></a><a href="https://github.com/Stuie/papercut" target="_blank" rel="external">Papercut</a></h2><p>一个用来标记需要重构或者移除代码的工具库.</p>
-<h2 id="Squint"><a href="#Squint" class="headerlink" title="Squint"></a><a href="https://github.com/IntruderShanky/Squint" target="_blank" rel="external">Squint</a></h2><p>一个可以自定义的对角线切割View.</p>
-<h2 id="Colorful"><a href="#Colorful" class="headerlink" title="Colorful"></a><a href="https://github.com/garretyoder/Colorful" target="_blank" rel="external">Colorful</a></h2><p>一个动态的主题库, 让你可以方便地修改应用的颜色.</p>
-<h2 id="scytale"><a href="#scytale" class="headerlink" title="scytale"></a><a href="https://github.com/yakivmospan/scytale" target="_blank" rel="external">scytale</a></h2><p>包装了JCA API和AndroidKeyStore API, 让创建, 加密和管理任何Android API的keys变得更容易.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-237&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-237&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #237&quot;&gt;&lt;/a&gt;Android Weekly Issue #237&lt;/h1&gt;&lt;p&gt;December 25th, 2016&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-237&quot;&gt;Android Weekly Issue #237&lt;/a&gt;&lt;br&gt;这是本年的最后一篇issue, 感谢大家.&lt;br&gt;本期内容包括: ConstraintLayout的使用; Android Things的应用; 如何利用第三方库使得Java具有Kotlin的一些新特性; Firebase是如何利用&lt;code&gt;ContentProvider&lt;/code&gt;进行初始化的; Kotlin上的并发处理; 其他还有一些关于程序架构, 代码优化相关的讨论.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
-      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
-      <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
-    
-      <category term="ExoPlayer" scheme="http://mengdd.github.io/tags/ExoPlayer/"/>
-    
-      <category term="Java" scheme="http://mengdd.github.io/tags/Java/"/>
-    
-      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
-    
-      <category term="ContentProvider" scheme="http://mengdd.github.io/tags/ContentProvider/"/>
-    
-      <category term="Architecture" scheme="http://mengdd.github.io/tags/Architecture/"/>
-    
-      <category term="Concurrency" scheme="http://mengdd.github.io/tags/Concurrency/"/>
     
   </entry>
   
