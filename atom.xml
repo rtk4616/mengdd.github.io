@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-04-25T06:46:26.000Z</updated>
+  <updated>2017-05-03T07:46:28.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,113 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 255</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/05/03/android-weekly-notes-issue-255/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/05/03/android-weekly-notes-issue-255/</id>
+    <published>2017-05-03T07:38:46.000Z</published>
+    <updated>2017-05-03T07:46:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-255"><a href="#Android-Weekly-Issue-255" class="headerlink" title="Android Weekly Issue #255"></a>Android Weekly Issue #255</h1><p>April 30th, 2017<br><a href="http://androidweekly.net/issues/issue-255" target="_blank" rel="external">Android Weekly Issue #255</a><br>本期内容包括: 一种在RxJava中显示loading/content/error的好的处理方法; Android O中的一些隐藏宝藏; Uber app的immutable的数据升级; MVP模式下, 不要再做<code>view != null</code>的判断了; 用Dagger2实现的依赖注入; 迁移应用到Kotlin; 如何把Gradle插件从Groovy迁移到Kotlin; Activity中的静态start方法使用; Firebase的实时数据库使用.  </p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="LCE-Modeling-Data-Loading-in-RxJava"><a href="#LCE-Modeling-Data-Loading-in-RxJava" class="headerlink" title="LCE: Modeling Data Loading in RxJava"></a><a href="https://tech.instacart.com/lce-modeling-data-loading-in-rxjava-b798ac98d80" target="_blank" rel="external">LCE: Modeling Data Loading in RxJava</a></h2><p>作者介绍了一种方法, 用RxJava来处理显示loading/内容/错误的逻辑.</p>
+<p>核心思想是中这个结构把数据包一层:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Lce -&gt; Loading / Content / Error</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lce</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Lce&lt;T&gt; <span class="title">data</span><span class="params">(T data)</span> </span>&#123;</div><div class="line">        <span class="comment">// implementation</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Lce&lt;T&gt; <span class="title">error</span><span class="params">(Throwable error)</span> </span>&#123;</div><div class="line">        <span class="comment">// implementation</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Lce&lt;T&gt; <span class="title">loading</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// implementation</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isLoading</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasError</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function">Throwable <span class="title">getError</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function">T <span class="title">getData</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后实际处理的代码就变成了这样:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">repository.getDataEventStream().subscribe(&#123; event -&gt;</div><div class="line">  <span class="keyword">if</span> (event.isLoading) &#123;</div><div class="line">    view.showLoading(<span class="keyword">true</span>)</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (event.hasError()) &#123;</div><div class="line">    view.showError(event.getError())</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    view.showData(event.getData())</div><div class="line">  &#125; </div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>怎么构建这个Observable呢:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Observable&lt;Lce&lt;Data&gt;&gt; getDataEventStream() &#123;</div><div class="line">  <span class="keyword">return</span> api.getData()</div><div class="line">    .map(data -&gt; Lce.data(data))</div><div class="line">    .startWith(Lce.loading())</div><div class="line">    .onErrorReturn(e -&gt; Lce.error(e))</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>更多构建方法见原文.</p>
+<h2 id="Hidden-Gems-of-Android-O"><a href="#Hidden-Gems-of-Android-O" class="headerlink" title="Hidden Gems of Android O"></a><a href="https://medium.com/@ianhlake/hidden-gems-of-android-o-7def63136629" target="_blank" rel="external">Hidden Gems of Android O</a></h2><p>作者仔细看了Android O的<a href="https://developer.android.com/sdk/api_diff/o-dp1/changes.html" target="_blank" rel="external">API Diff</a>, 然后发现了一些隐藏的宝藏拿出来分享.</p>
+<ul>
+<li>Storage Access Framework的改进.</li>
+<li>RecoverableSecurityException.</li>
+<li>SharedPreferences支持更换底层实现.</li>
+<li><code>SmsManager.createAppSpecificSmsToken()</code>提供的更好的短信验证流.</li>
+<li>锁屏情况下的显示处理: <code>Keyguard.dismissKeyguard()</code>.</li>
+<li>全屏Activity的旋转处理.</li>
+</ul>
+<h2 id="Engineering-Stability-in-Migrations"><a href="#Engineering-Stability-in-Migrations" class="headerlink" title="Engineering Stability in Migrations"></a><a href="https://eng.uber.com/immutable-collections/" target="_blank" rel="external">Engineering Stability in Migrations</a></h2><p>Uber的数据类生成及迁移到Immutable Collections的过程.</p>
+<h2 id="Don’t-put-view-null-checks-in-your-Presenters"><a href="#Don’t-put-view-null-checks-in-your-Presenters" class="headerlink" title="Don’t put view != null checks in your Presenters"></a><a href="https://android.jlelse.eu/dont-put-view-null-checks-in-your-presenters-4b6026c67423miss" target="_blank" rel="external">Don’t put view != null checks in your Presenters</a></h2><p>如果你使用了MVP模式, 并且你的presenter在configuration变化时是一直存在的, 那么你的presenter至少会有下面两个方法:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">attachView</span><span class="params">(View)</span></span></div><div class="line"><span class="keyword">void</span> <span class="title">detachView</span><span class="params">()</span></div></pre></td></tr></table></figure></p>
+<p>这样的话你的<code>getView()</code>方法应该被标记为<code>@Nullable</code>, 然后你就需要在很多地方做null判断, 即便有些地方你100%地肯定View肯定不为null. </p>
+<h3 id="Presenter的方法直接从View中被调用"><a href="#Presenter的方法直接从View中被调用" class="headerlink" title="Presenter的方法直接从View中被调用"></a>Presenter的方法直接从View中被调用</h3><p>比如那些View中UI控件点击导致的调用.</p>
+<p>加个<code>view != null</code>的判断有一个缺点就是如果attach时出现了问题, 这时用户点击了按钮却没有反应, 这个错误会被忽略和隐藏起来. 在这种View应该存在的情形下, 如果得到了null, 应该及时抛出异常发现错误. </p>
+<p><code>It’s always a bad sign when the else branch is missing.</code></p>
+<p>解决方案: 加个<code>@NonNull View getViewOrThrow()</code>方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Nullable</span></div><div class="line"><span class="function"><span class="keyword">public</span> MyView <span class="title">getView</span><span class="params">()</span> </span>&#123;...&#125; </div><div class="line"></div><div class="line"><span class="meta">@NonNull</span></div><div class="line"><span class="function"><span class="keyword">public</span> MyView <span class="title">getViewOrThrow</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> MyView view = getView();</div><div class="line">    <span class="keyword">if</span> (view == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"view not attached"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="在Presenter中异步调用View"><a href="#在Presenter中异步调用View" class="headerlink" title="在Presenter中异步调用View"></a>在Presenter中异步调用View</h3><p>很多时候我们需要异步调用View的方法, 这时候我们就不能用<code>getViewOrThrow()</code>了, 因为View被detach是一种合理的情况.</p>
+<p>这时候我们如果加个<code>if (view != null)</code>是可以解决这个问题的, 但是却是一个错误的选择. 因为else分支的缺失, 用户可能错过了server返回的结果, 然后永远地等下去.</p>
+<p>一个比较好的解决方案就是<a href="https://github.com/grandcentrix/ThirtyInch" target="_blank" rel="external">ThirtyInch</a>, 它有一个方法叫<a href="https://github.com/grandcentrix/ThirtyInch/blob/master/thirtyinch/src/main/java/net/grandcentrix/thirtyinch/TiPresenter.java#L491" target="_blank" rel="external">sendToView(ViewAction)</a>, 它会推迟<code>ViewAction</code>的执行, 到View再次被attach的时候执行. 如果View已经处于attached的状态, 那么就立即执行.</p>
+<p>一个例子:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyPresenter</span> <span class="keyword">extends</span> <span class="title">TiPresenter</span>&lt;<span class="title">MyView</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubmitLogin</span><span class="params">(<span class="keyword">final</span> Credentials credentials)</span> </span>&#123;</div><div class="line">        mLoginService.login(credentials).subscribe(</div><div class="line">                success -&gt; &#123;</div><div class="line">                    sendToView(view -&gt; view.close());</div><div class="line">                &#125;,</div><div class="line">                error -&gt; &#123;</div><div class="line">                    sendToView(view -&gt; view.showError(error));</div><div class="line">                &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意请不要过度使用<code>sendToView()</code>. </p>
+<p>如果你用MVI模式, 维护一个ViewModel, 在变化的时候渲染到View, 同样也可以删掉<code>view != null</code>的判断. 见<a href="https://hackernoon.com/model-view-intent-mvi-part-1-state-renderer-187e270db15c" target="_blank" rel="external">My take on Model View Intent (MVI) — Part 1: State Renderer</a>.</p>
+<h3 id="Optional和WeakReference"><a href="#Optional和WeakReference" class="headerlink" title="Optional和WeakReference"></a>Optional和WeakReference</h3><p>这篇文章中用了<code>view == null</code>作为View被detached了的依据. 如果你使用了其他的包装, 比如<code>WeakReference</code>或者<code>Optional</code>, 你虽然不用null判断了但是并不代表你解决了问题, 你需要做其他的判断并且lint不能帮你做提示了.</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>你并不需要<code>if (view != null)</code>检查:</p>
+<ul>
+<li>当你确定View是attached时, 使用<code>getViewOrThrow()</code>.</li>
+<li>当View可能会是detached时, 使用<code>sendToView(ViewAction)</code>, 来支持else的处理.</li>
+</ul>
+<h2 id="Dependency-Injection-in-Android-with-Dagger-2"><a href="#Dependency-Injection-in-Android-with-Dagger-2" class="headerlink" title="Dependency Injection in Android with Dagger 2"></a><a href="https://www.raywenderlich.com/146804/dependency-injection-dagger-2" target="_blank" rel="external">Dependency Injection in Android with Dagger 2</a></h2><p>一个用了Retrofit和MVP模式的应用, 用Dagger2做依赖注入的例子.</p>
+<h2 id="How-we-made-Basecamp-3’s-Android-app-100-Kotlin"><a href="#How-we-made-Basecamp-3’s-Android-app-100-Kotlin" class="headerlink" title="How we made Basecamp 3’s Android app 100% Kotlin"></a><a href="https://m.signalvnoise.com/how-we-made-basecamp-3s-android-app-100-kotlin-35e4e1c0ef12" target="_blank" rel="external">How we made Basecamp 3’s Android app 100% Kotlin</a></h2><p>作者他们如何把应用改为用Kotlin.</p>
+<h2 id="Migrate-a-Gradle-Plugin-from-Groovy-to-Kotlin"><a href="#Migrate-a-Gradle-Plugin-from-Groovy-to-Kotlin" class="headerlink" title="Migrate a Gradle Plugin from Groovy to Kotlin"></a><a href="http://adavis.info/2017/04/migrate-a-gradle-plugin-from-groovy-to-kotlin.html" target="_blank" rel="external">Migrate a Gradle Plugin from Groovy to Kotlin</a></h2><p>如何把一个用Groovy写的Gradle插件转化成Kotlin写的.</p>
+<h2 id="Object-Oriented-Tricks-4-Starter-Pattern"><a href="#Object-Oriented-Tricks-4-Starter-Pattern" class="headerlink" title="Object Oriented Tricks: #4 Starter Pattern"></a><a href="https://hackernoon.com/object-oriented-tricks-4-starter-pattern-android-edition-1844e1a8522d" target="_blank" rel="external">Object Oriented Tricks: #4 Starter Pattern</a></h2><p>在Activity中定义一个静态的<code>start()</code>方法, 把需要放在intent中的参数都当做方法参数传进来.</p>
+<p>Android Studio对此有一个内置的模板, 你只要输入<code>starter</code>, 按回车就可以生成这个方法.</p>
+<h2 id="Using-Firebase-as-a-Real-Time-System"><a href="#Using-Firebase-as-a-Real-Time-System" class="headerlink" title="Using Firebase as a Real Time System"></a><a href="https://medium.com/google-developer-experts/using-firebase-as-a-real-time-system-d360265aa678" target="_blank" rel="external">Using Firebase as a Real Time System</a></h2><p>Firebase的Real Time Database.<br>数据库存储的信息以NoSQL的形式放在Google Cloud上. </p>
+<p>三个主要的优点: 实时,离线处理, 自动同步.</p>
+<p>文中展示了基本的用法.</p>
+<p>之后提供了实时数据库的几种使用思路: </p>
+<ul>
+<li>实时通讯: (<a href="https://firechat.firebaseapp.com/" target="_blank" rel="external">Firechat</a>); </li>
+<li>显示实时位置的地图(<a href="https://moquet.net/blog/realtime-geolocation-tracking-firebase/" target="_blank" rel="external">Realtime geolocation tracking with Firebase</a>, <a href="https://github.com/firebase/geofire" target="_blank" rel="external">geofire</a>); </li>
+<li>排名.</li>
+</ul>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="Bubble-Picker"><a href="#Bubble-Picker" class="headerlink" title="Bubble-Picker"></a><a href="https://github.com/igalata/Bubble-Picker" target="_blank" rel="external">Bubble-Picker</a></h2><p>气泡选择器.</p>
+<h2 id="UltimateAndroidReference"><a href="#UltimateAndroidReference" class="headerlink" title="UltimateAndroidReference"></a><a href="https://github.com/aritraroy/UltimateAndroidReference" target="_blank" rel="external">UltimateAndroidReference</a></h2><p>Android资源收集, 包括库, 开源项目, 书籍博客等等.</p>
+<h2 id="litho-picasso"><a href="#litho-picasso" class="headerlink" title="litho-picasso"></a><a href="https://github.com/charbgr/litho-picasso" target="_blank" rel="external">litho-picasso</a></h2><p>为Litho写的picassoo库.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-255&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-255&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #255&quot;&gt;&lt;/a&gt;Android Weekly Issue #255&lt;/h1&gt;&lt;p&gt;April 30th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-255&quot;&gt;Android Weekly Issue #255&lt;/a&gt;&lt;br&gt;本期内容包括: 一种在RxJava中显示loading/content/error的好的处理方法; Android O中的一些隐藏宝藏; Uber app的immutable的数据升级; MVP模式下, 不要再做&lt;code&gt;view != null&lt;/code&gt;的判断了; 用Dagger2实现的依赖注入; 迁移应用到Kotlin; 如何把Gradle插件从Groovy迁移到Kotlin; Activity中的静态start方法使用; Firebase的实时数据库使用.  &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
+    
+      <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
+    
+      <category term="Data Model" scheme="http://mengdd.github.io/tags/Data-Model/"/>
+    
+      <category term="immutable" scheme="http://mengdd.github.io/tags/immutable/"/>
+    
+      <category term="Gradle Plugin" scheme="http://mengdd.github.io/tags/Gradle-Plugin/"/>
+    
+      <category term="Starter" scheme="http://mengdd.github.io/tags/Starter/"/>
+    
+      <category term="Real Time Database" scheme="http://mengdd.github.io/tags/Real-Time-Database/"/>
+    
+      <category term="Litho" scheme="http://mengdd.github.io/tags/Litho/"/>
+    
+      <category term="Picasso" scheme="http://mengdd.github.io/tags/Picasso/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 254</title>
@@ -204,8 +311,6 @@
     
       <category term="SQLite" scheme="http://mengdd.github.io/tags/SQLite/"/>
     
-      <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
-    
       <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
     
       <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
@@ -219,6 +324,8 @@
       <category term="Glide" scheme="http://mengdd.github.io/tags/Glide/"/>
     
       <category term="Broadcast" scheme="http://mengdd.github.io/tags/Broadcast/"/>
+    
+      <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
     
   </entry>
   
@@ -663,9 +770,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
@@ -824,13 +931,13 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
       <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="Fingerprint" scheme="http://mengdd.github.io/tags/Fingerprint/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
@@ -976,9 +1083,9 @@
     
       <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
-      <category term="Realm" scheme="http://mengdd.github.io/tags/Realm/"/>
-    
       <category term="Crash" scheme="http://mengdd.github.io/tags/Crash/"/>
+    
+      <category term="Realm" scheme="http://mengdd.github.io/tags/Realm/"/>
     
       <category term="MockWebServer" scheme="http://mengdd.github.io/tags/MockWebServer/"/>
     
@@ -1091,9 +1198,9 @@
     
       <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
     
-      <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
-    
       <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
+    
+      <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
     
       <category term="Version Name" scheme="http://mengdd.github.io/tags/Version-Name/"/>
     
@@ -1164,9 +1271,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
@@ -1174,9 +1281,9 @@
     
       <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
-      <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
-    
       <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
+    
+      <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
     
       <category term="In-App Billing" scheme="http://mengdd.github.io/tags/In-App-Billing/"/>
     
@@ -1308,9 +1415,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Database" scheme="http://mengdd.github.io/tags/Database/"/>
-    
       <category term="Realm" scheme="http://mengdd.github.io/tags/Realm/"/>
+    
+      <category term="Database" scheme="http://mengdd.github.io/tags/Database/"/>
     
   </entry>
   
@@ -1452,9 +1559,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
@@ -1537,9 +1644,9 @@
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
-      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
+    
+      <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
     
       <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
@@ -1624,9 +1731,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
@@ -1817,11 +1924,11 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
@@ -2046,178 +2153,13 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
       <category term="SQLite" scheme="http://mengdd.github.io/tags/SQLite/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 239</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/01/10/android-weekly-notes-issue-239/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2017/01/10/android-weekly-notes-issue-239/</id>
-    <published>2017-01-10T06:10:31.000Z</published>
-    <updated>2017-03-09T05:45:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-239"><a href="#Android-Weekly-Issue-239" class="headerlink" title="Android Weekly Issue #239"></a>Android Weekly Issue #239</h1><p>January 8th, 2017<br><a href="http://androidweekly.net/issues/issue-239" target="_blank" rel="external">Android Weekly Issue #239</a><br>本期内容包括: Android Things开发; Android中有用却不常见的一些API介绍(拼写检查, 文字识别, 时间log, 截图, 创建PDF); Gradle依赖管理冲突和解决办法; Looper, Handler和HandlerThread; 兼顾Wear1.0和2.0的部署方式; 打开PDF的实现方法; 单元测试的命名; Robolectric的弊病; 迁移到RxJava2的好处和面临的挑战. </p>
-<a id="more"></a>
-<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Preparing-your-computer-for-Android-dev"><a href="#Preparing-your-computer-for-Android-dev" class="headerlink" title="Preparing your computer for Android dev"></a><a href="https://medium.com/@rafael_toledo/preparing-your-android-environment-for-development-android-tutorials-pt-1-5f76ca2b8a32#.yxa0bvkp5" target="_blank" rel="external">Preparing your computer for Android dev</a></h2><p>在Windows, OSX和Linux上设置开发环境.</p>
-<h2 id="Beginner’s-guide-to-Raspberry-Pi-3-B-and-Android-Things"><a href="#Beginner’s-guide-to-Raspberry-Pi-3-B-and-Android-Things" class="headerlink" title="Beginner’s guide to Raspberry Pi 3 B and Android Things"></a><a href="http://www.andtuts.com/a-beginners-guide-to-raspberry-pi-3-b-and-android-things/" target="_blank" rel="external">Beginner’s guide to Raspberry Pi 3 B and Android Things</a></h2><p>如何Set up with Android Things.</p>
-<h2 id="Creating-new-project-and-emulator-on-Android-Studio"><a href="#Creating-new-project-and-emulator-on-Android-Studio" class="headerlink" title="Creating new project and emulator on Android Studio"></a><a href="https://medium.com/@rafael_toledo/creating-a-new-project-and-an-emulator-on-android-studio-android-tutorials-2-35bd965ac42b#.lwlhy72wf" target="_blank" rel="external">Creating new project and emulator on Android Studio</a></h2><p>如何创建新项目和模拟器.</p>
-<h2 id="Discovering-Android-API"><a href="#Discovering-Android-API" class="headerlink" title="Discovering Android API"></a><a href="https://blog.autsoft.hu/discovering-the-android-api-part-1/" target="_blank" rel="external">Discovering Android API</a></h2><p>Android是基于Java的, Java本身已经有四千多个类, Android API也有很多个类, 有一些不太常见但是却很有用的API我们应该了解一下.</p>
-<p>这篇文章就旨在发现那些不常见却很有用的API, 并且附有一个<a href="https://github.com/peekler/GDG" target="_blank" rel="external">Demo</a>.</p>
-<h3 id="No-1-Spell-Checker"><a href="#No-1-Spell-Checker" class="headerlink" title="No.1 - Spell Checker"></a>No.1 - Spell Checker</h3><p><a href="https://developer.android.com/reference/android/view/textservice/TextServicesManager.html" target="_blank" rel="external">TextServicesManager</a>从API 14开始支持, 可以发现拼写错误, 并返回正确的单词拼写.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">TextServicesManager tsm = (TextServicesManager) getSystemService(Context.TEXT_SERVICES_MANAGER_SERVICE);  </div><div class="line">SpellCheckerSession spellCheckerSession = tsm.newSpellCheckerSession(<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">this</span>, <span class="keyword">true</span>);</div></pre></td></tr></table></figure></p>
-<h3 id="No-2-Text-Recognizer"><a href="#No-2-Text-Recognizer" class="headerlink" title="No.2 - Text Recognizer"></a>No.2 - Text Recognizer</h3><p>Google Play Services Vision API中的文字识别.</p>
-<p>Version API中包括了人脸识别, 二维码扫描和文字识别.</p>
-<p>这个例子中可以从图像中扫描出文字信息.</p>
-<h3 id="No-3-TimingLogger"><a href="#No-3-TimingLogger" class="headerlink" title="No.3 - TimingLogger"></a>No.3 - TimingLogger</h3><p><a href="https://developer.android.com/reference/android/util/TimingLogger.html" target="_blank" rel="external">TimingLogger</a>是用来测量流逝时间的一个好工具.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">TimingLogger timings = <span class="keyword">new</span> TimingLogger(TAG, <span class="string">"methodA"</span>);</div><div class="line"><span class="comment">// ... do some work A ...</span></div><div class="line">timings.addSplit(<span class="string">"work A"</span>);</div><div class="line"><span class="comment">// ... do some work B ...</span></div><div class="line">timings.addSplit(<span class="string">"work B"</span>);</div><div class="line"><span class="comment">// ... do some work C ...</span></div><div class="line">timings.addSplit(<span class="string">"work C"</span>);</div><div class="line">timings.dumpToLog();</div></pre></td></tr></table></figure></p>
-<p>最后一句执行后, 会在log中一次性输出下面的log:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">D/TAG     ( 3459): methodA: begin</div><div class="line">D/TAG     ( 3459): methodA:      9 ms, work A</div><div class="line">D/TAG     ( 3459): methodA:      1 ms, work B</div><div class="line">D/TAG     ( 3459): methodA:      6 ms, work C</div><div class="line">D/TAG     ( 3459): methodA: end, 16 ms</div></pre></td></tr></table></figure></p>
-<p>注意需要在adb中使能TAG:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setprop log.tag.TAG_MYJOB VERBOSE</div></pre></td></tr></table></figure></p>
-<p>假设本例子中TAG = “TAG_MYJOB”.</p>
-<h3 id="No-4-Taking-screenshots"><a href="#No-4-Taking-screenshots" class="headerlink" title="No.4 - Taking screenshots"></a>No.4 - Taking screenshots</h3><p>有一些库可以提供截屏, 比如<a href="https://github.com/jraska/Falcon" target="_blank" rel="external">Falcon</a>. </p>
-<p>在Android 21之上用<a href="https://developer.android.com/reference/android/media/projection/MediaProjection.html" target="_blank" rel="external">MediaProjection</a>甚至可以录屏.</p>
-<p>但是得到屏幕图像更简单的一种方法是:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">View viewRoot = getWindow().getDecorView().getRootView();  </div><div class="line">viewRoot.setDrawingCacheEnabled(<span class="keyword">true</span>);  </div><div class="line">Bitmap screenShotAsBitmap = Bitmap.createBitmap(viewRoot.getDrawingCache());  </div><div class="line">viewRoot.setDrawingCacheEnabled(<span class="keyword">false</span>);  </div><div class="line"><span class="comment">// use screenShotAsBitmap as you need</span></div></pre></td></tr></table></figure></p>
-<h3 id="No-5-PDF-Creation-API"><a href="#No-5-PDF-Creation-API" class="headerlink" title="No.5 - PDF Creation API"></a>No.5 - PDF Creation API</h3><p>从API 19开始Android就提供了API可以创建PDF文档.<br>文中的例子是创建了一个PDF文档, 然后把当前屏幕内容放进去.</p>
-<h2 id="Avoiding-Conflicts-in-android-gradle-dependencies"><a href="#Avoiding-Conflicts-in-android-gradle-dependencies" class="headerlink" title="Avoiding Conflicts in android gradle dependencies"></a><a href="https://blog.mindorks.com/avoiding-conflicts-in-android-gradle-dependencies-28e4200ca235#.x66q6p4v4" target="_blank" rel="external">Avoiding Conflicts in android gradle dependencies</a></h2><p>如果两个依赖又都依赖了同一个库, 但是是不同的版本, 那会发生什么呢?</p>
-<p>比如下面这个例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">androidTestCompile &apos;junit:junit:4.12&apos; //(Depends on version 1.3)</div><div class="line">androidTestCompile &apos;org.mockito:mockito-core:1.10.19&apos; //(Depends on version 1.1)</div></pre></td></tr></table></figure></p>
-<p>这两个库都依赖于”org.hamcrest:hamcrest-core”, 但是版本却不同.</p>
-<p>这种情况下, 最终被包含进build的是最高版本的库.</p>
-<p>在依赖被声明的module里运行下面这个命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew dependencies.</div></pre></td></tr></table></figure></p>
-<p>会显式地看到gradle自动把第二个依赖中的hamcrest库从1.1升级到了1.3.</p>
-<p>前面, 两个依赖都是test依赖, 所以gradle自动解决了冲突.  如果两个依赖属于不同的配置, 如, 把第一个<code>androidTestCompile</code>改为<code>compile</code>, gradle将会报错.</p>
-<p>原因是:</p>
-<blockquote>
-<p>When instrumentation tests are run, both the main APK and test APK share the same classpath. Gradle build will fail if the main APK and the test APK use the same library (e.g. Guava) but in different versions. If gradle didn’t catch that, your app could behave differently during tests and during normal run (including crashing in one of the cases).</p>
-</blockquote>
-<p><strong>解决依赖冲突</strong><br>一旦有了依赖冲突, 就需要开发者决定最后到底用什么版本的库, 有几种解决方法:</p>
-<ul>
-<li>方法1: 从依赖中排除这个库.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Now junit will not include hamcrest library. Therefore there will be no </div><div class="line">//dependency conflict. </div><div class="line"> compile (&apos;junit:junit:4.12&apos;)&#123;</div><div class="line">    exclude group: &apos;org.hamcrest&apos;, module:&apos;hamcrest-core&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">androidTestCompile (&apos;org.mockito:mockito-core:1.10.19&apos;)&#123;</div><div class="line">    exclude group: &apos;org.hamcrest&apos;, module:&apos;hamcrest-core&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>真实的项目中可能有多个依赖依赖于同一个库, 那么我们就需要写多个排除语句.</p>
-<ul>
-<li>方法2: 显式地声明冲突库的版本.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">compile &apos;junit:junit:4.12&apos; //(Depends on version 1.3)</div><div class="line">androidTestCompile &apos;org.mockito:mockito-core:1.10.19&apos; //(Depends on version 1.1)</div><div class="line">androidTestCompile &apos;org.hamcrest:hamcrest-core:1.3&apos; //(We explictly mention </div><div class="line">//that include version 1.3)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这种方法不用写exclude, 但是当升级直接依赖库的时候需要注意更新这种间接依赖库的版本.</p>
-<ul>
-<li>方法3: 强制解析.</li>
-</ul>
-<p>强制设置所有configuration的依赖版本:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    configurations.all &#123;</div><div class="line">        resolutionStrategy.force &apos;org.hamcrest:hamcrest-core:1.1&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>使用这种方法的时候需要小心, 因为与方法2不同, 它是把所有configuration中的版本都强制设置了. 当直接依赖更新的时候, 要注意更新间接依赖的版本.</p>
-<h2 id="Looper-Handler-and-HandlerThread"><a href="#Looper-Handler-and-HandlerThread" class="headerlink" title="Looper, Handler, and HandlerThread"></a><a href="https://blog.mindorks.com/android-core-looper-handler-and-handlerthread-bd54d69fe91a#.zf2nhog1x" target="_blank" rel="external">Looper, Handler, and HandlerThread</a></h2><p>这篇文章讨论Looper, Handler和HandlerThread.</p>
-<p>首先, 读者应该了解Java的<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html" target="_blank" rel="external">Thread</a>和<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html" target="_blank" rel="external">Runnable</a>.</p>
-<p>然后让我们带着问题来探索和复习:</p>
-<h3 id="Java的Thread存在什么问题"><a href="#Java的Thread存在什么问题" class="headerlink" title="Java的Thread存在什么问题?"></a>Java的Thread存在什么问题?</h3><p>Java的Thread是一次性的, 当它执行完<code>run()</code>方法之后, 它就死了.</p>
-<h3 id="我们可以改善这个问题吗"><a href="#我们可以改善这个问题吗" class="headerlink" title="我们可以改善这个问题吗?"></a>我们可以改善这个问题吗?</h3><p>线程本身是个双刃剑, 我们可以把任务分发到多个线程来加速, 但同时线程过多又会降低速度. 线程创建也会花费时间, 所以最好我们能有一个固定优化数量的线程, 然后用它们来执行任务.</p>
-<p><strong>线程复用模型</strong>:</p>
-<ul>
-<li>1.一个线程保持活跃, 通过它的<code>run()</code>方法不断循环.</li>
-<li>2.任务由该线程连续执行, 并保持在一个队列中(MessageQueue).</li>
-<li>3.当完成之后结束这个线程.</li>
-</ul>
-<h3 id="Android是以什么方式来做这件事的呢"><a href="#Android是以什么方式来做这件事的呢" class="headerlink" title="Android是以什么方式来做这件事的呢?"></a>Android是以什么方式来做这件事的呢?</h3><p>Android用<code>Looper</code>, <code>Handler</code>和<code>HandlerThread</code>实现了上述模型.<br>系统可以用这样的图表示:<br><img src="/images/Android-Looper-Handler.jpeg" alt="Android Looper Handler"></p>
-<ul>
-<li>1.<code>MessageQueue</code>是一个队列, 里面含有需要被处理的任务(消息).</li>
-<li>2.<code>Handler</code>利用<code>Looper</code>往队列中加任务, 同时也在任务出队列的时候进行处理.</li>
-<li>3.<code>Looper</code>是一个工人, 保持一个线程的活跃, 循环消息队列, 把消息发给对应的handler去处理.(一个线程只能对应一个唯一的<code>Looper</code>, 但是可以有多个关联的<code>Handler</code>).</li>
-<li>4.最后<code>Looper.quit()</code>会让线程终止.</li>
-</ul>
-<p>为一个线程创建<code>Looper</code>和<code>MessageQueue</code>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LooperThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> Handler mHandler; </div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123; </div><div class="line">        Looper.prepare();</div><div class="line"></div><div class="line">        mHandler = <span class="keyword">new</span> Handler() &#123; </div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123; </div><div class="line">               <span class="comment">// process incoming messages here</span></div><div class="line">               <span class="comment">// this will run in non-ui/background thread</span></div><div class="line">            &#125; </div><div class="line">        &#125;; </div><div class="line"></div><div class="line">        Looper.loop();</div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>创建<code>Handler</code>的时候自动和当前线程的Looper关联, 但是也可以通过构造传入Looper来使Handler关联到特定的线程.</p>
-<p>用<code>Handler</code>发消息有两种方式: <code>Message</code>和<code>Runnable</code>.</p>
-<p>自己创建一个线程并提供Looper和消息队列的方式是不好的, 所以Android提供了<code>HandlerThread</code>来简化这个过程, 它内部的实现和我们之前做的差不多, 但是是以一种更加稳健的方式. 所以我们应该使用<code>HandlerThread</code>而不是自己实现.</p>
-<p>大多数时候你只需要继承<code>HandlerThread</code>来创建它的子类.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">MyHandlerThread</span> <span class="keyword">extends</span> <span class="title">HandlerThread</span> </span>&#123;</div><div class="line"></div><div class="line">    Handler handler;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyHandlerThread</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(name);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLooperPrepared</span><span class="params">()</span> </span>&#123;</div><div class="line">        handler = <span class="keyword">new</span> Handler(getLooper()) &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">                <span class="comment">// process incoming messages here</span></div><div class="line">                <span class="comment">// this will run in non-ui/background thread</span></div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>注意:</p>
-<ul>
-<li><code>Looper</code>只有在<code>HandlerThread</code>的<code>start()</code>方法被调用(线程开始跑)后才会进入prepared状态.</li>
-<li>只有在<code>HandlerThread</code>的<code>Looper</code>处于parepared状态以后, <code>Handler</code>才可以关联.</li>
-</ul>
-<p>另一种创建<code>HandlerThread</code>的方式:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HandlerThread handlerThread = <span class="keyword">new</span> HandlerThread(<span class="string">"MyHandlerThread"</span>);</div><div class="line">handlerThread.start();</div><div class="line">Handler handler = <span class="keyword">new</span> Handler(handlerThread.getLooper());</div></pre></td></tr></table></figure></p>
-<p>注意: <code>HandlerThread</code>需要调用<code>quit()</code>方法来停止线程执行和释放资源.</p>
-<p>作者文后还附有一个练习的demo.</p>
-<h2 id="Android-Wear-packaging"><a href="#Android-Wear-packaging" class="headerlink" title="Android Wear packaging"></a><a href="https://www.novoda.com/blog/android-wear-packaging/" target="_blank" rel="external">Android Wear packaging</a></h2><p>Android Wear 2.0将在2017年发布, 本文讨论了如何同时支持1.0和2.0的应用部署.</p>
-<h2 id="Simple-Things-–-Part-1"><a href="#Simple-Things-–-Part-1" class="headerlink" title="Simple Things – Part 1"></a><a href="https://blog.stylingandroid.com/simple-things-part-1/" target="_blank" rel="external">Simple Things – Part 1</a></h2><p>Android Things应用.</p>
-<h2 id="Options-for-Viewing-PDFs"><a href="#Options-for-Viewing-PDFs" class="headerlink" title="Options for Viewing PDFs"></a><a href="https://commonsware.com/blog/2017/01/04/options-viewing-pdfs.html" target="_blank" rel="external">Options for Viewing PDFs</a></h2><p>显示PDF传统的方法是通过ACTION_VIEW发出去, 用一个第三方应用打开.</p>
-<p>但是有一些开发者不愿意这样做.</p>
-<p>还有一种方法是把文件上传, 然后用Google Docs URL用WebView打开它. </p>
-<p>除了这些传统的方法, 还有一些选项, 虽然它们各自都有一些问题.</p>
-<p>比如用<code>PdfRenderer</code>, 它是Android 5.0加入的.</p>
-<p>Mozilka在Firefox上用的是<a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="external">PDF.js</a>, 在Android 4.4+的WebView上可用, 它会给apk带来2MB左右的增加.</p>
-<p>Google在Chrominum上用的是<a href="https://pdfium.googlesource.com/pdfium/" target="_blank" rel="external">pdfium</a>, 这是C++. <a href="https://github.com/barteksc/AndroidPdfViewer" target="_blank" rel="external">barteksc/AndroidPdfViewer</a>封装了Pdfium, 处理了渲染和基本的手势, 在一些较老的Android版本上也使用, 但是大约每个CPU架构会给APK增加5MB, 默认情况下你会增加30MB.</p>
-<h2 id="Clean-tests-Part-1-Naming"><a href="#Clean-tests-Part-1-Naming" class="headerlink" title="Clean tests, Part 1: Naming"></a><a href="https://android.jlelse.eu/clean-tests-part-1-naming-cce94edf0522#.5nmmqx81y" target="_blank" rel="external">Clean tests, Part 1: Naming</a></h2><p>关于怎么写干净的单元测试, 本文作者提出了几点他对于命名的看法.</p>
-<ul>
-<li>不要用”test”开头写测试名.</li>
-<li>不要把被测试的方法名字写在测试名里.</li>
-<li>测试是一种规范.</li>
-</ul>
-<h2 id="Why-I-Don’t-use-Robolectric"><a href="#Why-I-Don’t-use-Robolectric" class="headerlink" title="Why I Don’t use Robolectric"></a><a href="http://www.philosophicalhacker.com/post/why-i-dont-use-roboletric/" target="_blank" rel="external">Why I Don’t use Robolectric</a></h2><p>作者觉得Robolectric不好的几点:</p>
-<ul>
-<li>Robolectric mock了一些我们并不拥有的type.</li>
-<li>Robolectric turns TDD on its head.</li>
-</ul>
-<p>所以最好的做法是我们在写Android代码的时候将逻辑代码抽象出来, 与framework分离, 这样在测试的时候不依赖于Android SDK的类, 也不需要robolectric来模拟一个中间层.</p>
-<h2 id="The-Next-Step-for-Reactive-Android-Programming"><a href="#The-Next-Step-for-Reactive-Android-Programming" class="headerlink" title="The Next Step for Reactive Android Programming"></a><a href="http://futurice.com/blog/the-next-step-for-reactive-android-programming" target="_blank" rel="external">The Next Step for Reactive Android Programming</a></h2><p>RxJava 2已经推出了, 本篇文章讨论从RxJava 1迁移到RxJava 2会带来的好处和挑战.</p>
-<p>好处:</p>
-<ul>
-<li>兼容了<a href="https://github.com/reactive-streams/reactive-streams-jvm" target="_blank" rel="external">Reactive Streams</a>.</li>
-<li>Backpressure的处理.</li>
-<li>Performance.</li>
-</ul>
-<p>挑战:</p>
-<ul>
-<li>流中不能再使用null.</li>
-<li>方法数限制. RxJava 1(5500), RxJava 2(9200).</li>
-<li>自定义操作符变得很难写.</li>
-</ul>
-<p>Note: 可以对比简单的操作符<a href="https://github.com/ReactiveX/RxJava/blob/2.x/src/main/java/io/reactivex/internal/operators/observable/ObservableMap.java" target="_blank" rel="external">map</a>和复杂的操作符<a href="https://github.com/ReactiveX/RxJava/blob/2.x/src/main/java/io/reactivex/internal/operators/observable/ObservableFlatMap.java" target="_blank" rel="external">flatMap</a>.</p>
-<h1 id="DESIGN"><a href="#DESIGN" class="headerlink" title="DESIGN"></a>DESIGN</h1><h2 id="Introducing-Auto-Layout-for-Sketch"><a href="#Introducing-Auto-Layout-for-Sketch" class="headerlink" title="Introducing Auto-Layout for Sketch"></a><a href="https://medium.com/sketch-app-sources/introducing-auto-layout-for-sketch-24e7b5d068f9#.tusju2z7k" target="_blank" rel="external">Introducing Auto-Layout for Sketch</a></h2><p>一个Sketch插件, 让你查看不同屏幕上的效果.</p>
-<h2 id="Designing-for-Both-Android-and-iOS"><a href="#Designing-for-Both-Android-and-iOS" class="headerlink" title="Designing for Both Android and iOS"></a><a href="https://webdesign.tutsplus.com/articles/a-tale-of-two-platforms-designing-for-both-android-and-ios--cms-23616" target="_blank" rel="external">Designing for Both Android and iOS</a></h2><p>Android和iOS的设计, 很详细的介绍, 最后附有一些resources.</p>
-<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="flowless"><a href="#flowless" class="headerlink" title="flowless"></a><a href="https://github.com/Zhuinden/flowless" target="_blank" rel="external">flowless</a></h2><p>一个框架, 给你Activity的UI状态命名, 管理并记录状态转换.</p>
-<h2 id="Store"><a href="#Store" class="headerlink" title="Store"></a><a href="https://github.com/NYTimes/Store" target="_blank" rel="external">Store</a></h2><p>异步数据加载和缓存的库.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-239&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-239&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #239&quot;&gt;&lt;/a&gt;Android Weekly Issue #239&lt;/h1&gt;&lt;p&gt;January 8th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-239&quot;&gt;Android Weekly Issue #239&lt;/a&gt;&lt;br&gt;本期内容包括: Android Things开发; Android中有用却不常见的一些API介绍(拼写检查, 文字识别, 时间log, 截图, 创建PDF); Gradle依赖管理冲突和解决办法; Looper, Handler和HandlerThread; 兼顾Wear1.0和2.0的部署方式; 打开PDF的实现方法; 单元测试的命名; Robolectric的弊病; 迁移到RxJava2的好处和面临的挑战. &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="Wear" scheme="http://mengdd.github.io/tags/Wear/"/>
-    
-      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
-    
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-      <category term="Test" scheme="http://mengdd.github.io/tags/Test/"/>
-    
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
-      <category term="Handler" scheme="http://mengdd.github.io/tags/Handler/"/>
-    
-      <category term="Android Things" scheme="http://mengdd.github.io/tags/Android-Things/"/>
-    
-      <category term="Looper" scheme="http://mengdd.github.io/tags/Looper/"/>
-    
-      <category term="HandlerThread" scheme="http://mengdd.github.io/tags/HandlerThread/"/>
-    
-      <category term="PDF" scheme="http://mengdd.github.io/tags/PDF/"/>
-    
-      <category term="Robolectric" scheme="http://mengdd.github.io/tags/Robolectric/"/>
     
   </entry>
   
