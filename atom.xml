@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-05-03T07:46:28.000Z</updated>
+  <updated>2017-05-03T07:51:32.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://mengdd.github.io/Android/Android-Weekly/2017/05/03/android-weekly-notes-issue-255/"/>
     <id>http://mengdd.github.io/Android/Android-Weekly/2017/05/03/android-weekly-notes-issue-255/</id>
     <published>2017-05-03T07:38:46.000Z</published>
-    <updated>2017-05-03T07:46:28.000Z</updated>
+    <updated>2017-05-03T07:51:32.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-255"><a href="#Android-Weekly-Issue-255" class="headerlink" title="Android Weekly Issue #255"></a>Android Weekly Issue #255</h1><p>April 30th, 2017<br><a href="http://androidweekly.net/issues/issue-255" target="_blank" rel="external">Android Weekly Issue #255</a><br>本期内容包括: 一种在RxJava中显示loading/content/error的好的处理方法; Android O中的一些隐藏宝藏; Uber app的immutable的数据升级; MVP模式下, 不要再做<code>view != null</code>的判断了; 用Dagger2实现的依赖注入; 迁移应用到Kotlin; 如何把Gradle插件从Groovy迁移到Kotlin; Activity中的静态start方法使用; Firebase的实时数据库使用.  </p>
 <a id="more"></a>
@@ -74,7 +74,7 @@
 </ul>
 <h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="Bubble-Picker"><a href="#Bubble-Picker" class="headerlink" title="Bubble-Picker"></a><a href="https://github.com/igalata/Bubble-Picker" target="_blank" rel="external">Bubble-Picker</a></h2><p>气泡选择器.</p>
 <h2 id="UltimateAndroidReference"><a href="#UltimateAndroidReference" class="headerlink" title="UltimateAndroidReference"></a><a href="https://github.com/aritraroy/UltimateAndroidReference" target="_blank" rel="external">UltimateAndroidReference</a></h2><p>Android资源收集, 包括库, 开源项目, 书籍博客等等.</p>
-<h2 id="litho-picasso"><a href="#litho-picasso" class="headerlink" title="litho-picasso"></a><a href="https://github.com/charbgr/litho-picasso" target="_blank" rel="external">litho-picasso</a></h2><p>为Litho写的picassoo库.</p>
+<h2 id="litho-picasso"><a href="#litho-picasso" class="headerlink" title="litho-picasso"></a><a href="https://github.com/charbgr/litho-picasso" target="_blank" rel="external">litho-picasso</a></h2><p>为Litho写的picasso库.</p>
 ]]></content>
     
     <summary type="html">
