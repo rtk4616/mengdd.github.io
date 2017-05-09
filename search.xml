@@ -4,6 +4,85 @@
   
     
     <entry>
+      <title><![CDATA[Android Weekly Notes Issue 256]]></title>
+      <url>http://mengdd.github.io/Android/Android-Weekly/2017/05/09/android-weekly-notes-issue-256/</url>
+      <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-256"><a href="#Android-Weekly-Issue-256" class="headerlink" title="Android Weekly Issue #256"></a>Android Weekly Issue #256</h1><p>May 7th, 2017<br><a href="http://androidweekly.net/issues/issue-256" target="_blank" rel="external">Android Weekly Issue #256</a><br>本期内容包括: 一个给ViewPager切换时加动画的库; Tail Recursion和它在Kotlin中的实现; MVI模式中的状态恢复; Dagger2的新API使用; 一个新的框架库Flax介绍.<br>代码部分包括: ViewPager加动画的库; 悬浮菜单; RxLoader结合RxJava和Loader实现数据加载; 一个封装BottomNavigationView的库, 使得状态切换类似于ViewPager.</p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="ViewPagerAnimator-–-The-Basics"><a href="#ViewPagerAnimator-–-The-Basics" class="headerlink" title="ViewPagerAnimator – The Basics"></a><a href="https://blog.stylingandroid.com/viewpageranimator-the-basics/" target="_blank" rel="external">ViewPagerAnimator – The Basics</a></h2><p>一个轻量级的库: <a href="https://github.com/StylingAndroid/ViewPagerAnimator" target="_blank" rel="external">ViewPagerAnimator</a>. 本文介绍它的基本用法, 举了一个例子, 可以在切换pager的时候改变背景颜色.</p>
+<h2 id="Tail-recursion-and-how-to-use-it-in-Kotlin"><a href="#Tail-recursion-and-how-to-use-it-in-Kotlin" class="headerlink" title="Tail recursion and how to use it in Kotlin"></a><a href="https://medium.com/@JorgeCastilloPr/tail-recursion-and-how-to-use-it-in-kotlin-97353993e17f" target="_blank" rel="external">Tail recursion and how to use it in Kotlin</a></h2><p>尾部递归和它在Kotlin中的实现.</p>
+<p>官方文档见: <a href="https://kotlinlang.org/docs/reference/functions.html#tail-recursive-functions" target="_blank" rel="external">tail-recursive-functions</a>. 关键字: <code>tailrec</code>.</p>
+<h2 id="Reactive-with-MVI-Part-6-Restoring-State"><a href="#Reactive-with-MVI-Part-6-Restoring-State" class="headerlink" title="Reactive with MVI Part 6 - Restoring State"></a><a href="http://hannesdorfmann.com/android/mosby3-mvi-6" target="_blank" rel="external">Reactive with MVI Part 6 - Restoring State</a></h2><p>使用MVI(Model-View-Intent)模式, 保持数据流的单向性, 会很大程度上简化状态恢复. 本篇就介绍怎么做和为什么.</p>
+<p>这篇文章关注的状态分两种: 一种是memory中的状态(比如屏幕旋转时); 一种是persistent的状态, 即存在Bundle中的状态.</p>
+<h3 id="In-Memory"><a href="#In-Memory" class="headerlink" title="In Memory"></a>In Memory</h3><p>对于Memory中的状态, 很简单, 我们只需要保证我们的RxJava流在Android组件生命周期之外仍然发送新的状态.</p>
+<p>对于MVP来说, 这就是让Presenter在View的生命周期之外存活, 每当view重新attach到presenter上之后, 就按照前一个状态重新渲染. 只有当view完全被销毁了之后presenter才释放.</p>
+<p>使用情形: 屏幕旋转, back stack回退.</p>
+<h3 id="Persistent-State"><a href="#Persistent-State" class="headerlink" title="Persistent State"></a>Persistent State</h3><p>在Android中通常用<code>Activity.onSaveInstanceState(Bundle)</code>来保存状态. 在MVI中View有一个<code>render(state)</code>方法, 所以一个显而易见的方法是让state实现<code>Parcelable</code>然后保存在bundle中.</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>使用单向数据流和一个表达状态的Model以后, 很多和状态相关的事情变得很容易实现了.</p>
+<p>但是通常处于两个理由, 不会把状态放在bundle里: 第一, Bundle有大小限制; 第二, 我们仅仅讨论了如何序列化和反序列化状态, 但恢复状态可能是另一回事.</p>
+<h2 id="Dagger-2-Android-Modules"><a href="#Dagger-2-Android-Modules" class="headerlink" title="Dagger 2: Android Modules"></a><a href="https://medium.com/proandroiddev/dagger-2-android-modules-e168821cfc57" target="_blank" rel="external">Dagger 2: Android Modules</a></h2><p>Dagger 2发布了新版本2.11-rc2.<br>在2.11中有新的API: <code>@ContributesAndroidInjector</code>.</p>
+<p><a href="https://github.com/google/dagger/releases" target="_blank" rel="external">dagger2的changelog</a>.</p>
+<p>本文介绍了新API相关的用法, 和之前的实现做了比较.</p>
+<p>新的用法总结起来有以下三点:</p>
+<ul>
+<li>继承<code>DaggerApplication</code>来注入相关的dispatchers.</li>
+<li>在component中包含<code>AndroidSupportInjectionModule.class</code>.</li>
+<li>创建一个bind方法, 用<code>@ContributesAndroidInjector</code>标注.</li>
+</ul>
+<h2 id="Hello-Flax-—-A-Reactive-Architecture-For-Android"><a href="#Hello-Flax-—-A-Reactive-Architecture-For-Android" class="headerlink" title="Hello Flax — A Reactive Architecture For Android"></a><a href="https://hackernoon.com/hello-flax-a-reactive-architecture-for-android-8e56af9c575a" target="_blank" rel="external">Hello Flax — A Reactive Architecture For Android</a></h2><p>当前Android中的一个趋势是创建reactive的app.<br>作者最初听说这个概念是从<a href="https://facebook.github.io/flux/" target="_blank" rel="external">Flux</a>. 后来看了一系列<a href="http://hannesdorfmann.com/android/mosby3-mvi-1" target="_blank" rel="external">MVI模式的文章</a>, 作者自己也做了一个MVI的<a href="https://medium.com/@CodyEngel/lets-try-model-view-intent-with-android-3190a899c3a1" target="_blank" rel="external">尝试</a>. 之后他就创建了<a href="https://github.com/CodyEngel/Flax" target="_blank" rel="external">Flax</a>, 是一个轻量级的框架库(还在进一步开发中).</p>
+<p>本文介绍了Flax库的使用, 基本可以总结为以下几点:</p>
+<ul>
+<li>Model作为唯一的状态真相.</li>
+<li>View只做无脑的渲染.</li>
+<li>Renderer接收Model变化的通知, 调用View的渲染方法.</li>
+<li>Responder接收用户交互事件, 调用Model的更新方法.</li>
+</ul>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="ViewPagerAnimator"><a href="#ViewPagerAnimator" class="headerlink" title="ViewPagerAnimator"></a><a href="https://github.com/StylingAndroid/ViewPagerAnimator" target="_blank" rel="external">ViewPagerAnimator</a></h2><p>一个轻量级的ViewPager动画库.</p>
+<h2 id="floatingMenu"><a href="#floatingMenu" class="headerlink" title="floatingMenu"></a><a href="https://github.com/rjsvieira/floatingMenu" target="_blank" rel="external">floatingMenu</a></h2><p>一个悬浮的action menu, 点开后展开多个菜单选项.</p>
+<h2 id="RxLoader"><a href="#RxLoader" class="headerlink" title="RxLoader"></a><a href="https://github.com/kmdupr33/RxLoader" target="_blank" rel="external">RxLoader</a></h2><p>一个轻量级的加载数据的库, 结合Loader和RxJava, 避免了内存泄露.<br>基本使用方法: 和你的<code>Observable</code>或者<code>Single</code> <code>compose</code>一下就好.</p>
+<p>作者还有一篇文章详细介绍为什么他觉得他这个库很有必要: <a href="https://www.philosophicalhacker.com/post/rxloader-boilerplate-free-data-loading-with-loaders-and-rxjava/" target="_blank" rel="external">RxLoader: Lightweight, Boilerplate-Free Data loading with Loaders and RxJava</a>.</p>
+<h2 id="AdaptableBottomNavigation"><a href="#AdaptableBottomNavigation" class="headerlink" title="AdaptableBottomNavigation"></a><a href="https://github.com/bufferapp/AdaptableBottomNavigation" target="_blank" rel="external">AdaptableBottomNavigation</a></h2><p>使用support库的<code>BottomNavigationView</code>的时候, 需要自己处理tab间的切换. 作者他们受到<code>TabLayout</code>的启发, 创建了一个<code>ViewSwapper</code>类, 可以简化<code>BottomNavigationView</code>的View管理, 有点像<code>ViewPager</code>的变种, 但去掉了滑动切换的功能.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+            <category> Android Weekly </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> Dagger2 </tag>
+            
+            <tag> Android Weekly </tag>
+            
+            <tag> RxJava </tag>
+            
+            <tag> Kotlin </tag>
+            
+            <tag> Animation </tag>
+            
+            <tag> Loader </tag>
+            
+            <tag> BottomNavigationView </tag>
+            
+            <tag> MVI </tag>
+            
+            <tag> ViewPager </tag>
+            
+            <tag> Tail Recursion </tag>
+            
+            <tag> Floating Menu </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android Weekly Notes Issue 255]]></title>
       <url>http://mengdd.github.io/Android/Android-Weekly/2017/05/03/android-weekly-notes-issue-255/</url>
       <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-255"><a href="#Android-Weekly-Issue-255" class="headerlink" title="Android Weekly Issue #255"></a>Android Weekly Issue #255</h1><p>April 30th, 2017<br><a href="http://androidweekly.net/issues/issue-255" target="_blank" rel="external">Android Weekly Issue #255</a><br>本期内容包括: 一种在RxJava中显示loading/content/error的好的处理方法; Android O中的一些隐藏宝藏; Uber app的immutable的数据升级; MVP模式下, 不要再做<code>view != null</code>的判断了; 用Dagger2实现的依赖注入; 迁移应用到Kotlin; 如何把Gradle插件从Groovy迁移到Kotlin; Activity中的静态start方法使用; Firebase的实时数据库使用.  </p>
@@ -80,13 +159,13 @@
             
             <tag> RxJava </tag>
             
+            <tag> Resources </tag>
+            
             <tag> MVP </tag>
             
             <tag> Kotlin </tag>
             
             <tag> Firebase </tag>
-            
-            <tag> Resources </tag>
             
             <tag> Android O </tag>
             
@@ -287,11 +366,11 @@
             
             <tag> Mockito </tag>
             
-            <tag> FileProvider </tag>
-            
             <tag> SQLite </tag>
             
-            <tag> Transition </tag>
+            <tag> FileProvider </tag>
+            
+            <tag> Shared Element </tag>
             
             <tag> Android O </tag>
             
@@ -299,13 +378,13 @@
             
             <tag> SpringAnimation </tag>
             
+            <tag> Transition </tag>
+            
             <tag> Font </tag>
             
             <tag> Glide </tag>
             
             <tag> Broadcast </tag>
-            
-            <tag> Shared Element </tag>
             
         </tags>
         
@@ -637,9 +716,9 @@
             
             <tag> Testing </tag>
             
-            <tag> JUnit 5 </tag>
-            
             <tag> Android O </tag>
+            
+            <tag> JUnit 5 </tag>
             
             <tag> Topography </tag>
             
@@ -746,9 +825,9 @@
             
             <tag> Dagger </tag>
             
-            <tag> JUnit 5 </tag>
-            
             <tag> Android O </tag>
+            
+            <tag> JUnit 5 </tag>
             
             <tag> Physics-based Animation </tag>
             
@@ -896,9 +975,9 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> Retrofit </tag>
-            
             <tag> RxJava </tag>
+            
+            <tag> Retrofit </tag>
             
             <tag> Fingerprint </tag>
             
@@ -914,9 +993,9 @@
             
             <tag> ClassyShark </tag>
             
-            <tag> Transition </tag>
-            
             <tag> ViewSwitcher </tag>
+            
+            <tag> Transition </tag>
             
             <tag> Coroutines </tag>
             
@@ -1044,11 +1123,11 @@
             
             <tag> Dagger </tag>
             
+            <tag> Realm </tag>
+            
             <tag> JUnit 5 </tag>
             
             <tag> Crash </tag>
-            
-            <tag> Realm </tag>
             
             <tag> MockWebServer </tag>
             
@@ -1158,17 +1237,17 @@
             
             <tag> MVI </tag>
             
-            <tag> Offline </tag>
-            
             <tag> FlexboxLayout </tag>
+            
+            <tag> JUnit 5 </tag>
+            
+            <tag> Transition </tag>
+            
+            <tag> Offline </tag>
             
             <tag> Version Name </tag>
             
             <tag> Git </tag>
-            
-            <tag> Transition </tag>
-            
-            <tag> JUnit 5 </tag>
             
         </tags>
         
@@ -1238,9 +1317,9 @@
             
             <tag> FileProvider </tag>
             
-            <tag> FlexboxLayout </tag>
-            
             <tag> Shared Element </tag>
+            
+            <tag> FlexboxLayout </tag>
             
             <tag> In-App Billing </tag>
             
@@ -1366,9 +1445,9 @@
             
             <tag> Android </tag>
             
-            <tag> Realm </tag>
-            
             <tag> Database </tag>
+            
+            <tag> Realm </tag>
             
         </tags>
         
@@ -1872,9 +1951,9 @@
             
             <tag> Animation </tag>
             
-            <tag> MVVM </tag>
-            
             <tag> MVC </tag>
+            
+            <tag> MVVM </tag>
             
             <tag> Color </tag>
             
@@ -2343,11 +2422,11 @@
             
             <tag> Testing </tag>
             
-            <tag> Android Things </tag>
-            
             <tag> Background work </tag>
             
             <tag> Flutter </tag>
+            
+            <tag> Android Things </tag>
             
             <tag> CI </tag>
             
@@ -2426,9 +2505,9 @@
             
             <tag> Firebase </tag>
             
-            <tag> ExoPlayer </tag>
-            
             <tag> ConstraintLayout </tag>
+            
+            <tag> ExoPlayer </tag>
             
             <tag> Java </tag>
             
@@ -2886,8 +2965,6 @@
             
             <tag> Mockito </tag>
             
-            <tag> Java </tag>
-            
             <tag> Terminal </tag>
             
             <tag> Android 7.1 </tag>
@@ -2905,6 +2982,8 @@
             <tag> push notification </tag>
             
             <tag> transient </tag>
+            
+            <tag> Java </tag>
             
         </tags>
         
@@ -3095,9 +3174,9 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> Retrofit </tag>
-            
             <tag> RxJava </tag>
+            
+            <tag> Retrofit </tag>
             
             <tag> Kotlin </tag>
             
@@ -3206,21 +3285,21 @@
             
             <tag> RxJava </tag>
             
+            <tag> Tools </tag>
+            
             <tag> MVP </tag>
             
             <tag> Kotlin </tag>
             
             <tag> Memory Leak </tag>
             
-            <tag> Tools </tag>
+            <tag> MVVM </tag>
             
             <tag> Android Studio </tag>
             
-            <tag> Audio </tag>
-            
             <tag> BottomNavigationView </tag>
             
-            <tag> MVVM </tag>
+            <tag> Audio </tag>
             
             <tag> Passive View </tag>
             
@@ -3294,11 +3373,11 @@
             
             <tag> Espresso </tag>
             
-            <tag> Retrofit </tag>
-            
             <tag> RxJava </tag>
             
             <tag> MVP </tag>
+            
+            <tag> Retrofit </tag>
             
             <tag> Kotlin </tag>
             
@@ -3438,9 +3517,9 @@
             
             <tag> Android </tag>
             
-            <tag> Retrofit </tag>
-            
             <tag> RxJava </tag>
+            
+            <tag> Retrofit </tag>
             
         </tags>
         
@@ -3527,6 +3606,8 @@
             
             <tag> Test </tag>
             
+            <tag> Dagger </tag>
+            
             <tag> Mobile Vision </tag>
             
             <tag> ConstraintLayout </tag>
@@ -3536,8 +3617,6 @@
             <tag> Multiselection </tag>
             
             <tag> Audio </tag>
-            
-            <tag> Dagger </tag>
             
             <tag> Barcode Detection </tag>
             
@@ -4040,17 +4119,17 @@
             
             <tag> Nougat </tag>
             
+            <tag> MVVM </tag>
+            
+            <tag> Dagger </tag>
+            
             <tag> Android 7 </tag>
             
             <tag> Shortcuts </tag>
             
-            <tag> Dagger </tag>
-            
             <tag> Alarm </tag>
             
             <tag> BottomNavigationView </tag>
-            
-            <tag> MVVM </tag>
             
             <tag> TensorFlow </tag>
             
@@ -4304,15 +4383,15 @@
             
             <tag> Data Binding </tag>
             
-            <tag> Dagger </tag>
+            <tag> MVC </tag>
             
             <tag> MVVM </tag>
-            
-            <tag> MVC </tag>
             
             <tag> Clean Architecture </tag>
             
             <tag> Loader </tag>
+            
+            <tag> Dagger </tag>
             
         </tags>
         
@@ -4721,13 +4800,13 @@
             
             <tag> Firebase </tag>
             
+            <tag> Animation </tag>
+            
             <tag> Android 7.0 </tag>
             
             <tag> Quick Settings </tag>
             
             <tag> Shared-Element Transtion </tag>
-            
-            <tag> Animation </tag>
             
             <tag> ORM </tag>
             
@@ -4975,9 +5054,9 @@
             
             <tag> Wear </tag>
             
-            <tag> Memory Leak </tag>
-            
             <tag> Annotation </tag>
+            
+            <tag> Memory Leak </tag>
             
             <tag> pre-launch </tag>
             
@@ -5174,13 +5253,13 @@
             
             <tag> Android Weekly </tag>
             
+            <tag> Accessibility </tag>
+            
             <tag> Gradle </tag>
             
             <tag> RxJava </tag>
             
             <tag> MVP </tag>
-            
-            <tag> Accessibility </tag>
             
             <tag> Test </tag>
             
@@ -5446,8 +5525,6 @@
             
             <tag> Espresso </tag>
             
-            <tag> MVP </tag>
-            
             <tag> Resources </tag>
             
             <tag> Okio </tag>
@@ -5455,6 +5532,8 @@
             <tag> Tools </tag>
             
             <tag> Support Annotations </tag>
+            
+            <tag> MVP </tag>
             
             <tag> Design </tag>
             
@@ -5622,23 +5701,23 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> Gradle </tag>
-            
-            <tag> RxJava </tag>
-            
-            <tag> Accessibility </tag>
-            
-            <tag> Security </tag>
-            
             <tag> ScaleType </tag>
             
             <tag> Devices </tag>
             
+            <tag> Security </tag>
+            
+            <tag> Accessibility </tag>
+            
             <tag> Scrolling </tag>
+            
+            <tag> Gradle </tag>
             
             <tag> ExpandableRecyclerView </tag>
             
             <tag> Annotation </tag>
+            
+            <tag> RxJava </tag>
             
             <tag> ItemTouchHelper </tag>
             
@@ -5780,6 +5859,10 @@
             
             <tag> Gradle </tag>
             
+            <tag> RxJava </tag>
+            
+            <tag> MVP </tag>
+            
             <tag> Docker </tag>
             
             <tag> Bottom Sheet </tag>
@@ -5787,10 +5870,6 @@
             <tag> Certificate </tag>
             
             <tag> Retrofit </tag>
-            
-            <tag> RxJava </tag>
-            
-            <tag> MVP </tag>
             
             <tag> AsyncLayoutInflater </tag>
             
@@ -5948,11 +6027,11 @@
             
             <tag> Wear </tag>
             
+            <tag> Security </tag>
+            
             <tag> Bottom Sheet </tag>
             
             <tag> Kotlin </tag>
-            
-            <tag> Security </tag>
             
             <tag> JobScheduler </tag>
             
@@ -6096,11 +6175,11 @@
             
             <tag> Android </tag>
             
-            <tag> Toolbar </tag>
-            
             <tag> Design Support Library </tag>
             
             <tag> AppBarLayout </tag>
+            
+            <tag> Toolbar </tag>
             
         </tags>
         
@@ -6256,9 +6335,9 @@
             
             <tag> Fragment </tag>
             
-            <tag> Nested Fragments </tag>
-            
             <tag> Toolbar </tag>
+            
+            <tag> Nested Fragments </tag>
             
             <tag> ActionBar </tag>
             

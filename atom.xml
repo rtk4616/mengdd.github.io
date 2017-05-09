@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-05-03T07:51:32.000Z</updated>
+  <updated>2017-05-09T09:42:32.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,87 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 256</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/05/09/android-weekly-notes-issue-256/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/2017/05/09/android-weekly-notes-issue-256/</id>
+    <published>2017-05-09T09:34:44.000Z</published>
+    <updated>2017-05-09T09:42:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-256"><a href="#Android-Weekly-Issue-256" class="headerlink" title="Android Weekly Issue #256"></a>Android Weekly Issue #256</h1><p>May 7th, 2017<br><a href="http://androidweekly.net/issues/issue-256" target="_blank" rel="external">Android Weekly Issue #256</a><br>本期内容包括: 一个给ViewPager切换时加动画的库; Tail Recursion和它在Kotlin中的实现; MVI模式中的状态恢复; Dagger2的新API使用; 一个新的框架库Flax介绍.<br>代码部分包括: ViewPager加动画的库; 悬浮菜单; RxLoader结合RxJava和Loader实现数据加载; 一个封装BottomNavigationView的库, 使得状态切换类似于ViewPager.</p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="ViewPagerAnimator-–-The-Basics"><a href="#ViewPagerAnimator-–-The-Basics" class="headerlink" title="ViewPagerAnimator – The Basics"></a><a href="https://blog.stylingandroid.com/viewpageranimator-the-basics/" target="_blank" rel="external">ViewPagerAnimator – The Basics</a></h2><p>一个轻量级的库: <a href="https://github.com/StylingAndroid/ViewPagerAnimator" target="_blank" rel="external">ViewPagerAnimator</a>. 本文介绍它的基本用法, 举了一个例子, 可以在切换pager的时候改变背景颜色.</p>
+<h2 id="Tail-recursion-and-how-to-use-it-in-Kotlin"><a href="#Tail-recursion-and-how-to-use-it-in-Kotlin" class="headerlink" title="Tail recursion and how to use it in Kotlin"></a><a href="https://medium.com/@JorgeCastilloPr/tail-recursion-and-how-to-use-it-in-kotlin-97353993e17f" target="_blank" rel="external">Tail recursion and how to use it in Kotlin</a></h2><p>尾部递归和它在Kotlin中的实现.</p>
+<p>官方文档见: <a href="https://kotlinlang.org/docs/reference/functions.html#tail-recursive-functions" target="_blank" rel="external">tail-recursive-functions</a>. 关键字: <code>tailrec</code>.</p>
+<h2 id="Reactive-with-MVI-Part-6-Restoring-State"><a href="#Reactive-with-MVI-Part-6-Restoring-State" class="headerlink" title="Reactive with MVI Part 6 - Restoring State"></a><a href="http://hannesdorfmann.com/android/mosby3-mvi-6" target="_blank" rel="external">Reactive with MVI Part 6 - Restoring State</a></h2><p>使用MVI(Model-View-Intent)模式, 保持数据流的单向性, 会很大程度上简化状态恢复. 本篇就介绍怎么做和为什么.</p>
+<p>这篇文章关注的状态分两种: 一种是memory中的状态(比如屏幕旋转时); 一种是persistent的状态, 即存在Bundle中的状态.</p>
+<h3 id="In-Memory"><a href="#In-Memory" class="headerlink" title="In Memory"></a>In Memory</h3><p>对于Memory中的状态, 很简单, 我们只需要保证我们的RxJava流在Android组件生命周期之外仍然发送新的状态.</p>
+<p>对于MVP来说, 这就是让Presenter在View的生命周期之外存活, 每当view重新attach到presenter上之后, 就按照前一个状态重新渲染. 只有当view完全被销毁了之后presenter才释放.</p>
+<p>使用情形: 屏幕旋转, back stack回退.</p>
+<h3 id="Persistent-State"><a href="#Persistent-State" class="headerlink" title="Persistent State"></a>Persistent State</h3><p>在Android中通常用<code>Activity.onSaveInstanceState(Bundle)</code>来保存状态. 在MVI中View有一个<code>render(state)</code>方法, 所以一个显而易见的方法是让state实现<code>Parcelable</code>然后保存在bundle中.</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>使用单向数据流和一个表达状态的Model以后, 很多和状态相关的事情变得很容易实现了.</p>
+<p>但是通常处于两个理由, 不会把状态放在bundle里: 第一, Bundle有大小限制; 第二, 我们仅仅讨论了如何序列化和反序列化状态, 但恢复状态可能是另一回事.</p>
+<h2 id="Dagger-2-Android-Modules"><a href="#Dagger-2-Android-Modules" class="headerlink" title="Dagger 2: Android Modules"></a><a href="https://medium.com/proandroiddev/dagger-2-android-modules-e168821cfc57" target="_blank" rel="external">Dagger 2: Android Modules</a></h2><p>Dagger 2发布了新版本2.11-rc2.<br>在2.11中有新的API: <code>@ContributesAndroidInjector</code>.</p>
+<p><a href="https://github.com/google/dagger/releases" target="_blank" rel="external">dagger2的changelog</a>.</p>
+<p>本文介绍了新API相关的用法, 和之前的实现做了比较.</p>
+<p>新的用法总结起来有以下三点:</p>
+<ul>
+<li>继承<code>DaggerApplication</code>来注入相关的dispatchers.</li>
+<li>在component中包含<code>AndroidSupportInjectionModule.class</code>.</li>
+<li>创建一个bind方法, 用<code>@ContributesAndroidInjector</code>标注.</li>
+</ul>
+<h2 id="Hello-Flax-—-A-Reactive-Architecture-For-Android"><a href="#Hello-Flax-—-A-Reactive-Architecture-For-Android" class="headerlink" title="Hello Flax — A Reactive Architecture For Android"></a><a href="https://hackernoon.com/hello-flax-a-reactive-architecture-for-android-8e56af9c575a" target="_blank" rel="external">Hello Flax — A Reactive Architecture For Android</a></h2><p>当前Android中的一个趋势是创建reactive的app.<br>作者最初听说这个概念是从<a href="https://facebook.github.io/flux/" target="_blank" rel="external">Flux</a>. 后来看了一系列<a href="http://hannesdorfmann.com/android/mosby3-mvi-1" target="_blank" rel="external">MVI模式的文章</a>, 作者自己也做了一个MVI的<a href="https://medium.com/@CodyEngel/lets-try-model-view-intent-with-android-3190a899c3a1" target="_blank" rel="external">尝试</a>. 之后他就创建了<a href="https://github.com/CodyEngel/Flax" target="_blank" rel="external">Flax</a>, 是一个轻量级的框架库(还在进一步开发中).</p>
+<p>本文介绍了Flax库的使用, 基本可以总结为以下几点:</p>
+<ul>
+<li>Model作为唯一的状态真相.</li>
+<li>View只做无脑的渲染.</li>
+<li>Renderer接收Model变化的通知, 调用View的渲染方法.</li>
+<li>Responder接收用户交互事件, 调用Model的更新方法.</li>
+</ul>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="ViewPagerAnimator"><a href="#ViewPagerAnimator" class="headerlink" title="ViewPagerAnimator"></a><a href="https://github.com/StylingAndroid/ViewPagerAnimator" target="_blank" rel="external">ViewPagerAnimator</a></h2><p>一个轻量级的ViewPager动画库.</p>
+<h2 id="floatingMenu"><a href="#floatingMenu" class="headerlink" title="floatingMenu"></a><a href="https://github.com/rjsvieira/floatingMenu" target="_blank" rel="external">floatingMenu</a></h2><p>一个悬浮的action menu, 点开后展开多个菜单选项.</p>
+<h2 id="RxLoader"><a href="#RxLoader" class="headerlink" title="RxLoader"></a><a href="https://github.com/kmdupr33/RxLoader" target="_blank" rel="external">RxLoader</a></h2><p>一个轻量级的加载数据的库, 结合Loader和RxJava, 避免了内存泄露.<br>基本使用方法: 和你的<code>Observable</code>或者<code>Single</code> <code>compose</code>一下就好.</p>
+<p>作者还有一篇文章详细介绍为什么他觉得他这个库很有必要: <a href="https://www.philosophicalhacker.com/post/rxloader-boilerplate-free-data-loading-with-loaders-and-rxjava/" target="_blank" rel="external">RxLoader: Lightweight, Boilerplate-Free Data loading with Loaders and RxJava</a>.</p>
+<h2 id="AdaptableBottomNavigation"><a href="#AdaptableBottomNavigation" class="headerlink" title="AdaptableBottomNavigation"></a><a href="https://github.com/bufferapp/AdaptableBottomNavigation" target="_blank" rel="external">AdaptableBottomNavigation</a></h2><p>使用support库的<code>BottomNavigationView</code>的时候, 需要自己处理tab间的切换. 作者他们受到<code>TabLayout</code>的启发, 创建了一个<code>ViewSwapper</code>类, 可以简化<code>BottomNavigationView</code>的View管理, 有点像<code>ViewPager</code>的变种, 但去掉了滑动切换的功能.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-256&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-256&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #256&quot;&gt;&lt;/a&gt;Android Weekly Issue #256&lt;/h1&gt;&lt;p&gt;May 7th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-256&quot;&gt;Android Weekly Issue #256&lt;/a&gt;&lt;br&gt;本期内容包括: 一个给ViewPager切换时加动画的库; Tail Recursion和它在Kotlin中的实现; MVI模式中的状态恢复; Dagger2的新API使用; 一个新的框架库Flax介绍.&lt;br&gt;代码部分包括: ViewPager加动画的库; 悬浮菜单; RxLoader结合RxJava和Loader实现数据加载; 一个封装BottomNavigationView的库, 使得状态切换类似于ViewPager.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
+    
+      <category term="Loader" scheme="http://mengdd.github.io/tags/Loader/"/>
+    
+      <category term="BottomNavigationView" scheme="http://mengdd.github.io/tags/BottomNavigationView/"/>
+    
+      <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
+    
+      <category term="ViewPager" scheme="http://mengdd.github.io/tags/ViewPager/"/>
+    
+      <category term="Tail Recursion" scheme="http://mengdd.github.io/tags/Tail-Recursion/"/>
+    
+      <category term="Floating Menu" scheme="http://mengdd.github.io/tags/Floating-Menu/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 255</title>
@@ -96,13 +177,13 @@
     
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
+      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
+    
       <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
-    
-      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
     
       <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
     
@@ -307,11 +388,11 @@
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
-      <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
-    
       <category term="SQLite" scheme="http://mengdd.github.io/tags/SQLite/"/>
     
-      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
+      <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
+    
+      <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
     
       <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
     
@@ -319,13 +400,13 @@
     
       <category term="SpringAnimation" scheme="http://mengdd.github.io/tags/SpringAnimation/"/>
     
+      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
+    
       <category term="Font" scheme="http://mengdd.github.io/tags/Font/"/>
     
       <category term="Glide" scheme="http://mengdd.github.io/tags/Glide/"/>
     
       <category term="Broadcast" scheme="http://mengdd.github.io/tags/Broadcast/"/>
-    
-      <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
     
   </entry>
   
@@ -667,9 +748,9 @@
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
-      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
-    
       <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
+    
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
       <category term="Topography" scheme="http://mengdd.github.io/tags/Topography/"/>
     
@@ -778,9 +859,9 @@
     
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
-      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
-    
       <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
+    
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
       <category term="Physics-based Animation" scheme="http://mengdd.github.io/tags/Physics-based-Animation/"/>
     
@@ -931,9 +1012,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
-    
       <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
       <category term="Fingerprint" scheme="http://mengdd.github.io/tags/Fingerprint/"/>
     
@@ -949,9 +1030,9 @@
     
       <category term="ClassyShark" scheme="http://mengdd.github.io/tags/ClassyShark/"/>
     
-      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
-    
       <category term="ViewSwitcher" scheme="http://mengdd.github.io/tags/ViewSwitcher/"/>
+    
+      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
     
       <category term="Coroutines" scheme="http://mengdd.github.io/tags/Coroutines/"/>
     
@@ -1081,11 +1162,11 @@
     
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
+      <category term="Realm" scheme="http://mengdd.github.io/tags/Realm/"/>
+    
       <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
       <category term="Crash" scheme="http://mengdd.github.io/tags/Crash/"/>
-    
-      <category term="Realm" scheme="http://mengdd.github.io/tags/Realm/"/>
     
       <category term="MockWebServer" scheme="http://mengdd.github.io/tags/MockWebServer/"/>
     
@@ -1198,17 +1279,17 @@
     
       <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
     
-      <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
-    
       <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
+    
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
+    
+      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
+    
+      <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
     
       <category term="Version Name" scheme="http://mengdd.github.io/tags/Version-Name/"/>
     
       <category term="Git" scheme="http://mengdd.github.io/tags/Git/"/>
-    
-      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
-    
-      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
   </entry>
   
@@ -1281,9 +1362,9 @@
     
       <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
-      <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
-    
       <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
+    
+      <category term="FlexboxLayout" scheme="http://mengdd.github.io/tags/FlexboxLayout/"/>
     
       <category term="In-App Billing" scheme="http://mengdd.github.io/tags/In-App-Billing/"/>
     
@@ -1415,9 +1496,9 @@
     
       <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
     
-      <category term="Realm" scheme="http://mengdd.github.io/tags/Realm/"/>
-    
       <category term="Database" scheme="http://mengdd.github.io/tags/Database/"/>
+    
+      <category term="Realm" scheme="http://mengdd.github.io/tags/Realm/"/>
     
   </entry>
   
@@ -1932,9 +2013,9 @@
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
-      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
-    
       <category term="MVC" scheme="http://mengdd.github.io/tags/MVC/"/>
+    
+      <category term="MVVM" scheme="http://mengdd.github.io/tags/MVVM/"/>
     
       <category term="Color" scheme="http://mengdd.github.io/tags/Color/"/>
     
@@ -2067,99 +2148,6 @@
       <category term="Build Time" scheme="http://mengdd.github.io/tags/Build-Time/"/>
     
       <category term="Toast" scheme="http://mengdd.github.io/tags/Toast/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 240</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/01/24/android-weekly-notes-issue-240/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2017/01/24/android-weekly-notes-issue-240/</id>
-    <published>2017-01-24T02:50:19.000Z</published>
-    <updated>2017-01-24T02:58:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-240"><a href="#Android-Weekly-Issue-240" class="headerlink" title="Android Weekly Issue #240"></a>Android Weekly Issue #240</h1><p>January 15th, 2017<br><a href="http://androidweekly.net/issues/issue-240" target="_blank" rel="external">Android Weekly Issue #240</a><br>Hello, 各位亲, 从本篇笔记开始, 以后并不包含Android Weekly的每一篇文章了, 只是选一些我感兴趣的做笔记. 想要看全部文章的还请点击上面的链接.</p>
-<p>本期内容包括: 一个Android的RxJava教程; 关于测试中的注释讨论; Dagger2的实现细节讨论; Kotlin语言设计中和Effective Java相关的点和优化; Reactive app的构建模式, 一个好的model层的重要性; 怎样写数据库测试.</p>
-<a id="more"></a>
-<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="RxAndroid-Tutorial"><a href="#RxAndroid-Tutorial" class="headerlink" title="RxAndroid Tutorial"></a><a href="https://www.raywenderlich.com/141980/rxandroid-tutorial" target="_blank" rel="external">RxAndroid Tutorial</a></h2><p>一个RxAndroid的Tutorial, 内容包括:</p>
-<ul>
-<li>Reactive Programming是什么. -&gt; 把reactive programming比喻成excel里面的表达式.</li>
-<li>observable是什么.</li>
-<li>如何把按钮点击和输入文字改变事件事件变为observables.</li>
-<li>转换.</li>
-<li>过滤.</li>
-<li>指定线程.</li>
-<li>把多个observables联合成一个.</li>
-</ul>
-<h2 id="Clean-tests-Part-2-Comments"><a href="#Clean-tests-Part-2-Comments" class="headerlink" title="Clean tests, Part 2: Comments"></a><a href="https://android.jlelse.eu/clean-tests-part-2-comments-4016ee82f186#.15u9kq7jz" target="_blank" rel="external">Clean tests, Part 2: Comments</a></h2><p>上一篇文章里作者讨论了测试代码的命名, 这篇讨论注释.<br>在测试里我们经常会见到这样的注释:</p>
-<ul>
-<li>// GIVEN</li>
-<li>// WHEN</li>
-<li>// THEN</li>
-</ul>
-<p>注意每一次添加注释的时候都应该想清楚自己的代码是不是能够自解释, 而不是依赖于注释. 这条原则同样适用于产品代码和测试代码.</p>
-<p>为每一个测试重复这三行其实没有什么意义, 因为这个顺序是显而易见的.</p>
-<p>理想情况下, 简单的测试并不需要这些注释就显得很好看了, 如果是复杂的测试, 一般执行应该是一行, 验证也应该是一行, 如果需要太多验证我们应该考虑把它们抽取成多个测试方法. 而关于准备阶段, 如果我们真的需要很多准备的代码, 这是一种code smell, 可能说明我们要测试的这个方法做了太多事情, 可能我们应该先重构一下再进行测试.</p>
-<p>我们也应该好好利用<code>setUp()</code>方法, 让我们的测试看起来更干净.</p>
-<p>最后建议用一些比较好的assert库让最后的断言语句看起来更易懂.</p>
-<h2 id="Android-Dagger2-Critical-things-to-know-before-you-implement"><a href="#Android-Dagger2-Critical-things-to-know-before-you-implement" class="headerlink" title="Android Dagger2: Critical things to know before you implement"></a><a href="https://blog.mindorks.com/android-dagger2-critical-things-to-know-before-you-implement-275663aecc3e#.nxpqzmohn" target="_blank" rel="external">Android Dagger2: Critical things to know before you implement</a></h2><p>关于Dagger2的实现, 你应该搞清楚的几个关键点.</p>
-<ul>
-<li>实现单例的时候, 如果提供了@Provides方法, 那么@Singleton也要在这个provides方法上声明, 声明在类上是没有用的. (类的单例声明只和构造@Inject配合使用).</li>
-<li>在component中提供了get方法后, 如果这个get方法没有被调用, 则对象不会被实例化.</li>
-<li>Scope可以定义在该scope下的单例.</li>
-</ul>
-<h2 id="How-“Effective-Java”-may-have-influenced-the-design-of-Kotlin"><a href="#How-“Effective-Java”-may-have-influenced-the-design-of-Kotlin" class="headerlink" title="How “Effective Java” may have influenced the design of Kotlin"></a><a href="https://medium.com/@lukleDev/how-effective-java-may-have-influenced-the-design-of-kotlin-part-1-45fd64c2f974#.nqwl31wn6" target="_blank" rel="external">How “Effective Java” may have influenced the design of Kotlin</a></h2><p>Kotlin的设计中考虑到的和Effective Java相关的几个点:</p>
-<ul>
-<li>Kotlin的构造默认参数值进一步简化了Builder模式.</li>
-<li>更容易创建单例: 用object声明.</li>
-<li>用了data声明后, 再也不用自己写<code>equals()</code>和<code>hashCode()</code>了.</li>
-<li>properties自带了默认的get/set, 使用更加简洁, 也支持后续扩展.</li>
-<li>Kotlin中的override关键字是强制的而不是可选的.</li>
-</ul>
-<h2 id="Reactive-apps-with-Model-View-Intent-Part-1"><a href="#Reactive-apps-with-Model-View-Intent-Part-1" class="headerlink" title="Reactive apps with Model-View-Intent - Part 1"></a><a href="http://hannesdorfmann.com/android/mosby3-mvi-1" target="_blank" rel="external">Reactive apps with Model-View-Intent - Part 1</a></h2><p>作者用RxJava + Model-View-Intent (MVI)构建的Reactive App, 也即UI响应状态变化的App.</p>
-<p>首先作者列举了Android流行的模式MVC, MVP, MVVM, 这里面都会有一个Model. 但是作者发现大多数时候程序并没有Model这一层.</p>
-<p>构建一个好的Model层可以解决很多问题:</p>
-<ul>
-<li>状态.</li>
-<li>屏幕方向旋转.</li>
-<li>后退导航.</li>
-<li>进程死亡.</li>
-<li>不可变和单向的数据流.</li>
-<li>可调试和重复的状态.</li>
-<li>可测试性.</li>
-</ul>
-<p>最基本的理念就是把这个Model层作为唯一的真实状态来源.</p>
-<h2 id="Testing-SQLite-on-Android-–-Medium"><a href="#Testing-SQLite-on-Android-–-Medium" class="headerlink" title="Testing SQLite on Android – Medium"></a><a href="https://medium.com/@MAFI8919/testing-sqlite-on-android-bfa0733e11e7#.a4hufzbc7" target="_blank" rel="external">Testing SQLite on Android – Medium</a></h2><p>如何写SQLite数据库测试.</p>
-<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="Desertplaceholder"><a href="#Desertplaceholder" class="headerlink" title="Desertplaceholder"></a><a href="https://github.com/JetradarMobile/desertplaceholder" target="_blank" rel="external">Desertplaceholder</a></h2><p>一个沙漠空白页面.</p>
-<h2 id="Android-SwitchIcon"><a href="#Android-SwitchIcon" class="headerlink" title="Android-SwitchIcon"></a><a href="https://github.com/zagum/Android-SwitchIcon" target="_blank" rel="external">Android-SwitchIcon</a></h2><p>Google launcher风格的Switch icon, enable时点亮, disable时灰去.</p>
-<h2 id="SlidesCodeHighlighter"><a href="#SlidesCodeHighlighter" class="headerlink" title="SlidesCodeHighlighter"></a><a href="https://github.com/romannurik/SlidesCodeHighlighter" target="_blank" rel="external">SlidesCodeHighlighter</a></h2><p>一个web应用, 让你可以把带有高亮的代码拷贝进slides.</p>
-<h2 id="GithubWidget"><a href="#GithubWidget" class="headerlink" title="GithubWidget"></a><a href="https://github.com/Nightonke/GithubWidget" target="_blank" rel="external">GithubWidget</a></h2><p>一个Github Widget, 显示Contributions, stars, followers, trending etc.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-240&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-240&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #240&quot;&gt;&lt;/a&gt;Android Weekly Issue #240&lt;/h1&gt;&lt;p&gt;January 15th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-240&quot;&gt;Android Weekly Issue #240&lt;/a&gt;&lt;br&gt;Hello, 各位亲, 从本篇笔记开始, 以后并不包含Android Weekly的每一篇文章了, 只是选一些我感兴趣的做笔记. 想要看全部文章的还请点击上面的链接.&lt;/p&gt;
-&lt;p&gt;本期内容包括: 一个Android的RxJava教程; 关于测试中的注释讨论; Dagger2的实现细节讨论; Kotlin语言设计中和Effective Java相关的点和优化; Reactive app的构建模式, 一个好的model层的重要性; 怎样写数据库测试.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Dagger2" scheme="http://mengdd.github.io/tags/Dagger2/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
-    
-      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
-    
-      <category term="SQLite" scheme="http://mengdd.github.io/tags/SQLite/"/>
     
   </entry>
   
