@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengdd.github.io/"/>
-  <updated>2017-05-09T09:42:32.000Z</updated>
+  <updated>2017-05-17T09:36:21.000Z</updated>
   <id>http://mengdd.github.io/</id>
   
   <author>
@@ -14,6 +14,157 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Weekly Notes Issue 257</title>
+    <link href="http://mengdd.github.io/Android/Android-Weekly/Tools/IDE/2017/05/17/android-weekly-notes-issue-257/"/>
+    <id>http://mengdd.github.io/Android/Android-Weekly/Tools/IDE/2017/05/17/android-weekly-notes-issue-257/</id>
+    <published>2017-05-17T09:26:18.000Z</published>
+    <updated>2017-05-17T09:36:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-257"><a href="#Android-Weekly-Issue-257" class="headerlink" title="Android Weekly Issue #257"></a>Android Weekly Issue #257</h1><p>May 14th, 2017<br><a href="http://androidweekly.net/issues/issue-257" target="_blank" rel="external">Android Weekly Issue #257</a><br>本期内容包括: Gradle中关于项目的一些设置; Android设备上的各种id讨论; ViewPagerAnimator这个库的进一步介绍; Kotlin中的<code>Nothing</code>类型介绍; 实现<code>Parcelable</code>的类和测试; Android开发中一些提高效率的快捷键. </p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Make-or-break…-with-Gradle"><a href="#Make-or-break…-with-Gradle" class="headerlink" title="Make or break… with Gradle"></a><a href="https://medium.com/contentsquare-engineering-blog/make-or-break-with-gradle-dac2e858868d" target="_blank" rel="external">Make or break… with Gradle</a></h2><p>作者讲了他们的一些工作习惯:</p>
+<ul>
+<li>Git分支管理.<ul>
+<li>所有向主分支的提交都必须通过Pull Request.</li>
+<li>仅在CI通过后才允许merge.</li>
+</ul>
+</li>
+<li>Lint设置. <ul>
+<li><code>build.gradle</code>中的lintOptions设置.</li>
+<li><code>./gradlew check</code>会跑所有的单元测试, UI测试和Lint.</li>
+</ul>
+</li>
+<li>代码分析工具.<ul>
+<li>PMD.</li>
+<li>FindBugs.</li>
+<li>Infer.</li>
+<li>这里可以用Google提供的<a href="http://checkstyle.sourceforge.net/reports/google-java-style-20170228.html" target="_blank" rel="external">Java Style Guide</a>.</li>
+</ul>
+</li>
+<li>生成文档.<ul>
+<li>用CheckStyle要求所有的public方法都有JavaDoc注释(默认已经实现了).</li>
+<li>实现Gradle JavaDoc Plugin.</li>
+</ul>
+</li>
+<li>代码测试率报告.<ul>
+<li>Jacoco. </li>
+<li>可以设置一些规则来检测意外打出的log和注释掉的代码(Code Smell).</li>
+</ul>
+</li>
+</ul>
+<h2 id="Identifying-an-Android-Device"><a href="#Identifying-an-Android-Device" class="headerlink" title="Identifying an Android Device"></a><a href="http://handstandsam.com/2017/05/04/identifying-an-android-device/" target="_blank" rel="external">Identifying an Android Device</a></h2><p>在Android设备上可以通过程序获取各种id来识别一个设备或者一次安装. 这篇文章就讨论各种id:</p>
+<ul>
+<li>通过Settings.Secure获取到的Android ID.</li>
+<li>Android Build.SERIAL.</li>
+<li>Android Build.MODEL.</li>
+<li>Android Build.BRAND.</li>
+<li>Android Build.MANUFACTURER.</li>
+<li>Android Build.DEVICE.</li>
+<li>Android Build.PRODUCT.</li>
+<li>IMEI (International Mobile Equipment Identity).</li>
+<li>Phone Number.</li>
+<li>ICCID (Sim Serial Number).</li>
+</ul>
+<h2 id="ViewPagerAnimator-–-The-Advanced-Stuff"><a href="#ViewPagerAnimator-–-The-Advanced-Stuff" class="headerlink" title="ViewPagerAnimator – The Advanced Stuff"></a><a href="https://blog.stylingandroid.com/viewpageranimator-the-advanced-stuff/" target="_blank" rel="external">ViewPagerAnimator – The Advanced Stuff</a></h2><p>上次我们介绍了<a href="https://github.com/StylingAndroid/ViewPagerAnimator" target="_blank" rel="external">ViewPagerAnimator</a>这个库, 在ViewPager切换时进行动画, 但是上次只介绍了简单的颜色变化, 本文介绍一些关于API的高级设定: 变化的属性可以是自定义的类型; API的良好设计使得使用的代码在支持Java 8的环境下可以大幅度地得到简化.</p>
+<h2 id="Nothing-else-matters-in-Kotlin"><a href="#Nothing-else-matters-in-Kotlin" class="headerlink" title="Nothing (else) matters in Kotlin"></a><a href="https://medium.com/@quiro91/nothing-else-matters-in-kotlin-994a9ef106fc" target="_blank" rel="external">Nothing (else) matters in Kotlin</a></h2><p>Kotlin中的一切都有一个类型, 甚至还有一个类型叫Nothing.</p>
+<p>Kotlin中没有void类型, 当一个方法<code>fun</code>没有显示地声明返回值的时候, 它返回的其实是<code>Unit</code>类型.</p>
+<p><code>Unit</code>是一个真的类型, 继承<code>Any</code>(<code>Any</code>对应Java中的<code>Object</code>), 只接受单个的值, 是一个单例(为了避免每次方法返回Unit之后分配内存).</p>
+<p>如果我们有一个方法, 方法中只抛出一个异常, 如果我们不特殊声明, 它的返回值仍是<code>Unit</code>, 但是也许我们应该返回<code>Nothing</code>:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">fail</span><span class="params">()</span></span>: <span class="built_in">Nothing</span> &#123;</div><div class="line">    <span class="keyword">throw</span> RuntimeException(<span class="string">"Something went wrong"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>Nothing</code>是一个无人居住的类型, 在运行时没有值会是这个类型, 它也是其他类的子类.</p>
+<p>当作为返回值时, <code>Unit</code>和<code>Nothing</code>到底有什么区别呢?</p>
+<p>举例来说明:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> <span class="keyword">data</span>: String = intent.getStringExtra(<span class="string">"key"</span>) ?: fail()</div><div class="line">textView.text = <span class="keyword">data</span></div></pre></td></tr></table></figure></p>
+<p>如果<code>fail()</code>方法返回<code>Nothing</code>, 我们要么得到<code>String</code>, 要么抛出异常; 如果返回<code>Unit</code>, 我们会得到一个error, 以为<code>Unit</code>不能转换为<code>String</code>.</p>
+<p>如果不显式声明String类型呢?<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> <span class="keyword">data</span> = intent.getStringExtra(<span class="string">"key"</span>) ?: fail()</div><div class="line">textView.text = <span class="keyword">data</span></div></pre></td></tr></table></figure></p>
+<p>如果<code>fail()</code>返回<code>Nothing</code>, 类型是<code>String</code>;<br>如果返回<code>Unit</code>, 类型是<code>Any</code>, 但TextView期待的是一个<code>CharSequence</code>, 所以你仍然会得到一个error.</p>
+<p><code>Nothing</code>的用途就是用来显式地标记一个方法永远也不会成功地完成(它可能会抛出异常, 进入死循环或者导致一个控制流转变).</p>
+<p><code>Nothing?</code>有且仅有一个实例, 是<code>null</code>.<br><code>Nothing?</code>是所有nullable类型的子类.</p>
+<h2 id="Android-Parcelables-Made-Easy"><a href="#Android-Parcelables-Made-Easy" class="headerlink" title="Android Parcelables Made Easy"></a><a href="https://medium.com/@calren24/android-parcelables-made-easy-acb742bcf96b" target="_blank" rel="external">Android Parcelables Made Easy</a></h2><p>可以在Android Studio中装一个插件, 来自动生成Parcelable的代码:<br>Android Studio &gt; Preferences &gt; Plugins &gt; 搜索<code>Parcelable</code> &gt; 安装<code>Android Parcelable Code Generator</code>.</p>
+<p>安装之后, 在你的类中, 只需要声明字段, 然后Cmd + N, 选<code>Parcelable</code>就可以生成相关的代码了.</p>
+<p>之后, 好的做法是为你的类写一个单元测试, 一旦有人加了新字段, 他们也需要保证Parcelable.<br>为了让你的测试fail的时候显示的信息更有效, 你还需要覆写<code>toString()</code>方法和<code>equals()</code>方法.(这些都是可以自动生成的).</p>
+<h2 id="Android-shortcuts-and-tricks-to-boost-up-your-productivity"><a href="#Android-shortcuts-and-tricks-to-boost-up-your-productivity" class="headerlink" title="Android shortcuts and tricks to boost up your productivity!"></a><a href="https://tech.fleka.me/android-shortcuts-and-tricks-to-boost-up-your-productivity-944548174582" target="_blank" rel="external">Android shortcuts and tricks to boost up your productivity!</a></h2><p>Android开发中一些提高效率的快捷键:</p>
+<ul>
+<li>在Activity和它的布局间切换:<ul>
+<li>在Activity声明的那一行用鼠标点icon.</li>
+<li>Cmd + Shift + O 输入文件名.</li>
+<li>Cmd + Shift + A 输入related symbol. (可以把这个存为一个自定义的shortcut).</li>
+</ul>
+</li>
+<li>在xml的文字和design之间切换: Ctrl + Shift + Left/Right.</li>
+<li>扩展/缩减选中文字: Opt + Up/Down.</li>
+<li>生成新类: Cmd + N; Opt + Enter.</li>
+<li>去实现类: Cmd + Opt + B.</li>
+<li>实现一个方法: Opt + Enter; Ctrl + I.</li>
+<li>去基类方法: Cmd + U; 去实现类方法: Cmd + B.</li>
+<li>覆写基类方法: Ctrl + O.</li>
+<li>在子类中给基类加方法: 在子类中把方法标记为<code>@Override</code>, 然后在<code>@Override</code>上按Opt + Enter, 选择<code>Pull method xxx to YYY</code>.</li>
+<li>改变方法参数: Cmd + F6.</li>
+<li>交换方法参数: Cmd + Opt + Shift + Left/Right.</li>
+<li>定位当前文件: 导航烂最左边有一个圆形小按钮可以帮你定位文件, 如果你想要自动, 可以勾选<code>Autoscroll from Source</code>.</li>
+<li>把local变量改为成员变量: Cmd + Opt + F.</li>
+<li>提取layout和style. (这个快捷键我实验失败了).</li>
+</ul>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="litho-glide"><a href="#litho-glide" class="headerlink" title="litho-glide"></a><a href="https://github.com/pavlospt/litho-glide" target="_blank" rel="external">litho-glide</a></h2><p>为litho创建的Glide图片加载组件.</p>
+<h2 id="sample-googleassistant"><a href="#sample-googleassistant" class="headerlink" title="sample-googleassistant"></a><a href="https://github.com/androidthings/sample-googleassistant" target="_blank" rel="external">sample-googleassistant</a></h2><p>Google Assistant API sample for Android Things.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-Weekly-Issue-257&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-257&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #257&quot;&gt;&lt;/a&gt;Android Weekly Issue #257&lt;/h1&gt;&lt;p&gt;May 14th, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-257&quot;&gt;Android Weekly Issue #257&lt;/a&gt;&lt;br&gt;本期内容包括: Gradle中关于项目的一些设置; Android设备上的各种id讨论; ViewPagerAnimator这个库的进一步介绍; Kotlin中的&lt;code&gt;Nothing&lt;/code&gt;类型介绍; 实现&lt;code&gt;Parcelable&lt;/code&gt;的类和测试; Android开发中一些提高效率的快捷键. &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
+    
+      <category term="Tools" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/Tools/"/>
+    
+      <category term="IDE" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/Tools/IDE/"/>
+    
+    
+      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
+    
+      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
+    
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="Java 8" scheme="http://mengdd.github.io/tags/Java-8/"/>
+    
+      <category term="Gradle" scheme="http://mengdd.github.io/tags/Gradle/"/>
+    
+      <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
+    
+      <category term="Android Studio" scheme="http://mengdd.github.io/tags/Android-Studio/"/>
+    
+      <category term="Shortcuts" scheme="http://mengdd.github.io/tags/Shortcuts/"/>
+    
+      <category term="FindBugs" scheme="http://mengdd.github.io/tags/FindBugs/"/>
+    
+      <category term="Lint" scheme="http://mengdd.github.io/tags/Lint/"/>
+    
+      <category term="Parcelable" scheme="http://mengdd.github.io/tags/Parcelable/"/>
+    
+      <category term="ViewPager" scheme="http://mengdd.github.io/tags/ViewPager/"/>
+    
+      <category term="PMD" scheme="http://mengdd.github.io/tags/PMD/"/>
+    
+      <category term="Infer" scheme="http://mengdd.github.io/tags/Infer/"/>
+    
+      <category term="Style" scheme="http://mengdd.github.io/tags/Style/"/>
+    
+      <category term="CheckStyle" scheme="http://mengdd.github.io/tags/CheckStyle/"/>
+    
+      <category term="JavaDoc" scheme="http://mengdd.github.io/tags/JavaDoc/"/>
+    
+      <category term="Jacoco" scheme="http://mengdd.github.io/tags/Jacoco/"/>
+    
+      <category term="ID" scheme="http://mengdd.github.io/tags/ID/"/>
+    
+      <category term="Nothing" scheme="http://mengdd.github.io/tags/Nothing/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Weekly Notes Issue 256</title>
@@ -76,9 +227,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
@@ -175,15 +326,15 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
-    
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
+    
+      <category term="Resources" scheme="http://mengdd.github.io/tags/Resources/"/>
     
       <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
     
@@ -388,19 +539,19 @@
     
       <category term="Mockito" scheme="http://mengdd.github.io/tags/Mockito/"/>
     
-      <category term="SQLite" scheme="http://mengdd.github.io/tags/SQLite/"/>
-    
       <category term="FileProvider" scheme="http://mengdd.github.io/tags/FileProvider/"/>
     
+      <category term="SQLite" scheme="http://mengdd.github.io/tags/SQLite/"/>
+    
       <category term="Shared Element" scheme="http://mengdd.github.io/tags/Shared-Element/"/>
+    
+      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
     
       <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
     
       <category term="Physics-based Animation" scheme="http://mengdd.github.io/tags/Physics-based-Animation/"/>
     
       <category term="SpringAnimation" scheme="http://mengdd.github.io/tags/SpringAnimation/"/>
-    
-      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
     
       <category term="Font" scheme="http://mengdd.github.io/tags/Font/"/>
     
@@ -748,9 +899,9 @@
     
       <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
     
-      <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
-    
       <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
+    
+      <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
     
       <category term="Topography" scheme="http://mengdd.github.io/tags/Topography/"/>
     
@@ -851,17 +1002,17 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
       <category term="Dagger" scheme="http://mengdd.github.io/tags/Dagger/"/>
     
-      <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
-    
       <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
+    
+      <category term="Android O" scheme="http://mengdd.github.io/tags/Android-O/"/>
     
       <category term="Physics-based Animation" scheme="http://mengdd.github.io/tags/Physics-based-Animation/"/>
     
@@ -1012,13 +1163,13 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
+      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Retrofit" scheme="http://mengdd.github.io/tags/Retrofit/"/>
     
-      <category term="Fingerprint" scheme="http://mengdd.github.io/tags/Fingerprint/"/>
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
-      <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+      <category term="Fingerprint" scheme="http://mengdd.github.io/tags/Fingerprint/"/>
     
       <category term="ConstraintLayout" scheme="http://mengdd.github.io/tags/ConstraintLayout/"/>
     
@@ -1026,13 +1177,13 @@
     
       <category term="OkHttp" scheme="http://mengdd.github.io/tags/OkHttp/"/>
     
-      <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
-    
       <category term="ClassyShark" scheme="http://mengdd.github.io/tags/ClassyShark/"/>
     
-      <category term="ViewSwitcher" scheme="http://mengdd.github.io/tags/ViewSwitcher/"/>
+      <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
     
       <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
+    
+      <category term="ViewSwitcher" scheme="http://mengdd.github.io/tags/ViewSwitcher/"/>
     
       <category term="Coroutines" scheme="http://mengdd.github.io/tags/Coroutines/"/>
     
@@ -1164,13 +1315,13 @@
     
       <category term="Realm" scheme="http://mengdd.github.io/tags/Realm/"/>
     
-      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
-    
       <category term="Crash" scheme="http://mengdd.github.io/tags/Crash/"/>
     
       <category term="MockWebServer" scheme="http://mengdd.github.io/tags/MockWebServer/"/>
     
       <category term="Google Map" scheme="http://mengdd.github.io/tags/Google-Map/"/>
+    
+      <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
       <category term="FindBugs" scheme="http://mengdd.github.io/tags/FindBugs/"/>
     
@@ -1283,13 +1434,13 @@
     
       <category term="JUnit 5" scheme="http://mengdd.github.io/tags/JUnit-5/"/>
     
-      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
-    
       <category term="Offline" scheme="http://mengdd.github.io/tags/Offline/"/>
     
       <category term="Version Name" scheme="http://mengdd.github.io/tags/Version-Name/"/>
     
       <category term="Git" scheme="http://mengdd.github.io/tags/Git/"/>
+    
+      <category term="Transition" scheme="http://mengdd.github.io/tags/Transition/"/>
     
   </entry>
   
@@ -1352,9 +1503,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
     
@@ -1640,9 +1791,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="Memory Leak" scheme="http://mengdd.github.io/tags/Memory-Leak/"/>
     
@@ -1725,9 +1876,9 @@
     
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
-      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
-    
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
       <category term="Android 7" scheme="http://mengdd.github.io/tags/Android-7/"/>
     
@@ -1812,9 +1963,9 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
+    
+      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
     
       <category term="Nougat" scheme="http://mengdd.github.io/tags/Nougat/"/>
     
@@ -2005,11 +2156,11 @@
     
       <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
     
-      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
-    
       <category term="Kotlin" scheme="http://mengdd.github.io/tags/Kotlin/"/>
     
       <category term="Firebase" scheme="http://mengdd.github.io/tags/Firebase/"/>
+    
+      <category term="MVP" scheme="http://mengdd.github.io/tags/MVP/"/>
     
       <category term="Animation" scheme="http://mengdd.github.io/tags/Animation/"/>
     
@@ -2030,124 +2181,6 @@
       <category term="Model-View-Intent" scheme="http://mengdd.github.io/tags/Model-View-Intent/"/>
     
       <category term="Gradient" scheme="http://mengdd.github.io/tags/Gradient/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Weekly Notes Issue 241</title>
-    <link href="http://mengdd.github.io/Android/Android-Weekly/2017/01/25/android-weekly-notes-issue-241/"/>
-    <id>http://mengdd.github.io/Android/Android-Weekly/2017/01/25/android-weekly-notes-issue-241/</id>
-    <published>2017-01-25T01:40:01.000Z</published>
-    <updated>2017-01-25T01:52:53.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-241"><a href="#Android-Weekly-Issue-241" class="headerlink" title="Android Weekly Issue #241"></a>Android Weekly Issue #241</h1><p>January 22nd, 2017<br><a href="http://androidweekly.net/issues/issue-241" target="_blank" rel="external">Android Weekly Issue #241</a><br>本期内容包括: 经典导航模式Master/Detail的设计和实现; APK的大小讨论和增量下载大小的预估工具; Model-View-Intent模式的讨论和实现; 分多个modules对build时间的影响; 测试中能够利用的一些Android特有的接缝设计(manifest, build config, resource).</p>
-<a id="more"></a>
-<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="Case-Study-Master-Detail-Pattern-Revisited"><a href="#Case-Study-Master-Detail-Pattern-Revisited" class="headerlink" title="Case Study. Master/Detail Pattern Revisited"></a><a href="http://goneremote.io/master-detail-pattern/" target="_blank" rel="external">Case Study. Master/Detail Pattern Revisited</a></h2><p>Master/Detail是一种经典的导航流, master屏包含一个list, detail显示某一项的详细信息. <a href="https://developer.android.com/training/implementing-navigation/descendant.html" target="_blank" rel="external">Android Doc</a>.</p>
-<p>作者讲了他适配多种屏幕(包括平板)的设计, 以及简单的实现.</p>
-<h2 id="Tracking-app-update-sizes"><a href="#Tracking-app-update-sizes" class="headerlink" title="Tracking app update sizes"></a><a href="https://medium.com/google-developers/tracking-app-update-sizes-1a1f57634f7b#.v2ecs8u4t" target="_blank" rel="external">Tracking app update sizes</a></h2><p>以前作者有一系列的<a href="https://medium.com/google-developers/smallerapk-part-1-anatomy-of-an-apk-da83c25e7003#.dv2tfqdyq" target="_blank" rel="external">文章</a>讲过apk的组成以及如何减少apk的大小.</p>
-<p>事实上app的大小可以分下面四种:</p>
-<ul>
-<li>提交到Google Play的APK文件大小.</li>
-<li>初始的下载大小.</li>
-<li>在设备上的安装大小.</li>
-<li>更新下载大小.</li>
-</ul>
-<p>之前的一些文章可能都在讨论如何减少初始的大小, 但是大多数情况用户可能只安装你的应用一次, 之后就只是从Play Store更新, 所以应用的更新大小也是很重要的.</p>
-<p>事实上Android Studio(2.2+)改善了打包apk的机制, (<a href="https://android-developers.googleblog.com/2016/11/understanding-apk-packaging-in-android-studio-2-2.html" target="_blank" rel="external">apk packaging</a>), 使得每一个build都尽可能地相似, 这样Play Store就能计算出一个较小的delta更新. 另外, Play Store也引入了新的算法, 比如最近的<a href="https://android-developers.googleblog.com/2016/12/saving-data-reducing-the-size-of-app-updates-by-65-percent.html" target="_blank" rel="external">File-By-File patching</a>, 同样也有效减小了更新的大小.</p>
-<p>所以我们要注意的就是不要介入和干扰当前Android Studio和Play Store的这些优化, 比如不要用自定义的ZIP加密设置来自己压缩APK. 也不要用Zopfli来再次压缩APK.</p>
-<p>Play Store上会显示应用的下载大小, 如果用户已经安装了, 则显示的是更新大小.</p>
-<p>对于开发者来说, 如果能在发布前知道这些信息就更好了, 所以作者他们开源了这个库: <a href="https://github.com/googlesamples/apk-patch-size-estimator" target="_blank" rel="external">apk-patch-size-estimator</a></p>
-<p>这是一个命令行的工具, 可以集成到CI里, 也可以手动比较两个apk文件.</p>
-<p>这个工具实现了当前Play Store的算法, 可以帮你估计出初始的apk下载大小和更新下载大小.</p>
-<p>(注意下载大小和apk文件大小不同因为Play Store可能会做进一步压缩.)</p>
-<p>同样, Android Studio中也有一个图形化的 APK Analyzer工具, 可以做apk的比较, 让你看到到底是哪一部分的尺寸增长了.</p>
-<h2 id="Reactive-Apps-with-Model-View-Intent-Part-2"><a href="#Reactive-Apps-with-Model-View-Intent-Part-2" class="headerlink" title="Reactive Apps with Model-View-Intent - Part 2"></a><a href="http://hannesdorfmann.com/android/mosby3-mvi-2" target="_blank" rel="external">Reactive Apps with Model-View-Intent - Part 2</a></h2><p>上一篇文章讨论了一个好的Model层可以解决很多问题. 这篇来介绍<code>Model-View-Intent</code>模式.</p>
-<h3 id="Model-View-Intent模式"><a href="#Model-View-Intent模式" class="headerlink" title="Model-View-Intent模式"></a>Model-View-Intent模式</h3><p>Model-View-Intent模式是在一个JavaScript的framework <code>cycle.js</code>中提出的.</p>
-<p><img src="/images/view-model-intent.png" alt="view-model-intent"></p>
-<ul>
-<li><code>intent()</code>: 这个方法接收用户输入, 然后输出将会作为参数传给<code>model()</code>.</li>
-<li><code>model()</code>: 接收<code>intent()</code>的输出作为自己的输入, 来操纵Model, 这个方法的输出是一个新的Model(状态变化). 所以它不应该更新一个已经存在的Model. 因为我们想要不可变性. 注意这里是唯一一个允许创建新Model的地方.</li>
-<li><code>view()</code>: 接收<code>model()</code>方法返回的model作为输入, 然后将其展示出来.</li>
-</ul>
-<h3 id="用RxJava连接"><a href="#用RxJava连接" class="headerlink" title="用RxJava连接"></a>用RxJava连接</h3><p>我们希望数据流是单向的, 于是我们用了RxJava, 它很适合这种基于事件的编程, 在这里主要是UI事件.</p>
-<p>作者之后举了一个实现的例子, 在这个例子中他们的Model层用了ViewState后缀. <code>SearchInteractor</code>用来执行搜索, 返回的结果是<code>Observable&lt;SearchViewState&gt;</code>.</p>
-<p>这个模式中定义的View接口里包含了<code>render()</code>方法, 根据传入的状态model显示UI; 这个View接口其实还包含了<code>intent()</code>的方法, 返回的是一个<code>Observable</code>, UI中用了<a href="https://github.com/JakeWharton/RxBinding" target="_blank" rel="external">RxBinding</a>.</p>
-<p>最后一步就是, 如何将View的intent和业务逻辑联系起来呢? 这里用到了一个额外的组件: <code>Presenter</code>.</p>
-<p>这个Presenter看起来像这样:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SearchPresenter</span> <span class="keyword">extends</span> <span class="title">MviBasePresenter</span>&lt;<span class="title">SearchView</span>, <span class="title">SearchViewState</span>&gt; </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">final</span> SearchInteractor searchInteractor;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">bindIntents</span><span class="params">()</span> </span>&#123;</div><div class="line">    Observable&lt;SearchViewState&gt; search =</div><div class="line">        intent(SearchView::searchIntent)</div><div class="line">            .switchMap(searchInteractor::search) <span class="comment">// I have used flatMap() in the video above, but switchMap() makes more sense here</span></div><div class="line">            .observeOn(AndroidSchedulers.mainThread());</div><div class="line"></div><div class="line">    subscribeViewState(search, SearchView::render);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>MviBasePresenter</code>是<a href="https://github.com/sockeqwe/mosby" target="_blank" rel="external">mosby</a>中的一个类.<br>这个类做的事情就是当View第一次attach到Prensenter上时, 调用<code>bindIntent()</code>方法将来自view的intent绑定到业务逻辑上, 只有第一次会绑定, 当View再次attach时不会发生.</p>
-<p>而<code>subscribeViewState()</code>方法则处理了定于管理, 避免内存泄露(具体原因见原文).</p>
-<h2 id="How-modularization-affects-build-time-of-an-Android-application"><a href="#How-modularization-affects-build-time-of-an-Android-application" class="headerlink" title="How modularization affects build time of an Android application"></a><a href="https://medium.com/@nikita.kozlov/how-modularisation-affects-build-time-of-an-android-application-43a984ce9968#.hzgv3h6cm" target="_blank" rel="external">How modularization affects build time of an Android application</a></h2><p>一个Android应用至少有一个application module, build这个module之后得到一个.apk文件.</p>
-<p>application module之间不能相互依赖, 它只能依赖于library, build library module的结果是得到一个.aar(Android Archive Library)文件.</p>
-<p>build的过程可以粗略分为5个阶段:</p>
-<ul>
-<li>1.准备依赖.</li>
-<li>2.Merge资源和manifest.</li>
-<li>3.编译. 从annotation processors开始, 把源码编译成字节码.</li>
-<li>4.后处理. 所有以<code>transform</code>开头的gradle tasks都属于这个阶段. 其中最重要的是<code>transformClassesWithMultidexlist</code>和<code>transformClassesWithDex</code>, 它们生成了.dex文件.</li>
-<li>5.打包发布. 对library来说是生成.aar, 对application来说是生成.apk.</li>
-</ul>
-<p>我们都知道gradle只有在输入变化了的情况下才会重跑task. 而且如果一个module没有变化, 也不会被重新build, 那么就出现了一种假设: 多个module应用的增量build要比单个module的快, 因为只有被改变了的module才会重新编译.</p>
-<p>作者想验证这种假设是否正确.<br>他用的工具就是:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradle assembleDebug --profile</div></pre></td></tr></table></figure></p>
-<p>做了一系列实验之后证明这个假设还是有道理的.</p>
-<p>实验过程中的一些发现:</p>
-<p>1.当应用被拆分为多个modules之后, 改变application module中的代码, build时间会减少; 但是library中的代码, build时间反而会增加. 这是因为library build的时候debug和release的tasks都执行了(并不知道为什么).</p>
-<p>当library module被这样添加的时候:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile project(path: &apos;:app2&apos;)</div><div class="line">    compile project(path: &apos;:app3&apos;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>不管app当前的build type是什么, app永远依赖的是library的release版本.</p>
-<p>这是一个Gradle当前的限制. 参见<a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Library-Publication" target="_blank" rel="external">Library-Publication</a>.</p>
-<p>幸运的是, 我们可以改变这一行为:<br>首先在library中添加:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    defaultConfig &#123;</div><div class="line">        defaultPublishConfig &apos;release&apos;</div><div class="line">        publishNonDefault true</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>让它也可以发布debug版.<br>在app中依赖的时候:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    debugCompile project(path: &apos;:app2&apos;, configuration: &quot;debug&quot;)</div><div class="line">    releaseCompile project(path: &apos;:app2&apos;, configuration: &quot;release&quot;)</div><div class="line"></div><div class="line">    debugCompile project(path: &apos;:app3&apos;, configuration: &quot;debug&quot;)</div><div class="line">    releaseCompile project(path: &apos;:app3&apos;, configuration: &quot;release&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这样debug和release都只依赖各自对应版本的library了.</p>
-<p>2.不管我们改动的是library中的代码还是application中的代码, application module永远都会被重新编译, 所以减小app module的尺寸很有意义.</p>
-<p>3.上面这些都是library之间互相独立的情况, 如果library之间还有相互依赖, 那么build时间也会变长.</p>
-<p>4.如果应用超出了DEX的方法数限制, 用了multidex, 也会增加build时间, Android 5.0开始使用了一个叫做ART的runtime, 在这方面有一些优化, 可以减少build时间, 所以我们可以在开发的时候设置最小API是21: <a href="https://developer.android.com/studio/build/multidex.html#dev-build" target="_blank" rel="external">Optimize multidex in development builds</a>.</p>
-<h2 id="Exploiting-Android-Seams-for-Testing-and-Flexibility"><a href="#Exploiting-Android-Seams-for-Testing-and-Flexibility" class="headerlink" title="Exploiting Android Seams for Testing and Flexibility"></a><a href="https://www.philosophicalhacker.com/post/exploiting-android-specific-seams-for-testing-and-flexibility/" target="_blank" rel="external">Exploiting Android Seams for Testing and Flexibility</a></h2><p>如何让Android应用代码可测试? 答案是创建一些接缝. 这篇文章中, 作者将一些Android特有的接缝, 来让我们的应用更加灵活和易测.</p>
-<h3 id="Manifest接缝"><a href="#Manifest接缝" class="headerlink" title="Manifest接缝"></a>Manifest接缝</h3><p>使用<a href="https://developer.android.com/studio/build/manifest-merge.html#merge_rule_markers" target="_blank" rel="external">Merge rule markers</a>可以方便地更改manifest.</p>
-<p>比如在build variant是mock的时候, 由于我们在src/mock/AndroidManifest.xml里这样写:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- src/mock/AndroidManifest.xml --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">activity</span></span></div><div class="line">  <span class="attr">android:name</span>=<span class="string">".StubConfigActivity"</span>&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">activity</span></span></div><div class="line">  <span class="attr">android:name</span>=<span class="string">".MainActivity"</span>&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">intent-filter</span> <span class="attr">tools:node</span>=<span class="string">"remove"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>所以在build mock的时候, 启动Activity会被替换成上面这个<code>StubConfigActivity</code>.</p>
-<p>还有更多的可能值得探索, 比如你可以替换filter的内容, 从而改变默认intent启动的Activity.</p>
-<h3 id="BuildConfig接缝"><a href="#BuildConfig接缝" class="headerlink" title="BuildConfig接缝"></a>BuildConfig接缝</h3><p>在gradle中可以根据不同的build variant来定义<code>BuildConfig</code>中的变量值. </p>
-<p>默认情况下<code>BuildConfig</code>中会包含一些有用的变量比如<code>DEBUG</code>和<code>FLAVOR</code>.</p>
-<p>我们可以创建更多额外的变量:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">productFlavors &#123;</div><div class="line">  mock &#123;</div><div class="line">    buildConfigField(&apos;Boolean&apos;, &apos;MOCK&apos;, &quot;true&quot;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>一个简单的应用case是我们可以定义不同的base url:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">defaultConfig &#123;</div><div class="line">  buildConfigField(&apos;String&apos;, &apos;API_BASE&apos;, &apos;\&quot;api.awesomecompany.com\&quot;&apos;)</div><div class="line">&#125;</div><div class="line">productFlavors &#123;</div><div class="line">  sandbox &#123;</div><div class="line">    buildConfigField(&apos;String&apos;, &apos;API_BASE&apos;, &apos;\&quot;localhost:8080\&quot;&apos;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="Resource接缝"><a href="#Resource接缝" class="headerlink" title="Resource接缝"></a>Resource接缝</h3><p>不同build variants的资源就像manifest一样, 最后会被merged. 但是对于资源我们没有markers可以控制它们如何merge. </p>
-<p>我们可以利用默认的merge行为: <a href="https://developer.android.com/studio/write/add-resources.html#resource_merging" target="_blank" rel="external">Resource merging</a>.</p>
-<p>优先级是这样的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">build variant &gt; build type &gt; product flavor &gt; main source set &gt; library dependencies</div></pre></td></tr></table></figure></p>
-<p>所以我们可以把默认的资源放在main里, 然后在特定的build variant再创建一份覆盖它们.</p>
-<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="Reptar"><a href="#Reptar" class="headerlink" title="Reptar"></a><a href="https://github.com/Commit451/Reptar" target="_blank" rel="external">Reptar</a></h2><p>RxJava2.x的有用的类的集合.</p>
-<h2 id="Toasty"><a href="#Toasty" class="headerlink" title="Toasty"></a><a href="https://github.com/GrenderG/Toasty" target="_blank" rel="external">Toasty</a></h2><p>前面加了一个icon的Toast, 带背景颜色, 除了内置的error, info, success, warning等几种形式, 还可以自定义.</p>
-<h2 id="Google-Actions-Java-SDK"><a href="#Google-Actions-Java-SDK" class="headerlink" title="Google-Actions-Java-SDK"></a><a href="https://github.com/frogermcs/Google-Actions-Java-SDK" target="_blank" rel="external">Google-Actions-Java-SDK</a></h2><p>非官方的Google Actions Java SDK.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-Weekly-Issue-241&quot;&gt;&lt;a href=&quot;#Android-Weekly-Issue-241&quot; class=&quot;headerlink&quot; title=&quot;Android Weekly Issue #241&quot;&gt;&lt;/a&gt;Android Weekly Issue #241&lt;/h1&gt;&lt;p&gt;January 22nd, 2017&lt;br&gt;&lt;a href=&quot;http://androidweekly.net/issues/issue-241&quot;&gt;Android Weekly Issue #241&lt;/a&gt;&lt;br&gt;本期内容包括: 经典导航模式Master/Detail的设计和实现; APK的大小讨论和增量下载大小的预估工具; Model-View-Intent模式的讨论和实现; 分多个modules对build时间的影响; 测试中能够利用的一些Android特有的接缝设计(manifest, build config, resource).&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mengdd.github.io/categories/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/categories/Android/Android-Weekly/"/>
-    
-    
-      <category term="Android" scheme="http://mengdd.github.io/tags/Android/"/>
-    
-      <category term="Android Weekly" scheme="http://mengdd.github.io/tags/Android-Weekly/"/>
-    
-      <category term="RxJava" scheme="http://mengdd.github.io/tags/RxJava/"/>
-    
-      <category term="RxJava2" scheme="http://mengdd.github.io/tags/RxJava2/"/>
-    
-      <category term="APK" scheme="http://mengdd.github.io/tags/APK/"/>
-    
-      <category term="Testing" scheme="http://mengdd.github.io/tags/Testing/"/>
-    
-      <category term="Master/Detail" scheme="http://mengdd.github.io/tags/Master-Detail/"/>
-    
-      <category term="MVI" scheme="http://mengdd.github.io/tags/MVI/"/>
-    
-      <category term="Build Time" scheme="http://mengdd.github.io/tags/Build-Time/"/>
-    
-      <category term="Toast" scheme="http://mengdd.github.io/tags/Toast/"/>
     
   </entry>
   
