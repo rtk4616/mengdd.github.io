@@ -4,6 +4,118 @@
   
     
     <entry>
+      <title><![CDATA[Android Weekly Notes Issue 258]]></title>
+      <url>http://mengdd.github.io/Android/Android-Weekly/2017/05/27/android-weekly-notes-issue-258/</url>
+      <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-258"><a href="#Android-Weekly-Issue-258" class="headerlink" title="Android Weekly Issue #258"></a>Android Weekly Issue #258</h1><p>May 21st, 2017<br><a href="http://androidweekly.net/issues/issue-258" target="_blank" rel="external">Android Weekly Issue #258</a><br>本期内容: 围绕着Google I/O的热潮, 本周的posts除了几篇小工具和软件设计原则的讨论, 其他都是在说Android Architecture Components和Kotlin.</p>
+<a id="more"></a>
+<h1 id="ARTICLES-amp-TUTORIALS"><a href="#ARTICLES-amp-TUTORIALS" class="headerlink" title="ARTICLES &amp; TUTORIALS"></a>ARTICLES &amp; TUTORIALS</h1><h2 id="DebugPort-2-0"><a href="#DebugPort-2-0" class="headerlink" title="DebugPort 2.0"></a><a href="https://medium.com/@JasonWyatt/introducing-android-debugport-2-0-88ec4ed4db94" target="_blank" rel="external">DebugPort 2.0</a></h2><p>REPL(Read Eval Print Loop)是在命令行界面中, 读取每一行输入, 执行, 然后输出结果, 提供即时的反馈. Java 9会提供这么一个REPL的环境, 叫JShell.</p>
+<p>考虑到在Android中能用上可能要等很长时间, 所以作者一年前开始弄了一个这个项目: <a href="https://github.com/jasonwyatt/Android-DebugPort" target="_blank" rel="external">Android-DebugPort</a>.</p>
+<p>在你的应用中加入这个依赖, 然后运行, 在通知栏就会弹出通知, 然后在电脑上就可以使用telnet来连接到app.</p>
+<p>可以调用方法, 执行脚本, 查询数据库等.</p>
+<h2 id="Understanding-Law-of-Demeter"><a href="#Understanding-Law-of-Demeter" class="headerlink" title="Understanding Law of Demeter"></a><a href="https://medium.com/@ankit.sinhal/design-principal-understand-law-of-demeter-4a44ac18e923" target="_blank" rel="external">Understanding Law of Demeter</a></h2><p>软件设计要求松耦合.<br>Law of Demeter, 即迪米特原则, 亦称为最少知道原则.</p>
+<p>文章介绍了在这种原则下应该如何设计类和它的方法.</p>
+<h2 id="Object-Oriented-Tricks-6-SLAP-your-functions"><a href="#Object-Oriented-Tricks-6-SLAP-your-functions" class="headerlink" title="Object Oriented Tricks: #6 SLAP your functions"></a><a href="https://hackernoon.com/object-oriented-tricks-6-slap-your-functions-a13d25a7d994" target="_blank" rel="external">Object Oriented Tricks: #6 SLAP your functions</a></h2><p>SLAP: Single Level of Abstraction Priciple, 单层抽象原则.</p>
+<p>一个太长的方法往往有各种缺点, 那么怎么判断一个方法过长了呢? 根据行数来判断不太科学, 所以SLAP可以用在这里:<br>一个代码块中的代码应该处于同一层抽象级别.</p>
+<p>一个方法不应该有几个不同级别的抽象, 换言之, 一个方法只做一件事.</p>
+<p>当你在方法代码中用注释来分割代码块的时候, 这些代码可以提取出来, 这样最初的方法就变成了一个隐藏实现细节, 只展示逻辑步骤的ComposedMethod.</p>
+<h2 id="Android-and-Architecture"><a href="#Android-and-Architecture" class="headerlink" title="Android and Architecture"></a><a href="https://android-developers.googleblog.com/2017/05/android-and-architecture.html" target="_blank" rel="external">Android and Architecture</a></h2><p>Google推出Architecture Components的预览, 宣布了一种新的Android App构架指导.</p>
+<h3 id="意见不是处方"><a href="#意见不是处方" class="headerlink" title="意见不是处方"></a>意见不是处方</h3><p>写Android应用有多种方式, 这里提供的只是一系列的指导意见, 来帮助你更好地构架Android应用. </p>
+<p>Android framework中有一些定义良好的API, 用于处理和底层系统的交互, 比如Activity, 但是这些是你应用的入口点, 并不是你的构架块. 这些framework的组件并不强制你分离数据和UI, 也不提供清晰的方式来处理独立于生命周期的数据保存.</p>
+<h3 id="Building-Blocks"><a href="#Building-Blocks" class="headerlink" title="Building Blocks"></a>Building Blocks</h3><p>Architecture Components帮助你实现一个更明智的架构, 它们帮助你: 自动管理activity和fragment的生命周期, 避免内存和资源泄露; 保存Java数据对象到SQLite数据库.</p>
+<h3 id="Lifecycle-Components"><a href="#Lifecycle-Components" class="headerlink" title="Lifecycle Components"></a>Lifecycle Components</h3><p>新的<a href="https://developer.android.com/topic/libraries/architecture/lifecycle.html" target="_blank" rel="external">lifecycle-aware components</a>提供了一种方式来把你应用的核心组件绑定到生命周期事件上, 删除了显式的依赖路径.</p>
+<p>这里核心的类是<a href="https://developer.android.com/reference/android/arch/lifecycle/Lifecycle.html" target="_blank" rel="external">Lifecycle</a>, 它使用了生命周期状态和事件(states and events)的枚举来追踪相关组件的生命周期.</p>
+<p><code>LifecycleOwner</code>是一个接口, 其中<code>getLifecycle()</code>方法返回一个<code>Lifecycle</code>对象. <code>LifecycleObserver</code>是一个观察者, 可以监控组件的生命周期事件(通过在方法上加注解).</p>
+<h3 id="LiveData"><a href="#LiveData" class="headerlink" title="LiveData"></a>LiveData</h3><p><a href="https://developer.android.com/topic/libraries/architecture/livedata.html" target="_blank" rel="external">LiveData</a><br>是一个数据持有类, 同时也是一个Obervable, 允许它的数据被监听, 同时它也知道生命周期.</p>
+<p>当你的UI订阅了底层数据的改动, 并且绑定了一个<code>LifecycleOwner</code>, <code>LiveData</code>会确保这个observer:</p>
+<ul>
+<li>在生命周期处于活跃状态时得到数据更新.</li>
+<li>当生命周期结束时取消订阅.</li>
+<li>在<code>LifecycleOwner</code>重新开始时(比如旋转变化或从back stack中跳出), 得到最新的数据.</li>
+</ul>
+<h3 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h3><p><a href="https://developer.android.com/topic/libraries/architecture/viewmodel.html" target="_blank" rel="external">ViewModel</a>是一个辅助类, 用于盛放Activity或Fragment的UI数据, 从UI controller的逻辑中分离出view的数据.</p>
+<p>只要Activity/Fragment存在, ViewModel的数据就被保持着. 包括Activity/Fragment因为状态变化而销毁重建的情况. 这样ViewModel就在重建时提供可用的数据.</p>
+<p>结合<code>ViewModel</code>和<code>LiveData</code>, 就为数据提供了一个了解生命周期的可观察的容器. 其中<code>LiveData</code>负责通知, <code>ViewModel</code>负责数据保存.</p>
+<h3 id="Data-Persistence"><a href="#Data-Persistence" class="headerlink" title="Data Persistence"></a>Data Persistence</h3><p>提出了<a href="https://developer.android.com/topic/libraries/architecture/room.html" target="_blank" rel="external">Room library</a>, 提供了一个在SQLite之上的object-mapping抽象层, 允许流式的数据库访问. </p>
+<p>Room中三个主要的组件:</p>
+<ul>
+<li><code>Entity</code>: 代码数据库中一行的数据, 用带有注解的Java数据类构建. 每一个Entity在它自己的表中被保存.</li>
+<li><code>DAO</code> (Data Access Object): 定义了访问数据库的方法. 使用注解来绑定SQL到每个方法.</li>
+<li><code>Database</code>. 用注解来定义entities列表和数据库版本;  定义DAO的列表; 同时也是底层数据库连接的主要访问点.</li>
+</ul>
+<h3 id="Guide-to-App-Architecture"><a href="#Guide-to-App-Architecture" class="headerlink" title="Guide to App Architecture"></a>Guide to App Architecture</h3><p><a href="https://developer.android.com/topic/libraries/architecture/guide.html" target="_blank" rel="external">Guide to App Architecture</a>显示如何用Architecture Components来构建一个稳健的, 模块化的, 可测试的app.</p>
+<h2 id="Why-Kotlin"><a href="#Why-Kotlin" class="headerlink" title="Why Kotlin?"></a><a href="http://blog.danlew.net/2017/05/17/why-kotlin/" target="_blank" rel="external">Why Kotlin?</a></h2><p>作者分享了为什么相比于Java, 他更喜欢Kotlin.</p>
+<h2 id="My-take-on“Architecture-Components”"><a href="#My-take-on“Architecture-Components”" class="headerlink" title="My take on“Architecture Components”"></a><a href="https://medium.com/@yonatanvlevin/weighing-in-on-the-holy-architecture-war-my-take-on-architecture-components-31f7025e9c66" target="_blank" rel="external">My take on“Architecture Components”</a></h2><p>作者分享了他在项目中使用Architecture components的一些心得.</p>
+<p>他们的项目原先是MVP + Content Provider的. 为了实验加入Architecture components, 他又新写了一个MVP的<a href="https://github.com/parahall/star_wars_movies" target="_blank" rel="external">Demo项目</a>, 把它转化成MVVM, 又加入Architecture components的新组件来实现. (代码比较多, 我没有详细看).</p>
+<h2 id="ConstraintLayout-com"><a href="#ConstraintLayout-com" class="headerlink" title="ConstraintLayout.com"></a><a href="https://blog.stylingandroid.com/constraintlayout-com/" target="_blank" rel="external">ConstraintLayout.com</a></h2><p>这个网站<a href="https://constraintlayout.com/" target="_blank" rel="external">ConstraintLayout.com</a>成立了, 用于讨论和<code>ConstraintLayout</code>相关的一切.</p>
+<h2 id="Looking-at-Room-and-LiveData-Part-1"><a href="#Looking-at-Room-and-LiveData-Part-1" class="headerlink" title="Looking at Room and LiveData - Part 1"></a><a href="https://riggaroo.co.za/android-architecture-components-looking-room-livedata-part-1/" target="_blank" rel="external">Looking at Room and LiveData - Part 1</a></h2><p>Android之前一直没有提出过一个官方的构架模式, 所以大家总在讨论各种MVP, MVVM, MVI模式, 各种库等等. 终于在Google I/O 2017, Android团队发布了Architecture Components, 来提供一个构建Android App的最佳实践指导.</p>
+<h3 id="什么是Architecture-Components"><a href="#什么是Architecture-Components" class="headerlink" title="什么是Architecture Components?"></a>什么是Architecture Components?</h3><p>Architecture Components是一系列的库和指导集合, 作为构建Android app的基础. 针对一些常见的使用场景, 目的是减少样板和重复代码, 让你能集中精力到你应用的核心功能代码上.</p>
+<p>主要组件包括:</p>
+<ul>
+<li>Room: a SQLite object mapper.</li>
+<li>LiveData: a lifecycle aware observable.</li>
+<li>ViewModel: Activity/Fragment和应用其他部分的交流点.</li>
+<li>Lifecycle: 核心部分, 包含了组件的生命周期.</li>
+<li>LifecycleOwner: 核心接口, 用于有生命周期的组件.</li>
+<li>LifecycleObserver: 当某个生命周期事件发生的时候, 应该做些什么呢?  </li>
+</ul>
+<p>之后作者写了一个小App作为例子, 用了MVVM + Android Architecture Components. 其中详细介绍了Room和LiveData的用法.</p>
+<h2 id="Room-—-Getting-Started"><a href="#Room-—-Getting-Started" class="headerlink" title="Room — Getting Started"></a><a href="https://medium.com/@tonyowen/a-room-with-a-view-getting-started-ec010f9f5448" target="_blank" rel="external">Room — Getting Started</a></h2><p>一个简单的例子, 介绍如何使用Room. (例子用Kotlin).</p>
+<h2 id="Generating-Kotlin-code-with-KotlinPoet"><a href="#Generating-Kotlin-code-with-KotlinPoet" class="headerlink" title="Generating Kotlin code with KotlinPoet"></a><a href="https://medium.com/square-corner-blog/generating-kotlin-code-with-kotlinpoet-119dc20f74d4" target="_blank" rel="external">Generating Kotlin code with KotlinPoet</a></h2><p>Jake Wharton的文章, Square推出了<a href="https://github.com/square/kotlinpoet" target="_blank" rel="external">KotlinPoet</a>, 用来生成kotlin代码.</p>
+<h2 id="Why-you-should-totally-switch-to-Kotlin"><a href="#Why-you-should-totally-switch-to-Kotlin" class="headerlink" title="Why you should totally switch to Kotlin"></a><a href="https://medium.com/@magnus.chatt/why-you-should-totally-switch-to-kotlin-c7bbde9e10d5" target="_blank" rel="external">Why you should totally switch to Kotlin</a></h2><p>要转换到Kotlin的若干个理由. (有17条).</p>
+<h2 id="30-New-Android-Libraries"><a href="#30-New-Android-Libraries" class="headerlink" title="30 New Android Libraries"></a><a href="https://medium.com/@mmbialas/30-new-android-libraries-released-in-the-spring-of-2017-which-deserve-your-attention-faea359a1915" target="_blank" rel="external">30 New Android Libraries</a></h2><p>30个Android的新库, 都是自2017年3月份以后发布的.<br>作者主观挑选的, 所以并没有排序.</p>
+<p>列表比较长, 我就不一一列了, 不少库还是挺有趣的.</p>
+<h1 id="LIBRARIES-amp-CODE"><a href="#LIBRARIES-amp-CODE" class="headerlink" title="LIBRARIES &amp; CODE"></a>LIBRARIES &amp; CODE</h1><h2 id="android-architecture-counter-sample"><a href="#android-architecture-counter-sample" class="headerlink" title="android-architecture-counter-sample"></a><a href="https://github.com/dlew/android-architecture-counter-sample" target="_blank" rel="external">android-architecture-counter-sample</a></h2><p>使用Kotlin和Android architecture components写的一个sample app.</p>
+<h2 id="KotlinPoet"><a href="#KotlinPoet" class="headerlink" title="KotlinPoet"></a><a href="https://github.com/square/kotlinpoet" target="_blank" rel="external">KotlinPoet</a></h2><p>Kotlin代码生成库.</p>
+<h2 id="memechat"><a href="#memechat" class="headerlink" title="memechat"></a><a href="https://github.com/efortuna/memechat" target="_blank" rel="external">memechat</a></h2><p>用<a href="https://flutter.io/" target="_blank" rel="external">Flutter</a>构建的一个聊天应用, 用了Firebase, Google Sign in和设备相机.</p>
+<h1 id="News"><a href="#News" class="headerlink" title="News"></a>News</h1><p>几个大新闻: </p>
+<ul>
+<li>Android O发布了第二个预览版.</li>
+<li>Android team发布了Architecture Components. - Android正式宣布了支持Kotlin.</li>
+<li>Instant App现在对所有开发者开放</li>
+<li>Android Studio发布了3.0 Canary, 推出了一系列的新工具.</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+            <category> Android Weekly </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> Android Weekly </tag>
+            
+            <tag> Kotlin </tag>
+            
+            <tag> Design </tag>
+            
+            <tag> ConstraintLayout </tag>
+            
+            <tag> MVVM </tag>
+            
+            <tag> Architecture </tag>
+            
+            <tag> Architecture Components </tag>
+            
+            <tag> Room </tag>
+            
+            <tag> LiveData </tag>
+            
+            <tag> Lifecycle </tag>
+            
+            <tag> ViewModel </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android Weekly Notes Issue 257]]></title>
       <url>http://mengdd.github.io/Android/Android-Weekly/Tools/IDE/2017/05/17/android-weekly-notes-issue-257/</url>
       <content type="html"><![CDATA[<h1 id="Android-Weekly-Issue-257"><a href="#Android-Weekly-Issue-257" class="headerlink" title="Android Weekly Issue #257"></a>Android Weekly Issue #257</h1><p>May 14th, 2017<br><a href="http://androidweekly.net/issues/issue-257" target="_blank" rel="external">Android Weekly Issue #257</a><br>本期内容包括: Gradle中关于项目的一些设置; Android设备上的各种id讨论; ViewPagerAnimator这个库的进一步介绍; Kotlin中的<code>Nothing</code>类型介绍; 实现<code>Parcelable</code>的类和测试; Android开发中一些提高效率的快捷键. </p>
@@ -120,17 +232,17 @@
             
             <tag> Animation </tag>
             
+            <tag> Shortcuts </tag>
+            
             <tag> Android Studio </tag>
             
-            <tag> Shortcuts </tag>
+            <tag> ViewPager </tag>
+            
+            <tag> Parcelable </tag>
             
             <tag> FindBugs </tag>
             
             <tag> Lint </tag>
-            
-            <tag> Parcelable </tag>
-            
-            <tag> ViewPager </tag>
             
             <tag> PMD </tag>
             
@@ -205,9 +317,9 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> Kotlin </tag>
             
@@ -215,9 +327,9 @@
             
             <tag> Animation </tag>
             
-            <tag> Loader </tag>
-            
             <tag> BottomNavigationView </tag>
+            
+            <tag> Loader </tag>
             
             <tag> MVI </tag>
             
@@ -302,9 +414,9 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> Kotlin </tag>
             
@@ -519,9 +631,9 @@
             
             <tag> SQLite </tag>
             
-            <tag> Shared Element </tag>
-            
             <tag> Transition </tag>
+            
+            <tag> Shared Element </tag>
             
             <tag> Android O </tag>
             
@@ -1130,19 +1242,21 @@
             
             <tag> RxJava </tag>
             
-            <tag> Fingerprint </tag>
-            
             <tag> ConstraintLayout </tag>
             
             <tag> TensorFlow </tag>
             
-            <tag> OkHttp </tag>
+            <tag> Fingerprint </tag>
             
-            <tag> ClassyShark </tag>
+            <tag> OkHttp </tag>
             
             <tag> MVI </tag>
             
             <tag> Transition </tag>
+            
+            <tag> ClassyShark </tag>
+            
+            <tag> Network </tag>
             
             <tag> ViewSwitcher </tag>
             
@@ -1155,8 +1269,6 @@
             <tag> OpenGL </tag>
             
             <tag> JBox2D </tag>
-            
-            <tag> Network </tag>
             
             <tag> Etag </tag>
             
@@ -1260,27 +1372,27 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
             
+            <tag> Dagger2 </tag>
+            
             <tag> RxJava </tag>
+            
+            <tag> Dagger </tag>
             
             <tag> RxJava2 </tag>
             
             <tag> Mockito </tag>
             
-            <tag> Dagger </tag>
-            
             <tag> Realm </tag>
+            
+            <tag> JUnit 5 </tag>
             
             <tag> Crash </tag>
             
             <tag> MockWebServer </tag>
             
             <tag> Google Map </tag>
-            
-            <tag> JUnit 5 </tag>
             
             <tag> FindBugs </tag>
             
@@ -1386,17 +1498,17 @@
             
             <tag> MVI </tag>
             
-            <tag> FlexboxLayout </tag>
-            
-            <tag> JUnit 5 </tag>
-            
             <tag> Offline </tag>
+            
+            <tag> FlexboxLayout </tag>
             
             <tag> Version Name </tag>
             
             <tag> Git </tag>
             
             <tag> Transition </tag>
+            
+            <tag> JUnit 5 </tag>
             
         </tags>
         
@@ -1466,9 +1578,9 @@
             
             <tag> FileProvider </tag>
             
-            <tag> Shared Element </tag>
-            
             <tag> FlexboxLayout </tag>
+            
+            <tag> Shared Element </tag>
             
             <tag> In-App Billing </tag>
             
@@ -1731,15 +1843,15 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> Kotlin </tag>
             
-            <tag> RxJava </tag>
-            
             <tag> Memory Leak </tag>
+            
+            <tag> RxJava </tag>
             
             <tag> Mockito </tag>
             
@@ -1820,9 +1932,9 @@
             
             <tag> Firebase </tag>
             
-            <tag> Nougat </tag>
-            
             <tag> Android 7 </tag>
+            
+            <tag> Nougat </tag>
             
             <tag> Testing </tag>
             
@@ -1907,15 +2019,15 @@
             
             <tag> RxJava </tag>
             
-            <tag> Nougat </tag>
-            
             <tag> Animation </tag>
+            
+            <tag> Android 7 </tag>
+            
+            <tag> Nougat </tag>
             
             <tag> RecyclerView </tag>
             
             <tag> ConstraintLayout </tag>
-            
-            <tag> Android 7 </tag>
             
             <tag> Testing </tag>
             
@@ -2100,9 +2212,9 @@
             
             <tag> Animation </tag>
             
-            <tag> MVC </tag>
-            
             <tag> MVVM </tag>
+            
+            <tag> MVC </tag>
             
             <tag> Color </tag>
             
@@ -2218,9 +2330,9 @@
             
             <tag> Android Weekly </tag>
             
-            <tag> RxJava </tag>
-            
             <tag> APK </tag>
+            
+            <tag> RxJava </tag>
             
             <tag> RxJava2 </tag>
             
@@ -2312,9 +2424,9 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> Kotlin </tag>
             
@@ -2467,11 +2579,11 @@
             
             <tag> Wear </tag>
             
+            <tag> Handler </tag>
+            
             <tag> Gradle </tag>
             
             <tag> RxJava </tag>
-            
-            <tag> Handler </tag>
             
             <tag> Test </tag>
             
@@ -2658,9 +2770,9 @@
             
             <tag> ConstraintLayout </tag>
             
-            <tag> Java </tag>
-            
             <tag> Android Things </tag>
+            
+            <tag> Java </tag>
             
             <tag> ContentProvider </tag>
             
@@ -2885,17 +2997,17 @@
             
             <tag> AnimatedVectorDrawable </tag>
             
-            <tag> Test </tag>
+            <tag> Animation </tag>
+            
+            <tag> Android 7 </tag>
             
             <tag> Nougat </tag>
-            
-            <tag> Animation </tag>
             
             <tag> RecyclerView </tag>
             
             <tag> Android Studio </tag>
             
-            <tag> Android 7 </tag>
+            <tag> Test </tag>
             
             <tag> Custom View </tag>
             
@@ -3114,15 +3226,13 @@
             
             <tag> Mockito </tag>
             
-            <tag> Java </tag>
+            <tag> Custom View </tag>
             
             <tag> Terminal </tag>
             
             <tag> Android 7.1 </tag>
             
             <tag> App Shortcuts </tag>
-            
-            <tag> Custom View </tag>
             
             <tag> Remote Config </tag>
             
@@ -3133,6 +3243,8 @@
             <tag> push notification </tag>
             
             <tag> transient </tag>
+            
+            <tag> Java </tag>
             
         </tags>
         
@@ -3325,17 +3437,17 @@
             
             <tag> Kotlin </tag>
             
-            <tag> Retrofit </tag>
-            
-            <tag> RxJava </tag>
-            
             <tag> Redux </tag>
             
             <tag> Reductor </tag>
             
-            <tag> RxJava2 </tag>
+            <tag> Retrofit </tag>
+            
+            <tag> RxJava </tag>
             
             <tag> MVVM </tag>
+            
+            <tag> RxJava2 </tag>
             
             <tag> Sensor </tag>
             
@@ -3424,15 +3536,17 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
             
             <tag> Espresso </tag>
             
             <tag> TV </tag>
             
+            <tag> Dagger2 </tag>
+            
             <tag> Kotlin </tag>
+            
+            <tag> Memory Leak </tag>
             
             <tag> RxJava </tag>
             
@@ -3440,13 +3554,11 @@
             
             <tag> Tools </tag>
             
-            <tag> Memory Leak </tag>
-            
             <tag> Android Studio </tag>
             
-            <tag> MVVM </tag>
-            
             <tag> BottomNavigationView </tag>
+            
+            <tag> MVVM </tag>
             
             <tag> Audio </tag>
             
@@ -3530,11 +3642,11 @@
             
             <tag> MVP </tag>
             
+            <tag> ConstraintLayout </tag>
+            
             <tag> RxJava2 </tag>
             
             <tag> Mockito </tag>
-            
-            <tag> ConstraintLayout </tag>
             
             <tag> Async-Await </tag>
             
@@ -3747,19 +3859,19 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
             
-            <tag> RxJava </tag>
+            <tag> Dagger2 </tag>
             
-            <tag> Test </tag>
+            <tag> RxJava </tag>
             
             <tag> Mobile Vision </tag>
             
             <tag> ConstraintLayout </tag>
             
             <tag> Dagger </tag>
+            
+            <tag> Test </tag>
             
             <tag> Pury </tag>
             
@@ -4258,29 +4370,29 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
             
             <tag> Espresso </tag>
             
-            <tag> Test </tag>
-            
-            <tag> Nougat </tag>
+            <tag> Dagger2 </tag>
             
             <tag> Android 7 </tag>
             
+            <tag> Nougat </tag>
+            
             <tag> Shortcuts </tag>
-            
-            <tag> MVVM </tag>
-            
-            <tag> Dagger </tag>
             
             <tag> Alarm </tag>
             
             <tag> BottomNavigationView </tag>
             
+            <tag> MVVM </tag>
+            
+            <tag> Dagger </tag>
+            
             <tag> TensorFlow </tag>
+            
+            <tag> Test </tag>
             
         </tags>
         
@@ -4345,9 +4457,9 @@
             
             <tag> Android </tag>
             
-            <tag> Nougat </tag>
-            
             <tag> Android 7 </tag>
+            
+            <tag> Nougat </tag>
             
             <tag> Shortcuts </tag>
             
@@ -4530,17 +4642,17 @@
             
             <tag> MVP </tag>
             
-            <tag> Data Binding </tag>
+            <tag> MVVM </tag>
+            
+            <tag> Dagger </tag>
             
             <tag> MVC </tag>
             
-            <tag> MVVM </tag>
-            
             <tag> Clean Architecture </tag>
             
-            <tag> Loader </tag>
+            <tag> Data Binding </tag>
             
-            <tag> Dagger </tag>
+            <tag> Loader </tag>
             
         </tags>
         
@@ -4820,9 +4932,9 @@
             
             <tag> Animation </tag>
             
-            <tag> Proguard </tag>
-            
             <tag> Data Binding </tag>
+            
+            <tag> Proguard </tag>
             
             <tag> Mockito </tag>
             
@@ -4949,13 +5061,13 @@
             
             <tag> Firebase </tag>
             
-            <tag> Animation </tag>
-            
             <tag> Android 7.0 </tag>
             
             <tag> Quick Settings </tag>
             
             <tag> Shared-Element Transtion </tag>
+            
+            <tag> Animation </tag>
             
             <tag> ORM </tag>
             
@@ -5203,8 +5315,6 @@
             
             <tag> Wear </tag>
             
-            <tag> Annotation </tag>
-            
             <tag> pre-launch </tag>
             
             <tag> Handler </tag>
@@ -5222,6 +5332,8 @@
             <tag> Reductor </tag>
             
             <tag> Memory Leak </tag>
+            
+            <tag> Annotation </tag>
             
             <tag> Adapter </tag>
             
@@ -5404,6 +5516,8 @@
             
             <tag> Kotlin </tag>
             
+            <tag> Memory Leak </tag>
+            
             <tag> Gradle </tag>
             
             <tag> RxJava </tag>
@@ -5412,15 +5526,13 @@
             
             <tag> Accessibility </tag>
             
-            <tag> Memory Leak </tag>
+            <tag> Nougat </tag>
             
             <tag> Test </tag>
             
             <tag> Fingerprint </tag>
             
             <tag> RxJava2 </tag>
-            
-            <tag> Nougat </tag>
             
             <tag> GCM </tag>
             
@@ -5676,11 +5788,11 @@
             
             <tag> MVP </tag>
             
-            <tag> Resources </tag>
-            
             <tag> Okio </tag>
             
             <tag> Tools </tag>
+            
+            <tag> Resources </tag>
             
             <tag> Support Annotations </tag>
             
@@ -5846,15 +5958,19 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
             
+            <tag> Dagger2 </tag>
+            
             <tag> Security </tag>
+            
+            <tag> Annotation </tag>
             
             <tag> Gradle </tag>
             
             <tag> RxJava </tag>
+            
+            <tag> Resources </tag>
             
             <tag> ScaleType </tag>
             
@@ -5866,13 +5982,9 @@
             
             <tag> ExpandableRecyclerView </tag>
             
-            <tag> Annotation </tag>
-            
             <tag> ItemTouchHelper </tag>
             
             <tag> Fresco </tag>
-            
-            <tag> Resources </tag>
             
         </tags>
         
@@ -6170,13 +6282,13 @@
             
             <tag> Android </tag>
             
-            <tag> Dagger2 </tag>
-            
             <tag> Android Weekly </tag>
             
             <tag> Wear </tag>
             
             <tag> Bottom Sheet </tag>
+            
+            <tag> Dagger2 </tag>
             
             <tag> Security </tag>
             
@@ -6324,11 +6436,11 @@
             
             <tag> Android </tag>
             
+            <tag> Toolbar </tag>
+            
             <tag> Design Support Library </tag>
             
             <tag> AppBarLayout </tag>
-            
-            <tag> Toolbar </tag>
             
         </tags>
         
@@ -6680,6 +6792,29 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Test Links]]></title>
+      <url>http://mengdd.github.io/uncategorized/2016/05/31/test-links/</url>
+      <content type="html"><![CDATA[<p><a href="http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330" target="_blank" rel="external">http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330</a></p>
+<p><a href="https://m.realestate.com.au/sold/property-house-act-waramanga-122532898" target="_blank" rel="external">https://m.realestate.com.au/sold/property-house-act-waramanga-122532898</a></p>
+<p>realestate.com.au/suggested-properties</p>
+<p><a href="http://www.realestate.com.au/suggested-properties" target="_blank" rel="external">http://www.realestate.com.au/suggested-properties</a></p>
+<p><a href="http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/" target="_blank" rel="external">http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/</a></p>
+<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false</a></p>
+<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search</a></p>
+<p><a href="http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16" target="_blank" rel="external">http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16</a></p>
+<p><a href="http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false</a></p>
+<p><a href="http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3</a> </p>
+<p><a href="https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc" target="_blank" rel="external">https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc</a> </p>
+<p><a href="http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1</a> </p>
+<p>2016-06-15<br><a href="http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1</a><br><a href="http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc</a><br><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date</a></p>
+<p>2016-08-03<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a></p>
+<p>2016-11-7<br>Property detail:<br><a href="http://www.realestate.com.au/property-apartment-vic-melbourne-122718062" target="_blank" rel="external">http://www.realestate.com.au/property-apartment-vic-melbourne-122718062</a><br>Saved Properties -&gt; should open second tab<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a><br>Saved Property Notification: -&gt; should open detail page on second tab<br>rea-app://saved-properties/122718062<br>Agenda deeplink: -&gt; should open inspections on second tab<br>rea-app://saved-properties/inbox-style</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android Fragment使用(一) 基础篇 温故知新]]></title>
       <url>http://mengdd.github.io/Android/2016/05/31/android-fragment-usage-1-basic-part/</url>
       <content type="html"><![CDATA[<p>Fragment使用的基本知识点总结, 包括Fragment的添加, 参数传递和通信, 生命周期和各种操作.</p>
@@ -6736,29 +6871,6 @@
             <tag> Fragment </tag>
             
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Test Links]]></title>
-      <url>http://mengdd.github.io/uncategorized/2016/05/31/test-links/</url>
-      <content type="html"><![CDATA[<p><a href="http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330" target="_blank" rel="external">http://www.realestate.com.au/property-house-nsw-singleton+heights-122331330</a></p>
-<p><a href="https://m.realestate.com.au/sold/property-house-act-waramanga-122532898" target="_blank" rel="external">https://m.realestate.com.au/sold/property-house-act-waramanga-122532898</a></p>
-<p>realestate.com.au/suggested-properties</p>
-<p><a href="http://www.realestate.com.au/suggested-properties" target="_blank" rel="external">http://www.realestate.com.au/suggested-properties</a></p>
-<p><a href="http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/" target="_blank" rel="external">http://www.realestate.com.au/blog/expand-your-real-estate-search-with-apps-suggested-properties/</a></p>
-<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-between-600000-750000-in-mentone%2c+vic+3194%3b/list-1?maxBeds=2&amp;includeSurrounding=false</a></p>
-<p><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-400-between-800000-900000-in-mentone%2c+vic+3194/list-1?keywords=pool&amp;numParkingSpaces=3&amp;numBaths=2&amp;maxBeds=2&amp;includeSurrounding=false&amp;persistIncludeSurrounding=true&amp;source=location-search</a></p>
-<p><a href="http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16" target="_blank" rel="external">http://www.realestate.com.au/rent/property-townhouse-villa-acreage-with-2-bedrooms-between-300-450-in-parkdale%2c+vic+3195%3b/list-1?availableBefore=2016-05-16</a></p>
-<p><a href="http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-townhouse-with-3-bedrooms-between-0-1000000-in-sandringham%2c+vic+3191/map-1?maxBeds=3&amp;includeSurrounding=false</a></p>
-<p><a href="http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3" target="_blank" rel="external">http://www.realestate.com.au/sold/property-house-with-2-bedrooms-between-50000-950000-in-kew%2c+vic+3101/list-1?maxBeds=3</a> </p>
-<p><a href="https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc" target="_blank" rel="external">https://m.realestate.com.au/sold/property-townhouse-with-studio-in-weston+creek+district%2c+act/list-1?numParkingSpaces=1&amp;numBaths=1&amp;keywords=car&amp;activeSort=sold-price-desc</a> </p>
-<p><a href="http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-scoresby%2c+vic+3179%3b/list-1</a> </p>
-<p>2016-06-15<br><a href="http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1" target="_blank" rel="external">http://www.realestate.com.au/sold/in-bentleigh%2c+vic+3204/list-1</a><br><a href="http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-between-0-2000000-in-melbourne%2c+vic+3000/list-1?numBaths=1&amp;numParkingSpaces=1&amp;activeSort=price-asc</a><br><a href="http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date" target="_blank" rel="external">http://www.realestate.com.au/buy/property-house-with-1-bedroom-size-1-between-0-2000000-in-melbourne%2c+vic+3000/list-1?maxBeds=5&amp;numBaths=1&amp;numParkingSpaces=1&amp;activeSort=list-date</a></p>
-<p>2016-08-03<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a></p>
-<p>2016-11-7<br>Property detail:<br><a href="http://www.realestate.com.au/property-apartment-vic-melbourne-122718062" target="_blank" rel="external">http://www.realestate.com.au/property-apartment-vic-melbourne-122718062</a><br>Saved Properties -&gt; should open second tab<br><a href="https://m.realestate.com.au/saved-properties" target="_blank" rel="external">https://m.realestate.com.au/saved-properties</a><br>Saved Property Notification: -&gt; should open detail page on second tab<br>rea-app://saved-properties/122718062<br>Agenda deeplink: -&gt; should open inspections on second tab<br>rea-app://saved-properties/inbox-style</p>
-]]></content>
-      
         
     </entry>
     
